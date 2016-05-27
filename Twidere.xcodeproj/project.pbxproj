@@ -1,0 +1,527 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529E61CF7F35300E06364 /* AppDelegate.swift */; };
+		CE0529E91CF7F35300E06364 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529E81CF7F35300E06364 /* ViewController.swift */; };
+		CE0529EC1CF7F35300E06364 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0529EA1CF7F35300E06364 /* Main.storyboard */; };
+		CE0529EF1CF7F35300E06364 /* Twidere.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE0529ED1CF7F35300E06364 /* Twidere.xcdatamodeld */; };
+		CE0529F11CF7F35300E06364 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0529F01CF7F35300E06364 /* Assets.xcassets */; };
+		CE0529F41CF7F35300E06364 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0529F21CF7F35300E06364 /* LaunchScreen.storyboard */; };
+		CE0529FF1CF7F35300E06364 /* TwidereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529FE1CF7F35300E06364 /* TwidereTests.swift */; };
+		CE052A0A1CF7F35300E06364 /* TwidereUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE052A091CF7F35300E06364 /* TwidereUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CE0529FB1CF7F35300E06364 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE0529DB1CF7F35300E06364 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE0529E21CF7F35300E06364;
+			remoteInfo = Twidere;
+		};
+		CE052A061CF7F35300E06364 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE0529DB1CF7F35300E06364 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE0529E21CF7F35300E06364;
+			remoteInfo = Twidere;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CE0529E31CF7F35300E06364 /* Twidere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twidere.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE0529E61CF7F35300E06364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CE0529E81CF7F35300E06364 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CE0529EB1CF7F35300E06364 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CE0529EE1CF7F35300E06364 /* Twidere.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Twidere.xcdatamodel; sourceTree = "<group>"; };
+		CE0529F01CF7F35300E06364 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CE0529F31CF7F35300E06364 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CE0529F51CF7F35300E06364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE0529FA1CF7F35300E06364 /* TwidereTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwidereTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE0529FE1CF7F35300E06364 /* TwidereTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwidereTests.swift; sourceTree = "<group>"; };
+		CE052A001CF7F35300E06364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE052A051CF7F35300E06364 /* TwidereUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwidereUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE052A091CF7F35300E06364 /* TwidereUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwidereUITests.swift; sourceTree = "<group>"; };
+		CE052A0B1CF7F35300E06364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CE0529E01CF7F35300E06364 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE0529F71CF7F35300E06364 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE052A021CF7F35300E06364 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CE0529DA1CF7F35300E06364 = {
+			isa = PBXGroup;
+			children = (
+				CE0529E51CF7F35300E06364 /* Twidere */,
+				CE0529FD1CF7F35300E06364 /* TwidereTests */,
+				CE052A081CF7F35300E06364 /* TwidereUITests */,
+				CE0529E41CF7F35300E06364 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CE0529E41CF7F35300E06364 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE0529E31CF7F35300E06364 /* Twidere.app */,
+				CE0529FA1CF7F35300E06364 /* TwidereTests.xctest */,
+				CE052A051CF7F35300E06364 /* TwidereUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CE0529E51CF7F35300E06364 /* Twidere */ = {
+			isa = PBXGroup;
+			children = (
+				CE0529E61CF7F35300E06364 /* AppDelegate.swift */,
+				CE0529E81CF7F35300E06364 /* ViewController.swift */,
+				CE0529EA1CF7F35300E06364 /* Main.storyboard */,
+				CE0529F01CF7F35300E06364 /* Assets.xcassets */,
+				CE0529F21CF7F35300E06364 /* LaunchScreen.storyboard */,
+				CE0529F51CF7F35300E06364 /* Info.plist */,
+				CE0529ED1CF7F35300E06364 /* Twidere.xcdatamodeld */,
+			);
+			path = Twidere;
+			sourceTree = "<group>";
+		};
+		CE0529FD1CF7F35300E06364 /* TwidereTests */ = {
+			isa = PBXGroup;
+			children = (
+				CE0529FE1CF7F35300E06364 /* TwidereTests.swift */,
+				CE052A001CF7F35300E06364 /* Info.plist */,
+			);
+			path = TwidereTests;
+			sourceTree = "<group>";
+		};
+		CE052A081CF7F35300E06364 /* TwidereUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CE052A091CF7F35300E06364 /* TwidereUITests.swift */,
+				CE052A0B1CF7F35300E06364 /* Info.plist */,
+			);
+			path = TwidereUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CE0529E21CF7F35300E06364 /* Twidere */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE052A0E1CF7F35300E06364 /* Build configuration list for PBXNativeTarget "Twidere" */;
+			buildPhases = (
+				CE0529DF1CF7F35300E06364 /* Sources */,
+				CE0529E01CF7F35300E06364 /* Frameworks */,
+				CE0529E11CF7F35300E06364 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Twidere;
+			productName = Twidere;
+			productReference = CE0529E31CF7F35300E06364 /* Twidere.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CE0529F91CF7F35300E06364 /* TwidereTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE052A111CF7F35300E06364 /* Build configuration list for PBXNativeTarget "TwidereTests" */;
+			buildPhases = (
+				CE0529F61CF7F35300E06364 /* Sources */,
+				CE0529F71CF7F35300E06364 /* Frameworks */,
+				CE0529F81CF7F35300E06364 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE0529FC1CF7F35300E06364 /* PBXTargetDependency */,
+			);
+			name = TwidereTests;
+			productName = TwidereTests;
+			productReference = CE0529FA1CF7F35300E06364 /* TwidereTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CE052A041CF7F35300E06364 /* TwidereUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE052A141CF7F35300E06364 /* Build configuration list for PBXNativeTarget "TwidereUITests" */;
+			buildPhases = (
+				CE052A011CF7F35300E06364 /* Sources */,
+				CE052A021CF7F35300E06364 /* Frameworks */,
+				CE052A031CF7F35300E06364 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE052A071CF7F35300E06364 /* PBXTargetDependency */,
+			);
+			name = TwidereUITests;
+			productName = TwidereUITests;
+			productReference = CE052A051CF7F35300E06364 /* TwidereUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CE0529DB1CF7F35300E06364 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Mariotaku Dev";
+				TargetAttributes = {
+					CE0529E21CF7F35300E06364 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = K5277Y55W8;
+					};
+					CE0529F91CF7F35300E06364 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = K5277Y55W8;
+						TestTargetID = CE0529E21CF7F35300E06364;
+					};
+					CE052A041CF7F35300E06364 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = K5277Y55W8;
+						TestTargetID = CE0529E21CF7F35300E06364;
+					};
+				};
+			};
+			buildConfigurationList = CE0529DE1CF7F35300E06364 /* Build configuration list for PBXProject "Twidere" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CE0529DA1CF7F35300E06364;
+			productRefGroup = CE0529E41CF7F35300E06364 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CE0529E21CF7F35300E06364 /* Twidere */,
+				CE0529F91CF7F35300E06364 /* TwidereTests */,
+				CE052A041CF7F35300E06364 /* TwidereUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CE0529E11CF7F35300E06364 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE0529F41CF7F35300E06364 /* LaunchScreen.storyboard in Resources */,
+				CE0529F11CF7F35300E06364 /* Assets.xcassets in Resources */,
+				CE0529EC1CF7F35300E06364 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE0529F81CF7F35300E06364 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE052A031CF7F35300E06364 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CE0529DF1CF7F35300E06364 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE0529E91CF7F35300E06364 /* ViewController.swift in Sources */,
+				CE0529EF1CF7F35300E06364 /* Twidere.xcdatamodeld in Sources */,
+				CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE0529F61CF7F35300E06364 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE0529FF1CF7F35300E06364 /* TwidereTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE052A011CF7F35300E06364 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE052A0A1CF7F35300E06364 /* TwidereUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CE0529FC1CF7F35300E06364 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE0529E21CF7F35300E06364 /* Twidere */;
+			targetProxy = CE0529FB1CF7F35300E06364 /* PBXContainerItemProxy */;
+		};
+		CE052A071CF7F35300E06364 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE0529E21CF7F35300E06364 /* Twidere */;
+			targetProxy = CE052A061CF7F35300E06364 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CE0529EA1CF7F35300E06364 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE0529EB1CF7F35300E06364 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CE0529F21CF7F35300E06364 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE0529F31CF7F35300E06364 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CE052A0C1CF7F35300E06364 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CE052A0D1CF7F35300E06364 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CE052A0F1CF7F35300E06364 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Twidere/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.Twidere;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CE052A101CF7F35300E06364 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Twidere/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.Twidere;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		CE052A121CF7F35300E06364 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TwidereTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.TwidereTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twidere.app/Twidere";
+			};
+			name = Debug;
+		};
+		CE052A131CF7F35300E06364 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TwidereTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.TwidereTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twidere.app/Twidere";
+			};
+			name = Release;
+		};
+		CE052A151CF7F35300E06364 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TwidereUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.TwidereUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Twidere;
+			};
+			name = Debug;
+		};
+		CE052A161CF7F35300E06364 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TwidereUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.TwidereUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Twidere;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CE0529DE1CF7F35300E06364 /* Build configuration list for PBXProject "Twidere" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE052A0C1CF7F35300E06364 /* Debug */,
+				CE052A0D1CF7F35300E06364 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE052A0E1CF7F35300E06364 /* Build configuration list for PBXNativeTarget "Twidere" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE052A0F1CF7F35300E06364 /* Debug */,
+				CE052A101CF7F35300E06364 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CE052A111CF7F35300E06364 /* Build configuration list for PBXNativeTarget "TwidereTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE052A121CF7F35300E06364 /* Debug */,
+				CE052A131CF7F35300E06364 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CE052A141CF7F35300E06364 /* Build configuration list for PBXNativeTarget "TwidereUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE052A151CF7F35300E06364 /* Debug */,
+				CE052A161CF7F35300E06364 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CE0529ED1CF7F35300E06364 /* Twidere.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CE0529EE1CF7F35300E06364 /* Twidere.xcdatamodel */,
+			);
+			currentVersion = CE0529EE1CF7F35300E06364 /* Twidere.xcdatamodel */;
+			path = Twidere.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = CE0529DB1CF7F35300E06364 /* Project object */;
+}
