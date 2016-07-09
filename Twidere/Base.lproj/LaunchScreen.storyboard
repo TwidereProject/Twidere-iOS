@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCM-Ia-jjl">
-                                <rect key="frame" x="246" y="262" width="109" height="76"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Twidere" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCM-Ia-jjl">
+                                <rect key="frame" x="244" y="281" width="112" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -26,8 +26,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="MCM-Ia-jjl" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="3aj-BV-Sva"/>
-                            <constraint firstItem="MCM-Ia-jjl" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="WVv-E3-Yzt"/>
+                            <constraint firstItem="MCM-Ia-jjl" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ESv-cE-6jB"/>
+                            <constraint firstItem="MCM-Ia-jjl" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="YR2-YC-Yia"/>
                         </constraints>
                     </view>
                 </viewController>

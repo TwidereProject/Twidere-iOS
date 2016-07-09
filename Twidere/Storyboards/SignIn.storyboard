@@ -91,15 +91,16 @@
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCc-Wd-20l" userLabel="PasswordLoginButton">
-                                                <rect key="frame" x="8" y="122" width="89" height="27"/>
+                                                <rect key="frame" x="8" y="122" width="164" height="27"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <state key="normal" title="Password Login"/>
+                                                <state key="normal" title="Password login (Twitter only)"/>
                                             </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="zUJ-Gf-B2L" firstAttribute="leading" secondItem="g4Q-gh-MVD" secondAttribute="leadingMargin" id="MNd-Vg-dlq"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="iik-dj-EvU" secondAttribute="trailing" id="NaZ-WV-xoU"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="zUJ-Gf-B2L" secondAttribute="trailing" id="SyB-R1-D3l"/>
+                                            <constraint firstItem="DCc-Wd-20l" firstAttribute="leading" secondItem="g4Q-gh-MVD" secondAttribute="leadingMargin" id="chc-Ed-sJZ"/>
                                             <constraint firstItem="iik-dj-EvU" firstAttribute="leading" secondItem="g4Q-gh-MVD" secondAttribute="leadingMargin" id="zsN-dn-EGV"/>
                                         </constraints>
                                         <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
