@@ -4,8 +4,9 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'Twidere' do
-  pod 'Alamofire', '~> 3.4'
   pod 'SwiftyJSON', '~> 2.3.2'
+  pod 'CryptoSwift', '~> 0.5.1'
+  pod 'Just', '~> 0.4.7'
 end
 
 target 'TwidereTests' do

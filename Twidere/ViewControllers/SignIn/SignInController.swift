@@ -35,10 +35,7 @@ class SignInController: UIViewController {
     }
     
     @IBAction func signInClicked(sender: UIButton) {
-        let endpoint = OAuthEndpoint(base: "https://api.twitter.com/1.1/", signingBase: "https://api.twitter.com/1.1/")
-        let auth = OAuthAuthorization()
-        let twitter = MicroBlogService(endpoint: endpoint, auth: auth)
-        twitter.verifyCredentials()
+        
     }
     
     @IBAction func settingsClicked(sender: UIBarButtonItem) {

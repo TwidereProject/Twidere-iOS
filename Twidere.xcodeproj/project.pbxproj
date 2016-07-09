@@ -20,6 +20,9 @@
 		CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED41F351D3085FF0089E0B6 /* SignIn.storyboard */; };
 		CED41F3B1D30C1D20089E0B6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F3A1D30C1D20089E0B6 /* Constants.swift */; };
 		CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */; };
+		CED41F411D30E6B80089E0B6 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F401D30E6B80089E0B6 /* Endpoint.swift */; };
+		CED41F431D30E6E40089E0B6 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F421D30E6E40089E0B6 /* Authorization.swift */; };
+		CED41F451D313B6C0089E0B6 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED41F441D313B6C0089E0B6 /* Preferences.storyboard */; };
 		CF8E85F1E33C74BBB6A3812F /* Pods_Twidere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF4E4BD882AFE12CFC1ABF2 /* Pods_Twidere.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +64,10 @@
 		CED41F331D2FF88D0089E0B6 /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInController.swift; path = ViewControllers/SignIn/SignInController.swift; sourceTree = "<group>"; };
 		CED41F351D3085FF0089E0B6 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SignIn.storyboard; path = Storyboards/SignIn.storyboard; sourceTree = "<group>"; };
 		CED41F3A1D30C1D20089E0B6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MicroBlogService.swift; path = Services/MicroBlogService.swift; sourceTree = "<group>"; };
+		CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MicroBlogService.swift; path = Services/MicroBlog/MicroBlogService.swift; sourceTree = "<group>"; };
+		CED41F401D30E6B80089E0B6 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Endpoint.swift; path = Services/MicroBlog/Endpoint.swift; sourceTree = "<group>"; };
+		CED41F421D30E6E40089E0B6 /* Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Authorization.swift; path = Services/MicroBlog/Authorization.swift; sourceTree = "<group>"; };
+		CED41F441D313B6C0089E0B6 /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Preferences.storyboard; path = Storyboards/Preferences.storyboard; sourceTree = "<group>"; };
 		DEF4E4BD882AFE12CFC1ABF2 /* Pods_Twidere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twidere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -186,6 +192,7 @@
 				CED41F351D3085FF0089E0B6 /* SignIn.storyboard */,
 				CE0529F21CF7F35300E06364 /* LaunchScreen.storyboard */,
 				CE0529EA1CF7F35300E06364 /* Main.storyboard */,
+				CED41F441D313B6C0089E0B6 /* Preferences.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -193,9 +200,19 @@
 		CED41F3C1D30D2C80089E0B6 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */,
+				CED41F3F1D30E6760089E0B6 /* MicroBlog */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		CED41F3F1D30E6760089E0B6 /* MicroBlog */ = {
+			isa = PBXGroup;
+			children = (
+				CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */,
+				CED41F401D30E6B80089E0B6 /* Endpoint.swift */,
+				CED41F421D30E6E40089E0B6 /* Authorization.swift */,
+			);
+			name = MicroBlog;
 			sourceTree = "<group>";
 		};
 		D2F7031A2E06DE3DF8308E83 /* Pods */ = {
@@ -320,6 +337,7 @@
 				CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */,
 				CE0529F41CF7F35300E06364 /* LaunchScreen.storyboard in Resources */,
 				CE0529F11CF7F35300E06364 /* Assets.xcassets in Resources */,
+				CED41F451D313B6C0089E0B6 /* Preferences.storyboard in Resources */,
 				CE0529EC1CF7F35300E06364 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,9 +413,11 @@
 			files = (
 				CE0529E91CF7F35300E06364 /* MainViewController.swift in Sources */,
 				CE0529EF1CF7F35300E06364 /* Twidere.xcdatamodeld in Sources */,
+				CED41F411D30E6B80089E0B6 /* Endpoint.swift in Sources */,
 				CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */,
 				CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */,
 				CED41F2F1D2FF7C80089E0B6 /* HomeViewController.swift in Sources */,
+				CED41F431D30E6E40089E0B6 /* Authorization.swift in Sources */,
 				CED41F3B1D30C1D20089E0B6 /* Constants.swift in Sources */,
 				CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */,
 			);
