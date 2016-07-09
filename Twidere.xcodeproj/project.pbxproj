@@ -1,1318 +1,667 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>archiveVersion</key>
-	<string>1</string>
-	<key>classes</key>
-	<dict/>
-	<key>objectVersion</key>
-	<string>46</string>
-	<key>objects</key>
-	<dict>
-		<key>00C12471503A47AD1BEA336E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods-Twidere.release.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Target Support Files/Pods-Twidere/Pods-Twidere.release.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4121F97037D901D5A7C214C2</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Check Pods Manifest.lock</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
-if [[ $? != 0 ]] ; then
-    cat &lt;&lt; EOM
-error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
-EOM
-    exit 1
-fi
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>6A5A4A58BEE8C9F2249022C1</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods-Twidere.debug.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Target Support Files/Pods-Twidere/Pods-Twidere.debug.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9F49B93B9A06803DCF4B5A06</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>DEF4E4BD882AFE12CFC1ABF2</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE0529DA1CF7F35300E06364</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>CE0529E51CF7F35300E06364</string>
-				<string>CE0529FD1CF7F35300E06364</string>
-				<string>CE052A081CF7F35300E06364</string>
-				<string>CE0529E41CF7F35300E06364</string>
-				<string>D2F7031A2E06DE3DF8308E83</string>
-				<string>9F49B93B9A06803DCF4B5A06</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE0529DB1CF7F35300E06364</key>
-		<dict>
-			<key>attributes</key>
-			<dict>
-				<key>LastSwiftUpdateCheck</key>
-				<string>0730</string>
-				<key>LastUpgradeCheck</key>
-				<string>0730</string>
-				<key>ORGANIZATIONNAME</key>
-				<string>Mariotaku Dev</string>
-				<key>TargetAttributes</key>
-				<dict>
-					<key>CE0529E21CF7F35300E06364</key>
-					<dict>
-						<key>CreatedOnToolsVersion</key>
-						<string>7.3.1</string>
-						<key>DevelopmentTeam</key>
-						<string>K5277Y55W8</string>
-					</dict>
-					<key>CE0529F91CF7F35300E06364</key>
-					<dict>
-						<key>CreatedOnToolsVersion</key>
-						<string>7.3.1</string>
-						<key>DevelopmentTeam</key>
-						<string>K5277Y55W8</string>
-						<key>TestTargetID</key>
-						<string>CE0529E21CF7F35300E06364</string>
-					</dict>
-					<key>CE052A041CF7F35300E06364</key>
-					<dict>
-						<key>CreatedOnToolsVersion</key>
-						<string>7.3.1</string>
-						<key>DevelopmentTeam</key>
-						<string>K5277Y55W8</string>
-						<key>TestTargetID</key>
-						<string>CE0529E21CF7F35300E06364</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>buildConfigurationList</key>
-			<string>CE0529DE1CF7F35300E06364</string>
-			<key>compatibilityVersion</key>
-			<string>Xcode 3.2</string>
-			<key>developmentRegion</key>
-			<string>English</string>
-			<key>hasScannedForEncodings</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXProject</string>
-			<key>knownRegions</key>
-			<array>
-				<string>en</string>
-				<string>Base</string>
-			</array>
-			<key>mainGroup</key>
-			<string>CE0529DA1CF7F35300E06364</string>
-			<key>productRefGroup</key>
-			<string>CE0529E41CF7F35300E06364</string>
-			<key>projectDirPath</key>
-			<string></string>
-			<key>projectReferences</key>
-			<array/>
-			<key>projectRoot</key>
-			<string></string>
-			<key>targets</key>
-			<array>
-				<string>CE0529E21CF7F35300E06364</string>
-				<string>CE0529F91CF7F35300E06364</string>
-				<string>CE052A041CF7F35300E06364</string>
-			</array>
-		</dict>
-		<key>CE0529DE1CF7F35300E06364</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>CE052A0C1CF7F35300E06364</string>
-				<string>CE052A0D1CF7F35300E06364</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>CE0529DF1CF7F35300E06364</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>CE0529E91CF7F35300E06364</string>
-				<string>CE0529EF1CF7F35300E06364</string>
-				<string>CE0529E71CF7F35300E06364</string>
-				<string>CED41F341D2FF88D0089E0B6</string>
-				<string>CED41F2F1D2FF7C80089E0B6</string>
-				<string>CED41F3B1D30C1D20089E0B6</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>CE0529E01CF7F35300E06364</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>CF8E85F1E33C74BBB6A3812F</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>CE0529E11CF7F35300E06364</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>CED41F361D3085FF0089E0B6</string>
-				<string>CE0529F41CF7F35300E06364</string>
-				<string>CE0529F11CF7F35300E06364</string>
-				<string>CE0529EC1CF7F35300E06364</string>
-			</array>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>CE0529E21CF7F35300E06364</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>CE052A0E1CF7F35300E06364</string>
-			<key>buildPhases</key>
-			<array>
-				<string>4121F97037D901D5A7C214C2</string>
-				<string>CE0529DF1CF7F35300E06364</string>
-				<string>CE0529E01CF7F35300E06364</string>
-				<string>CE0529E11CF7F35300E06364</string>
-				<string>D8CFDA2AE3B38D9C220482D4</string>
-				<string>D6CC3EC13C54A0025335475B</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>Twidere</string>
-			<key>productName</key>
-			<string>Twidere</string>
-			<key>productReference</key>
-			<string>CE0529E31CF7F35300E06364</string>
-			<key>productType</key>
-			<string>com.apple.product-type.application</string>
-		</dict>
-		<key>CE0529E31CF7F35300E06364</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.application</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>Twidere.app</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>CE0529E41CF7F35300E06364</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>CE0529E31CF7F35300E06364</string>
-				<string>CE0529FA1CF7F35300E06364</string>
-				<string>CE052A051CF7F35300E06364</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE0529E51CF7F35300E06364</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>CED41F3A1D30C1D20089E0B6</string>
-				<string>CED41F371D3086060089E0B6</string>
-				<string>CED41F281D2FEE9C0089E0B6</string>
-				<string>CE0529E61CF7F35300E06364</string>
-				<string>CE0529F01CF7F35300E06364</string>
-				<string>CE0529F51CF7F35300E06364</string>
-				<string>CE0529ED1CF7F35300E06364</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>Twidere</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE0529E61CF7F35300E06364</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>AppDelegate.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE0529E71CF7F35300E06364</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CE0529E61CF7F35300E06364</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>CE0529E81CF7F35300E06364</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>MainViewController.swift</string>
-			<key>path</key>
-			<string>ViewControllers/MainViewController.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE0529E91CF7F35300E06364</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CE0529E81CF7F35300E06364</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>CE0529EA1CF7F35300E06364</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>CE0529EB1CF7F35300E06364</string>
-			</array>
-			<key>isa</key>
-			<string>PBXVariantGroup</string>
-			<key>name</key>
-			<string>Main.storyboard</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE0529EB1CF7F35300E06364</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>file.storyboard</string>
-			<key>name</key>
-			<string>Base</string>
-			<key>path</key>
-			<string>Base.lproj/Main.storyboard</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE0529EC1CF7F35300E06364</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CE0529EA1CF7F35300E06364</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>CE0529ED1CF7F35300E06364</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>CE0529EE1CF7F35300E06364</string>
-			</array>
-			<key>currentVersion</key>
-			<string>CE0529EE1CF7F35300E06364</string>
-			<key>isa</key>
-			<string>XCVersionGroup</string>
-			<key>path</key>
-			<string>Twidere.xcdatamodeld</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-			<key>versionGroupType</key>
-			<string>wrapper.xcdatamodel</string>
-		</dict>
-		<key>CE0529EE1CF7F35300E06364</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.xcdatamodel</string>
-			<key>path</key>
-			<string>Twidere.xcdatamodel</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE0529EF1CF7F35300E06364</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CE0529ED1CF7F35300E06364</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>CE0529F01CF7F35300E06364</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>folder.assetcatalog</string>
-			<key>path</key>
-			<string>Assets.xcassets</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE0529F11CF7F35300E06364</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CE0529F01CF7F35300E06364</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>CE0529F21CF7F35300E06364</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>CE0529F31CF7F35300E06364</string>
-			</array>
-			<key>isa</key>
-			<string>PBXVariantGroup</string>
-			<key>name</key>
-			<string>LaunchScreen.storyboard</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE0529F31CF7F35300E06364</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>file.storyboard</string>
-			<key>name</key>
-			<string>Base</string>
-			<key>path</key>
-			<string>Base.lproj/LaunchScreen.storyboard</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE0529F41CF7F35300E06364</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CE0529F21CF7F35300E06364</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>CE0529F51CF7F35300E06364</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE0529F61CF7F35300E06364</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>CE0529FF1CF7F35300E06364</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>CE0529F71CF7F35300E06364</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>CE0529F81CF7F35300E06364</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>CE0529F91CF7F35300E06364</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>CE052A111CF7F35300E06364</string>
-			<key>buildPhases</key>
-			<array>
-				<string>CE0529F61CF7F35300E06364</string>
-				<string>CE0529F71CF7F35300E06364</string>
-				<string>CE0529F81CF7F35300E06364</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>CE0529FC1CF7F35300E06364</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>TwidereTests</string>
-			<key>productName</key>
-			<string>TwidereTests</string>
-			<key>productReference</key>
-			<string>CE0529FA1CF7F35300E06364</string>
-			<key>productType</key>
-			<string>com.apple.product-type.bundle.unit-test</string>
-		</dict>
-		<key>CE0529FA1CF7F35300E06364</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.cfbundle</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>TwidereTests.xctest</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>CE0529FB1CF7F35300E06364</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>CE0529DB1CF7F35300E06364</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>CE0529E21CF7F35300E06364</string>
-			<key>remoteInfo</key>
-			<string>Twidere</string>
-		</dict>
-		<key>CE0529FC1CF7F35300E06364</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>target</key>
-			<string>CE0529E21CF7F35300E06364</string>
-			<key>targetProxy</key>
-			<string>CE0529FB1CF7F35300E06364</string>
-		</dict>
-		<key>CE0529FD1CF7F35300E06364</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>CE0529FE1CF7F35300E06364</string>
-				<string>CE052A001CF7F35300E06364</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>TwidereTests</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE0529FE1CF7F35300E06364</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>TwidereTests.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE0529FF1CF7F35300E06364</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CE0529FE1CF7F35300E06364</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>CE052A001CF7F35300E06364</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE052A011CF7F35300E06364</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>CE052A0A1CF7F35300E06364</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>CE052A021CF7F35300E06364</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>CE052A031CF7F35300E06364</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>CE052A041CF7F35300E06364</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>CE052A141CF7F35300E06364</string>
-			<key>buildPhases</key>
-			<array>
-				<string>CE052A011CF7F35300E06364</string>
-				<string>CE052A021CF7F35300E06364</string>
-				<string>CE052A031CF7F35300E06364</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>CE052A071CF7F35300E06364</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>TwidereUITests</string>
-			<key>productName</key>
-			<string>TwidereUITests</string>
-			<key>productReference</key>
-			<string>CE052A051CF7F35300E06364</string>
-			<key>productType</key>
-			<string>com.apple.product-type.bundle.ui-testing</string>
-		</dict>
-		<key>CE052A051CF7F35300E06364</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.cfbundle</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>TwidereUITests.xctest</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>CE052A061CF7F35300E06364</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>CE0529DB1CF7F35300E06364</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>CE0529E21CF7F35300E06364</string>
-			<key>remoteInfo</key>
-			<string>Twidere</string>
-		</dict>
-		<key>CE052A071CF7F35300E06364</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>target</key>
-			<string>CE0529E21CF7F35300E06364</string>
-			<key>targetProxy</key>
-			<string>CE052A061CF7F35300E06364</string>
-		</dict>
-		<key>CE052A081CF7F35300E06364</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>CE052A091CF7F35300E06364</string>
-				<string>CE052A0B1CF7F35300E06364</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>TwidereUITests</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE052A091CF7F35300E06364</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>TwidereUITests.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE052A0A1CF7F35300E06364</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CE052A091CF7F35300E06364</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>CE052A0B1CF7F35300E06364</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CE052A0C1CF7F35300E06364</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>CLANG_ANALYZER_NONNULL</key>
-				<string>YES</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_UNREACHABLE_CODE</key>
-				<string>YES</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>NO</string>
-				<key>DEBUG_INFORMATION_FORMAT</key>
-				<string>dwarf</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>ENABLE_TESTABILITY</key>
-				<string>YES</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_DYNAMIC_NO_PIC</key>
-				<string>NO</string>
-				<key>GCC_NO_COMMON_BLOCKS</key>
-				<string>YES</string>
-				<key>GCC_OPTIMIZATION_LEVEL</key>
-				<string>0</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>DEBUG=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES_AGGRESSIVE</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.3</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
-				<key>ONLY_ACTIVE_ARCH</key>
-				<string>YES</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SWIFT_OPTIMIZATION_LEVEL</key>
-				<string>-Onone</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>CE052A0D1CF7F35300E06364</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>CLANG_ANALYZER_NONNULL</key>
-				<string>YES</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_UNREACHABLE_CODE</key>
-				<string>YES</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>NO</string>
-				<key>DEBUG_INFORMATION_FORMAT</key>
-				<string>dwarf-with-dsym</string>
-				<key>ENABLE_NS_ASSERTIONS</key>
-				<string>NO</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_NO_COMMON_BLOCKS</key>
-				<string>YES</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES_AGGRESSIVE</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.3</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VALIDATE_PRODUCT</key>
-				<string>YES</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>CE052A0E1CF7F35300E06364</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>CE052A0F1CF7F35300E06364</string>
-				<string>CE052A101CF7F35300E06364</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>CE052A0F1CF7F35300E06364</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>6A5A4A58BEE8C9F2249022C1</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
-				<string>AppIcon</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Twidere/Info.plist</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>org.mariotaku.Twidere</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>CE052A101CF7F35300E06364</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>00C12471503A47AD1BEA336E</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
-				<string>AppIcon</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Twidere/Info.plist</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>org.mariotaku.Twidere</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>CE052A111CF7F35300E06364</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>CE052A121CF7F35300E06364</string>
-				<string>CE052A131CF7F35300E06364</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>CE052A121CF7F35300E06364</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>BUNDLE_LOADER</key>
-				<string>$(TEST_HOST)</string>
-				<key>INFOPLIST_FILE</key>
-				<string>TwidereTests/Info.plist</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>org.mariotaku.TwidereTests</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>TEST_HOST</key>
-				<string>$(BUILT_PRODUCTS_DIR)/Twidere.app/Twidere</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>CE052A131CF7F35300E06364</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>BUNDLE_LOADER</key>
-				<string>$(TEST_HOST)</string>
-				<key>INFOPLIST_FILE</key>
-				<string>TwidereTests/Info.plist</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>org.mariotaku.TwidereTests</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>TEST_HOST</key>
-				<string>$(BUILT_PRODUCTS_DIR)/Twidere.app/Twidere</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>CE052A141CF7F35300E06364</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>CE052A151CF7F35300E06364</string>
-				<string>CE052A161CF7F35300E06364</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>CE052A151CF7F35300E06364</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>INFOPLIST_FILE</key>
-				<string>TwidereUITests/Info.plist</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>org.mariotaku.TwidereUITests</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>TEST_TARGET_NAME</key>
-				<string>Twidere</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>CE052A161CF7F35300E06364</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>INFOPLIST_FILE</key>
-				<string>TwidereUITests/Info.plist</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>org.mariotaku.TwidereUITests</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>TEST_TARGET_NAME</key>
-				<string>Twidere</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>CED41F281D2FEE9C0089E0B6</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>CED41F301D2FF8540089E0B6</string>
-				<string>CED41F2D1D2FF76C0089E0B6</string>
-				<string>CE0529E81CF7F35300E06364</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>ViewControllers</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CED41F2D1D2FF76C0089E0B6</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>CED41F2E1D2FF7C80089E0B6</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Home</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CED41F2E1D2FF7C80089E0B6</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>HomeViewController.swift</string>
-			<key>path</key>
-			<string>ViewControllers/Home/HomeViewController.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CED41F2F1D2FF7C80089E0B6</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CED41F2E1D2FF7C80089E0B6</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>CED41F301D2FF8540089E0B6</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>CED41F331D2FF88D0089E0B6</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>SignIn</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CED41F331D2FF88D0089E0B6</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>SignInController.swift</string>
-			<key>path</key>
-			<string>ViewControllers/SignIn/SignInController.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CED41F341D2FF88D0089E0B6</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CED41F331D2FF88D0089E0B6</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>CED41F351D3085FF0089E0B6</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>file.storyboard</string>
-			<key>name</key>
-			<string>SignIn.storyboard</string>
-			<key>path</key>
-			<string>Storyboards/SignIn.storyboard</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CED41F361D3085FF0089E0B6</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CED41F351D3085FF0089E0B6</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>CED41F371D3086060089E0B6</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>CED41F351D3085FF0089E0B6</string>
-				<string>CE0529F21CF7F35300E06364</string>
-				<string>CE0529EA1CF7F35300E06364</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Storyboards</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CED41F3A1D30C1D20089E0B6</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>Constants.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CED41F3B1D30C1D20089E0B6</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CED41F3A1D30C1D20089E0B6</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>CF8E85F1E33C74BBB6A3812F</key>
-		<dict>
-			<key>fileRef</key>
-			<string>DEF4E4BD882AFE12CFC1ABF2</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>D2F7031A2E06DE3DF8308E83</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>6A5A4A58BEE8C9F2249022C1</string>
-				<string>00C12471503A47AD1BEA336E</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>D6CC3EC13C54A0025335475B</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Copy Pods Resources</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Target Support Files/Pods-Twidere/Pods-Twidere-resources.sh"
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>D8CFDA2AE3B38D9C220482D4</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Embed Pods Frameworks</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Target Support Files/Pods-Twidere/Pods-Twidere-frameworks.sh"
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>DEF4E4BD882AFE12CFC1ABF2</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>Pods_Twidere.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-	</dict>
-	<key>rootObject</key>
-	<string>CE0529DB1CF7F35300E06364</string>
-</dict>
-</plist>
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529E61CF7F35300E06364 /* AppDelegate.swift */; };
+		CE0529E91CF7F35300E06364 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529E81CF7F35300E06364 /* MainViewController.swift */; };
+		CE0529EC1CF7F35300E06364 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0529EA1CF7F35300E06364 /* Main.storyboard */; };
+		CE0529EF1CF7F35300E06364 /* Twidere.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE0529ED1CF7F35300E06364 /* Twidere.xcdatamodeld */; };
+		CE0529F11CF7F35300E06364 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0529F01CF7F35300E06364 /* Assets.xcassets */; };
+		CE0529F41CF7F35300E06364 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0529F21CF7F35300E06364 /* LaunchScreen.storyboard */; };
+		CE0529FF1CF7F35300E06364 /* TwidereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529FE1CF7F35300E06364 /* TwidereTests.swift */; };
+		CE052A0A1CF7F35300E06364 /* TwidereUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE052A091CF7F35300E06364 /* TwidereUITests.swift */; };
+		CED41F2F1D2FF7C80089E0B6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */; };
+		CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F331D2FF88D0089E0B6 /* SignInController.swift */; };
+		CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED41F351D3085FF0089E0B6 /* SignIn.storyboard */; };
+		CED41F3B1D30C1D20089E0B6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F3A1D30C1D20089E0B6 /* Constants.swift */; };
+		CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */; };
+		CF8E85F1E33C74BBB6A3812F /* Pods_Twidere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF4E4BD882AFE12CFC1ABF2 /* Pods_Twidere.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CE0529FB1CF7F35300E06364 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE0529DB1CF7F35300E06364 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE0529E21CF7F35300E06364;
+			remoteInfo = Twidere;
+		};
+		CE052A061CF7F35300E06364 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE0529DB1CF7F35300E06364 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE0529E21CF7F35300E06364;
+			remoteInfo = Twidere;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00C12471503A47AD1BEA336E /* Pods-Twidere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twidere/Pods-Twidere.release.xcconfig"; sourceTree = "<group>"; };
+		6A5A4A58BEE8C9F2249022C1 /* Pods-Twidere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twidere/Pods-Twidere.debug.xcconfig"; sourceTree = "<group>"; };
+		CE0529E31CF7F35300E06364 /* Twidere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twidere.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE0529E61CF7F35300E06364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CE0529E81CF7F35300E06364 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = ViewControllers/MainViewController.swift; sourceTree = "<group>"; };
+		CE0529EB1CF7F35300E06364 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CE0529EE1CF7F35300E06364 /* Twidere.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Twidere.xcdatamodel; sourceTree = "<group>"; };
+		CE0529F01CF7F35300E06364 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CE0529F31CF7F35300E06364 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CE0529F51CF7F35300E06364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE0529FA1CF7F35300E06364 /* TwidereTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwidereTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE0529FE1CF7F35300E06364 /* TwidereTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwidereTests.swift; sourceTree = "<group>"; };
+		CE052A001CF7F35300E06364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE052A051CF7F35300E06364 /* TwidereUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwidereUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE052A091CF7F35300E06364 /* TwidereUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwidereUITests.swift; sourceTree = "<group>"; };
+		CE052A0B1CF7F35300E06364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ViewControllers/Home/HomeViewController.swift; sourceTree = "<group>"; };
+		CED41F331D2FF88D0089E0B6 /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInController.swift; path = ViewControllers/SignIn/SignInController.swift; sourceTree = "<group>"; };
+		CED41F351D3085FF0089E0B6 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SignIn.storyboard; path = Storyboards/SignIn.storyboard; sourceTree = "<group>"; };
+		CED41F3A1D30C1D20089E0B6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MicroBlogService.swift; path = Services/MicroBlogService.swift; sourceTree = "<group>"; };
+		DEF4E4BD882AFE12CFC1ABF2 /* Pods_Twidere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twidere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CE0529E01CF7F35300E06364 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF8E85F1E33C74BBB6A3812F /* Pods_Twidere.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE0529F71CF7F35300E06364 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE052A021CF7F35300E06364 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9F49B93B9A06803DCF4B5A06 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DEF4E4BD882AFE12CFC1ABF2 /* Pods_Twidere.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE0529DA1CF7F35300E06364 = {
+			isa = PBXGroup;
+			children = (
+				CE0529E51CF7F35300E06364 /* Twidere */,
+				CE0529FD1CF7F35300E06364 /* TwidereTests */,
+				CE052A081CF7F35300E06364 /* TwidereUITests */,
+				CE0529E41CF7F35300E06364 /* Products */,
+				D2F7031A2E06DE3DF8308E83 /* Pods */,
+				9F49B93B9A06803DCF4B5A06 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		CE0529E41CF7F35300E06364 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE0529E31CF7F35300E06364 /* Twidere.app */,
+				CE0529FA1CF7F35300E06364 /* TwidereTests.xctest */,
+				CE052A051CF7F35300E06364 /* TwidereUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CE0529E51CF7F35300E06364 /* Twidere */ = {
+			isa = PBXGroup;
+			children = (
+				CED41F3C1D30D2C80089E0B6 /* Services */,
+				CED41F3A1D30C1D20089E0B6 /* Constants.swift */,
+				CED41F371D3086060089E0B6 /* Storyboards */,
+				CED41F281D2FEE9C0089E0B6 /* ViewControllers */,
+				CE0529E61CF7F35300E06364 /* AppDelegate.swift */,
+				CE0529F01CF7F35300E06364 /* Assets.xcassets */,
+				CE0529F51CF7F35300E06364 /* Info.plist */,
+				CE0529ED1CF7F35300E06364 /* Twidere.xcdatamodeld */,
+			);
+			path = Twidere;
+			sourceTree = "<group>";
+		};
+		CE0529FD1CF7F35300E06364 /* TwidereTests */ = {
+			isa = PBXGroup;
+			children = (
+				CE0529FE1CF7F35300E06364 /* TwidereTests.swift */,
+				CE052A001CF7F35300E06364 /* Info.plist */,
+			);
+			path = TwidereTests;
+			sourceTree = "<group>";
+		};
+		CE052A081CF7F35300E06364 /* TwidereUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CE052A091CF7F35300E06364 /* TwidereUITests.swift */,
+				CE052A0B1CF7F35300E06364 /* Info.plist */,
+			);
+			path = TwidereUITests;
+			sourceTree = "<group>";
+		};
+		CED41F281D2FEE9C0089E0B6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CED41F301D2FF8540089E0B6 /* SignIn */,
+				CED41F2D1D2FF76C0089E0B6 /* Home */,
+				CE0529E81CF7F35300E06364 /* MainViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CED41F2D1D2FF76C0089E0B6 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		CED41F301D2FF8540089E0B6 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				CED41F331D2FF88D0089E0B6 /* SignInController.swift */,
+			);
+			name = SignIn;
+			sourceTree = "<group>";
+		};
+		CED41F371D3086060089E0B6 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				CED41F351D3085FF0089E0B6 /* SignIn.storyboard */,
+				CE0529F21CF7F35300E06364 /* LaunchScreen.storyboard */,
+				CE0529EA1CF7F35300E06364 /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		CED41F3C1D30D2C80089E0B6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		D2F7031A2E06DE3DF8308E83 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6A5A4A58BEE8C9F2249022C1 /* Pods-Twidere.debug.xcconfig */,
+				00C12471503A47AD1BEA336E /* Pods-Twidere.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CE0529E21CF7F35300E06364 /* Twidere */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE052A0E1CF7F35300E06364 /* Build configuration list for PBXNativeTarget "Twidere" */;
+			buildPhases = (
+				4121F97037D901D5A7C214C2 /* Check Pods Manifest.lock */,
+				CE0529DF1CF7F35300E06364 /* Sources */,
+				CE0529E01CF7F35300E06364 /* Frameworks */,
+				CE0529E11CF7F35300E06364 /* Resources */,
+				D8CFDA2AE3B38D9C220482D4 /* Embed Pods Frameworks */,
+				D6CC3EC13C54A0025335475B /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Twidere;
+			productName = Twidere;
+			productReference = CE0529E31CF7F35300E06364 /* Twidere.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CE0529F91CF7F35300E06364 /* TwidereTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE052A111CF7F35300E06364 /* Build configuration list for PBXNativeTarget "TwidereTests" */;
+			buildPhases = (
+				CE0529F61CF7F35300E06364 /* Sources */,
+				CE0529F71CF7F35300E06364 /* Frameworks */,
+				CE0529F81CF7F35300E06364 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE0529FC1CF7F35300E06364 /* PBXTargetDependency */,
+			);
+			name = TwidereTests;
+			productName = TwidereTests;
+			productReference = CE0529FA1CF7F35300E06364 /* TwidereTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CE052A041CF7F35300E06364 /* TwidereUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE052A141CF7F35300E06364 /* Build configuration list for PBXNativeTarget "TwidereUITests" */;
+			buildPhases = (
+				CE052A011CF7F35300E06364 /* Sources */,
+				CE052A021CF7F35300E06364 /* Frameworks */,
+				CE052A031CF7F35300E06364 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE052A071CF7F35300E06364 /* PBXTargetDependency */,
+			);
+			name = TwidereUITests;
+			productName = TwidereUITests;
+			productReference = CE052A051CF7F35300E06364 /* TwidereUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CE0529DB1CF7F35300E06364 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Mariotaku Dev";
+				TargetAttributes = {
+					CE0529E21CF7F35300E06364 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = K5277Y55W8;
+					};
+					CE0529F91CF7F35300E06364 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = K5277Y55W8;
+						TestTargetID = CE0529E21CF7F35300E06364;
+					};
+					CE052A041CF7F35300E06364 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = K5277Y55W8;
+						TestTargetID = CE0529E21CF7F35300E06364;
+					};
+				};
+			};
+			buildConfigurationList = CE0529DE1CF7F35300E06364 /* Build configuration list for PBXProject "Twidere" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CE0529DA1CF7F35300E06364;
+			productRefGroup = CE0529E41CF7F35300E06364 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CE0529E21CF7F35300E06364 /* Twidere */,
+				CE0529F91CF7F35300E06364 /* TwidereTests */,
+				CE052A041CF7F35300E06364 /* TwidereUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CE0529E11CF7F35300E06364 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */,
+				CE0529F41CF7F35300E06364 /* LaunchScreen.storyboard in Resources */,
+				CE0529F11CF7F35300E06364 /* Assets.xcassets in Resources */,
+				CE0529EC1CF7F35300E06364 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE0529F81CF7F35300E06364 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE052A031CF7F35300E06364 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4121F97037D901D5A7C214C2 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D6CC3EC13C54A0025335475B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Twidere/Pods-Twidere-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D8CFDA2AE3B38D9C220482D4 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Twidere/Pods-Twidere-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CE0529DF1CF7F35300E06364 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE0529E91CF7F35300E06364 /* MainViewController.swift in Sources */,
+				CE0529EF1CF7F35300E06364 /* Twidere.xcdatamodeld in Sources */,
+				CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */,
+				CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */,
+				CED41F2F1D2FF7C80089E0B6 /* HomeViewController.swift in Sources */,
+				CED41F3B1D30C1D20089E0B6 /* Constants.swift in Sources */,
+				CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE0529F61CF7F35300E06364 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE0529FF1CF7F35300E06364 /* TwidereTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE052A011CF7F35300E06364 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE052A0A1CF7F35300E06364 /* TwidereUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CE0529FC1CF7F35300E06364 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE0529E21CF7F35300E06364 /* Twidere */;
+			targetProxy = CE0529FB1CF7F35300E06364 /* PBXContainerItemProxy */;
+		};
+		CE052A071CF7F35300E06364 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE0529E21CF7F35300E06364 /* Twidere */;
+			targetProxy = CE052A061CF7F35300E06364 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CE0529EA1CF7F35300E06364 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE0529EB1CF7F35300E06364 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CE0529F21CF7F35300E06364 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE0529F31CF7F35300E06364 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CE052A0C1CF7F35300E06364 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CE052A0D1CF7F35300E06364 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CE052A0F1CF7F35300E06364 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A5A4A58BEE8C9F2249022C1 /* Pods-Twidere.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Twidere/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.Twidere;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CE052A101CF7F35300E06364 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00C12471503A47AD1BEA336E /* Pods-Twidere.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Twidere/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.Twidere;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		CE052A121CF7F35300E06364 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TwidereTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.TwidereTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twidere.app/Twidere";
+			};
+			name = Debug;
+		};
+		CE052A131CF7F35300E06364 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TwidereTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.TwidereTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twidere.app/Twidere";
+			};
+			name = Release;
+		};
+		CE052A151CF7F35300E06364 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TwidereUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.TwidereUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Twidere;
+			};
+			name = Debug;
+		};
+		CE052A161CF7F35300E06364 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TwidereUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.TwidereUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Twidere;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CE0529DE1CF7F35300E06364 /* Build configuration list for PBXProject "Twidere" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE052A0C1CF7F35300E06364 /* Debug */,
+				CE052A0D1CF7F35300E06364 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE052A0E1CF7F35300E06364 /* Build configuration list for PBXNativeTarget "Twidere" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE052A0F1CF7F35300E06364 /* Debug */,
+				CE052A101CF7F35300E06364 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE052A111CF7F35300E06364 /* Build configuration list for PBXNativeTarget "TwidereTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE052A121CF7F35300E06364 /* Debug */,
+				CE052A131CF7F35300E06364 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE052A141CF7F35300E06364 /* Build configuration list for PBXNativeTarget "TwidereUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE052A151CF7F35300E06364 /* Debug */,
+				CE052A161CF7F35300E06364 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CE0529ED1CF7F35300E06364 /* Twidere.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CE0529EE1CF7F35300E06364 /* Twidere.xcdatamodel */,
+			);
+			currentVersion = CE0529EE1CF7F35300E06364 /* Twidere.xcdatamodel */;
+			path = Twidere.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = CE0529DB1CF7F35300E06364 /* Project object */;
+}

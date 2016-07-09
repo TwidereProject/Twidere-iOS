@@ -3,7 +3,7 @@
 //  Twidere
 //
 //  Created by Mariotaku Lee on 16/7/8.
-//  Copyright © 2016年 Mariotaku Dev. All rights reserved.
+//  Copyright © 2016 Mariotaku Dev. All rights reserved.
 //
 
 import UIKit
@@ -35,7 +35,8 @@ class SignInController: UIViewController {
     }
     
     @IBAction func signInClicked(sender: UIButton) {
-        print("Login")
+        let twitter = MicroBlogService()
+        twitter.verifyCredentials()
     }
     
     @IBAction func settingsClicked(sender: UIBarButtonItem) {

@@ -5,6 +5,7 @@ use_frameworks!
 
 target 'Twidere' do
   pod 'Alamofire', '~> 3.4'
+  pod 'SwiftyJSON', '~> 2.3.2'
 end
 
 target 'TwidereTests' do
