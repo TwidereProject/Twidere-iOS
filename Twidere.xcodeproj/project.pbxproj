@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529E61CF7F35300E06364 /* AppDelegate.swift */; };
-		CE0529E91CF7F35300E06364 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529E81CF7F35300E06364 /* ViewController.swift */; };
+		CE0529E91CF7F35300E06364 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529E81CF7F35300E06364 /* MainViewController.swift */; };
 		CE0529EC1CF7F35300E06364 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0529EA1CF7F35300E06364 /* Main.storyboard */; };
 		CE0529EF1CF7F35300E06364 /* Twidere.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE0529ED1CF7F35300E06364 /* Twidere.xcdatamodeld */; };
 		CE0529F11CF7F35300E06364 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0529F01CF7F35300E06364 /* Assets.xcassets */; };
 		CE0529F41CF7F35300E06364 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0529F21CF7F35300E06364 /* LaunchScreen.storyboard */; };
 		CE0529FF1CF7F35300E06364 /* TwidereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529FE1CF7F35300E06364 /* TwidereTests.swift */; };
 		CE052A0A1CF7F35300E06364 /* TwidereUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE052A091CF7F35300E06364 /* TwidereUITests.swift */; };
+		CED41F2F1D2FF7C80089E0B6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */; };
+		CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F331D2FF88D0089E0B6 /* SignInController.swift */; };
+		CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED41F351D3085FF0089E0B6 /* SignIn.storyboard */; };
+		CED41F3B1D30C1D20089E0B6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F3A1D30C1D20089E0B6 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +41,7 @@
 /* Begin PBXFileReference section */
 		CE0529E31CF7F35300E06364 /* Twidere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twidere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0529E61CF7F35300E06364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE0529E81CF7F35300E06364 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CE0529E81CF7F35300E06364 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = ViewControllers/MainViewController.swift; sourceTree = "<group>"; };
 		CE0529EB1CF7F35300E06364 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE0529EE1CF7F35300E06364 /* Twidere.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Twidere.xcdatamodel; sourceTree = "<group>"; };
 		CE0529F01CF7F35300E06364 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +53,10 @@
 		CE052A051CF7F35300E06364 /* TwidereUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwidereUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE052A091CF7F35300E06364 /* TwidereUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwidereUITests.swift; sourceTree = "<group>"; };
 		CE052A0B1CF7F35300E06364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ViewControllers/Home/HomeViewController.swift; sourceTree = "<group>"; };
+		CED41F331D2FF88D0089E0B6 /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInController.swift; path = ViewControllers/SignIn/SignInController.swift; sourceTree = "<group>"; };
+		CED41F351D3085FF0089E0B6 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SignIn.storyboard; path = Storyboards/SignIn.storyboard; sourceTree = "<group>"; };
+		CED41F3A1D30C1D20089E0B6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,11 +107,11 @@
 		CE0529E51CF7F35300E06364 /* Twidere */ = {
 			isa = PBXGroup;
 			children = (
+				CED41F3A1D30C1D20089E0B6 /* Constants.swift */,
+				CED41F371D3086060089E0B6 /* Storyboards */,
+				CED41F281D2FEE9C0089E0B6 /* ViewControllers */,
 				CE0529E61CF7F35300E06364 /* AppDelegate.swift */,
-				CE0529E81CF7F35300E06364 /* ViewController.swift */,
-				CE0529EA1CF7F35300E06364 /* Main.storyboard */,
 				CE0529F01CF7F35300E06364 /* Assets.xcassets */,
-				CE0529F21CF7F35300E06364 /* LaunchScreen.storyboard */,
 				CE0529F51CF7F35300E06364 /* Info.plist */,
 				CE0529ED1CF7F35300E06364 /* Twidere.xcdatamodeld */,
 			);
@@ -126,6 +134,42 @@
 				CE052A0B1CF7F35300E06364 /* Info.plist */,
 			);
 			path = TwidereUITests;
+			sourceTree = "<group>";
+		};
+		CED41F281D2FEE9C0089E0B6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CED41F301D2FF8540089E0B6 /* SignIn */,
+				CED41F2D1D2FF76C0089E0B6 /* Home */,
+				CE0529E81CF7F35300E06364 /* MainViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CED41F2D1D2FF76C0089E0B6 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		CED41F301D2FF8540089E0B6 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				CED41F331D2FF88D0089E0B6 /* SignInController.swift */,
+			);
+			name = SignIn;
+			sourceTree = "<group>";
+		};
+		CED41F371D3086060089E0B6 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				CED41F351D3085FF0089E0B6 /* SignIn.storyboard */,
+				CE0529F21CF7F35300E06364 /* LaunchScreen.storyboard */,
+				CE0529EA1CF7F35300E06364 /* Main.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,6 +279,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */,
 				CE0529F41CF7F35300E06364 /* LaunchScreen.storyboard in Resources */,
 				CE0529F11CF7F35300E06364 /* Assets.xcassets in Resources */,
 				CE0529EC1CF7F35300E06364 /* Main.storyboard in Resources */,
@@ -262,9 +307,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE0529E91CF7F35300E06364 /* ViewController.swift in Sources */,
+				CE0529E91CF7F35300E06364 /* MainViewController.swift in Sources */,
 				CE0529EF1CF7F35300E06364 /* Twidere.xcdatamodeld in Sources */,
 				CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */,
+				CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */,
+				CED41F2F1D2FF7C80089E0B6 /* HomeViewController.swift in Sources */,
+				CED41F3B1D30C1D20089E0B6 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +539,7 @@
 				CE052A101CF7F35300E06364 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE052A111CF7F35300E06364 /* Build configuration list for PBXNativeTarget "TwidereTests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +548,7 @@
 				CE052A131CF7F35300E06364 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE052A141CF7F35300E06364 /* Build configuration list for PBXNativeTarget "TwidereUITests" */ = {
 			isa = XCConfigurationList;
@@ -507,6 +557,7 @@
 				CE052A161CF7F35300E06364 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
