@@ -1,22 +1,25 @@
 PODS:
   - ActionSheetPicker-3.0 (2.2.0)
   - CryptoSwift (0.5.1)
+  - IQKeyboardManagerSwift (4.0.3)
   - Just (0.4.7)
   - JVFloatLabeledTextField (1.1.0)
   - StaticDataTableViewController (2.0.5)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
-  - ActionSheetPicker-3.0 (~> 2.2.0)
-  - CryptoSwift (~> 0.5.1)
-  - Just (~> 0.4.7)
-  - JVFloatLabeledTextField (~> 1.1.0)
-  - StaticDataTableViewController (~> 2.0.5)
-  - SwiftyJSON (~> 2.3.2)
+  - ActionSheetPicker-3.0 (= 2.2.0)
+  - CryptoSwift (= 0.5.1)
+  - IQKeyboardManagerSwift (= 4.0.3)
+  - Just (= 0.4.7)
+  - JVFloatLabeledTextField (= 1.1.0)
+  - StaticDataTableViewController (= 2.0.5)
+  - SwiftyJSON (= 2.3.2)
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   CryptoSwift: df42dda18baf6c76347a94e227dbcc0a341304bd
+  IQKeyboardManagerSwift: b6883b720b0e76473692fdc80828442566e1075f
   Just: 946bae197f898da6b49e27e10dbe9dfbf1216f29
   JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
   StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a

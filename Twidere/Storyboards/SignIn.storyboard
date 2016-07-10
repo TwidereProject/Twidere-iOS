@@ -19,93 +19,82 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" directionalLockEnabled="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="olg-lB-ZzW">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="g4Q-gh-MVD">
+                                <rect key="frame" x="150" y="221" width="300" height="157"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="g4Q-gh-MVD">
-                                        <rect key="frame" x="210" y="189" width="180" height="157"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iik-dj-EvU">
+                                        <rect key="frame" x="8" y="8" width="284" height="68"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iik-dj-EvU">
-                                                <rect key="frame" x="8" y="8" width="164" height="68"/>
-                                                <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xGl-af-o6d">
-                                                        <rect key="frame" x="0.0" y="0.0" width="164" height="30"/>
-                                                        <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TSF-OC-L40">
-                                                        <rect key="frame" x="0.0" y="38" width="164" height="30"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                </subviews>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="zUJ-Gf-B2L">
-                                                <rect key="frame" x="8" y="84" width="164" height="30"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cU-1p-2Ny">
-                                                        <rect key="frame" x="0.0" y="0.0" width="74" height="30"/>
-                                                        <state key="normal" title="Sign Up"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                                <integer key="value" value="1"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="5"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0AK-Ao-S90">
-                                                        <rect key="frame" x="90" y="0.0" width="74" height="30"/>
-                                                        <state key="normal" title="Login"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                                <integer key="value" value="1"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="5"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="signInClicked:" destination="6M5-74-xoh" eventType="touchUpInside" id="pAa-cu-VDx"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="0AK-Ao-S90" firstAttribute="width" secondItem="4cU-1p-2Ny" secondAttribute="width" id="Rgs-rC-PSw"/>
-                                                    <constraint firstItem="0AK-Ao-S90" firstAttribute="height" secondItem="4cU-1p-2Ny" secondAttribute="height" id="xAc-NS-wKM"/>
-                                                </constraints>
-                                            </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCc-Wd-20l">
-                                                <rect key="frame" x="8" y="122" width="164" height="27"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <state key="normal" title="Password login (Twitter only)"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xGl-af-o6d">
+                                                <rect key="frame" x="0.0" y="0.0" width="284" height="30"/>
+                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TSF-OC-L40">
+                                                <rect key="frame" x="0.0" y="38" width="284" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="zUJ-Gf-B2L">
+                                        <rect key="frame" x="8" y="84" width="284" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cU-1p-2Ny">
+                                                <rect key="frame" x="0.0" y="0.0" width="134" height="30"/>
+                                                <state key="normal" title="Sign Up"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0AK-Ao-S90">
+                                                <rect key="frame" x="150" y="0.0" width="134" height="30"/>
+                                                <state key="normal" title="Login"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="signInClicked:" destination="6M5-74-xoh" eventType="touchUpInside" id="pAa-cu-VDx"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="zUJ-Gf-B2L" firstAttribute="leading" secondItem="g4Q-gh-MVD" secondAttribute="leadingMargin" id="MNd-Vg-dlq"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="iik-dj-EvU" secondAttribute="trailing" id="NaZ-WV-xoU"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="zUJ-Gf-B2L" secondAttribute="trailing" id="SyB-R1-D3l"/>
-                                            <constraint firstItem="DCc-Wd-20l" firstAttribute="leading" secondItem="g4Q-gh-MVD" secondAttribute="leadingMargin" id="chc-Ed-sJZ"/>
-                                            <constraint firstItem="iik-dj-EvU" firstAttribute="leading" secondItem="g4Q-gh-MVD" secondAttribute="leadingMargin" id="zsN-dn-EGV"/>
+                                            <constraint firstItem="0AK-Ao-S90" firstAttribute="width" secondItem="4cU-1p-2Ny" secondAttribute="width" id="Rgs-rC-PSw"/>
+                                            <constraint firstItem="0AK-Ao-S90" firstAttribute="height" secondItem="4cU-1p-2Ny" secondAttribute="height" id="xAc-NS-wKM"/>
                                         </constraints>
-                                        <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCc-Wd-20l">
+                                        <rect key="frame" x="8" y="122" width="164" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Password login (Twitter only)"/>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="g4Q-gh-MVD" firstAttribute="leading" secondItem="olg-lB-ZzW" secondAttribute="leadingMargin" constant="20" id="Pyg-Op-hQG"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="g4Q-gh-MVD" secondAttribute="trailing" constant="20" id="pSq-D1-nZZ"/>
-                                    <constraint firstItem="g4Q-gh-MVD" firstAttribute="centerY" secondItem="olg-lB-ZzW" secondAttribute="centerY" id="rXv-gF-rSf"/>
+                                    <constraint firstItem="zUJ-Gf-B2L" firstAttribute="leading" secondItem="g4Q-gh-MVD" secondAttribute="leadingMargin" id="MNd-Vg-dlq"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="iik-dj-EvU" secondAttribute="trailing" id="NaZ-WV-xoU"/>
+                                    <constraint firstAttribute="width" constant="300" id="Qg3-98-JMN"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="zUJ-Gf-B2L" secondAttribute="trailing" id="SyB-R1-D3l"/>
+                                    <constraint firstItem="DCc-Wd-20l" firstAttribute="leading" secondItem="g4Q-gh-MVD" secondAttribute="leadingMargin" id="chc-Ed-sJZ"/>
+                                    <constraint firstItem="iik-dj-EvU" firstAttribute="leading" secondItem="g4Q-gh-MVD" secondAttribute="leadingMargin" id="zsN-dn-EGV"/>
                                 </constraints>
-                            </scrollView>
+                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="olg-lB-ZzW" firstAttribute="leading" secondItem="xQi-6d-Yhh" secondAttribute="leading" id="5m3-Ra-fw5"/>
-                            <constraint firstItem="olg-lB-ZzW" firstAttribute="top" secondItem="KAB-Jc-FN6" secondAttribute="bottom" id="6jT-y6-daa"/>
-                            <constraint firstItem="ANZ-06-ga9" firstAttribute="top" secondItem="olg-lB-ZzW" secondAttribute="bottom" id="AKf-ze-FXE"/>
-                            <constraint firstAttribute="trailing" secondItem="olg-lB-ZzW" secondAttribute="trailing" id="NIR-hN-SDk"/>
+                            <constraint firstItem="g4Q-gh-MVD" firstAttribute="centerX" secondItem="xQi-6d-Yhh" secondAttribute="centerX" id="GCd-x8-uKL"/>
+                            <constraint firstItem="g4Q-gh-MVD" firstAttribute="centerY" secondItem="xQi-6d-Yhh" secondAttribute="centerY" id="kLQ-lK-Ng3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="2P5-46-LHB"/>
