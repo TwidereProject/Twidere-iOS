@@ -57,6 +57,11 @@ class OAuthEndpoint: Endpoint {
     
     let signingBase: String
     
+    init(base: String) {
+        self.signingBase = base
+        super.init(base: base)
+    }
+    
     init(base: String, signingBase: String) {
         self.signingBase = signingBase
         super.init(base: base)

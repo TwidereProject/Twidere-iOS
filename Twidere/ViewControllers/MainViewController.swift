@@ -19,10 +19,9 @@ class MainViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if (hasAccount()) {
+            performSegueWithIdentifier("ShowHome", sender: self)
         } else {
-            let storyboard = UIStoryboard(name: "SignIn", bundle: nil)
-            let vc = storyboard.instantiateViewControllerWithIdentifier("SignIn")
-            presentViewController(vc, animated: false, completion: {})
+            performSegueWithIdentifier("ShowSignIn", sender: self)
         }
     }
 

@@ -157,9 +157,12 @@ class OAuthAuthorization: Authorization {
 class OAuthToken {
     let oauthToken: String
     let oauthTokenSecret: String
+    var screenName: String? = nil
+    var userId: String? = nil
     
     init(oauthToken: String, oauthTokenSecret: String) {
         self.oauthToken = oauthToken
         self.oauthTokenSecret = oauthTokenSecret
     }
+    
 }

@@ -15,14 +15,21 @@
 		CE0529F41CF7F35300E06364 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0529F21CF7F35300E06364 /* LaunchScreen.storyboard */; };
 		CE0529FF1CF7F35300E06364 /* TwidereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529FE1CF7F35300E06364 /* TwidereTests.swift */; };
 		CE052A0A1CF7F35300E06364 /* TwidereUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE052A091CF7F35300E06364 /* TwidereUITests.swift */; };
+		CE95747D1D3210A300504D52 /* CustomAPIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */; };
+		CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95747F1D3216BC00504D52 /* ServiceConstants.swift */; };
+		CE9574821D32186A00504D52 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574811D32186A00504D52 /* UIConstants.swift */; };
+		CE9574851D32221A00504D52 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574841D32221A00504D52 /* RestClient.swift */; };
+		CE9574871D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574861D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift */; };
+		CE9574891D32232600504D52 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574881D32232600504D52 /* OAuthService.swift */; };
+		CE95748B1D322CC700504D52 /* ModelConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95748A1D322CC700504D52 /* ModelConverter.swift */; };
 		CED41F2F1D2FF7C80089E0B6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */; };
-		CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F331D2FF88D0089E0B6 /* SignInController.swift */; };
+		CED41F341D2FF88D0089E0B6 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F331D2FF88D0089E0B6 /* SignInViewController.swift */; };
 		CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED41F351D3085FF0089E0B6 /* SignIn.storyboard */; };
-		CED41F3B1D30C1D20089E0B6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F3A1D30C1D20089E0B6 /* Constants.swift */; };
 		CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */; };
 		CED41F411D30E6B80089E0B6 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F401D30E6B80089E0B6 /* Endpoint.swift */; };
 		CED41F431D30E6E40089E0B6 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F421D30E6E40089E0B6 /* Authorization.swift */; };
 		CED41F451D313B6C0089E0B6 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED41F441D313B6C0089E0B6 /* Preferences.storyboard */; };
+		CED41F481D3147460089E0B6 /* APIEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F471D3147460089E0B6 /* APIEditorController.swift */; };
 		CF8E85F1E33C74BBB6A3812F /* Pods_Twidere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF4E4BD882AFE12CFC1ABF2 /* Pods_Twidere.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,14 +67,21 @@
 		CE052A051CF7F35300E06364 /* TwidereUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwidereUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE052A091CF7F35300E06364 /* TwidereUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwidereUITests.swift; sourceTree = "<group>"; };
 		CE052A0B1CF7F35300E06364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomAPIConfig.swift; path = Models/CustomAPIConfig.swift; sourceTree = "<group>"; };
+		CE95747F1D3216BC00504D52 /* ServiceConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceConstants.swift; path = Constants/ServiceConstants.swift; sourceTree = "<group>"; };
+		CE9574811D32186A00504D52 /* UIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIConstants.swift; path = Constants/UIConstants.swift; sourceTree = "<group>"; };
+		CE9574841D32221A00504D52 /* RestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestClient.swift; path = Services/RestService/RestClient.swift; sourceTree = "<group>"; };
+		CE9574861D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterOAuthPasswordAuthenticator.swift; path = Services/MicroBlog/TwitterOAuthPasswordAuthenticator.swift; sourceTree = "<group>"; };
+		CE9574881D32232600504D52 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthService.swift; path = Services/MicroBlog/OAuthService.swift; sourceTree = "<group>"; };
+		CE95748A1D322CC700504D52 /* ModelConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelConverter.swift; path = Services/ModelConverter/ModelConverter.swift; sourceTree = "<group>"; };
 		CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ViewControllers/Home/HomeViewController.swift; sourceTree = "<group>"; };
-		CED41F331D2FF88D0089E0B6 /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInController.swift; path = ViewControllers/SignIn/SignInController.swift; sourceTree = "<group>"; };
+		CED41F331D2FF88D0089E0B6 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ViewControllers/SignIn/SignInViewController.swift; sourceTree = "<group>"; };
 		CED41F351D3085FF0089E0B6 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SignIn.storyboard; path = Storyboards/SignIn.storyboard; sourceTree = "<group>"; };
-		CED41F3A1D30C1D20089E0B6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MicroBlogService.swift; path = Services/MicroBlog/MicroBlogService.swift; sourceTree = "<group>"; };
-		CED41F401D30E6B80089E0B6 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Endpoint.swift; path = Services/MicroBlog/Endpoint.swift; sourceTree = "<group>"; };
-		CED41F421D30E6E40089E0B6 /* Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Authorization.swift; path = Services/MicroBlog/Authorization.swift; sourceTree = "<group>"; };
+		CED41F401D30E6B80089E0B6 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Endpoint.swift; path = Services/RestService/Endpoint.swift; sourceTree = "<group>"; };
+		CED41F421D30E6E40089E0B6 /* Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Authorization.swift; path = Services/RestService/Authorization.swift; sourceTree = "<group>"; };
 		CED41F441D313B6C0089E0B6 /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Preferences.storyboard; path = Storyboards/Preferences.storyboard; sourceTree = "<group>"; };
+		CED41F471D3147460089E0B6 /* APIEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIEditorController.swift; path = ViewControllers/Preferences/APIEditorController.swift; sourceTree = "<group>"; };
 		DEF4E4BD882AFE12CFC1ABF2 /* Pods_Twidere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twidere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -130,10 +144,11 @@
 		CE0529E51CF7F35300E06364 /* Twidere */ = {
 			isa = PBXGroup;
 			children = (
+				CE95747E1D32169D00504D52 /* Constants */,
+				CE95747B1D32107800504D52 /* Models */,
 				CED41F3C1D30D2C80089E0B6 /* Services */,
-				CED41F3A1D30C1D20089E0B6 /* Constants.swift */,
-				CED41F371D3086060089E0B6 /* Storyboards */,
 				CED41F281D2FEE9C0089E0B6 /* ViewControllers */,
+				CED41F371D3086060089E0B6 /* Storyboards */,
 				CE0529E61CF7F35300E06364 /* AppDelegate.swift */,
 				CE0529F01CF7F35300E06364 /* Assets.xcassets */,
 				CE0529F51CF7F35300E06364 /* Info.plist */,
@@ -160,9 +175,37 @@
 			path = TwidereUITests;
 			sourceTree = "<group>";
 		};
+		CE95747B1D32107800504D52 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		CE95747E1D32169D00504D52 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				CE95747F1D3216BC00504D52 /* ServiceConstants.swift */,
+				CE9574811D32186A00504D52 /* UIConstants.swift */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
+		CE9574831D32220C00504D52 /* RestService */ = {
+			isa = PBXGroup;
+			children = (
+				CED41F401D30E6B80089E0B6 /* Endpoint.swift */,
+				CED41F421D30E6E40089E0B6 /* Authorization.swift */,
+				CE9574841D32221A00504D52 /* RestClient.swift */,
+			);
+			name = RestService;
+			sourceTree = "<group>";
+		};
 		CED41F281D2FEE9C0089E0B6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CED41F461D3147170089E0B6 /* Preferences */,
 				CED41F301D2FF8540089E0B6 /* SignIn */,
 				CED41F2D1D2FF76C0089E0B6 /* Home */,
 				CE0529E81CF7F35300E06364 /* MainViewController.swift */,
@@ -181,7 +224,7 @@
 		CED41F301D2FF8540089E0B6 /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
-				CED41F331D2FF88D0089E0B6 /* SignInController.swift */,
+				CED41F331D2FF88D0089E0B6 /* SignInViewController.swift */,
 			);
 			name = SignIn;
 			sourceTree = "<group>";
@@ -200,7 +243,9 @@
 		CED41F3C1D30D2C80089E0B6 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				CE9574831D32220C00504D52 /* RestService */,
 				CED41F3F1D30E6760089E0B6 /* MicroBlog */,
+				CE95748A1D322CC700504D52 /* ModelConverter.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -209,10 +254,18 @@
 			isa = PBXGroup;
 			children = (
 				CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */,
-				CED41F401D30E6B80089E0B6 /* Endpoint.swift */,
-				CED41F421D30E6E40089E0B6 /* Authorization.swift */,
+				CE9574861D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift */,
+				CE9574881D32232600504D52 /* OAuthService.swift */,
 			);
 			name = MicroBlog;
+			sourceTree = "<group>";
+		};
+		CED41F461D3147170089E0B6 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				CED41F471D3147460089E0B6 /* APIEditorController.swift */,
+			);
+			name = Preferences;
 			sourceTree = "<group>";
 		};
 		D2F7031A2E06DE3DF8308E83 /* Pods */ = {
@@ -414,12 +467,19 @@
 				CE0529E91CF7F35300E06364 /* MainViewController.swift in Sources */,
 				CE0529EF1CF7F35300E06364 /* Twidere.xcdatamodeld in Sources */,
 				CED41F411D30E6B80089E0B6 /* Endpoint.swift in Sources */,
+				CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */,
 				CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */,
-				CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */,
+				CED41F481D3147460089E0B6 /* APIEditorController.swift in Sources */,
+				CE9574871D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift in Sources */,
+				CED41F341D2FF88D0089E0B6 /* SignInViewController.swift in Sources */,
+				CE95748B1D322CC700504D52 /* ModelConverter.swift in Sources */,
+				CE9574851D32221A00504D52 /* RestClient.swift in Sources */,
 				CED41F2F1D2FF7C80089E0B6 /* HomeViewController.swift in Sources */,
 				CED41F431D30E6E40089E0B6 /* Authorization.swift in Sources */,
-				CED41F3B1D30C1D20089E0B6 /* Constants.swift in Sources */,
 				CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */,
+				CE9574891D32232600504D52 /* OAuthService.swift in Sources */,
+				CE95747D1D3210A300504D52 /* CustomAPIConfig.swift in Sources */,
+				CE9574821D32186A00504D52 /* UIConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

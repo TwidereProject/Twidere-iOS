@@ -1,16 +1,22 @@
 PODS:
+  - ActionSheetPicker-3.0 (2.2.0)
   - CryptoSwift (0.5.1)
   - Just (0.4.7)
+  - JVFloatLabeledTextField (1.1.0)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0 (~> 2.2.0)
   - CryptoSwift (~> 0.5.1)
   - Just (~> 0.4.7)
+  - JVFloatLabeledTextField (~> 1.1.0)
   - SwiftyJSON (~> 2.3.2)
 
 SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   CryptoSwift: df42dda18baf6c76347a94e227dbcc0a341304bd
   Just: 946bae197f898da6b49e27e10dbe9dfbf1216f29
+  JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0
