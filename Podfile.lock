@@ -3,6 +3,7 @@ PODS:
   - CryptoSwift (0.5.1)
   - Just (0.4.7)
   - JVFloatLabeledTextField (1.1.0)
+  - StaticDataTableViewController (2.0.5)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
@@ -10,6 +11,7 @@ DEPENDENCIES:
   - CryptoSwift (~> 0.5.1)
   - Just (~> 0.4.7)
   - JVFloatLabeledTextField (~> 1.1.0)
+  - StaticDataTableViewController (~> 2.0.5)
   - SwiftyJSON (~> 2.3.2)
 
 SPEC CHECKSUMS:
@@ -17,6 +19,7 @@ SPEC CHECKSUMS:
   CryptoSwift: df42dda18baf6c76347a94e227dbcc0a341304bd
   Just: 946bae197f898da6b49e27e10dbe9dfbf1216f29
   JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
+  StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0

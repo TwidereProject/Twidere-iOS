@@ -57,7 +57,7 @@ class OAuthEndpoint: Endpoint {
     
     let signingBase: String
     
-    init(base: String) {
+    override init(base: String) {
         self.signingBase = base
         super.init(base: base)
     }

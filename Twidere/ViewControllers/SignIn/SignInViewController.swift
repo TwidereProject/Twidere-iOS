@@ -11,6 +11,7 @@ import UIKit
 class SignInViewController: UIViewController {
     
     var hasCancel: Bool = false
+    var customAPIConfig: CustomAPIConfig = CustomAPIConfig()
     
     // MARK: Properties
     @IBOutlet weak var signUpButton: UIButton!
@@ -35,6 +36,19 @@ class SignInViewController: UIViewController {
         if (hasCancel) {
             let cancelItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(self.closeSignIn))
             navigationItem.leftBarButtonItem = cancelItem
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier {
+        case "ShowAPIEditor"?:
+            let dest = segue.destinationViewController as! UINavigationController
+            let apiEditor = dest.viewControllers[0] as! APIEditorController
+            apiEditor.customAPIConfig = customAPIConfig
+            apiEditor.finishCallback = { (config) -> Void in
+                self.customAPIConfig = config
+            }
+        default: break
         }
     }
     

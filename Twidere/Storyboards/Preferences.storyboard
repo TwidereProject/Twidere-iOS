@@ -220,7 +220,7 @@
                         <sections>
                             <tableViewSection id="g3F-eq-WMN" userLabel="Default Section">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="6oH-hU-08q" style="IBUITableViewCellStyleDefault" id="92A-my-bZM">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Basic" textLabel="6oH-hU-08q" style="IBUITableViewCellStyleDefault" id="92A-my-bZM">
                                         <rect key="frame" x="0.0" y="99" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="92A-my-bZM" id="WEa-6F-M3z">
@@ -241,11 +241,11 @@
                             </tableViewSection>
                             <tableViewSection id="Vzy-ZO-pqr" userLabel="Basic Section">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Gmk-N6-6lv" userLabel="API URL format">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextField" id="Gmk-N6-6lv" userLabel="API URL format">
                                         <rect key="frame" x="0.0" y="179" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gmk-N6-6lv" id="YmE-Xf-Bo3">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="API URL format" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="VvR-pf-Waa" customClass="JVFloatLabeledTextField">
@@ -256,13 +256,13 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="VvR-pf-Waa" firstAttribute="centerX" secondItem="YmE-Xf-Bo3" secondAttribute="centerX" id="BkI-Lf-D57"/>
-                                                <constraint firstItem="VvR-pf-Waa" firstAttribute="top" secondItem="YmE-Xf-Bo3" secondAttribute="topMargin" constant="4" id="ClR-Vl-07E"/>
                                                 <constraint firstItem="VvR-pf-Waa" firstAttribute="leading" secondItem="YmE-Xf-Bo3" secondAttribute="leadingMargin" constant="7" id="hpB-pn-qfr"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="VvR-pf-Waa" secondAttribute="trailing" constant="7" id="nFO-tR-Pq0"/>
                                                 <constraint firstItem="VvR-pf-Waa" firstAttribute="centerY" secondItem="YmE-Xf-Bo3" secondAttribute="centerY" id="sKc-EE-cCM"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="0xv-O5-eG7" detailTextLabel="tES-GU-Z39" style="IBUITableViewCellStyleValue1" id="F1a-E7-mwh" userLabel="Auth type">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Picker" textLabel="0xv-O5-eG7" detailTextLabel="tES-GU-Z39" style="IBUITableViewCellStyleValue1" id="F1a-E7-mwh" userLabel="Auth type">
                                         <rect key="frame" x="0.0" y="223" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F1a-E7-mwh" id="Sny-l9-6eb">
@@ -290,7 +290,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Advanced" id="cJE-pc-L8e" userLabel="Advanced Section">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="pL0-Xi-0vs" userLabel="Same OAuth signing URL">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Switch" id="pL0-Xi-0vs" userLabel="Same OAuth signing URL">
                                         <rect key="frame" x="0.0" y="317" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pL0-Xi-0vs" id="0XV-kH-t9F">
@@ -315,7 +315,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="51G-Ga-fiz" userLabel="No version suffix">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Switch" id="51G-Ga-fiz" userLabel="No version suffix">
                                         <rect key="frame" x="0.0" y="361" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="51G-Ga-fiz" id="ea8-BF-hbk">
@@ -340,7 +340,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3uo-Dw-Uvr" userLabel="Consumer key">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextField" id="3uo-Dw-Uvr" userLabel="Consumer key">
                                         <rect key="frame" x="0.0" y="405" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3uo-Dw-Uvr" id="4pb-Nn-tti">
@@ -357,15 +357,15 @@
                                                 <constraint firstItem="ZzM-Ub-6DN" firstAttribute="centerY" secondItem="4pb-Nn-tti" secondAttribute="centerY" id="8nI-rt-AcC"/>
                                                 <constraint firstItem="ZzM-Ub-6DN" firstAttribute="centerX" secondItem="4pb-Nn-tti" secondAttribute="centerX" id="DCn-JD-MkA"/>
                                                 <constraint firstItem="ZzM-Ub-6DN" firstAttribute="leading" secondItem="4pb-Nn-tti" secondAttribute="leadingMargin" constant="7" id="Dgd-qy-es4"/>
-                                                <constraint firstItem="ZzM-Ub-6DN" firstAttribute="top" secondItem="4pb-Nn-tti" secondAttribute="topMargin" constant="4" id="kcD-oF-76y"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ZzM-Ub-6DN" secondAttribute="trailing" constant="7" id="I1G-fT-rfl"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ad0-wY-s5T" userLabel="Consumer secret">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextField" id="Ad0-wY-s5T" userLabel="Consumer secret">
                                         <rect key="frame" x="0.0" y="449" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ad0-wY-s5T" id="cFx-QV-DRk">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Consumer secret" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="VJ3-Te-9Bo" customClass="JVFloatLabeledTextField">
@@ -375,10 +375,10 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="VJ3-Te-9Bo" firstAttribute="top" secondItem="cFx-QV-DRk" secondAttribute="topMargin" constant="4" id="5uJ-W7-cZa"/>
                                                 <constraint firstItem="VJ3-Te-9Bo" firstAttribute="centerY" secondItem="cFx-QV-DRk" secondAttribute="centerY" id="9Qj-vm-DMd"/>
                                                 <constraint firstItem="VJ3-Te-9Bo" firstAttribute="centerX" secondItem="cFx-QV-DRk" secondAttribute="centerX" id="BhR-Ug-Klk"/>
                                                 <constraint firstItem="VJ3-Te-9Bo" firstAttribute="leading" secondItem="cFx-QV-DRk" secondAttribute="leadingMargin" constant="7" id="w5J-Tn-KxE"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="VJ3-Te-9Bo" secondAttribute="trailing" constant="7" id="xFr-yx-FZV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -392,18 +392,21 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Edit API" id="bBm-6W-Dpj"/>
                     <connections>
+                        <outlet property="authTypeCell" destination="F1a-E7-mwh" id="oN3-i6-w1r"/>
                         <outlet property="authTypeDetails" destination="tES-GU-Z39" id="IMM-kh-yTE"/>
+                        <outlet property="consumerKeyCell" destination="3uo-Dw-Uvr" id="BD3-X9-lyq"/>
+                        <outlet property="consumerSecretCell" destination="Ad0-wY-s5T" id="NjB-XI-Kx8"/>
                         <outlet property="editApiUrlFormat" destination="VvR-pf-Waa" id="rct-GN-dML"/>
-                        <outlet property="editAuthType" destination="F1a-E7-mwh" id="1Vn-RE-Dao"/>
                         <outlet property="editConsumerKey" destination="ZzM-Ub-6DN" id="0KT-6n-Eda"/>
                         <outlet property="editConsumerSecret" destination="VJ3-Te-9Bo" id="Bu7-fP-S3G"/>
                         <outlet property="editNoVersionSuffix" destination="7dq-47-zaZ" id="fbk-oM-qAC"/>
                         <outlet property="editSameOauthSigningUrl" destination="97J-UC-e5f" id="iQz-eq-nLz"/>
+                        <outlet property="sameOauthSigningUrlCell" destination="pL0-Xi-0vs" id="b4Q-CM-YbJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xaE-uc-bPP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="989" y="1747"/>
+            <point key="canvasLocation" x="1061" y="1747"/>
         </scene>
         <!--API Editor-->
         <scene sceneID="pmG-tX-MHb">

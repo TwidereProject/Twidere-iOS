@@ -9,6 +9,7 @@ target 'Twidere' do
   pod 'Just', '~> 0.4.7'
   pod 'JVFloatLabeledTextField', '~> 1.1.0'
   pod 'ActionSheetPicker-3.0', '~> 2.2.0'
+  pod 'StaticDataTableViewController', '~> 2.0.5'
 end
 
 target 'TwidereTests' do

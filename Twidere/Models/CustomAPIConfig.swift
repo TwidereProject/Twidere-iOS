@@ -10,12 +10,12 @@ import Foundation
 
 class CustomAPIConfig {
     
-    var apiUrlFormat: String = ""
+    var apiUrlFormat: String = "https://[DOMAIN.]twitter.com/"
     var authType: AuthType = .OAuth
     var sameOAuthUrl: Bool = true
     var noVersionSuffix: Bool = false
-    var consumerKey: String = ""
-    var consumerSecret: String = ""
+    var consumerKey: String = ServiceConstants.defaultTwitterConsumerKey
+    var consumerSecret: String = ServiceConstants.defaultTwitterConsumerSecret
     
     var valid: Bool {
         get {
@@ -35,5 +35,11 @@ class CustomAPIConfig {
     
     enum AuthType {
         case OAuth, xAuth, Basic, TwipO
+        
+        var isOAuthType: Bool {
+            get {
+                return self == .OAuth || self == .xAuth
+            }
+        }
     }
 }
