@@ -1,28 +1,46 @@
 PODS:
   - ActionSheetPicker-3.0 (2.2.0)
+  - AsyncSwift (1.7.2)
+  - Boilerplate (0.2.4):
+    - Result (~> 2.0)
+  - CrossroadRegex (0.7.0):
+    - Boilerplate (~> 0.2)
   - CryptoSwift (0.5.1)
   - IQKeyboardManagerSwift (4.0.3)
   - Just (0.4.7)
   - JVFloatLabeledTextField (1.1.0)
+  - Kanna (1.1.0)
+  - Result (2.1.2)
   - StaticDataTableViewController (2.0.5)
   - SwiftyJSON (2.3.2)
+  - SwiftyUserDefaults (2.2.0)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (= 2.2.0)
+  - AsyncSwift (= 1.7.2)
+  - CrossroadRegex (= 0.7.0)
   - CryptoSwift (= 0.5.1)
   - IQKeyboardManagerSwift (= 4.0.3)
   - Just (= 0.4.7)
   - JVFloatLabeledTextField (= 1.1.0)
+  - Kanna (= 1.1.0)
   - StaticDataTableViewController (= 2.0.5)
   - SwiftyJSON (= 2.3.2)
+  - SwiftyUserDefaults (= 2.2.0)
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
+  AsyncSwift: 46a78bceb11f0e5bb52747f740d9692ec78d2d7c
+  Boilerplate: cc76b26f60747f7b75f43b8ac38d2071cfb0e75a
+  CrossroadRegex: 05967c725bf25ada15d735a173f2450ac6335bb6
   CryptoSwift: df42dda18baf6c76347a94e227dbcc0a341304bd
   IQKeyboardManagerSwift: b6883b720b0e76473692fdc80828442566e1075f
   Just: 946bae197f898da6b49e27e10dbe9dfbf1216f29
   JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
+  Kanna: 355ed0193e5d8caf4fd996856b5bc98d586c11b6
+  Result: 6e722d4a66b1408680dbfcdf51c0b1c4b706316a
   StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  SwiftyUserDefaults: e7c8197a9d4068702e7f2406a968cae413b8de27
 
 COCOAPODS: 0.39.0

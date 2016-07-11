@@ -22,8 +22,10 @@
 		CE9574871D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574861D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift */; };
 		CE9574891D32232600504D52 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574881D32232600504D52 /* OAuthService.swift */; };
 		CE95748B1D322CC700504D52 /* ModelConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95748A1D322CC700504D52 /* ModelConverter.swift */; };
+		CE95748F1D33871E00504D52 /* PasswordSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95748E1D33871E00504D52 /* PasswordSignInController.swift */; };
+		CE9574961D33B71B00504D52 /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574951D33B71B00504D52 /* DefaultsKeys.swift */; };
 		CED41F2F1D2FF7C80089E0B6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */; };
-		CED41F341D2FF88D0089E0B6 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F331D2FF88D0089E0B6 /* SignInViewController.swift */; };
+		CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F331D2FF88D0089E0B6 /* SignInController.swift */; };
 		CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED41F351D3085FF0089E0B6 /* SignIn.storyboard */; };
 		CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */; };
 		CED41F411D30E6B80089E0B6 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F401D30E6B80089E0B6 /* Endpoint.swift */; };
@@ -74,8 +76,10 @@
 		CE9574861D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterOAuthPasswordAuthenticator.swift; path = Services/MicroBlog/TwitterOAuthPasswordAuthenticator.swift; sourceTree = "<group>"; };
 		CE9574881D32232600504D52 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthService.swift; path = Services/MicroBlog/OAuthService.swift; sourceTree = "<group>"; };
 		CE95748A1D322CC700504D52 /* ModelConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelConverter.swift; path = Services/ModelConverter/ModelConverter.swift; sourceTree = "<group>"; };
+		CE95748E1D33871E00504D52 /* PasswordSignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasswordSignInController.swift; path = ViewControllers/SignIn/PasswordSignInController.swift; sourceTree = "<group>"; };
+		CE9574951D33B71B00504D52 /* DefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultsKeys.swift; path = Utils/DefaultsKeys.swift; sourceTree = "<group>"; };
 		CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ViewControllers/Home/HomeViewController.swift; sourceTree = "<group>"; };
-		CED41F331D2FF88D0089E0B6 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ViewControllers/SignIn/SignInViewController.swift; sourceTree = "<group>"; };
+		CED41F331D2FF88D0089E0B6 /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInController.swift; path = ViewControllers/SignIn/SignInController.swift; sourceTree = "<group>"; };
 		CED41F351D3085FF0089E0B6 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SignIn.storyboard; path = Storyboards/SignIn.storyboard; sourceTree = "<group>"; };
 		CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MicroBlogService.swift; path = Services/MicroBlog/MicroBlogService.swift; sourceTree = "<group>"; };
 		CED41F401D30E6B80089E0B6 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Endpoint.swift; path = Services/RestService/Endpoint.swift; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 				CE95747E1D32169D00504D52 /* Constants */,
 				CE95747B1D32107800504D52 /* Models */,
 				CED41F3C1D30D2C80089E0B6 /* Services */,
+				CE9574941D33B6EA00504D52 /* Utils */,
 				CED41F281D2FEE9C0089E0B6 /* ViewControllers */,
 				CED41F371D3086060089E0B6 /* Storyboards */,
 				CE0529E61CF7F35300E06364 /* AppDelegate.swift */,
@@ -202,6 +207,14 @@
 			name = RestService;
 			sourceTree = "<group>";
 		};
+		CE9574941D33B6EA00504D52 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CE9574951D33B71B00504D52 /* DefaultsKeys.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		CED41F281D2FEE9C0089E0B6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,7 +237,8 @@
 		CED41F301D2FF8540089E0B6 /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
-				CED41F331D2FF88D0089E0B6 /* SignInViewController.swift */,
+				CED41F331D2FF88D0089E0B6 /* SignInController.swift */,
+				CE95748E1D33871E00504D52 /* PasswordSignInController.swift */,
 			);
 			name = SignIn;
 			sourceTree = "<group>";
@@ -465,13 +479,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE0529E91CF7F35300E06364 /* MainViewController.swift in Sources */,
+				CE9574961D33B71B00504D52 /* DefaultsKeys.swift in Sources */,
+				CE95748F1D33871E00504D52 /* PasswordSignInController.swift in Sources */,
 				CE0529EF1CF7F35300E06364 /* Twidere.xcdatamodeld in Sources */,
 				CED41F411D30E6B80089E0B6 /* Endpoint.swift in Sources */,
 				CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */,
 				CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */,
 				CED41F481D3147460089E0B6 /* APIEditorController.swift in Sources */,
 				CE9574871D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift in Sources */,
-				CED41F341D2FF88D0089E0B6 /* SignInViewController.swift in Sources */,
+				CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */,
 				CE95748B1D322CC700504D52 /* ModelConverter.swift in Sources */,
 				CE9574851D32221A00504D52 /* RestClient.swift in Sources */,
 				CED41F2F1D2FF7C80089E0B6 /* HomeViewController.swift in Sources */,

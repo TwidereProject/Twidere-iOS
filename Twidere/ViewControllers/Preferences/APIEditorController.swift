@@ -29,18 +29,17 @@ class APIEditorController: StaticDataTableViewController {
     @IBOutlet weak var authTypeDetails: UILabel!
     
     var customAPIConfig = CustomAPIConfig()
-    var finishCallback: ((CustomAPIConfig) -> Void)? = nil
+    var callback: ((CustomAPIConfig) -> Void)? = nil
+    
+    private var authType: CustomAPIConfig.AuthType = .OAuth
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let cancelItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(self.closeAPIEditor))
-        navigationItem.leftBarButtonItem = cancelItem
-        let doneItem = UIBarButtonItem(title: "Done", style: .Done, target: self, action: #selector(self.saveAPISettings))
-        navigationItem.rightBarButtonItem = doneItem
-        
         let initialSelection = authTypeValues.indexOf(customAPIConfig.authType) ?? 0
         updateOptions(initialSelection)
+        
+        authType = customAPIConfig.authType
         
         editApiUrlFormat.text = customAPIConfig.apiUrlFormat
         editSameOauthSigningUrl.on = customAPIConfig.sameOAuthUrl
@@ -48,6 +47,10 @@ class APIEditorController: StaticDataTableViewController {
         editConsumerKey.text = customAPIConfig.consumerKey
         editConsumerSecret.text = customAPIConfig.consumerSecret
         
+        if (callback != nil) {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(self.cancelEditAPI))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Done, target: self, action: #selector(self.finishEditAPI))
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,6 +64,11 @@ class APIEditorController: StaticDataTableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        switch segue.identifier {
+        case "FinishEditAPI"?:
+            saveAPISettings()
+        default: break
+        }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -74,31 +82,36 @@ class APIEditorController: StaticDataTableViewController {
             }
         }
     }
-
-    func closeAPIEditor() {
-        dismissViewControllerAnimated(true, completion: nil)
+    
+    internal func cancelEditAPI() {
+        navigationController?.popViewControllerAnimated(true)
     }
     
-    func saveAPISettings() {
+    internal func finishEditAPI() {
+        saveAPISettings()
+        callback?(customAPIConfig)
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    private func saveAPISettings() {
         customAPIConfig.apiUrlFormat = editApiUrlFormat.text ?? ""
+        customAPIConfig.authType = authType
         customAPIConfig.consumerKey = editConsumerKey.text ?? ""
         customAPIConfig.consumerSecret = editConsumerSecret.text ?? ""
         customAPIConfig.noVersionSuffix = editNoVersionSuffix.on
         customAPIConfig.sameOAuthUrl = editSameOauthSigningUrl.on
-     
-        finishCallback?(customAPIConfig)
-        dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func openEditAuthType(sender: AnyObject) {
+    private func openEditAuthType(sender: AnyObject) {
+        view.endEditing(true)
         let initialSelection = authTypeValues.indexOf(customAPIConfig.authType) ?? 0
         ActionSheetStringPicker.showPickerWithTitle("Auth Type", rows: authTypeEntries, initialSelection: initialSelection, doneBlock: { picker, index, value in
-            self.customAPIConfig.authType = self.authTypeValues[index]
+            self.authType = self.authTypeValues[index]
             self.updateOptions(index)
         }, cancelBlock: { _ in }, origin: sender)
     }
     
-    func updateOptions(index: Int) {
+    private func updateOptions(index: Int) {
         self.authTypeDetails.text = authTypeEntries[index]
         
         hideSectionsWithHiddenRows = true

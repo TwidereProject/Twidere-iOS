@@ -33,7 +33,7 @@ class Endpoint {
         } else {
             fixedPath = path
         }
-        if (queries != nil) {
+        if (!(queries?.isEmpty ?? true)) {
             let queriesPart = queries!.map({ (s, v) -> String in
                 return Endpoint.paramEncode(s, value: v)
             }).joinWithSeparator("&")

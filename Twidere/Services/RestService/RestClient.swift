@@ -15,7 +15,7 @@ class RestClient {
     let auth: Authorization?
     let userAgent: String?
     
-    init(endpoint: Endpoint, auth: Authorization?, userAgent: String? = nil) {
+    init(endpoint: Endpoint, auth: Authorization? = nil, userAgent: String? = nil) {
         self.endpoint = endpoint
         self.auth = auth
         self.userAgent = userAgent
@@ -30,8 +30,9 @@ class RestClient {
                           files:[String:HTTPFile] = [:],
                           requestBody:NSData? = nil,
                           authOverride: Authorization? = nil,
+                          cookies: [String: String] = [:],
                           converter: ((HTTPResult!) -> T),
-                          callback: ((result: T?, error: NSError?) -> Void)? = nil) -> T? {
+                          callback: ((result: T?, error: NSError?) -> Void)? = nil) throws -> T? {
         if (callback != nil) {
             makeRequest(method, path: path, headers: headers, queries: queries,forms: forms, json: json, files: files,requestBody: requestBody, authOverride: authOverride) { result -> Void in
                 if (result.ok) {
@@ -42,11 +43,13 @@ class RestClient {
             }
             return nil
         }
-        let result = makeRequest(method, path: path, headers: headers, queries: queries,forms: forms,json: json,files: files,requestBody: requestBody, authOverride: authOverride)
+        let result = makeRequest(method, path: path, headers: headers, queries: queries,forms: forms,json: json,files: files,requestBody: requestBody, authOverride: authOverride, cookies: cookies)
         if (result.ok) {
             return converter(result)
+        } else if (result.error != nil) {
+            throw RestError.NetworkError(err: result.error)
         }
-        return nil
+        throw RestError.RequestError(statusCode: result.statusCode ?? -1)
     }
     
     func makeRequest(method: HTTPMethod,
@@ -58,12 +61,13 @@ class RestClient {
                              files:[String:HTTPFile] = [:],
                              requestBody:NSData? = nil,
                              authOverride: Authorization? = nil,
+                             cookies: [String: String] = [:],
                              asyncProgressHandler:((HTTPProgress!) -> Void)? = nil,
                              asyncCompletionHandler:((HTTPResult!) -> Void)? = nil) -> HTTPResult {
-        let url = constructUrl(path, queries: queries)
+        let url = constructUrl(path)
         let finalAuth: Authorization? = authOverride ?? auth
         let finalHeaders = constructHeaders(method, path: path, headers: headers, queries: queries, forms: forms, auth: finalAuth)
-        return Just.request(method, URLString: url, params: queries, data: forms, json: json, headers: finalHeaders, files: files, cookies: [:], allowRedirects: false, requestBody: requestBody, asyncProgressHandler: asyncProgressHandler, asyncCompletionHandler: asyncCompletionHandler)
+        return Just.request(method, URLString: url, params: queries, data: forms, json: json, headers: finalHeaders, files: files, cookies: cookies, allowRedirects: false, requestBody: requestBody, asyncProgressHandler: asyncProgressHandler, asyncCompletionHandler: asyncCompletionHandler)
         
     }
     
@@ -90,4 +94,9 @@ class RestClient {
         return mergedHeaders
     }
     
+}
+
+enum RestError: ErrorType {
+    case NetworkError(err: NSError?)
+    case RequestError(statusCode: Int)
 }

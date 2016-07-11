@@ -11,6 +11,10 @@ target 'Twidere' do
   pod 'ActionSheetPicker-3.0', '2.2.0'
   pod 'StaticDataTableViewController', '2.0.5'
   pod 'IQKeyboardManagerSwift', '4.0.3'
+  pod 'AsyncSwift', '1.7.2'
+  pod 'Kanna', '1.1.0'
+  pod 'CrossroadRegex', '0.7.0'
+  pod 'SwiftyUserDefaults', '2.2.0'
 end
 
 target 'TwidereTests' do
