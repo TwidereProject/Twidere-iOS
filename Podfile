@@ -15,6 +15,8 @@ target 'Twidere' do
   pod 'Kanna', '1.1.0'
   pod 'CrossroadRegex', '0.7.0'
   pod 'SwiftyUserDefaults', '2.2.0'
+  pod 'SugarRecord/CoreData', '2.2.9'
+  pod 'PromiseKit', '3.2.1'
 end
 
 target 'TwidereTests' do

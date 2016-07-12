@@ -11,8 +11,8 @@ import Just
 
 class MicroBlogService: RestClient {
     
-    func verifyCredentials(callback:((HTTPResult!) -> Void)? = nil) -> HTTPResult {
-        return makeRequest(.GET, path: "/account/verify_credentials.json", asyncCompletionHandler: callback)
+    func verifyCredentials() -> HTTPResult {
+        return makeRequest(.GET, path: "/account/verify_credentials.json")
     }
     
 }

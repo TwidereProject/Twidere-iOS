@@ -10,8 +10,29 @@ PODS:
   - Just (0.4.7)
   - JVFloatLabeledTextField (1.1.0)
   - Kanna (1.1.0)
+  - OMGHTTPURLRQ (3.1.2):
+    - OMGHTTPURLRQ/RQ (= 3.1.2)
+  - OMGHTTPURLRQ/FormURLEncode (3.1.2)
+  - OMGHTTPURLRQ/RQ (3.1.2):
+    - OMGHTTPURLRQ/FormURLEncode
+    - OMGHTTPURLRQ/UserAgent
+  - OMGHTTPURLRQ/UserAgent (3.1.2)
+  - PromiseKit (3.2.1):
+    - PromiseKit/Foundation (= 3.2.1)
+    - PromiseKit/QuartzCore (= 3.2.1)
+    - PromiseKit/UIKit (= 3.2.1)
+  - PromiseKit/CorePromise (3.2.1)
+  - PromiseKit/Foundation (3.2.1):
+    - OMGHTTPURLRQ (~> 3.1.0)
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (3.2.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (3.2.1):
+    - PromiseKit/CorePromise
   - Result (2.1.2)
   - StaticDataTableViewController (2.0.5)
+  - SugarRecord/CoreData (2.2.9):
+    - Result (~> 2.0)
   - SwiftyJSON (2.3.2)
   - SwiftyUserDefaults (2.2.0)
 
@@ -24,7 +45,9 @@ DEPENDENCIES:
   - Just (= 0.4.7)
   - JVFloatLabeledTextField (= 1.1.0)
   - Kanna (= 1.1.0)
+  - PromiseKit (= 3.2.1)
   - StaticDataTableViewController (= 2.0.5)
+  - SugarRecord/CoreData (= 2.2.9)
   - SwiftyJSON (= 2.3.2)
   - SwiftyUserDefaults (= 2.2.0)
 
@@ -38,8 +61,11 @@ SPEC CHECKSUMS:
   Just: 946bae197f898da6b49e27e10dbe9dfbf1216f29
   JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
   Kanna: 355ed0193e5d8caf4fd996856b5bc98d586c11b6
+  OMGHTTPURLRQ: 38316b56d88125c600bcdb16df8329147da2b0ee
+  PromiseKit: ef54f61501541bf18a87b25115c372184d180cea
   Result: 6e722d4a66b1408680dbfcdf51c0b1c4b706316a
   StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a
+  SugarRecord: 2463fbe768633a2524ba505dfed5315167331c0a
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   SwiftyUserDefaults: e7c8197a9d4068702e7f2406a968cae413b8de27
 

@@ -29,7 +29,7 @@ class TwitterOAuthPasswordAuthenticator {
         do {
             let requestToken: OAuthToken
             do {
-                requestToken = try oauth.getRequestToken(ServiceConstants.oauthCallbackOob)!
+                requestToken = try oauth.getRequestToken(ServiceConstants.oauthCallbackOob)
             } catch RestError.RequestError(_) {
                 throw AuthenticationError.RequestTokenFailed
             }
@@ -38,7 +38,7 @@ class TwitterOAuthPasswordAuthenticator {
             var authorizeResponseData = try getAuthorizeResponseData(requestToken, authorizeRequestData: authorizeRequestData, username: username, password: password)
             if (!(authorizeResponseData.oauthPin?.isEmpty ?? true)) {
                 do {
-                    return try oauth.getAccessToken(requestToken, oauthVerifier: authorizeResponseData.oauthPin)!
+                    return try oauth.getAccessToken(requestToken, oauthVerifier: authorizeResponseData.oauthPin)
                 } catch RestError.RequestError(_) {
                     throw AuthenticationError.AccessTokenFailed
                 }
@@ -59,7 +59,7 @@ class TwitterOAuthPasswordAuthenticator {
                 throw AuthenticationError.VerificationFailed
             }
             do {
-                return try oauth.getAccessToken(requestToken, oauthVerifier: authorizeResponseData.oauthPin)!
+                return try oauth.getAccessToken(requestToken, oauthVerifier: authorizeResponseData.oauthPin)
             } catch RestError.RequestError(_) {
                 throw AuthenticationError.AccessTokenFailed
             }
@@ -91,7 +91,7 @@ class TwitterOAuthPasswordAuthenticator {
         let queries = ["oauth_token": requestToken.oauthToken]
         let data: AuthorizeRequestData
         do {
-            try data = rest.makeTypedRequest(.GET, path: "/oauth/authorize", headers: requestHeaders, queries: queries, converter: AuthorizeRequestData.parseFromHttpResult)!
+            try data = rest.makeTypedRequest(.GET, path: "/oauth/authorize", headers: requestHeaders, queries: queries, converter: AuthorizeRequestData.parseFromHttpResult)
         }
         data.referer = Endpoint.construct("https://api.twitter.com/", path: "/oauth/authorize", queries: queries)
         return data
@@ -115,7 +115,7 @@ class TwitterOAuthPasswordAuthenticator {
         
         let data: AuthorizeResponseData
         do {
-            try data = rest.makeTypedRequest(.POST, path: "/oauth/authorize", headers: requestHeaders, forms: forms, cookies: authorizeRequestData.cookies ?? [String: String](), converter: AuthorizeResponseData.parseFromHttpResult)!
+            try data = rest.makeTypedRequest(.POST, path: "/oauth/authorize", headers: requestHeaders, forms: forms, cookies: authorizeRequestData.cookies ?? [String: String](), converter: AuthorizeResponseData.parseFromHttpResult)
         }
         data.referer = authorizeRequestData.referer
         return data
@@ -143,7 +143,7 @@ class TwitterOAuthPasswordAuthenticator {
         
         let data: AuthorizeRequestData
         do {
-            try data = rest.makeTypedRequest(.POST, path: "/account/login_verification", headers: requestHeaders, forms: forms, cookies: authorizeResponseData.cookies ?? [String: String](), converter: AuthorizeRequestData.parseFromHttpResult)!
+            try data = rest.makeTypedRequest(.POST, path: "/account/login_verification", headers: requestHeaders, forms: forms, cookies: authorizeResponseData.cookies ?? [String: String](), converter: AuthorizeRequestData.parseFromHttpResult)
         }
         if (data.authenticityToken?.isEmpty ?? true) {
             // TODO verification failed
@@ -170,7 +170,6 @@ internal class AuthorizeRequestData {
     static func parseFromHttpResult(result: HTTPResult!) -> AuthorizeRequestData {
         let data = AuthorizeRequestData()
         if let doc = Kanna.HTML(html: result.text!, encoding: NSUTF8StringEncoding) {
-            print(doc.title)
             
             let oauthForm = doc.at_css("form#oauth_form")
             if (oauthForm != nil) {

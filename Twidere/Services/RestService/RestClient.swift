@@ -31,18 +31,7 @@ class RestClient {
                           requestBody:NSData? = nil,
                           authOverride: Authorization? = nil,
                           cookies: [String: String] = [:],
-                          converter: ((HTTPResult!) -> T),
-                          callback: ((result: T?, error: NSError?) -> Void)? = nil) throws -> T? {
-        if (callback != nil) {
-            makeRequest(method, path: path, headers: headers, queries: queries,forms: forms, json: json, files: files,requestBody: requestBody, authOverride: authOverride) { result -> Void in
-                if (result.ok) {
-                    callback!(result: converter(result), error: nil)
-                } else {
-                    callback!(result: nil, error: result.error)
-                }
-            }
-            return nil
-        }
+                          converter: ((HTTPResult!) -> T)) throws -> T {
         let result = makeRequest(method, path: path, headers: headers, queries: queries,forms: forms,json: json,files: files,requestBody: requestBody, authOverride: authOverride, cookies: cookies)
         if (result.ok) {
             return converter(result)
@@ -61,13 +50,11 @@ class RestClient {
                              files:[String:HTTPFile] = [:],
                              requestBody:NSData? = nil,
                              authOverride: Authorization? = nil,
-                             cookies: [String: String] = [:],
-                             asyncProgressHandler:((HTTPProgress!) -> Void)? = nil,
-                             asyncCompletionHandler:((HTTPResult!) -> Void)? = nil) -> HTTPResult {
+                             cookies: [String: String] = [:]) -> HTTPResult {
         let url = constructUrl(path)
         let finalAuth: Authorization? = authOverride ?? auth
         let finalHeaders = constructHeaders(method, path: path, headers: headers, queries: queries, forms: forms, auth: finalAuth)
-        return Just.request(method, URLString: url, params: queries, data: forms, json: json, headers: finalHeaders, files: files, cookies: cookies, allowRedirects: false, requestBody: requestBody, asyncProgressHandler: asyncProgressHandler, asyncCompletionHandler: asyncCompletionHandler)
+        return Just.request(method, URLString: url, params: queries, data: forms, json: json, headers: finalHeaders, files: files, cookies: cookies, allowRedirects: false, requestBody: requestBody)
         
     }
     

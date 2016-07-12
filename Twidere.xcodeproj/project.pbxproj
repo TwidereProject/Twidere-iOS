@@ -24,6 +24,15 @@
 		CE95748B1D322CC700504D52 /* ModelConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95748A1D322CC700504D52 /* ModelConverter.swift */; };
 		CE95748F1D33871E00504D52 /* PasswordSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95748E1D33871E00504D52 /* PasswordSignInController.swift */; };
 		CE9574961D33B71B00504D52 /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574951D33B71B00504D52 /* DefaultsKeys.swift */; };
+		CE9574981D33D87200504D52 /* NetworkPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574971D33D87200504D52 /* NetworkPreferencesController.swift */; };
+		CE95749A1D33DC7B00504D52 /* BasePreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574991D33DC7B00504D52 /* BasePreferencesController.swift */; };
+		CE95749C1D33DEC300504D52 /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95749B1D33DEC300504D52 /* PreferencesController.swift */; };
+		CE9574AB1D33F04600504D52 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574A71D33F04600504D52 /* Account.swift */; };
+		CE9574B41D33F09200504D52 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574AF1D33F09200504D52 /* User.swift */; };
+		CE9574B71D33F09200504D52 /* AccountUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574B21D33F09200504D52 /* AccountUser.swift */; };
+		CE9574B91D349C3F00504D52 /* BrowserSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574B81D349C3F00504D52 /* BrowserSignInController.swift */; };
+		CEA2E2A71D34C1610095BC57 /* DefaultAPISettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2A61D34C1610095BC57 /* DefaultAPISettingsController.swift */; };
+		CEA2E2AA1D34C2090095BC57 /* DefaultAPIConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEA2E2A91D34C2090095BC57 /* DefaultAPIConfig.plist */; };
 		CED41F2F1D2FF7C80089E0B6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */; };
 		CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F331D2FF88D0089E0B6 /* SignInController.swift */; };
 		CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED41F351D3085FF0089E0B6 /* SignIn.storyboard */; };
@@ -75,9 +84,18 @@
 		CE9574841D32221A00504D52 /* RestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestClient.swift; path = Services/RestService/RestClient.swift; sourceTree = "<group>"; };
 		CE9574861D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterOAuthPasswordAuthenticator.swift; path = Services/MicroBlog/TwitterOAuthPasswordAuthenticator.swift; sourceTree = "<group>"; };
 		CE9574881D32232600504D52 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthService.swift; path = Services/MicroBlog/OAuthService.swift; sourceTree = "<group>"; };
-		CE95748A1D322CC700504D52 /* ModelConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelConverter.swift; path = Services/ModelConverter/ModelConverter.swift; sourceTree = "<group>"; };
+		CE95748A1D322CC700504D52 /* ModelConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelConverter.swift; path = Utils/ModelConverter.swift; sourceTree = "<group>"; };
 		CE95748E1D33871E00504D52 /* PasswordSignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasswordSignInController.swift; path = ViewControllers/SignIn/PasswordSignInController.swift; sourceTree = "<group>"; };
 		CE9574951D33B71B00504D52 /* DefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultsKeys.swift; path = Utils/DefaultsKeys.swift; sourceTree = "<group>"; };
+		CE9574971D33D87200504D52 /* NetworkPreferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkPreferencesController.swift; path = ViewControllers/Preferences/NetworkPreferencesController.swift; sourceTree = "<group>"; };
+		CE9574991D33DC7B00504D52 /* BasePreferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasePreferencesController.swift; path = ViewControllers/Preferences/BasePreferencesController.swift; sourceTree = "<group>"; };
+		CE95749B1D33DEC300504D52 /* PreferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreferencesController.swift; path = ViewControllers/Preferences/PreferencesController.swift; sourceTree = "<group>"; };
+		CE9574A71D33F04600504D52 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = Models/Account.swift; sourceTree = "<group>"; };
+		CE9574AF1D33F09200504D52 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
+		CE9574B21D33F09200504D52 /* AccountUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountUser.swift; path = Models/AccountUser.swift; sourceTree = "<group>"; };
+		CE9574B81D349C3F00504D52 /* BrowserSignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowserSignInController.swift; path = ViewControllers/SignIn/BrowserSignInController.swift; sourceTree = "<group>"; };
+		CEA2E2A61D34C1610095BC57 /* DefaultAPISettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultAPISettingsController.swift; path = ViewControllers/Preferences/DefaultAPISettingsController.swift; sourceTree = "<group>"; };
+		CEA2E2A91D34C2090095BC57 /* DefaultAPIConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultAPIConfig.plist; path = Data/DefaultAPIConfig.plist; sourceTree = "<group>"; };
 		CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ViewControllers/Home/HomeViewController.swift; sourceTree = "<group>"; };
 		CED41F331D2FF88D0089E0B6 /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInController.swift; path = ViewControllers/SignIn/SignInController.swift; sourceTree = "<group>"; };
 		CED41F351D3085FF0089E0B6 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SignIn.storyboard; path = Storyboards/SignIn.storyboard; sourceTree = "<group>"; };
@@ -148,6 +166,7 @@
 		CE0529E51CF7F35300E06364 /* Twidere */ = {
 			isa = PBXGroup;
 			children = (
+				CEA2E2A81D34C1EF0095BC57 /* Data */,
 				CE95747E1D32169D00504D52 /* Constants */,
 				CE95747B1D32107800504D52 /* Models */,
 				CED41F3C1D30D2C80089E0B6 /* Services */,
@@ -184,6 +203,9 @@
 			isa = PBXGroup;
 			children = (
 				CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */,
+				CE9574A71D33F04600504D52 /* Account.swift */,
+				CE9574AF1D33F09200504D52 /* User.swift */,
+				CE9574B21D33F09200504D52 /* AccountUser.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -210,9 +232,18 @@
 		CE9574941D33B6EA00504D52 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CE95748A1D322CC700504D52 /* ModelConverter.swift */,
 				CE9574951D33B71B00504D52 /* DefaultsKeys.swift */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		CEA2E2A81D34C1EF0095BC57 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				CEA2E2A91D34C2090095BC57 /* DefaultAPIConfig.plist */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 		CED41F281D2FEE9C0089E0B6 /* ViewControllers */ = {
@@ -239,6 +270,7 @@
 			children = (
 				CED41F331D2FF88D0089E0B6 /* SignInController.swift */,
 				CE95748E1D33871E00504D52 /* PasswordSignInController.swift */,
+				CE9574B81D349C3F00504D52 /* BrowserSignInController.swift */,
 			);
 			name = SignIn;
 			sourceTree = "<group>";
@@ -246,9 +278,9 @@
 		CED41F371D3086060089E0B6 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				CE0529EA1CF7F35300E06364 /* Main.storyboard */,
 				CED41F351D3085FF0089E0B6 /* SignIn.storyboard */,
 				CE0529F21CF7F35300E06364 /* LaunchScreen.storyboard */,
-				CE0529EA1CF7F35300E06364 /* Main.storyboard */,
 				CED41F441D313B6C0089E0B6 /* Preferences.storyboard */,
 			);
 			name = Storyboards;
@@ -259,7 +291,6 @@
 			children = (
 				CE9574831D32220C00504D52 /* RestService */,
 				CED41F3F1D30E6760089E0B6 /* MicroBlog */,
-				CE95748A1D322CC700504D52 /* ModelConverter.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -278,6 +309,10 @@
 			isa = PBXGroup;
 			children = (
 				CED41F471D3147460089E0B6 /* APIEditorController.swift */,
+				CE9574971D33D87200504D52 /* NetworkPreferencesController.swift */,
+				CE9574991D33DC7B00504D52 /* BasePreferencesController.swift */,
+				CE95749B1D33DEC300504D52 /* PreferencesController.swift */,
+				CEA2E2A61D34C1610095BC57 /* DefaultAPISettingsController.swift */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -403,6 +438,7 @@
 			files = (
 				CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */,
 				CE0529F41CF7F35300E06364 /* LaunchScreen.storyboard in Resources */,
+				CEA2E2AA1D34C2090095BC57 /* DefaultAPIConfig.plist in Resources */,
 				CE0529F11CF7F35300E06364 /* Assets.xcassets in Resources */,
 				CED41F451D313B6C0089E0B6 /* Preferences.storyboard in Resources */,
 				CE0529EC1CF7F35300E06364 /* Main.storyboard in Resources */,
@@ -482,18 +518,26 @@
 				CE9574961D33B71B00504D52 /* DefaultsKeys.swift in Sources */,
 				CE95748F1D33871E00504D52 /* PasswordSignInController.swift in Sources */,
 				CE0529EF1CF7F35300E06364 /* Twidere.xcdatamodeld in Sources */,
+				CE9574981D33D87200504D52 /* NetworkPreferencesController.swift in Sources */,
 				CED41F411D30E6B80089E0B6 /* Endpoint.swift in Sources */,
 				CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */,
+				CE95749A1D33DC7B00504D52 /* BasePreferencesController.swift in Sources */,
+				CE9574AB1D33F04600504D52 /* Account.swift in Sources */,
 				CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */,
 				CED41F481D3147460089E0B6 /* APIEditorController.swift in Sources */,
 				CE9574871D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift in Sources */,
 				CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */,
+				CE95749C1D33DEC300504D52 /* PreferencesController.swift in Sources */,
 				CE95748B1D322CC700504D52 /* ModelConverter.swift in Sources */,
 				CE9574851D32221A00504D52 /* RestClient.swift in Sources */,
 				CED41F2F1D2FF7C80089E0B6 /* HomeViewController.swift in Sources */,
 				CED41F431D30E6E40089E0B6 /* Authorization.swift in Sources */,
+				CE9574B91D349C3F00504D52 /* BrowserSignInController.swift in Sources */,
 				CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */,
+				CE9574B71D33F09200504D52 /* AccountUser.swift in Sources */,
+				CE9574B41D33F09200504D52 /* User.swift in Sources */,
 				CE9574891D32232600504D52 /* OAuthService.swift in Sources */,
+				CEA2E2A71D34C1610095BC57 /* DefaultAPISettingsController.swift in Sources */,
 				CE95747D1D3210A300504D52 /* CustomAPIConfig.swift in Sources */,
 				CE9574821D32186A00504D52 /* UIConstants.swift in Sources */,
 			);
@@ -640,10 +684,13 @@
 			baseConfigurationReference = 6A5A4A58BEE8C9F2249022C1 /* Pods-Twidere.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Twidere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.Twidere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Twidere/Twidere-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -652,10 +699,12 @@
 			baseConfigurationReference = 00C12471503A47AD1BEA336E /* Pods-Twidere.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Twidere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.Twidere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Twidere/Twidere-Bridging-Header.h";
 			};
 			name = Release;
 		};

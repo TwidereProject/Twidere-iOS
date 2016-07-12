@@ -11,7 +11,7 @@ import SwiftyUserDefaults
 extension DefaultsKeys {
     static let apiUrlFormat = DefaultsKey<String?>("apiUrlFormat")
     static let authType = DefaultsKey<CustomAPIConfig.AuthType?>("authType")
-    static let sameOAuthUrl = DefaultsKey<Bool?>("sameOAuthUrl")
+    static let sameOAuthSigningUrl = DefaultsKey<Bool?>("sameOAuthSigningUrl")
     static let noVersionSuffix = DefaultsKey<Bool?>("noVersionSuffix")
     static let consumerKey = DefaultsKey<String?>("consumerKey")
     static let consumerSecret = DefaultsKey<String?>("consumerSecret")

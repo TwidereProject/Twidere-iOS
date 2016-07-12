@@ -9,6 +9,10 @@
 import UIKit
 import Async
 import SwiftyUserDefaults
+import CoreData
+import SugarRecord
+import PromiseKit
+import SwiftyJSON
 
 class SignInController: UIViewController {
     
@@ -59,7 +63,6 @@ class SignInController: UIViewController {
         }
     }
 
-    
     @IBAction func unwindFromPasswordSignIn(segue: UIStoryboardSegue) {
         switch segue.identifier {
         case "DoPasswordSignIn"?:
@@ -71,19 +74,21 @@ class SignInController: UIViewController {
     }
     
     @IBAction func signInClicked(sender: UIButton) {
-        let endpoint = OAuthEndpoint(base: "https://api.twitter.com/")
-        let auth = OAuthAuthorization(consumerKey: ServiceConstants.defaultTwitterConsumerKey, consumerSecret: ServiceConstants.defaultTwitterConsumerSecret)
-        let oauth = OAuthService(endpoint: endpoint, auth: auth)
-        try! oauth.getRequestToken("oob") { (token, error) in
-            debugPrint("token: \(token), error: \(error)")
+        switch customAPIConfig.authType {
+        case .OAuth:
+            doBrowserSignIn()
+        case .xAuth:
+            doXAuthSignIn()
+        case .TwipO:
+            doTwipOSignIn()
+        case .Basic:
+            doBasicSignIn()
         }
-    }
-    
-    @IBAction func passwordSignInClicked(sender: UIButton) {
-        performSegueWithIdentifier("ShowPasswordSignIn", sender: self)
+        
     }
     
     @IBAction func cancelSignIn(sender: UIBarButtonItem) {
+        
     }
     
     @IBAction func openSettingsMenu(sender: UIBarButtonItem) {
@@ -132,15 +137,112 @@ class SignInController: UIViewController {
     
     private func doOAuthPasswordSignIn(username: String, password: String) {
         let userAgent = UIWebView().stringByEvaluatingJavaScriptFromString("navigator.userAgent")
-            
-        let apiConfig = self.customAPIConfig
-        let endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true)
-        let authenticator = TwitterOAuthPasswordAuthenticator(endpoint: endpoint, consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret, loginVerificationCallback: { challengeType -> String? in
-                return nil
-            }, browserUserAgent: userAgent)
-            
-        authenticator.getOAuthAccessToken(username, password: password) { result, error in
+        
+        doSignIn { config throws -> SignInResult in
+            let apiConfig = self.customAPIConfig
+            var endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true)
+            let authenticator = TwitterOAuthPasswordAuthenticator(endpoint: endpoint, consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret, loginVerificationCallback: { challengeType -> String? in
+                    return nil
+                }, browserUserAgent: userAgent)
+            let accessToken = try authenticator.getOAuthAccessToken(username, password: password)
+            let auth = OAuthAuthorization(consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret, oauthToken: accessToken)
+                endpoint = apiConfig.createEndpoint("api")
+                
+            let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
+            return SignInResult(user: JSON(microBlog.verifyCredentials().content!))
         }
     }
     
+    private func doBrowserSignIn() {
+        let endpoint = customAPIConfig.createEndpoint("api", noVersionSuffix: true)
+        let auth = OAuthAuthorization(consumerKey: ServiceConstants.defaultTwitterConsumerKey, consumerSecret: ServiceConstants.defaultTwitterConsumerSecret)
+        let oauth = OAuthService(endpoint: endpoint, auth: auth)
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        dispatch_promise {
+            return try oauth.getRequestToken("oob")
+        }.then { token -> Void in
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("BrowserSignIn") as! BrowserSignInController
+            vc.customAPIConfig = self.customAPIConfig
+            vc.requestToken = token
+            vc.callback = self.finishBrowserSignIn
+            self.showViewController(vc, sender: self)
+        }.always {
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        }.error { error in
+            debugPrint(error)
+        }
+    }
+    
+    private func doXAuthSignIn() {
+        let username = editUsername.text ?? ""
+        let password = editPassword.text ?? ""
+        doSignIn { config throws -> SignInResult in
+            let apiConfig = self.customAPIConfig
+            var endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true)
+            let oauth = OAuthService(endpoint: endpoint, auth: OAuthAuthorization(consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret))
+            let accessToken = try oauth.getAccessToken(username, xauthPassword: password)
+            let auth = OAuthAuthorization(consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret, oauthToken: accessToken)
+            endpoint = apiConfig.createEndpoint("api")
+            let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
+            return SignInResult(user: JSON(microBlog.verifyCredentials().content!))
+        }
+    }
+    
+    private func doBasicSignIn() {
+        let username = editUsername.text ?? ""
+        let password = editPassword.text ?? ""
+        doSignIn { config -> SignInResult in
+            let endpoint = self.customAPIConfig.createEndpoint("api")
+            let auth = BasicAuthorization(username: username, password: password)
+            let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
+            return SignInResult(user: JSON(microBlog.verifyCredentials().content!))
+        }
+    }
+    
+    private func doTwipOSignIn() {
+        doSignIn { config -> SignInResult in
+            let endpoint = self.customAPIConfig.createEndpoint("api")
+            let microBlog = MicroBlogService(endpoint: endpoint)
+            return SignInResult(user: JSON(microBlog.verifyCredentials().content!))
+        }
+    }
+    
+    private func finishBrowserSignIn(requestToken: OAuthToken, oauthVerifier: String?) {
+        doSignIn { config throws -> SignInResult in
+            let apiConfig = self.customAPIConfig
+            var endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true)
+            let oauth = OAuthService(endpoint: endpoint, auth: OAuthAuthorization(consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret))
+            let accessToken = try oauth.getAccessToken(requestToken, oauthVerifier: oauthVerifier)
+            let auth = OAuthAuthorization(consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret, oauthToken: accessToken)
+            endpoint = apiConfig.createEndpoint("api")
+            let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
+            return SignInResult(user: JSON(microBlog.verifyCredentials().content!))
+        }
+    }
+    
+    private func doSignIn(action: (config: CustomAPIConfig) throws -> SignInResult) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        dispatch_promise {
+            return try action(config: self.customAPIConfig)
+        }.thenInBackground { (result) -> Void in
+            debugPrint(result)
+        }.always {
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        }.error { error in
+            debugPrint(error)
+        }
+    }
+    
+}
+
+
+class SignInResult {
+    var user: JSON
+    var accessToken: OAuthToken? = nil
+    var username: String? = nil
+    var password: String? = nil
+    
+    init(user: JSON) {
+        self.user = user
+    }
 }

@@ -12,11 +12,11 @@ import SwiftyUserDefaults
 
 class CustomAPIConfig {
     
-    let apiVersion = "1.1"
+    static let apiVersion = "1.1"
     
     var apiUrlFormat: String = ServiceConstants.defaultApiUrlFormat
     var authType: AuthType = .OAuth
-    var sameOAuthUrl: Bool = true
+    var sameOAuthSigningUrl: Bool = true
     var noVersionSuffix: Bool = false
     var consumerKey: String = ServiceConstants.defaultTwitterConsumerKey
     var consumerSecret: String = ServiceConstants.defaultTwitterConsumerSecret
@@ -36,6 +36,10 @@ class CustomAPIConfig {
         }
     }
     
+    func createEndpoint(domain: String?) -> Endpoint {
+        return createEndpoint(domain, noVersionSuffix: noVersionSuffix)
+    }
+    
     func createEndpoint(domain: String?, noVersionSuffix: Bool) -> Endpoint {
         let base: String
         if (noVersionSuffix) {
@@ -46,7 +50,7 @@ class CustomAPIConfig {
         switch authType {
         case .OAuth, .xAuth:
             let signingBase: String
-            if (sameOAuthUrl) {
+            if (sameOAuthSigningUrl) {
                 signingBase = base
             } else if (noVersionSuffix) {
                 signingBase = getApiBaseUrl("https://[DOMAIN.]twitter.com/", domain: domain)
@@ -74,13 +78,11 @@ class CustomAPIConfig {
             }
             return legacyFormat
         }
-        return compiled.replaceAll(in: format, using: { (match) -> String? in
-            if (domain == nil) {
-                return ""
-            }
-            let g1 = match.group(at: 0) ?? "", g2 = match.group(at: 1) ?? ""
-            return g1 + domain! + g2
-        })
+        if (domain != nil) {
+            return compiled.replaceAll(in: format, with: "$1\(domain!)$2")
+        } else {
+            return compiled.replaceAll(in: format, with: "")
+        }
     }
     
     func substituteLegacyApiBaseUrl(format: String, domain: String?) -> String {
@@ -90,7 +92,7 @@ class CustomAPIConfig {
     func loadDefaults()  {
         apiUrlFormat = Defaults[.apiUrlFormat] ?? ServiceConstants.defaultApiUrlFormat
         authType = Defaults[.authType] ?? .OAuth
-        sameOAuthUrl = Defaults[.sameOAuthUrl] ?? true
+        sameOAuthSigningUrl = Defaults[.sameOAuthSigningUrl] ?? true
         noVersionSuffix = Defaults[.noVersionSuffix] ?? false
         consumerKey = Defaults[.consumerKey] ?? ServiceConstants.defaultTwitterConsumerKey
         consumerSecret = Defaults[.consumerSecret] ?? ServiceConstants.defaultTwitterConsumerSecret

@@ -10,26 +10,26 @@ import Foundation
 
 class OAuthService: RestClient {
     
-    func getRequestToken(oauthCallback: String, callback: ((OAuthToken?, NSError?) -> Void)? = nil) throws -> OAuthToken? {
+    func getRequestToken(oauthCallback: String) throws -> OAuthToken {
         let forms: [String: AnyObject] = ["oauth_callback": oauthCallback]
         do {
-           return try makeTypedRequest(.POST, path: "/oauth/request_token", forms: forms, converter: ModelConverter.oauthToken, callback: callback)
+           return try makeTypedRequest(.POST, path: "/oauth/request_token", forms: forms, converter: ModelConverter.oauthToken)
         }
     }
     
-    func getAccessToken(xauthUsername:String, xauthPassword: String, callback: ((OAuthToken?, NSError?) -> Void)? = nil) throws -> OAuthToken? {
+    func getAccessToken(xauthUsername:String, xauthPassword: String) throws -> OAuthToken {
         let forms: [String: AnyObject] = [
             "x_auth_mode": "client_auth",
             "x_auth_username": xauthUsername,
             "x_auth_password": xauthPassword
         ]
         do {
-            return try makeTypedRequest(.POST, path: "/oauth/access_token", forms: forms, converter: ModelConverter.oauthToken, callback: callback)
+            return try makeTypedRequest(.POST, path: "/oauth/access_token", forms: forms, converter: ModelConverter.oauthToken)
         }
     }
     
     
-    func getAccessToken(requestToken: OAuthToken, oauthVerifier: String? = nil, callback: ((OAuthToken?, NSError?) -> Void)? = nil) throws -> OAuthToken? {
+    func getAccessToken(requestToken: OAuthToken, oauthVerifier: String? = nil) throws -> OAuthToken {
         let forms: [String: AnyObject]
         if (oauthVerifier != nil) {
             forms = ["oauth_verifier": oauthVerifier!]
@@ -42,7 +42,7 @@ class OAuthService: RestClient {
             finalAuth = OAuthAuthorization(consumerKey: oauth.consumerKey, consumerSecret: oauth.consumerSecret, oauthToken: requestToken)
         }
         do {
-            return try makeTypedRequest(.POST, path: "/oauth/access_token", forms: forms, authOverride: finalAuth, converter: ModelConverter.oauthToken, callback: callback)
+            return try makeTypedRequest(.POST, path: "/oauth/access_token", forms: forms, authOverride: finalAuth, converter: ModelConverter.oauthToken)
         }
     }
     

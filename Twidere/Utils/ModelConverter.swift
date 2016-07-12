@@ -8,6 +8,7 @@
 
 import Foundation
 import Just
+import SwiftyJSON
 
 class ModelConverter {
     
@@ -37,5 +38,9 @@ class ModelConverter {
         token.userId = userId
         token.screenName = screenName
         return token
+    }
+    
+    static func toJson(result: HTTPResult!) -> JSON {
+        return JSON(data: result.content!)
     }
 }
