@@ -33,6 +33,7 @@
 		CE9574B91D349C3F00504D52 /* BrowserSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574B81D349C3F00504D52 /* BrowserSignInController.swift */; };
 		CEA2E2A71D34C1610095BC57 /* DefaultAPISettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2A61D34C1610095BC57 /* DefaultAPISettingsController.swift */; };
 		CEA2E2AA1D34C2090095BC57 /* DefaultAPIConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEA2E2A91D34C2090095BC57 /* DefaultAPIConfig.plist */; };
+		CEA2E2AC1D3549480095BC57 /* UserKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2AB1D3549480095BC57 /* UserKey.swift */; };
 		CED41F2F1D2FF7C80089E0B6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */; };
 		CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F331D2FF88D0089E0B6 /* SignInController.swift */; };
 		CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED41F351D3085FF0089E0B6 /* SignIn.storyboard */; };
@@ -96,6 +97,7 @@
 		CE9574B81D349C3F00504D52 /* BrowserSignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowserSignInController.swift; path = ViewControllers/SignIn/BrowserSignInController.swift; sourceTree = "<group>"; };
 		CEA2E2A61D34C1610095BC57 /* DefaultAPISettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultAPISettingsController.swift; path = ViewControllers/Preferences/DefaultAPISettingsController.swift; sourceTree = "<group>"; };
 		CEA2E2A91D34C2090095BC57 /* DefaultAPIConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultAPIConfig.plist; path = Data/DefaultAPIConfig.plist; sourceTree = "<group>"; };
+		CEA2E2AB1D3549480095BC57 /* UserKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserKey.swift; path = Models/UserKey.swift; sourceTree = "<group>"; };
 		CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ViewControllers/Home/HomeViewController.swift; sourceTree = "<group>"; };
 		CED41F331D2FF88D0089E0B6 /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInController.swift; path = ViewControllers/SignIn/SignInController.swift; sourceTree = "<group>"; };
 		CED41F351D3085FF0089E0B6 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SignIn.storyboard; path = Storyboards/SignIn.storyboard; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				CE9574A71D33F04600504D52 /* Account.swift */,
 				CE9574AF1D33F09200504D52 /* User.swift */,
 				CE9574B21D33F09200504D52 /* AccountUser.swift */,
+				CEA2E2AB1D3549480095BC57 /* UserKey.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEA2E2AC1D3549480095BC57 /* UserKey.swift in Sources */,
 				CE0529E91CF7F35300E06364 /* MainViewController.swift in Sources */,
 				CE9574961D33B71B00504D52 /* DefaultsKeys.swift in Sources */,
 				CE95748F1D33871E00504D52 /* PasswordSignInController.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import Foundation
 import CoreData
-
+import SwiftyJSON
 
 class AccountUser: User {
 

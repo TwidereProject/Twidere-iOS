@@ -7,18 +7,26 @@
 //
 
 import UIKit
+import SugarRecord
 
 class MainViewController: UIViewController {
+    
+    var hasAccount: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        do {
+            let db = coreDataStorage()
+            hasAccount = try (!db.fetch(Request<Account>()).isEmpty)
+        } catch {
+            hasAccount = false
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if (hasAccount()) {
+        if (hasAccount) {
             performSegueWithIdentifier("ShowHome", sender: self)
         } else {
             performSegueWithIdentifier("ShowSignIn", sender: self)
@@ -29,9 +37,14 @@ class MainViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    func hasAccount() -> Bool {
-        return false
+    
+    
+    func coreDataStorage() -> CoreDataDefaultStorage {
+        let store = CoreData.Store.Named("twidere")
+        let bundle = NSBundle(forClass: self.classForCoder)
+        let model = CoreData.ObjectModel.Merged([bundle])
+        let defaultStorage = try! CoreDataDefaultStorage(store: store, model: model)
+        return defaultStorage
     }
 
 }

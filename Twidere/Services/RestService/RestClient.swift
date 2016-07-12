@@ -31,14 +31,17 @@ class RestClient {
                           requestBody:NSData? = nil,
                           authOverride: Authorization? = nil,
                           cookies: [String: String] = [:],
+                          checker: ((HTTPResult!) throws -> Void)? = nil,
                           converter: ((HTTPResult!) -> T)) throws -> T {
         let result = makeRequest(method, path: path, headers: headers, queries: queries,forms: forms,json: json,files: files,requestBody: requestBody, authOverride: authOverride, cookies: cookies)
-        if (result.ok) {
-            return converter(result)
+        if (checker != nil) {
+            try checker!(result)
         } else if (result.error != nil) {
             throw RestError.NetworkError(err: result.error)
+        } else if (!result.ok) {
+            throw RestError.RequestError(statusCode: result.statusCode ?? -1)
         }
-        throw RestError.RequestError(statusCode: result.statusCode ?? -1)
+        return converter(result)
     }
     
     func makeRequest(method: HTTPMethod,

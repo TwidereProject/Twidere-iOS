@@ -13,7 +13,7 @@ class OAuthService: RestClient {
     func getRequestToken(oauthCallback: String) throws -> OAuthToken {
         let forms: [String: AnyObject] = ["oauth_callback": oauthCallback]
         do {
-           return try makeTypedRequest(.POST, path: "/oauth/request_token", forms: forms, converter: ModelConverter.oauthToken)
+            return try makeTypedRequest(.POST, path: "/oauth/request_token", forms: forms, checker: MicroBlogService.checkRequest, converter: ModelConverter.oauthToken)
         }
     }
     
@@ -24,7 +24,7 @@ class OAuthService: RestClient {
             "x_auth_password": xauthPassword
         ]
         do {
-            return try makeTypedRequest(.POST, path: "/oauth/access_token", forms: forms, converter: ModelConverter.oauthToken)
+            return try makeTypedRequest(.POST, path: "/oauth/access_token", forms: forms, checker: MicroBlogService.checkRequest, converter: ModelConverter.oauthToken)
         }
     }
     
@@ -42,7 +42,7 @@ class OAuthService: RestClient {
             finalAuth = OAuthAuthorization(consumerKey: oauth.consumerKey, consumerSecret: oauth.consumerSecret, oauthToken: requestToken)
         }
         do {
-            return try makeTypedRequest(.POST, path: "/oauth/access_token", forms: forms, authOverride: finalAuth, converter: ModelConverter.oauthToken)
+            return try makeTypedRequest(.POST, path: "/oauth/access_token", forms: forms, authOverride: finalAuth, checker: MicroBlogService.checkRequest, converter: ModelConverter.oauthToken)
         }
     }
     

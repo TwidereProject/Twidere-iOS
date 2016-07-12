@@ -65,7 +65,7 @@ class BrowserSignInController: UIViewController, UIWebViewDelegate {
             }
         } else {
             
-             let oauthPin = firstly { () -> Promise<String> in
+             firstly { () -> Promise<String> in
                 return Promise<String> { fullfill, reject in
                     if let html = webView.stringByEvaluatingJavaScriptFromString("document.body.innerHTML") {
                         fullfill(html)
@@ -87,10 +87,13 @@ class BrowserSignInController: UIViewController, UIWebViewDelegate {
                     }
                     return child.text!.rangeOfCharacterFromSet(numericSet) == nil
                 }).first?.text
-            }.value
-            if (oauthPin != nil) {
-                callback(requestToken: self.requestToken, oauthVerifier: oauthPin!)
-                navigationController?.popViewControllerAnimated(true)
+            }.then { oauthPin -> Void in
+                if (oauthPin != nil) {
+                    self.callback(requestToken: self.requestToken, oauthVerifier: oauthPin!)
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
+            }.error { error in
+                    
             }
             
         }

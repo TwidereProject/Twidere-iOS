@@ -149,7 +149,7 @@ class SignInController: UIViewController {
                 endpoint = apiConfig.createEndpoint("api")
                 
             let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
-            return SignInResult(user: JSON(microBlog.verifyCredentials().content!))
+            return try SignInResult(user: microBlog.verifyCredentials())
         }
     }
     
@@ -185,7 +185,7 @@ class SignInController: UIViewController {
             let auth = OAuthAuthorization(consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret, oauthToken: accessToken)
             endpoint = apiConfig.createEndpoint("api")
             let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
-            return SignInResult(user: JSON(microBlog.verifyCredentials().content!))
+            return try SignInResult(user: microBlog.verifyCredentials())
         }
     }
     
@@ -196,7 +196,7 @@ class SignInController: UIViewController {
             let endpoint = self.customAPIConfig.createEndpoint("api")
             let auth = BasicAuthorization(username: username, password: password)
             let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
-            return SignInResult(user: JSON(microBlog.verifyCredentials().content!))
+            return try SignInResult(user: microBlog.verifyCredentials())
         }
     }
     
@@ -204,7 +204,7 @@ class SignInController: UIViewController {
         doSignIn { config -> SignInResult in
             let endpoint = self.customAPIConfig.createEndpoint("api")
             let microBlog = MicroBlogService(endpoint: endpoint)
-            return SignInResult(user: JSON(microBlog.verifyCredentials().content!))
+            return try SignInResult(user: microBlog.verifyCredentials())
         }
     }
     
@@ -217,7 +217,7 @@ class SignInController: UIViewController {
             let auth = OAuthAuthorization(consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret, oauthToken: accessToken)
             endpoint = apiConfig.createEndpoint("api")
             let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
-            return SignInResult(user: JSON(microBlog.verifyCredentials().content!))
+            return try SignInResult(user: microBlog.verifyCredentials())
         }
     }
     
@@ -225,15 +225,46 @@ class SignInController: UIViewController {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         dispatch_promise {
             return try action(config: self.customAPIConfig)
-        }.thenInBackground { result -> Void in
+        }.thenInBackground { result throws -> Account in
             // TODO persist sign in data
-            debugPrint(result)
+            let json = result.user
+            let config = self.customAPIConfig
+            let db = self.coreDataStorage()
+            return try db.operation{ (context, save) throws -> Account in
+                let account: Account = try context.new()
+                let user: AccountUser = try context.new()
+                User.setFromJson(user, json: json)
+                account.accountKey = user.key
+                account.accountType = String(AccountType.Twitter)
+                account.apiUrlFormat = config.apiUrlFormat
+                account.authType = String(config.authType)
+                account.basicUsername = result.username
+                account.basicPassword = result.password
+                account.consumerKey = config.consumerKey
+                account.consumerSecret = config.consumerSecret
+                account.noVersionSuffix = config.noVersionSuffix
+                account.oauthToken = result.accessToken?.oauthToken
+                account.oauthTokenSecret = result.accessToken?.oauthTokenSecret
+                account.sameOAuthSigningUrl = config.sameOAuthSigningUrl
+                account.user = user
+                try context.insert(account)
+                save()
+                return account
+            }
         }.then { result -> Void in
         }.always {
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         }.error { error in
             debugPrint(error)
         }
+    }
+    
+    func coreDataStorage() -> CoreDataDefaultStorage {
+        let store = CoreData.Store.Named("twidere")
+        let bundle = NSBundle(forClass: self.classForCoder)
+        let model = CoreData.ObjectModel.Merged([bundle])
+        let defaultStorage = try! CoreDataDefaultStorage(store: store, model: model)
+        return defaultStorage
     }
     
     static func fixSignInUrl(url: String) -> String {
