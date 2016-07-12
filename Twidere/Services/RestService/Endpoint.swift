@@ -8,16 +8,25 @@
 
 import Foundation
 
+
 class Endpoint {
     
-    let base: String
+    typealias FixUrl = (String -> String)
     
-    init(base: String) {
+    let base: String
+    var fixUrl: FixUrl?
+    
+    init(base: String, fixUrl: FixUrl? = nil) {
         self.base = base
+        self.fixUrl = fixUrl
     }
     
     func constructUrl(path: String, queries: [String: String]? = nil) -> String {
-        return Endpoint.construct(base, path: path, queries: queries)
+        let url = Endpoint.construct(base, path: path, queries: queries)
+        if (fixUrl != nil) {
+            return fixUrl!(url)
+        }
+        return url
     }
     
     static func construct(base: String, path: String, queries: [String: String]? = nil) -> String {
@@ -57,18 +66,22 @@ class OAuthEndpoint: Endpoint {
     
     let signingBase: String
     
-    override init(base: String) {
+    override init(base: String, fixUrl: FixUrl? = nil) {
         self.signingBase = base
-        super.init(base: base)
+        super.init(base: base, fixUrl: fixUrl)
     }
     
-    init(base: String, signingBase: String) {
+    init(base: String, signingBase: String, fixUrl: FixUrl? = nil) {
         self.signingBase = signingBase
-        super.init(base: base)
+        super.init(base: base, fixUrl: fixUrl)
     }
     
     
     func constructSigningUrl(path: String, queries: [String: String]? = nil) -> String {
-        return Endpoint.construct(signingBase, path: path, queries: queries)
+        let url = Endpoint.construct(signingBase, path: path, queries: queries)
+        if (fixUrl != nil) {
+            return fixUrl!(url)
+        }
+        return url
     }
 }

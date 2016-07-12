@@ -154,10 +154,11 @@ class SignInController: UIViewController {
     }
     
     private func doBrowserSignIn() {
-        let endpoint = customAPIConfig.createEndpoint("api", noVersionSuffix: true)
-        let auth = OAuthAuthorization(consumerKey: ServiceConstants.defaultTwitterConsumerKey, consumerSecret: ServiceConstants.defaultTwitterConsumerSecret)
-        let oauth = OAuthService(endpoint: endpoint, auth: auth)
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        let apiConfig = self.customAPIConfig
+        let endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true, fixUrl: SignInController.fixSignInUrl)
+        let auth = OAuthAuthorization(consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret)
+        let oauth = OAuthService(endpoint: endpoint, auth: auth)
         dispatch_promise {
             return try oauth.getRequestToken("oob")
         }.then { token -> Void in
@@ -178,7 +179,7 @@ class SignInController: UIViewController {
         let password = editPassword.text ?? ""
         doSignIn { config throws -> SignInResult in
             let apiConfig = self.customAPIConfig
-            var endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true)
+            var endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true, fixUrl: SignInController.fixSignInUrl)
             let oauth = OAuthService(endpoint: endpoint, auth: OAuthAuthorization(consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret))
             let accessToken = try oauth.getAccessToken(username, xauthPassword: password)
             let auth = OAuthAuthorization(consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret, oauthToken: accessToken)
@@ -210,7 +211,7 @@ class SignInController: UIViewController {
     private func finishBrowserSignIn(requestToken: OAuthToken, oauthVerifier: String?) {
         doSignIn { config throws -> SignInResult in
             let apiConfig = self.customAPIConfig
-            var endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true)
+            var endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true, fixUrl: SignInController.fixSignInUrl)
             let oauth = OAuthService(endpoint: endpoint, auth: OAuthAuthorization(consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret))
             let accessToken = try oauth.getAccessToken(requestToken, oauthVerifier: oauthVerifier)
             let auth = OAuthAuthorization(consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret, oauthToken: accessToken)
@@ -224,8 +225,10 @@ class SignInController: UIViewController {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         dispatch_promise {
             return try action(config: self.customAPIConfig)
-        }.thenInBackground { (result) -> Void in
+        }.thenInBackground { result -> Void in
+            // TODO persist sign in data
             debugPrint(result)
+        }.then { result -> Void in
         }.always {
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         }.error { error in
@@ -233,6 +236,17 @@ class SignInController: UIViewController {
         }
     }
     
+    static func fixSignInUrl(url: String) -> String {
+        guard let urlComponents = NSURLComponents(string: url) else {
+            return url
+        }
+        if ("api.fanfou.com" == urlComponents.host) {
+            if (urlComponents.path?.hasPrefix("/oauth/") ?? false) {
+                urlComponents.host = "fanfou.com"
+            }
+        }
+        return urlComponents.string ?? url
+    }
 }
 
 

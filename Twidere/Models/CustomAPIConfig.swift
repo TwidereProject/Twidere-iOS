@@ -40,7 +40,7 @@ class CustomAPIConfig {
         return createEndpoint(domain, noVersionSuffix: noVersionSuffix)
     }
     
-    func createEndpoint(domain: String?, noVersionSuffix: Bool) -> Endpoint {
+    func createEndpoint(domain: String?, noVersionSuffix: Bool, fixUrl: (String -> String)? = nil) -> Endpoint {
         let base: String
         if (noVersionSuffix) {
             base = getApiBaseUrl(apiUrlFormat, domain: domain)
@@ -57,9 +57,9 @@ class CustomAPIConfig {
             } else {
                 signingBase = Endpoint.construct(getApiBaseUrl("https://[DOMAIN.]twitter.com/", domain: domain), path: "/1.1/")
             }
-            return OAuthEndpoint(base: base, signingBase: signingBase)
+            return OAuthEndpoint(base: base, signingBase: signingBase, fixUrl: fixUrl)
         default:
-            return Endpoint(base: base)
+            return Endpoint(base: base, fixUrl: fixUrl)
         }
     }
     

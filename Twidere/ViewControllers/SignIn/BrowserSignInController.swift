@@ -22,7 +22,7 @@ class BrowserSignInController: UIViewController, UIWebViewDelegate {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        let endpoint = customAPIConfig.createEndpoint("api", noVersionSuffix: true)
+        let endpoint = customAPIConfig.createEndpoint("api", noVersionSuffix: true, fixUrl: SignInController.fixSignInUrl)
         let requestUrl = endpoint.constructUrl("/oauth/authorize", queries: ["oauth_token": requestToken.oauthToken])
         let request = NSURLRequest(URL: NSURL(string: requestUrl)!)
         webView.loadRequest(request)
@@ -79,20 +79,17 @@ class BrowserSignInController: UIViewController, UIWebViewDelegate {
                             throw BrowserSignInError.ParseError
                 }
                 return doc
-            }.then { doc throws -> String in
+            }.then { doc throws -> String? in
                 let numericSet = NSCharacterSet.decimalDigitCharacterSet().invertedSet
-                guard let oauthPin = doc.at_css("div#oauth_pin")?.css("*").filter({ (child) -> Bool in
+                return doc.at_css("div#oauth_pin")?.css("*").filter({ (child) -> Bool in
                     if (child.text == nil) {
                         return false
                     }
                     return child.text!.rangeOfCharacterFromSet(numericSet) == nil
-                }).first?.text else {
-                    throw BrowserSignInError.NoOAuthPin
-                }
-                return oauthPin
+                }).first?.text
             }.value
             if (oauthPin != nil) {
-                callback(requestToken: self.requestToken, oauthVerifier: oauthPin)
+                callback(requestToken: self.requestToken, oauthVerifier: oauthPin!)
                 navigationController?.popViewControllerAnimated(true)
             }
             
@@ -107,7 +104,6 @@ class BrowserSignInController: UIViewController, UIWebViewDelegate {
     internal enum BrowserSignInError: ErrorType {
         case NoContent
         case ParseError
-        case NoOAuthPin
     }
     
 }
