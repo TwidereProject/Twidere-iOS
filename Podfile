@@ -6,7 +6,8 @@ use_frameworks!
 target 'Twidere' do
   pod 'SwiftyJSON', '2.3.2'
   pod 'CryptoSwift', '0.5.1'
-  pod 'Just', '0.4.7'
+  pod 'Alamofire', '3.4.1'
+  pod 'Alamofire-Synchronous', '3.0.0'
   pod 'JVFloatLabeledTextField', '1.1.0'
   pod 'ActionSheetPicker-3.0', '2.2.0'
   pod 'StaticDataTableViewController', '2.0.5'
@@ -17,6 +18,7 @@ target 'Twidere' do
   pod 'SwiftyUserDefaults', '2.2.0'
   pod 'SugarRecord/CoreData', '2.2.9'
   pod 'PromiseKit', '3.2.1'
+  pod 'STPopup', '1.7.0'
 end
 
 target 'TwidereTests' do

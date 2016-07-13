@@ -16,7 +16,6 @@ import SwiftyJSON
 
 class SignInController: UIViewController {
     
-    var hasCancel: Bool = false
     var customAPIConfig: CustomAPIConfig = CustomAPIConfig()
     
     // MARK: Properties
@@ -28,12 +27,14 @@ class SignInController: UIViewController {
     @IBOutlet weak var editPassword: UITextField!
     @IBOutlet weak var signUpSignInContainer: UIStackView!
     
-    @IBOutlet weak var cancelItem: UIBarButtonItem!
-    
     @IBOutlet weak var showUsernamePasswordConstraint: NSLayoutConstraint!
     @IBOutlet weak var hideUsernamePasswordConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var hidePasswordSignInButtonConstraint: NSLayoutConstraint!
+    
+    lazy var db: CoreDataDefaultStorage = {
+        return AppDelegate.coreDataStorage()
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +43,6 @@ class SignInController: UIViewController {
         signUpButton.layer.borderColor = signUpButton.tintColor.CGColor
         loginButton.tintColor = UIConstants.materialLightGreen
         loginButton.layer.borderColor = UIConstants.materialLightGreen.CGColor
-        
-        cancelItem.enabled = hasCancel
         
         customAPIConfig.loadDefaults()
         
@@ -88,7 +87,7 @@ class SignInController: UIViewController {
     }
     
     @IBAction func cancelSignIn(sender: UIBarButtonItem) {
-        
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func openSettingsMenu(sender: UIBarButtonItem) {
@@ -229,8 +228,7 @@ class SignInController: UIViewController {
             // TODO persist sign in data
             let json = result.user
             let config = self.customAPIConfig
-            let db = self.coreDataStorage()
-            return try db.operation{ (context, save) throws -> Account in
+            return try self.db.operation{ (context, save) throws -> Account in
                 let account: Account = try context.new()
                 let user: AccountUser = try context.new()
                 User.setFromJson(user, json: json)
@@ -257,14 +255,6 @@ class SignInController: UIViewController {
         }.error { error in
             debugPrint(error)
         }
-    }
-    
-    func coreDataStorage() -> CoreDataDefaultStorage {
-        let store = CoreData.Store.Named("twidere")
-        let bundle = NSBundle(forClass: self.classForCoder)
-        let model = CoreData.ObjectModel.Merged([bundle])
-        let defaultStorage = try! CoreDataDefaultStorage(store: store, model: model)
-        return defaultStorage
     }
     
     static func fixSignInUrl(url: String) -> String {

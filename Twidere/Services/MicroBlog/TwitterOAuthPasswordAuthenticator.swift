@@ -115,7 +115,7 @@ class TwitterOAuthPasswordAuthenticator {
         
         let data: AuthorizeResponseData
         do {
-            try data = rest.makeTypedRequest(.POST, path: "/oauth/authorize", headers: requestHeaders, forms: forms, cookies: authorizeRequestData.cookies ?? [String: String](), converter: AuthorizeResponseData.parseFromHttpResult)
+            try data = rest.makeTypedRequest(.POST, path: "/oauth/authorize", headers: requestHeaders, forms: forms, converter: AuthorizeResponseData.parseFromHttpResult)
         }
         data.referer = authorizeRequestData.referer
         return data
@@ -143,7 +143,7 @@ class TwitterOAuthPasswordAuthenticator {
         
         let data: AuthorizeRequestData
         do {
-            try data = rest.makeTypedRequest(.POST, path: "/account/login_verification", headers: requestHeaders, forms: forms, cookies: authorizeResponseData.cookies ?? [String: String](), converter: AuthorizeRequestData.parseFromHttpResult)
+            try data = rest.makeTypedRequest(.POST, path: "/account/login_verification", headers: requestHeaders, forms: forms, converter: AuthorizeRequestData.parseFromHttpResult)
         }
         if (data.authenticityToken?.isEmpty ?? true) {
             // TODO verification failed
@@ -165,11 +165,10 @@ internal class AuthorizeRequestData {
     var redirectAfterLogin: String? = nil
     
     var referer: String? = nil
-    var cookies: [String: String]? = nil
     
-    static func parseFromHttpResult(result: HTTPResult!) -> AuthorizeRequestData {
+    static func parseFromHttpResult(result: HttpResult) -> AuthorizeRequestData {
         let data = AuthorizeRequestData()
-        if let doc = Kanna.HTML(html: result.text!, encoding: NSUTF8StringEncoding) {
+        if let doc = Kanna.HTML(html: result.data!, encoding: NSUTF8StringEncoding) {
             
             let oauthForm = doc.at_css("form#oauth_form")
             if (oauthForm != nil) {
@@ -177,8 +176,6 @@ internal class AuthorizeRequestData {
                 data.redirectAfterLogin = oauthForm!.at_css("input[name=\"redirect_after_login\"]")?["value"]
             }
         }
-        
-        data.cookies = getCookie(result)
         return data
     }
 }
@@ -190,7 +187,6 @@ internal class AuthorizeResponseData {
     var challenge: Verification? = nil
     
     var referer: String? = nil
-    var cookies: [String: String]? = nil
     
     internal class Verification {
         
@@ -202,10 +198,10 @@ internal class AuthorizeResponseData {
         var redirectAfterLogin: String? = nil
     }
     
-    static func parseFromHttpResult(result: HTTPResult!) -> AuthorizeResponseData {
+    static func parseFromHttpResult(result: HttpResult) -> AuthorizeResponseData {
         let data = AuthorizeResponseData()
         
-        if let doc = Kanna.HTML(html: result.text!, encoding: NSUTF8StringEncoding) {
+        if let doc = Kanna.HTML(html: result.data!, encoding: NSUTF8StringEncoding) {
             print(doc.title)
             
             // Find OAuth pin
@@ -233,16 +229,6 @@ internal class AuthorizeResponseData {
             }
             
         }
-        
-        data.cookies = getCookie(result)
         return data
     }
-}
-
-internal func getCookie(result: HTTPResult) -> [String: String] {
-    var cookies = [String: String]()
-    for (k, v) in result.cookies {
-        cookies[k] = v.value
-    }
-    return cookies
 }

@@ -15,17 +15,19 @@ class MicroBlogService: RestClient {
         return try makeTypedRequest(.GET, path: "/account/verify_credentials.json", checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
     }
     
-    static func checkRequest(result: HTTPResult!) throws {
-        if (!result.ok) {
-            let json = JSON(result.json!)
-            let code = json["errors"][0]["code"].int ?? -1
-            let message = json["errors"][0]["message"].string
-            throw MicroBlogError.RequestError(code: code, message: message)
+    static func checkRequest(result: HttpResult) throws {
+        if (!(result.response?.ok ?? false)) {
+            if let data = result.data {
+                let json = JSON(data)
+                let code = json["errors"][0]["code"].int ?? -1
+                let message = json["errors"][0]["message"].string
+                throw MicroBlogError.RequestError(code: code, message: message)
+            }
         }
     }
     
-    static func convertJSON(result: HTTPResult!) -> JSON {
-        return SwiftyJSON.JSON(data: result.content!)
+    static func convertJSON(result: HttpResult) -> JSON {
+        return SwiftyJSON.JSON(data: result.data!)
     }
 }
 

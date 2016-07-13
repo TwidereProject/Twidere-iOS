@@ -12,7 +12,7 @@ import Security
 
 protocol Authorization {
     var hasAuthorization: Bool { get }
-    func getHeader(method: String, endpoint: Endpoint, path: String, queries: [String: String], data: [String: AnyObject]) -> String?
+    func getHeader(method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: AnyObject]?) -> String?
 }
 
 //
@@ -34,7 +34,7 @@ class BasicAuthorization: Authorization {
         }
     }
     
-    func getHeader(method: String, endpoint: Endpoint, path: String, queries: [String : String], data: [String : AnyObject]) -> String? {
+    func getHeader(method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : AnyObject]?) -> String? {
         return "\(username):\(password)".utf8.map({$0}).toBase64()
     }
     
@@ -66,19 +66,19 @@ class OAuthAuthorization: Authorization {
         }
     }
     
-    func getHeader(method: String, endpoint: Endpoint, path: String, queries: [String: String], data: [String: AnyObject]) -> String? {
+    func getHeader(method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: AnyObject]?) -> String? {
         let oauthEndpoint = endpoint as! OAuthEndpoint
         let signingUrl = oauthEndpoint.constructSigningUrl(path, queries: queries)
-        let oauthParams = generateOAuthParams(method, url: signingUrl, oauthToken: oauthToken, queries: queries, data: data)
+        let oauthParams = generateOAuthParams(method, url: signingUrl, oauthToken: oauthToken, queries: queries, forms: forms)
         return "OAuth " + oauthParams.map({ (k, v) -> String in
             return "\(k)=\"\(v)\""
         }).joinWithSeparator(", ")
     }
     
-    private func generateOAuthParams(method: String, url: String, oauthToken: OAuthToken?, queries: [String: String], data: [String: AnyObject]) -> [(String, String)] {
+    private func generateOAuthParams(method: String, url: String, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: AnyObject]?) -> [(String, String)] {
         let oauthNonce = generateOAuthNonce()
         let timestamp =  UInt64(NSDate().timeIntervalSince1970)
-        let oauthSignature = generateOAuthSignature(method, url: url, oauthNonce: oauthNonce, timestamp: timestamp, oauthToken: oauthToken, queries: queries, data: data)
+        let oauthSignature = generateOAuthSignature(method, url: url, oauthNonce: oauthNonce, timestamp: timestamp, oauthToken: oauthToken, queries: queries, forms: forms)
         var encodeParams: [(String, String)] = [
             ("oauth_consumer_key", consumerKey),
             ("oauth_nonce", oauthNonce),
@@ -97,7 +97,7 @@ class OAuthAuthorization: Authorization {
         
     }
     
-    private func generateOAuthSignature(method: String, url: String, oauthNonce: String, timestamp: UInt64, oauthToken: OAuthToken?, queries: [String: String], data: [String: AnyObject]) -> String {
+    private func generateOAuthSignature(method: String, url: String, oauthNonce: String, timestamp: UInt64, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: AnyObject]?) -> String {
         var oauthParams: [String] = [
             encodeKeyValue("oauth_consumer_key", value: consumerKey),
             encodeKeyValue("oauth_nonce", value: oauthNonce),
@@ -108,11 +108,15 @@ class OAuthAuthorization: Authorization {
         if (oauthToken != nil) {
             oauthParams.append(encodeKeyValue("oauth_token", value: oauthToken!.oauthToken))
         }
-        for (k, v) in queries {
-            oauthParams.append(encodeKeyValue(k, value: v))
+        if (queries != nil) {
+            for (k, v) in queries! {
+                oauthParams.append(encodeKeyValue(k, value: v))
+            }
         }
-        for (k, v) in data {
+        if (forms != nil) {
+            for (k, v) in forms! {
                 oauthParams.append(encodeKeyValue(k, value: String(v)))
+            }
         }
         // Sort params
         oauthParams.sortInPlace { (l, r) -> Bool in

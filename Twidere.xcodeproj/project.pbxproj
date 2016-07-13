@@ -34,6 +34,8 @@
 		CEA2E2A71D34C1610095BC57 /* DefaultAPISettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2A61D34C1610095BC57 /* DefaultAPISettingsController.swift */; };
 		CEA2E2AA1D34C2090095BC57 /* DefaultAPIConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEA2E2A91D34C2090095BC57 /* DefaultAPIConfig.plist */; };
 		CEA2E2AC1D3549480095BC57 /* UserKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2AB1D3549480095BC57 /* UserKey.swift */; };
+		CEA2E2AF1D3681D00095BC57 /* Compose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEA2E2AE1D3681D00095BC57 /* Compose.storyboard */; };
+		CEA2E2B11D3681FD0095BC57 /* ComposeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2B01D3681FD0095BC57 /* ComposeController.swift */; };
 		CED41F2F1D2FF7C80089E0B6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */; };
 		CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F331D2FF88D0089E0B6 /* SignInController.swift */; };
 		CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED41F351D3085FF0089E0B6 /* SignIn.storyboard */; };
@@ -98,6 +100,8 @@
 		CEA2E2A61D34C1610095BC57 /* DefaultAPISettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultAPISettingsController.swift; path = ViewControllers/Preferences/DefaultAPISettingsController.swift; sourceTree = "<group>"; };
 		CEA2E2A91D34C2090095BC57 /* DefaultAPIConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultAPIConfig.plist; path = Data/DefaultAPIConfig.plist; sourceTree = "<group>"; };
 		CEA2E2AB1D3549480095BC57 /* UserKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserKey.swift; path = Models/UserKey.swift; sourceTree = "<group>"; };
+		CEA2E2AE1D3681D00095BC57 /* Compose.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Compose.storyboard; path = Storyboards/Compose.storyboard; sourceTree = "<group>"; };
+		CEA2E2B01D3681FD0095BC57 /* ComposeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComposeController.swift; path = ViewControllers/Compose/ComposeController.swift; sourceTree = "<group>"; };
 		CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ViewControllers/Home/HomeViewController.swift; sourceTree = "<group>"; };
 		CED41F331D2FF88D0089E0B6 /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInController.swift; path = ViewControllers/SignIn/SignInController.swift; sourceTree = "<group>"; };
 		CED41F351D3085FF0089E0B6 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SignIn.storyboard; path = Storyboards/SignIn.storyboard; sourceTree = "<group>"; };
@@ -249,9 +253,18 @@
 			name = Data;
 			sourceTree = "<group>";
 		};
+		CEA2E2AD1D3681970095BC57 /* Compose */ = {
+			isa = PBXGroup;
+			children = (
+				CEA2E2B01D3681FD0095BC57 /* ComposeController.swift */,
+			);
+			name = Compose;
+			sourceTree = "<group>";
+		};
 		CED41F281D2FEE9C0089E0B6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CEA2E2AD1D3681970095BC57 /* Compose */,
 				CED41F461D3147170089E0B6 /* Preferences */,
 				CED41F301D2FF8540089E0B6 /* SignIn */,
 				CED41F2D1D2FF76C0089E0B6 /* Home */,
@@ -285,6 +298,7 @@
 				CED41F351D3085FF0089E0B6 /* SignIn.storyboard */,
 				CE0529F21CF7F35300E06364 /* LaunchScreen.storyboard */,
 				CED41F441D313B6C0089E0B6 /* Preferences.storyboard */,
+				CEA2E2AE1D3681D00095BC57 /* Compose.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -444,6 +458,7 @@
 				CEA2E2AA1D34C2090095BC57 /* DefaultAPIConfig.plist in Resources */,
 				CE0529F11CF7F35300E06364 /* Assets.xcassets in Resources */,
 				CED41F451D313B6C0089E0B6 /* Preferences.storyboard in Resources */,
+				CEA2E2AF1D3681D00095BC57 /* Compose.storyboard in Resources */,
 				CE0529EC1CF7F35300E06364 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,6 +548,7 @@
 				CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */,
 				CE95749C1D33DEC300504D52 /* PreferencesController.swift in Sources */,
 				CE95748B1D322CC700504D52 /* ModelConverter.swift in Sources */,
+				CEA2E2B11D3681FD0095BC57 /* ComposeController.swift in Sources */,
 				CE9574851D32221A00504D52 /* RestClient.swift in Sources */,
 				CED41F2F1D2FF7C80089E0B6 /* HomeViewController.swift in Sources */,
 				CED41F431D30E6E40089E0B6 /* Authorization.swift in Sources */,

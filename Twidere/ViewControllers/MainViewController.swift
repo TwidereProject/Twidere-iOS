@@ -12,12 +12,14 @@ import SugarRecord
 class MainViewController: UIViewController {
     
     var hasAccount: Bool = false
+    lazy var db: CoreDataDefaultStorage = {
+        return AppDelegate.coreDataStorage()
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         do {
-            let db = coreDataStorage()
             hasAccount = try (!db.fetch(Request<Account>()).isEmpty)
         } catch {
             hasAccount = false
@@ -36,15 +38,6 @@ class MainViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    
-    func coreDataStorage() -> CoreDataDefaultStorage {
-        let store = CoreData.Store.Named("twidere")
-        let bundle = NSBundle(forClass: self.classForCoder)
-        let model = CoreData.ObjectModel.Merged([bundle])
-        let defaultStorage = try! CoreDataDefaultStorage(store: store, model: model)
-        return defaultStorage
     }
 
 }

@@ -18,14 +18,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="H9e-YH-vuk"/>
                     <connections>
-                        <segue destination="oPR-mD-LFT" kind="showDetail" identifier="ShowHome" animates="NO" id="bjA-Hi-enE"/>
+                        <segue destination="y6G-7y-M1v" kind="showDetail" identifier="ShowHome" animates="NO" id="bjA-Hi-enE"/>
                         <segue destination="Nfb-ew-gcR" kind="showDetail" identifier="ShowSignIn" animates="NO" action="showViewController:sender:" id="c7R-Ox-qyI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="299" y="361"/>
+            <point key="canvasLocation" x="1082" y="425"/>
         </scene>
         <!--Home-->
         <scene sceneID="6ds-u2-2eG">
@@ -52,10 +53,25 @@
                             <constraint firstItem="sDS-Jc-VTY" firstAttribute="centerY" secondItem="FG8-n9-tKy" secondAttribute="centerY" id="iCo-Oq-ynF"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="86b-jM-Eho">
+                        <barButtonItem key="rightBarButtonItem" image="Toolbar Status Compose" id="g9c-7t-Vlv">
+                            <connections>
+                                <action selector="composeClicked:" destination="oPR-mD-LFT" id="knT-gb-F4q"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dll-JH-00E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1193" y="356"/>
+            <point key="canvasLocation" x="2809" y="425"/>
+        </scene>
+        <!--Compose-->
+        <scene sceneID="RPu-BM-6VL">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Compose" storyboardName="Compose" referencedIdentifier="Compose" id="jeK-UO-IK4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NWT-6I-d6g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2625.5" y="909"/>
         </scene>
         <!--SignIn-->
         <scene sceneID="Mhw-70-NRU">
@@ -65,5 +81,26 @@
             </objects>
             <point key="canvasLocation" x="1082.5" y="951"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ywf-E1-9cT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="y6G-7y-M1v" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pvw-rH-LYc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="oPR-mD-LFT" kind="relationship" relationship="rootViewController" id="Ft5-Ia-x61"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L6R-WO-8k5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1957" y="425"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="Toolbar Status Compose" width="22" height="22"/>
+    </resources>
 </document>

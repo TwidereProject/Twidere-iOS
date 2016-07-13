@@ -12,9 +12,10 @@ import SwiftyJSON
 
 class ModelConverter {
     
-    static func oauthToken(result: HTTPResult!) -> OAuthToken {
+    static func oauthToken(result: HttpResult) -> OAuthToken {
         var oauthToken = "", oauthTokenSecret = "", userId = "", screenName = ""
-        for paramString in (result.text?.componentsSeparatedByString("&"))! {
+        
+        for paramString in (String(data: result.data!, encoding: NSUTF8StringEncoding)!.componentsSeparatedByString("&")) {
             if (paramString.containsString("=")) {
                 let param = paramString.componentsSeparatedByString("=").map({ (s) -> String in
                     return s.stringByRemovingPercentEncoding!
