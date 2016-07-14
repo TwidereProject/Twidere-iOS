@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tu4-R0-Mpc">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Compose-->
+        <scene sceneID="bGY-30-u0g">
+            <objects>
+                <viewController storyboardIdentifier="Compose" title="Compose" id="tu4-R0-Mpc" customClass="ComposeController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="H4x-8H-KCF"/>
+                        <viewControllerLayoutGuide type="bottom" id="LRn-hZ-zH5"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="IE7-TY-0vN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zSz-ZN-D4Q">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="Item" id="JsF-17-JS6"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="S6w-Z7-JTB"/>
+                                    <barButtonItem style="plain" id="uhw-oU-hs6" userLabel="Send">
+                                        <view key="customView" autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="8uy-J4-O9Q">
+                                            <rect key="frame" x="512" y="5.5" width="68" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8cq-Oo-FPp">
+                                                    <rect key="frame" x="0.0" y="6" width="68" height="22"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="140" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5yM-oa-zYg" userLabel="Text Count">
+                                                            <rect key="frame" x="0.0" y="0.0" width="38" height="22"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Toolbar Send" translatesAutoresizingMaskIntoConstraints="NO" id="k5c-TO-0bs" userLabel="Send Icon">
+                                                            <rect key="frame" x="46" y="0.0" width="22" height="22"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="8cq-Oo-FPp" firstAttribute="leading" secondItem="8uy-J4-O9Q" secondAttribute="leading" id="75L-mT-aFm"/>
+                                                <constraint firstAttribute="trailing" secondItem="8cq-Oo-FPp" secondAttribute="trailing" id="BBC-QF-6dK"/>
+                                                <constraint firstItem="8cq-Oo-FPp" firstAttribute="centerY" secondItem="8uy-J4-O9Q" secondAttribute="centerY" id="fDL-z4-THw"/>
+                                            </constraints>
+                                            <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                        </view>
+                                        <connections>
+                                            <action selector="updateStatusClicked:" destination="tu4-R0-Mpc" id="XIX-6c-9cp"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6X4-N1-6KK">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="twitter"/>
+                            </textView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="6X4-N1-6KK" firstAttribute="leading" secondItem="IE7-TY-0vN" secondAttribute="leading" id="5Cy-Hr-W7E"/>
+                            <constraint firstAttribute="trailing" secondItem="6X4-N1-6KK" secondAttribute="trailing" id="Edi-BQ-vwZ"/>
+                            <constraint firstAttribute="trailing" secondItem="zSz-ZN-D4Q" secondAttribute="trailing" id="Jb9-XT-iaQ"/>
+                            <constraint firstItem="zSz-ZN-D4Q" firstAttribute="top" secondItem="6X4-N1-6KK" secondAttribute="bottom" id="NqB-HA-aSB"/>
+                            <constraint firstItem="6X4-N1-6KK" firstAttribute="top" secondItem="H4x-8H-KCF" secondAttribute="bottom" id="VoL-Qs-ccv"/>
+                            <constraint firstItem="LRn-hZ-zH5" firstAttribute="top" secondItem="zSz-ZN-D4Q" secondAttribute="bottom" id="Zq7-m0-jcb"/>
+                            <constraint firstItem="zSz-ZN-D4Q" firstAttribute="leading" secondItem="IE7-TY-0vN" secondAttribute="leading" id="nDw-3a-XjP"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="size" keyPath="contentSizeInPopup">
+                            <size key="value" width="300" height="240"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="size" keyPath="landscapeContentSizeInPopup">
+                            <size key="value" width="400" height="200"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="editText" destination="6X4-N1-6KK" id="T2M-nK-Tg8"/>
+                        <outlet property="sendIconView" destination="k5c-TO-0bs" id="VGl-l8-iCf"/>
+                        <outlet property="sendItem" destination="uhw-oU-hs6" id="WAp-Kp-zho"/>
+                        <outlet property="sendTextCountView" destination="5yM-oa-zYg" id="4vC-CV-oCA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bpl-TD-jlC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="212" y="209"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Toolbar Send" width="22" height="22"/>
+    </resources>
+</document>

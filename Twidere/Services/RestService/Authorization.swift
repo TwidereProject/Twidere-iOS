@@ -54,7 +54,7 @@ class OAuthAuthorization: Authorization {
     let consumerSecret: String
     let oauthToken: OAuthToken?
     
-    init(consumerKey: String, consumerSecret: String, oauthToken: OAuthToken? = nil) {
+    init(_ consumerKey: String, _ consumerSecret: String, oauthToken: OAuthToken? = nil) {
         self.consumerKey = consumerKey
         self.consumerSecret = consumerSecret
         self.oauthToken = oauthToken
@@ -164,7 +164,7 @@ class OAuthToken {
     var screenName: String? = nil
     var userId: String? = nil
     
-    init(oauthToken: String, oauthTokenSecret: String) {
+    init(_ oauthToken: String, _ oauthTokenSecret: String) {
         self.oauthToken = oauthToken
         self.oauthTokenSecret = oauthTokenSecret
     }

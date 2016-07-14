@@ -19,7 +19,7 @@ class TwitterOAuthPasswordAuthenticator {
     let browserUserAgent: String?
     
     init(endpoint: Endpoint, consumerKey:String, consumerSecret: String, loginVerificationCallback: ((challangeType: String) -> String?), browserUserAgent: String? = nil) {
-        self.oauth = OAuthService(endpoint: endpoint, auth: OAuthAuthorization(consumerKey: consumerKey, consumerSecret: consumerSecret))
+        self.oauth = OAuthService(endpoint: endpoint, auth: OAuthAuthorization(consumerKey, consumerSecret))
         self.rest = RestClient(endpoint: endpoint)
         self.loginVerificationCallback = loginVerificationCallback
         self.browserUserAgent = browserUserAgent

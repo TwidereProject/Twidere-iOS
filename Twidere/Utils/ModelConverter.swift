@@ -35,7 +35,7 @@ class ModelConverter {
                 }
             }
         }
-        let token = OAuthToken(oauthToken: oauthToken, oauthTokenSecret: oauthTokenSecret)
+        let token = OAuthToken(oauthToken, oauthTokenSecret)
         token.userId = userId
         token.screenName = screenName
         return token

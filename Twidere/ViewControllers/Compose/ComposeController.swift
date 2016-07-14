@@ -8,20 +8,33 @@
 
 import UIKit
 import STPopup
+import SugarRecord
+import PromiseKit
+import SwiftyJSON
 
 class ComposeController: UIViewController {
 
+    lazy var db: CoreDataDefaultStorage = {
+        return AppDelegate.coreDataStorage()
+    }()
+    
+    @IBOutlet weak var editText: UITextView!
+    @IBOutlet weak var sendItem: UIBarButtonItem!
+    @IBOutlet weak var sendTextCountView: UILabel!
+    @IBOutlet weak var sendIconView: UIImageView!
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.title = "Compose"
-        self.contentSizeInPopup = CGSizeMake(300, 240)
-        self.landscapeContentSizeInPopup = CGSizeMake(400, 200)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        
+        sendIconView.tintColor = sendItem.tintColor
+        let tintedImage = sendIconView.image!.imageWithRenderingMode(.AlwaysTemplate)
+        sendIconView.image = tintedImage
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,6 +43,32 @@ class ComposeController: UIViewController {
     }
     
 
+    @IBAction func updateStatusClicked(sender: UIBarButtonItem) {
+        
+        guard let text = self.editText.text else {
+            //
+            return
+        }
+        
+        dispatch_promise { () -> JSON in
+            let account = try self.db.fetch(Request<Account>()).first!
+            let config = CustomAPIConfig()
+            config.apiUrlFormat = account.apiUrlFormat!
+            config.authType = CustomAPIConfig.AuthType(rawValue: account.authType!)!
+            config.consumerKey = account.consumerKey!
+            config.consumerSecret = account.consumerSecret!
+            config.sameOAuthSigningUrl = Bool(account.sameOAuthSigningUrl!)
+            config.noVersionSuffix = Bool(account.noVersionSuffix!)
+            
+            let token = OAuthToken(account.oauthToken!, account.oauthTokenSecret!)
+            let auth = OAuthAuthorization(config.consumerKey, config.consumerSecret, oauthToken: token)
+            let microBlog = MicroBlogService(endpoint: config.createEndpoint("api"), auth: auth)
+            return try microBlog.updateStatus(text)
+        }.error { error in
+            debugPrint(error)
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

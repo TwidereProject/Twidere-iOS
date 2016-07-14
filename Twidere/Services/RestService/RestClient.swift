@@ -54,6 +54,7 @@ class RestClient {
         let finalAuth: Authorization? = authOverride ?? auth
         let finalHeaders = constructHeaders(method, path: path, headers: headers, queries: queries, forms: params, auth: finalAuth)
         
+        
         return Alamofire.request(method, url, parameters: params, encoding: .URL, headers: finalHeaders).response()
     }
     

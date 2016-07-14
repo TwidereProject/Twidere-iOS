@@ -134,6 +134,27 @@ class SignInController: UIViewController {
         }
     }
     
+    private func doBrowserSignIn() {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        let apiConfig = self.customAPIConfig
+        let endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true, fixUrl: SignInController.fixSignInUrl)
+        let auth = OAuthAuthorization(apiConfig.consumerKey, apiConfig.consumerSecret)
+        let oauth = OAuthService(endpoint: endpoint, auth: auth)
+        dispatch_promise {
+            return try oauth.getRequestToken("oob")
+            }.then { token -> Void in
+                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("BrowserSignIn") as! BrowserSignInController
+                vc.customAPIConfig = self.customAPIConfig
+                vc.requestToken = token
+                vc.callback = self.finishBrowserSignIn
+                self.showViewController(vc, sender: self)
+            }.always {
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            }.error { error in
+                debugPrint(error)
+        }
+    }
+    
     private func doOAuthPasswordSignIn(username: String, password: String) {
         let userAgent = UIWebView().stringByEvaluatingJavaScriptFromString("navigator.userAgent")
         
@@ -144,32 +165,11 @@ class SignInController: UIViewController {
                     return nil
                 }, browserUserAgent: userAgent)
             let accessToken = try authenticator.getOAuthAccessToken(username, password: password)
-            let auth = OAuthAuthorization(consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret, oauthToken: accessToken)
+            let auth = OAuthAuthorization(apiConfig.consumerKey, apiConfig.consumerSecret, oauthToken: accessToken)
                 endpoint = apiConfig.createEndpoint("api")
                 
             let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
-            return try SignInResult(user: microBlog.verifyCredentials())
-        }
-    }
-    
-    private func doBrowserSignIn() {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        let apiConfig = self.customAPIConfig
-        let endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true, fixUrl: SignInController.fixSignInUrl)
-        let auth = OAuthAuthorization(consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret)
-        let oauth = OAuthService(endpoint: endpoint, auth: auth)
-        dispatch_promise {
-            return try oauth.getRequestToken("oob")
-        }.then { token -> Void in
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("BrowserSignIn") as! BrowserSignInController
-            vc.customAPIConfig = self.customAPIConfig
-            vc.requestToken = token
-            vc.callback = self.finishBrowserSignIn
-            self.showViewController(vc, sender: self)
-        }.always {
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-        }.error { error in
-            debugPrint(error)
+            return try SignInResult(user: microBlog.verifyCredentials(), accessToken: accessToken)
         }
     }
     
@@ -179,12 +179,12 @@ class SignInController: UIViewController {
         doSignIn { config throws -> SignInResult in
             let apiConfig = self.customAPIConfig
             var endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true, fixUrl: SignInController.fixSignInUrl)
-            let oauth = OAuthService(endpoint: endpoint, auth: OAuthAuthorization(consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret))
+            let oauth = OAuthService(endpoint: endpoint, auth: OAuthAuthorization(apiConfig.consumerKey, apiConfig.consumerSecret))
             let accessToken = try oauth.getAccessToken(username, xauthPassword: password)
-            let auth = OAuthAuthorization(consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret, oauthToken: accessToken)
+            let auth = OAuthAuthorization(apiConfig.consumerKey, apiConfig.consumerSecret, oauthToken: accessToken)
             endpoint = apiConfig.createEndpoint("api")
             let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
-            return try SignInResult(user: microBlog.verifyCredentials())
+            return try SignInResult(user: microBlog.verifyCredentials(), accessToken: accessToken)
         }
     }
     
@@ -195,7 +195,7 @@ class SignInController: UIViewController {
             let endpoint = self.customAPIConfig.createEndpoint("api")
             let auth = BasicAuthorization(username: username, password: password)
             let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
-            return try SignInResult(user: microBlog.verifyCredentials())
+            return try SignInResult(user: microBlog.verifyCredentials(), username: username, password: password)
         }
     }
     
@@ -211,12 +211,12 @@ class SignInController: UIViewController {
         doSignIn { config throws -> SignInResult in
             let apiConfig = self.customAPIConfig
             var endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true, fixUrl: SignInController.fixSignInUrl)
-            let oauth = OAuthService(endpoint: endpoint, auth: OAuthAuthorization(consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret))
+            let oauth = OAuthService(endpoint: endpoint, auth: OAuthAuthorization(apiConfig.consumerKey, apiConfig.consumerSecret))
             let accessToken = try oauth.getAccessToken(requestToken, oauthVerifier: oauthVerifier)
-            let auth = OAuthAuthorization(consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret, oauthToken: accessToken)
+            let auth = OAuthAuthorization(apiConfig.consumerKey, apiConfig.consumerSecret, oauthToken: accessToken)
             endpoint = apiConfig.createEndpoint("api")
             let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
-            return try SignInResult(user: microBlog.verifyCredentials())
+            return try SignInResult(user: microBlog.verifyCredentials(), accessToken: accessToken)
         }
     }
     
@@ -279,5 +279,16 @@ class SignInResult {
     
     init(user: JSON) {
         self.user = user
+    }
+    
+    init(user: JSON, accessToken: OAuthToken) {
+        self.user = user
+        self.accessToken = accessToken
+    }
+    
+    init(user: JSON, username: String, password: String) {
+        self.user = user
+        self.username = username
+        self.password = password
     }
 }

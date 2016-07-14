@@ -39,7 +39,7 @@ class OAuthService: RestClient {
         var finalAuth = auth
         if (auth is OAuthAuthorization) {
             let oauth = auth as! OAuthAuthorization
-            finalAuth = OAuthAuthorization(consumerKey: oauth.consumerKey, consumerSecret: oauth.consumerSecret, oauthToken: requestToken)
+            finalAuth = OAuthAuthorization(oauth.consumerKey, oauth.consumerSecret, oauthToken: requestToken)
         }
         do {
             return try makeTypedRequest(.POST, path: "/oauth/access_token", forms: forms, authOverride: finalAuth, checker: MicroBlogService.checkRequest, converter: ModelConverter.oauthToken)

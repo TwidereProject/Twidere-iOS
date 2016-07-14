@@ -15,6 +15,11 @@ class MicroBlogService: RestClient {
         return try makeTypedRequest(.GET, path: "/account/verify_credentials.json", checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
     }
     
+    func updateStatus(status: String) throws -> JSON {
+        let forms: [String: AnyObject] = ["status": status]
+        return try makeTypedRequest(.POST, path: "/statuses/update.json", forms: forms, checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+    }
+    
     static func checkRequest(result: HttpResult) throws {
         if (!(result.response?.ok ?? false)) {
             if let data = result.data {
