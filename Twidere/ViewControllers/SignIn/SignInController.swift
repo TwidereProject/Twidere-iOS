@@ -32,10 +32,6 @@ class SignInController: UIViewController {
     
     @IBOutlet weak var hidePasswordSignInButtonConstraint: NSLayoutConstraint!
     
-    lazy var db: CoreDataDefaultStorage = {
-        return AppDelegate.coreDataStorage()
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -138,7 +134,7 @@ class SignInController: UIViewController {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         let apiConfig = self.customAPIConfig
         let endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true, fixUrl: SignInController.fixSignInUrl)
-        let auth = OAuthAuthorization(apiConfig.consumerKey, apiConfig.consumerSecret)
+        let auth = OAuthAuthorization(apiConfig.consumerKey!, apiConfig.consumerSecret!)
         let oauth = OAuthService(endpoint: endpoint, auth: auth)
         dispatch_promise {
             return try oauth.getRequestToken("oob")
@@ -161,11 +157,11 @@ class SignInController: UIViewController {
         doSignIn { config throws -> SignInResult in
             let apiConfig = self.customAPIConfig
             var endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true)
-            let authenticator = TwitterOAuthPasswordAuthenticator(endpoint: endpoint, consumerKey: apiConfig.consumerKey, consumerSecret: apiConfig.consumerSecret, loginVerificationCallback: { challengeType -> String? in
+            let authenticator = TwitterOAuthPasswordAuthenticator(endpoint: endpoint, consumerKey: apiConfig.consumerKey!, consumerSecret: apiConfig.consumerSecret!, loginVerificationCallback: { challengeType -> String? in
                     return nil
                 }, browserUserAgent: userAgent)
             let accessToken = try authenticator.getOAuthAccessToken(username, password: password)
-            let auth = OAuthAuthorization(apiConfig.consumerKey, apiConfig.consumerSecret, oauthToken: accessToken)
+            let auth = OAuthAuthorization(apiConfig.consumerKey!, apiConfig.consumerSecret!, oauthToken: accessToken)
                 endpoint = apiConfig.createEndpoint("api")
                 
             let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
@@ -179,9 +175,9 @@ class SignInController: UIViewController {
         doSignIn { config throws -> SignInResult in
             let apiConfig = self.customAPIConfig
             var endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true, fixUrl: SignInController.fixSignInUrl)
-            let oauth = OAuthService(endpoint: endpoint, auth: OAuthAuthorization(apiConfig.consumerKey, apiConfig.consumerSecret))
+            let oauth = OAuthService(endpoint: endpoint, auth: OAuthAuthorization(apiConfig.consumerKey!, apiConfig.consumerSecret!))
             let accessToken = try oauth.getAccessToken(username, xauthPassword: password)
-            let auth = OAuthAuthorization(apiConfig.consumerKey, apiConfig.consumerSecret, oauthToken: accessToken)
+            let auth = OAuthAuthorization(apiConfig.consumerKey!, apiConfig.consumerSecret!, oauthToken: accessToken)
             endpoint = apiConfig.createEndpoint("api")
             let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
             return try SignInResult(user: microBlog.verifyCredentials(), accessToken: accessToken)
@@ -211,9 +207,9 @@ class SignInController: UIViewController {
         doSignIn { config throws -> SignInResult in
             let apiConfig = self.customAPIConfig
             var endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true, fixUrl: SignInController.fixSignInUrl)
-            let oauth = OAuthService(endpoint: endpoint, auth: OAuthAuthorization(apiConfig.consumerKey, apiConfig.consumerSecret))
+            let oauth = OAuthService(endpoint: endpoint, auth: OAuthAuthorization(apiConfig.consumerKey!, apiConfig.consumerSecret!))
             let accessToken = try oauth.getAccessToken(requestToken, oauthVerifier: oauthVerifier)
-            let auth = OAuthAuthorization(apiConfig.consumerKey, apiConfig.consumerSecret, oauthToken: accessToken)
+            let auth = OAuthAuthorization(apiConfig.consumerKey!, apiConfig.consumerSecret!, oauthToken: accessToken)
             endpoint = apiConfig.createEndpoint("api")
             let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
             return try SignInResult(user: microBlog.verifyCredentials(), accessToken: accessToken)
@@ -228,7 +224,8 @@ class SignInController: UIViewController {
             // TODO persist sign in data
             let json = result.user
             let config = self.customAPIConfig
-            return try self.db.operation{ (context, save) throws -> Account in
+            let db = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStorage
+            return try db.operation{ (context, save) throws -> Account in
                 let account: Account = try context.new()
                 let user: AccountUser = try context.new()
                 User.setFromJson(user, json: json)
@@ -250,9 +247,12 @@ class SignInController: UIViewController {
                 return account
             }
         }.then { result -> Void in
+            let home = self.storyboard!.instantiateViewControllerWithIdentifier("Main")
+            self.presentViewController(home, animated: true, completion: nil)
         }.always {
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         }.error { error in
+            
             debugPrint(error)
         }
     }

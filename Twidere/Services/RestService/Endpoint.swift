@@ -30,33 +30,29 @@ class Endpoint {
     }
     
     static func construct(base: String, path: String, queries: [String: String]? = nil) -> String {
-        let fixedBase: String
-        if (base.hasSuffix("/")) {
-            fixedBase = base.substringToIndex(base.endIndex.advancedBy(-1))
-        } else {
-            fixedBase = base
+        let components = NSURLComponents(string: base)!
+        var basePath = components.path ?? ""
+        if (basePath.hasSuffix("/")) {
+            basePath = basePath.substringToIndex(basePath.endIndex.advancedBy(-1))
         }
-        let fixedPath: String
         if (path.hasPrefix("/")) {
-            fixedPath = path.substringFromIndex(path.startIndex.advancedBy(1))
+            components.path = "\(basePath)\(path)"
         } else {
-            fixedPath = path
+            components.path = "\(basePath)/\(path)"
         }
-        if (!(queries?.isEmpty ?? true)) {
-            let queriesPart = queries!.map({ (s, v) -> String in
-                return Endpoint.paramEncode(s, value: v)
-            }).joinWithSeparator("&")
-            return fixedBase + "/" + fixedPath + "?" + queriesPart
+        var queryItems = [NSURLQueryItem]()
+        if (components.queryItems != nil) {
+            queryItems.appendContentsOf(components.queryItems!)
         }
-        return fixedBase + "/" + fixedPath
-    }
-    
-    static func urlEncode(str: String) -> String {
-        return str.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())!
-    }
-    
-    static func paramEncode(key: String, value: String) -> String {
-        return urlEncode(key) + "=" + urlEncode(value)
+        queries?.forEach{ k, v in
+            queryItems.append(NSURLQueryItem(name: k, value: v))
+        }
+        if (queryItems.isEmpty) {
+            components.queryItems = nil
+        } else {
+            components.queryItems = queryItems
+        }
+        return components.string!
     }
     
     

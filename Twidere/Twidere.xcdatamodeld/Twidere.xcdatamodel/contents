@@ -19,12 +19,12 @@
         <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="user" inverseEntity="Account" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName=".User" isAbstract="YES" syncable="YES">
-        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="key" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="profileBackgroundUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profileBannerUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profileImageUrl" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="screenName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="screenName" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>

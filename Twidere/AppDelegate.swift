@@ -9,12 +9,20 @@
 import UIKit
 import SugarRecord
 import IQKeyboardManagerSwift
+import REFrostedViewController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    lazy var coreDataStorage: CoreDataDefaultStorage = {
+        let store = CoreData.Store.Named("Twidere.db")
+        let bundle = NSBundle.mainBundle()
+        let model = CoreData.ObjectModel.Named("Twidere", bundle)
+        let defaultStorage = try! CoreDataDefaultStorage(store: store, model: model)
+        return defaultStorage
+    }()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -47,12 +55,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
     }
 
-    static func coreDataStorage() -> CoreDataDefaultStorage {
-        let store = CoreData.Store.Named("Twidere.db")
-        let bundle = NSBundle.mainBundle()
-        let model = CoreData.ObjectModel.Named("Twidere", bundle)
-        let defaultStorage = try! CoreDataDefaultStorage(store: store, model: model)
-        return defaultStorage
-    }
 }
 

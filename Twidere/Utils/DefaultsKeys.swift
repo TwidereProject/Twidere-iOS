@@ -15,6 +15,11 @@ extension DefaultsKeys {
     static let noVersionSuffix = DefaultsKey<Bool?>("noVersionSuffix")
     static let consumerKey = DefaultsKey<String?>("consumerKey")
     static let consumerSecret = DefaultsKey<String?>("consumerSecret")
+    
+    static let attachLocation = DefaultsKey<Bool>("attachLocation")
+    static let attachPreciseLocation = DefaultsKey<Bool>("attachPreciseLocation")
+    
+    static let defaultAccount = DefaultsKey<String?>("defaultAccount")
 }
 
 

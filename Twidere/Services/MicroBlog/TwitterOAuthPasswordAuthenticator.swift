@@ -202,7 +202,6 @@ internal class AuthorizeResponseData {
         let data = AuthorizeResponseData()
         
         if let doc = Kanna.HTML(html: result.data!, encoding: NSUTF8StringEncoding) {
-            print(doc.title)
             
             // Find OAuth pin
             if let oauthPin = doc.at_css("div#oauth_pin") {

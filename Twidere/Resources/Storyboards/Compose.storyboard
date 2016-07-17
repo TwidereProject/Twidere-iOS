@@ -14,20 +14,37 @@
                         <viewControllerLayoutGuide type="bottom" id="LRn-hZ-zH5"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="IE7-TY-0vN">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="240"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6X4-N1-6KK">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="196"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="twitter"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What's happening?"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zSz-ZN-D4Q">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="196" width="300" height="44"/>
                                 <items>
-                                    <barButtonItem title="Item" id="JsF-17-JS6"/>
+                                    <barButtonItem image="Toolbar Location Outline" id="JsF-17-JS6" userLabel="Location">
+                                        <connections>
+                                            <action selector="attachLocationClicked:" destination="tu4-R0-Mpc" id="v2r-UX-zIQ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="8" style="plain" systemItem="fixedSpace" id="xkd-g2-oHK"/>
+                                    <barButtonItem image="Toolbar Camera" id="Brs-eS-UYG" userLabel="Camera"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="S6w-Z7-JTB"/>
                                     <barButtonItem style="plain" id="uhw-oU-hs6" userLabel="Send">
                                         <view key="customView" autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="8uy-J4-O9Q">
-                                            <rect key="frame" x="512" y="5.5" width="68" height="33"/>
+                                            <rect key="frame" x="216" y="5.5" width="68" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8cq-Oo-FPp">
+                                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8cq-Oo-FPp">
                                                     <rect key="frame" x="0.0" y="6" width="68" height="22"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="140" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5yM-oa-zYg" userLabel="Text Count">
@@ -55,25 +72,24 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6X4-N1-6KK">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="twitter"/>
-                            </textView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="6X4-N1-6KK" firstAttribute="leading" secondItem="IE7-TY-0vN" secondAttribute="leading" id="5Cy-Hr-W7E"/>
-                            <constraint firstAttribute="trailing" secondItem="6X4-N1-6KK" secondAttribute="trailing" id="Edi-BQ-vwZ"/>
-                            <constraint firstAttribute="trailing" secondItem="zSz-ZN-D4Q" secondAttribute="trailing" id="Jb9-XT-iaQ"/>
-                            <constraint firstItem="zSz-ZN-D4Q" firstAttribute="top" secondItem="6X4-N1-6KK" secondAttribute="bottom" id="NqB-HA-aSB"/>
-                            <constraint firstItem="6X4-N1-6KK" firstAttribute="top" secondItem="H4x-8H-KCF" secondAttribute="bottom" id="VoL-Qs-ccv"/>
-                            <constraint firstItem="LRn-hZ-zH5" firstAttribute="top" secondItem="zSz-ZN-D4Q" secondAttribute="bottom" id="Zq7-m0-jcb"/>
-                            <constraint firstItem="zSz-ZN-D4Q" firstAttribute="leading" secondItem="IE7-TY-0vN" secondAttribute="leading" id="nDw-3a-XjP"/>
+                            <constraint firstItem="6X4-N1-6KK" firstAttribute="leading" secondItem="IE7-TY-0vN" secondAttribute="leading" id="3pL-KK-j3u"/>
+                            <constraint firstItem="6X4-N1-6KK" firstAttribute="top" secondItem="IE7-TY-0vN" secondAttribute="top" id="CNd-8p-zoy"/>
+                            <constraint firstItem="LRn-hZ-zH5" firstAttribute="top" secondItem="zSz-ZN-D4Q" secondAttribute="bottom" id="E8u-LB-i3r"/>
+                            <constraint firstAttribute="trailing" secondItem="zSz-ZN-D4Q" secondAttribute="trailing" id="UGV-bR-lIe"/>
+                            <constraint firstAttribute="trailing" secondItem="6X4-N1-6KK" secondAttribute="trailing" id="YRo-6T-Zo7"/>
+                            <constraint firstItem="zSz-ZN-D4Q" firstAttribute="top" secondItem="6X4-N1-6KK" secondAttribute="bottom" id="e7b-Ex-MDh"/>
+                            <constraint firstItem="6X4-N1-6KK" firstAttribute="leading" secondItem="IE7-TY-0vN" secondAttribute="leading" id="eVX-qL-twN"/>
+                            <constraint firstItem="zSz-ZN-D4Q" firstAttribute="leading" secondItem="IE7-TY-0vN" secondAttribute="leading" id="rML-1i-FW4"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Compose" id="S1u-qV-2NS"/>
                     <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="240"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="size" keyPath="contentSizeInPopup">
                             <size key="value" width="300" height="240"/>
@@ -84,6 +100,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="editText" destination="6X4-N1-6KK" id="T2M-nK-Tg8"/>
+                        <outlet property="locationItem" destination="JsF-17-JS6" id="5jF-0J-g7w"/>
                         <outlet property="sendIconView" destination="k5c-TO-0bs" id="VGl-l8-iCf"/>
                         <outlet property="sendItem" destination="uhw-oU-hs6" id="WAp-Kp-zho"/>
                         <outlet property="sendTextCountView" destination="5yM-oa-zYg" id="4vC-CV-oCA"/>
@@ -91,10 +108,112 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bpl-TD-jlC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="212" y="209"/>
+            <point key="canvasLocation" x="62" y="277"/>
+        </scene>
+        <!--Location-->
+        <scene sceneID="ZDO-NQ-A5E">
+            <objects>
+                <viewController storyboardIdentifier="ComposeLocation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9ly-CJ-nOg" userLabel="Location" customClass="ComposeLocationController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Z5q-9g-lpG"/>
+                        <viewControllerLayoutGuide type="bottom" id="nAB-8c-9Jb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NXC-wb-olJ">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="240"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZF-l9-0g4">
+                                <rect key="frame" x="0.0" y="44" width="300" height="152"/>
+                            </mapView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QfF-jh-sik">
+                                <rect key="frame" x="0.0" y="196" width="300" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" id="4An-JR-ZrP">
+                                        <view key="customView" opaque="NO" contentMode="scaleToFill" id="YLM-Ha-K41">
+                                            <rect key="frame" x="16" y="5.5" width="160" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="qlV-mw-Aby">
+                                                    <rect key="frame" x="0.0" y="0.0" width="160" height="33"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Precise location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8A-kf-IvZ">
+                                                            <rect key="frame" x="0.0" y="0.0" width="109" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="No location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VT0-Og-23i">
+                                                            <rect key="frame" x="0.0" y="19" width="65" height="15"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="qlV-mw-Aby" secondAttribute="bottom" id="NQd-DT-yv9"/>
+                                                <constraint firstAttribute="trailing" secondItem="qlV-mw-Aby" secondAttribute="trailing" id="PcS-iE-2t5"/>
+                                                <constraint firstItem="qlV-mw-Aby" firstAttribute="leading" secondItem="YLM-Ha-K41" secondAttribute="leading" id="gPO-HQ-KDD"/>
+                                                <constraint firstItem="qlV-mw-Aby" firstAttribute="top" secondItem="YLM-Ha-K41" secondAttribute="top" id="tdd-tj-SLQ"/>
+                                            </constraints>
+                                        </view>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="sea-F5-KQZ"/>
+                                    <barButtonItem style="plain" id="AGA-sY-vAV">
+                                        <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Ccc-rX-4hu">
+                                            <rect key="frame" x="235" y="6.5" width="51" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </switch>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="FZF-l9-0g4" secondAttribute="trailing" id="1GT-88-za6"/>
+                            <constraint firstItem="FZF-l9-0g4" firstAttribute="top" secondItem="Z5q-9g-lpG" secondAttribute="bottom" id="6o8-eM-YWV"/>
+                            <constraint firstItem="FZF-l9-0g4" firstAttribute="leading" secondItem="NXC-wb-olJ" secondAttribute="leading" id="8QY-f3-pJf"/>
+                            <constraint firstItem="QfF-jh-sik" firstAttribute="leading" secondItem="NXC-wb-olJ" secondAttribute="leading" id="Tno-E2-HEH"/>
+                            <constraint firstItem="nAB-8c-9Jb" firstAttribute="top" secondItem="QfF-jh-sik" secondAttribute="bottom" id="gB1-lf-Hl6"/>
+                            <constraint firstAttribute="trailing" secondItem="FZF-l9-0g4" secondAttribute="trailing" id="hPQ-E4-K6F"/>
+                            <constraint firstItem="QfF-jh-sik" firstAttribute="top" secondItem="FZF-l9-0g4" secondAttribute="bottom" id="nlL-gh-uW2"/>
+                            <constraint firstAttribute="trailing" secondItem="QfF-jh-sik" secondAttribute="trailing" id="vdy-CE-Y1Y"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Location" id="mpr-Rx-6mo">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="XI8-z2-KLO">
+                            <connections>
+                                <action selector="doneAttachLocation:" destination="9ly-CJ-nOg" id="VZf-1D-9MU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="240"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="size" keyPath="contentSizeInPopup">
+                            <size key="value" width="300" height="240"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="size" keyPath="landscapeContentSizeInPopup">
+                            <size key="value" width="400" height="200"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="mapView" destination="FZF-l9-0g4" id="Qo0-xG-a2k"/>
+                        <outlet property="preciseLocationLabel" destination="VT0-Og-23i" id="JqU-D4-Pgi"/>
+                        <outlet property="preciseLocationSwitch" destination="Ccc-rX-4hu" id="9X1-vf-lHG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qyZ-oU-bG2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="62" y="669"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Toolbar Camera" width="22" height="22"/>
+        <image name="Toolbar Location Outline" width="22" height="22"/>
         <image name="Toolbar Send" width="22" height="22"/>
     </resources>
 </document>

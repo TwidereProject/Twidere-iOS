@@ -16,8 +16,9 @@ class User: NSManagedObject {
     static func setFromJson(user: User, json: JSON) {
         user.key = json["id_str"].string ?? json["id"].string
         user.name = json["name"].string
-        user.screenName = json["scren_name"].string
+        user.screenName = json["screen_name"].string
         user.profileImageUrl = json["profile_image_url_https"].string ?? json["profile_image_url"].string
+        user.profileBannerUrl = json["profile_banner_url"].string ?? json["cover_photo"].string
     }
     
 }

@@ -14,6 +14,18 @@ protocol Authorization {
     var hasAuthorization: Bool { get }
     func getHeader(method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: AnyObject]?) -> String?
 }
+class EmptyAuthorization: Authorization {
+    
+    var hasAuthorization: Bool {
+        get {
+            return false
+        }
+    }
+    
+    func getHeader(method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : AnyObject]?) -> String? {
+        return nil
+    }
+}
 
 //
 // HTTP Basic Authorization
@@ -46,7 +58,18 @@ class BasicAuthorization: Authorization {
 //
 class OAuthAuthorization: Authorization {
     
-    let oauthUrlEncodeAllowedSet = NSCharacterSet(charactersInString:"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~")
+    let oauthUrlEncodeAllowedSet: NSCharacterSet = {
+        let allowed = NSMutableCharacterSet.alphanumericCharacterSet()
+        allowed.addCharactersInString("-._~")
+        return allowed
+    }()
+    
+    let queryUrlEncodeAllowedSet: NSCharacterSet = {
+        let allowed = NSMutableCharacterSet.alphanumericCharacterSet()
+        allowed.addCharactersInString("*-._")
+        allowed.addCharactersInString(" ")
+        return allowed
+    }()
     let charsetEncoding = "UTF-8"
     let oauthSignatureMethod = "HMAC-SHA1"
     let oauthVersion = "1.0"
@@ -82,7 +105,7 @@ class OAuthAuthorization: Authorization {
         var encodeParams: [(String, String)] = [
             ("oauth_consumer_key", consumerKey),
             ("oauth_nonce", oauthNonce),
-            ("oauth_signature", urlEncode(oauthSignature)),
+            ("oauth_signature", encodeOAuth(oauthSignature)),
             ("oauth_signature_method", oauthSignatureMethod),
             ("oauth_timestamp", String(timestamp)),
             ("oauth_version", oauthVersion)
@@ -99,23 +122,23 @@ class OAuthAuthorization: Authorization {
     
     private func generateOAuthSignature(method: String, url: String, oauthNonce: String, timestamp: UInt64, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: AnyObject]?) -> String {
         var oauthParams: [String] = [
-            encodeKeyValue("oauth_consumer_key", value: consumerKey),
-            encodeKeyValue("oauth_nonce", value: oauthNonce),
-            encodeKeyValue("oauth_signature_method", value: oauthSignatureMethod),
-            encodeKeyValue("oauth_timestamp", value: String(timestamp)),
-            encodeKeyValue("oauth_version", value: oauthVersion)
+            encodeOAuthKeyValue("oauth_consumer_key", value: consumerKey),
+            encodeOAuthKeyValue("oauth_nonce", value: oauthNonce),
+            encodeOAuthKeyValue("oauth_signature_method", value: oauthSignatureMethod),
+            encodeOAuthKeyValue("oauth_timestamp", value: String(timestamp)),
+            encodeOAuthKeyValue("oauth_version", value: oauthVersion)
         ]
         if (oauthToken != nil) {
-            oauthParams.append(encodeKeyValue("oauth_token", value: oauthToken!.oauthToken))
+            oauthParams.append(encodeOAuthKeyValue("oauth_token", value: oauthToken!.oauthToken))
         }
         if (queries != nil) {
             for (k, v) in queries! {
-                oauthParams.append(encodeKeyValue(k, value: v))
+                oauthParams.append(encodeOAuthKeyValue(k, value: v))
             }
         }
         if (forms != nil) {
             for (k, v) in forms! {
-                oauthParams.append(encodeKeyValue(k, value: String(v)))
+                oauthParams.append(encodeOAuthKeyValue(k, value: String(v)))
             }
         }
         // Sort params
@@ -125,15 +148,15 @@ class OAuthAuthorization: Authorization {
         let paramsString = oauthParams.joinWithSeparator("&")
         let signingKey: String
         if (oauthToken != nil) {
-            signingKey = urlEncode(consumerSecret) + "&" + urlEncode(oauthToken!.oauthTokenSecret);
+            signingKey = encodeOAuth(consumerSecret) + "&" + encodeOAuth(oauthToken!.oauthTokenSecret);
         } else {
-            signingKey = urlEncode(consumerSecret) + "&";
+            signingKey = encodeOAuth(consumerSecret) + "&";
         }
         let signingKeyBytes = signingKey.utf8.map({$0})
         
 
         let urlNoQuery = url.rangeOfString("?") != nil ? url.substringToIndex(url.rangeOfString("?")!.startIndex) : url
-        let baseString = urlEncode(method) + "&" + urlEncode(urlNoQuery) + "&" + urlEncode(paramsString)
+        let baseString = encodeOAuth(method) + "&" + encodeOAuth(urlNoQuery) + "&" + encodeOAuth(paramsString)
         let baseBytes = baseString.utf8.map({$0})
         let hmac: Array<UInt8> = try! Authenticator.HMAC(key: signingKeyBytes, variant: .sha1).authenticate(baseBytes)
         return hmac.toBase64()!
@@ -149,12 +172,20 @@ class OAuthAuthorization: Authorization {
         return randomBytes.toHexString()
     }
     
-    func urlEncode(str: String) -> String {
+    func encodeOAuth(str: String) -> String {
         return str.stringByAddingPercentEncodingWithAllowedCharacters(oauthUrlEncodeAllowedSet)!
     }
     
-    func encodeKeyValue(key: String, value: String) -> String {
-        return urlEncode(key) + "=" + urlEncode(value)
+    private func encodeQuery(str: String) -> String {
+        return str.stringByAddingPercentEncodingWithAllowedCharacters(queryUrlEncodeAllowedSet)!.stringByReplacingOccurrencesOfString(" ", withString: "+")
+    }
+    
+    func encodeOAuthKeyValue(key: String, value: String) -> String {
+        return encodeOAuth(key) + "=" + encodeOAuth(value)
+    }
+    
+    func encodeQueryKeyValue(key: String, value: String) -> String {
+        return encodeQuery(key) + "=" + encodeQuery(value)
     }
 }
 

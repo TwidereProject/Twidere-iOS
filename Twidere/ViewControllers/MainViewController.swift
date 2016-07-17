@@ -8,19 +8,18 @@
 
 import UIKit
 import SugarRecord
+import REFrostedViewController
 
 class MainViewController: UIViewController {
     
     var hasAccount: Bool = false
-    lazy var db: CoreDataDefaultStorage = {
-        return AppDelegate.coreDataStorage()
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view, typically from a nib.
         do {
+            let db = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStorage
             hasAccount = try (!db.fetch(Request<Account>()).isEmpty)
         } catch {
             hasAccount = false
@@ -30,8 +29,23 @@ class MainViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if (hasAccount) {
-            performSegueWithIdentifier("ShowHome", sender: self)
+            
+            // Create content and menu controllers
+            //
+            let homeController = storyboard!.instantiateViewControllerWithIdentifier("HomeRoot") as! HomeRootController
+            let menuController = storyboard!.instantiateViewControllerWithIdentifier("NavMenu")
+            
+            // Create frosted view controller
+            //
+            let frostedViewController = REFrostedViewController(contentViewController: homeController, menuViewController: menuController)
+            frostedViewController.direction = .Left
+            frostedViewController.panGestureEnabled = true
+            frostedViewController.limitMenuViewSize = true
+            frostedViewController.delegate = homeController
+            
+            presentViewController(frostedViewController, animated: false, completion: nil)
         } else {
+            
             performSegueWithIdentifier("ShowSignIn", sender: self)
         }
     }

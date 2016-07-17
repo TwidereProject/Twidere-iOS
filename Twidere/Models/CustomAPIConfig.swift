@@ -15,11 +15,11 @@ class CustomAPIConfig {
     static let apiVersion = "1.1"
     
     var apiUrlFormat: String = ServiceConstants.defaultApiUrlFormat
-    var authType: AuthType = .OAuth
+    var authType: AuthType = ServiceConstants.defaultAuthType
     var sameOAuthSigningUrl: Bool = true
     var noVersionSuffix: Bool = false
-    var consumerKey: String = ServiceConstants.defaultTwitterConsumerKey
-    var consumerSecret: String = ServiceConstants.defaultTwitterConsumerSecret
+    var consumerKey: String? = ServiceConstants.defaultTwitterConsumerKey
+    var consumerSecret: String? = ServiceConstants.defaultTwitterConsumerSecret
     
     var valid: Bool {
         get {
@@ -29,7 +29,7 @@ class CustomAPIConfig {
             }
             switch authType {
             case .OAuth, .xAuth:
-                return !consumerKey.isEmpty && !consumerSecret.isEmpty
+                return !(consumerKey?.isEmpty ?? true) && !(consumerSecret?.isEmpty ?? true)
             default:
                 return true
             }

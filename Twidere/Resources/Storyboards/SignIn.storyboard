@@ -160,20 +160,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Yrt-58-cnP">
-                                <rect key="frame" x="20" y="84" width="560" height="93"/>
+                                <rect key="frame" x="20" y="84" width="560" height="117"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EHK-5P-zLD" customClass="JVFloatLabeledTextField">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EHK-5P-zLD" customClass="JVFloatLabeledTextField">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pvQ-EL-XUG" customClass="JVFloatLabeledTextField">
-                                        <rect key="frame" x="0.0" y="38" width="560" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pvQ-EL-XUG" customClass="JVFloatLabeledTextField">
+                                        <rect key="frame" x="0.0" y="50" width="560" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your password will not be stored." textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlc-rn-uVg">
-                                        <rect key="frame" x="0.0" y="76" width="560" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your password will not be stored." textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlc-rn-uVg">
+                                        <rect key="frame" x="0.0" y="100" width="560" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -210,6 +210,67 @@
             </objects>
             <point key="canvasLocation" x="1113" y="1222"/>
         </scene>
+        <!--Accounts-->
+        <scene sceneID="VD6-de-eSw">
+            <objects>
+                <tableViewController id="Fsa-zn-0yB" customClass="AccountsManagerController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="gOW-LH-A5Z">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="xqw-TS-LRJ" style="IBUITableViewCellStyleDefault" id="WJS-zG-GDe">
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WJS-zG-GDe" id="1dC-pi-h97">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xqw-TS-LRJ">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Fsa-zn-0yB" id="LVI-dR-ifk"/>
+                            <outlet property="delegate" destination="Fsa-zn-0yB" id="AhR-8g-LEO"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Accounts" id="Ytn-0d-8a7">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="2hH-Hv-OoY">
+                            <connections>
+                                <action selector="closeAcccountsManager:" destination="Fsa-zn-0yB" id="hvb-p5-S6f"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ibi-6b-hph"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cr8-3c-2us" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1113" y="2000"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NBk-AC-MGf">
+            <objects>
+                <navigationController storyboardIdentifier="AccountsRoot" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iSP-sE-V5a" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="g0y-0f-cxA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Fsa-zn-0yB" kind="relationship" relationship="rootViewController" id="1Qr-nf-GEp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xGE-MK-C0n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="292" y="1999"/>
+        </scene>
         <!--Preferences Reference-->
         <scene sceneID="Uct-nr-CuU">
             <objects>
@@ -224,7 +285,15 @@
                 <viewControllerPlaceholder storyboardIdentifier="APIEditor" storyboardName="Preferences" referencedIdentifier="APIEditor" id="EXd-zo-s4I" userLabel="API Editor Reference" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m8C-87-9ev" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1691.5" y="592"/>
+            <point key="canvasLocation" x="1691.5" y="471"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="Vcw-Cu-3nZ">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Main" storyboardName="Main" id="YRs-xA-M3i" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Uv-RY-roU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1661" y="603"/>
         </scene>
         <!--Browser login-->
         <scene sceneID="mTS-en-YHI">
