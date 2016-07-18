@@ -158,7 +158,19 @@ class SignInController: UIViewController {
             let apiConfig = self.customAPIConfig
             var endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true)
             let authenticator = TwitterOAuthPasswordAuthenticator(endpoint: endpoint, consumerKey: apiConfig.consumerKey!, consumerSecret: apiConfig.consumerSecret!, loginVerificationCallback: { challengeType -> String? in
-                    return nil
+                let sem = dispatch_semaphore_create(0)
+                let vc = UIAlertController(title: "Login verification", message: "[Verification message here]", preferredStyle: .Alert)
+                var challangeResponse: String? = nil
+                vc.addTextFieldWithConfigurationHandler{ textField in
+                    textField.keyboardType = .EmailAddress
+                }
+                vc.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+                    challangeResponse = vc.textFields?[0].text
+                    dispatch_semaphore_signal(sem)
+                }))
+                vc.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER)
+                return challangeResponse
                 }, browserUserAgent: userAgent)
             let accessToken = try authenticator.getOAuthAccessToken(username, password: password)
             let auth = OAuthAuthorization(apiConfig.consumerKey!, apiConfig.consumerSecret!, oauthToken: accessToken)
@@ -252,7 +264,23 @@ class SignInController: UIViewController {
         }.always {
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         }.error { error in
-            
+            if (error is AuthenticationError) {
+                switch (error) {
+                case AuthenticationError.AccessTokenFailed:
+                    let vc = UIAlertController(title: nil, message: "Unable to get access token", preferredStyle: .Alert)
+                    self.presentViewController(vc, animated: true, completion: nil)
+                case AuthenticationError.RequestTokenFailed:
+                    let vc = UIAlertController(title: nil, message: "Unable to get request token", preferredStyle: .Alert)
+                    self.presentViewController(vc, animated: true, completion: nil)
+                case AuthenticationError.WrongUsernamePassword:
+                    let vc = UIAlertController(title: nil, message: "Wrong username or password", preferredStyle: .Alert)
+                    self.presentViewController(vc, animated: true, completion: nil)
+                case AuthenticationError.VerificationFailed:
+                    let vc = UIAlertController(title: nil, message: "Verification failed", preferredStyle: .Alert)
+                    self.presentViewController(vc, animated: true, completion: nil)
+                default: break
+                }
+            }
             debugPrint(error)
         }
     }

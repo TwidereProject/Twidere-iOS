@@ -28,6 +28,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     @IBOutlet weak var sendItem: UIBarButtonItem!
     @IBOutlet weak var sendTextCountView: UILabel!
     @IBOutlet weak var sendIconView: UIImageView!
+    @IBOutlet weak var accountProfileImageView: UIImageView!
     
     var locationAuthorizationGrantedSelector: Selector? = nil
     
@@ -65,16 +66,22 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         
         editText.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         editText.delegate = self
+        
+        self.accountProfileImageView.layer.cornerRadius = self.accountProfileImageView.frame.size.width / 2
+        self.accountProfileImageView.clipsToBounds = true
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 
-    @IBAction func updateStatusClicked(sender: UIBarButtonItem) {
-        
+    @IBAction func updateStatusTapped(sender: UITapGestureRecognizer) {
         guard let text = self.editText.text else {
             //
             return

@@ -8,7 +8,6 @@
 
 import Foundation
 import Async
-import Just
 import Kanna
 
 class TwitterOAuthPasswordAuthenticator {

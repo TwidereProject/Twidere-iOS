@@ -40,7 +40,7 @@
                                     <barButtonItem image="Toolbar Camera" id="Brs-eS-UYG" userLabel="Camera"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="S6w-Z7-JTB"/>
                                     <barButtonItem style="plain" id="uhw-oU-hs6" userLabel="Send">
-                                        <view key="customView" autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="8uy-J4-O9Q">
+                                        <view key="customView" autoresizesSubviews="NO" contentMode="scaleToFill" id="8uy-J4-O9Q">
                                             <rect key="frame" x="216" y="5.5" width="68" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
@@ -59,16 +59,17 @@
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
+                                            <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstItem="8cq-Oo-FPp" firstAttribute="leading" secondItem="8uy-J4-O9Q" secondAttribute="leading" id="75L-mT-aFm"/>
                                                 <constraint firstAttribute="trailing" secondItem="8cq-Oo-FPp" secondAttribute="trailing" id="BBC-QF-6dK"/>
                                                 <constraint firstItem="8cq-Oo-FPp" firstAttribute="centerY" secondItem="8uy-J4-O9Q" secondAttribute="centerY" id="fDL-z4-THw"/>
                                             </constraints>
                                             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="fqI-nP-Z58" appends="YES" id="ymx-Da-c3b"/>
+                                            </connections>
                                         </view>
-                                        <connections>
-                                            <action selector="updateStatusClicked:" destination="tu4-R0-Mpc" id="XIX-6c-9cp"/>
-                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -84,7 +85,26 @@
                             <constraint firstItem="zSz-ZN-D4Q" firstAttribute="leading" secondItem="IE7-TY-0vN" secondAttribute="leading" id="rML-1i-FW4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Compose" id="S1u-qV-2NS"/>
+                    <navigationItem key="navigationItem" title="Compose" id="S1u-qV-2NS">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="ngH-FH-bHb">
+                            <view key="customView" contentMode="scaleToFill" id="9Zv-5j-t4e">
+                                <rect key="frame" x="251" y="5" width="33" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Image Default" translatesAutoresizingMaskIntoConstraints="NO" id="Pzb-dc-g08">
+                                        <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Pzb-dc-g08" secondAttribute="trailing" id="NKu-Jd-Jlq"/>
+                                    <constraint firstAttribute="bottom" secondItem="Pzb-dc-g08" secondAttribute="bottom" id="YQE-At-jZG"/>
+                                    <constraint firstItem="Pzb-dc-g08" firstAttribute="top" secondItem="9Zv-5j-t4e" secondAttribute="top" id="Z3t-Hg-gyZ"/>
+                                    <constraint firstItem="Pzb-dc-g08" firstAttribute="leading" secondItem="9Zv-5j-t4e" secondAttribute="leading" id="dFv-PU-cwq"/>
+                                </constraints>
+                            </view>
+                        </barButtonItem>
+                    </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -99,6 +119,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
+                        <outlet property="accountProfileImageView" destination="Pzb-dc-g08" id="DBJ-yV-Lxp"/>
                         <outlet property="editText" destination="6X4-N1-6KK" id="T2M-nK-Tg8"/>
                         <outlet property="locationItem" destination="JsF-17-JS6" id="5jF-0J-g7w"/>
                         <outlet property="sendIconView" destination="k5c-TO-0bs" id="VGl-l8-iCf"/>
@@ -107,6 +128,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bpl-TD-jlC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="fqI-nP-Z58">
+                    <connections>
+                        <action selector="updateStatusTapped:" destination="tu4-R0-Mpc" id="Qbt-yU-U67"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="62" y="277"/>
         </scene>
@@ -212,6 +238,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Profile Image Default" width="24" height="24"/>
         <image name="Toolbar Camera" width="22" height="22"/>
         <image name="Toolbar Location Outline" width="22" height="22"/>
         <image name="Toolbar Send" width="22" height="22"/>

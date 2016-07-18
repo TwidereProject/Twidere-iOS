@@ -7,7 +7,6 @@
 //
 
 import SwiftyJSON
-import Just
 
 class MicroBlogService: RestClient {
     

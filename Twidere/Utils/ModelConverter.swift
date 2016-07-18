@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Just
 import SwiftyJSON
 
 class ModelConverter {
@@ -41,7 +40,7 @@ class ModelConverter {
         return token
     }
     
-    static func toJson(result: HTTPResult!) -> JSON {
-        return JSON(data: result.content!)
+    static func toJson(result: HttpResult!) -> JSON {
+        return JSON(data: result.data!)
     }
 }
