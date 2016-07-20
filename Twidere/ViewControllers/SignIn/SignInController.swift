@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Async
 import SwiftyUserDefaults
 import CoreData
 import SugarRecord

@@ -12,7 +12,6 @@ target 'Twidere' do
   pod 'ActionSheetPicker-3.0', '2.2.0'
   pod 'StaticDataTableViewController', '2.0.5'
   pod 'IQKeyboardManagerSwift', '4.0.4'
-  pod 'AsyncSwift', '1.7.2'
   pod 'Kanna', '1.1.0'
   pod 'CrossroadRegex', '0.7.0'
   pod 'SwiftyUserDefaults', '2.2.0'
@@ -22,7 +21,7 @@ target 'Twidere' do
   pod 'UITextView+Placeholder', '1.2.0'
   pod 'twitter-text', '~> 1.13'
   pod 'UIView+TouchHighlighting', '1.0.0'
-  pod 'SDWebImage', '~> 3.8'
+  pod 'SDWebImage', '3.8.1'
   pod 'REFrostedViewController', '~> 2.4'
 end
 

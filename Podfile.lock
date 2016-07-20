@@ -3,7 +3,6 @@ PODS:
   - Alamofire (3.4.1)
   - Alamofire-Synchronous (3.0.0):
     - Alamofire (~> 3.0)
-  - AsyncSwift (1.7.2)
   - Boilerplate (0.2.4):
     - Result (~> 2.0)
   - CrossroadRegex (0.7.0):
@@ -33,9 +32,9 @@ PODS:
     - PromiseKit/CorePromise
   - REFrostedViewController (2.4.8)
   - Result (2.1.2)
-  - SDWebImage (3.8.0):
-    - SDWebImage/Core (= 3.8.0)
-  - SDWebImage/Core (3.8.0)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
   - StaticDataTableViewController (2.0.5)
   - STPopup (1.7.0)
   - SugarRecord/CoreData (2.2.9):
@@ -50,7 +49,6 @@ DEPENDENCIES:
   - ActionSheetPicker-3.0 (= 2.2.0)
   - Alamofire (= 3.4.1)
   - Alamofire-Synchronous (= 3.0.0)
-  - AsyncSwift (= 1.7.2)
   - CrossroadRegex (= 0.7.0)
   - CryptoSwift (= 0.5.1)
   - IQKeyboardManagerSwift (= 4.0.4)
@@ -58,7 +56,7 @@ DEPENDENCIES:
   - Kanna (= 1.1.0)
   - PromiseKit (= 3.2.1)
   - REFrostedViewController (~> 2.4)
-  - SDWebImage (~> 3.8)
+  - SDWebImage (= 3.8.1)
   - StaticDataTableViewController (= 2.0.5)
   - STPopup (= 1.7.0)
   - SugarRecord/CoreData (= 2.2.9)
@@ -72,7 +70,6 @@ SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   Alamofire-Synchronous: dc5dccc284e03c3b760e09c655dfe6fa292364b6
-  AsyncSwift: 46a78bceb11f0e5bb52747f740d9692ec78d2d7c
   Boilerplate: cc76b26f60747f7b75f43b8ac38d2071cfb0e75a
   CrossroadRegex: 05967c725bf25ada15d735a173f2450ac6335bb6
   CryptoSwift: df42dda18baf6c76347a94e227dbcc0a341304bd
@@ -83,7 +80,7 @@ SPEC CHECKSUMS:
   PromiseKit: ef54f61501541bf18a87b25115c372184d180cea
   REFrostedViewController: a893b4979ba1f200c547aef9ff4c3fd5a18f5923
   Result: 6e722d4a66b1408680dbfcdf51c0b1c4b706316a
-  SDWebImage: 7d9fe229266696de91eadf840c77ca15efd4bbd2
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a
   STPopup: 36b45120f51ab3cdf7a10c1b9032b7fc8eef75ac
   SugarRecord: 2463fbe768633a2524ba505dfed5315167331c0a
@@ -93,4 +90,6 @@ SPEC CHECKSUMS:
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
   UIView+TouchHighlighting: 1fb92f04a0f354a238beb1dba3a8807eb88a4d4f
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: fb31a2703098b6eff285a8f98923849b6d67674a
+
+COCOAPODS: 1.1.0.beta.1

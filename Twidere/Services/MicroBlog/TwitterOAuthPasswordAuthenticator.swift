@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Async
 import Kanna
 
 class TwitterOAuthPasswordAuthenticator {
@@ -32,7 +31,7 @@ class TwitterOAuthPasswordAuthenticator {
             } catch RestError.RequestError(_) {
                 throw AuthenticationError.RequestTokenFailed
             }
-        
+
             let authorizeRequestData = try getAuthorizeRequestData(requestToken)
             var authorizeResponseData = try getAuthorizeResponseData(requestToken, authorizeRequestData: authorizeRequestData, username: username, password: password)
             if (!(authorizeResponseData.oauthPin?.isEmpty ?? true)) {
@@ -66,22 +65,7 @@ class TwitterOAuthPasswordAuthenticator {
             throw AuthenticationError.NetworkError(err: err)
         }
     }
-    
-    func getOAuthAccessToken(username: String, password: String, callback: (OAuthToken?, ErrorType?) -> Void) {
-        Async.background {
-            do {
-                let accessToken = try self.getOAuthAccessToken(username, password: password)
-                Async.main(block: { 
-                    callback(accessToken, nil)
-                })
-            } catch {
-                Async.main(block: { 
-                    callback(nil, AuthenticationError.VerificationFailed)
-                })
-            }
-        }
-    }
-    
+
     func getAuthorizeRequestData(requestToken: OAuthToken) throws -> AuthorizeRequestData {
         var requestHeaders = [String: String]()
         if (browserUserAgent != nil) {
@@ -197,7 +181,7 @@ internal class AuthorizeResponseData {
         var redirectAfterLogin: String? = nil
     }
     
-    static func parseFromHttpResult(result: HttpResult) -> AuthorizeResponseData {
+    static func parseFromHttpResult(result: HttpResult) throws -> AuthorizeResponseData {
         let data = AuthorizeResponseData()
         
         if let doc = Kanna.HTML(html: result.data!, encoding: NSUTF8StringEncoding) {
@@ -205,7 +189,7 @@ internal class AuthorizeResponseData {
             // Find OAuth pin
             if let oauthPin = doc.at_css("div#oauth_pin") {
                 let numericSet = NSCharacterSet.decimalDigitCharacterSet().invertedSet
-                data.oauthPin = oauthPin.css("*").filter({ (child) -> Bool in
+                data.oauthPin = try oauthPin.css("*").filter({ (child) -> Bool in
                     if (child.text == nil) {
                         return false
                     }
