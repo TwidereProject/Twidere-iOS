@@ -23,6 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaultStorage = try! CoreDataDefaultStorage(store: store, model: model)
         return defaultStorage
     }()
+    
+    lazy var backgroundOperationService: BackgroundOperationService = {
+       return BackgroundOperationService()
+    }()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.

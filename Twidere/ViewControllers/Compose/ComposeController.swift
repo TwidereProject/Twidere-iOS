@@ -16,6 +16,8 @@ import twitter_text
 import UIView_TouchHighlighting
 import CoreLocation
 import SwiftyUserDefaults
+import AssetsLibrary
+import Photos
 
 class ComposeController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate {
 
@@ -46,12 +48,8 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         }
     }
     
-    var currentLocation: CLLocationCoordinate2D? = nil
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-//        self.title = "Compose"
-    }
+    var recentLocation: CLLocationCoordinate2D? = nil
+    var attachedMedia: [MediaUpdate]? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +67,12 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         
         self.accountProfileImageView.layer.cornerRadius = self.accountProfileImageView.frame.size.width / 2
         self.accountProfileImageView.clipsToBounds = true
+        
+        let attachLocation = Defaults[.attachLocation]
+        self.attachLocation = attachLocation
+        if (attachLocation && CLLocationManager.authorizationStatus().hasAuthorization) {
+            self.recentLocation = locationManager.location?.coordinate
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -86,17 +90,18 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
             //
             return
         }
-        
-        dispatch_promise { () -> JSON in
-            let db = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStorage
-            let account = try db.fetch(Request<Account>()).first!
-            let config = account.createAPIConfig()
-            let auth = account.createAuthorization()
-            let microBlog = MicroBlogService(endpoint: config.createEndpoint("api"), auth: auth)
-            return try microBlog.updateStatus(text)
-        }.error { error in
-            debugPrint(error)
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let db = appDelegate.coreDataStorage
+        let bos = appDelegate.backgroundOperationService
+        let account = try! db.fetch(Request<Account>()).first!
+        let update = StatusUpdate(accounts: [account], text: text)
+        if (attachLocation && recentLocation != nil) {
+            update.location = (recentLocation!.latitude, recentLocation!.longitude)
+            update.displayCoordinates = Defaults[.attachPreciseLocation]
         }
+        update.media = self.attachedMedia
+        bos.updateStatus(update)
+        popupController.dismiss()
     }
     
     @IBAction func attachLocationClicked(sender: UIBarButtonItem) {
@@ -111,6 +116,45 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         }
     }
     
+    @IBAction func attachMediaClicked(sender: UIBarButtonItem) {
+        let picker = UIImagePickerController()
+        picker.sourceType = .PhotoLibrary
+        firstly { () -> Promise<[String: AnyObject]> in
+            return promiseViewController(picker, animated: true, completion: nil)
+        }.then { (info) -> Promise<NSData> in
+            return Promise { fullfill, reject in
+                let imageUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
+                let mgr = PHImageManager()
+                let asset = PHAsset.fetchAssetsWithALAssetURLs([imageUrl], options: nil).firstObject as! PHAsset
+                mgr.requestImageDataForAsset(asset, options: nil, resultHandler: { (data, dataUTI, orientation, info) in
+                    if (data != nil) {
+                        fullfill(data!)
+                    }
+                })
+            }
+        }.thenInBackground { data -> MediaUpdate? in
+            guard let path = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true).first else {
+                return nil
+            }
+            let writePath = NSURL(fileURLWithPath: path).URLByAppendingPathComponent("temp_image").path!
+            let fm = NSFileManager.defaultManager()
+            if (fm.fileExistsAtPath(writePath)) {
+                try fm.removeItemAtPath(writePath)
+            }
+            fm.createFileAtPath(writePath, contents: data, attributes: nil)
+            let media = MediaUpdate(path: writePath, type: .Image)
+            return media
+        }.then { media -> Void in
+            if (media != nil) {
+                self.attachedMedia = [media!]
+            } else {
+                self.attachedMedia = nil
+            }
+        }
+        
+        
+    }
+    
     func textViewDidChange(textView: UITextView) {
         let textLength = TwitterText.tweetLength(textView.text)
         sendTextCountView.text = "\(textLength)"
@@ -119,9 +163,9 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     
     func showLocationViewController() {
         let vc = storyboard?.instantiateViewControllerWithIdentifier("ComposeLocation") as! ComposeLocationController
-        vc.callback = { location in
+        vc.callback = { location, precise in
             self.attachLocation = true
-            self.currentLocation = location
+            self.recentLocation = location
         }
         popupController.pushViewController(vc, animated: true)
     }
@@ -132,6 +176,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         }
         locationAuthorizationGrantedSelector = nil
     }
+    
     
     /*
     // MARK: - Navigation

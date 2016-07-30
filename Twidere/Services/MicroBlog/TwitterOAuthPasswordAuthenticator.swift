@@ -98,7 +98,7 @@ class TwitterOAuthPasswordAuthenticator {
         
         let data: AuthorizeResponseData
         do {
-            try data = rest.makeTypedRequest(.POST, path: "/oauth/authorize", headers: requestHeaders, forms: forms, converter: AuthorizeResponseData.parseFromHttpResult)
+            data = try rest.makeTypedRequest(.POST, path: "/oauth/authorize", headers: requestHeaders, forms: forms, converter: AuthorizeResponseData.parseFromHttpResult)
         }
         data.referer = authorizeRequestData.referer
         return data
@@ -181,7 +181,7 @@ internal class AuthorizeResponseData {
         var redirectAfterLogin: String? = nil
     }
     
-    static func parseFromHttpResult(result: HttpResult) throws -> AuthorizeResponseData {
+    static func parseFromHttpResult(result: HttpResult) -> AuthorizeResponseData {
         let data = AuthorizeResponseData()
         
         if let doc = Kanna.HTML(html: result.data!, encoding: NSUTF8StringEncoding) {
@@ -189,7 +189,7 @@ internal class AuthorizeResponseData {
             // Find OAuth pin
             if let oauthPin = doc.at_css("div#oauth_pin") {
                 let numericSet = NSCharacterSet.decimalDigitCharacterSet().invertedSet
-                data.oauthPin = try oauthPin.css("*").filter({ (child) -> Bool in
+                data.oauthPin = oauthPin.css("*").filter({ (child) -> Bool in
                     if (child.text == nil) {
                         return false
                     }

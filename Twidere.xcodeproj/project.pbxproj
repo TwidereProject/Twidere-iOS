@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14DA347287DCC1138C963A95 /* Pods_TwidereUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC214B88237D6566F9009BF0 /* Pods_TwidereUITests.framework */; };
-		9D4BE43835B8525E57817C98 /* Pods_TwidereTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF94AA18082E4DEDB3FCFF75 /* Pods_TwidereTests.framework */; };
+		0D8D15D94D94BA9AD6B5B1A9 /* Pods_Twidere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DFD5D852A74C01535ECC7C /* Pods_Twidere.framework */; };
+		9BFEB51392A372D8456512C6 /* Pods_TwidereUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8EEA59D539DFC4D335BA470 /* Pods_TwidereUITests.framework */; };
+		A1768D3CB2F6F92B12ADD984 /* Pods_TwidereTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C41E7F0E646E87745D27DB9 /* Pods_TwidereTests.framework */; };
+		C57AEB78D5B67CDF026B3DC5 /* FlatStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AE4176FEA423CC3BED2CF /* FlatStatus.swift */; };
 		CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529E61CF7F35300E06364 /* AppDelegate.swift */; };
 		CE0529E91CF7F35300E06364 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529E81CF7F35300E06364 /* MainViewController.swift */; };
 		CE0529EC1CF7F35300E06364 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0529EA1CF7F35300E06364 /* Main.storyboard */; };
@@ -17,6 +19,7 @@
 		CE0529F41CF7F35300E06364 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0529F21CF7F35300E06364 /* LaunchScreen.storyboard */; };
 		CE0529FF1CF7F35300E06364 /* TwidereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529FE1CF7F35300E06364 /* TwidereTests.swift */; };
 		CE052A0A1CF7F35300E06364 /* TwidereUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE052A091CF7F35300E06364 /* TwidereUITests.swift */; };
+		CE29039E1D4CEF2A0056D0E2 /* AccountExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE29039D1D4CEF2A0056D0E2 /* AccountExtensions.swift */; };
 		CE95747D1D3210A300504D52 /* CustomAPIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */; };
 		CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95747F1D3216BC00504D52 /* ServiceConstants.swift */; };
 		CE9574821D32186A00504D52 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574811D32186A00504D52 /* UIConstants.swift */; };
@@ -29,10 +32,15 @@
 		CE9574981D33D87200504D52 /* NetworkPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574971D33D87200504D52 /* NetworkPreferencesController.swift */; };
 		CE95749A1D33DC7B00504D52 /* BasePreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574991D33DC7B00504D52 /* BasePreferencesController.swift */; };
 		CE95749C1D33DEC300504D52 /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95749B1D33DEC300504D52 /* PreferencesController.swift */; };
-		CE9574AB1D33F04600504D52 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574A71D33F04600504D52 /* Account.swift */; };
-		CE9574B41D33F09200504D52 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574AF1D33F09200504D52 /* User.swift */; };
-		CE9574B71D33F09200504D52 /* AccountUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574B21D33F09200504D52 /* AccountUser.swift */; };
 		CE9574B91D349C3F00504D52 /* BrowserSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574B81D349C3F00504D52 /* BrowserSignInController.swift */; };
+		CEA2212A1D4CA47E00F25516 /* Account+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA221221D4CA47E00F25516 /* Account+CoreDataProperties.swift */; };
+		CEA2212B1D4CA47E00F25516 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA221231D4CA47E00F25516 /* Account.swift */; };
+		CEA2212C1D4CA47E00F25516 /* AccountUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA221241D4CA47E00F25516 /* AccountUser+CoreDataProperties.swift */; };
+		CEA2212D1D4CA47E00F25516 /* AccountUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA221251D4CA47E00F25516 /* AccountUser.swift */; };
+		CEA2212E1D4CA47E00F25516 /* AccountConfig+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA221261D4CA47E00F25516 /* AccountConfig+CoreDataProperties.swift */; };
+		CEA2212F1D4CA47E00F25516 /* AccountConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA221271D4CA47E00F25516 /* AccountConfig.swift */; };
+		CEA221301D4CA47E00F25516 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA221281D4CA47E00F25516 /* User+CoreDataProperties.swift */; };
+		CEA221311D4CA47E00F25516 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA221291D4CA47E00F25516 /* User.swift */; };
 		CEA2E2A71D34C1610095BC57 /* DefaultAPISettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2A61D34C1610095BC57 /* DefaultAPISettingsController.swift */; };
 		CEA2E2AA1D34C2090095BC57 /* DefaultAPIConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEA2E2A91D34C2090095BC57 /* DefaultAPIConfig.plist */; };
 		CEA2E2AC1D3549480095BC57 /* UserKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2AB1D3549480095BC57 /* UserKey.swift */; };
@@ -43,9 +51,10 @@
 		CEA2E2C51D37C2590095BC57 /* ComposeLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2C41D37C2590095BC57 /* ComposeLocationController.swift */; };
 		CEA2E2CB1D3A6A410095BC57 /* HomeDrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2CA1D3A6A410095BC57 /* HomeDrawerController.swift */; };
 		CEA2E2CD1D3A732C0095BC57 /* AccountUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2CC1D3A732C0095BC57 /* AccountUtils.swift */; };
-		CEA2E2CF1D3A779B0095BC57 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2CE1D3A779B0095BC57 /* ImageViewExtension.swift */; };
+		CEA2E2CF1D3A779B0095BC57 /* ImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2CE1D3A779B0095BC57 /* ImageViewExtensions.swift */; };
 		CEA2E2D11D3A7EA20095BC57 /* HomeRootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2D01D3A7EA20095BC57 /* HomeRootController.swift */; };
 		CEA2E2D31D3B42180095BC57 /* AccountsManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2D21D3B42180095BC57 /* AccountsManagerController.swift */; };
+		CEBED5FB1D4C86C700619D1C /* BackgroundOperationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBED5FA1D4C86C700619D1C /* BackgroundOperationService.swift */; };
 		CED41F2F1D2FF7C80089E0B6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */; };
 		CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F331D2FF88D0089E0B6 /* SignInController.swift */; };
 		CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED41F351D3085FF0089E0B6 /* SignIn.storyboard */; };
@@ -54,7 +63,6 @@
 		CED41F431D30E6E40089E0B6 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F421D30E6E40089E0B6 /* Authorization.swift */; };
 		CED41F451D313B6C0089E0B6 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED41F441D313B6C0089E0B6 /* Preferences.storyboard */; };
 		CED41F481D3147460089E0B6 /* APIEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F471D3147460089E0B6 /* APIEditorController.swift */; };
-		D611FAABFD4DCD77510DCFB4 /* Pods_Twidere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 037017B26B8439F9B3CFC79D /* Pods_Twidere.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,11 +83,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		037017B26B8439F9B3CFC79D /* Pods_Twidere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twidere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		51BA754A488D49689CC24AA6 /* Pods-Twidere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twidere/Pods-Twidere.debug.xcconfig"; sourceTree = "<group>"; };
-		6BDDB8AF0225C9A01AA45F67 /* Pods-TwidereTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwidereTests/Pods-TwidereTests.debug.xcconfig"; sourceTree = "<group>"; };
-		7E3CCA37F3E90A793CF08821 /* Pods-TwidereUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwidereUITests/Pods-TwidereUITests.release.xcconfig"; sourceTree = "<group>"; };
-		AC214B88237D6566F9009BF0 /* Pods_TwidereUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwidereUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		41DFD5D852A74C01535ECC7C /* Pods_Twidere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twidere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F3B25BEBB89036DA4573C07 /* Pods-Twidere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twidere/Pods-Twidere.debug.xcconfig"; sourceTree = "<group>"; };
+		5BFBE1F43BD098F08DB9F43E /* Pods-TwidereTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwidereTests/Pods-TwidereTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5C41E7F0E646E87745D27DB9 /* Pods_TwidereTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwidereTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D2E045F4B204E47A7539561 /* Pods-TwidereUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwidereUITests/Pods-TwidereUITests.release.xcconfig"; sourceTree = "<group>"; };
+		83F73368C76F5292ED9EE15E /* Pods-TwidereUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwidereUITests/Pods-TwidereUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		ACF9688E2157FC9254A53E97 /* Pods-Twidere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twidere/Pods-Twidere.release.xcconfig"; sourceTree = "<group>"; };
+		C4A433B9B1D9B8C5EB5F0F2A /* Pods-TwidereTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwidereTests/Pods-TwidereTests.release.xcconfig"; sourceTree = "<group>"; };
+		C57AE4176FEA423CC3BED2CF /* FlatStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatStatus.swift; sourceTree = "<group>"; };
 		CE0529E31CF7F35300E06364 /* Twidere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twidere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0529E61CF7F35300E06364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE0529E81CF7F35300E06364 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = ViewControllers/MainViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +106,7 @@
 		CE052A051CF7F35300E06364 /* TwidereUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwidereUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE052A091CF7F35300E06364 /* TwidereUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwidereUITests.swift; sourceTree = "<group>"; };
 		CE052A0B1CF7F35300E06364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE29039D1D4CEF2A0056D0E2 /* AccountExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountExtensions.swift; path = Extensions/Model/AccountExtensions.swift; sourceTree = "<group>"; };
 		CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomAPIConfig.swift; path = Models/CustomAPIConfig.swift; sourceTree = "<group>"; };
 		CE95747F1D3216BC00504D52 /* ServiceConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceConstants.swift; path = Constants/ServiceConstants.swift; sourceTree = "<group>"; };
 		CE9574811D32186A00504D52 /* UIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIConstants.swift; path = Constants/UIConstants.swift; sourceTree = "<group>"; };
@@ -106,10 +119,15 @@
 		CE9574971D33D87200504D52 /* NetworkPreferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkPreferencesController.swift; path = ViewControllers/Preferences/NetworkPreferencesController.swift; sourceTree = "<group>"; };
 		CE9574991D33DC7B00504D52 /* BasePreferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasePreferencesController.swift; path = ViewControllers/Preferences/BasePreferencesController.swift; sourceTree = "<group>"; };
 		CE95749B1D33DEC300504D52 /* PreferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreferencesController.swift; path = ViewControllers/Preferences/PreferencesController.swift; sourceTree = "<group>"; };
-		CE9574A71D33F04600504D52 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = Models/Account.swift; sourceTree = "<group>"; };
-		CE9574AF1D33F09200504D52 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
-		CE9574B21D33F09200504D52 /* AccountUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountUser.swift; path = Models/AccountUser.swift; sourceTree = "<group>"; };
 		CE9574B81D349C3F00504D52 /* BrowserSignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowserSignInController.swift; path = ViewControllers/SignIn/BrowserSignInController.swift; sourceTree = "<group>"; };
+		CEA221221D4CA47E00F25516 /* Account+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Account+CoreDataProperties.swift"; path = "Models/CoreData/Account+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CEA221231D4CA47E00F25516 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = Models/CoreData/Account.swift; sourceTree = "<group>"; };
+		CEA221241D4CA47E00F25516 /* AccountUser+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AccountUser+CoreDataProperties.swift"; path = "Models/CoreData/AccountUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CEA221251D4CA47E00F25516 /* AccountUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountUser.swift; path = Models/CoreData/AccountUser.swift; sourceTree = "<group>"; };
+		CEA221261D4CA47E00F25516 /* AccountConfig+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AccountConfig+CoreDataProperties.swift"; path = "Models/CoreData/AccountConfig+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CEA221271D4CA47E00F25516 /* AccountConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountConfig.swift; path = Models/CoreData/AccountConfig.swift; sourceTree = "<group>"; };
+		CEA221281D4CA47E00F25516 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "Models/CoreData/User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CEA221291D4CA47E00F25516 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/CoreData/User.swift; sourceTree = "<group>"; };
 		CEA2E2A61D34C1610095BC57 /* DefaultAPISettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultAPISettingsController.swift; path = ViewControllers/Preferences/DefaultAPISettingsController.swift; sourceTree = "<group>"; };
 		CEA2E2A91D34C2090095BC57 /* DefaultAPIConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultAPIConfig.plist; path = Resources/Data/DefaultAPIConfig.plist; sourceTree = "<group>"; };
 		CEA2E2AB1D3549480095BC57 /* UserKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserKey.swift; path = Models/UserKey.swift; sourceTree = "<group>"; };
@@ -120,9 +138,10 @@
 		CEA2E2C41D37C2590095BC57 /* ComposeLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComposeLocationController.swift; path = Views/Compose/ComposeLocationController.swift; sourceTree = "<group>"; };
 		CEA2E2CA1D3A6A410095BC57 /* HomeDrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeDrawerController.swift; path = ViewControllers/Home/HomeDrawerController.swift; sourceTree = "<group>"; };
 		CEA2E2CC1D3A732C0095BC57 /* AccountUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountUtils.swift; path = Utils/AccountUtils.swift; sourceTree = "<group>"; };
-		CEA2E2CE1D3A779B0095BC57 /* ImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewExtension.swift; path = Utils/Extensions/ImageViewExtension.swift; sourceTree = "<group>"; };
+		CEA2E2CE1D3A779B0095BC57 /* ImageViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewExtensions.swift; path = Utils/Extensions/ImageViewExtensions.swift; sourceTree = "<group>"; };
 		CEA2E2D01D3A7EA20095BC57 /* HomeRootController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeRootController.swift; path = ViewControllers/Home/HomeRootController.swift; sourceTree = "<group>"; };
 		CEA2E2D21D3B42180095BC57 /* AccountsManagerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountsManagerController.swift; path = ViewControllers/SignIn/AccountsManagerController.swift; sourceTree = "<group>"; };
+		CEBED5FA1D4C86C700619D1C /* BackgroundOperationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundOperationService.swift; path = Services/BackgroundOperationService.swift; sourceTree = "<group>"; };
 		CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ViewControllers/Home/HomeViewController.swift; sourceTree = "<group>"; };
 		CED41F331D2FF88D0089E0B6 /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInController.swift; path = ViewControllers/SignIn/SignInController.swift; sourceTree = "<group>"; };
 		CED41F351D3085FF0089E0B6 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SignIn.storyboard; path = Resources/Storyboards/SignIn.storyboard; sourceTree = "<group>"; };
@@ -131,10 +150,7 @@
 		CED41F421D30E6E40089E0B6 /* Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Authorization.swift; path = Services/RestService/Authorization.swift; sourceTree = "<group>"; };
 		CED41F441D313B6C0089E0B6 /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Preferences.storyboard; path = Resources/Storyboards/Preferences.storyboard; sourceTree = "<group>"; };
 		CED41F471D3147460089E0B6 /* APIEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIEditorController.swift; path = ViewControllers/Preferences/APIEditorController.swift; sourceTree = "<group>"; };
-		DDBCED92BD42C2E2526DC914 /* Pods-TwidereTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwidereTests/Pods-TwidereTests.release.xcconfig"; sourceTree = "<group>"; };
-		E9757B62A9B9B1A6C932B5D4 /* Pods-Twidere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twidere/Pods-Twidere.release.xcconfig"; sourceTree = "<group>"; };
-		FF3F96F23DD98974884726EF /* Pods-TwidereUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwidereUITests/Pods-TwidereUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		FF94AA18082E4DEDB3FCFF75 /* Pods_TwidereTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwidereTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8EEA59D539DFC4D335BA470 /* Pods_TwidereUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwidereUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D611FAABFD4DCD77510DCFB4 /* Pods_Twidere.framework in Frameworks */,
+				0D8D15D94D94BA9AD6B5B1A9 /* Pods_Twidere.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,7 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D4BE43835B8525E57817C98 /* Pods_TwidereTests.framework in Frameworks */,
+				A1768D3CB2F6F92B12ADD984 /* Pods_TwidereTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,19 +174,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14DA347287DCC1138C963A95 /* Pods_TwidereUITests.framework in Frameworks */,
+				9BFEB51392A372D8456512C6 /* Pods_TwidereUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3E09741E0B00239337E17107 /* Frameworks */ = {
+		6CBAFF4D939AB118419D1C2D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				037017B26B8439F9B3CFC79D /* Pods_Twidere.framework */,
-				FF94AA18082E4DEDB3FCFF75 /* Pods_TwidereTests.framework */,
-				AC214B88237D6566F9009BF0 /* Pods_TwidereUITests.framework */,
+				4F3B25BEBB89036DA4573C07 /* Pods-Twidere.debug.xcconfig */,
+				ACF9688E2157FC9254A53E97 /* Pods-Twidere.release.xcconfig */,
+				5BFBE1F43BD098F08DB9F43E /* Pods-TwidereTests.debug.xcconfig */,
+				C4A433B9B1D9B8C5EB5F0F2A /* Pods-TwidereTests.release.xcconfig */,
+				83F73368C76F5292ED9EE15E /* Pods-TwidereUITests.debug.xcconfig */,
+				5D2E045F4B204E47A7539561 /* Pods-TwidereUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B057E062307CF69285F30F80 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				41DFD5D852A74C01535ECC7C /* Pods_Twidere.framework */,
+				5C41E7F0E646E87745D27DB9 /* Pods_TwidereTests.framework */,
+				D8EEA59D539DFC4D335BA470 /* Pods_TwidereUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -182,8 +211,8 @@
 				CE0529FD1CF7F35300E06364 /* TwidereTests */,
 				CE052A081CF7F35300E06364 /* TwidereUITests */,
 				CE0529E41CF7F35300E06364 /* Products */,
-				EAF7E14C44D8FD073EBE7F25 /* Pods */,
-				3E09741E0B00239337E17107 /* Frameworks */,
+				6CBAFF4D939AB118419D1C2D /* Pods */,
+				B057E062307CF69285F30F80 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -233,15 +262,22 @@
 			path = TwidereUITests;
 			sourceTree = "<group>";
 		};
+		CE29039C1D4CEF0B0056D0E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE29039D1D4CEF2A0056D0E2 /* AccountExtensions.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		CE95747B1D32107800504D52 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CEA221321D4CA48200F25516 /* CoreData */,
 				CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */,
-				CE9574A71D33F04600504D52 /* Account.swift */,
-				CE9574AF1D33F09200504D52 /* User.swift */,
-				CE9574B21D33F09200504D52 /* AccountUser.swift */,
 				CEA2E2AB1D3549480095BC57 /* UserKey.swift */,
 				CEA2E2BD1D3761780095BC57 /* StatusUpdate.swift */,
+				C57AE4176FEA423CC3BED2CF /* FlatStatus.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -274,6 +310,21 @@
 				CEA2E2CC1D3A732C0095BC57 /* AccountUtils.swift */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		CEA221321D4CA48200F25516 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				CEA221221D4CA47E00F25516 /* Account+CoreDataProperties.swift */,
+				CEA221231D4CA47E00F25516 /* Account.swift */,
+				CEA221241D4CA47E00F25516 /* AccountUser+CoreDataProperties.swift */,
+				CEA221251D4CA47E00F25516 /* AccountUser.swift */,
+				CEA221261D4CA47E00F25516 /* AccountConfig+CoreDataProperties.swift */,
+				CEA221271D4CA47E00F25516 /* AccountConfig.swift */,
+				CEA221281D4CA47E00F25516 /* User+CoreDataProperties.swift */,
+				CEA221291D4CA47E00F25516 /* User.swift */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 		CEA2E2A81D34C1EF0095BC57 /* Data */ = {
@@ -330,8 +381,9 @@
 		CEA2E2BF1D379CB10095BC57 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CE29039C1D4CEF0B0056D0E2 /* Model */,
 				CEA2E2C01D379CD90095BC57 /* CoreLocationExtensions.swift */,
-				CEA2E2CE1D3A779B0095BC57 /* ImageViewExtension.swift */,
+				CEA2E2CE1D3A779B0095BC57 /* ImageViewExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -400,6 +452,7 @@
 			children = (
 				CE9574831D32220C00504D52 /* RestService */,
 				CED41F3F1D30E6760089E0B6 /* MicroBlog */,
+				CEBED5FA1D4C86C700619D1C /* BackgroundOperationService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -426,19 +479,6 @@
 			name = Preferences;
 			sourceTree = "<group>";
 		};
-		EAF7E14C44D8FD073EBE7F25 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				51BA754A488D49689CC24AA6 /* Pods-Twidere.debug.xcconfig */,
-				E9757B62A9B9B1A6C932B5D4 /* Pods-Twidere.release.xcconfig */,
-				6BDDB8AF0225C9A01AA45F67 /* Pods-TwidereTests.debug.xcconfig */,
-				DDBCED92BD42C2E2526DC914 /* Pods-TwidereTests.release.xcconfig */,
-				FF3F96F23DD98974884726EF /* Pods-TwidereUITests.debug.xcconfig */,
-				7E3CCA37F3E90A793CF08821 /* Pods-TwidereUITests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -452,6 +492,7 @@
 				CE0529E11CF7F35300E06364 /* Resources */,
 				6F9612AC9D56AA43E51F5FFF /* [CP] Embed Pods Frameworks */,
 				3138F5105F3750E80D184335 /* [CP] Copy Pods Resources */,
+				3B56E34639DA55BDE8C95438 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -627,6 +668,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		3B56E34639DA55BDE8C95438 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Twidere/Pods-Twidere-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6F9612AC9D56AA43E51F5FFF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -724,6 +780,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEA2212F1D4CA47E00F25516 /* AccountConfig.swift in Sources */,
 				CEA2E2AC1D3549480095BC57 /* UserKey.swift in Sources */,
 				CE0529E91CF7F35300E06364 /* MainViewController.swift in Sources */,
 				CEA2E2D11D3A7EA20095BC57 /* HomeRootController.swift in Sources */,
@@ -737,14 +794,17 @@
 				CED41F411D30E6B80089E0B6 /* Endpoint.swift in Sources */,
 				CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */,
 				CE95749A1D33DC7B00504D52 /* BasePreferencesController.swift in Sources */,
-				CE9574AB1D33F04600504D52 /* Account.swift in Sources */,
+				CEA2212B1D4CA47E00F25516 /* Account.swift in Sources */,
 				CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */,
 				CED41F481D3147460089E0B6 /* APIEditorController.swift in Sources */,
+				CEA221301D4CA47E00F25516 /* User+CoreDataProperties.swift in Sources */,
 				CE9574871D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift in Sources */,
 				CEA2E2C11D379CD90095BC57 /* CoreLocationExtensions.swift in Sources */,
 				CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */,
 				CE95749C1D33DEC300504D52 /* PreferencesController.swift in Sources */,
+				CEA221311D4CA47E00F25516 /* User.swift in Sources */,
 				CE95748B1D322CC700504D52 /* ModelConverter.swift in Sources */,
+				CEBED5FB1D4C86C700619D1C /* BackgroundOperationService.swift in Sources */,
 				CEA2E2B11D3681FD0095BC57 /* ComposeController.swift in Sources */,
 				CE9574851D32221A00504D52 /* RestClient.swift in Sources */,
 				CED41F2F1D2FF7C80089E0B6 /* HomeViewController.swift in Sources */,
@@ -752,14 +812,18 @@
 				CEA2E2CD1D3A732C0095BC57 /* AccountUtils.swift in Sources */,
 				CE9574B91D349C3F00504D52 /* BrowserSignInController.swift in Sources */,
 				CEA2E2BE1D3761780095BC57 /* StatusUpdate.swift in Sources */,
+				CEA2212D1D4CA47E00F25516 /* AccountUser.swift in Sources */,
 				CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */,
-				CE9574B71D33F09200504D52 /* AccountUser.swift in Sources */,
-				CE9574B41D33F09200504D52 /* User.swift in Sources */,
 				CE9574891D32232600504D52 /* OAuthService.swift in Sources */,
-				CEA2E2CF1D3A779B0095BC57 /* ImageViewExtension.swift in Sources */,
+				CEA2212E1D4CA47E00F25516 /* AccountConfig+CoreDataProperties.swift in Sources */,
+				CEA2E2CF1D3A779B0095BC57 /* ImageViewExtensions.swift in Sources */,
+				CEA2212A1D4CA47E00F25516 /* Account+CoreDataProperties.swift in Sources */,
 				CEA2E2A71D34C1610095BC57 /* DefaultAPISettingsController.swift in Sources */,
 				CE95747D1D3210A300504D52 /* CustomAPIConfig.swift in Sources */,
+				CEA2212C1D4CA47E00F25516 /* AccountUser+CoreDataProperties.swift in Sources */,
 				CE9574821D32186A00504D52 /* UIConstants.swift in Sources */,
+				C57AEB78D5B67CDF026B3DC5 /* FlatStatus.swift in Sources */,
+				CE29039E1D4CEF2A0056D0E2 /* AccountExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -901,7 +965,7 @@
 		};
 		CE052A0F1CF7F35300E06364 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51BA754A488D49689CC24AA6 /* Pods-Twidere.debug.xcconfig */;
+			baseConfigurationReference = 4F3B25BEBB89036DA4573C07 /* Pods-Twidere.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -916,7 +980,7 @@
 		};
 		CE052A101CF7F35300E06364 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E9757B62A9B9B1A6C932B5D4 /* Pods-Twidere.release.xcconfig */;
+			baseConfigurationReference = ACF9688E2157FC9254A53E97 /* Pods-Twidere.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -930,7 +994,7 @@
 		};
 		CE052A121CF7F35300E06364 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BDDB8AF0225C9A01AA45F67 /* Pods-TwidereTests.debug.xcconfig */;
+			baseConfigurationReference = 5BFBE1F43BD098F08DB9F43E /* Pods-TwidereTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TwidereTests/Info.plist;
@@ -943,7 +1007,7 @@
 		};
 		CE052A131CF7F35300E06364 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DDBCED92BD42C2E2526DC914 /* Pods-TwidereTests.release.xcconfig */;
+			baseConfigurationReference = C4A433B9B1D9B8C5EB5F0F2A /* Pods-TwidereTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TwidereTests/Info.plist;
@@ -956,7 +1020,7 @@
 		};
 		CE052A151CF7F35300E06364 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FF3F96F23DD98974884726EF /* Pods-TwidereUITests.debug.xcconfig */;
+			baseConfigurationReference = 83F73368C76F5292ED9EE15E /* Pods-TwidereUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = TwidereUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -968,7 +1032,7 @@
 		};
 		CE052A161CF7F35300E06364 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E3CCA37F3E90A793CF08821 /* Pods-TwidereUITests.release.xcconfig */;
+			baseConfigurationReference = 5D2E045F4B204E47A7539561 /* Pods-TwidereUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = TwidereUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

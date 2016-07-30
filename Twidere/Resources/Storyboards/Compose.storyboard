@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tu4-R0-Mpc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tu4-R0-Mpc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -36,10 +36,14 @@
                                             <action selector="attachLocationClicked:" destination="tu4-R0-Mpc" id="v2r-UX-zIQ"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="8" style="plain" systemItem="fixedSpace" id="xkd-g2-oHK"/>
-                                    <barButtonItem image="Toolbar Camera" id="Brs-eS-UYG" userLabel="Camera"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="S6w-Z7-JTB"/>
-                                    <barButtonItem style="plain" id="uhw-oU-hs6" userLabel="Send">
+                                    <barButtonItem width="8" systemItem="fixedSpace" id="xkd-g2-oHK"/>
+                                    <barButtonItem image="Toolbar Camera" id="Brs-eS-UYG" userLabel="Camera">
+                                        <connections>
+                                            <action selector="attachMediaClicked:" destination="tu4-R0-Mpc" id="9nT-rB-3cf"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="flexibleSpace" id="S6w-Z7-JTB"/>
+                                    <barButtonItem id="uhw-oU-hs6" userLabel="Send">
                                         <view key="customView" autoresizesSubviews="NO" contentMode="scaleToFill" id="8uy-J4-O9Q">
                                             <rect key="frame" x="216" y="5.5" width="68" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -50,7 +54,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="140" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5yM-oa-zYg" userLabel="Text Count">
                                                             <rect key="frame" x="0.0" y="0.0" width="38" height="22"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Toolbar Send" translatesAutoresizingMaskIntoConstraints="NO" id="k5c-TO-0bs" userLabel="Send Icon">
@@ -86,16 +90,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Compose" id="S1u-qV-2NS">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="ngH-FH-bHb">
-                            <view key="customView" contentMode="scaleToFill" id="9Zv-5j-t4e">
+                        <barButtonItem key="rightBarButtonItem" id="ngH-FH-bHb">
+                            <view key="customView" opaque="NO" contentMode="scaleToFill" id="9Zv-5j-t4e">
                                 <rect key="frame" x="251" y="5" width="33" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Image Default" translatesAutoresizingMaskIntoConstraints="NO" id="Pzb-dc-g08">
+                                    <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Image Default" translatesAutoresizingMaskIntoConstraints="NO" id="Pzb-dc-g08">
                                         <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Pzb-dc-g08" secondAttribute="trailing" id="NKu-Jd-Jlq"/>
                                     <constraint firstAttribute="bottom" secondItem="Pzb-dc-g08" secondAttribute="bottom" id="YQE-At-jZG"/>
@@ -154,7 +157,7 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QfF-jh-sik">
                                 <rect key="frame" x="0.0" y="196" width="300" height="44"/>
                                 <items>
-                                    <barButtonItem style="plain" id="4An-JR-ZrP">
+                                    <barButtonItem id="4An-JR-ZrP">
                                         <view key="customView" opaque="NO" contentMode="scaleToFill" id="YLM-Ha-K41">
                                             <rect key="frame" x="16" y="5.5" width="160" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -165,7 +168,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Precise location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8A-kf-IvZ">
                                                             <rect key="frame" x="0.0" y="0.0" width="109" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="No location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VT0-Og-23i">
@@ -185,8 +188,8 @@
                                             </constraints>
                                         </view>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="sea-F5-KQZ"/>
-                                    <barButtonItem style="plain" id="AGA-sY-vAV">
+                                    <barButtonItem systemItem="flexibleSpace" id="sea-F5-KQZ"/>
+                                    <barButtonItem id="AGA-sY-vAV">
                                         <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Ccc-rX-4hu">
                                             <rect key="frame" x="235" y="6.5" width="51" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

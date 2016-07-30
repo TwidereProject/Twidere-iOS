@@ -52,9 +52,21 @@ class RestClient {
                              authOverride: Authorization? = nil) -> HttpResult {
         let url = constructUrl(path, queries: queries)
         let finalAuth: Authorization? = authOverride ?? auth
-        let finalHeaders = constructHeaders(method, path: path, headers: headers, queries: queries, forms: params, auth: finalAuth)
-        
-        
+        let isMultipart = params?.contains { (k, v) -> Bool in v is NSData } ?? false
+        var finalHeaders = constructHeaders(method, path: path, headers: headers, queries: queries, forms: params, auth: finalAuth, isMultipart: isMultipart)
+
+        if (isMultipart) {
+            let multipart = MultipartFormData()
+            params?.forEach{ (k, v) in
+                if (v is NSData) {
+                    multipart.appendBodyPart(data: v as! NSData, name: k, mimeType: "application/octet-stream")
+                } else {
+                    multipart.appendBodyPart(data: "\(v)".dataUsingEncoding(NSUTF8StringEncoding)!, name: k)
+                }
+            }
+            finalHeaders["Content-Type"] = multipart.contentType
+            return Alamofire.upload(method, url, headers: finalHeaders, data: try! multipart.encode()).response()
+        }
         return Alamofire.request(method, url, parameters: params, encoding: .URL, headers: finalHeaders).response()
     }
     
@@ -67,7 +79,8 @@ class RestClient {
                                   headers: [String: String]? = nil,
                                   queries: [String: String]? = nil,
                                   forms: [String:AnyObject]? = nil,
-                                  auth: Authorization?) -> [String: String] {
+                                  auth: Authorization?,
+                                  isMultipart: Bool) -> [String: String] {
         var mergedHeaders = [String: String]()
         if (headers != nil) {
             for (k, v) in headers! {
@@ -75,7 +88,7 @@ class RestClient {
             }
         }
         if (auth != nil && auth!.hasAuthorization) {
-            mergedHeaders["Authorization"] = auth!.getHeader(method.rawValue, endpoint: endpoint, path: path, queries: queries, forms: forms)!
+            mergedHeaders["Authorization"] = auth!.getHeader(method.rawValue, endpoint: endpoint, path: path, queries: queries, forms: isMultipart ? nil : forms)!
         }
         if (userAgent != nil) {
             mergedHeaders["User-Agent"] = userAgent!
