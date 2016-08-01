@@ -1,0 +1,43 @@
+%{
+    execfile(modelPath)
+}%
+import SQLite
+
+class ${modelName} {
+
+% for (fieldName, propertyName, propertyType) in fields:
+    % if propertyType.endswith('?'):
+    var ${propertyName}: ${propertyType[:-1]}!
+    % else:
+    var ${propertyName}: ${propertyType}!
+    %end
+%end
+
+    init() {
+
+    }
+
+    init(row: Row) {
+    % for (fieldName, propertyName, propertyType) in fields:
+        self.${propertyName} = row.get(RowIndices.${propertyName})
+    %end
+    }
+
+    class RowIndices {
+
+    % for (fieldName, propertyName, propertyType) in fields:
+        static let ${propertyName} = Expression<${propertyType}>("${fieldName}")
+    %end
+
+        static let columns: [Expressible] = [
+    % for idx, (fieldName, propertyName, propertyType) in enumerate(fields):
+        % if idx != len(fields) - 1:
+            ${propertyName},
+        % else:
+            ${propertyName}
+        %end
+    %end
+        ]
+    }
+
+}

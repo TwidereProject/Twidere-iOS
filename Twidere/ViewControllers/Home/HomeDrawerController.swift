@@ -36,7 +36,7 @@ class HomeDrawerController: UITableViewController {
         accountNameView.text = user.name
         accountScreenNameView.text = "@\(user.screenName!)"
         
-        accountProfileImageView.displayImage(user.profileImageUrl, placeholder: UIImage(named: "Profile Image Default"))
+        accountProfileImageView.displayImage(user.profileImageUrlForSize(.ReasonablySmall), placeholder: UIImage(named: "Profile Image Default"))
         accountProfileBannerView.displayImage(user.profileBannerUrl)
     }
 

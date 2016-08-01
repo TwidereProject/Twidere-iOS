@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         let account = try! defaultAccount()!
-        accountProfileImageView.displayImage(account.user!.profileImageUrl, placeholder: UIImage(named: "Profile Image Default"))
+        accountProfileImageView.displayImage(account.user!.profileImageUrlForSize(.ReasonablySmall), placeholder: UIImage(named: "Profile Image Default"))
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,10 +43,11 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func menuToggleClicked(sender: UITapGestureRecognizer) {
-           frostedViewController.presentMenuViewController()
+        frostedViewController.presentMenuViewController()
     }
     
     @IBAction func panGestureRecognized(sender: UIPanGestureRecognizer) {
         frostedViewController.panGestureRecognized(sender)
     }
+    
 }

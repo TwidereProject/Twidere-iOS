@@ -46,6 +46,38 @@ class MicroBlogService: RestClient {
         return try makeTypedRequest(.POST, path: "/media/upload.json", forms: forms,
                                     checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
     }
+    
+    func initUploadMedia(mediaType: String, totalBytes: Int, additionalOwners: [String]? = nil) throws -> JSON {
+        var forms: [String:AnyObject] = ["command": "INIT", "media_type": mediaType, "total_bytes": "\(totalBytes)"]
+        if (additionalOwners != nil) {
+            forms["additional_owners"] = additionalOwners!.joinWithSeparator(",")
+        }
+        return try makeTypedRequest(.POST, path: "/media/upload.json", forms: forms,
+                                    checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+    }
+    
+    func appendUploadMedia(mediaId: String, segmentIndex: Int, media: NSData) throws -> JSON {
+        var forms: [String:AnyObject] = ["command": "APPEND", "media_id": mediaId, "segment_index": "\(segmentIndex)"]
+        forms["media"] = media
+        return try makeTypedRequest(.POST, path: "/media/upload.json", forms: forms,
+                                    checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+    }
+    
+    func finalizeUploadMedia(mediaId: String) throws -> JSON {
+        let forms: [String:AnyObject] = ["command": "FINALIZE", "media_id": mediaId]
+        return try makeTypedRequest(.POST, path: "/media/upload.json", forms: forms,
+                                    checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+    }
+    
+    func getUploadMediaStatus(mediaId: String) throws -> JSON {
+        let queries: [String:String] = ["command": "STATUS", "media_id": mediaId]
+        return try makeTypedRequest(.POST, path: "/media/upload.json", queries: queries,
+                                    checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+    }
+    
+    func getHomeTimeline() throws -> JSON {
+        return try makeTypedRequest(.GET, path: "/statuses/home_timeline.json", checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+    }
 
     static func checkRequest(result: HttpResult) throws {
         if (!(result.response?.ok ?? false)) {

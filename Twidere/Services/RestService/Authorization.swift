@@ -64,12 +64,6 @@ class OAuthAuthorization: Authorization {
         return allowed
     }()
     
-    let queryUrlEncodeAllowedSet: NSCharacterSet = {
-        let allowed = NSMutableCharacterSet.alphanumericCharacterSet()
-        allowed.addCharactersInString("*-._")
-        allowed.addCharactersInString(" ")
-        return allowed
-    }()
     let charsetEncoding = "UTF-8"
     let oauthSignatureMethod = "HMAC-SHA1"
     let oauthVersion = "1.0"
@@ -152,18 +146,18 @@ class OAuthAuthorization: Authorization {
         } else {
             signingKey = encodeOAuth(consumerSecret) + "&";
         }
-        let signingKeyBytes = signingKey.utf8.map({$0})
+        let signingKeyBytes = signingKey.utf8.map{$0}
         
 
         let urlNoQuery = url.rangeOfString("?") != nil ? url.substringToIndex(url.rangeOfString("?")!.startIndex) : url
         let baseString = encodeOAuth(method) + "&" + encodeOAuth(urlNoQuery) + "&" + encodeOAuth(paramsString)
-        let baseBytes = baseString.utf8.map({$0})
-        let hmac: Array<UInt8> = try! Authenticator.HMAC(key: signingKeyBytes, variant: .sha1).authenticate(baseBytes)
+        let baseBytes = baseString.utf8.map{$0}
+        let hmac: [UInt8] = try! Authenticator.HMAC(key: signingKeyBytes, variant: .sha1).authenticate(baseBytes)
         return hmac.toBase64()!
     }
     
     private func generateOAuthNonce() -> String {
-        let bytesCount = 16 // number of bytes
+        let bytesCount = 8 // number of bytes
         var randomBytes = [UInt8](count: bytesCount, repeatedValue: 0) // array to hold randoms bytes
         
         // Gen random bytes
@@ -172,21 +166,14 @@ class OAuthAuthorization: Authorization {
         return randomBytes.toHexString()
     }
     
-    func encodeOAuth(str: String) -> String {
+    private func encodeOAuth(str: String) -> String {
         return str.stringByAddingPercentEncodingWithAllowedCharacters(oauthUrlEncodeAllowedSet)!
     }
     
-    private func encodeQuery(str: String) -> String {
-        return str.stringByAddingPercentEncodingWithAllowedCharacters(queryUrlEncodeAllowedSet)!.stringByReplacingOccurrencesOfString(" ", withString: "+")
-    }
-    
-    func encodeOAuthKeyValue(key: String, value: String) -> String {
+    private func encodeOAuthKeyValue(key: String, value: String) -> String {
         return encodeOAuth(key) + "=" + encodeOAuth(value)
     }
     
-    func encodeQueryKeyValue(key: String, value: String) -> String {
-        return encodeQuery(key) + "=" + encodeQuery(value)
-    }
 }
 
 class OAuthToken {

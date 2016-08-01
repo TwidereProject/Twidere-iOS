@@ -80,6 +80,17 @@ class UpdateStatusResult {
     
     let exception: ErrorType?
     
+    var successful: Bool {
+        get {
+            for item in statuses {
+                if (item == nil) {
+                    return false
+                }
+            }
+            return true
+        }
+    }
+    
     init(statuses: [FlatStatus?], exceptions: [ErrorType?]) {
         self.statuses = statuses
         self.exceptions = exceptions

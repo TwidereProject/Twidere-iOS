@@ -17,7 +17,7 @@ struct UserKey {
             return nil
         }
         var escaping = false, idFinished = false
-        var idBuilder = NSMutableString(), hostBuilder = NSMutableString()
+        let idBuilder = NSMutableString(), hostBuilder = NSMutableString()
         
         str!.characters.forEach { ch in
             var append = false

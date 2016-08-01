@@ -18,6 +18,8 @@ class BackgroundOperationService {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         dispatch_promise {
             () -> UpdateStatusResult in
+            let BULK_SIZE = 256 * 1024// 128 Kib
+            
             func uploadMedia(uploader: MediaUploader?, update: StatusUpdate, pendingUpdate: PendingStatusUpdate) throws {
                 // TODO on start uploading media
                 if (uploader == nil) {
@@ -72,18 +74,52 @@ class BackgroundOperationService {
                 return try update.media!.enumerate().map{ (index, media) throws -> String in
                     // TODO upload then get id
                     let fm = NSFileManager.defaultManager()
-                    let data = fm.contentsAtPath(media.path)
-                    let json = try upload.uploadMedia(data!, additionalOwners: ownerIds)
+                    let data = fm.contentsAtPath(media.path)!
+                    let json: JSON
+                    if (chucked) {
+                        json = try uploadMediaChucked(upload, body: data, contentType: "image/jpeg", ownerIds: ownerIds)
+                    } else {
+                        json = try upload.uploadMedia(data, additionalOwners: ownerIds)
+                    }
                     return json["media_id_string"].stringValue
                 }
             }
 
+            func uploadMediaChucked(upload: MicroBlogService, body: NSData, contentType: String, ownerIds: [String]) throws -> JSON {
+                let length = body.length
+                var response = try upload.initUploadMedia(contentType, totalBytes: length, additionalOwners: ownerIds)
+                let id = response["media_id"].stringValue
+                if (id.isEmpty) {
+                    // TODO control flow
+                    throw NSError(domain: "uploadMediaChucked", code: 0, userInfo: nil)
+                }
+                let segments = length == 0 ? 0 : length / BULK_SIZE + 1
+                for segmentIndex in 0..<segments {
+                    let currentBulkSize = min(BULK_SIZE, length - segmentIndex * BULK_SIZE)
+                    let bulk = body.subdataWithRange(NSMakeRange(segmentIndex * BULK_SIZE, currentBulkSize))
+                    try upload.appendUploadMedia(id, segmentIndex: segmentIndex, media: bulk)
+                }
+                response = try upload.finalizeUploadMedia(id)
+                var info = response["processing_info"]
+                while (info["check_after_secs"].isExists()) {
+                    guard let checkAfterSecs = info["check_after_secs"].uInt32 else {
+                        break
+                    }
+                    sleep(checkAfterSecs)
+                    response = try upload.getUploadMediaStatus(id)
+                    info = response["processing_info"]
+                }
+                if (info["state"].string == "failed") {
+                    throw NSError(domain: "uploadMediaChucked", code: 0, userInfo: nil)
+                }
+                return response
+            }
             
             func uploadMediaWithExtension(uploader: MediaUploader, update: StatusUpdate, pendingUpdate: PendingStatusUpdate) {
                 
             }
             
-            func requestUpdateStatus(statusUpdate: StatusUpdate, pendingUpdate: PendingStatusUpdate) throws -> UpdateStatusResult {
+            func requestUpdateStatus(statusUpdate: StatusUpdate, pendingUpdate: PendingStatusUpdate) -> UpdateStatusResult {
                 var statuses: [FlatStatus?] = Array(count: pendingUpdate.length, repeatedValue: nil)
                 var exceptions: [ErrorType?] = Array(count: pendingUpdate.length, repeatedValue: nil)
 
@@ -134,14 +170,12 @@ class BackgroundOperationService {
             let pendingUpdate = PendingStatusUpdate(length: update.accounts.count, defaultText: update.text)
             
             try uploadMedia(uploader, update: update, pendingUpdate: pendingUpdate)
-            do {
-                let result: UpdateStatusResult = try requestUpdateStatus(update, pendingUpdate: pendingUpdate)
-                return result
-            } catch let error {
-                return UpdateStatusResult(exception: error)
+            let result: UpdateStatusResult = requestUpdateStatus(update, pendingUpdate: pendingUpdate)
+            if (!result.successful) {
+                throw StatusUpdateError.SendFailed
             }
-        }.then {
-            result -> Void in
+            return result
+        }.then { result -> Void in
             JDStatusBarNotification.showWithStatus("Tweet sent!", dismissAfter: 1.5, styleName: JDStatusBarStyleSuccess)
         }.always {
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
@@ -151,6 +185,21 @@ class BackgroundOperationService {
         }
     }
     
+    func getHomeTimeline(accounts: [Account]) {
+        dispatch_promise { () throws -> Void in
+            try accounts.forEach { account throws in
+                let microblog = account.newMicroblogInstance()
+                debugPrint(try microblog.getHomeTimeline())
+            }
+        }.error { error in
+            debugPrint(error)
+        }
+    }
+    
+    enum StatusUpdateError: ErrorType {
+        case UploadError
+        case SendFailed
+    }
 }
 
 protocol MediaUploader {

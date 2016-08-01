@@ -18,11 +18,16 @@ import CoreLocation
 import SwiftyUserDefaults
 import AssetsLibrary
 import Photos
+import UIView_FDCollapsibleConstraints
 
-class ComposeController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate {
+class ComposeController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
 
     lazy var locationManager: CLLocationManager = {
         return CLLocationManager()
+    }()
+    
+    lazy var imageManager: PHImageManager = {
+        return PHImageManager()
     }()
     
     @IBOutlet weak var editText: UITextView!
@@ -31,6 +36,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     @IBOutlet weak var sendTextCountView: UILabel!
     @IBOutlet weak var sendIconView: UIImageView!
     @IBOutlet weak var accountProfileImageView: UIImageView!
+    @IBOutlet weak var attachmedMediaCollectionView: UICollectionView!
     
     var locationAuthorizationGrantedSelector: Selector? = nil
     
@@ -65,6 +71,9 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         editText.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         editText.delegate = self
         
+        attachmedMediaCollectionView.dataSource = self
+        attachmedMediaCollectionView.delegate = self
+        
         self.accountProfileImageView.layer.cornerRadius = self.accountProfileImageView.frame.size.width / 2
         self.accountProfileImageView.clipsToBounds = true
         
@@ -73,6 +82,8 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         if (attachLocation && CLLocationManager.authorizationStatus().hasAuthorization) {
             self.recentLocation = locationManager.location?.coordinate
         }
+        
+        updateMediaPreview()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -84,6 +95,37 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         // Dispose of any resources that can be recreated.
     }
     
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return attachedMedia?.count ?? 0
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MediaItem", forIndexPath: indexPath)
+        guard let media = attachedMedia?[indexPath.item] else {
+            return cell
+        }
+        let previewImageView = cell.viewWithTag(101) as! UIImageView
+        previewImageView.image = UIImage(contentsOfFile: media.path)
+        return cell
+    }
+    
+    
+    func addMedia(media: MediaUpdate) {
+        if (self.attachedMedia == nil) {
+            self.attachedMedia = []
+        }
+        self.attachedMedia!.append(media)
+        updateMediaPreview()
+    }
+    
+    func updateMediaPreview() {
+        attachmedMediaCollectionView.reloadData()
+        attachmedMediaCollectionView.fd_collapsed = attachedMedia?.isEmpty ?? true
+    }
 
     @IBAction func updateStatusTapped(sender: UITapGestureRecognizer) {
         guard let text = self.editText.text else {
@@ -124,9 +166,9 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         }.then { (info) -> Promise<NSData> in
             return Promise { fullfill, reject in
                 let imageUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
-                let mgr = PHImageManager()
+                
                 let asset = PHAsset.fetchAssetsWithALAssetURLs([imageUrl], options: nil).firstObject as! PHAsset
-                mgr.requestImageDataForAsset(asset, options: nil, resultHandler: { (data, dataUTI, orientation, info) in
+                self.imageManager.requestImageDataForAsset(asset, options: nil, resultHandler: { (data, dataUTI, orientation, info) in
                     if (data != nil) {
                         fullfill(data!)
                     }
@@ -136,22 +178,23 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
             guard let path = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true).first else {
                 return nil
             }
-            let writePath = NSURL(fileURLWithPath: path).URLByAppendingPathComponent("temp_image").path!
+            
+            let timestamp = NSDate().timeIntervalSince1970
+            var writePath = NSURL(fileURLWithPath: path).URLByAppendingPathComponent("\(timestamp)").path!
             let fm = NSFileManager.defaultManager()
-            if (fm.fileExistsAtPath(writePath)) {
-                try fm.removeItemAtPath(writePath)
+            var n = 0
+            while (fm.fileExistsAtPath(writePath)) {
+                writePath = NSURL(fileURLWithPath: path).URLByAppendingPathComponent("\(timestamp)_\(n)").path!
+                n += 1
             }
             fm.createFileAtPath(writePath, contents: data, attributes: nil)
             let media = MediaUpdate(path: writePath, type: .Image)
             return media
         }.then { media -> Void in
             if (media != nil) {
-                self.attachedMedia = [media!]
-            } else {
-                self.attachedMedia = nil
+                self.addMedia(media!)
             }
         }
-        
         
     }
     

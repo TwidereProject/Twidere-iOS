@@ -17,17 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="240"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6X4-N1-6KK">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="196"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="twitter"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What's happening?"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zSz-ZN-D4Q">
                                 <rect key="frame" x="0.0" y="196" width="300" height="44"/>
                                 <items>
@@ -39,7 +28,7 @@
                                     <barButtonItem width="8" systemItem="fixedSpace" id="xkd-g2-oHK"/>
                                     <barButtonItem image="Toolbar Camera" id="Brs-eS-UYG" userLabel="Camera">
                                         <connections>
-                                            <action selector="attachMediaClicked:" destination="tu4-R0-Mpc" id="9nT-rB-3cf"/>
+                                            <action selector="attachMediaClicked:" destination="tu4-R0-Mpc" id="Dln-8V-Uo8"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem systemItem="flexibleSpace" id="S6w-Z7-JTB"/>
@@ -77,15 +66,73 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Vvb-36-SKZ">
+                                <rect key="frame" x="0.0" y="124" width="300" height="72"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="RU0-N3-X9w"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zd8-Xi-QWd">
+                                    <size key="itemSize" width="64" height="64"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="6" minY="0.0" maxX="6" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MediaItem" id="ppe-yg-x3X">
+                                        <rect key="frame" x="6" y="4" width="64" height="64"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="PreviewImage" translatesAutoresizingMaskIntoConstraints="NO" id="RC4-h0-oqA">
+                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JPF-IR-IGI">
+                                                    <rect key="frame" x="42" y="0.0" width="22" height="22"/>
+                                                    <state key="normal" image="Grid Item Remove"/>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="JPF-IR-IGI" firstAttribute="top" secondItem="ppe-yg-x3X" secondAttribute="top" id="I7P-10-QKF"/>
+                                            <constraint firstAttribute="trailing" secondItem="RC4-h0-oqA" secondAttribute="trailing" id="Ppe-UM-u67"/>
+                                            <constraint firstAttribute="bottom" secondItem="RC4-h0-oqA" secondAttribute="bottom" id="SpP-0r-2Lj"/>
+                                            <constraint firstItem="RC4-h0-oqA" firstAttribute="leading" secondItem="ppe-yg-x3X" secondAttribute="leading" id="VFE-dh-UO1"/>
+                                            <constraint firstItem="RC4-h0-oqA" firstAttribute="top" secondItem="ppe-yg-x3X" secondAttribute="top" id="liz-jG-TiV"/>
+                                            <constraint firstAttribute="trailing" secondItem="JPF-IR-IGI" secondAttribute="trailing" id="tID-go-1h5"/>
+                                        </constraints>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outletCollection property="fd_collapsibleConstraints" destination="RU0-N3-X9w" id="cVO-nK-bPt"/>
+                                </connections>
+                            </collectionView>
+                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6X4-N1-6KK">
+                                <rect key="frame" x="0.0" y="44" width="300" height="80"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="twitter"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What's happening?"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="6X4-N1-6KK" firstAttribute="leading" secondItem="IE7-TY-0vN" secondAttribute="leading" id="3pL-KK-j3u"/>
-                            <constraint firstItem="6X4-N1-6KK" firstAttribute="top" secondItem="IE7-TY-0vN" secondAttribute="top" id="CNd-8p-zoy"/>
                             <constraint firstItem="LRn-hZ-zH5" firstAttribute="top" secondItem="zSz-ZN-D4Q" secondAttribute="bottom" id="E8u-LB-i3r"/>
+                            <constraint firstItem="Vvb-36-SKZ" firstAttribute="top" secondItem="6X4-N1-6KK" secondAttribute="bottom" id="HJx-mK-Poa"/>
+                            <constraint firstItem="zSz-ZN-D4Q" firstAttribute="top" secondItem="Vvb-36-SKZ" secondAttribute="bottom" id="I3Z-pK-hic"/>
+                            <constraint firstAttribute="trailing" secondItem="6X4-N1-6KK" secondAttribute="trailing" id="MD5-y3-Enj"/>
                             <constraint firstAttribute="trailing" secondItem="zSz-ZN-D4Q" secondAttribute="trailing" id="UGV-bR-lIe"/>
-                            <constraint firstAttribute="trailing" secondItem="6X4-N1-6KK" secondAttribute="trailing" id="YRo-6T-Zo7"/>
-                            <constraint firstItem="zSz-ZN-D4Q" firstAttribute="top" secondItem="6X4-N1-6KK" secondAttribute="bottom" id="e7b-Ex-MDh"/>
-                            <constraint firstItem="6X4-N1-6KK" firstAttribute="leading" secondItem="IE7-TY-0vN" secondAttribute="leading" id="eVX-qL-twN"/>
+                            <constraint firstItem="6X4-N1-6KK" firstAttribute="leading" secondItem="IE7-TY-0vN" secondAttribute="leading" id="VtW-jo-TMm"/>
+                            <constraint firstItem="Vvb-36-SKZ" firstAttribute="leading" secondItem="IE7-TY-0vN" secondAttribute="leading" id="ZEE-I9-VaA"/>
+                            <constraint firstAttribute="trailing" secondItem="Vvb-36-SKZ" secondAttribute="trailing" id="oVK-nr-Kgd"/>
+                            <constraint firstItem="6X4-N1-6KK" firstAttribute="top" secondItem="H4x-8H-KCF" secondAttribute="bottom" id="pZ2-Ss-PZB"/>
                             <constraint firstItem="zSz-ZN-D4Q" firstAttribute="leading" secondItem="IE7-TY-0vN" secondAttribute="leading" id="rML-1i-FW4"/>
                         </constraints>
                     </view>
@@ -123,6 +170,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="accountProfileImageView" destination="Pzb-dc-g08" id="DBJ-yV-Lxp"/>
+                        <outlet property="attachmedMediaCollectionView" destination="Vvb-36-SKZ" id="GtW-ln-68m"/>
                         <outlet property="editText" destination="6X4-N1-6KK" id="T2M-nK-Tg8"/>
                         <outlet property="locationItem" destination="JsF-17-JS6" id="5jF-0J-g7w"/>
                         <outlet property="sendIconView" destination="k5c-TO-0bs" id="VGl-l8-iCf"/>
@@ -241,6 +289,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Grid Item Remove" width="18" height="18"/>
         <image name="Profile Image Default" width="24" height="24"/>
         <image name="Toolbar Camera" width="22" height="22"/>
         <image name="Toolbar Location Outline" width="22" height="22"/>

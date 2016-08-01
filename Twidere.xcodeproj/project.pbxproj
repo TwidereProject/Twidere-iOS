@@ -20,6 +20,7 @@
 		CE0529FF1CF7F35300E06364 /* TwidereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529FE1CF7F35300E06364 /* TwidereTests.swift */; };
 		CE052A0A1CF7F35300E06364 /* TwidereUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE052A091CF7F35300E06364 /* TwidereUITests.swift */; };
 		CE29039E1D4CEF2A0056D0E2 /* AccountExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE29039D1D4CEF2A0056D0E2 /* AccountExtensions.swift */; };
+		CE2903EC1D4F200A0056D0E2 /* UserExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */; };
 		CE95747D1D3210A300504D52 /* CustomAPIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */; };
 		CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95747F1D3216BC00504D52 /* ServiceConstants.swift */; };
 		CE9574821D32186A00504D52 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574811D32186A00504D52 /* UIConstants.swift */; };
@@ -55,7 +56,7 @@
 		CEA2E2D11D3A7EA20095BC57 /* HomeRootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2D01D3A7EA20095BC57 /* HomeRootController.swift */; };
 		CEA2E2D31D3B42180095BC57 /* AccountsManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2D21D3B42180095BC57 /* AccountsManagerController.swift */; };
 		CEBED5FB1D4C86C700619D1C /* BackgroundOperationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBED5FA1D4C86C700619D1C /* BackgroundOperationService.swift */; };
-		CED41F2F1D2FF7C80089E0B6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */; };
+		CED41F2F1D2FF7C80089E0B6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F2E1D2FF7C80089E0B6 /* HomeController.swift */; };
 		CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F331D2FF88D0089E0B6 /* SignInController.swift */; };
 		CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED41F351D3085FF0089E0B6 /* SignIn.storyboard */; };
 		CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */; };
@@ -63,6 +64,9 @@
 		CED41F431D30E6E40089E0B6 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F421D30E6E40089E0B6 /* Authorization.swift */; };
 		CED41F451D313B6C0089E0B6 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED41F441D313B6C0089E0B6 /* Preferences.storyboard */; };
 		CED41F481D3147460089E0B6 /* APIEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F471D3147460089E0B6 /* APIEditorController.swift */; };
+		CEDFEA6B1D4F396100E1F8B8 /* SQLiteModel.swift.gyb in Resources */ = {isa = PBXBuildFile; fileRef = CEDFEA6A1D4F396100E1F8B8 /* SQLiteModel.swift.gyb */; };
+		CEDFEA6D1D4F4BF600E1F8B8 /* FlatStatus+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFEA6C1D4F4BF600E1F8B8 /* FlatStatus+JSON.swift */; };
+		CEDFEA6F1D4F525200E1F8B8 /* FlatStatus.model.py in Resources */ = {isa = PBXBuildFile; fileRef = CEDFEA6E1D4F525200E1F8B8 /* FlatStatus.model.py */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,7 +95,7 @@
 		83F73368C76F5292ED9EE15E /* Pods-TwidereUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwidereUITests/Pods-TwidereUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ACF9688E2157FC9254A53E97 /* Pods-Twidere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twidere/Pods-Twidere.release.xcconfig"; sourceTree = "<group>"; };
 		C4A433B9B1D9B8C5EB5F0F2A /* Pods-TwidereTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwidereTests/Pods-TwidereTests.release.xcconfig"; sourceTree = "<group>"; };
-		C57AE4176FEA423CC3BED2CF /* FlatStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatStatus.swift; sourceTree = "<group>"; };
+		C57AE4176FEA423CC3BED2CF /* FlatStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlatStatus.swift; path = Twidere/Models/FlatStatus.swift; sourceTree = SOURCE_ROOT; };
 		CE0529E31CF7F35300E06364 /* Twidere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twidere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0529E61CF7F35300E06364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE0529E81CF7F35300E06364 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = ViewControllers/MainViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 		CE052A091CF7F35300E06364 /* TwidereUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwidereUITests.swift; sourceTree = "<group>"; };
 		CE052A0B1CF7F35300E06364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE29039D1D4CEF2A0056D0E2 /* AccountExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountExtensions.swift; path = Extensions/Model/AccountExtensions.swift; sourceTree = "<group>"; };
+		CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserExtensions.swift; path = Utils/Extensions/Model/UserExtensions.swift; sourceTree = "<group>"; };
 		CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomAPIConfig.swift; path = Models/CustomAPIConfig.swift; sourceTree = "<group>"; };
 		CE95747F1D3216BC00504D52 /* ServiceConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceConstants.swift; path = Constants/ServiceConstants.swift; sourceTree = "<group>"; };
 		CE9574811D32186A00504D52 /* UIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIConstants.swift; path = Constants/UIConstants.swift; sourceTree = "<group>"; };
@@ -142,7 +147,7 @@
 		CEA2E2D01D3A7EA20095BC57 /* HomeRootController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeRootController.swift; path = ViewControllers/Home/HomeRootController.swift; sourceTree = "<group>"; };
 		CEA2E2D21D3B42180095BC57 /* AccountsManagerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountsManagerController.swift; path = ViewControllers/SignIn/AccountsManagerController.swift; sourceTree = "<group>"; };
 		CEBED5FA1D4C86C700619D1C /* BackgroundOperationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundOperationService.swift; path = Services/BackgroundOperationService.swift; sourceTree = "<group>"; };
-		CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ViewControllers/Home/HomeViewController.swift; sourceTree = "<group>"; };
+		CED41F2E1D2FF7C80089E0B6 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeController.swift; path = ViewControllers/Home/HomeController.swift; sourceTree = "<group>"; };
 		CED41F331D2FF88D0089E0B6 /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInController.swift; path = ViewControllers/SignIn/SignInController.swift; sourceTree = "<group>"; };
 		CED41F351D3085FF0089E0B6 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SignIn.storyboard; path = Resources/Storyboards/SignIn.storyboard; sourceTree = "<group>"; };
 		CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MicroBlogService.swift; path = Services/MicroBlog/MicroBlogService.swift; sourceTree = "<group>"; };
@@ -150,6 +155,9 @@
 		CED41F421D30E6E40089E0B6 /* Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Authorization.swift; path = Services/RestService/Authorization.swift; sourceTree = "<group>"; };
 		CED41F441D313B6C0089E0B6 /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Preferences.storyboard; path = Resources/Storyboards/Preferences.storyboard; sourceTree = "<group>"; };
 		CED41F471D3147460089E0B6 /* APIEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIEditorController.swift; path = ViewControllers/Preferences/APIEditorController.swift; sourceTree = "<group>"; };
+		CEDFEA6A1D4F396100E1F8B8 /* SQLiteModel.swift.gyb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SQLiteModel.swift.gyb; path = Templates/Models/SQLiteModel.swift.gyb; sourceTree = "<group>"; };
+		CEDFEA6C1D4F4BF600E1F8B8 /* FlatStatus+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FlatStatus+JSON.swift"; path = "Extensions/Model/FlatStatus+JSON.swift"; sourceTree = "<group>"; };
+		CEDFEA6E1D4F525200E1F8B8 /* FlatStatus.model.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = FlatStatus.model.py; path = Templates/Models/FlatStatus.model.py; sourceTree = "<group>"; };
 		D8EEA59D539DFC4D335BA470 /* Pods_TwidereUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwidereUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -229,6 +237,7 @@
 		CE0529E51CF7F35300E06364 /* Twidere */ = {
 			isa = PBXGroup;
 			children = (
+				CEDFEA681D4F392200E1F8B8 /* Templates */,
 				CEA2E2B21D368B1D0095BC57 /* Views */,
 				CE95747E1D32169D00504D52 /* Constants */,
 				CE95747B1D32107800504D52 /* Models */,
@@ -266,6 +275,8 @@
 			isa = PBXGroup;
 			children = (
 				CE29039D1D4CEF2A0056D0E2 /* AccountExtensions.swift */,
+				CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */,
+				CEDFEA6C1D4F4BF600E1F8B8 /* FlatStatus+JSON.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -417,7 +428,7 @@
 		CED41F2D1D2FF76C0089E0B6 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				CED41F2E1D2FF7C80089E0B6 /* HomeViewController.swift */,
+				CED41F2E1D2FF7C80089E0B6 /* HomeController.swift */,
 				CEA2E2CA1D3A6A410095BC57 /* HomeDrawerController.swift */,
 				CEA2E2D01D3A7EA20095BC57 /* HomeRootController.swift */,
 			);
@@ -477,6 +488,23 @@
 				CEA2E2A61D34C1610095BC57 /* DefaultAPISettingsController.swift */,
 			);
 			name = Preferences;
+			sourceTree = "<group>";
+		};
+		CEDFEA681D4F392200E1F8B8 /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				CEDFEA691D4F392900E1F8B8 /* Models */,
+			);
+			name = Templates;
+			sourceTree = "<group>";
+		};
+		CEDFEA691D4F392900E1F8B8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CEDFEA6A1D4F396100E1F8B8 /* SQLiteModel.swift.gyb */,
+				CEDFEA6E1D4F525200E1F8B8 /* FlatStatus.model.py */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -598,7 +626,9 @@
 			files = (
 				CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */,
 				CE0529F41CF7F35300E06364 /* LaunchScreen.storyboard in Resources */,
+				CEDFEA6F1D4F525200E1F8B8 /* FlatStatus.model.py in Resources */,
 				CEA2E2AA1D34C2090095BC57 /* DefaultAPIConfig.plist in Resources */,
+				CEDFEA6B1D4F396100E1F8B8 /* SQLiteModel.swift.gyb in Resources */,
 				CE0529F11CF7F35300E06364 /* Assets.xcassets in Resources */,
 				CED41F451D313B6C0089E0B6 /* Preferences.storyboard in Resources */,
 				CEA2E2AF1D3681D00095BC57 /* Compose.storyboard in Resources */,
@@ -790,6 +820,7 @@
 				CE9574981D33D87200504D52 /* NetworkPreferencesController.swift in Sources */,
 				CEA2E2C51D37C2590095BC57 /* ComposeLocationController.swift in Sources */,
 				CEA2E2CB1D3A6A410095BC57 /* HomeDrawerController.swift in Sources */,
+				CE2903EC1D4F200A0056D0E2 /* UserExtensions.swift in Sources */,
 				CEA2E2D31D3B42180095BC57 /* AccountsManagerController.swift in Sources */,
 				CED41F411D30E6B80089E0B6 /* Endpoint.swift in Sources */,
 				CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */,
@@ -807,7 +838,7 @@
 				CEBED5FB1D4C86C700619D1C /* BackgroundOperationService.swift in Sources */,
 				CEA2E2B11D3681FD0095BC57 /* ComposeController.swift in Sources */,
 				CE9574851D32221A00504D52 /* RestClient.swift in Sources */,
-				CED41F2F1D2FF7C80089E0B6 /* HomeViewController.swift in Sources */,
+				CED41F2F1D2FF7C80089E0B6 /* HomeController.swift in Sources */,
 				CED41F431D30E6E40089E0B6 /* Authorization.swift in Sources */,
 				CEA2E2CD1D3A732C0095BC57 /* AccountUtils.swift in Sources */,
 				CE9574B91D349C3F00504D52 /* BrowserSignInController.swift in Sources */,
@@ -819,6 +850,7 @@
 				CEA2E2CF1D3A779B0095BC57 /* ImageViewExtensions.swift in Sources */,
 				CEA2212A1D4CA47E00F25516 /* Account+CoreDataProperties.swift in Sources */,
 				CEA2E2A71D34C1610095BC57 /* DefaultAPISettingsController.swift in Sources */,
+				CEDFEA6D1D4F4BF600E1F8B8 /* FlatStatus+JSON.swift in Sources */,
 				CE95747D1D3210A300504D52 /* CustomAPIConfig.swift in Sources */,
 				CEA2212C1D4CA47E00F25516 /* AccountUser+CoreDataProperties.swift in Sources */,
 				CE9574821D32186A00504D52 /* UIConstants.swift in Sources */,

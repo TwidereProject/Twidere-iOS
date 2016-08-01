@@ -25,7 +25,8 @@ target 'Twidere' do
   pod 'REFrostedViewController', '~> 2.4'
   pod 'JDStatusBarNotification', '1.5.3'
   pod 'SwiftEventBus', '1.1.0'
-  pod 'SharkORM', '2.0.7'
+  pod 'SQLite.swift', '~> 0.10.1'
+  pod 'UIView+FDCollapsibleConstraints', '~> 1.1'
 end
 
 target 'TwidereTests' do

@@ -54,7 +54,6 @@ class RestClient {
         let finalAuth: Authorization? = authOverride ?? auth
         let isMultipart = params?.contains { (k, v) -> Bool in v is NSData } ?? false
         var finalHeaders = constructHeaders(method, path: path, headers: headers, queries: queries, forms: params, auth: finalAuth, isMultipart: isMultipart)
-
         if (isMultipart) {
             let multipart = MultipartFormData()
             params?.forEach{ (k, v) in
@@ -67,7 +66,37 @@ class RestClient {
             finalHeaders["Content-Type"] = multipart.contentType
             return Alamofire.upload(method, url, headers: finalHeaders, data: try! multipart.encode()).response()
         }
-        return Alamofire.request(method, url, parameters: params, encoding: .URL, headers: finalHeaders).response()
+        return Alamofire.request(method, url, parameters: params, encoding: .Custom({ (urlRequest: URLRequestConvertible, params: [String: AnyObject]?) -> (NSMutableURLRequest, NSError?) in
+            
+            let queryUrlEncodeAllowedSet: NSCharacterSet = {
+                let allowed = NSMutableCharacterSet.alphanumericCharacterSet()
+                allowed.addCharactersInString("-._ ")
+                return allowed
+            }()
+            
+            func escape(str: String) -> String {
+                return str.stringByAddingPercentEncodingWithAllowedCharacters(queryUrlEncodeAllowedSet)!.stringByReplacingOccurrencesOfString(" ", withString: "+")
+            }
+            
+            let request: NSMutableURLRequest = urlRequest.URLRequest
+            if (params == nil) {
+                return (request, nil)
+            }
+            let method = Alamofire.Method(rawValue: request.HTTPMethod)
+            let paramInUrl = method == .GET || method == .HEAD || method == .DELETE
+            if (paramInUrl) {
+                let url = NSURLComponents(URL: request.URL!, resolvingAgainstBaseURL: false)
+                url?.queryItems = params!.map { k, v -> NSURLQueryItem in
+                    return NSURLQueryItem(name: k, value: "\(v)")
+                }
+            } else {
+                request.addValue("application/x-www-form-urlencoded; encoding=utf-8", forHTTPHeaderField: "Content-Type")
+                request.HTTPBody = params!.map { k, v -> String in
+                    return escape(k) + "=" + escape(String(v))
+                }.joinWithSeparator("&").dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+            }
+            return (request, nil)
+        }), headers: finalHeaders).response()
     }
     
     private func constructUrl(path: String, queries: [String: String]? = nil) -> String {

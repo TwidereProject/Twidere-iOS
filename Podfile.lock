@@ -36,7 +36,7 @@ PODS:
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
-  - SharkORM (2.0.7)
+  - SQLite.swift (0.10.1)
   - StaticDataTableViewController (2.0.5)
   - STPopup (1.7.0)
   - SugarRecord/CoreData (2.2.9):
@@ -46,6 +46,7 @@ PODS:
   - SwiftyUserDefaults (2.2.0)
   - twitter-text (1.13.4)
   - UITextView+Placeholder (1.2.0)
+  - UIView+FDCollapsibleConstraints (1.1)
   - UIView+TouchHighlighting (1.1.0)
 
 DEPENDENCIES:
@@ -61,7 +62,7 @@ DEPENDENCIES:
   - PromiseKit (= 3.4.0)
   - REFrostedViewController (~> 2.4)
   - SDWebImage (= 3.8.1)
-  - SharkORM (= 2.0.7)
+  - SQLite.swift (~> 0.10.1)
   - StaticDataTableViewController (= 2.0.5)
   - STPopup (= 1.7.0)
   - SugarRecord/CoreData (= 2.2.9)
@@ -70,6 +71,7 @@ DEPENDENCIES:
   - SwiftyUserDefaults (= 2.2.0)
   - twitter-text (~> 1.13)
   - UITextView+Placeholder (= 1.2.0)
+  - UIView+FDCollapsibleConstraints (~> 1.1)
   - UIView+TouchHighlighting (= 1.1.0)
 
 SPEC CHECKSUMS:
@@ -88,7 +90,7 @@ SPEC CHECKSUMS:
   REFrostedViewController: a893b4979ba1f200c547aef9ff4c3fd5a18f5923
   Result: 18e1a7597fbcca5923c565b40a25a98afafdee02
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
-  SharkORM: e2ee93dc30a544ac013968eb68be831cc895e67f
+  SQLite.swift: 6a6e4b034efc317ce4e203b6af2d3024fee2b570
   StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a
   STPopup: 36b45120f51ab3cdf7a10c1b9032b7fc8eef75ac
   SugarRecord: 2463fbe768633a2524ba505dfed5315167331c0a
@@ -97,6 +99,7 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: e7c8197a9d4068702e7f2406a968cae413b8de27
   twitter-text: 66e7b9925534ade86cb3cb2751788073de8f2fec
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
+  UIView+FDCollapsibleConstraints: 9357eaf03b4e088263ab74a3b86a382a64ce38dd
   UIView+TouchHighlighting: cedbcd90c965e7b1418c80a04fc8266398a738f1
 
 COCOAPODS: 0.39.0
