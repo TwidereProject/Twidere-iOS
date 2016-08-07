@@ -19,6 +19,7 @@ PODS:
     - OMGHTTPURLRQ/FormURLEncode
     - OMGHTTPURLRQ/UserAgent
   - OMGHTTPURLRQ/UserAgent (3.2.0)
+  - Pager (1.0.8)
   - PromiseKit (3.4.0):
     - PromiseKit/Foundation (= 3.4.0)
     - PromiseKit/QuartzCore (= 3.4.0)
@@ -59,6 +60,7 @@ DEPENDENCIES:
   - JDStatusBarNotification (= 1.5.3)
   - JVFloatLabeledTextField (= 1.1.1)
   - Kanna (= 1.1.0)
+  - Pager (~> 1.0)
   - PromiseKit (= 3.4.0)
   - REFrostedViewController (~> 2.4)
   - SDWebImage (= 3.8.1)
@@ -86,6 +88,7 @@ SPEC CHECKSUMS:
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   Kanna: 355ed0193e5d8caf4fd996856b5bc98d586c11b6
   OMGHTTPURLRQ: 1e54807cb7d5dbb506926e53498e1e9ac5720c79
+  Pager: 28cb9ac0a9d149a46b9b6c63b9105950f1401744
   PromiseKit: 72a1500ddedd052b5f69b44e3bb4091da2fd1a7d
   REFrostedViewController: a893b4979ba1f200c547aef9ff4c3fd5a18f5923
   Result: 18e1a7597fbcca5923c565b40a25a98afafdee02

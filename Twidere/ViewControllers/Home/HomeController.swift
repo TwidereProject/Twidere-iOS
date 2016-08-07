@@ -11,14 +11,16 @@ import SDWebImage
 import SugarRecord
 import UIView_TouchHighlighting
 import REFrostedViewController
+import Pager
 
-class HomeViewController: UIViewController {
+class HomeViewController: PagerController, PagerDataSource {
     
     @IBOutlet weak var accountProfileImageView: UIImageView!
     @IBOutlet weak var menuToggleItem: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.dataSource = self
         // Do any additional setup after loading the view, typically from a nib.
         
         self.accountProfileImageView.layer.cornerRadius = self.accountProfileImageView.frame.size.width / 2
@@ -36,6 +38,10 @@ class HomeViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func numberOfTabs(pager: PagerController) -> Int {
+        return 0
     }
     
     @IBAction func composeClicked(sender: UIBarButtonItem) {
