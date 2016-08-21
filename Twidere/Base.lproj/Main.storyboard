@@ -132,32 +132,7 @@
         <!--Home-->
         <scene sceneID="6ds-u2-2eG">
             <objects>
-                <viewController storyboardIdentifier="Home" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oPR-mD-LFT" userLabel="Home" customClass="HomeViewController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="683-iK-usB"/>
-                        <viewControllerLayoutGuide type="bottom" id="XK1-ll-CKz"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="FG8-n9-tKy">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDS-Jc-VTY">
-                                <rect key="frame" x="277" y="289" width="46" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstItem="sDS-Jc-VTY" firstAttribute="centerX" secondItem="FG8-n9-tKy" secondAttribute="centerX" id="5BS-Py-PCE"/>
-                            <constraint firstItem="sDS-Jc-VTY" firstAttribute="centerY" secondItem="FG8-n9-tKy" secondAttribute="centerY" id="iCo-Oq-ynF"/>
-                        </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="T9t-NL-j01" appends="YES" id="Z9t-gb-ol5"/>
-                        </connections>
-                    </view>
+                <viewController storyboardIdentifier="Home" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oPR-mD-LFT" userLabel="Home" customClass="HomeController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Home" id="86b-jM-Eho">
                         <barButtonItem key="leftBarButtonItem" id="kK6-0x-XAl">
                             <view key="customView" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="Jx2-wh-WQW">
@@ -212,6 +187,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWT-6I-d6g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2853.5" y="909"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="NGo-6b-21w">
+            <objects>
+                <viewController storyboardIdentifier="StubTab" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sIz-RV-bKM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NIX-Ip-lci"/>
+                        <viewControllerLayoutGuide type="bottom" id="fT3-8T-eDe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mYF-kz-BZe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nkI-Pd-uiP">
+                                <rect key="frame" x="279" y="289.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nkI-Pd-uiP" firstAttribute="centerX" secondItem="mYF-kz-BZe" secondAttribute="centerX" id="RU8-jz-68K"/>
+                            <constraint firstItem="nkI-Pd-uiP" firstAttribute="centerY" secondItem="mYF-kz-BZe" secondAttribute="centerY" id="xgR-79-VfD"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="afa-W8-kPm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3037" y="1436"/>
         </scene>
         <!--SignIn-->
         <scene sceneID="Mhw-70-NRU">

@@ -21,6 +21,8 @@
 		CE052A0A1CF7F35300E06364 /* TwidereUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE052A091CF7F35300E06364 /* TwidereUITests.swift */; };
 		CE29039E1D4CEF2A0056D0E2 /* AccountExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE29039D1D4CEF2A0056D0E2 /* AccountExtensions.swift */; };
 		CE2903EC1D4F200A0056D0E2 /* UserExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */; };
+		CE497F8B1D695274000F16D2 /* StatusesListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497F891D695274000F16D2 /* StatusesListController.swift */; };
+		CE497F8C1D695274000F16D2 /* StatusesListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE497F8A1D695274000F16D2 /* StatusesListController.xib */; };
 		CE95747D1D3210A300504D52 /* CustomAPIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */; };
 		CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95747F1D3216BC00504D52 /* ServiceConstants.swift */; };
 		CE9574821D32186A00504D52 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574811D32186A00504D52 /* UIConstants.swift */; };
@@ -112,6 +114,8 @@
 		CE052A0B1CF7F35300E06364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE29039D1D4CEF2A0056D0E2 /* AccountExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountExtensions.swift; path = Extensions/Model/AccountExtensions.swift; sourceTree = "<group>"; };
 		CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserExtensions.swift; path = Utils/Extensions/Model/UserExtensions.swift; sourceTree = "<group>"; };
+		CE497F891D695274000F16D2 /* StatusesListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusesListController.swift; path = Views/StatusesListController.swift; sourceTree = "<group>"; };
+		CE497F8A1D695274000F16D2 /* StatusesListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StatusesListController.xib; path = Views/StatusesListController.xib; sourceTree = "<group>"; };
 		CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomAPIConfig.swift; path = Models/CustomAPIConfig.swift; sourceTree = "<group>"; };
 		CE95747F1D3216BC00504D52 /* ServiceConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceConstants.swift; path = Constants/ServiceConstants.swift; sourceTree = "<group>"; };
 		CE9574811D32186A00504D52 /* UIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIConstants.swift; path = Constants/UIConstants.swift; sourceTree = "<group>"; };
@@ -385,6 +389,8 @@
 			isa = PBXGroup;
 			children = (
 				CEA2E2C71D38F5A80095BC57 /* Home */,
+				CE497F891D695274000F16D2 /* StatusesListController.swift */,
+				CE497F8A1D695274000F16D2 /* StatusesListController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -625,6 +631,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */,
+				CE497F8C1D695274000F16D2 /* StatusesListController.xib in Resources */,
 				CE0529F41CF7F35300E06364 /* LaunchScreen.storyboard in Resources */,
 				CEDFEA6F1D4F525200E1F8B8 /* FlatStatus.model.py in Resources */,
 				CEA2E2AA1D34C2090095BC57 /* DefaultAPIConfig.plist in Resources */,
@@ -842,6 +849,7 @@
 				CED41F431D30E6E40089E0B6 /* Authorization.swift in Sources */,
 				CEA2E2CD1D3A732C0095BC57 /* AccountUtils.swift in Sources */,
 				CE9574B91D349C3F00504D52 /* BrowserSignInController.swift in Sources */,
+				CE497F8B1D695274000F16D2 /* StatusesListController.swift in Sources */,
 				CEA2E2BE1D3761780095BC57 /* StatusUpdate.swift in Sources */,
 				CEA2212D1D4CA47E00F25516 /* AccountUser.swift in Sources */,
 				CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */,

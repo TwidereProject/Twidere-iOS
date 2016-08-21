@@ -13,7 +13,7 @@ import UIView_TouchHighlighting
 import REFrostedViewController
 import Pager
 
-class HomeViewController: PagerController, PagerDataSource {
+class HomeController: PagerController, PagerDataSource {
     
     @IBOutlet weak var accountProfileImageView: UIImageView!
     @IBOutlet weak var menuToggleItem: UIBarButtonItem!
@@ -28,6 +28,10 @@ class HomeViewController: PagerController, PagerDataSource {
         
         menuToggleItem.customView?.touchHighlightingStyle = .TransparentMask
         
+        let page1 = storyboard!.instantiateViewControllerWithIdentifier("StubTab")
+        
+        setupPager(tabNames: ["Page 1"], tabControllers: [page1])
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -38,10 +42,6 @@ class HomeViewController: PagerController, PagerDataSource {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func numberOfTabs(pager: PagerController) -> Int {
-        return 0
     }
     
     @IBAction func composeClicked(sender: UIBarButtonItem) {
