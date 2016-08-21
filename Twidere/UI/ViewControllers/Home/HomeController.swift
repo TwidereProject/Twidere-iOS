@@ -28,9 +28,10 @@ class HomeController: PagerController, PagerDataSource {
         
         menuToggleItem.customView?.touchHighlightingStyle = .TransparentMask
         
-        let page1 = storyboard!.instantiateViewControllerWithIdentifier("StubTab")
+        let titles = ["Tweets", "Users"]
+        let pages = [StatusesListController(nibName: "StatusesListController", bundle: nil), UsersListController(nibName: "UsersListController", bundle: nil)]
         
-        setupPager(tabNames: ["Page 1"], tabControllers: [page1])
+        setupPager(tabNames: titles, tabControllers: pages)
         
     }
     

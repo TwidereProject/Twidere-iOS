@@ -1,5 +1,5 @@
 //
-//  StatusesListController.swift
+//  UsersListController.swift
 //  Twidere
 //
 //  Created by Mariotaku Lee on 16/8/21.
@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import SwiftyJSON
 
-class StatusesListController: UITableViewController {
-        
+class UsersListController: UITableViewController {
+    
+    lazy var users: JSON = {
+        return JSON(data: NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("users_list", ofType: "json")!)!)
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +23,9 @@ class StatusesListController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        tableView.registerNib(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "User")
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 140
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,23 +37,28 @@ class StatusesListController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return users.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("User", forIndexPath: indexPath) as! UserCell
 
         // Configure the cell...
+        
+        cell.displayUser(users[indexPath.item])
 
         return cell
     }
-    */
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
 
     /*
     // Override to support conditional editing of the table view.
