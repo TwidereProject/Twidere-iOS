@@ -8,4 +8,6 @@ fields = [
     ('user_name', 'userName', 'String'),
     ('user_screen_name', 'userScreenName', 'String'),
     ('user_profile_image', 'userProfileImage', 'String'),
+    ('text_plain', 'textPlain', 'String'),
+    ('text_unescpaed', 'textUnescaped', 'String'),
 ]

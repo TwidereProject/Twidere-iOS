@@ -8,13 +8,24 @@
 
 import Foundation
 
-let PATTERN_TWITTER_PROFILE_IMAGES = "(https?://)?(twimg[\\d\\w\\-]+\\.akamaihd\\.net|[\\w\\d]+\\.twimg\\.com)/profile_images/([\\d\\w\\-_]+)/([\\d\\w\\-_]+)_(bigger|normal|mini|reasonably_small)(\\.?(png|jpeg|jpg|gif|bmp))?".r!
+private let twitterProfileImageRegex = "(https?://)?(twimg[\\d\\w\\-]+\\.akamaihd\\.net|[\\w\\d]+\\.twimg\\.com)/profile_images/([\\d\\w\\-_]+)/([\\d\\w\\-_]+)_(bigger|normal|mini|reasonably_small)(\\.?(png|jpeg|jpg|gif|bmp))?".r!
+
+private let twitterDateFormatter: NSDateFormatter = {
+    let f = NSDateFormatter()
+    f.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+    f.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
+    return f
+}()
 
 func getProfileImageUrlForSize(url: String, size: ProfileImageSize) -> String {
-    if (PATTERN_TWITTER_PROFILE_IMAGES.matches(url)) {
-        return PATTERN_TWITTER_PROFILE_IMAGES.replaceFirst(in: url, with: "$1$2/profile_images/$3/$4\(size.suffix)$6")
+    if (twitterProfileImageRegex.matches(url)) {
+        return twitterProfileImageRegex.replaceFirst(in: url, with: "$1$2/profile_images/$3/$4\(size.suffix)$6")
     }
     return url
+}
+
+func parseTwitterDate(str: String) -> NSDate? {
+    return twitterDateFormatter.dateFromString(str)
 }
 
 enum ProfileImageSize {

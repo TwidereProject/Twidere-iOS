@@ -11,8 +11,12 @@ import SwiftyJSON
 
 class StatusesListController: UITableViewController {
     
-    lazy var statuses: JSON = {
-        return JSON(data: NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("statuses_list", ofType: "json")!)!)
+    lazy var statuses: [FlatStatus] = {
+        let json = JSON(data: NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("statuses_list", ofType: "json")!)!)
+        let account = try! defaultAccount()!
+        return json.map { (s, json) -> FlatStatus in
+            return FlatStatus(json: json, account: account)
+        }
     }()
     
     override func viewDidLoad() {
@@ -53,6 +57,10 @@ class StatusesListController: UITableViewController {
         cell.displayStatus(statuses[indexPath.item])
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
     /*

@@ -10,6 +10,8 @@ class FlatStatus {
     var userName: String!
     var userScreenName: String!
     var userProfileImage: String!
+    var textPlain: String!
+    var textUnescaped: String!
 
     init() {
 
@@ -24,6 +26,8 @@ class FlatStatus {
         self.userName = row.get(RowIndices.userName)
         self.userScreenName = row.get(RowIndices.userScreenName)
         self.userProfileImage = row.get(RowIndices.userProfileImage)
+        self.textPlain = row.get(RowIndices.textPlain)
+        self.textUnescaped = row.get(RowIndices.textUnescaped)
     }
 
     class RowIndices {
@@ -36,6 +40,8 @@ class FlatStatus {
         static let userName = Expression<String>("user_name")
         static let userScreenName = Expression<String>("user_screen_name")
         static let userProfileImage = Expression<String>("user_profile_image")
+        static let textPlain = Expression<String>("text_plain")
+        static let textUnescaped = Expression<String>("text_unescpaed")
 
         static let columns: [Expressible] = [
             _id,
@@ -45,7 +51,9 @@ class FlatStatus {
             userKey,
             userName,
             userScreenName,
-            userProfileImage
+            userProfileImage,
+            textPlain,
+            textUnescaped
         ]
     }
 

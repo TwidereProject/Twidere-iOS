@@ -27,31 +27,18 @@ class StatusCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func displayStatus(orig: JSON) {
-        
-        let status: JSON
-         if (orig["retweeted_status"].isExists()) {
-            status = orig["retweeted_status"]
-         } else if (orig["quoted_status"].isExists()) {
-            status = orig
-         } else {
-            status = orig
-        }
-        textView.text = status["text"].string
-        let user = status["user"]
-        let name = user["name"].stringValue
-        let screenName = user["screen_name"].stringValue
+    func displayStatus(status: FlatStatus) {
+        textView.text = status.textUnescaped
         let nameString = NSMutableAttributedString()
-        nameString.appendAttributedString(NSAttributedString(string: name, attributes: [
+        nameString.appendAttributedString(NSAttributedString(string: status.userName, attributes: [
             NSFontAttributeName: UIFont.boldSystemFontOfSize(nameView.font.pointSize)
             ]))
         nameString.appendAttributedString(NSAttributedString(string: " "))
-        nameString.appendAttributedString(NSAttributedString(string: "@" + screenName, attributes: [
+        nameString.appendAttributedString(NSAttributedString(string: "@" + status.userScreenName, attributes: [
             NSFontAttributeName: UIFont.systemFontOfSize(nameView.font.pointSize * 0.9)
             ]))
         nameView.attributedText = nameString
-        let profileImageUrl = user["profile_image_url_https"].string ?? user["profile_image_url"].stringValue
-        profileImageView.displayImage(getProfileImageUrlForSize(profileImageUrl, size: .ReasonablySmall))
+        profileImageView.displayImage(getProfileImageUrlForSize(status.userProfileImage, size: .ReasonablySmall))
     }
     
 }

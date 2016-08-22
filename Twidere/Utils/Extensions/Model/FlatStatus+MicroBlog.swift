@@ -12,6 +12,9 @@ import SwiftyJSON
 extension FlatStatus {
     convenience init(json: JSON, account: Account) {
         self.init()
+        self.accountKey = UserKey(str: account.accountKey!)
         self.id = json["id_str"].string ?? json["id"].stringValue
+        self.createdAt = parseTwitterDate(json["created_at"].stringValue)?.timeIntervalSince1970Millis ?? -1
+        
     }
 }
