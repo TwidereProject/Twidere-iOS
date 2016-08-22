@@ -10,7 +10,8 @@ import Foundation
 import SwiftyJSON
 
 extension FlatStatus {
-    func parseJson(json: JSON, account: Account) {
-        id = json["id_str"].string ?? json["id"].string ?? ""
+    convenience init(json: JSON, account: Account) {
+        self.init()
+        self.id = json["id_str"].string ?? json["id"].stringValue
     }
 }

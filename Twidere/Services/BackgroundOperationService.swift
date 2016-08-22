@@ -37,7 +37,7 @@ class BackgroundOperationService {
                 let owners = update.accounts.filter{ (account: Account) -> Bool in
                     return account.typeInferred == .TWITTER
                 }.map { account -> UserKey in
-                    return UserKey(str: account.accountKey)!
+                    return UserKey(str: account.accountKey!)
                 }
                 let ownerIds = owners.map { key -> String in
                     return key.id
@@ -130,8 +130,7 @@ class BackgroundOperationService {
                     default:
                         do {
                             let requestResult = try twitterUpdateStatus(microBlog, statusUpdate: statusUpdate, pendingUpdate: pendingUpdate, overrideText: pendingUpdate.overrideTexts[i], index: i)
-                            let status = FlatStatus()
-                            status.parseJson(requestResult, account: account)
+                            let status = FlatStatus(json: requestResult, account: account)
                             statuses[i] = status
                         } catch let error {
                             exceptions[i] = error

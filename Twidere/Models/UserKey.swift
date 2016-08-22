@@ -12,14 +12,21 @@ struct UserKey {
     var id: String
     var host: String?
     
-    init?(str: String?) {
-        if (str == nil) {
-            return nil
+    var string: String  {
+        var chars = [Character]()
+        escape(id, dest: &chars)
+        if (host != nil) {
+            chars.append("@")
+            escape(host!, dest: &chars)
         }
+        return String(chars)
+    }
+    
+    init(str: String) {
         var escaping = false, idFinished = false
-        let idBuilder = NSMutableString(), hostBuilder = NSMutableString()
+        var idBuilder = [Character](), hostBuilder = [Character]()
         
-        str!.characters.forEach { ch in
+        str.characters.forEach { ch in
             var append = false
             if (escaping) {
                 // accept all characters if is escaping
@@ -37,23 +44,36 @@ struct UserKey {
             }
             if (append) {
                 if (idFinished) {
-                    hostBuilder.appendString("\(ch)")
+                    hostBuilder.append(ch)
                 } else {
-                    idBuilder.appendString("\(ch)")
+                    idBuilder.append(ch)
                 }
             }
         }
-        if (hostBuilder.length != 0) {
-            self.id = idBuilder as String
-            self.host = hostBuilder as String
-        } else {
-            self.id = idBuilder as String
+        if (hostBuilder.isEmpty) {
+            self.id = String(idBuilder)
             self.host = nil
+        } else {
+            self.id = String(idBuilder)
+            self.host = String(hostBuilder)
         }
     }
     
     init(id: String, host: String?) {
         self.id = id
         self.host = host
+    }
+    
+    private func escape(str: String, inout dest: [Character]) {
+        str.characters.forEach { ch in
+            if (isSpecialChar(ch)) {
+                dest.append("\\")
+            }
+            dest.append(ch)
+        }
+    }
+    
+    private func isSpecialChar(ch: Character) -> Bool {
+        return ch == "\\" || ch == "@" || ch == ","
     }
 }
