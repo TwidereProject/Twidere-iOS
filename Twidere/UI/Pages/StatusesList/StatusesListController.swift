@@ -8,16 +8,16 @@
 
 import UIKit
 import SwiftyJSON
+import PromiseKit
 
 class StatusesListController: UITableViewController {
     
-    lazy var statuses: [FlatStatus] = {
-        let json = JSON(data: NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("statuses_list", ofType: "json")!)!)
-        let account = try! defaultAccount()!
-        return json.map { (s, json) -> FlatStatus in
-            return FlatStatus(json: json, account: account)
+    var statuses: [FlatStatus]? = nil {
+        didSet {
+            tableView?.reloadData()
         }
-    }()
+    }
+    var delegate: StatusesListControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +28,18 @@ class StatusesListController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         tableView.registerNib(UINib(nibName: "StatusCell", bundle: nil), forCellReuseIdentifier: "Status")
+        tableView.registerNib(UINib(nibName: "GapCell", bundle: nil), forCellReuseIdentifier: "Gap")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
         
+        let control = UIRefreshControl()
+        control.addTarget(self, action: #selector(self.refreshFromStart), forControlEvents: .ValueChanged)
+        refreshControl = control
+        
+        refreshControl?.beginRefreshing()
+        let opts = LoadOptions()
+        opts.initLoad = true
+        loadStatuses(opts)
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,16 +56,20 @@ class StatusesListController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return statuses.count
+        return statuses?.count ?? 0
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Status", forIndexPath: indexPath) as! StatusCell
-
-        // Configure the cell...
-        cell.displayStatus(statuses[indexPath.item])
-        
-        return cell
+        let status = statuses![indexPath.item]
+        if (status.isGap ?? false) {
+            let cell = tableView.dequeueReusableCellWithIdentifier("Gap", forIndexPath: indexPath) as! GapCell
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("Status", forIndexPath: indexPath) as! StatusCell
+            cell.displayStatus(status)
+            return cell
+        }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -107,5 +120,35 @@ class StatusesListController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func refreshFromStart() {
+        let opts = LoadOptions()
+        opts.initLoad = false
+        loadStatuses(opts)
+    }
+    
+    private func loadStatuses(opts: LoadOptions) {
+        if let promise = delegate?.loadStatuses(opts) {
+            promise.then { statuses in
+                self.statuses = statuses
+            }.always {
+                self.refreshControl?.endRefreshing()
+            }.error { error in
+                // TODO show error
+                debugPrint(error)
+            }
+        }
+    }
+    
+    class LoadOptions {
+        
+        var initLoad: Bool = false
+        
+    }
+}
+
+protocol StatusesListControllerDelegate {
+    
+    func loadStatuses(opts: StatusesListController.LoadOptions) -> Promise<[FlatStatus]>
     
 }

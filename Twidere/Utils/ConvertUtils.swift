@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 private let twitterProfileImageRegex = "(https?://)?(twimg[\\d\\w\\-]+\\.akamaihd\\.net|[\\w\\d]+\\.twimg\\.com)/profile_images/([\\d\\w\\-_]+)/([\\d\\w\\-_]+)_(bigger|normal|mini|reasonably_small)(\\.?(png|jpeg|jpg|gif|bmp))?".r!
 
@@ -26,6 +27,10 @@ func getProfileImageUrlForSize(url: String, size: ProfileImageSize) -> String {
 
 func parseTwitterDate(str: String) -> NSDate? {
     return twitterDateFormatter.dateFromString(str)
+}
+
+func getTwitterEntityId(json: JSON) -> String {
+    return json["id_str"].string ?? json["id"].stringValue
 }
 
 enum ProfileImageSize {

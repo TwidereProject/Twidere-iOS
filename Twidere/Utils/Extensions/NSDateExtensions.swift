@@ -10,6 +10,10 @@ import Foundation
 
 extension NSDate {
     
+    convenience init(timeIntervalSince1970Millis: Int64) {
+        self.init(timeIntervalSince1970: Double(timeIntervalSince1970Millis) / 1000.0)
+    }
+    
     var timeIntervalSince1970Millis: Int64 {
         get {
             return Int64(self.timeIntervalSince1970 * 1000)

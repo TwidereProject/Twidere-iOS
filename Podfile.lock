@@ -5,10 +5,10 @@ PODS:
     - Alamofire (~> 3.0)
   - Boilerplate (0.2.4):
     - Result (~> 2.0)
-  - Cartography (0.6.0)
   - CrossroadRegex (0.8.0):
     - Boilerplate (~> 0.2)
   - CryptoSwift (0.5.1)
+  - DateTools (1.7.0)
   - IQKeyboardManagerSwift (4.0.4)
   - JDStatusBarNotification (1.5.3)
   - JVFloatLabeledTextField (1.1.1)
@@ -55,9 +55,9 @@ DEPENDENCIES:
   - ActionSheetPicker-3.0 (= 2.2.0)
   - Alamofire (= 3.4.1)
   - Alamofire-Synchronous (= 3.0.0)
-  - Cartography (~> 0.6)
   - CrossroadRegex (= 0.8.0)
   - CryptoSwift (= 0.5.1)
+  - DateTools (~> 1.7.0)
   - IQKeyboardManagerSwift (= 4.0.4)
   - JDStatusBarNotification (= 1.5.3)
   - JVFloatLabeledTextField (= 1.1.1)
@@ -83,9 +83,9 @@ SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   Alamofire-Synchronous: dc5dccc284e03c3b760e09c655dfe6fa292364b6
   Boilerplate: cc76b26f60747f7b75f43b8ac38d2071cfb0e75a
-  Cartography: 70af183a248547694a8cfaa6b989cb7e04589985
   CrossroadRegex: f1ab8cb19a65c1db9a2ed809e8f71b49a40aa8cb
   CryptoSwift: df42dda18baf6c76347a94e227dbcc0a341304bd
+  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   IQKeyboardManagerSwift: e0964d04d6a29b71016fd346dca13ecb80a2823a
   JDStatusBarNotification: 29413865af11c862c17180610b0f46a21118b412
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18

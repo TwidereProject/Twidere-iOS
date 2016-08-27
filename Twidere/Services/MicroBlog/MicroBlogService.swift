@@ -9,6 +9,10 @@
 import SwiftyJSON
 
 class MicroBlogService: RestClient {
+    
+    let statusQueries: [String: String] = [
+        "tweet_mode": "extended"
+    ]
 
     func verifyCredentials() throws -> JSON {
         return try makeTypedRequest(.GET, path: "/account/verify_credentials.json", checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
@@ -76,7 +80,31 @@ class MicroBlogService: RestClient {
     }
     
     func getHomeTimeline() throws -> JSON {
-        return try makeTypedRequest(.GET, path: "/statuses/home_timeline.json", checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+        let queries = makeQueries(statusQueries)
+        return try makeTypedRequest(.GET, path: "/statuses/home_timeline.json", queries: queries, checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+    }
+    
+    func getUserTimeline() throws -> JSON {
+        let queries = makeQueries(statusQueries)
+        return try makeTypedRequest(.GET, path: "/statuses/user_timeline.json", queries: queries, checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+    }
+    
+    func getUserTimeline(screenName: String) throws -> JSON {
+        let queries = makeQueries(statusQueries, ["screen_name": screenName])
+        return try makeTypedRequest(.GET, path: "/statuses/user_timeline.json", queries: queries, checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+    }
+    
+    func makeQueries(def: [String: String], _ queries: [String: String]? = nil) -> [String: String] {
+        var result = [String: String]()
+        for (k, v) in def {
+            result[k] = v
+        }
+        if (queries != nil) {
+            for (k, v) in queries! {
+                result[k] = v
+            }
+        }
+        return result
     }
 
     static func checkRequest(result: HttpResult) throws {

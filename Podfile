@@ -28,6 +28,7 @@ target 'Twidere' do
   pod 'SQLite.swift', '~> 0.10.1'
   pod 'UIView+FDCollapsibleConstraints', '~> 1.1'
   pod 'Pager', '~> 1.0'
+  pod 'DateTools', '~> 1.7.0'
 end
 
 target 'TwidereTests' do

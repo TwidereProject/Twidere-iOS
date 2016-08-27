@@ -130,7 +130,7 @@ class BackgroundOperationService {
                     default:
                         do {
                             let requestResult = try twitterUpdateStatus(microBlog, statusUpdate: statusUpdate, pendingUpdate: pendingUpdate, overrideText: pendingUpdate.overrideTexts[i], index: i)
-                            let status = FlatStatus(json: requestResult, account: account)
+                            let status = FlatStatus(status: requestResult, account: account)
                             statuses[i] = status
                         } catch let error {
                             exceptions[i] = error

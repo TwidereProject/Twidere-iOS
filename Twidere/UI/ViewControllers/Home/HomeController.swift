@@ -12,6 +12,7 @@ import SugarRecord
 import UIView_TouchHighlighting
 import REFrostedViewController
 import Pager
+import PromiseKit
 
 class HomeController: PagerController, PagerDataSource {
     
@@ -28,11 +29,14 @@ class HomeController: PagerController, PagerDataSource {
         
         menuToggleItem.customView?.touchHighlightingStyle = .TransparentMask
         
-        let titles = ["Tweets", "Users"]
-        let pages = [StatusesListController(nibName: "StatusesListController", bundle: nil), UsersListController(nibName: "UsersListController", bundle: nil)]
+        let titles = ["User timeline", "Home timeline"]
+        let homeTimelineController = StatusesListController(nibName: "StatusesListController", bundle: nil)
+        homeTimelineController.delegate = HomeTimelineStatusesListControllerDelegate()
+        let userTimelineController = StatusesListController(nibName: "StatusesListController", bundle: nil)
+        userTimelineController.delegate = UserTimelineStatusesListControllerDelegate()
+        let pages = [userTimelineController, homeTimelineController]
         
         setupPager(tabNames: titles, tabControllers: pages)
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -55,6 +59,34 @@ class HomeController: PagerController, PagerDataSource {
     
     @IBAction func panGestureRecognized(sender: UIPanGestureRecognizer) {
         frostedViewController.panGestureRecognized(sender)
+    }
+    
+    class HomeTimelineStatusesListControllerDelegate: StatusesListControllerDelegate {
+        func loadStatuses(opts: StatusesListController.LoadOptions) -> Promise<[FlatStatus]> {
+            return dispatch_promise {  () -> [FlatStatus] in
+                if (opts.initLoad) {
+                    sleep(1)
+                    return [FlatStatus]()
+                }
+                let account = try defaultAccount()!
+                let microblog = account.newMicroblogInstance()
+                return FlatStatus.arrayFromJson(try microblog.getHomeTimeline(), account: account)
+            }
+        }
+    }
+    
+    class UserTimelineStatusesListControllerDelegate: StatusesListControllerDelegate {
+        func loadStatuses(opts: StatusesListController.LoadOptions) -> Promise<[FlatStatus]> {
+            return dispatch_promise {  () -> [FlatStatus] in
+                if (opts.initLoad) {
+                    sleep(1)
+                    return [FlatStatus]()
+                }
+                let account = try defaultAccount()!
+                let microblog = account.newMicroblogInstance()
+                return FlatStatus.arrayFromJson(try microblog.getUserTimeline(), account: account)
+            }
+        }
     }
     
 }
