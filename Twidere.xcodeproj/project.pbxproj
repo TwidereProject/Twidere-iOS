@@ -259,12 +259,12 @@
 		CE0529DA1CF7F35300E06364 = {
 			isa = PBXGroup;
 			children = (
+				0F80558F5C8F18CCEBAD61DC /* Frameworks */,
+				112D8F55CE395A2A6ED13654 /* Pods */,
 				CE0529E41CF7F35300E06364 /* Products */,
 				CE0529E51CF7F35300E06364 /* Twidere */,
 				CE0529FD1CF7F35300E06364 /* TwidereTests */,
 				CE052A081CF7F35300E06364 /* TwidereUITests */,
-				112D8F55CE395A2A6ED13654 /* Pods */,
-				0F80558F5C8F18CCEBAD61DC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
