@@ -26,7 +26,7 @@ extension FlatStatus {
  
         let user = primary["user"]
         let userId = getTwitterEntityId(user)
-        self.userKey = UserKey(id: userId, host: nil)
+        self.userKey = UserKey(id: userId, host: self.accountKey.host)
         self.userName = user["name"].string
         self.userScreenName = user["screen_name"].string
         self.userProfileImage = getProfileImage(user)
@@ -44,7 +44,7 @@ extension FlatStatus {
             
             let quotedUser = quoted["user"]
             let quotedUserId = getTwitterEntityId(quotedUser)
-            self.quotedUserKey = UserKey(id: quotedUserId, host: nil)
+            self.quotedUserKey = UserKey(id: quotedUserId, host: self.accountKey.host)
             self.quotedUserName = quotedUser["name"].string
             self.quotedUserScreenName = quotedUser["screen_name"].string
             self.quotedUserProfileImage = getProfileImage(quotedUser)

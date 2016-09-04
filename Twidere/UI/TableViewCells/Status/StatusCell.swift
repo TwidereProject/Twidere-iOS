@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 import DateTools
-import UIView_FDCollapsibleConstraints
+import ALSLayouts
 
 class StatusCell: UITableViewCell {
     
@@ -20,42 +20,78 @@ class StatusCell: UITableViewCell {
     @IBOutlet weak var quotedView: UIView!
     @IBOutlet weak var quotedNameView: UILabel!
     @IBOutlet weak var quotedTextView: UILabel!
+    @IBOutlet weak var statusTypeLabelView: UILabel!
     
-    private var currentId: String? = nil
+    @IBOutlet weak var replyButton: UIButton!
+    @IBOutlet weak var retweetButton: UIButton!
+    
+    
+    var status: FlatStatus! {
+        didSet {
+            display()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImageView.makeCircular()
+        
+        // border radius
+        quotedView.layer.cornerRadius = 4.0
+        
+        // border
+        quotedView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        quotedView.layer.borderWidth = 0.5
         // Initialization code
+
     }
 
+    override func sizeThatFits(size: CGSize) -> CGSize {
+        let layout = contentView.subviews.first as! ALSBaseLayout
+        var layoutSize = size
+        layoutSize.width -= contentView.layoutMargins.left + contentView.layoutMargins.right
+        layoutSize.height -= contentView.layoutMargins.top + contentView.layoutMargins.bottom
+        var contentSize = layout.sizeThatFits(layoutSize)
+        contentSize.width += contentView.layoutMargins.left + contentView.layoutMargins.right
+        contentSize.height += contentView.layoutMargins.top + contentView.layoutMargins.bottom
+        return contentSize
+    }
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
     
-    func displayStatus(status: FlatStatus) {
-        currentId = status.id
+    func display() {
+        guard let status = self.status else {
+            return
+        }
         
         nameView.attributedText = StatusCell.createNameText(nameView.font.pointSize, name: status.userName, screenName: status.userScreenName, separator: " ")
         textView.attributedText = StatusCell.createStatusText(status.textDisplay, spans: status.metadata?.spans, displayRange: status.metadata?.displayRange)
         
         if (status.quotedId != nil) {
-            quotedNameView.attributedText = StatusCell.createNameText(quotedNameView.font.pointSize, name: status.quotedUserName, screenName: status.quotedUserScreenName, separator: " ")
+            quotedNameView.attributedText = StatusCell.createNameText(quotedNameView.font.pointSize, name: status.quotedUserName!, screenName: status.quotedUserScreenName!, separator: " ")
         
-            quotedTextView.attributedText = StatusCell.createStatusText(status.quotedTextDisplay, spans: status.quotedMetadata?.spans, displayRange: status.quotedMetadata?.displayRange)
-            quotedView.fd_collapsed = false
+            quotedTextView.attributedText = StatusCell.createStatusText(status.quotedTextDisplay!, spans: status.quotedMetadata?.spans, displayRange: status.quotedMetadata?.displayRange)
+            
+            quotedView.layoutHidden = false
         } else {
-            quotedView.fd_collapsed = true
+            quotedNameView.text = nil
+            quotedTextView.text = nil
+            
+            quotedView.layoutHidden = true
         }
         profileImageView.displayImage(getProfileImageUrlForSize(status.userProfileImage, size: .ReasonablySmall))
         
         updateTime(status)
+        
+        setNeedsLayout()
     }
     
-    func updateTime(obj: AnyObject?) {
-        guard let status = obj as? FlatStatus where status.id == currentId else {
+    dynamic func updateTime(obj: AnyObject?) {
+        guard let status = obj as? FlatStatus where status.id == self.status?.id else {
             return
         }
         timeView.text = status.createdAt.shortTimeAgoSinceNow()
@@ -80,7 +116,7 @@ class StatusCell: UITableViewCell {
             attributed.addAttribute(NSLinkAttributeName, value: span.link, range: NSMakeRange(span.start, span.end - span.start))
         })
         if (displayRange != nil) {
-            return attributed.attributedSubstringFromRange(NSMakeRange(displayRange![0], displayRange![1] - displayRange![0]))
+//            return attributed.attributedSubstringFromRange(NSMakeRange(0, displayRange![1]))
         }
         return attributed
     }

@@ -3,12 +3,14 @@ PODS:
   - Alamofire (3.4.1)
   - Alamofire-Synchronous (3.0.0):
     - Alamofire (~> 3.0)
+  - ALSLayouts (0.1.5)
   - Boilerplate (0.2.4):
     - Result (~> 2.0)
   - CrossroadRegex (0.8.0):
     - Boilerplate (~> 0.2)
   - CryptoSwift (0.5.1)
   - DateTools (1.7.0)
+  - Gloss (0.7.4)
   - IQKeyboardManagerSwift (4.0.4)
   - JDStatusBarNotification (1.5.3)
   - JVFloatLabeledTextField (1.1.1)
@@ -47,6 +49,7 @@ PODS:
   - SwiftyJSON (2.3.2)
   - SwiftyUserDefaults (2.2.0)
   - twitter-text (1.13.4)
+  - UITableView+FDTemplateLayoutCell (1.5.beta)
   - UITextView+Placeholder (1.2.0)
   - UIView+FDCollapsibleConstraints (1.1)
   - UIView+TouchHighlighting (1.1.0)
@@ -55,9 +58,11 @@ DEPENDENCIES:
   - ActionSheetPicker-3.0 (= 2.2.0)
   - Alamofire (= 3.4.1)
   - Alamofire-Synchronous (= 3.0.0)
+  - ALSLayouts (~> 0.1)
   - CrossroadRegex (= 0.8.0)
   - CryptoSwift (= 0.5.1)
   - DateTools (~> 1.7.0)
+  - Gloss (~> 0.7)
   - IQKeyboardManagerSwift (= 4.0.4)
   - JDStatusBarNotification (= 1.5.3)
   - JVFloatLabeledTextField (= 1.1.1)
@@ -74,6 +79,7 @@ DEPENDENCIES:
   - SwiftyJSON (= 2.3.2)
   - SwiftyUserDefaults (= 2.2.0)
   - twitter-text (~> 1.13)
+  - UITableView+FDTemplateLayoutCell (~> 1.5.beta)
   - UITextView+Placeholder (= 1.2.0)
   - UIView+FDCollapsibleConstraints (~> 1.1)
   - UIView+TouchHighlighting (= 1.1.0)
@@ -82,10 +88,12 @@ SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   Alamofire-Synchronous: dc5dccc284e03c3b760e09c655dfe6fa292364b6
+  ALSLayouts: aceaa5418aefb7c8e9abc18c0c5777ca7df572be
   Boilerplate: cc76b26f60747f7b75f43b8ac38d2071cfb0e75a
   CrossroadRegex: f1ab8cb19a65c1db9a2ed809e8f71b49a40aa8cb
   CryptoSwift: df42dda18baf6c76347a94e227dbcc0a341304bd
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  Gloss: d86009ef4d12c221d889c4e3f9e1eb547ee6251d
   IQKeyboardManagerSwift: e0964d04d6a29b71016fd346dca13ecb80a2823a
   JDStatusBarNotification: 29413865af11c862c17180610b0f46a21118b412
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
@@ -104,8 +112,11 @@ SPEC CHECKSUMS:
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   SwiftyUserDefaults: e7c8197a9d4068702e7f2406a968cae413b8de27
   twitter-text: 66e7b9925534ade86cb3cb2751788073de8f2fec
+  UITableView+FDTemplateLayoutCell: 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
   UIView+FDCollapsibleConstraints: 9357eaf03b4e088263ab74a3b86a382a64ce38dd
   UIView+TouchHighlighting: cedbcd90c965e7b1418c80a04fc8266398a738f1
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 699642e3e4a35e685fe2e4c96a5241c1a559be10
+
+COCOAPODS: 1.1.0.beta.2

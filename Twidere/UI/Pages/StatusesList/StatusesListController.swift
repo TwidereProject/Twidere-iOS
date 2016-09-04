@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import PromiseKit
+import UITableView_FDTemplateLayoutCell
 
 class StatusesListController: UITableViewController {
     
@@ -29,8 +30,6 @@ class StatusesListController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         tableView.registerNib(UINib(nibName: "StatusCell", bundle: nil), forCellReuseIdentifier: "Status")
         tableView.registerNib(UINib(nibName: "GapCell", bundle: nil), forCellReuseIdentifier: "Gap")
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 140
         
         let control = UIRefreshControl()
         control.addTarget(self, action: #selector(self.refreshFromStart), forControlEvents: .ValueChanged)
@@ -50,12 +49,10 @@ class StatusesListController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return statuses?.count ?? 0
     }
 
@@ -67,8 +64,20 @@ class StatusesListController: UITableViewController {
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("Status", forIndexPath: indexPath) as! StatusCell
-            cell.displayStatus(status)
+            cell.status = status
             return cell
+        }
+    }
+    
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let status = statuses![indexPath.item]
+        if (status.isGap ?? false) {
+            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+        } else {
+            return tableView.fd_heightForCellWithIdentifier("Status", cacheByIndexPath: indexPath) { cell in
+                (cell as! StatusCell).status = status
+            }
         }
     }
     

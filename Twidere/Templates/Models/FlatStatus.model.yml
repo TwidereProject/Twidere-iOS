@@ -1,0 +1,63 @@
+name: 'FlatStatus'
+fields:
+  _id:
+    type: Int64
+    column: _id
+    primary_key: Autoincrement
+  accountKey:
+    type: UserKey
+    column: account_key
+  isGap:
+    type: Bool
+    column: is_gap
+  createdAt:
+    type: NSDate
+    column: created_at
+  id:
+    type: String
+    column: status_id
+  userKey:
+    type: UserKey
+    column: user_key
+  userName:
+    type: String
+    column: user_name
+  userScreenName:
+    type: String
+    column: user_screen_name
+  userProfileImage:
+    type: String
+    column: user_profile_image
+  textPlain:
+    type: String
+    column: text_plain
+  textDisplay:
+    type: String
+    column: text_display
+  metadata:
+    type: Metadata?
+    column: metadata
+  quotedId:
+    type: String?
+    column: quoted_status_id
+  quotedUserKey:
+    type: UserKey?
+    column: quoted_user_key
+  quotedUserName:
+    type: String?
+    column: quoted_user_name
+  quotedUserScreenName:
+    type: String?
+    column: quoted_user_screen_name
+  quotedUserProfileImage:
+    type: String?
+    column: quoted_user_profile_image
+  quotedTextPlain:
+    type: String?
+    column: quoted_text_plain
+  quotedTextDisplay:
+    type: String?
+    column: quoted_text_display
+  quotedMetadata:
+    type: Metadata?
+    column: quoted_metadata

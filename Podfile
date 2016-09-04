@@ -17,7 +17,7 @@ target 'Twidere' do
   pod 'SwiftyUserDefaults', '2.2.0'
   pod 'SugarRecord/CoreData', '2.2.9'
   pod 'PromiseKit', '3.4.0'
-  pod 'STPopup', '1.7.0'
+  pod 'STPopup', '1.8.0'
   pod 'UITextView+Placeholder', '1.2.0'
   pod 'twitter-text', '~> 1.13'
   pod 'UIView+TouchHighlighting', '1.1.0'
@@ -27,8 +27,11 @@ target 'Twidere' do
   pod 'SwiftEventBus', '1.1.0'
   pod 'SQLite.swift', '~> 0.10.1'
   pod 'UIView+FDCollapsibleConstraints', '~> 1.1'
+  pod 'UITableView+FDTemplateLayoutCell', '~> 1.5.beta'
   pod 'Pager', '~> 1.0'
   pod 'DateTools', '~> 1.7.0'
+  pod 'Gloss', '~> 0.7'
+  pod 'ALSLayouts', '~> 0.1'
 end
 
 target 'TwidereTests' do

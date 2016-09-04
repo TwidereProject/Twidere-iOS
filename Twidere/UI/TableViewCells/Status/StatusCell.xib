@@ -1,125 +1,171 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Status" id="KGk-i7-Jjw" customClass="StatusCell" customModule="Twidere" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="324"/>
+        <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Status" id="KGk-i7-Jjw" customClass="StatusCell" customModule="Twidere" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="365"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="323.5"/>
+            <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" userLabel="Content View">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="364.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5KQ-xb-nha">
-                        <rect key="frame" x="8" y="8" width="40" height="40"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="40" id="Jl5-Ug-eaS"/>
-                            <constraint firstAttribute="height" constant="40" id="adE-uR-S3J"/>
-                        </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name @screenname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKp-da-MGc">
-                        <rect key="frame" x="56" y="8" width="133.5" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="just now" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ciw-NL-y95">
-                        <rect key="frame" x="197" y="9" width="114.5" height="16"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kF-mi-Guo">
-                        <rect key="frame" x="56" y="29" width="256" height="107.5"/>
-                        <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis metus non massa eleifend, a ornare nisi vestibulum. Sed malesuada lorem eget ex viverra, ac egestas arcu vehicula. </string>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFN-8A-eFZ" userLabel="Quoted View">
-                        <rect key="frame" x="56" y="136" width="256" height="148.5"/>
+                    <view opaque="NO" contentMode="scaleToFill" id="MQJ-bB-t62" customClass="ALSRelativeLayout" customModule="ALSLayouts">
+                        <rect key="frame" x="8" y="8" width="304" height="348.5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name @screenname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgV-ep-mVC">
-                                <rect key="frame" x="8" y="8" width="133.5" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Retweeted by user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="V07-d6-6R9" userLabel="Status Type Label">
+                                <rect key="frame" x="48" y="0.0" width="256" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="statusTypeLabel"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutToTrailingOf" value="profileImageView"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="5KQ-xb-nha" userLabel="Profile Image View">
+                                <rect key="frame" x="0.0" y="38" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="myHeight">
+                                        <real key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="myWidth">
+                                        <real key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="profileImageView"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignTop" value="nameLabel"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name @screenname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LKp-da-MGc" userLabel="Name View">
+                                <rect key="frame" x="48" y="29" width="186" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="statusTypeLabel"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="nameLabel"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutToLeadingOf" value="timeLabel"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsy-OI-1yT">
-                                <rect key="frame" x="8" y="25" width="240" height="107.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="just now" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ciw-NL-y95" userLabel="Time View">
+                                <rect key="frame" x="232" y="29" width="55" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignBaseline" value="nameLabel"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="timeLabel"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1kF-mi-Guo" userLabel="Text View">
+                                <rect key="frame" x="48" y="54" width="256" height="108"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis metus non massa eleifend, a ornare nisi vestibulum. Sed malesuada lorem eget ex viverra, ac egestas arcu vehicula. </string>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="textLabel"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="nameLabel"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignLeading" value="nameLabel"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
+                            <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" id="xFN-8A-eFZ" userLabel="Quoted View" customClass="ALSLinearLayout" customModule="ALSLayouts">
+                                <rect key="frame" x="40" y="164" width="256" height="152"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name @screenname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QgV-ep-mVC" userLabel="Quoted Name View">
+                                        <rect key="frame" x="8" y="8" width="240" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoCollapse" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vsy-OI-1yT" userLabel="Quoted Text View">
+                                        <rect key="frame" x="8" y="33" width="240" height="108"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis metus non massa eleifend, a ornare nisi vestibulum. Sed malesuada lorem eget ex viverra, ac egestas arcu vehicula. </string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoCollapse" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoCollapse" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="textLabel"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignLeading" value="textLabel"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="orientationString" value="Vertical"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" id="F1x-pk-Ae9" userLabel="Actions Container">
+                                <rect key="frame" x="40" y="318" width="240" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="p9b-Cd-aGS" userLabel="Reply Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Button Action Reply"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6JC-ir-dir" userLabel="Retweet Button">
+                                        <rect key="frame" x="70" y="0.0" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Button Action Retweet"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hFZ-Sx-WGu" userLabel="Favorite Button">
+                                        <rect key="frame" x="140" y="0.0" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Button Action Retweet"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2s5-Kb-q6q" userLabel="Actions Button">
+                                        <rect key="frame" x="210" y="0.0" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Button Action Retweet"/>
+                                    </button>
+                                </subviews>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignLeading" value="textLabel"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                </userDefinedRuntimeAttributes>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="vsy-OI-1yT" firstAttribute="top" secondItem="QgV-ep-mVC" secondAttribute="bottom" id="4Bq-ta-YiS"/>
-                            <constraint firstItem="vsy-OI-1yT" firstAttribute="leading" secondItem="xFN-8A-eFZ" secondAttribute="leadingMargin" id="LZA-IV-O9F"/>
-                            <constraint firstItem="QgV-ep-mVC" firstAttribute="top" secondItem="xFN-8A-eFZ" secondAttribute="topMargin" id="LtE-V9-H9l"/>
-                            <constraint firstItem="vsy-OI-1yT" firstAttribute="trailing" secondItem="xFN-8A-eFZ" secondAttribute="trailingMargin" id="SxV-yK-0F0"/>
-                            <constraint firstItem="QgV-ep-mVC" firstAttribute="leading" secondItem="xFN-8A-eFZ" secondAttribute="leadingMargin" id="n5n-yo-NWE"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="vsy-OI-1yT" secondAttribute="bottom" constant="8" id="nWH-sr-GPK"/>
-                        </constraints>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoCollapse" value="YES"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="heightModeString" value="WrapContent"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="widthModeString" value="MatchParent"/>
                         </userDefinedRuntimeAttributes>
-                        <connections>
-                            <outletCollection property="fd_collapsibleConstraints" destination="LtE-V9-H9l" id="3AY-jF-DOm"/>
-                            <outletCollection property="fd_collapsibleConstraints" destination="4Bq-ta-YiS" id="qaL-ya-lvh"/>
-                            <outletCollection property="fd_collapsibleConstraints" destination="nWH-sr-GPK" id="rgg-t2-otu"/>
-                        </connections>
                     </view>
-                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="F1x-pk-Ae9" userLabel="Actions Container">
-                        <rect key="frame" x="56" y="285" width="256" height="30"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p9b-Cd-aGS">
-                                <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6JC-ir-dir">
-                                <rect key="frame" x="70" y="0.0" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFZ-Sx-WGu">
-                                <rect key="frame" x="140" y="0.0" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2s5-Kb-q6q">
-                                <rect key="frame" x="210" y="0.0" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="Q5r-nj-BgX"/>
-                        </constraints>
-                    </stackView>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="LKp-da-MGc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="3ei-4c-s5V"/>
-                    <constraint firstItem="xFN-8A-eFZ" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="9Hj-on-Tyz"/>
-                    <constraint firstItem="F1x-pk-Ae9" firstAttribute="leading" secondItem="1kF-mi-Guo" secondAttribute="leading" id="FtX-w7-Gmj"/>
-                    <constraint firstItem="1kF-mi-Guo" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="GTS-Se-auY"/>
-                    <constraint firstItem="F1x-pk-Ae9" firstAttribute="top" secondItem="xFN-8A-eFZ" secondAttribute="bottom" id="Jll-Gl-8jv"/>
-                    <constraint firstItem="1kF-mi-Guo" firstAttribute="leading" secondItem="5KQ-xb-nha" secondAttribute="trailing" constant="8" id="MQY-gv-OwZ"/>
-                    <constraint firstItem="Ciw-NL-y95" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="UvI-GQ-Mve"/>
-                    <constraint firstItem="LKp-da-MGc" firstAttribute="leading" secondItem="5KQ-xb-nha" secondAttribute="trailing" constant="8" id="Y2F-eh-8Ii"/>
-                    <constraint firstItem="1kF-mi-Guo" firstAttribute="top" secondItem="LKp-da-MGc" secondAttribute="bottom" constant="4" id="aMp-on-P6o"/>
-                    <constraint firstItem="Ciw-NL-y95" firstAttribute="baseline" secondItem="LKp-da-MGc" secondAttribute="baseline" id="ci1-fk-yAM"/>
-                    <constraint firstItem="Ciw-NL-y95" firstAttribute="leading" secondItem="LKp-da-MGc" secondAttribute="trailing" constant="8" id="fn7-Ya-fNz"/>
-                    <constraint firstItem="5KQ-xb-nha" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="kIk-wB-xcc"/>
-                    <constraint firstItem="xFN-8A-eFZ" firstAttribute="top" secondItem="1kF-mi-Guo" secondAttribute="bottom" id="kcB-CJ-g2f"/>
-                    <constraint firstItem="xFN-8A-eFZ" firstAttribute="leading" secondItem="1kF-mi-Guo" secondAttribute="leading" id="mwz-nl-NgV"/>
-                    <constraint firstItem="F1x-pk-Ae9" firstAttribute="trailing" secondItem="1kF-mi-Guo" secondAttribute="trailing" id="rtC-N5-FqN"/>
-                    <constraint firstItem="5KQ-xb-nha" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="s0y-fZ-FSs"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="F1x-pk-Ae9" secondAttribute="bottom" id="w9K-J3-60Y"/>
-                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="nameView" destination="LKp-da-MGc" id="Y7M-bk-KSO"/>
@@ -127,10 +173,17 @@
                 <outlet property="quotedNameView" destination="QgV-ep-mVC" id="2Ee-xu-Y0i"/>
                 <outlet property="quotedTextView" destination="vsy-OI-1yT" id="jBJ-1m-cd3"/>
                 <outlet property="quotedView" destination="xFN-8A-eFZ" id="zk9-9v-fKG"/>
+                <outlet property="replyButton" destination="p9b-Cd-aGS" id="3xE-L2-HyL"/>
+                <outlet property="retweetButton" destination="6JC-ir-dir" id="hBE-N4-Syw"/>
+                <outlet property="statusTypeLabelView" destination="V07-d6-6R9" id="2mK-Gg-1jW"/>
                 <outlet property="textView" destination="1kF-mi-Guo" id="GBX-PU-FnD"/>
                 <outlet property="timeView" destination="Ciw-NL-y95" id="XT0-5G-5Ym"/>
             </connections>
-            <point key="canvasLocation" x="233" y="298"/>
+            <point key="canvasLocation" x="233" y="297.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Button Action Reply" width="30" height="30"/>
+        <image name="Button Action Retweet" width="30" height="30"/>
+    </resources>
 </document>

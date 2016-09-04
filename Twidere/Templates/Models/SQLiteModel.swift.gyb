@@ -1,13 +1,29 @@
 %{
-    execfile(modelPath)
+    import yaml
+    from collections import OrderedDict
+
+    def ordered_load(stream, Loader=yaml.Loader, object_pairs_hook=OrderedDict):
+        class OrderedLoader(Loader):
+            pass
+        def construct_mapping(loader, node):
+            loader.flatten_mapping(node)
+            return object_pairs_hook(loader.construct_pairs(node))
+        OrderedLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, construct_mapping)
+        return yaml.load(stream, OrderedLoader)
+
+    with open(modelPath, 'r') as f:
+        model = ordered_load(f, yaml.SafeLoader)
+        fields = model['fields']
+        className = model['name']
 }%
 import SQLite
 
-class ${modelName} {
+class ${className} {
 
-% for (fieldName, propertyName, propertyType) in fields:
+% for propertyName in fields:
+    % propertyType = fields[propertyName]['type']
     % if propertyType.endswith('?'):
-    var ${propertyName}: ${propertyType[:-1]}!
+    var ${propertyName}: ${propertyType}
     % else:
     var ${propertyName}: ${propertyType}!
     %end
@@ -18,24 +34,56 @@ class ${modelName} {
     }
 
     init(row: Row) {
-    % for (fieldName, propertyName, propertyType) in fields:
+    % for propertyName in fields:
         self.${propertyName} = row.get(RowIndices.${propertyName})
     %end
     }
 
+    static func createTable(table: Table, temporary: Bool = false, ifNotExists: Bool = false) -> String {
+        return table.create(temporary: temporary, ifNotExists: ifNotExists) { t in
+        % for propertyName in fields:
+            %{
+            field = fields[propertyName]
+            columnArguments = ''
+            primaryKey = field.get('primary_key', None)
+            if primaryKey is not None:
+                columnArguments += ', primaryKey: .%s' % primaryKey
+            }%
+            t.column(RowIndices.${propertyName}${columnArguments})
+        %end
+        }
+    }
+
+    static func insertData(table: Table, model: ${className}) -> Insert {
+        return table.insert( [
+            % for idx, propertyName in enumerate(fields):
+            % field = fields[propertyName]
+                % if field.get('primary_key', None) != 'Autoincrement':
+                RowIndices.${propertyName} <- model.${propertyName},
+                %end
+            %end
+        ])
+    }
+
     class RowIndices {
 
-    % for (fieldName, propertyName, propertyType) in fields:
-        static let ${propertyName} = Expression<${propertyType}>("${fieldName}")
+    % for propertyName in fields:
+        % field = fields[propertyName]
+        % propertyType = field['type']
+        % columnName = field['column']
+        % if propertyType.endswith('?'):
+        static let ${propertyName} = Expression<${propertyType}>("${columnName}")
+        % elif field.get('primary_key', None):
+        static let ${propertyName} = Expression<${propertyType}>("${columnName}")
+        % else:
+        static let ${propertyName} = Expression<${propertyType}?>("${columnName}")
+        %end
     %end
 
         static let columns: [Expressible] = [
-    % for idx, (fieldName, propertyName, propertyType) in enumerate(fields):
-        % if idx != len(fields) - 1:
+    % propertiesCount = 0
+    % for propertyName in fields:
             ${propertyName},
-        % else:
-            ${propertyName}
-        %end
     %end
         ]
     }

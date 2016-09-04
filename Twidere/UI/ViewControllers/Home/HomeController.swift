@@ -13,6 +13,7 @@ import UIView_TouchHighlighting
 import REFrostedViewController
 import Pager
 import PromiseKit
+import SQLite
 
 class HomeController: PagerController, PagerDataSource {
     
@@ -29,12 +30,12 @@ class HomeController: PagerController, PagerDataSource {
         
         menuToggleItem.customView?.touchHighlightingStyle = .TransparentMask
         
-        let titles = ["User timeline", "Home timeline"]
+        let titles = ["Home timeline", "User timeline"]
         let homeTimelineController = StatusesListController(nibName: "StatusesListController", bundle: nil)
         homeTimelineController.delegate = HomeTimelineStatusesListControllerDelegate()
         let userTimelineController = StatusesListController(nibName: "StatusesListController", bundle: nil)
         userTimelineController.delegate = UserTimelineStatusesListControllerDelegate()
-        let pages = [userTimelineController, homeTimelineController]
+        let pages = [homeTimelineController, userTimelineController]
         
         setupPager(tabNames: titles, tabControllers: pages)
     }
@@ -64,13 +65,27 @@ class HomeController: PagerController, PagerDataSource {
     class HomeTimelineStatusesListControllerDelegate: StatusesListControllerDelegate {
         func loadStatuses(opts: StatusesListController.LoadOptions) -> Promise<[FlatStatus]> {
             return dispatch_promise {  () -> [FlatStatus] in
-                if (opts.initLoad) {
-                    sleep(1)
-                    return [FlatStatus]()
+                let docsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
+                let dbPath = NSURL(fileURLWithPath: docsPath).URLByAppendingPathComponent("twidere.sqlite3")
+                print(dbPath)
+                let db = try Connection(dbPath.path!)
+                let table = Table("home_statuses")
+                
+                if (!opts.initLoad) {
+                    try db.run(FlatStatus.createTable(table, ifNotExists: true))
+                    try db.run(table.delete())
+                    
+                    let account = try defaultAccount()!
+                    let microblog = account.newMicroblogInstance()
+                    try db.transaction {
+                        for status in FlatStatus.arrayFromJson(try microblog.getHomeTimeline(), account: account) {
+                            try db.run(FlatStatus.insertData(table, model: status))
+                        }
+                    }
                 }
-                let account = try defaultAccount()!
-                let microblog = account.newMicroblogInstance()
-                return FlatStatus.arrayFromJson(try microblog.getHomeTimeline(), account: account)
+                return try db.prepare(table).map { row -> FlatStatus in
+                    return FlatStatus(row: row)
+                }
             }
         }
     }
