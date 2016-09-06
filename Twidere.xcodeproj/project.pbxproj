@@ -419,8 +419,8 @@
 			isa = PBXGroup;
 			children = (
 				CE4B1A9C1D7172F00017CB85 /* Metadata+SQLite.swift */,
-				CE497FB91D6A8A65000F16D2 /* UserKey+SQLite.swift */,
 				CEDC3B201D7D87F80082A8BA /* SQLite+UserVersion.swift */,
+				CE497FB91D6A8A65000F16D2 /* UserKey+SQLite.swift */,
 			);
 			path = SQLite;
 			sourceTree = "<group>";
@@ -463,13 +463,13 @@
 				CEA221321D4CA48200F25516 /* CoreData */,
 				CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */,
 				C57AE4176FEA423CC3BED2CF /* FlatStatus.swift */,
+				CE478DE31D7D50F300F84D10 /* HashtagSpanItem.swift */,
 				CE4B1A9A1D7172930017CB85 /* LinkSpanItem.swift */,
+				CE478DDB1D7D449B00F84D10 /* MentionSpanItem.swift */,
+				CEDC3B291D7DB04F0082A8BA /* Paging.swift */,
+				CEDC3B271D7DAE2C0082A8BA /* RefreshTaskParam.swift */,
 				CEA2E2BD1D3761780095BC57 /* StatusUpdate.swift */,
 				CEA2E2AB1D3549480095BC57 /* UserKey.swift */,
-				CE478DDB1D7D449B00F84D10 /* MentionSpanItem.swift */,
-				CE478DE31D7D50F300F84D10 /* HashtagSpanItem.swift */,
-				CEDC3B271D7DAE2C0082A8BA /* RefreshTaskParam.swift */,
-				CEDC3B291D7DB04F0082A8BA /* Paging.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -477,10 +477,10 @@
 		CE95747E1D32169D00504D52 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				CE95747F1D3216BC00504D52 /* ServiceConstants.swift */,
-				CE9574811D32186A00504D52 /* UIConstants.swift */,
 				CEDC3B1E1D7D82370082A8BA /* CoreConstants.swift */,
 				CEDC3B311D7E5FB30082A8BA /* DatabaseConstants.swift */,
+				CE95747F1D3216BC00504D52 /* ServiceConstants.swift */,
+				CE9574811D32186A00504D52 /* UIConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -498,14 +498,14 @@
 		CE9574941D33B6EA00504D52 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				CEDC3B241D7D9FDA0082A8BA /* Tasks */,
 				CEA2E2BF1D379CB10095BC57 /* Extensions */,
+				CEDC3B241D7D9FDA0082A8BA /* Tasks */,
 				CEA2E2CC1D3A732C0095BC57 /* AccountUtils.swift */,
 				CE497FA81D697CEA000F16D2 /* ConvertUtils.swift */,
+				CEDC3B221D7D8BE90082A8BA /* DatabaseMigration.swift */,
 				CE9574951D33B71B00504D52 /* DefaultsKeys.swift */,
 				CE95748A1D322CC700504D52 /* ModelConverter.swift */,
 				CE478DDD1D7D45BA00F84D10 /* String+Glossy.swift */,
-				CEDC3B221D7D8BE90082A8BA /* DatabaseMigration.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -692,7 +692,7 @@
 			children = (
 				CEDC3B251D7D9FE70082A8BA /* GetStatusesTask.swift */,
 			);
-			name = Tasks;
+			path = Tasks;
 			sourceTree = "<group>";
 		};
 		CEDFEA681D4F392200E1F8B8 /* Templates */ = {
