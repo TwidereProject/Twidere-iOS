@@ -20,14 +20,14 @@ extension Account {
         get {
             switch accountType {
             case "fanfou"?:
-                return .FANFOU
+                return .Fanfou
             default:
-                return .TWITTER
+                return .Twitter
             }
         }
     }
     
     enum Type {
-        case TWITTER, FANFOU, STATUSNET
+        case Twitter, Fanfou, StatusNet
     }
 }

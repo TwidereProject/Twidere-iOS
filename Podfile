@@ -6,7 +6,7 @@ use_frameworks!
 target 'Twidere' do
   pod 'SwiftyJSON', '2.3.2'
   pod 'CryptoSwift', '0.5.1'
-  pod 'Alamofire', '3.4.1'
+  pod 'Alamofire', '~> 3.4'
   pod 'Alamofire-Synchronous', '3.0.0'
   pod 'JVFloatLabeledTextField', '1.1.1'
   pod 'ActionSheetPicker-3.0', '2.2.0'
@@ -19,7 +19,7 @@ target 'Twidere' do
   pod 'PromiseKit', '3.4.0'
   pod 'STPopup', '1.8.0'
   pod 'UITextView+Placeholder', '1.2.0'
-  pod 'twitter-text', '~> 1.13'
+  pod 'twitter-text', '~> 1.14'
   pod 'UIView+TouchHighlighting', '1.1.0'
   pod 'SDWebImage', '3.8.1'
   pod 'REFrostedViewController', '~> 2.4'
@@ -31,7 +31,8 @@ target 'Twidere' do
   pod 'Pager', '~> 1.0'
   pod 'DateTools', '~> 1.7.0'
   pod 'Gloss', '~> 0.7'
-  pod 'ALSLayouts', '~> 0.1'
+  pod 'ALSLayouts', '~> 0.1.9'
+  pod 'ThumborURL', '0.0.4'
 end
 
 target 'TwidereTests' do
@@ -41,4 +42,3 @@ end
 target 'TwidereUITests' do
 
 end
-

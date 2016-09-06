@@ -22,11 +22,11 @@ struct UserKey {
         return String(chars)
     }
     
-    init(str: String) {
+    init(rawValue: String) {
         var escaping = false, idFinished = false
         var idBuilder = [Character](), hostBuilder = [Character]()
         
-        str.characters.forEach { ch in
+        rawValue.characters.forEach { ch in
             var append = false
             if (escaping) {
                 // accept all characters if is escaping

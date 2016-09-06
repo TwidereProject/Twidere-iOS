@@ -13,13 +13,21 @@ extension FlatStatus {
     
     convenience init(status: JSON, account: Account) {
         self.init()
-        self.accountKey = UserKey(str: account.accountKey!)
+        self.accountKey = UserKey(rawValue: account.accountKey!)
         self.id = getTwitterEntityId(status)
         self.createdAt = parseTwitterDate(status["created_at"].stringValue)
+        self.sortId = generateSortId(self, rawId: status["raw_id"].int64 ?? -1)
         
         var primary = status["retweeted_status"]
         if (primary.isExists()) {
+            self.retweetId = getTwitterEntityId(primary)
             
+            let user = primary["user"]
+            let userId = getTwitterEntityId(user)
+            self.retweetedByUserKey = UserKey(id: userId, host: self.accountKey.host)
+            self.retweetedByUserName = user["name"].string
+            self.retweetedByUserScreenName = user["screen_name"].string
+            self.retweetedByUserProfileImage = getProfileImage(user)
         } else {
             primary = status
         }
@@ -73,24 +81,44 @@ extension FlatStatus {
     
     private func getMetadata(status: JSON) -> (String!, Metadata) {
         let metadata = Metadata()
-        var spans = [SpanItem]()
+        var spans = [LinkSpanItem]()
+        var mentions = [MentionSpanItem]()
+        var hashtags = [HashtagSpanItem]()
         let text = status["full_text"].string ?? status["text"].string!
         var codePoints = text.unicodeScalars
         
-        
         var codePointOffset = 0
         
-        var urlEntities = [JSON]()
-        urlEntities.appendContentsOf(status["entities"]["urls"].arrayValue)
-        if let extendedMedia = status["extended_entities"]["media"].array {
-            urlEntities.appendContentsOf(extendedMedia)
-        } else if let media = status["entities"]["media"].array {
-            urlEntities.appendContentsOf(media)
+        var entities = [(JSON, EntityType)]()
+        for entity in status["entities"]["urls"].arrayValue {
+            entities.append((entity, .Url))
         }
+        if let extendedMedia = status["extended_entities"]["media"].array {
+            for entity in extendedMedia {
+                entities.append((entity, .Url))
+            }
+        } else if let media = status["entities"]["media"].array {
+            for entity in media {
+                entities.append((entity, .Url))
+            }
+        }
+        
+        if let userMentions = status["entities"]["user_mentions"].array {
+            for entity in userMentions {
+                entities.append((entity, .Mention))
+            }
+        }
+        
+        if let hashtags = status["entities"]["hashtags"].array {
+            for entity in hashtags {
+                entities.append((entity, .Hashtag))
+            }
+        }
+        
         var indices = [Range<Int>]()
         
         // Remove duplicate entities
-        urlEntities = urlEntities.filter { entity -> Bool in
+        entities = entities.filter { (entity, _) -> Bool in
             guard let start = entity["indices"][0].int, let end = entity["indices"][1].int else {
                 return false
             }
@@ -108,45 +136,65 @@ extension FlatStatus {
         }
         
         // Order entities
-        urlEntities.sortInPlace { (l, r) -> Bool in
-            return l["indices"][0].intValue < r["indices"][0].intValue
+        entities.sortInPlace { (l, r) -> Bool in
+            return l.0["indices"][0].intValue < r.0["indices"][0].intValue
         }
         
-        for urlEntity in urlEntities {
-            guard let start = urlEntity["indices"][0].int, let end = urlEntity["indices"][1].int else {
+        for (entity, type) in entities {
+            guard let start = entity["indices"][0].int, let end = entity["indices"][1].int else {
                 continue
             }
-            guard let expandedUrl = urlEntity["expanded_url"].string else {
-                continue
-            }
-            guard let displayUrl = urlEntity["display_url"].string else {
-                continue
-            }
-            let displayUrlCodePoints = displayUrl.unicodeScalars
-            let displayLength = displayUrlCodePoints.count
+            
             let rangeStart = codePointOffset + start
             let rangeEnd = codePointOffset + end
             
             var startIndex = codePoints.startIndex
             
-            codePoints.replaceRange(startIndex.advancedBy(rangeStart)..<startIndex.advancedBy(rangeEnd), with: displayUrlCodePoints)
+            switch type {
+            case .Url:
+                if let expandedUrl = entity["expanded_url"].string, let displayUrl = entity["display_url"].string {
+                    let displayUrlCodePoints = displayUrl.unicodeScalars
+                    let displayLength = displayUrlCodePoints.count
+                    
+                    codePoints.replaceRange(startIndex.advancedBy(rangeStart)..<startIndex.advancedBy(rangeEnd), with: displayUrlCodePoints)
+                    
+                    startIndex = codePoints.startIndex
+                    
+                    let spanStart = codePoints.utf16Count(startIndex..<startIndex.advancedBy(rangeStart))
+                    let spanEnd = spanStart + displayUrl.utf16.count
+                    let span = LinkSpanItem(start: spanStart, end: spanEnd, link: expandedUrl)
+                    span.origStart = start
+                    span.origEnd = end
+                    spans.append(span)
+                    codePointOffset += displayLength - (end - start)
+                }
+            case .Mention:
+                let id = entity["id_str"].string ?? entity["id"].stringValue
+                if (!id.isEmpty) {
+                    let userStart = codePoints.utf16Count(startIndex..<startIndex.advancedBy(rangeStart))
+                    let userEnd = userStart + end - start
+                    let mention = MentionSpanItem(start: userStart, end: userEnd, key: UserKey(id: id, host: nil))
+                    mention.name = entity["name"].string
+                    mention.screenName = entity["screen_name"].string
+                    mentions.append(mention)
+                }
+            case .Hashtag:
+                if let hashtagString = entity["text"].string {
+                    let userStart = codePoints.utf16Count(startIndex..<startIndex.advancedBy(rangeStart))
+                    let userEnd = userStart + end - start
+                    hashtags.append(HashtagSpanItem(start: userStart, end: userEnd, hashtag: hashtagString))
+                }
+            }
             
-            startIndex = codePoints.startIndex
-            
-            let spanStart = codePoints.utf16Count(startIndex..<startIndex.advancedBy(rangeStart))
-            let spanEnd = spanStart + displayUrl.utf16.count
-            let span = SpanItem(start: spanStart, end: spanEnd, link: expandedUrl)
-            span.origStart = start
-            span.origEnd = end
-            spans.append(span)
-            codePointOffset += displayLength - (end - start)
         }
         metadata.spans = spans
+        metadata.mentions = mentions
+        metadata.hashtags = hashtags
         metadata.displayRange = calculateDisplayTextRange(status, source: text, display: codePoints, spans: spans)
         return (String(codePoints), metadata)
     }
     
-    private func calculateDisplayTextRange(status: JSON, source: String, display: String.UnicodeScalarView, spans:[SpanItem]) -> [Int]? {
+    private func calculateDisplayTextRange(status: JSON, source: String, display: String.UnicodeScalarView, spans:[LinkSpanItem]) -> [Int]? {
         guard let start = status["display_text_range"][0].int, let end = status["display_text_range"][1].int else {
             return nil
         }
@@ -157,7 +205,7 @@ extension FlatStatus {
         ]
     }
     
-    private func getResultRangeLength(source: String.UnicodeScalarView, spans: [SpanItem], origStart: Int, origEnd: Int) -> Int {
+    private func getResultRangeLength(source: String.UnicodeScalarView, spans: [LinkSpanItem], origStart: Int, origEnd: Int) -> Int {
         let findResult = findByOrigRange(spans, start: origStart, end: origEnd)
         let startIndex = source.startIndex
         if (findResult.isEmpty) {
@@ -172,8 +220,8 @@ extension FlatStatus {
         return source.utf16Count(startIndex.advancedBy(origStart)..<startIndex.advancedBy(first.origStart)) + (last.end - first.start) + source.utf16Count(startIndex.advancedBy(first.origEnd)..<startIndex.advancedBy(origEnd))
     }
     
-    private func findByOrigRange(spans: [SpanItem], start: Int, end:Int)-> [SpanItem] {
-        var result = [SpanItem]()
+    private func findByOrigRange(spans: [LinkSpanItem], start: Int, end:Int)-> [LinkSpanItem] {
+        var result = [LinkSpanItem]()
         for span in spans {
             if (span.origStart >= start && span.origEnd <= end) {
                 result.append(span)
@@ -199,5 +247,22 @@ extension FlatStatus {
             i += 1
         }
         return true
+    }
+    
+    private func generateSortId(status: FlatStatus, rawId: Int64) -> Int64 {
+        var sortId = rawId;
+        if (sortId == -1) {
+            // Try use long id
+            sortId = Int64(status.id) ?? -1
+        }
+        if (sortId == -1 && status.createdAt != nil) {
+            // Try use timestamp
+            sortId = createdAt!.timeIntervalSince1970Millis
+        }
+        return sortId;
+    }
+    
+    private enum EntityType {
+        case Mention, Url, Hashtag
     }
 }

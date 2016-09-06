@@ -13,7 +13,7 @@ import SugarRecord
 func defaultAccount() throws -> Account? {
     let db = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStorage
     if let defaultAccount = Defaults[.defaultAccount] {
-        return try db.fetch(Request<Account>(predicate: NSPredicate(format: "attributeName == %@", argumentArray: [defaultAccount]))).first ?? allAccounts().first
+        return try db.fetch(Request<Account>(predicate: NSPredicate(format: "accountKey == %@", argumentArray: [defaultAccount]))).first ?? allAccounts().first
     }
     return try allAccounts().first
 }
@@ -21,4 +21,9 @@ func defaultAccount() throws -> Account? {
 func allAccounts() throws -> [Account] {
     let db = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStorage
     return try db.fetch(Request<Account>())
+}
+
+func getAccount(key: String) throws -> Account? {
+    let db = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStorage
+    return try db.fetch(Request<Account>(predicate: NSPredicate(format: "accountKey == %@", argumentArray: [key]))).first
 }

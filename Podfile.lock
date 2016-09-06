@@ -1,9 +1,9 @@
 PODS:
   - ActionSheetPicker-3.0 (2.2.0)
-  - Alamofire (3.4.1)
+  - Alamofire (3.4.2)
   - Alamofire-Synchronous (3.0.0):
     - Alamofire (~> 3.0)
-  - ALSLayouts (0.1.5)
+  - ALSLayouts (0.1.9)
   - Boilerplate (0.2.4):
     - Result (~> 2.0)
   - CrossroadRegex (0.8.0):
@@ -22,7 +22,7 @@ PODS:
     - OMGHTTPURLRQ/FormURLEncode
     - OMGHTTPURLRQ/UserAgent
   - OMGHTTPURLRQ/UserAgent (3.2.0)
-  - Pager (1.0.8)
+  - Pager (1.0.9)
   - PromiseKit (3.4.0):
     - PromiseKit/Foundation (= 3.4.0)
     - PromiseKit/QuartzCore (= 3.4.0)
@@ -42,13 +42,14 @@ PODS:
   - SDWebImage/Core (3.8.1)
   - SQLite.swift (0.10.1)
   - StaticDataTableViewController (2.0.5)
-  - STPopup (1.7.0)
+  - STPopup (1.8.0)
   - SugarRecord/CoreData (2.2.9):
     - Result (~> 2.0)
   - SwiftEventBus (1.1.0)
   - SwiftyJSON (2.3.2)
   - SwiftyUserDefaults (2.2.0)
-  - twitter-text (1.13.4)
+  - ThumborURL (0.0.4)
+  - twitter-text (1.14.0)
   - UITableView+FDTemplateLayoutCell (1.5.beta)
   - UITextView+Placeholder (1.2.0)
   - UIView+FDCollapsibleConstraints (1.1)
@@ -56,9 +57,9 @@ PODS:
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (= 2.2.0)
-  - Alamofire (= 3.4.1)
+  - Alamofire (~> 3.4)
   - Alamofire-Synchronous (= 3.0.0)
-  - ALSLayouts (~> 0.1)
+  - ALSLayouts (~> 0.1.9)
   - CrossroadRegex (= 0.8.0)
   - CryptoSwift (= 0.5.1)
   - DateTools (~> 1.7.0)
@@ -73,12 +74,13 @@ DEPENDENCIES:
   - SDWebImage (= 3.8.1)
   - SQLite.swift (~> 0.10.1)
   - StaticDataTableViewController (= 2.0.5)
-  - STPopup (= 1.7.0)
+  - STPopup (= 1.8.0)
   - SugarRecord/CoreData (= 2.2.9)
   - SwiftEventBus (= 1.1.0)
   - SwiftyJSON (= 2.3.2)
   - SwiftyUserDefaults (= 2.2.0)
-  - twitter-text (~> 1.13)
+  - ThumborURL (= 0.0.4)
+  - twitter-text (~> 1.14)
   - UITableView+FDTemplateLayoutCell (~> 1.5.beta)
   - UITextView+Placeholder (= 1.2.0)
   - UIView+FDCollapsibleConstraints (~> 1.1)
@@ -86,9 +88,9 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  Alamofire: 6aa33201d20d069e1598891cf928883ff1888c7a
   Alamofire-Synchronous: dc5dccc284e03c3b760e09c655dfe6fa292364b6
-  ALSLayouts: aceaa5418aefb7c8e9abc18c0c5777ca7df572be
+  ALSLayouts: 0342071cd6b289044c8339a1aa24f1c98ce5d5f2
   Boilerplate: cc76b26f60747f7b75f43b8ac38d2071cfb0e75a
   CrossroadRegex: f1ab8cb19a65c1db9a2ed809e8f71b49a40aa8cb
   CryptoSwift: df42dda18baf6c76347a94e227dbcc0a341304bd
@@ -99,24 +101,25 @@ SPEC CHECKSUMS:
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   Kanna: 355ed0193e5d8caf4fd996856b5bc98d586c11b6
   OMGHTTPURLRQ: 1e54807cb7d5dbb506926e53498e1e9ac5720c79
-  Pager: 28cb9ac0a9d149a46b9b6c63b9105950f1401744
+  Pager: f14184ebec7705279a2be152dae36744138ebfef
   PromiseKit: 72a1500ddedd052b5f69b44e3bb4091da2fd1a7d
   REFrostedViewController: a893b4979ba1f200c547aef9ff4c3fd5a18f5923
   Result: 18e1a7597fbcca5923c565b40a25a98afafdee02
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SQLite.swift: 6a6e4b034efc317ce4e203b6af2d3024fee2b570
   StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a
-  STPopup: 36b45120f51ab3cdf7a10c1b9032b7fc8eef75ac
+  STPopup: af630a85628e4226ffcbda5caaead0d99aed13a8
   SugarRecord: 2463fbe768633a2524ba505dfed5315167331c0a
   SwiftEventBus: d33b51752d4e3e994f0ea7b31873f0beca7eada0
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   SwiftyUserDefaults: e7c8197a9d4068702e7f2406a968cae413b8de27
-  twitter-text: 66e7b9925534ade86cb3cb2751788073de8f2fec
+  ThumborURL: 0e1f058fb79c37660aa7d302fe77c48366902325
+  twitter-text: 703e84901722b7e6e2e22b7ac12afabfb40be1e5
   UITableView+FDTemplateLayoutCell: 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
   UIView+FDCollapsibleConstraints: 9357eaf03b4e088263ab74a3b86a382a64ce38dd
   UIView+TouchHighlighting: cedbcd90c965e7b1418c80a04fc8266398a738f1
 
-PODFILE CHECKSUM: 699642e3e4a35e685fe2e4c96a5241c1a559be10
+PODFILE CHECKSUM: 8ad1bf332ce6b62da64e8947819b63ae9e6413af
 
 COCOAPODS: 1.1.0.beta.2

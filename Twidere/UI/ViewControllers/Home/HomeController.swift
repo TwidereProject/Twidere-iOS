@@ -65,22 +65,12 @@ class HomeController: PagerController, PagerDataSource {
     class HomeTimelineStatusesListControllerDelegate: StatusesListControllerDelegate {
         func loadStatuses(opts: StatusesListController.LoadOptions) -> Promise<[FlatStatus]> {
             return dispatch_promise {  () -> [FlatStatus] in
-                let docsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
-                let dbPath = NSURL(fileURLWithPath: docsPath).URLByAppendingPathComponent("twidere.sqlite3")
-                print(dbPath)
-                let db = try Connection(dbPath.path!)
+                let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
                 let table = Table("home_statuses")
                 
-                if (!opts.initLoad) {
-                    try db.run(FlatStatus.createTable(table, ifNotExists: true))
-                    try db.run(table.delete())
-                    
-                    let account = try defaultAccount()!
-                    let microblog = account.newMicroblogInstance()
-                    try db.transaction {
-                        for status in FlatStatus.arrayFromJson(try microblog.getHomeTimeline(), account: account) {
-                            try db.run(FlatStatus.insertData(table, model: status))
-                        }
+                if let params = opts.params {
+                    GetStatusesTask.execute(params, table: table) { account, microblog, paging -> [FlatStatus] in
+                        return FlatStatus.arrayFromJson(try microblog.getHomeTimeline(paging), account: account)
                     }
                 }
                 return try db.prepare(table).map { row -> FlatStatus in

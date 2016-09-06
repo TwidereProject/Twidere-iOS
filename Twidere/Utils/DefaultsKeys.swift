@@ -20,6 +20,8 @@ extension DefaultsKeys {
     static let attachPreciseLocation = DefaultsKey<Bool>("attachPreciseLocation")
     
     static let defaultAccount = DefaultsKey<String?>("defaultAccount")
+    
+    static let loadItemLimit = DefaultsKey<Int?>("loadItemLimit")
 }
 
 

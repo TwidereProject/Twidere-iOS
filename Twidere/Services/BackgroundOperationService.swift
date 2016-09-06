@@ -35,9 +35,9 @@ class BackgroundOperationService {
                     return
                 }
                 let owners = update.accounts.filter{ (account: Account) -> Bool in
-                    return account.typeInferred == .TWITTER
+                    return account.typeInferred == .Twitter
                 }.map { account -> UserKey in
-                    return UserKey(str: account.accountKey!)
+                    return UserKey(rawValue: account.accountKey!)
                 }
                 let ownerIds = owners.map { key -> String in
                     return key.id
@@ -46,7 +46,7 @@ class BackgroundOperationService {
                     let account = update.accounts[i]
                     let mediaIds: [String]?
                     switch (account.typeInferred) {
-                    case .TWITTER:
+                    case .Twitter:
                             let upload = account.newMicroblogInstance("upload")
                             if (pendingUpdate.sharedMediaIds != nil) {
                                 mediaIds = pendingUpdate.sharedMediaIds
@@ -55,15 +55,13 @@ class BackgroundOperationService {
                                 pendingUpdate.sharedMediaIds = mediaIds
                             }
                         
-                    case .FANFOU:
+                    case .Fanfou:
                             // Nope, fanfou uses photo uploading API
                         mediaIds = nil
-                    case .STATUSNET:
+                    case .StatusNet:
                             // TODO use their native API
                             let upload = account.newMicroblogInstance("upload")
                             mediaIds = try uploadAllMediaShared(upload, update: update, ownerIds: ownerIds, chucked: false)
-                    default:
-                        mediaIds = nil
                     }
                     pendingUpdate.mediaIds[i] = mediaIds
                 }
@@ -181,17 +179,6 @@ class BackgroundOperationService {
         }.error { error in
             debugPrint(error)
             JDStatusBarNotification.showWithStatus("\(error)", dismissAfter: 1.5, styleName: JDStatusBarStyleError)
-        }
-    }
-    
-    func getHomeTimeline(accounts: [Account]) {
-        dispatch_promise { () throws -> Void in
-            try accounts.forEach { account throws in
-                let microblog = account.newMicroblogInstance()
-                debugPrint(try microblog.getHomeTimeline())
-            }
-        }.error { error in
-            debugPrint(error)
         }
     }
     

@@ -15,7 +15,7 @@ extension UserKey: Value {
     }
     
     static func fromDatatypeValue(datatypeValue: String) -> UserKey {
-        return UserKey(str: datatypeValue)
+        return UserKey(rawValue: datatypeValue)
     }
     
     var datatypeValue: String {

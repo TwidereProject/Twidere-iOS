@@ -22,10 +22,6 @@ class StatusCell: UITableViewCell {
     @IBOutlet weak var quotedTextView: UILabel!
     @IBOutlet weak var statusTypeLabelView: UILabel!
     
-    @IBOutlet weak var replyButton: UIButton!
-    @IBOutlet weak var retweetButton: UIButton!
-    
-    
     var status: FlatStatus! {
         didSet {
             display()
@@ -69,33 +65,52 @@ class StatusCell: UITableViewCell {
         }
         
         nameView.attributedText = StatusCell.createNameText(nameView.font.pointSize, name: status.userName, screenName: status.userScreenName, separator: " ")
-        textView.attributedText = StatusCell.createStatusText(status.textDisplay, spans: status.metadata?.spans, displayRange: status.metadata?.displayRange)
+        textView.attributedText = StatusCell.createStatusText(status.textDisplay, metadata: status.metadata, displayRange: status.metadata?.displayRange)
+        
+        if (status.retweetId != nil) {
+            statusTypeLabelView.text = "Retweeted by \((status.retweetedByUserName ?? "User"))"
+            
+            statusTypeLabelView.layoutParams.hidden = false
+        } else {
+            statusTypeLabelView.text = nil
+            
+            statusTypeLabelView.layoutParams.hidden = true
+        }
         
         if (status.quotedId != nil) {
             quotedNameView.attributedText = StatusCell.createNameText(quotedNameView.font.pointSize, name: status.quotedUserName!, screenName: status.quotedUserScreenName!, separator: " ")
         
-            quotedTextView.attributedText = StatusCell.createStatusText(status.quotedTextDisplay!, spans: status.quotedMetadata?.spans, displayRange: status.quotedMetadata?.displayRange)
+            quotedTextView.attributedText = StatusCell.createStatusText(status.quotedTextDisplay!, metadata: status.quotedMetadata, displayRange: status.quotedMetadata?.displayRange)
             
-            quotedView.layoutHidden = false
+            quotedView.layoutParams.hidden = false
         } else {
             quotedNameView.text = nil
             quotedTextView.text = nil
             
-            quotedView.layoutHidden = true
+            quotedView.layoutParams.hidden = true
         }
         profileImageView.displayImage(getProfileImageUrlForSize(status.userProfileImage, size: .ReasonablySmall))
         
         updateTime(status)
-        
-        setNeedsLayout()
+     
+        let layout = contentView.subviews.first as! ALSRelativeLayout
+        layout.setNeedsLayout()
     }
     
     dynamic func updateTime(obj: AnyObject?) {
         guard let status = obj as? FlatStatus where status.id == self.status?.id else {
             return
         }
-        timeView.text = status.createdAt.shortTimeAgoSinceNow()
-        performSelector(#selector(self.updateTime), withObject: obj, afterDelay: 5.0)
+        if (abs(status.createdAt.minutesAgo()) > 1) {
+            timeView.text = status.createdAt.shortTimeAgoSinceNow()
+        } else {
+            timeView.text = "just now"
+        }
+        if (!AppDelegate.performingScroll) {
+            let layout = contentView.subviews.first as! ALSRelativeLayout
+            layout.setNeedsLayout()
+        }
+        performSelector(#selector(self.updateTime), withObject: obj, afterDelay: 10.0)
     }
     
     private static func createNameText(size: CGFloat, name: String, screenName: String, separator: String) -> NSAttributedString {
@@ -110,13 +125,19 @@ class StatusCell: UITableViewCell {
         return nameString
     }
     
-    private static func createStatusText(text: String, spans: [SpanItem]?, displayRange: [Int]?) -> NSAttributedString {
+    private static func createStatusText(text: String, metadata: FlatStatus.Metadata?, displayRange: [Int]?) -> NSAttributedString {
         let attributed = NSMutableAttributedString(string: text)
-        spans?.forEach({ span in
+        metadata?.spans?.forEach({ span in
             attributed.addAttribute(NSLinkAttributeName, value: span.link, range: NSMakeRange(span.start, span.end - span.start))
         })
+        metadata?.mentions?.forEach({ span in
+            attributed.addAttribute(NSLinkAttributeName, value: span.key.string, range: NSMakeRange(span.start, span.end - span.start))
+        })
+        metadata?.hashtags?.forEach({ span in
+            attributed.addAttribute(NSLinkAttributeName, value: span.hashtag, range: NSMakeRange(span.start, span.end - span.start))
+        })
         if (displayRange != nil) {
-//            return attributed.attributedSubstringFromRange(NSMakeRange(0, displayRange![1]))
+            return attributed.attributedSubstringFromRange(NSMakeRange(0, displayRange![1]))
         }
         return attributed
     }

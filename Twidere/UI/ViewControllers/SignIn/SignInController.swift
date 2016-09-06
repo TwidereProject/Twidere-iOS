@@ -12,6 +12,7 @@ import CoreData
 import SugarRecord
 import PromiseKit
 import SwiftyJSON
+import ALSLayouts
 
 class SignInController: UIViewController {
     
@@ -21,15 +22,10 @@ class SignInController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passwordSignInButton: UIButton!
-    @IBOutlet weak var usernamePasswordContainer: UIView!
     @IBOutlet weak var editUsername: UITextField!
     @IBOutlet weak var editPassword: UITextField!
-    @IBOutlet weak var signUpSignInContainer: UIStackView!
-    
-    @IBOutlet weak var showUsernamePasswordConstraint: NSLayoutConstraint!
-    @IBOutlet weak var hideUsernamePasswordConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var hidePasswordSignInButtonConstraint: NSLayoutConstraint!
+    @IBOutlet weak var signInContainer: ALSLinearLayout!
+    @IBOutlet weak var signUpSignInContainer: ALSLinearLayout!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,28 +101,22 @@ class SignInController: UIViewController {
     
     private func updateSignInUi() {
         if (customAPIConfig.authType == .OAuth) {
-            passwordSignInButton.hidden = false
-            hidePasswordSignInButtonConstraint.active = false
+            passwordSignInButton.layoutParams.hidden = false
         } else {
-            passwordSignInButton.hidden = true
-            hidePasswordSignInButtonConstraint.active = true
+            passwordSignInButton.layoutParams.hidden = true
         }
         if (customAPIConfig.authType.usePassword) {
-            usernamePasswordContainer.hidden = false
+            editUsername.layoutParams.hidden = false
+            editPassword.layoutParams.hidden = false
             
-            hideUsernamePasswordConstraint.active = false
-            showUsernamePasswordConstraint.active = true
-            
-            signUpSignInContainer.axis = .Horizontal
+            signUpSignInContainer.orientation = .Horizontal
         } else {
+            editUsername.layoutParams.hidden = true
+            editPassword.layoutParams.hidden = true
             
-            usernamePasswordContainer.hidden = true
-            
-            hideUsernamePasswordConstraint.active = true
-            showUsernamePasswordConstraint.active = false
-            
-            signUpSignInContainer.axis = .Vertical
+            signUpSignInContainer.orientation = .Vertical
         }
+        signInContainer.setNeedsLayout()
     }
     
     private func doBrowserSignIn() {

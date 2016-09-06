@@ -10,10 +10,12 @@ import UIKit
 import SugarRecord
 import IQKeyboardManagerSwift
 import REFrostedViewController
+import SQLite
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    static var performingScroll: Bool = false
     var window: UIWindow?
     
     lazy var coreDataStorage: CoreDataDefaultStorage = {
@@ -22,6 +24,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let model = CoreData.ObjectModel.Named("Twidere", bundle)
         let defaultStorage = try! CoreDataDefaultStorage(store: store, model: model)
         return defaultStorage
+    }()
+    
+    lazy var sqliteDatabase: Connection = {
+        let docsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
+        let dbPath = NSURL(fileURLWithPath: docsPath).URLByAppendingPathComponent("twidere.sqlite3")
+
+        let db = try! Connection(dbPath.path!)
+        db.trace { print($0) }
+        
+        let oldVersion = db.userVersion
+        if (oldVersion == 0) {
+            let migration = DatabaseMigration()
+            try! migration.create(db)
+            db.userVersion = databaseVersion
+        } else if (databaseVersion > oldVersion) {
+            let migration = DatabaseMigration()
+            try! migration.upgrade(db, oldVersion: oldVersion, newVersion: databaseVersion)
+            db.userVersion = databaseVersion
+        }
+        return db
     }()
     
     lazy var backgroundOperationService: BackgroundOperationService = {

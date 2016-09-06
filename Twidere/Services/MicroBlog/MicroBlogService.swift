@@ -79,8 +79,8 @@ class MicroBlogService: RestClient {
                                     checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
     }
     
-    func getHomeTimeline() throws -> JSON {
-        let queries = makeQueries(statusQueries)
+    func getHomeTimeline(paging: Paging) throws -> JSON {
+        let queries = makeQueries(statusQueries, paging.queries)
         return try makeTypedRequest(.GET, path: "/statuses/home_timeline.json", queries: queries, checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
     }
     

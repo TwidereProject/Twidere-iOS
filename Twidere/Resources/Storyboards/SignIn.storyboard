@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="0zf-YT-Zyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="0zf-YT-Zyx">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -15,55 +15,42 @@
                         <viewControllerLayoutGuide type="bottom" id="ANZ-06-ga9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xQi-6d-Yhh">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="g4Q-gh-MVD">
-                                <rect key="frame" x="150" y="190" width="300" height="157"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bEx-7s-0ho" customClass="ALSLinearLayout" customModule="ALSLayouts">
+                                <rect key="frame" x="20" y="64" width="560" height="536"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JSA-bp-vxl" userLabel="Username Password Container">
-                                        <rect key="frame" x="8" y="8" width="284" height="68"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xGl-af-o6d">
+                                        <rect key="frame" x="138" y="157" width="284" height="30"/>
+                                        <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginBottom">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TSF-OC-L40">
+                                        <rect key="frame" x="138" y="204" width="284" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" secureTextEntry="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginBottom">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UxM-Rc-IZQ" customClass="ALSLinearLayout" customModule="ALSLayouts">
+                                        <rect key="frame" x="138" y="253" width="284" height="30"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xGl-af-o6d">
-                                                <rect key="frame" x="0.0" y="0.0" width="284" height="30"/>
-                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
-                                            </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TSF-OC-L40">
-                                                <rect key="frame" x="0.0" y="38" width="284" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" secureTextEntry="YES"/>
-                                            </textField>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="68" id="MXJ-TR-WDa"/>
-                                            <constraint firstAttribute="height" id="aIg-yf-uN4"/>
-                                        </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="aIg-yf-uN4"/>
-                                            </mask>
-                                        </variation>
-                                    </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="zUJ-Gf-B2L">
-                                        <rect key="frame" x="8" y="84" width="284" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cU-1p-2Ny">
-                                                <rect key="frame" x="0.0" y="0.0" width="134" height="30"/>
-                                                <state key="normal" title="Sign Up"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0AK-Ao-S90">
-                                                <rect key="frame" x="150" y="0.0" width="134" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0AK-Ao-S90">
+                                                <rect key="frame" x="154" y="0.0" width="130" height="30"/>
                                                 <state key="normal" title="Login"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
@@ -72,52 +59,97 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="StaticSize"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layoutWeight">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginBottom">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginLeading">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTrailing">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="signInClicked:" destination="6M5-74-xoh" eventType="touchUpInside" id="pAa-cu-VDx"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cU-1p-2Ny">
+                                                <rect key="frame" x="0.0" y="0.0" width="130" height="30"/>
+                                                <state key="normal" title="Sign Up"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="StaticSize"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layoutWeight">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTrailing">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginLeading">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginBottom">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="0AK-Ao-S90" firstAttribute="width" secondItem="4cU-1p-2Ny" secondAttribute="width" id="Rgs-rC-PSw"/>
-                                            <constraint firstItem="0AK-Ao-S90" firstAttribute="height" secondItem="4cU-1p-2Ny" secondAttribute="height" id="xAc-NS-wKM"/>
-                                        </constraints>
-                                    </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCc-Wd-20l">
-                                        <rect key="frame" x="8" y="122" width="284" height="27"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" id="aAf-hc-fhW"/>
-                                        </constraints>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="orientationString" value="Horizontal"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCc-Wd-20l">
+                                        <rect key="frame" x="138" y="291" width="164" height="27"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="Password login (Twitter only)"/>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="aAf-hc-fhW"/>
-                                            </mask>
-                                        </variation>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutGravity" value="Leading"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <segue destination="NBt-SQ-mDi" kind="show" identifier="ShowPasswordSignIn" id="yxw-22-U6F"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailingMargin" secondItem="DCc-Wd-20l" secondAttribute="trailing" id="2gK-Xe-dIO"/>
-                                    <constraint firstItem="JSA-bp-vxl" firstAttribute="leading" secondItem="g4Q-gh-MVD" secondAttribute="leadingMargin" id="Ee3-z5-ZZD"/>
-                                    <constraint firstItem="zUJ-Gf-B2L" firstAttribute="leading" secondItem="g4Q-gh-MVD" secondAttribute="leadingMargin" id="MNd-Vg-dlq"/>
-                                    <constraint firstAttribute="width" constant="300" id="Qg3-98-JMN"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="zUJ-Gf-B2L" secondAttribute="trailing" id="SyB-R1-D3l"/>
-                                    <constraint firstItem="DCc-Wd-20l" firstAttribute="leading" secondItem="g4Q-gh-MVD" secondAttribute="leadingMargin" id="chc-Ed-sJZ"/>
-                                    <constraint firstItem="DCc-Wd-20l" firstAttribute="leading" secondItem="g4Q-gh-MVD" secondAttribute="leadingMargin" id="ewI-Wr-0Jb"/>
-                                    <constraint firstItem="JSA-bp-vxl" firstAttribute="trailing" secondItem="g4Q-gh-MVD" secondAttribute="trailingMargin" id="pjp-bQ-KDi"/>
-                                    <constraint firstItem="JSA-bp-vxl" firstAttribute="top" secondItem="g4Q-gh-MVD" secondAttribute="topMargin" id="q6D-no-bzo"/>
-                                </constraints>
-                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                            </stackView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="orientationString" value="Vertical"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heightModeString" value="MatchParent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="widthModeString" value="MatchParent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="gravityString" value="Center"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="g4Q-gh-MVD" firstAttribute="centerX" secondItem="xQi-6d-Yhh" secondAttribute="centerX" id="GCd-x8-uKL"/>
-                            <constraint firstItem="g4Q-gh-MVD" firstAttribute="centerY" secondItem="xQi-6d-Yhh" secondAttribute="centerY" id="kLQ-lK-Ng3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bEx-7s-0ho" secondAttribute="trailing" id="5BF-AS-vlX"/>
+                            <constraint firstItem="bEx-7s-0ho" firstAttribute="leading" secondItem="xQi-6d-Yhh" secondAttribute="leadingMargin" id="YDz-la-eMr"/>
+                            <constraint firstItem="ANZ-06-ga9" firstAttribute="top" secondItem="bEx-7s-0ho" secondAttribute="bottom" id="a8w-fd-ZpH"/>
+                            <constraint firstItem="bEx-7s-0ho" firstAttribute="top" secondItem="KAB-Jc-FN6" secondAttribute="bottom" id="qHD-ck-42U"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="2P5-46-LHB">
@@ -130,14 +162,11 @@
                     <connections>
                         <outlet property="editPassword" destination="TSF-OC-L40" id="RHl-zM-2Z8"/>
                         <outlet property="editUsername" destination="xGl-af-o6d" id="JZt-MU-9Qq"/>
-                        <outlet property="hidePasswordSignInButtonConstraint" destination="aAf-hc-fhW" id="vMd-RC-1Pm"/>
-                        <outlet property="hideUsernamePasswordConstraint" destination="aIg-yf-uN4" id="mtf-h1-VmL"/>
                         <outlet property="loginButton" destination="0AK-Ao-S90" id="xmx-Y3-Fxz"/>
                         <outlet property="passwordSignInButton" destination="DCc-Wd-20l" id="2Pf-ad-EvJ"/>
-                        <outlet property="showUsernamePasswordConstraint" destination="MXJ-TR-WDa" id="3R9-MO-i4h"/>
+                        <outlet property="signInContainer" destination="bEx-7s-0ho" id="KPk-z4-91b"/>
                         <outlet property="signUpButton" destination="4cU-1p-2Ny" id="zlx-Ju-wk2"/>
-                        <outlet property="signUpSignInContainer" destination="zUJ-Gf-B2L" id="wZ1-Hv-8mG"/>
-                        <outlet property="usernamePasswordContainer" destination="JSA-bp-vxl" id="yCS-DK-rMs"/>
+                        <outlet property="signUpSignInContainer" destination="UxM-Rc-IZQ" id="O84-jy-sJp"/>
                         <segue destination="Em4-Ym-kbQ" kind="show" identifier="ShowPreferences" id="Q1E-Ue-dWC"/>
                         <segue destination="EXd-zo-s4I" kind="show" identifier="ShowAPIEditor" id="ZTP-iK-DWR"/>
                         <segue destination="s4d-zp-NRB" kind="show" identifier="ShowBrowserSignIn" id="4JL-2N-PbC"/>
@@ -156,36 +185,62 @@
                         <viewControllerLayoutGuide type="bottom" id="tpD-Os-bsi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BZs-EU-qd8">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Yrt-58-cnP">
-                                <rect key="frame" x="20" y="84" width="560" height="117"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YqK-KJ-Tb7" customClass="ALSLinearLayout" customModule="ALSLayouts">
+                                <rect key="frame" x="20" y="64" width="560" height="536"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EHK-5P-zLD" customClass="JVFloatLabeledTextField">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="42"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EHK-5P-zLD" customClass="JVFloatLabeledTextField">
+                                        <rect key="frame" x="167" y="218" width="214" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pvQ-EL-XUG" customClass="JVFloatLabeledTextField">
-                                        <rect key="frame" x="0.0" y="50" width="560" height="42"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pvQ-EL-XUG" customClass="JVFloatLabeledTextField">
+                                        <rect key="frame" x="167" y="256" width="214" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your password will not be stored." textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlc-rn-uVg">
-                                        <rect key="frame" x="0.0" y="100" width="560" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your password will not be stored." textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlc-rn-uVg">
+                                        <rect key="frame" x="167" y="294" width="214" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="orientationString" value="Vertical"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="gravityString" value="Center"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heightModeString" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="widthModeString" value="MatchParent"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Yrt-58-cnP" firstAttribute="trailing" secondItem="BZs-EU-qd8" secondAttribute="trailingMargin" id="EhB-s3-nHQ"/>
-                            <constraint firstItem="Yrt-58-cnP" firstAttribute="top" secondItem="4Y0-a4-LHT" secondAttribute="bottom" constant="20" id="MVs-ZE-pAq"/>
-                            <constraint firstItem="Yrt-58-cnP" firstAttribute="leading" secondItem="BZs-EU-qd8" secondAttribute="leadingMargin" id="TI7-Hk-E5X"/>
+                            <constraint firstItem="YqK-KJ-Tb7" firstAttribute="leading" secondItem="BZs-EU-qd8" secondAttribute="leadingMargin" id="CyZ-Y8-Llu"/>
+                            <constraint firstItem="tpD-Os-bsi" firstAttribute="top" secondItem="YqK-KJ-Tb7" secondAttribute="bottom" id="qw9-FN-fZm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YqK-KJ-Tb7" secondAttribute="trailing" id="rAl-uo-OVL"/>
+                            <constraint firstItem="YqK-KJ-Tb7" firstAttribute="top" secondItem="4Y0-a4-LHT" secondAttribute="bottom" id="rj6-Nb-o6t"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Password Login" id="RGu-Zw-UDn">
@@ -230,7 +285,7 @@
                                             <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -248,7 +303,11 @@
                                 <action selector="closeAcccountsManager:" destination="Fsa-zn-0yB" id="hvb-p5-S6f"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ibi-6b-hph"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ibi-6b-hph">
+                            <connections>
+                                <segue destination="6M5-74-xoh" kind="show" id="t23-pc-mSl"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cr8-3c-2us" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -304,10 +363,10 @@
                         <viewControllerLayoutGuide type="bottom" id="2vn-XS-ctl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ztn-GY-sg0">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m4m-ML-eAx">
+                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m4m-ML-eAx">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
@@ -361,4 +420,7 @@
     <resources>
         <image name="Toolbar Settings" width="22" height="22"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="t23-pc-mSl"/>
+    </inferredMetricsTieBreakers>
 </document>

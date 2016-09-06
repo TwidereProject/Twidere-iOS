@@ -7,6 +7,14 @@ fields:
   accountKey:
     type: UserKey
     column: account_key
+  sortId: # Added in database version 2
+    type: Int64
+    column: sort_id
+    min_version: 2
+  positionKey: # Added in database version 2
+    type: Int64
+    column: position_key
+    min_version: 2
   isGap:
     type: Bool
     column: is_gap
@@ -61,3 +69,18 @@ fields:
   quotedMetadata:
     type: Metadata?
     column: quoted_metadata
+  retweetedByUserKey:
+    type: UserKey?
+    column: retweeted_by_user_key
+  retweetedByUserName:
+    type: String?
+    column: retweeted_by_user_name
+  retweetedByUserScreenName:
+    type: String?
+    column: retweeted_by_user_screen_name
+  retweetedByUserProfileImage:
+    type: String?
+    column: retweeted_by_user_profile_image
+  retweetId:
+    type: String?
+    column: retweet_id
