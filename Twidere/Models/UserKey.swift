@@ -8,6 +8,10 @@
 
 import Foundation
 
+func ==(lhs: UserKey, rhs: UserKey) -> Bool {
+    return lhs.id == rhs.id && lhs.host == rhs.host
+}
+
 struct UserKey {
     var id: String
     var host: String?

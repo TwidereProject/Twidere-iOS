@@ -63,24 +63,65 @@ class HomeController: PagerController, PagerDataSource {
     }
     
     class HomeTimelineStatusesListControllerDelegate: StatusesListControllerDelegate {
+        let table = Table("home_statuses")
+        
+        func getAccounts() -> [Account] {
+            return [try! defaultAccount()!]
+        }
+        
         func loadStatuses(opts: StatusesListController.LoadOptions) -> Promise<[FlatStatus]> {
             return dispatch_promise {  () -> [FlatStatus] in
                 let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
-                let table = Table("home_statuses")
                 
-                if let params = opts.params {
-                    GetStatusesTask.execute(params, table: table) { account, microblog, paging -> [FlatStatus] in
+                if let params = opts.params where !opts.initLoad {
+                    GetStatusesTask.execute(params, table: self.table) { account, microblog, paging -> [FlatStatus] in
                         return FlatStatus.arrayFromJson(try microblog.getHomeTimeline(paging), account: account)
                     }
                 }
-                return try db.prepare(table).map { row -> FlatStatus in
+                let accountKeys = self.getAccounts().map({ UserKey(rawValue: $0.accountKey!) })
+                
+                return try db.prepare(self.table.filter(accountKeys.contains(FlatStatus.RowIndices.accountKey)).order(FlatStatus.RowIndices.positionKey.desc)).map { row -> FlatStatus in
                     return FlatStatus(row: row)
                 }
             }
         }
+        
+        func getNewestStatusIds(accounts: [Account]) -> [String?]? {
+            let accountKeys = accounts.map({ UserKey(rawValue: $0.accountKey!) })
+            let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
+            
+            var result = [String?](count: accounts.count, repeatedValue: nil)
+            for row in try! db.prepare(table.select(FlatStatus.RowIndices.accountKey, FlatStatus.RowIndices.id)
+                .group(FlatStatus.RowIndices.accountKey, having: accountKeys.contains(FlatStatus.RowIndices.accountKey))
+                .order(FlatStatus.RowIndices.createdAt.max)) {
+                    if let key = row.get(FlatStatus.RowIndices.accountKey), let idx = accountKeys.indexOf({$0 == key}) {
+                        result[idx] = row.get(FlatStatus.RowIndices.id)
+                    }
+            }
+            return result
+        }
+        
+        func getNewestStatusSortIds(accounts: [Account]) -> [Int64]? {
+            let accountKeys = accounts.map({ UserKey(rawValue: $0.accountKey!) })
+            let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
+            
+            var result = [Int64](count: accounts.count, repeatedValue: -1)
+            for row in try! db.prepare(table.select(FlatStatus.RowIndices.accountKey, FlatStatus.RowIndices.sortId)
+                .group(FlatStatus.RowIndices.accountKey, having: accountKeys.contains(FlatStatus.RowIndices.accountKey))
+                .order(FlatStatus.RowIndices.createdAt.max)) {
+                    if let key = row.get(FlatStatus.RowIndices.accountKey), let idx = accountKeys.indexOf({$0 == key}) {
+                        result[idx] = row.get(FlatStatus.RowIndices.sortId) ?? -1
+                    }
+            }
+            return result
+        }
     }
     
     class UserTimelineStatusesListControllerDelegate: StatusesListControllerDelegate {
+        func getAccounts() -> [Account] {
+            return [try! defaultAccount()!]
+        }
+        
         func loadStatuses(opts: StatusesListController.LoadOptions) -> Promise<[FlatStatus]> {
             return dispatch_promise {  () -> [FlatStatus] in
                 if (opts.initLoad) {
@@ -91,6 +132,14 @@ class HomeController: PagerController, PagerDataSource {
                 let microblog = account.newMicroblogInstance()
                 return FlatStatus.arrayFromJson(try microblog.getUserTimeline(), account: account)
             }
+        }
+        
+        func getNewestStatusIds(accounts: [Account]) -> [String?]? {
+            return nil
+        }
+        
+        func getNewestStatusSortIds(accounts: [Account]) -> [Int64]? {
+            return nil
         }
     }
     

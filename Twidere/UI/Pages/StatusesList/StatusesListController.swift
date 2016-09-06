@@ -18,7 +18,8 @@ class StatusesListController: UITableViewController {
             tableView?.reloadData()
         }
     }
-    var delegate: StatusesListControllerDelegate?
+    
+    var delegate: StatusesListControllerDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,10 @@ class StatusesListController: UITableViewController {
         
         refreshControl?.beginRefreshing()
         let opts = LoadOptions()
+        
         opts.initLoad = true
+        opts.params = SimpleRefreshTaskParam(accounts: delegate.getAccounts())
+        
         loadStatuses(opts)
     }
 
@@ -82,6 +86,23 @@ class StatusesListController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let status = statuses![indexPath.item]
+        let accounts = delegate.getAccounts()
+        if (status.isGap ?? false) {
+            guard let accountKey = accounts.filter({$0.accountKey == status.accountKey.string}).first else {
+                return
+            }
+            let opts = LoadOptions()
+            let params = SimpleRefreshTaskParam(accounts: [accountKey])
+            params.maxIds = [status.id]
+            params.maxSortIds = [status.sortId ?? -1]
+            params.isLoadingMore = true
+            opts.initLoad = false
+            opts.params = params
+            loadStatuses(opts)
+        } else {
+            // TODO show status details
+        }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
@@ -107,10 +128,7 @@ class StatusesListController: UITableViewController {
         let opts = LoadOptions()
         opts.initLoad = false
         
-        let accounts = [try! defaultAccount()!]
-        let params = RefreshTaskParam(accounts: accounts)
-        
-        opts.params = params
+        opts.params = RefreshFromStartParam(accounts: delegate.getAccounts(), delegate!)
         loadStatuses(opts)
     }
     
@@ -133,10 +151,35 @@ class StatusesListController: UITableViewController {
         
         var params: RefreshTaskParam? = nil
     }
+    
+    class RefreshFromStartParam: RefreshTaskParam {
+        var accounts: [Account]
+        var delegate: StatusesListControllerDelegate
+        
+        init(accounts: [Account], _ delegate: StatusesListControllerDelegate) {
+            self.accounts = accounts
+            self.delegate = delegate
+        }
+        
+        var sinceIds: [String?]? {
+            return delegate.getNewestStatusIds(accounts)
+        }
+        
+        var sinceSortIds: [Int64]? {
+            return delegate.getNewestStatusSortIds(accounts)
+        }
+
+    }
 }
 
 protocol StatusesListControllerDelegate {
     
+    func getAccounts() -> [Account]
+    
     func loadStatuses(opts: StatusesListController.LoadOptions) -> Promise<[FlatStatus]>
+    
+    func getNewestStatusIds(accounts: [Account]) -> [String?]?
+    
+    func getNewestStatusSortIds(accounts: [Account]) -> [Int64]?
     
 }

@@ -113,8 +113,9 @@ class GetStatusesTask {
             }
         }
         
+        // Remove gap flag
         if (maxId != nil && sinceId == nil) {
-            try db.run(table.filter(FlatStatus.RowIndices.accountKey == accountKey && FlatStatus.RowIndices.id == maxId).update(FlatStatus.RowIndices.isGap <- true))
+            try db.run(table.filter(FlatStatus.RowIndices.accountKey == accountKey && FlatStatus.RowIndices.id == maxId).update(FlatStatus.RowIndices.isGap <- false))
         }
     }
     

@@ -8,20 +8,30 @@
 
 import Foundation
 
-class RefreshTaskParam {
-    var accounts: [Account]
+protocol RefreshTaskParam {
     
-    var maxIds: [String?]? = nil
+    var accounts: [Account] { get }
     
-    var sinceIds: [String?]? = nil
+    var maxIds: [String?]? { get }
     
-    var maxSortIds: [Int64]? = nil
+    var sinceIds: [String?]? { get }
     
-    var sinceSortIds: [Int64]? = nil
+    var maxSortIds: [Int64]? { get }
     
-    var isLoadingMore: Bool = false
+    var sinceSortIds: [Int64]? { get }
     
-    init(accounts: [Account]) {
-        self.accounts = accounts
-    }
+    var isLoadingMore: Bool { get }
+    
+}
+
+extension RefreshTaskParam {
+    var maxIds: [String?]? { return nil }
+    
+    var sinceIds: [String?]? { return nil }
+    
+    var maxSortIds: [Int64]? { return nil }
+    
+    var sinceSortIds: [Int64]? { return nil }
+    
+    var isLoadingMore: Bool { return false }
 }
