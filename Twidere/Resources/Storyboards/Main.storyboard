@@ -158,6 +158,9 @@
                                     <constraint firstItem="B8K-zC-a4m" firstAttribute="leading" secondItem="Jx2-wh-WQW" secondAttribute="leading" id="evD-z0-9A7"/>
                                     <constraint firstAttribute="bottom" secondItem="B8K-zC-a4m" secondAttribute="bottom" id="r7i-gA-1mT"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="lFZ-cu-Jdq" appends="YES" id="5Rt-lC-G6J"/>
+                                </connections>
                             </view>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Toolbar Status Compose" id="g9c-7t-Vlv">
@@ -177,6 +180,16 @@
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zbH-ua-W4v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="6NO-aD-a0o">
+                    <connections>
+                        <action selector="panGestureRecognized:" destination="FoP-na-KSh" id="mgF-Ak-rBE"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
+                <tapGestureRecognizer id="lFZ-cu-Jdq">
+                    <connections>
+                        <action selector="menuToggleClicked:" destination="FoP-na-KSh" id="P2E-0T-kaP"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3037" y="425"/>
         </scene>

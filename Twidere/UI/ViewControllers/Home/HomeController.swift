@@ -35,10 +35,10 @@ class HomeController: UITabBarController {
         let notificationsTimelineController = storyboard!.instantiateViewControllerWithIdentifier("StubTab")
         notificationsTimelineController.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(named: "Tab Icon Notification"), tag: 2)
         let messageConversationsController = storyboard!.instantiateViewControllerWithIdentifier("StubTab")
-        messageConversationsController.tabBarItem = UITabBarItem(title: "Messages", image: UIImage(named: "Tab Icon Notification"), tag: 3)
+        messageConversationsController.tabBarItem = UITabBarItem(title: "Messages", image: UIImage(named: "Tab Icon Message"), tag: 3)
         let testController = StatusesListController(nibName: "StatusesListController", bundle: nil)
         testController.delegate = UserTimelineStatusesListControllerDelegate()
-        testController.tabBarItem = UITabBarItem(title: "User", image: UIImage(named: "Tab Icon Notification"), tag: 4)
+        testController.tabBarItem = UITabBarItem(title: "User", image: UIImage(named: "Tab Icon User"), tag: 4)
         setViewControllers([homeTimelineController, notificationsTimelineController, messageConversationsController, testController], animated: false)
 
     }
@@ -61,7 +61,7 @@ class HomeController: UITabBarController {
         frostedViewController.presentMenuViewController()
     }
     
-    @IBAction func panGestureRecognized(sender: UIPanGestureRecognizer) {
+    @IBAction func panGestureRecognized(sender: UIScreenEdgePanGestureRecognizer) {
         frostedViewController.panGestureRecognized(sender)
     }
     
@@ -131,7 +131,7 @@ class HomeController: UITabBarController {
                     let account = try defaultAccount()!
                     let microblog = account.newMicroblogInstance()
                     let paging = Paging()
-                    return FlatStatus.arrayFromJson(try microblog.getUserTimeline("baerkani", paging: paging), account: account)
+                    return FlatStatus.arrayFromJson(try microblog.getUserTimeline("mariotaku", paging: paging), account: account)
                 }
                 return [FlatStatus]()
             }
