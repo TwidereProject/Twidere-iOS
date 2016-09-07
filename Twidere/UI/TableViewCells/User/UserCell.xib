@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -15,39 +14,28 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="230.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rFF-Ze-1qo">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="rFF-Ze-1qo">
                         <rect key="frame" x="8" y="8" width="40" height="40"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="40" id="6cN-ZA-RHw"/>
-                            <constraint firstAttribute="width" constant="40" id="YJq-LU-4vS"/>
-                        </constraints>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ag-OO-iPw">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0ag-OO-iPw">
                         <rect key="frame" x="56" y="8" width="116" height="40"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <string key="text">Name
 @screen_name</string>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7Z-qj-gDD">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="F7Z-qj-gDD">
                         <rect key="frame" x="56" y="56" width="256" height="166.5"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis metus non massa eleifend, a ornare nisi vestibulum. Sed malesuada lorem eget ex viverra, ac egestas arcu vehicula. </string>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="0ag-OO-iPw" firstAttribute="top" secondItem="aZQ-jz-hM1" secondAttribute="topMargin" id="4jh-AN-sQf"/>
-                    <constraint firstItem="F7Z-qj-gDD" firstAttribute="bottom" secondItem="aZQ-jz-hM1" secondAttribute="bottomMargin" id="E8X-M7-bTZ"/>
-                    <constraint firstItem="0ag-OO-iPw" firstAttribute="leading" secondItem="rFF-Ze-1qo" secondAttribute="trailing" constant="8" id="Zmu-6y-0g1"/>
-                    <constraint firstItem="rFF-Ze-1qo" firstAttribute="leading" secondItem="aZQ-jz-hM1" secondAttribute="leadingMargin" id="e9F-DQ-vsK"/>
-                    <constraint firstItem="F7Z-qj-gDD" firstAttribute="top" secondItem="0ag-OO-iPw" secondAttribute="bottom" constant="8" id="jvP-9S-lYs"/>
-                    <constraint firstItem="rFF-Ze-1qo" firstAttribute="top" secondItem="aZQ-jz-hM1" secondAttribute="topMargin" id="ksz-lB-ELb"/>
-                    <constraint firstItem="F7Z-qj-gDD" firstAttribute="trailing" secondItem="aZQ-jz-hM1" secondAttribute="trailingMargin" id="l2E-06-7S5"/>
-                    <constraint firstItem="F7Z-qj-gDD" firstAttribute="leading" secondItem="rFF-Ze-1qo" secondAttribute="trailing" constant="8" id="t81-hB-Tx0"/>
-                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="descriptionView" destination="F7Z-qj-gDD" id="z0v-aM-cCm"/>

@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyJSON
+import StringExtensionHTML
 
 extension FlatStatus {
     
@@ -39,10 +40,9 @@ extension FlatStatus {
         self.userScreenName = user["screen_name"].string
         self.userProfileImage = getProfileImage(user)
         
-        self.textPlain = primary["text"].string
+        let (textPlain, textDisplay, metadata) = getMetadata(primary)
         
-        let (textDisplay, metadata) = getMetadata(primary)
-        
+        self.textPlain = textPlain
         self.textDisplay = textDisplay
         self.metadata = metadata
         
@@ -57,10 +57,8 @@ extension FlatStatus {
             self.quotedUserScreenName = quotedUser["screen_name"].string
             self.quotedUserProfileImage = getProfileImage(quotedUser)
             
-            self.quotedTextPlain = quoted["text"].string
-            
-            
-            let (quotedTextDisplay, quotedMetadata) = getMetadata(quoted)
+            let (quotedTextPlain, quotedTextDisplay, quotedMetadata) = getMetadata(quoted)
+            self.quotedTextPlain = quotedTextPlain
             self.quotedTextDisplay = quotedTextDisplay
             self.quotedMetadata = quotedMetadata
         }
@@ -79,12 +77,25 @@ extension FlatStatus {
         return user["profile_image_url_https"].string ?? user["profile_image_url"].stringValue
     }
     
-    private func getMetadata(status: JSON) -> (String!, Metadata) {
+    private static let carets = NSCharacterSet(charactersInString: "<>")
+    
+    private func getStatusText(status: JSON) -> String {
+        let htmlText = status["statusnet_html"].string ?? status["text"].stringValue
+        // Twitter will escape <> to &lt;&gt;, so if a status contains those symbols unescaped
+        // We should treat this as an html
+        if (htmlText.rangeOfCharacterFromSet(FlatStatus.carets) != nil) {
+            return htmlText.stringByDecodingHTMLEntities
+        }
+        let text = status["full_text"].string ?? status["text"].stringValue
+        return text.stringByDecodingHTMLEntities
+    }
+    
+    private func getMetadata(status: JSON) -> (String, String, Metadata) {
         let metadata = Metadata()
         var spans = [LinkSpanItem]()
         var mentions = [MentionSpanItem]()
         var hashtags = [HashtagSpanItem]()
-        let text = status["full_text"].string ?? status["text"].string!
+        let text = getStatusText(status)
         var codePoints = text.unicodeScalars
         
         var codePointOffset = 0
@@ -191,7 +202,7 @@ extension FlatStatus {
         metadata.mentions = mentions
         metadata.hashtags = hashtags
         metadata.displayRange = calculateDisplayTextRange(status, source: text, display: codePoints, spans: spans)
-        return (String(codePoints), metadata)
+        return (text, String(codePoints), metadata)
     }
     
     private func calculateDisplayTextRange(status: JSON, source: String, display: String.UnicodeScalarView, spans:[LinkSpanItem]) -> [Int]? {

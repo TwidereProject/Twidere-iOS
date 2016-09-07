@@ -15,14 +15,13 @@ import Pager
 import PromiseKit
 import SQLite
 
-class HomeController: PagerController, PagerDataSource {
+class HomeController: UITabBarController {
     
     @IBOutlet weak var accountProfileImageView: UIImageView!
     @IBOutlet weak var menuToggleItem: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.dataSource = self
         // Do any additional setup after loading the view, typically from a nib.
         
         self.accountProfileImageView.layer.cornerRadius = self.accountProfileImageView.frame.size.width / 2
@@ -30,14 +29,18 @@ class HomeController: PagerController, PagerDataSource {
         
         menuToggleItem.customView?.touchHighlightingStyle = .TransparentMask
         
-        let titles = ["Home timeline", "User timeline"]
         let homeTimelineController = StatusesListController(nibName: "StatusesListController", bundle: nil)
+        homeTimelineController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "Tab Icon Home"), tag: 1)
         homeTimelineController.delegate = HomeTimelineStatusesListControllerDelegate()
-        let userTimelineController = StatusesListController(nibName: "StatusesListController", bundle: nil)
-        userTimelineController.delegate = UserTimelineStatusesListControllerDelegate()
-        let pages = [homeTimelineController, userTimelineController]
-        
-        setupPager(tabNames: titles, tabControllers: pages)
+        let notificationsTimelineController = storyboard!.instantiateViewControllerWithIdentifier("StubTab")
+        notificationsTimelineController.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(named: "Tab Icon Notification"), tag: 2)
+        let messageConversationsController = storyboard!.instantiateViewControllerWithIdentifier("StubTab")
+        messageConversationsController.tabBarItem = UITabBarItem(title: "Messages", image: UIImage(named: "Tab Icon Notification"), tag: 3)
+        let testController = StatusesListController(nibName: "StatusesListController", bundle: nil)
+        testController.delegate = UserTimelineStatusesListControllerDelegate()
+        testController.tabBarItem = UITabBarItem(title: "User", image: UIImage(named: "Tab Icon Notification"), tag: 4)
+        setViewControllers([homeTimelineController, notificationsTimelineController, messageConversationsController, testController], animated: false)
+
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -51,7 +54,7 @@ class HomeController: PagerController, PagerDataSource {
     }
     
     @IBAction func composeClicked(sender: UIBarButtonItem) {
-        ComposeController.show(self, identifier: "Compose")
+        ComposeController.show(self.parentViewController ?? self, identifier: "Compose")
     }
     
     @IBAction func menuToggleClicked(sender: UITapGestureRecognizer) {
@@ -124,13 +127,13 @@ class HomeController: PagerController, PagerDataSource {
         
         func loadStatuses(opts: StatusesListController.LoadOptions) -> Promise<[FlatStatus]> {
             return dispatch_promise {  () -> [FlatStatus] in
-                if (opts.initLoad) {
-                    sleep(1)
-                    return [FlatStatus]()
+                if let params = opts.params where !opts.initLoad {
+                    let account = try defaultAccount()!
+                    let microblog = account.newMicroblogInstance()
+                    let paging = Paging()
+                    return FlatStatus.arrayFromJson(try microblog.getUserTimeline("baerkani", paging: paging), account: account)
                 }
-                let account = try defaultAccount()!
-                let microblog = account.newMicroblogInstance()
-                return FlatStatus.arrayFromJson(try microblog.getUserTimeline(), account: account)
+                return [FlatStatus]()
             }
         }
         

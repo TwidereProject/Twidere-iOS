@@ -8,12 +8,10 @@
 
 import Foundation
 
-struct ServiceConstants {
-    
-    static let defaultApiUrlFormat = "https://[DOMAIN.]twitter.com/"
-    static let defaultAuthType: CustomAPIConfig.AuthType = .OAuth
-    static let defaultTwitterConsumerKey = "DNvvSlrMIIyvxjmY37NBwA"
-    static let defaultTwitterConsumerSecret = "UXZHBtDpWOEKYOE67KjpkeIcw93uvaz5KE4cwULVrsk"
-    
-    static let oauthCallbackOob = "oob"
-}
+
+let defaultApiUrlFormat = "https://[DOMAIN.]twitter.com/"
+let defaultAuthType: CustomAPIConfig.AuthType = .OAuth
+let defaultTwitterConsumerKey = "DNvvSlrMIIyvxjmY37NBwA"
+let defaultTwitterConsumerSecret = "UXZHBtDpWOEKYOE67KjpkeIcw93uvaz5KE4cwULVrsk"
+
+let oauthCallbackOob = "oob"

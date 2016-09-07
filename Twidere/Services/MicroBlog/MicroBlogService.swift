@@ -84,23 +84,18 @@ class MicroBlogService: RestClient {
         return try makeTypedRequest(.GET, path: "/statuses/home_timeline.json", queries: queries, checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
     }
     
-    func getUserTimeline() throws -> JSON {
-        let queries = makeQueries(statusQueries)
+    func getUserTimeline(screenName: String, paging: Paging) throws -> JSON {
+        let queries = makeQueries(statusQueries, ["screen_name": screenName], paging.queries)
         return try makeTypedRequest(.GET, path: "/statuses/user_timeline.json", queries: queries, checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
     }
     
-    func getUserTimeline(screenName: String) throws -> JSON {
-        let queries = makeQueries(statusQueries, ["screen_name": screenName])
-        return try makeTypedRequest(.GET, path: "/statuses/user_timeline.json", queries: queries, checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
-    }
-    
-    func makeQueries(def: [String: String], _ queries: [String: String]? = nil) -> [String: String] {
+    func makeQueries(def: [String: String], _ queries: [String: String]...) -> [String: String] {
         var result = [String: String]()
         for (k, v) in def {
             result[k] = v
         }
-        if (queries != nil) {
-            for (k, v) in queries! {
+        for dict in queries {
+            for (k,v) in dict {
                 result[k] = v
             }
         }

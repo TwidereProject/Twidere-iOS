@@ -8,6 +8,4 @@
 
 import UIKit
 
-struct UIConstants {
-    static let materialLightGreen = UIColor(red: 139 / 255, green: 195 / 255, blue: 74 / 255, alpha: 1)
-}
+let materialLightGreen = UIColor(red: 139 / 255, green: 195 / 255, blue: 74 / 255, alpha: 1)

@@ -55,6 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         IQKeyboardManager.sharedManager().enable = true
         
+        UITabBar.appearance().tintColor = materialLightGreen
+        UINavigationBar.appearance().tintColor = materialLightGreen
+        
         return true
     }
 

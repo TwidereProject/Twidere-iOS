@@ -32,8 +32,8 @@ class SignInController: UIViewController {
         
         // Setup button colors
         signUpButton.layer.borderColor = signUpButton.tintColor.CGColor
-        loginButton.tintColor = UIConstants.materialLightGreen
-        loginButton.layer.borderColor = UIConstants.materialLightGreen.CGColor
+        loginButton.tintColor = materialLightGreen
+        loginButton.layer.borderColor = materialLightGreen.CGColor
         
         customAPIConfig.loadDefaults()
         

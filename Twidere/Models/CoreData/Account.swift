@@ -17,7 +17,7 @@ class Account: NSManagedObject {
     func createAPIConfig() -> CustomAPIConfig {
         let config = CustomAPIConfig()
         config.apiUrlFormat = apiUrlFormat!
-        config.authType = CustomAPIConfig.AuthType(rawValue: authType!) ?? ServiceConstants.defaultAuthType
+        config.authType = CustomAPIConfig.AuthType(rawValue: authType!) ?? defaultAuthType
         config.consumerKey = consumerKey!
         config.consumerSecret = consumerSecret!
         config.sameOAuthSigningUrl = Bool(sameOAuthSigningUrl!)
@@ -26,7 +26,7 @@ class Account: NSManagedObject {
     }
     
     func createAuthorization() -> Authorization {
-        switch CustomAPIConfig.AuthType(rawValue: authType!) ?? ServiceConstants.defaultAuthType {
+        switch CustomAPIConfig.AuthType(rawValue: authType!) ?? defaultAuthType {
         case .OAuth, .xAuth:
             let token = OAuthToken(oauthToken!, oauthTokenSecret!)
             return OAuthAuthorization(consumerKey!, consumerSecret!, oauthToken: token)

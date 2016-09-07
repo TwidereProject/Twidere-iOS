@@ -54,10 +54,10 @@ class DefaultAPISettingsController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let dict = defaultApiConfigs[indexPath.row] as! NSDictionary
         let config = CustomAPIConfig()
-        config.apiUrlFormat = dict["apiUrlFormat"] as? String ?? ServiceConstants.defaultApiUrlFormat
+        config.apiUrlFormat = dict["apiUrlFormat"] as? String ?? defaultApiUrlFormat
         config.authType = CustomAPIConfig.AuthType(rawValue: dict["authType"] as? String ?? "OAuth") ?? .OAuth
-        config.consumerKey = dict["consumerKey"] as? String ?? ServiceConstants.defaultApiUrlFormat
-        config.consumerSecret = dict["consumerSecret"] as? String ?? ServiceConstants.defaultTwitterConsumerSecret
+        config.consumerKey = dict["consumerKey"] as? String ?? defaultApiUrlFormat
+        config.consumerSecret = dict["consumerSecret"] as? String ?? defaultTwitterConsumerSecret
         config.noVersionSuffix = dict["noVersionSuffix"] as? Bool ?? false
         config.sameOAuthSigningUrl = dict["sameOAuthSigningUrl"] as? Bool ?? true
         self.callback(config)

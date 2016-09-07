@@ -14,12 +14,12 @@ class CustomAPIConfig {
     
     static let apiVersion = "1.1"
     
-    var apiUrlFormat: String = ServiceConstants.defaultApiUrlFormat
-    var authType: AuthType = ServiceConstants.defaultAuthType
+    var apiUrlFormat: String = defaultApiUrlFormat
+    var authType: AuthType = defaultAuthType
     var sameOAuthSigningUrl: Bool = true
     var noVersionSuffix: Bool = false
-    var consumerKey: String? = ServiceConstants.defaultTwitterConsumerKey
-    var consumerSecret: String? = ServiceConstants.defaultTwitterConsumerSecret
+    var consumerKey: String? = defaultTwitterConsumerKey
+    var consumerSecret: String? = defaultTwitterConsumerSecret
     
     var valid: Bool {
         get {
@@ -90,12 +90,12 @@ class CustomAPIConfig {
     }
     
     func loadDefaults()  {
-        apiUrlFormat = Defaults[.apiUrlFormat] ?? ServiceConstants.defaultApiUrlFormat
+        apiUrlFormat = Defaults[.apiUrlFormat] ?? defaultApiUrlFormat
         authType = Defaults[.authType] ?? .OAuth
         sameOAuthSigningUrl = Defaults[.sameOAuthSigningUrl] ?? true
         noVersionSuffix = Defaults[.noVersionSuffix] ?? false
-        consumerKey = Defaults[.consumerKey] ?? ServiceConstants.defaultTwitterConsumerKey
-        consumerSecret = Defaults[.consumerSecret] ?? ServiceConstants.defaultTwitterConsumerSecret
+        consumerKey = Defaults[.consumerKey] ?? defaultTwitterConsumerKey
+        consumerSecret = Defaults[.consumerSecret] ?? defaultTwitterConsumerSecret
     }
     
     enum AuthType: String {

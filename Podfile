@@ -31,8 +31,9 @@ target 'Twidere' do
   pod 'Pager', '~> 1.0'
   pod 'DateTools', '~> 1.7.0'
   pod 'Gloss', '~> 0.7'
-  pod 'ALSLayouts', '~> 0.1.9'
+  pod 'ALSLayouts', '~> 0.2'
   pod 'ThumborURL', '0.0.4'
+  pod 'StringExtensionHTML', '~> 0.1'
 end
 
 target 'TwidereTests' do

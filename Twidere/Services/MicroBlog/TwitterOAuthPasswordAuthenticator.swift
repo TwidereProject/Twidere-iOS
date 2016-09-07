@@ -27,7 +27,7 @@ class TwitterOAuthPasswordAuthenticator {
         do {
             let requestToken: OAuthToken
             do {
-                requestToken = try oauth.getRequestToken(ServiceConstants.oauthCallbackOob)
+                requestToken = try oauth.getRequestToken(oauthCallbackOob)
             } catch RestError.RequestError(_) {
                 throw AuthenticationError.RequestTokenFailed
             }

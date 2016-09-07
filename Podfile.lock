@@ -3,7 +3,7 @@ PODS:
   - Alamofire (3.4.2)
   - Alamofire-Synchronous (3.0.0):
     - Alamofire (~> 3.0)
-  - ALSLayouts (0.1.9)
+  - ALSLayouts (0.2.0)
   - Boilerplate (0.2.4):
     - Result (~> 2.0)
   - CrossroadRegex (0.8.0):
@@ -43,6 +43,7 @@ PODS:
   - SQLite.swift (0.10.1)
   - StaticDataTableViewController (2.0.5)
   - STPopup (1.8.0)
+  - StringExtensionHTML (0.1.3)
   - SugarRecord/CoreData (2.2.9):
     - Result (~> 2.0)
   - SwiftEventBus (1.1.0)
@@ -59,7 +60,7 @@ DEPENDENCIES:
   - ActionSheetPicker-3.0 (= 2.2.0)
   - Alamofire (~> 3.4)
   - Alamofire-Synchronous (= 3.0.0)
-  - ALSLayouts (~> 0.1.9)
+  - ALSLayouts (~> 0.2)
   - CrossroadRegex (= 0.8.0)
   - CryptoSwift (= 0.5.1)
   - DateTools (~> 1.7.0)
@@ -75,6 +76,7 @@ DEPENDENCIES:
   - SQLite.swift (~> 0.10.1)
   - StaticDataTableViewController (= 2.0.5)
   - STPopup (= 1.8.0)
+  - StringExtensionHTML (~> 0.1)
   - SugarRecord/CoreData (= 2.2.9)
   - SwiftEventBus (= 1.1.0)
   - SwiftyJSON (= 2.3.2)
@@ -90,7 +92,7 @@ SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   Alamofire: 6aa33201d20d069e1598891cf928883ff1888c7a
   Alamofire-Synchronous: dc5dccc284e03c3b760e09c655dfe6fa292364b6
-  ALSLayouts: 0342071cd6b289044c8339a1aa24f1c98ce5d5f2
+  ALSLayouts: 6d19d7612da5b052b5212f7394333d3b64c7b1a7
   Boilerplate: cc76b26f60747f7b75f43b8ac38d2071cfb0e75a
   CrossroadRegex: f1ab8cb19a65c1db9a2ed809e8f71b49a40aa8cb
   CryptoSwift: df42dda18baf6c76347a94e227dbcc0a341304bd
@@ -109,6 +111,7 @@ SPEC CHECKSUMS:
   SQLite.swift: 6a6e4b034efc317ce4e203b6af2d3024fee2b570
   StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a
   STPopup: af630a85628e4226ffcbda5caaead0d99aed13a8
+  StringExtensionHTML: a56bc49c4f11e7a3893b68aff7f7786eaa11d345
   SugarRecord: 2463fbe768633a2524ba505dfed5315167331c0a
   SwiftEventBus: d33b51752d4e3e994f0ea7b31873f0beca7eada0
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
@@ -120,6 +123,6 @@ SPEC CHECKSUMS:
   UIView+FDCollapsibleConstraints: 9357eaf03b4e088263ab74a3b86a382a64ce38dd
   UIView+TouchHighlighting: cedbcd90c965e7b1418c80a04fc8266398a738f1
 
-PODFILE CHECKSUM: 8ad1bf332ce6b62da64e8947819b63ae9e6413af
+PODFILE CHECKSUM: 98ee1896585887a9adca666aa0411ac7d4063088
 
 COCOAPODS: 1.1.0.beta.2
