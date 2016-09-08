@@ -154,9 +154,9 @@ class StatusCell: UITableViewCell {
             attributed.addAttributes(["link": span.hashtag, NSForegroundColorAttributeName: linkColor], range: NSMakeRange(span.start, span.end - span.start))
         })
         if let range = displayRange {
-            let start = range[0], len = range[1] - range[0]
-            if (start >= 0 && len <= attributed.length) {
-                return attributed.attributedSubstringFromRange(NSMakeRange(start, len))
+            let len = range[1]
+            if (len <= attributed.length) {
+                return attributed.attributedSubstringFromRange(NSMakeRange(0, len))
             }
         }
         return attributed
