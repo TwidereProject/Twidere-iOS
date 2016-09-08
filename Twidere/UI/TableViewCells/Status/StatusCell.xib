@@ -50,12 +50,9 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name @screenname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LKp-da-MGc" userLabel="Name View">
+                            <view opaque="NO" userInteractionEnabled="NO" contentMode="left" id="LKp-da-MGc" userLabel="Name View" customClass="AttributedLabel" customModule="AttributedLabel">
                                 <rect key="frame" x="56" y="23" width="210" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="statusTypeLabel"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="nameLabel"/>
@@ -67,12 +64,12 @@
                                         <real key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                            </label>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="3h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ciw-NL-y95" userLabel="Time View">
                                 <rect key="frame" x="283" y="24" width="21" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignBaseline" value="nameLabel"/>
@@ -82,55 +79,44 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="timeLabel"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1kF-mi-Guo" userLabel="Text View">
-                                <rect key="frame" x="56" y="48" width="256" height="108"/>
+                            <view contentMode="scaleToFill" id="2U2-1i-w3g" userLabel="Text View" customClass="AttributedLabel" customModule="AttributedLabel">
+                                <rect key="frame" x="56" y="46" width="248" height="108"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis metus non massa eleifend, a ornare nisi vestibulum. Sed malesuada lorem eget ex viverra, ac egestas arcu vehicula. </string>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="textLabel"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="nameLabel"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
-                                        <real key="value" value="8"/>
+                                        <real key="value" value="6"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignLeading" value="nameLabel"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignTrailing" value="timeLabel"/>
                                 </userDefinedRuntimeAttributes>
-                            </label>
+                            </view>
                             <view autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="xFN-8A-eFZ" userLabel="Quoted View" customClass="ALSLinearLayout" customModule="ALSLayouts">
-                                <rect key="frame" x="56" y="164" width="248" height="141"/>
+                                <rect key="frame" x="56" y="162" width="248" height="139"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name @screenname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QgV-ep-mVC" userLabel="Quoted Name View">
+                                    <view opaque="NO" userInteractionEnabled="NO" contentMode="left" id="QgV-ep-mVC" userLabel="Quoted Name View" customClass="AttributedLabel" customModule="AttributedLabel">
                                         <rect key="frame" x="8" y="8" width="240" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                         </userDefinedRuntimeAttributes>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vsy-OI-1yT" userLabel="Quoted Text View">
-                                        <rect key="frame" x="8" y="33" width="240" height="108"/>
+                                    </view>
+                                    <view opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="vsy-OI-1yT" userLabel="Quoted Text View" customClass="AttributedLabel" customModule="AttributedLabel">
+                                        <rect key="frame" x="8" y="31" width="240" height="108"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis metus non massa eleifend, a ornare nisi vestibulum. Sed malesuada lorem eget ex viverra, ac egestas arcu vehicula. </string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
-                                                <real key="value" value="8"/>
+                                                <real key="value" value="6"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                    </label>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
@@ -156,7 +142,6 @@
                     </view>
                 </subviews>
             </tableViewCellContentView>
-            <color key="tintColor" red="0.28176289796829224" green="0.76144915819168091" blue="0.97823232412338257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="nameView" destination="LKp-da-MGc" id="Y7M-bk-KSO"/>
                 <outlet property="profileImageView" destination="5KQ-xb-nha" id="0lC-II-AG0"/>
@@ -164,7 +149,7 @@
                 <outlet property="quotedTextView" destination="vsy-OI-1yT" id="jBJ-1m-cd3"/>
                 <outlet property="quotedView" destination="xFN-8A-eFZ" id="zk9-9v-fKG"/>
                 <outlet property="statusTypeLabelView" destination="V07-d6-6R9" id="2mK-Gg-1jW"/>
-                <outlet property="textView" destination="1kF-mi-Guo" id="GBX-PU-FnD"/>
+                <outlet property="textView" destination="2U2-1i-w3g" id="U4a-cK-g0L"/>
                 <outlet property="timeView" destination="Ciw-NL-y95" id="XT0-5G-5Ym"/>
             </connections>
             <point key="canvasLocation" x="233" y="276.5"/>

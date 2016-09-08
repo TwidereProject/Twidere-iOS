@@ -11,6 +11,7 @@ import SugarRecord
 import IQKeyboardManagerSwift
 import REFrostedViewController
 import SQLite
+import AttributedLabel
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -55,8 +56,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         IQKeyboardManager.sharedManager().enable = true
         
-        UITabBar.appearance().tintColor = materialLightGreen
-        UINavigationBar.appearance().tintColor = materialLightGreen
+        UITabBar.appearance().tintColor = materialLightBlue300
+        UINavigationBar.appearance().tintColor = materialLightBlue300
+        AttributedLabel.appearance().tintColor = materialLightBlue300
         
         return true
     }
@@ -69,6 +71,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+//        let db = sqliteDatabase
+//        db.transaction {
+//            homeStatusesTable.select(FlatStatus.RowIndices.positionKey).group(FlatStatus.RowIndices.accountKey).order(FlatStatus.RowIndices.positionKey).limit(100).se
+//        }
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

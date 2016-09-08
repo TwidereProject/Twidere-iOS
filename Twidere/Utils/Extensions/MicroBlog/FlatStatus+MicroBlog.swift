@@ -23,16 +23,16 @@ extension FlatStatus {
         if (primary.isExists()) {
             self.retweetId = getTwitterEntityId(primary)
             
-            let user = primary["user"]
-            let userId = getTwitterEntityId(user)
+            let retweetedBy = status["user"]
+            let userId = getTwitterEntityId(retweetedBy)
             self.retweetedByUserKey = UserKey(id: userId, host: self.accountKey.host)
-            self.retweetedByUserName = user["name"].string
-            self.retweetedByUserScreenName = user["screen_name"].string
-            self.retweetedByUserProfileImage = getProfileImage(user)
+            self.retweetedByUserName = retweetedBy["name"].string
+            self.retweetedByUserScreenName = retweetedBy["screen_name"].string
+            self.retweetedByUserProfileImage = getProfileImage(retweetedBy)
         } else {
             primary = status
         }
- 
+        
         let user = primary["user"]
         let userId = getTwitterEntityId(user)
         self.userKey = UserKey(id: userId, host: self.accountKey.host)
@@ -78,145 +78,206 @@ extension FlatStatus {
     }
     
     private static let carets = NSCharacterSet(charactersInString: "<>")
-    
-    private func getStatusText(status: JSON) -> String {
-        let htmlText = status["statusnet_html"].string ?? status["text"].stringValue
-        // Twitter will escape <> to &lt;&gt;, so if a status contains those symbols unescaped
-        // We should treat this as an html
-        if (htmlText.rangeOfCharacterFromSet(FlatStatus.carets) != nil) {
-            return htmlText.stringByDecodingHTMLEntities
-        }
-        let text = status["full_text"].string ?? status["text"].stringValue
-        return text.stringByDecodingHTMLEntities
-    }
-    
+
     private func getMetadata(status: JSON) -> (String, String, Metadata) {
         let metadata = Metadata()
-        var spans = [LinkSpanItem]()
+        var links = [LinkSpanItem]()
         var mentions = [MentionSpanItem]()
         var hashtags = [HashtagSpanItem]()
-        let text = getStatusText(status)
-        var codePoints = text.unicodeScalars
-        
-        var codePointOffset = 0
-        
-        var entities = [(JSON, EntityType)]()
-        for entity in status["entities"]["urls"].arrayValue {
-            entities.append((entity, .Url))
-        }
-        if let extendedMedia = status["extended_entities"]["media"].array {
-            for entity in extendedMedia {
-                entities.append((entity, .Url))
+        let textPlain: String
+        let textDisplay: String
+        if let statusNetHtml = status["statusnet_html"].string {
+            textPlain = statusNetHtml.stringByDecodingHTMLEntities
+            textDisplay = textPlain
+        } else if let fullText = status["full_text"].string ?? status["text"].string {
+            var spans = [SpanItem]()
+            for entity in status["entities"]["urls"].arrayValue {
+                spans.append(spanFromUrlEntity(entity))
             }
-        } else if let media = status["entities"]["media"].array {
-            for entity in media {
-                entities.append((entity, .Url))
-            }
-        }
-        
-        if let userMentions = status["entities"]["user_mentions"].array {
-            for entity in userMentions {
-                entities.append((entity, .Mention))
-            }
-        }
-        
-        if let hashtags = status["entities"]["hashtags"].array {
-            for entity in hashtags {
-                entities.append((entity, .Hashtag))
-            }
-        }
-        
-        var indices = [Range<Int>]()
-        
-        // Remove duplicate entities
-        entities = entities.filter { (entity, _) -> Bool in
-            guard let start = entity["indices"][0].int, let end = entity["indices"][1].int else {
-                return false
-            }
-            let range = start..<end
-            if (hasClash(indices, range: range)) {
-                return false
-            }
-            //
-            if let insertIdx = indices.indexOf({ item -> Bool in return item.startIndex > range.startIndex }) {
-                indices.insert(range, at: insertIdx)
-            } else {
-                indices.append(range)
-            }
-            return true
-        }
-        
-        // Order entities
-        entities.sortInPlace { (l, r) -> Bool in
-            return l.0["indices"][0].intValue < r.0["indices"][0].intValue
-        }
-        
-        for (entity, type) in entities {
-            guard let start = entity["indices"][0].int, let end = entity["indices"][1].int else {
-                continue
+            if let extendedMedia = status["extended_entities"]["media"].array {
+                for entity in extendedMedia {
+                    spans.append(spanFromUrlEntity(entity))
+                }
+            } else if let media = status["entities"]["media"].array {
+                for entity in media {
+                    spans.append(spanFromUrlEntity(entity))
+                }
             }
             
-            let rangeStart = codePointOffset + start
-            let rangeEnd = codePointOffset + end
+            if let userMentions = status["entities"]["user_mentions"].array {
+                for entity in userMentions {
+                    spans.append(spanFromMentionEntity(entity))
+                }
+            }
             
-            var startIndex = codePoints.startIndex
+            if let hashtags = status["entities"]["hashtags"].array {
+                for entity in hashtags {
+                    spans.append(spanFromHashtagEntity(entity))
+                }
+            }
             
-            switch type {
-            case .Url:
-                if let expandedUrl = entity["expanded_url"].string, let displayUrl = entity["display_url"].string {
-                    let displayUrlCodePoints = displayUrl.unicodeScalars
-                    let displayLength = displayUrlCodePoints.count
+            var indices = [Range<Int>]()
+            
+            // Remove duplicate entities
+            spans = spans.filter { entity -> Bool in
+                if (entity.origStart < 0 || entity.origEnd < 0) {
+                    return false
+                }
+                let range = entity.origStart..<entity.origEnd
+                if (hasClash(indices, range: range)) {
+                    return false
+                }
+                //
+                if let insertIdx = indices.indexOf({ item -> Bool in return item.startIndex > range.startIndex }) {
+                    indices.insert(range, at: insertIdx)
+                } else {
+                    indices.append(range)
+                }
+                return true
+            }
+            
+            // Order entities
+            spans.sortInPlace { (l, r) -> Bool in
+                return l.origStart < r.origEnd
+            }
+            
+            var codePointOffset = 0
+            var codePoints = fullText.unicodeScalars
+            
+            // Display text range in utf16
+            var displayTextRangeCodePoint: [Int]? = nil
+            var displayTextRangeUtf16: [Int]? = nil
+            
+            if let displayStart = status["display_text_range"][0].int, let displayEnd = status["display_text_range"][1].int {
+                displayTextRangeCodePoint = [displayStart, displayEnd]
+                displayTextRangeUtf16 = [
+                    codePoints.utf16Count(codePoints.startIndex..<codePoints.startIndex.advancedBy(displayStart)),
+                    codePoints.utf16Count(codePoints.startIndex..<codePoints.startIndex.advancedBy(displayEnd))
+                ]
+            }
+            
+            for span in spans {
+                let origStart = span.origStart, origEnd = span.origEnd
+                
+                let offsetedStart = origStart + codePointOffset
+                let offsetedEnd = origEnd + codePointOffset
+                
+                var startIndex = codePoints.startIndex
+                
+                switch span {
+                case is LinkSpanItem:
+                    let typed = span as! LinkSpanItem
+                    let displayUrlCodePoints = typed.display!.unicodeScalars
+                    let displayCodePointsLength = displayUrlCodePoints.count
+                    let displayUtf16Length = typed.display!.utf16.count
                     
-                    codePoints.replaceRange(startIndex.advancedBy(rangeStart)..<startIndex.advancedBy(rangeEnd), with: displayUrlCodePoints)
+                    let subRange = startIndex.advancedBy(offsetedStart)..<startIndex.advancedBy(offsetedEnd)
+                    
+                    let subRangeUtf16Length = codePoints.utf16Count(subRange)
+                    
+                    codePoints.replaceRange(subRange, with: displayUrlCodePoints)
                     
                     startIndex = codePoints.startIndex
                     
-                    let spanStart = codePoints.utf16Count(startIndex..<startIndex.advancedBy(rangeStart))
-                    let spanEnd = spanStart + displayUrl.utf16.count
-                    let span = LinkSpanItem(start: spanStart, end: spanEnd, link: expandedUrl)
-                    span.origStart = start
-                    span.origEnd = end
-                    spans.append(span)
-                    codePointOffset += displayLength - (end - start)
+                    typed.start = codePoints.utf16Count(startIndex..<startIndex.advancedBy(offsetedStart))
+                    typed.end = typed.start + displayUtf16Length
+                    links.append(typed)
+                    
+                    let codePointDiff = displayCodePointsLength - (origEnd - origStart)
+                    let utf16Diff = displayUtf16Length - subRangeUtf16Length
+                    codePointOffset += codePointDiff
+                    if (typed.origEnd < displayTextRangeCodePoint?[0]) {
+                        displayTextRangeUtf16?[0] += utf16Diff
+                    }
+                    if (typed.origEnd <= displayTextRangeCodePoint?[1]) {
+                        displayTextRangeUtf16?[1] += utf16Diff
+                    }
+                case is MentionSpanItem:
+                    let typed = span as! MentionSpanItem
+                    
+                    typed.start = codePoints.utf16Count(startIndex..<startIndex.advancedBy(offsetedStart))
+                    typed.end = typed.start + origEnd - origStart
+                    mentions.append(typed)
+                case is HashtagSpanItem:
+                    let typed = span as! HashtagSpanItem
+                    
+                    typed.start = codePoints.utf16Count(startIndex..<startIndex.advancedBy(offsetedStart))
+                    typed.end = typed.start + origEnd - origStart
+                    hashtags.append(typed)
+                default: abort()
                 }
-            case .Mention:
-                let id = entity["id_str"].string ?? entity["id"].stringValue
-                if (!id.isEmpty) {
-                    let userStart = codePoints.utf16Count(startIndex..<startIndex.advancedBy(rangeStart))
-                    let userEnd = userStart + end - start
-                    let mention = MentionSpanItem(start: userStart, end: userEnd, key: UserKey(id: id, host: nil))
-                    mention.name = entity["name"].string
-                    mention.screenName = entity["screen_name"].string
-                    mentions.append(mention)
-                }
-            case .Hashtag:
-                if let hashtagString = entity["text"].string {
-                    let userStart = codePoints.utf16Count(startIndex..<startIndex.advancedBy(rangeStart))
-                    let userEnd = userStart + end - start
-                    hashtags.append(HashtagSpanItem(start: userStart, end: userEnd, hashtag: hashtagString))
-                }
+                
             }
             
+            let str = String(codePoints)
+            textDisplay = str.decodeHTMLEntitiesWithOffset { (index, utf16Offset) in
+                let intIndex = str.startIndex.distanceTo(index)
+                
+                for span in spans where span.origStart >= intIndex {
+                    span.start += utf16Offset
+                    span.end += utf16Offset
+                }
+                if (displayTextRangeUtf16?[0] >= intIndex) {
+                    displayTextRangeUtf16?[0] += utf16Offset
+                }
+                if (displayTextRangeUtf16?[1] >= intIndex) {
+                    displayTextRangeUtf16?[1] += utf16Offset
+                }
+            }
+            textPlain = fullText.stringByDecodingHTMLEntities
+            
+            metadata.displayRange = displayTextRangeUtf16
+        } else {
+            textPlain = status["text"].stringValue
+            textDisplay = textPlain
         }
-        metadata.spans = spans
+        metadata.links = links
         metadata.mentions = mentions
         metadata.hashtags = hashtags
-        metadata.displayRange = calculateDisplayTextRange(status, source: text, display: codePoints, spans: spans)
-        return (text, String(codePoints), metadata)
+        return (textPlain, textDisplay, metadata)
     }
     
-    private func calculateDisplayTextRange(status: JSON, source: String, display: String.UnicodeScalarView, spans:[LinkSpanItem]) -> [Int]? {
+    private func spanFromUrlEntity(entity: JSON) -> LinkSpanItem {
+        let span = LinkSpanItem(display: entity["display_url"].stringValue, link: entity["expanded_url"].stringValue)
+        
+        span.origStart = entity["indices"][0].int ?? -1
+        span.origEnd = entity["indices"][1].int ?? -1
+        
+        return span
+    }
+    
+    private func spanFromMentionEntity(entity: JSON) -> MentionSpanItem {
+        let id = entity["id_str"].string ?? entity["id"].stringValue
+        let span = MentionSpanItem(key: UserKey(id: id, host: nil))
+        span.name = entity["name"].string
+        span.screenName = entity["screen_name"].string
+        
+        span.origStart = entity["indices"][0].int ?? -1
+        span.origEnd = entity["indices"][1].int ?? -1
+        
+        return span
+    }
+    
+    private func spanFromHashtagEntity(entity: JSON) -> HashtagSpanItem {
+        let span = HashtagSpanItem(hashtag: entity["text"].stringValue)
+        
+        span.origStart = entity["indices"][0].int ?? -1
+        span.origEnd = entity["indices"][1].int ?? -1
+        
+        return span
+    }
+    
+    private func calculateDisplayTextRange(status: JSON, source: String, display: String, spans:[SpanItem]) -> [Int]? {
         guard let start = status["display_text_range"][0].int, let end = status["display_text_range"][1].int else {
             return nil
         }
         let sourceCodePoints = source.unicodeScalars
-        return [
-            getResultRangeLength(sourceCodePoints, spans: spans, origStart: 0, origEnd: start),
-            display.utf16Count() - getResultRangeLength(sourceCodePoints, spans: spans, origStart: end, origEnd: sourceCodePoints.count)
-        ]
+        let rangeStart = getResultRangeLength(sourceCodePoints, spans: spans, origStart: 0, origEnd: start)
+        let rangeEnd = display.utf16.count - getResultRangeLength(sourceCodePoints, spans: spans, origStart: end, origEnd: sourceCodePoints.count)
+        return [rangeStart, rangeEnd]
     }
     
-    private func getResultRangeLength(source: String.UnicodeScalarView, spans: [LinkSpanItem], origStart: Int, origEnd: Int) -> Int {
+    private func getResultRangeLength(source: String.UnicodeScalarView, spans: [SpanItem], origStart: Int, origEnd: Int) -> Int {
         let findResult = findByOrigRange(spans, start: origStart, end: origEnd)
         let startIndex = source.startIndex
         if (findResult.isEmpty) {
@@ -231,8 +292,8 @@ extension FlatStatus {
         return source.utf16Count(startIndex.advancedBy(origStart)..<startIndex.advancedBy(first.origStart)) + (last.end - first.start) + source.utf16Count(startIndex.advancedBy(first.origEnd)..<startIndex.advancedBy(origEnd))
     }
     
-    private func findByOrigRange(spans: [LinkSpanItem], start: Int, end:Int)-> [LinkSpanItem] {
-        var result = [LinkSpanItem]()
+    private func findByOrigRange(spans: [SpanItem], start: Int, end:Int)-> [SpanItem] {
+        var result = [SpanItem]()
         for span in spans {
             if (span.origStart >= start && span.origEnd <= end) {
                 result.append(span)

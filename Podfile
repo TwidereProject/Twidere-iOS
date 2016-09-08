@@ -21,9 +21,9 @@ target 'Twidere' do
   pod 'UITextView+Placeholder', '1.2.0'
   pod 'twitter-text', '~> 1.14'
   pod 'UIView+TouchHighlighting', '1.1.0'
-  pod 'SDWebImage', '3.8.1'
+  pod 'SDWebImage', '3.8.2'
   pod 'REFrostedViewController', '~> 2.4'
-  pod 'JDStatusBarNotification', '1.5.3'
+  pod 'JDStatusBarNotification', '1.5.4'
   pod 'SwiftEventBus', '1.1.0'
   pod 'SQLite.swift', '~> 0.10.1'
   pod 'UIView+FDCollapsibleConstraints', '~> 1.1'
@@ -34,6 +34,7 @@ target 'Twidere' do
   pod 'ALSLayouts', '~> 0.2'
   pod 'ThumborURL', '0.0.4'
   pod 'StringExtensionHTML', '~> 0.1'
+  pod 'AttributedLabel', '~> 0.3.1'
 end
 
 target 'TwidereTests' do

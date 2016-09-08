@@ -14,6 +14,7 @@ import REFrostedViewController
 import Pager
 import PromiseKit
 import SQLite
+import SwiftyJSON
 
 class HomeController: UITabBarController {
     
@@ -127,13 +128,9 @@ class HomeController: UITabBarController {
         
         func loadStatuses(opts: StatusesListController.LoadOptions) -> Promise<[FlatStatus]> {
             return dispatch_promise {  () -> [FlatStatus] in
-                if let params = opts.params where !opts.initLoad {
-                    let account = try defaultAccount()!
-                    let microblog = account.newMicroblogInstance()
-                    let paging = Paging()
-                    return FlatStatus.arrayFromJson(try microblog.getUserTimeline("mariotaku", paging: paging), account: account)
-                }
-                return [FlatStatus]()
+                let account = try defaultAccount()!
+                let json = JSON(data: NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("statuses_list", ofType: "json")!)!)
+                return FlatStatus.arrayFromJson(json, account: account)
             }
         }
         

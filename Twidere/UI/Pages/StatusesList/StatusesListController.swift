@@ -20,12 +20,15 @@ class StatusesListController: UITableViewController {
     }
     
     var delegate: StatusesListControllerDelegate!
+    var cellDisplayOption: StatusCell.DisplayOption!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+        self.cellDisplayOption = StatusCell.DisplayOption()
+        self.cellDisplayOption.fontSize = 15
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
@@ -63,16 +66,21 @@ class StatusesListController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let status = statuses![indexPath.item]
         if (status.isGap ?? false) {
-            let cell = tableView.dequeueReusableCellWithIdentifier("Gap", forIndexPath: indexPath) as! GapCell
-            
-            return cell
+            return tableView.dequeueReusableCellWithIdentifier("Gap", forIndexPath: indexPath)
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("Status", forIndexPath: indexPath) as! StatusCell
-            cell.status = status
+            cell.displayOption = self.cellDisplayOption
             return cell
         }
     }
     
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        switch cell {
+        case is StatusCell:
+            (cell as! StatusCell).status = statuses![indexPath.item]
+        default: break
+        }
+    }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let status = statuses![indexPath.item]
@@ -80,7 +88,9 @@ class StatusesListController: UITableViewController {
             return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
         } else {
             return tableView.fd_heightForCellWithIdentifier("Status", cacheByIndexPath: indexPath) { cell in
-                (cell as! StatusCell).status = status
+                let statusCell = cell as! StatusCell
+                statusCell.displayOption = self.cellDisplayOption
+                statusCell.status = status
             }
         }
     }

@@ -89,6 +89,11 @@ class MicroBlogService: RestClient {
         return try makeTypedRequest(.GET, path: "/statuses/user_timeline.json", queries: queries, checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
     }
     
+    func lookupStatuses(ids: [String]) throws -> JSON {
+        let queries = makeQueries(statusQueries, ["id": ids.joinWithSeparator(",")])
+        return try makeTypedRequest(.GET, path: "/statuses/lookup.json", queries: queries, checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+    }
+    
     func makeQueries(def: [String: String], _ queries: [String: String]...) -> [String: String] {
         var result = [String: String]()
         for (k, v) in def {

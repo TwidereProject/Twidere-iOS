@@ -21,7 +21,7 @@ func == (lhs: FlatStatus, rhs: FlatStatus) -> Bool {
 extension FlatStatus {
     
     class Metadata: Glossy {
-        var spans: [LinkSpanItem]? = nil
+        var links: [LinkSpanItem]? = nil
         var mentions: [MentionSpanItem]? = nil
         var hashtags: [HashtagSpanItem]? = nil
         var displayRange: [Int]? = nil
@@ -31,7 +31,7 @@ extension FlatStatus {
         }
         
         required init?(json: JSON) {
-            self.spans = "spans" <~~ json
+            self.links = "links" <~~ json
             self.mentions = "mentions" <~~ json
             self.hashtags = "hashtags" <~~ json
             self.displayRange = "display_range" <~~ json
@@ -39,7 +39,7 @@ extension FlatStatus {
         
         func toJSON() -> JSON? {
             return jsonify([
-                "spans" ~~> self.spans,
+                "links" ~~> self.links,
                 "mentions" ~~> self.mentions,
                 "hashtags" ~~> self.hashtags,
                 "display_range" ~~> self.displayRange
