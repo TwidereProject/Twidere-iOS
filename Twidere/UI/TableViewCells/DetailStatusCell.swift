@@ -32,6 +32,8 @@ class DetailStatusCell: UITableViewCell {
 
     override func awakeFromNib() {
         userProfileImageView.makeCircular()
+        userNameView.numberOfLines = 1
+        timeSourceView.numberOfLines = 1
         fd_enforceFrameLayout = true
     }
 

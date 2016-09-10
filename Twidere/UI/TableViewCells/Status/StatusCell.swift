@@ -22,6 +22,8 @@ class StatusCell: UITableViewCell {
     @IBOutlet weak var quotedNameView: AttributedLabel!
     @IBOutlet weak var quotedTextView: AttributedLabel!
     @IBOutlet weak var statusTypeLabelView: UILabel!
+    @IBOutlet weak var mediaPreview: MediaPreviewContainer!
+    @IBOutlet weak var quotedMediaPreview: MediaPreviewContainer!
     
     var status: FlatStatus! {
         didSet {
@@ -87,6 +89,8 @@ class StatusCell: UITableViewCell {
             statusTypeLabelView.layoutParams.hidden = true
         }
         
+        mediaPreview.displayMedia(status.metadata?.media)
+        
         if (status.quotedId != nil) {
             quotedNameView.attributedText = StatusCell.createNameText(quotedNameView.font.pointSize, name: status.quotedUserName!, screenName: status.quotedUserScreenName!, separator: " ")
             if (displayOption.linkHighlight) {
@@ -94,7 +98,7 @@ class StatusCell: UITableViewCell {
             } else {
                 quotedTextView.text = status.quotedTextDisplay
             }
-            
+            quotedMediaPreview.displayMedia(status.quotedMetadata?.media)
             quotedView.layoutParams.hidden = false
         } else {
             quotedView.layoutParams.hidden = true
