@@ -9,7 +9,6 @@
 import UIKit
 import SugarRecord
 import IQKeyboardManagerSwift
-import REFrostedViewController
 import SQLite
 import AttributedLabel
 
@@ -32,7 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let dbPath = NSURL(fileURLWithPath: docsPath).URLByAppendingPathComponent("twidere.sqlite3")
 
         let db = try! Connection(dbPath.path!)
-        db.trace { print($0) }
+        
+//        db.trace { print($0) }
         
         let oldVersion = db.userVersion
         if (oldVersion == 0) {
@@ -71,10 +71,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-//        let db = sqliteDatabase
-//        db.transaction {
-//            homeStatusesTable.select(FlatStatus.RowIndices.positionKey).group(FlatStatus.RowIndices.accountKey).order(FlatStatus.RowIndices.positionKey).limit(100).se
-//        }
+        let db = sqliteDatabase
+        for account in try! allAccounts() {
+            func clearByItemLimit(accountKey: UserKey, limit: Int, table: Table) -> Delete {
+                let accountWhere = FlatStatus.RowIndices.accountKey == accountKey
+                let minId = table.select(FlatStatus.RowIndices.positionKey).filter(accountWhere).order(FlatStatus.RowIndices.positionKey.desc).limit(1, offset: limit)
+                
+                
+                return table.filter(FlatStatus.RowIndices.positionKey < Expression<Int64?>(literal: "(\(minId.asSQL()))") && accountWhere).delete()
+            }
+            
+            let accountKey = UserKey(rawValue: account.accountKey!)
+            
+            try! db.transaction {
+                try db.run(clearByItemLimit(accountKey, limit: 30, table: homeStatusesTable))
+            }
+        }
+        
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

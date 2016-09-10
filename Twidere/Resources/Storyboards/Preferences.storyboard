@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="F5N-4y-jTs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="F5N-4y-jTs">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -9,7 +9,7 @@
         <!--Preferences-->
         <scene sceneID="ZuF-l9-Tak">
             <objects>
-                <tableViewController id="1DP-Cj-KBW" userLabel="Preferences" customClass="PreferencesController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Preferences" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1DP-Cj-KBW" userLabel="Preferences" customClass="PreferencesController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="gCh-Ie-E9s">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -206,13 +206,7 @@
                             <outlet property="delegate" destination="1DP-Cj-KBW" id="QLi-TB-Fri"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Settings" id="a9c-6e-OcN">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="2Hr-op-CPk">
-                            <connections>
-                                <action selector="closeSettings:" destination="1DP-Cj-KBW" id="Cof-0Z-UKP"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Settings" id="a9c-6e-OcN"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rbo-Yv-8LI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -336,7 +330,7 @@
                                                     <rect key="frame" x="15" y="0.0" width="538" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -540,7 +534,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ofU-ir-7V0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Item" textLabel="jgi-eg-oeH" style="IBUITableViewCellStyleDefault" id="hHl-AW-ROP">
                                 <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
@@ -553,7 +547,7 @@
                                             <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -574,7 +568,7 @@
         <!--Preferences Root-->
         <scene sceneID="I5r-eL-C5C">
             <objects>
-                <navigationController storyboardIdentifier="Preferences" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="F5N-4y-jTs" userLabel="Preferences Root" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="PreferencesRoot" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="F5N-4y-jTs" userLabel="Preferences Root" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="j7i-rP-iVN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

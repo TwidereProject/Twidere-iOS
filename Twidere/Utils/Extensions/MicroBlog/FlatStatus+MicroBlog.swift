@@ -84,6 +84,7 @@ extension FlatStatus {
         var links = [LinkSpanItem]()
         var mentions = [MentionSpanItem]()
         var hashtags = [HashtagSpanItem]()
+        var mediaItems = [MediaItem]()
         let textPlain: String
         let textDisplay: String
         if let statusNetHtml = status["statusnet_html"].string {
@@ -97,10 +98,12 @@ extension FlatStatus {
             if let extendedMedia = status["extended_entities"]["media"].array {
                 for entity in extendedMedia {
                     spans.append(spanFromUrlEntity(entity))
+                    mediaItems.append(mediaItemFromEntity(entity))
                 }
             } else if let media = status["entities"]["media"].array {
                 for entity in media {
                     spans.append(spanFromUrlEntity(entity))
+                    mediaItems.append(mediaItemFromEntity(entity))
                 }
             }
             
@@ -234,7 +237,54 @@ extension FlatStatus {
         metadata.links = links
         metadata.mentions = mentions
         metadata.hashtags = hashtags
+        metadata.media = mediaItems
         return (textPlain, textDisplay, metadata)
+    }
+    
+    private func mediaItemFromEntity(entity: JSON) -> MediaItem {
+        let media = MediaItem()
+        media.url = entity["media_url_https"].string ?? entity["media_url"].string
+        media.mediaUrl = media.url
+        media.previewUrl = media.url
+        media.pageUrl = entity["expanded_url"].string
+        media.type = getMediaType(entity["type"].string)
+        media.altText = entity["alt_text"].string
+        let size = entity["sizes"]["large"]
+        if (size.isExists()) {
+            media.width = size["width"].intValue
+            media.height = size["height"].intValue
+        } else {
+            media.width = 0;
+            media.height = 0;
+        }
+        media.videoInfo = getVideoInfo(entity["video_info"]);
+        return media
+    }
+    
+    private func getMediaType(type: String?) -> MediaItem.MediaType {
+        switch type {
+        case "photo"?:
+            return .Image
+        case "video"?:
+            return .Video
+        case "animated_gif"?:
+            return .AnimatedGif
+        default: break
+        }
+        return .Unknown
+    }
+    
+    private func getVideoInfo(json: JSON) -> MediaItem.VideoInfo {
+        let info = MediaItem.VideoInfo()
+        info.duration = json["duration"].int64Value
+        info.variants = json["variants"].map { (k, v) -> MediaItem.VideoInfo.Variant in
+            let variant = MediaItem.VideoInfo.Variant()
+            variant.bitrate = v["bitrate"].int64Value
+            variant.contentType = v["content_type"].string
+            variant.url = v["url"].string
+            return variant
+        }
+        return info
     }
     
     private func spanFromUrlEntity(entity: JSON) -> LinkSpanItem {

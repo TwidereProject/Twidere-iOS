@@ -191,7 +191,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YqK-KJ-Tb7" customClass="ALSLinearLayout" customModule="ALSLayouts">
                                 <rect key="frame" x="20" y="64" width="560" height="536"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EHK-5P-zLD" customClass="JVFloatLabeledTextField">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EHK-5P-zLD">
                                         <rect key="frame" x="167" y="218" width="214" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
@@ -200,7 +200,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pvQ-EL-XUG" customClass="JVFloatLabeledTextField">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pvQ-EL-XUG">
                                         <rect key="frame" x="167" y="256" width="214" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
@@ -268,28 +268,86 @@
         <!--Accounts-->
         <scene sceneID="VD6-de-eSw">
             <objects>
-                <tableViewController id="Fsa-zn-0yB" customClass="AccountsManagerController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gOW-LH-A5Z">
+                <tableViewController storyboardIdentifier="AccountsList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Fsa-zn-0yB" customClass="AccountsManagerController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" id="gOW-LH-A5Z">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountItem" textLabel="xqw-TS-LRJ" style="IBUITableViewCellStyleDefault" id="WJS-zG-GDe">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountItem" rowHeight="64" id="WJS-zG-GDe" customClass="AccountCell" customModule="Twidere" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WJS-zG-GDe" id="1dC-pi-h97">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="63.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xqw-TS-LRJ">
-                                            <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fa2-QJ-LMJ" customClass="ALSRelativeLayout" customModule="ALSLayouts">
+                                            <rect key="frame" x="8" y="8" width="584" height="48"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tso-8f-BRV">
+                                                    <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="StaticSize"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="StaticSize"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="profileImageView"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mUs-nC-C91" customClass="ALSLinearLayout" customModule="ALSLayouts">
+                                                    <rect key="frame" x="49" y="0.0" width="527" height="48"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tFv-yO-XHi">
+                                                            <rect key="frame" x="8" y="4" width="511" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="nameView"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@screenname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAz-41-5qC">
+                                                            <rect key="frame" x="8" y="23" width="511" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="screenNameView"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="orientationString" value="Vertical"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="gravityString" value="CenterVertical"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutToTrailingOf" value="profileImageView"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="MatchParent"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginLeading">
+                                                            <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="widthModeString" value="MatchParent"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="heightModeString" value="MatchParent"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="fa2-QJ-LMJ" firstAttribute="leading" secondItem="1dC-pi-h97" secondAttribute="leadingMargin" id="Aim-Gg-NYI"/>
+                                        <constraint firstItem="fa2-QJ-LMJ" firstAttribute="bottom" secondItem="1dC-pi-h97" secondAttribute="bottomMargin" id="EHh-Ks-t9W"/>
+                                        <constraint firstItem="fa2-QJ-LMJ" firstAttribute="trailing" secondItem="1dC-pi-h97" secondAttribute="trailingMargin" id="NXH-Pa-REo"/>
+                                        <constraint firstItem="fa2-QJ-LMJ" firstAttribute="top" secondItem="1dC-pi-h97" secondAttribute="topMargin" id="aqJ-Te-Wtz"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameView" destination="tFv-yO-XHi" id="B6x-eo-tkU"/>
+                                    <outlet property="profileImageView" destination="tso-8f-BRV" id="0YV-Cc-whe"/>
+                                    <outlet property="screenNameView" destination="xAz-41-5qC" id="qA6-ip-I4g"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -298,11 +356,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Accounts" id="Ytn-0d-8a7">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="2hH-Hv-OoY">
-                            <connections>
-                                <action selector="closeAcccountsManager:" destination="Fsa-zn-0yB" id="hvb-p5-S6f"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ibi-6b-hph">
                             <connections>
                                 <segue destination="6M5-74-xoh" kind="show" id="t23-pc-mSl"/>
@@ -399,7 +452,7 @@
             <objects>
                 <navigationController storyboardIdentifier="SignIn" title="Sign In" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0zf-YT-Zyx" userLabel="Sign In" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="qBt-0g-wbL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qBt-0g-wbL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

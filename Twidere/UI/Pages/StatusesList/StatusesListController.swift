@@ -46,6 +46,17 @@ class StatusesListController: UITableViewController {
         opts.params = SimpleRefreshTaskParam(accounts: delegate.getAccounts())
         
         loadStatuses(opts)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(willEnterForeground), name: UIApplicationWillEnterForegroundNotification, object: nil)
+    }
+    
+    func willEnterForeground() {
+        let opts = LoadOptions()
+        
+        opts.initLoad = true
+        opts.params = SimpleRefreshTaskParam(accounts: delegate.getAccounts())
+        
+        loadStatuses(opts)
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,6 +65,8 @@ class StatusesListController: UITableViewController {
     }
 
     // MARK: - Table view data source
+    
+    
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -65,7 +78,7 @@ class StatusesListController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let status = statuses![indexPath.item]
-        if (status.isGap ?? false) {
+        if (statuses!.endIndex != indexPath.item && status.isGap ?? false) {
             return tableView.dequeueReusableCellWithIdentifier("Gap", forIndexPath: indexPath)
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("Status", forIndexPath: indexPath) as! StatusCell
@@ -111,7 +124,10 @@ class StatusesListController: UITableViewController {
             opts.params = params
             loadStatuses(opts)
         } else {
-            // TODO show status details
+            let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("StatusDetails") as! StatusViewerController
+            vc.status = status
+            navigationController?.showViewController(vc, sender: self)
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

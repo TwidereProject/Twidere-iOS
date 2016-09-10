@@ -7,14 +7,7 @@
 //
 
 import UIKit
-import REFrostedViewController
 
-class HomeRootController: UINavigationController, REFrostedViewControllerDelegate {
-    func frostedViewController(frostedViewController: REFrostedViewController!, didShowMenuViewController menuViewController: UIViewController!) {
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
-    }
-    
-    func frostedViewController(frostedViewController: REFrostedViewController!, didHideMenuViewController menuViewController: UIViewController!) {
-        UIApplication.sharedApplication().statusBarStyle = .Default
-    }
+class HomeRootController: UINavigationController {
+
 }

@@ -10,8 +10,6 @@ import UIKit
 import SDWebImage
 import SugarRecord
 import UIView_TouchHighlighting
-import REFrostedViewController
-import Pager
 import PromiseKit
 import SQLite
 import SwiftyJSON
@@ -30,18 +28,33 @@ class HomeController: UITabBarController {
         
         menuToggleItem.customView?.touchHighlightingStyle = .TransparentMask
         
-        let homeTimelineController = StatusesListController(nibName: "StatusesListController", bundle: nil)
+        let pages = UIStoryboard(name: "Pages", bundle: nil)
+        
+        let homeTimelineController = pages.instantiateViewControllerWithIdentifier("StatusesList") as! StatusesListController
         homeTimelineController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "Tab Icon Home"), tag: 1)
         homeTimelineController.delegate = HomeTimelineStatusesListControllerDelegate()
-        let notificationsTimelineController = storyboard!.instantiateViewControllerWithIdentifier("StubTab")
+        let notificationsTimelineController = pages.instantiateViewControllerWithIdentifier("StubTab")
         notificationsTimelineController.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(named: "Tab Icon Notification"), tag: 2)
-        let messageConversationsController = storyboard!.instantiateViewControllerWithIdentifier("StubTab")
+        let messageConversationsController = pages.instantiateViewControllerWithIdentifier("StubTab")
         messageConversationsController.tabBarItem = UITabBarItem(title: "Messages", image: UIImage(named: "Tab Icon Message"), tag: 3)
-        let testController = StatusesListController(nibName: "StatusesListController", bundle: nil)
+        let testController = pages.instantiateViewControllerWithIdentifier("StatusesList") as! StatusesListController
         testController.delegate = UserTimelineStatusesListControllerDelegate()
         testController.tabBarItem = UITabBarItem(title: "User", image: UIImage(named: "Tab Icon User"), tag: 4)
         setViewControllers([homeTimelineController, notificationsTimelineController, messageConversationsController, testController], animated: false)
-
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let bottomOffset = tabBar.frame.height
+        for vc in viewControllers! {
+            if let tv = (vc as? UITableViewController)?.tableView {
+                var contentInset = tv.contentInset, scrollIndicatorInsets = tv.scrollIndicatorInsets
+                contentInset.bottom = bottomOffset
+                scrollIndicatorInsets.bottom = bottomOffset
+                tv.contentInset = contentInset
+                tv.scrollIndicatorInsets = scrollIndicatorInsets
+            }
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -58,12 +71,9 @@ class HomeController: UITabBarController {
         ComposeController.show(self.parentViewController ?? self, identifier: "Compose")
     }
     
-    @IBAction func menuToggleClicked(sender: UITapGestureRecognizer) {
-        frostedViewController.presentMenuViewController()
-    }
-    
-    @IBAction func panGestureRecognized(sender: UIScreenEdgePanGestureRecognizer) {
-        frostedViewController.panGestureRecognized(sender)
+    @IBAction func accountIconClicked(sender: UITapGestureRecognizer) {
+        let vc = storyboard!.instantiateViewControllerWithIdentifier("AccountProfile")
+        navigationController?.showViewController(vc, sender: self)
     }
     
     class HomeTimelineStatusesListControllerDelegate: StatusesListControllerDelegate {

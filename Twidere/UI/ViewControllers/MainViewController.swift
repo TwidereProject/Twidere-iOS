@@ -8,7 +8,6 @@
 
 import UIKit
 import SugarRecord
-import REFrostedViewController
 
 class MainViewController: UIViewController {
     
@@ -33,17 +32,7 @@ class MainViewController: UIViewController {
             // Create content and menu controllers
             //
             let homeController = storyboard!.instantiateViewControllerWithIdentifier("HomeRoot") as! HomeRootController
-            let menuController = storyboard!.instantiateViewControllerWithIdentifier("NavMenu")
-            
-            // Create frosted view controller
-            //
-            let frostedViewController = REFrostedViewController(contentViewController: homeController, menuViewController: menuController)
-            frostedViewController.direction = .Left
-            frostedViewController.panGestureEnabled = true
-            frostedViewController.limitMenuViewSize = true
-            frostedViewController.delegate = homeController
-            
-            presentViewController(frostedViewController, animated: false, completion: nil)
+            presentViewController(homeController, animated: false, completion: nil)
         } else {
             
             performSegueWithIdentifier("ShowSignIn", sender: self)

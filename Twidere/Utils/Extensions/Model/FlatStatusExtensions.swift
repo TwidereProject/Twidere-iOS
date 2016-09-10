@@ -24,6 +24,7 @@ extension FlatStatus {
         var links: [LinkSpanItem]? = nil
         var mentions: [MentionSpanItem]? = nil
         var hashtags: [HashtagSpanItem]? = nil
+        var media: [MediaItem]? = nil
         var displayRange: [Int]? = nil
         
         init() {
@@ -34,6 +35,7 @@ extension FlatStatus {
             self.links = "links" <~~ json
             self.mentions = "mentions" <~~ json
             self.hashtags = "hashtags" <~~ json
+            self.media = "media" <~~ json
             self.displayRange = "display_range" <~~ json
         }
         
@@ -42,8 +44,24 @@ extension FlatStatus {
                 "links" ~~> self.links,
                 "mentions" ~~> self.mentions,
                 "hashtags" ~~> self.hashtags,
+                "media" ~~> self.media,
                 "display_range" ~~> self.displayRange
             ])
         }
     }
+    
+    func userProfileImageForSize(size: ProfileImageSize) -> String? {
+        guard let url = userProfileImage else {
+            return nil
+        }
+        return getProfileImageUrlForSize(url, size: size)
+    }
+    
+    func quotedUserProfileImageForSize(size: ProfileImageSize) -> String? {
+        guard let url = quotedUserProfileImage else {
+            return nil
+        }
+        return getProfileImageUrlForSize(url, size: size)
+    }
+    
 }

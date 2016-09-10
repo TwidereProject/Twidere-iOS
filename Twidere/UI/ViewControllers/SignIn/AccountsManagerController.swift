@@ -23,7 +23,6 @@ class AccountsManagerController: UITableViewController {
         }.always { 
             self.tableView.reloadData()
         }
-        
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -35,11 +34,17 @@ class AccountsManagerController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("AccountItem", forIndexPath: indexPath)
-        cell.textLabel?.text = accounts?[indexPath.item].user?.name
-        return cell
+        return tableView.dequeueReusableCellWithIdentifier("AccountItem", forIndexPath: indexPath)
     }
     
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        (cell as! AccountCell).display(accounts![indexPath.item])
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+        
     @IBAction func closeAcccountsManager(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
     }

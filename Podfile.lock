@@ -23,7 +23,6 @@ PODS:
     - OMGHTTPURLRQ/FormURLEncode
     - OMGHTTPURLRQ/UserAgent
   - OMGHTTPURLRQ/UserAgent (3.2.0)
-  - Pager (1.0.9)
   - PromiseKit (3.4.0):
     - PromiseKit/Foundation (= 3.4.0)
     - PromiseKit/QuartzCore (= 3.4.0)
@@ -36,7 +35,6 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (3.4.0):
     - PromiseKit/CorePromise
-  - REFrostedViewController (2.4.8)
   - Result (2.1.3)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
@@ -71,9 +69,7 @@ DEPENDENCIES:
   - JDStatusBarNotification (= 1.5.4)
   - JVFloatLabeledTextField (= 1.1.1)
   - Kanna (= 1.1.0)
-  - Pager (~> 1.0)
   - PromiseKit (= 3.4.0)
-  - REFrostedViewController (~> 2.4)
   - SDWebImage (= 3.8.2)
   - SQLite.swift (~> 0.10.1)
   - StaticDataTableViewController (= 2.0.5)
@@ -106,9 +102,7 @@ SPEC CHECKSUMS:
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   Kanna: 355ed0193e5d8caf4fd996856b5bc98d586c11b6
   OMGHTTPURLRQ: 1e54807cb7d5dbb506926e53498e1e9ac5720c79
-  Pager: f14184ebec7705279a2be152dae36744138ebfef
   PromiseKit: 72a1500ddedd052b5f69b44e3bb4091da2fd1a7d
-  REFrostedViewController: a893b4979ba1f200c547aef9ff4c3fd5a18f5923
   Result: 18e1a7597fbcca5923c565b40a25a98afafdee02
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SQLite.swift: 6a6e4b034efc317ce4e203b6af2d3024fee2b570
@@ -126,6 +120,6 @@ SPEC CHECKSUMS:
   UIView+FDCollapsibleConstraints: 9357eaf03b4e088263ab74a3b86a382a64ce38dd
   UIView+TouchHighlighting: cedbcd90c965e7b1418c80a04fc8266398a738f1
 
-PODFILE CHECKSUM: 2c7c28424700e5162f3ff5aa0a87735e5f82ecbc
+PODFILE CHECKSUM: 785b755b08fe22c0fb1522af536ebb1bac28dd13
 
 COCOAPODS: 1.1.0.beta.2

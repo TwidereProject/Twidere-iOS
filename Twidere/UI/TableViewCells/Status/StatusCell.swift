@@ -56,14 +56,7 @@ class StatusCell: UITableViewCell {
     }
     
     override func sizeThatFits(size: CGSize) -> CGSize {
-        let layout = contentView.subviews.first as! ALSBaseLayout
-        var layoutSize = size
-        layoutSize.width -= contentView.layoutMargins.left + contentView.layoutMargins.right
-        layoutSize.height -= contentView.layoutMargins.top + contentView.layoutMargins.bottom
-        var contentSize = layout.sizeThatFits(layoutSize)
-        contentSize.width += contentView.layoutMargins.left + contentView.layoutMargins.right
-        contentSize.height += contentView.layoutMargins.top + contentView.layoutMargins.bottom
-        return contentSize
+        return sizeThatFitsALS(size)
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
@@ -130,7 +123,7 @@ class StatusCell: UITableViewCell {
         performSelector(#selector(self.updateTime), withObject: obj, afterDelay: 10.0)
     }
     
-    private static func createNameText(size: CGFloat, name: String, screenName: String, separator: String) -> NSAttributedString {
+    static func createNameText(size: CGFloat, name: String, screenName: String, separator: String) -> NSAttributedString {
         let nameString = NSMutableAttributedString()
         nameString.appendAttributedString(NSAttributedString(string: name, attributes: [
             NSFontAttributeName: UIFont.boldSystemFontOfSize(size)
@@ -142,7 +135,7 @@ class StatusCell: UITableViewCell {
         return nameString
     }
     
-    private static func createStatusText(text: String, linkColor: UIColor, metadata: FlatStatus.Metadata?, displayRange: [Int]?) -> NSAttributedString {
+    static func createStatusText(text: String, linkColor: UIColor, metadata: FlatStatus.Metadata?, displayRange: [Int]?) -> NSAttributedString {
         let attributed = NSMutableAttributedString(string: text)
         metadata?.links?.forEach({ span in
             attributed.addAttributes(["link": span.link, NSForegroundColorAttributeName: linkColor], range: NSMakeRange(span.start, span.end - span.start))
