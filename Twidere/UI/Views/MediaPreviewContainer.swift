@@ -21,4 +21,7 @@ class MediaPreviewContainer: UIImageView {
         }
     }
     
+    override func sizeThatFits(size: CGSize) -> CGSize {
+        return CGSizeMake(size.width, size.width / 2)
+    }
 }

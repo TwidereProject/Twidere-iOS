@@ -9,6 +9,7 @@
 import UIKit
 import AttributedLabel
 import DateTools
+import ALSLayouts
 import UIView_FDCollapsibleConstraints
 
 class DetailStatusCell: UITableViewCell {
@@ -17,6 +18,11 @@ class DetailStatusCell: UITableViewCell {
     @IBOutlet weak var userNameView: AttributedLabel!
     @IBOutlet weak var timeSourceView: AttributedLabel!
     @IBOutlet weak var textView: AttributedLabel!
+    @IBOutlet weak var mediaPreview: MediaPreviewContainer!
+    @IBOutlet weak var quotedView: ALSLinearLayout!
+    @IBOutlet weak var quotedNameView: AttributedLabel!
+    @IBOutlet weak var quotedTextView: AttributedLabel!
+    @IBOutlet weak var quotedMediaPreview: MediaPreviewContainer!
 
     var displayOption: StatusCell.DisplayOption! {
         didSet {
@@ -43,6 +49,23 @@ class DetailStatusCell: UITableViewCell {
         userProfileImageView.displayImage(status.userProfileImageForSize(.ReasonablySmall))
 
         textView.attributedText = StatusCell.createStatusText(status.textDisplay, linkColor: textView.tintColor, metadata: status.metadata, displayRange: status.metadata?.displayRange)
+        mediaPreview.displayMedia(status.metadata?.media)
+        
+        if (status.quotedId != nil) {
+            quotedNameView.attributedText = StatusCell.createNameText(quotedNameView.font.pointSize, name: status.quotedUserName!, screenName: status.quotedUserScreenName!, separator: " ")
+            if (displayOption.linkHighlight) {
+                quotedTextView.attributedText = StatusCell.createStatusText(status.quotedTextDisplay!, linkColor: textView.tintColor, metadata: status.quotedMetadata, displayRange: status.quotedMetadata?.displayRange)
+            } else {
+                quotedTextView.text = status.quotedTextDisplay
+            }
+            quotedMediaPreview.displayMedia(status.quotedMetadata?.media)
+            quotedView.layoutParams.hidden = false
+        } else {
+            quotedView.layoutParams.hidden = true
+        }
+        
+        let layout = contentView.subviews.first as! ALSRelativeLayout
+        layout.setNeedsLayout()
     }
 
     func createTimeSourceText(createdAt: NSDate) -> NSAttributedString {

@@ -106,6 +106,8 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
                                         <real key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="xFN-8A-eFZ" userLabel="Quoted View" customClass="ALSLinearLayout" customModule="ALSLayouts">
@@ -141,6 +143,7 @@
                                                 <real key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
