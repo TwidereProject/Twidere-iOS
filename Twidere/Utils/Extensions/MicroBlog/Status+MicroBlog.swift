@@ -79,8 +79,8 @@ extension Status {
     
     private static let carets = NSCharacterSet(charactersInString: "<>")
 
-    private func getMetadata(status: JSON) -> (String, String, Metadata) {
-        let metadata = Metadata()
+    private func getMetadata(status: JSON) -> (plain: String, display: String, metadata: StatusMetadata) {
+        let metadata = StatusMetadata()
         var links = [LinkSpanItem]()
         var mentions = [MentionSpanItem]()
         var hashtags = [HashtagSpanItem]()
@@ -317,15 +317,6 @@ extension Status {
         return span
     }
     
-    private func calculateDisplayTextRange(status: JSON, source: String, display: String, spans:[SpanItem]) -> [Int]? {
-        guard let start = status["display_text_range"][0].int, let end = status["display_text_range"][1].int else {
-            return nil
-        }
-        let sourceCodePoints = source.unicodeScalars
-        let rangeStart = getResultRangeLength(sourceCodePoints, spans: spans, origStart: 0, origEnd: start)
-        let rangeEnd = display.utf16.count - getResultRangeLength(sourceCodePoints, spans: spans, origStart: end, origEnd: sourceCodePoints.count)
-        return [rangeStart, rangeEnd]
-    }
     
     private func getResultRangeLength(source: String.UnicodeScalarView, spans: [SpanItem], origStart: Int, origEnd: Int) -> Int {
         let findResult = findByOrigRange(spans, start: origStart, end: origEnd)

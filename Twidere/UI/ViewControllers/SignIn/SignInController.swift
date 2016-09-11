@@ -221,13 +221,11 @@ class SignInController: UIViewController {
         dispatch_promise {
             return try action(config: self.customAPIConfig)
         }.thenInBackground { result throws -> Account in
-            // TODO persist sign in data
             let json = result.user
             let config = self.customAPIConfig
             let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
             let account = Account()
-            let user = User()
-            User.setFromJson(user, json: json)
+            let user = User(accountJson: json)
             account.key = user.key
             account.type = String(AccountType.Twitter)
             account.apiUrlFormat = config.apiUrlFormat

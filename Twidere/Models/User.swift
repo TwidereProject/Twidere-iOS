@@ -11,7 +11,7 @@ public final class User {
 	public var _id : Int64 = 0
 	public var accountKey : UserKey? = nil
 	public var key : UserKey? = nil
-	public var createdAt : Float64 = 0
+	public var createdAt : Int64 = 0
 	public var position : Int64 = -1
 	public var isProtected : Bool = false
 	public var isVerified : Bool = false
@@ -307,7 +307,7 @@ public final class User {
 	
 	public var metadata : UserMetadata? = nil
 	public init(){}
-	public init(_id: Int64, accountKey: UserKey?, key: UserKey?, createdAt: Float64, position: Int64, isProtected: Bool, isVerified: Bool, name: String?, screenName: String?, profileImageUrl: String?, profileBannerUrl: String?, profileBackgroundUrl: String?, descriptionPlain: String?, descriptionDisplay: String?, url: String?, urlExpanded: String?, location: String?, metadata: UserMetadata?){
+	public init(_id: Int64, accountKey: UserKey?, key: UserKey?, createdAt: Int64, position: Int64, isProtected: Bool, isVerified: Bool, name: String?, screenName: String?, profileImageUrl: String?, profileBannerUrl: String?, profileBackgroundUrl: String?, descriptionPlain: String?, descriptionDisplay: String?, url: String?, urlExpanded: String?, location: String?, metadata: UserMetadata?){
 		self._id = _id
 		self.accountKey = accountKey
 		self.key = key
@@ -327,7 +327,7 @@ public final class User {
 		self.location_s = location
 		self.metadata = metadata
 	}
-	public init(_id: Int64, accountKey: UserKey?, key: UserKey?, createdAt: Float64, position: Int64, isProtected: Bool, isVerified: Bool, name: StaticString?, screenName: StaticString?, profileImageUrl: StaticString?, profileBannerUrl: StaticString?, profileBackgroundUrl: StaticString?, descriptionPlain: StaticString?, descriptionDisplay: StaticString?, url: StaticString?, urlExpanded: StaticString?, location: StaticString?, metadata: UserMetadata?){
+	public init(_id: Int64, accountKey: UserKey?, key: UserKey?, createdAt: Int64, position: Int64, isProtected: Bool, isVerified: Bool, name: StaticString?, screenName: StaticString?, profileImageUrl: StaticString?, profileBannerUrl: StaticString?, profileBackgroundUrl: StaticString?, descriptionPlain: StaticString?, descriptionDisplay: StaticString?, url: StaticString?, urlExpanded: StaticString?, location: StaticString?, metadata: UserMetadata?){
 		self._id = _id
 		self.accountKey = accountKey
 		self.key = key
@@ -487,7 +487,7 @@ public extension User {
 		}
 		public lazy var accountKey : UserKey.LazyAccess? = UserKey.LazyAccess(reader: self._reader, objectOffset : self._reader.getOffset(self._objectOffset, propertyIndex: 1))
 		public lazy var key : UserKey.LazyAccess? = UserKey.LazyAccess(reader: self._reader, objectOffset : self._reader.getOffset(self._objectOffset, propertyIndex: 2))
-		public var createdAt : Float64 { 
+		public var createdAt : Int64 { 
 			get { return _reader.get(_objectOffset, propertyIndex: 3, defaultValue:0)}
 			set { try!_reader.set(_objectOffset, propertyIndex: 3, value: newValue)}
 		}
@@ -556,7 +556,7 @@ public struct Fast : Hashable {
 		}
 		return nil
 	} }
-	public var createdAt : Float64 { 
+	public var createdAt : Int64 { 
 		get { return FlatBufferReaderFast.get(buffer, myOffset, propertyIndex: 3, defaultValue: 0) }
 		set { try!FlatBufferReaderFast.set(UnsafeMutablePointer<UInt8>(buffer), myOffset, propertyIndex: 3, value: newValue) }
 	}
@@ -794,7 +794,7 @@ extension User {
 			result.key = UserKey.fromJSON(key)
 		}
 		if let createdAt = dict["createdAt"] as? NSNumber {
-			result.createdAt = createdAt.doubleValue
+			result.createdAt = createdAt.longLongValue
 		}
 		if let position = dict["position"] as? NSNumber {
 			result.position = position.longLongValue

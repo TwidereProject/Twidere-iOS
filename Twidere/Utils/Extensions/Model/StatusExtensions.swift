@@ -15,12 +15,12 @@ func < (lhs: Status, rhs: Status) -> Bool {
 }
 
 func == (lhs: Status, rhs: Status) -> Bool {
-    return lhs.sortId == rhs.sortId
+    return lhs.accountKey == rhs.accountKey && lhs.sortId == rhs.sortId
 }
 
 extension Status {
     
-    class Metadata: Glossy {
+    class StatusMetadata: Glossy {
         var links: [LinkSpanItem]? = nil
         var mentions: [MentionSpanItem]? = nil
         var hashtags: [HashtagSpanItem]? = nil

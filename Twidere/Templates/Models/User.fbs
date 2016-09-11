@@ -4,7 +4,7 @@ table User {
   _id:long;
   accountKey:UserKey;
   key:UserKey;
-  createdAt:double;
+  createdAt:long;
   position:long = -1;
   isProtected:bool = false;
   isVerified:bool = false;

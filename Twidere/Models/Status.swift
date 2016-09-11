@@ -15,7 +15,7 @@ class Status {
     var userProfileImage: String!
     var textPlain: String!
     var textDisplay: String!
-    var metadata: Metadata?
+    var metadata: StatusMetadata?
     var quotedId: String?
     var quotedUserKey: UserKey?
     var quotedUserName: String?
@@ -23,7 +23,7 @@ class Status {
     var quotedUserProfileImage: String?
     var quotedTextPlain: String?
     var quotedTextDisplay: String?
-    var quotedMetadata: Metadata?
+    var quotedMetadata: StatusMetadata?
     var retweetedByUserKey: UserKey?
     var retweetedByUserName: String?
     var retweetedByUserScreenName: String?

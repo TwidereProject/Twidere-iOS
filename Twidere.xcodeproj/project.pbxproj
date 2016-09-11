@@ -67,6 +67,7 @@
 		CE779F321D85692C0053B5C7 /* User.fbs in Resources */ = {isa = PBXBuildFile; fileRef = CE779F2E1D85692C0053B5C7 /* User.fbs */; };
 		CE779F331D85692C0053B5C7 /* UserKey.fbs in Resources */ = {isa = PBXBuildFile; fileRef = CE779F2F1D85692C0053B5C7 /* UserKey.fbs */; };
 		CE779F341D85692C0053B5C7 /* Status.fbs in Resources */ = {isa = PBXBuildFile; fileRef = CE779F301D85692C0053B5C7 /* Status.fbs */; };
+		CE779F361D858B210053B5C7 /* User+MicroBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F351D858B210053B5C7 /* User+MicroBlog.swift */; };
 		CE90A55B1D7EDC9D007050E5 /* SimpleRefreshTaskParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90A55A1D7EDC9D007050E5 /* SimpleRefreshTaskParam.swift */; };
 		CE95747D1D3210A300504D52 /* CustomAPIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */; };
 		CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95747F1D3216BC00504D52 /* ServiceConstants.swift */; };
@@ -111,7 +112,7 @@
 		CEDC3B2A1D7DB04F0082A8BA /* Paging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC3B291D7DB04F0082A8BA /* Paging.swift */; };
 		CEDC3B321D7E5FB30082A8BA /* DatabaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC3B311D7E5FB30082A8BA /* DatabaseConstants.swift */; };
 		CEDFEA6B1D4F396100E1F8B8 /* SQLiteModelExtension.swift.gyb in Resources */ = {isa = PBXBuildFile; fileRef = CEDFEA6A1D4F396100E1F8B8 /* SQLiteModelExtension.swift.gyb */; };
-		CEDFEA6D1D4F4BF600E1F8B8 /* FlatStatus+MicroBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFEA6C1D4F4BF600E1F8B8 /* FlatStatus+MicroBlog.swift */; };
+		CEDFEA6D1D4F4BF600E1F8B8 /* Status+MicroBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFEA6C1D4F4BF600E1F8B8 /* Status+MicroBlog.swift */; };
 		CEEFD0C41D810B6B007F44A6 /* AttributedLabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEFD0C31D810B6B007F44A6 /* AttributedLabelExtensions.swift */; };
 		CEF2CF451D83F11200131EAE /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2CF441D83F11200131EAE /* UserProfileController.swift */; };
 		CEF2CF481D840D7B00131EAE /* MediaPreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2CF471D840D7B00131EAE /* MediaPreviewContainer.swift */; };
@@ -206,6 +207,7 @@
 		CE779F2E1D85692C0053B5C7 /* User.fbs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = User.fbs; sourceTree = "<group>"; };
 		CE779F2F1D85692C0053B5C7 /* UserKey.fbs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UserKey.fbs; sourceTree = "<group>"; };
 		CE779F301D85692C0053B5C7 /* Status.fbs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Status.fbs; sourceTree = "<group>"; };
+		CE779F351D858B210053B5C7 /* User+MicroBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+MicroBlog.swift"; sourceTree = "<group>"; };
 		CE90A55A1D7EDC9D007050E5 /* SimpleRefreshTaskParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRefreshTaskParam.swift; sourceTree = "<group>"; };
 		CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAPIConfig.swift; sourceTree = "<group>"; };
 		CE95747F1D3216BC00504D52 /* ServiceConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceConstants.swift; sourceTree = "<group>"; };
@@ -250,7 +252,7 @@
 		CEDC3B291D7DB04F0082A8BA /* Paging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paging.swift; sourceTree = "<group>"; };
 		CEDC3B311D7E5FB30082A8BA /* DatabaseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseConstants.swift; sourceTree = "<group>"; };
 		CEDFEA6A1D4F396100E1F8B8 /* SQLiteModelExtension.swift.gyb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SQLiteModelExtension.swift.gyb; sourceTree = "<group>"; };
-		CEDFEA6C1D4F4BF600E1F8B8 /* FlatStatus+MicroBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "FlatStatus+MicroBlog.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		CEDFEA6C1D4F4BF600E1F8B8 /* Status+MicroBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Status+MicroBlog.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CEEFD0C31D810B6B007F44A6 /* AttributedLabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedLabelExtensions.swift; sourceTree = "<group>"; };
 		CEF2CF441D83F11200131EAE /* UserProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		CEF2CF471D840D7B00131EAE /* MediaPreviewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPreviewContainer.swift; sourceTree = "<group>"; };
@@ -460,11 +462,11 @@
 			isa = PBXGroup;
 			children = (
 				CE779F251D8563B60053B5C7 /* Account+SQLite.swift */,
-				CE779F261D8563B60053B5C7 /* Status+SQLite.swift */,
-				CE779F271D8563B60053B5C7 /* User+SQLite.swift */,
-				CEDC3B201D7D87F80082A8BA /* SQLite+UserVersion.swift */,
 				CE45CAEE1D8556DE0004CC1C /* AccountConfig+Value.swift */,
 				CE4B1A9C1D7172F00017CB85 /* Metadata+Value.swift */,
+				CEDC3B201D7D87F80082A8BA /* SQLite+UserVersion.swift */,
+				CE779F261D8563B60053B5C7 /* Status+SQLite.swift */,
+				CE779F271D8563B60053B5C7 /* User+SQLite.swift */,
 				CE45CAF41D855AE10004CC1C /* User+Value.swift */,
 				CE497FB91D6A8A65000F16D2 /* UserKey+Value.swift */,
 			);
@@ -498,7 +500,8 @@
 		CE4B1AA31D7175D80017CB85 /* MicroBlog */ = {
 			isa = PBXGroup;
 			children = (
-				CEDFEA6C1D4F4BF600E1F8B8 /* FlatStatus+MicroBlog.swift */,
+				CEDFEA6C1D4F4BF600E1F8B8 /* Status+MicroBlog.swift */,
+				CE779F351D858B210053B5C7 /* User+MicroBlog.swift */,
 			);
 			path = MicroBlog;
 			sourceTree = "<group>";
@@ -779,14 +782,14 @@
 		CEDFEA691D4F392900E1F8B8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CE779F2D1D85692C0053B5C7 /* AccountConfig.fbs */,
-				CE779F2E1D85692C0053B5C7 /* User.fbs */,
-				CE779F2F1D85692C0053B5C7 /* UserKey.fbs */,
-				CE779F301D85692C0053B5C7 /* Status.fbs */,
 				CE45CAF11D8559780004CC1C /* Account.model.yml */,
+				CE779F2D1D85692C0053B5C7 /* AccountConfig.fbs */,
 				CEDFEA6A1D4F396100E1F8B8 /* SQLiteModelExtension.swift.gyb */,
+				CE779F301D85692C0053B5C7 /* Status.fbs */,
 				CE45CA811D853D310004CC1C /* Status.model.yml */,
+				CE779F2E1D85692C0053B5C7 /* User.fbs */,
 				CE45CAF01D8559780004CC1C /* User.model.yml */,
+				CE779F2F1D85692C0053B5C7 /* UserKey.fbs */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1112,6 +1115,7 @@
 				CEDC3B2A1D7DB04F0082A8BA /* Paging.swift in Sources */,
 				CE95748F1D33871E00504D52 /* PasswordSignInController.swift in Sources */,
 				CE45CAF51D855AE10004CC1C /* User+Value.swift in Sources */,
+				CE779F361D858B210053B5C7 /* User+MicroBlog.swift in Sources */,
 				CE5993191D83CAAA00653220 /* DetailStatusCell.swift in Sources */,
 				CE478DDE1D7D45BA00F84D10 /* String+Glossy.swift in Sources */,
 				CEF2CF451D83F11200131EAE /* UserProfileController.swift in Sources */,
@@ -1169,7 +1173,7 @@
 				CEA2E2CF1D3A779B0095BC57 /* ImageViewExtensions.swift in Sources */,
 				CEDC3B1F1D7D82370082A8BA /* CoreConstants.swift in Sources */,
 				CEA2E2A71D34C1610095BC57 /* DefaultAPISettingsController.swift in Sources */,
-				CEDFEA6D1D4F4BF600E1F8B8 /* FlatStatus+MicroBlog.swift in Sources */,
+				CEDFEA6D1D4F4BF600E1F8B8 /* Status+MicroBlog.swift in Sources */,
 				CEDC3B231D7D8BE90082A8BA /* DatabaseMigration.swift in Sources */,
 				CE95747D1D3210A300504D52 /* CustomAPIConfig.swift in Sources */,
 				CE9574821D32186A00504D52 /* UIConstants.swift in Sources */,

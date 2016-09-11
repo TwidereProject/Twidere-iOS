@@ -1,0 +1,34 @@
+table LinkSpanItem {
+  start:int;
+  end:int;
+  origStart:int;
+  origEnd:int;
+  
+  display:string;
+  link:string;
+}
+
+table MentionSpanItem {
+  start:int;
+  end:int;
+  origStart:int;
+  origEnd:int;
+
+  key:UserKey;
+  name:string;
+  screenName:string;
+}
+
+table HashtagSpanItem {
+  start:int;
+  end:int;
+  origStart:int;
+  origEnd:int;
+
+  hashtag:string;
+}
+
+table UserKey {
+  id:string;
+  host:string;
+}
