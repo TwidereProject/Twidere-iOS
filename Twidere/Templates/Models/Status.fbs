@@ -1,0 +1,5 @@
+table Status {
+
+}
+
+root_type Status;

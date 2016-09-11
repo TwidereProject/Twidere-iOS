@@ -20,16 +20,7 @@ import SQLite
 
 extension ${className} {
 
-% for propertyName in fields:
-    % propertyType = fields[propertyName]['type']
-    % if propertyType.endswith('?'):
-    var ${propertyName}: ${propertyType}
-    % else:
-    var ${propertyName}: ${propertyType}!
-    %end
-%end
-
-    init(row: Row) {
+    convenience init(row: Row) {
     % for propertyName in fields:
         self.${propertyName} = row.get(RowIndices.${propertyName})
     %end

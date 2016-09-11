@@ -1,0 +1,47 @@
+include "UserKey.fbs";
+
+table User {
+  _id:long;
+  accountKey:UserKey;
+  key:UserKey;
+  createdAt:double;
+  position:long = -1;
+  isProtected:bool = false;
+  isVerified:bool = false;
+  name:string;
+  screenName:string;
+  profileImageUrl:string;
+  profileBannerUrl:string;
+  profileBackgroundUrl:string;
+  descriptionPlain:string;
+  descriptionDisplay:string;
+  url:string;
+  urlExpanded:string;
+  location:string;
+  metadata:UserMetadata;
+}
+
+table UserMetadata {
+  following:bool = false;
+  followedBy:bool = false;
+  blocking:bool = false;
+  blockedBy:bool = false;
+  muting:bool = false;
+  followRequestSent:bool = false;
+
+  statusesCount:long = -1;
+  followersCount:long = -1;
+  friendsCount:long = -1;
+  favoritesCount:long = -1;
+  mediaCount:long = -1;
+  listsCount:long = -1;
+  listedCount:long = -1;
+  groupsCount:long = -1;
+}
+
+table UserKey {
+  id:string;
+  host:string;
+}
+
+root_type User;

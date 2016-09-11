@@ -12,6 +12,7 @@ class DatabaseMigration {
     
     func create(db: Connection) throws {
         try db.transaction {
+            try db.run(Account.createTable(accountsTable))
             try db.run(Status.createTable(homeStatusesTable))
         }
     }
@@ -31,13 +32,6 @@ class DatabaseMigration {
     func upgrade(db: Connection, from: Int, to: Int) throws -> Bool {
         switch to {
         case 1:
-            return true
-        case 2:
-            try db.transaction {
-                try db.run(homeStatusesTable.delete())
-                try db.run(homeStatusesTable.addColumn(Status.RowIndices.sortId))
-                try db.run(homeStatusesTable.addColumn(Status.RowIndices.positionKey))
-            }
             return true
         default:
             return false
