@@ -7,7 +7,8 @@
 //
 
 import UIKit
+import KDInteractiveNavigationController
 
-class HomeRootController: UINavigationController {
+class HomeRootController: KDInteractiveNavigationController {
 
 }

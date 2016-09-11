@@ -10,6 +10,7 @@ import Foundation
 import SwiftyJSON
 
 private let twitterProfileImageRegex = "(https?://)?(twimg[\\d\\w\\-]+\\.akamaihd\\.net|[\\w\\d]+\\.twimg\\.com)/profile_images/([\\d\\w\\-_]+)/([\\d\\w\\-_]+)_(bigger|normal|mini|reasonably_small)(\\.?(png|jpeg|jpg|gif|bmp))?".r!
+private let twitterBannerImageRegex = "(https?://)?(twimg[\\d\\w\\-]+\\.akamaihd\\.net|[\\w\\d]+\\.twimg\\.com)/profile_banners/([\\d\\w\\-_]+)/([\\d\\w\\-_]+)(/[\\d\\w\\-_]+)?".r!
 
 private let twitterDateFormatter: NSDateFormatter = {
     let f = NSDateFormatter()
@@ -23,6 +24,30 @@ func getProfileImageUrlForSize(url: String, size: ProfileImageSize) -> String {
         return twitterProfileImageRegex.replaceFirst(in: url, with: "$1$2/profile_images/$3/$4\(size.suffix)$6")
     }
     return url
+}
+
+func getProfileBannerUrlForSize(url: String, size: Int) -> String {
+    if (twitterBannerImageRegex.matches(url)) {
+        return twitterBannerImageRegex.replaceFirst(in: url, with: "$1$2/profile_banners/$3/$4/\(getBestBannerType(size))")
+    }
+    return url
+}
+
+func getBestBannerType(width: Int) -> String {
+    switch width {
+    case  0...320:
+        return "mobile";
+    case 321...520:
+        return "web";
+    case 521...626:
+        return "ipad";
+    case 627...640:
+        return "mobile_retina";
+    case 641...1040:
+        return "web_retina";
+    default:
+        return "ipad_retina";
+    }
 }
 
 func parseTwitterDate(str: String) -> NSDate? {

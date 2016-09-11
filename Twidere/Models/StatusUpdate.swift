@@ -16,7 +16,7 @@ class StatusUpdate {
     var media: [MediaUpdate]? = nil
     var location: GeoLocation? = nil
     var displayCoordinates: Bool = false
-    var inReplyToStatus: FlatStatus? = nil
+    var inReplyToStatus: Status? = nil
     var repostStatusId: String? = nil
     var attachmentUrl: String? = nil
     var possiblySensitive: Bool = false
@@ -75,7 +75,7 @@ class StatusShortenResult {
 }
 
 class UpdateStatusResult {
-    let statuses: [FlatStatus?]
+    let statuses: [Status?]
     let exceptions: [ErrorType?]
     
     let exception: ErrorType?
@@ -91,7 +91,7 @@ class UpdateStatusResult {
         }
     }
     
-    init(statuses: [FlatStatus?], exceptions: [ErrorType?]) {
+    init(statuses: [Status?], exceptions: [ErrorType?]) {
         self.statuses = statuses
         self.exceptions = exceptions
         self.exception = nil

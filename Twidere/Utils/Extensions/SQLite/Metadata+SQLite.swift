@@ -10,12 +10,12 @@ import Foundation
 import SQLite
 import Gloss
 
-extension FlatStatus.Metadata: Value {
+extension Status.Metadata: Value {
     static var declaredDatatype: String {
         return String.declaredDatatype
     }
     
-    static func fromDatatypeValue(datatypeValue: String) -> FlatStatus.Metadata? {
+    static func fromDatatypeValue(datatypeValue: String) -> Status.Metadata? {
         return datatypeValue.decodeJSON()
     }
     

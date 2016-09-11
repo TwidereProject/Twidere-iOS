@@ -1,6 +1,6 @@
 import SQLite
 
-class FlatStatus {
+class Status {
 
     var _id: Int64!
     var accountKey: UserKey!
@@ -96,7 +96,7 @@ class FlatStatus {
         }
     }
 
-    static func insertData(table: Table, model: FlatStatus) -> Insert {
+    static func insertData(table: Table, model: Status) -> Insert {
         return table.insert( [
                 RowIndices.accountKey <- model.accountKey,
                 RowIndices.sortId <- model.sortId,

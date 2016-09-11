@@ -1,5 +1,5 @@
 //
-//  FlatStatus+JSON.swift
+//  Status+JSON.swift
 //  Twidere
 //
 //  Created by Mariotaku Lee on 16/8/1.
@@ -10,11 +10,11 @@ import Foundation
 import SwiftyJSON
 import StringExtensionHTML
 
-extension FlatStatus {
+extension Status {
     
     convenience init(status: JSON, account: Account) {
         self.init()
-        self.accountKey = UserKey(rawValue: account.accountKey!)
+        self.accountKey = account.key
         self.id = getTwitterEntityId(status)
         self.createdAt = parseTwitterDate(status["created_at"].stringValue)
         self.sortId = generateSortId(self, rawId: status["raw_id"].int64 ?? -1)
@@ -65,11 +65,11 @@ extension FlatStatus {
         
     }
     
-    static func arrayFromJson(json: JSON, account: Account) -> [FlatStatus] {
+    static func arrayFromJson(json: JSON, account: Account) -> [Status] {
         if let array = json.array {
-            return array.map { item in return FlatStatus(status: item, account: account) }
+            return array.map { item in return Status(status: item, account: account) }
         } else {
-            return json["statuses"].map { (key, item) in return FlatStatus(status: item, account: account) }
+            return json["statuses"].map { (key, item) in return Status(status: item, account: account) }
         }
     }
     
@@ -371,7 +371,7 @@ extension FlatStatus {
         return true
     }
     
-    private func generateSortId(status: FlatStatus, rawId: Int64) -> Int64 {
+    private func generateSortId(status: Status, rawId: Int64) -> Int64 {
         var sortId = rawId;
         if (sortId == -1) {
             // Try use long id

@@ -1,4 +1,4 @@
-name: 'FlatStatus'
+name: 'Status'
 fields:
   _id:
     type: Int64

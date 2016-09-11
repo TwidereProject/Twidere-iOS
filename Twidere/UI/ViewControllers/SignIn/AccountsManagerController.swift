@@ -8,7 +8,6 @@
 
 import UIKit
 import PromiseKit
-import SugarRecord
 
 class AccountsManagerController: UITableViewController {
 
@@ -16,8 +15,8 @@ class AccountsManagerController: UITableViewController {
     
     override func viewDidLoad() {
         dispatch_promise { () -> [Account] in
-            let db = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStorage
-            return try! db.fetch(Request<Account>())
+            let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
+            return try! db.prepare(accountsTable).map{ Account(row: $0) }
         }.then { accounts  in
             self.accounts = accounts
         }.always { 

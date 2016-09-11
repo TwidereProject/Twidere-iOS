@@ -10,15 +10,15 @@ import Foundation
 import Gloss
 
 
-func < (lhs: FlatStatus, rhs: FlatStatus) -> Bool {
+func < (lhs: Status, rhs: Status) -> Bool {
     return lhs.sortId < rhs.sortId
 }
 
-func == (lhs: FlatStatus, rhs: FlatStatus) -> Bool {
+func == (lhs: Status, rhs: Status) -> Bool {
     return lhs.sortId == rhs.sortId
 }
 
-extension FlatStatus {
+extension Status {
     
     class Metadata: Glossy {
         var links: [LinkSpanItem]? = nil

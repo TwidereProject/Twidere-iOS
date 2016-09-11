@@ -9,7 +9,6 @@
 import UIKit
 import SwiftyUserDefaults
 import CoreData
-import SugarRecord
 import PromiseKit
 import SwiftyJSON
 import ALSLayouts
@@ -225,28 +224,27 @@ class SignInController: UIViewController {
             // TODO persist sign in data
             let json = result.user
             let config = self.customAPIConfig
-            let db = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStorage
-            return try db.operation{ (context, save) throws -> Account in
-                let account: Account = try context.new()
-                let user: AccountUser = try context.new()
-                User.setFromJson(user, json: json)
-                account.accountKey = user.key
-                account.accountType = String(AccountType.Twitter)
-                account.apiUrlFormat = config.apiUrlFormat
-                account.authType = String(config.authType)
-                account.basicUsername = result.username
-                account.basicPassword = result.password
-                account.consumerKey = config.consumerKey
-                account.consumerSecret = config.consumerSecret
-                account.noVersionSuffix = config.noVersionSuffix
-                account.oauthToken = result.accessToken?.oauthToken
-                account.oauthTokenSecret = result.accessToken?.oauthTokenSecret
-                account.sameOAuthSigningUrl = config.sameOAuthSigningUrl
-                account.user = user
-                try context.insert(account)
-                save()
-                return account
+            let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
+            let account = Account()
+            let user = User()
+            User.setFromJson(user, json: json)
+            account.key = user.key
+            account.type = String(AccountType.Twitter)
+            account.apiUrlFormat = config.apiUrlFormat
+            account.authType = String(config.authType)
+            account.basicUsername = result.username
+            account.basicPassword = result.password
+            account.consumerKey = config.consumerKey
+            account.consumerSecret = config.consumerSecret
+            account.noVersionSuffix = config.noVersionSuffix
+            account.oauthToken = result.accessToken?.oauthToken
+            account.oauthTokenSecret = result.accessToken?.oauthTokenSecret
+            account.sameOAuthSigningUrl = config.sameOAuthSigningUrl
+            account.user = user
+            try db.transaction {
+                try db.run(Account.insertData(accountsTable, model: account))
             }
+            return account
         }.then { result -> Void in
             let home = self.storyboard!.instantiateViewControllerWithIdentifier("Main")
             self.presentViewController(home, animated: true, completion: nil)

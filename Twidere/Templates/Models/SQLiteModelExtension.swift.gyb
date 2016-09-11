@@ -18,7 +18,7 @@
 }%
 import SQLite
 
-class ${className} {
+extension ${className} {
 
 % for propertyName in fields:
     % propertyType = fields[propertyName]['type']
@@ -28,10 +28,6 @@ class ${className} {
     var ${propertyName}: ${propertyType}!
     %end
 %end
-
-    init() {
-
-    }
 
     init(row: Row) {
     % for propertyName in fields:
@@ -65,7 +61,7 @@ class ${className} {
         ])
     }
 
-    class RowIndices {
+    struct RowIndices {
 
     % for propertyName in fields:
         % field = fields[propertyName]

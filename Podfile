@@ -15,7 +15,6 @@ target 'Twidere' do
   pod 'Kanna', '1.1.0'
   pod 'CrossroadRegex', '0.8.0'
   pod 'SwiftyUserDefaults', '2.2.0'
-  pod 'SugarRecord/CoreData', '2.2.9'
   pod 'PromiseKit', '3.4.0'
   pod 'STPopup', '1.8.0'
   pod 'UITextView+Placeholder', '1.2.0'
@@ -33,6 +32,7 @@ target 'Twidere' do
   pod 'ThumborURL', '0.0.4'
   pod 'StringExtensionHTML', '~> 0.1'
   pod 'AttributedLabel', '~> 0.3.1'
+  pod 'KDInteractiveNavigationController', '~> 0.1.2'
 end
 
 target 'TwidereTests' do

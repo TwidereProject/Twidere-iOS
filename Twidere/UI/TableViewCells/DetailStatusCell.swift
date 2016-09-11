@@ -43,7 +43,7 @@ class DetailStatusCell: UITableViewCell {
         fd_enforceFrameLayout = true
     }
 
-    func display(status: FlatStatus) {
+    func display(status: Status) {
         userNameView.attributedText = StatusCell.createNameText(16, name: status.userName, screenName: status.userScreenName, separator: " ")
         timeSourceView.attributedText = createTimeSourceText(status.createdAt)
         userProfileImageView.displayImage(status.userProfileImageForSize(.ReasonablySmall))

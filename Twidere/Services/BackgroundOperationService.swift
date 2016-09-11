@@ -37,10 +37,10 @@ class BackgroundOperationService {
                 let owners = update.accounts.filter{ (account: Account) -> Bool in
                     return account.typeInferred == .Twitter
                 }.map { account -> UserKey in
-                    return UserKey(rawValue: account.accountKey!)
+                    return account.key!
                 }
                 let ownerIds = owners.map { key -> String in
-                    return key.id
+                    return key.id!
                 }
                 for i in 0..<pendingUpdate.length {
                     let account = update.accounts[i]
@@ -118,17 +118,17 @@ class BackgroundOperationService {
             }
             
             func requestUpdateStatus(statusUpdate: StatusUpdate, pendingUpdate: PendingStatusUpdate) -> UpdateStatusResult {
-                var statuses: [FlatStatus?] = Array(count: pendingUpdate.length, repeatedValue: nil)
+                var statuses: [Status?] = Array(count: pendingUpdate.length, repeatedValue: nil)
                 var exceptions: [ErrorType?] = Array(count: pendingUpdate.length, repeatedValue: nil)
 
                 for i in 0 ..< pendingUpdate.length {
                     let account = statusUpdate.accounts[i]
                     let microBlog = account.newMicroblogInstance("api")
-                    switch (account.accountType) {
+                    switch (account.type) {
                     default:
                         do {
                             let requestResult = try twitterUpdateStatus(microBlog, statusUpdate: statusUpdate, pendingUpdate: pendingUpdate, overrideText: pendingUpdate.overrideTexts[i], index: i)
-                            let status = FlatStatus(status: requestResult, account: account)
+                            let status = Status(status: requestResult, account: account)
                             statuses[i] = status
                         } catch let error {
                             exceptions[i] = error

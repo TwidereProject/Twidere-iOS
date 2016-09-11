@@ -11,7 +11,7 @@ import UITableView_FDTemplateLayoutCell
 
 class StatusViewerController: UITableViewController {
     
-    var status: FlatStatus!
+    var status: Status!
     var cellDisplayOption = StatusCell.DisplayOption()
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

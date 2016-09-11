@@ -12,7 +12,7 @@ class DatabaseMigration {
     
     func create(db: Connection) throws {
         try db.transaction {
-            try db.run(FlatStatus.createTable(homeStatusesTable))
+            try db.run(Status.createTable(homeStatusesTable))
         }
     }
     
@@ -35,8 +35,8 @@ class DatabaseMigration {
         case 2:
             try db.transaction {
                 try db.run(homeStatusesTable.delete())
-                try db.run(homeStatusesTable.addColumn(FlatStatus.RowIndices.sortId))
-                try db.run(homeStatusesTable.addColumn(FlatStatus.RowIndices.positionKey))
+                try db.run(homeStatusesTable.addColumn(Status.RowIndices.sortId))
+                try db.run(homeStatusesTable.addColumn(Status.RowIndices.positionKey))
             }
             return true
         default:

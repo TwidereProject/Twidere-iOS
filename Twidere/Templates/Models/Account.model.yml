@@ -1,0 +1,48 @@
+name: 'Account'
+fields:
+  _id:
+    type: Int64
+    column: _id
+    primary_key: Autoincrement
+  key:
+    type: UserKey
+    column: account_key
+  type:
+    type: String
+    column: account_type
+  apiUrlFormat:
+    type: String
+    column: api_url_format
+  authType:
+    type: String
+    column: auth_type
+  basicPassword:
+    type: String?
+    column: basic_password
+  basicUsername:
+    type: String?
+    column: basic_username
+  consumerKey:
+    type: String?
+    column: consumer_key
+  consumerSecret:
+    type: String?
+    column: consumer_secret
+  noVersionSuffix:
+    type: Bool
+    column: no_version_suffix
+  oauthToken:
+    type: String?
+    column: oauth_token
+  oauthTokenSecret:
+    type: String?
+    column: oauth_token_secret
+  sameOAuthSigningUrl:
+    type: Bool
+    column: same_oauth_signing_url
+  config:
+    type: AccountConfig
+    column: config
+  user:
+    type: User
+    column: user

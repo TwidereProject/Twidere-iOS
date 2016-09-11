@@ -25,7 +25,7 @@ class StatusCell: UITableViewCell {
     @IBOutlet weak var mediaPreview: MediaPreviewContainer!
     @IBOutlet weak var quotedMediaPreview: MediaPreviewContainer!
     
-    var status: FlatStatus! {
+    var status: Status! {
         didSet {
             display()
         }
@@ -112,7 +112,7 @@ class StatusCell: UITableViewCell {
     }
     
     dynamic func updateTime(obj: AnyObject?) {
-        guard let status = obj as? FlatStatus where status.id == self.status?.id else {
+        guard let status = obj as? Status where status.id == self.status?.id else {
             return
         }
         if (abs(status.createdAt.minutesAgo()) > 1) {
@@ -139,7 +139,7 @@ class StatusCell: UITableViewCell {
         return nameString
     }
     
-    static func createStatusText(text: String, linkColor: UIColor, metadata: FlatStatus.Metadata?, displayRange: [Int]?) -> NSAttributedString {
+    static func createStatusText(text: String, linkColor: UIColor, metadata: Status.Metadata?, displayRange: [Int]?) -> NSAttributedString {
         let attributed = NSMutableAttributedString(string: text)
         metadata?.links?.forEach({ span in
             attributed.addAttributes(["link": span.link, NSForegroundColorAttributeName: linkColor], range: NSMakeRange(span.start, span.end - span.start))

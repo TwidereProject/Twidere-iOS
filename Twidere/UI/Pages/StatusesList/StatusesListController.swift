@@ -13,7 +13,7 @@ import UITableView_FDTemplateLayoutCell
 
 class StatusesListController: UITableViewController {
     
-    var statuses: [FlatStatus]? = nil {
+    var statuses: [Status]? = nil {
         didSet {
             tableView?.reloadData()
         }
@@ -112,7 +112,7 @@ class StatusesListController: UITableViewController {
         let status = statuses![indexPath.item]
         let accounts = delegate.getAccounts()
         if (status.isGap ?? false) {
-            guard let accountKey = accounts.filter({$0.accountKey == status.accountKey.string}).first else {
+            guard let accountKey = accounts.filter({$0.key == status.accountKey}).first else {
                 return
             }
             let opts = LoadOptions()
@@ -202,7 +202,7 @@ protocol StatusesListControllerDelegate {
     
     func getAccounts() -> [Account]
     
-    func loadStatuses(opts: StatusesListController.LoadOptions) -> Promise<[FlatStatus]>
+    func loadStatuses(opts: StatusesListController.LoadOptions) -> Promise<[Status]>
     
     func getNewestStatusIds(accounts: [Account]) -> [String?]?
     

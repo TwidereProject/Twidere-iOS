@@ -12,17 +12,14 @@ import SugarRecord
 class MainViewController: UIViewController {
     
     var hasAccount: Bool = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view, typically from a nib.
-        do {
-            let db = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStorage
-            hasAccount = try (!db.fetch(Request<Account>()).isEmpty)
-        } catch {
-            hasAccount = false
-        }
+        
+        let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
+        hasAccount = db.scalar(accountsTable.count) > 0
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -38,11 +35,11 @@ class MainViewController: UIViewController {
             performSegueWithIdentifier("ShowSignIn", sender: self)
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }
 

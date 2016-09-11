@@ -1,0 +1,21 @@
+name: 'User'
+fields:
+  _id:
+    type: Int64
+    column: _id
+    primary_key: Autoincrement
+  key:
+    type: UserKey
+    column: user_key
+  name:
+    type: String
+    column: name
+  screenName:
+    type: String
+    column: screen_name
+  profileImageUrl:
+    type: String
+    column: profile_image_url
+  profileBannerUrl:
+    type: String
+    column: profile_banner_url

@@ -133,10 +133,9 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
             return
         }
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let db = appDelegate.coreDataStorage
         let bos = appDelegate.backgroundOperationService
-        let account = try! db.fetch(Request<Account>()).first!
-        let update = StatusUpdate(accounts: [account], text: text)
+        let accounts = try! allAccounts()
+        let update = StatusUpdate(accounts: accounts, text: text)
         if (attachLocation && recentLocation != nil) {
             update.location = (recentLocation!.latitude, recentLocation!.longitude)
             update.displayCoordinates = Defaults[.attachPreciseLocation]

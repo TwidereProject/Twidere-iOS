@@ -5,6 +5,9 @@
       location = "group:Twidere.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:FlatBuffersSwift/FlatBuffersSwift.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

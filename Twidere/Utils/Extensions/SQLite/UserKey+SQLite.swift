@@ -10,15 +10,15 @@ import Foundation
 import SQLite
 
 extension UserKey: Value {
-    static var declaredDatatype: String {
+    public static var declaredDatatype: String {
         return String.declaredDatatype
     }
     
-    static func fromDatatypeValue(datatypeValue: String) -> UserKey {
+    public static func fromDatatypeValue(datatypeValue: String) -> UserKey {
         return UserKey(rawValue: datatypeValue)
     }
     
-    var datatypeValue: String {
+    public var datatypeValue: String {
         return self.string
     }
 }

@@ -9,6 +9,29 @@
 import Foundation
 
 extension Account {
+    func createAPIConfig() -> CustomAPIConfig {
+        let config = CustomAPIConfig()
+        config.apiUrlFormat = apiUrlFormat!
+        config.authType = CustomAPIConfig.AuthType(rawValue: authType!) ?? defaultAuthType
+        config.consumerKey = consumerKey!
+        config.consumerSecret = consumerSecret!
+        config.sameOAuthSigningUrl = Bool(sameOAuthSigningUrl!)
+        config.noVersionSuffix = Bool(noVersionSuffix!)
+        return config
+    }
+    
+    func createAuthorization() -> Authorization {
+        switch CustomAPIConfig.AuthType(rawValue: authType!) ?? defaultAuthType {
+        case .OAuth, .xAuth:
+            let token = OAuthToken(oauthToken!, oauthTokenSecret!)
+            return OAuthAuthorization(consumerKey!, consumerSecret!, oauthToken: token)
+        case .Basic:
+            return BasicAuthorization(username: basicUsername!, password: basicPassword!)
+        case .TwipO:
+            return EmptyAuthorization()
+        }
+    }
+    
     func newMicroblogInstance(domain: String? = "api") -> MicroBlogService {
         let apiConfig = createAPIConfig()
         let endpoint = apiConfig.createEndpoint(domain)
@@ -16,9 +39,9 @@ extension Account {
         return MicroBlogService(endpoint: endpoint, auth: auth)
     }
     
-    var typeInferred: Type {
+    var typeInferred: AccountType {
         get {
-            switch accountType {
+            switch type {
             case "fanfou"?:
                 return .Fanfou
             default:
@@ -27,7 +50,7 @@ extension Account {
         }
     }
     
-    enum Type {
+    enum AccountType {
         case Twitter, Fanfou, StatusNet
     }
 }

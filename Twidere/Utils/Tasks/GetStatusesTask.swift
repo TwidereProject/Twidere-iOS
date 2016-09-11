@@ -12,7 +12,7 @@ import SQLite
 
 class GetStatusesTask {
     
-    static func execute(param: RefreshTaskParam, table: Table, fetchAction: (Account, MicroBlogService, Paging) throws -> [FlatStatus]) -> [StatusListResponse] {
+    static func execute(param: RefreshTaskParam, table: Table, fetchAction: (Account, MicroBlogService, Paging) throws -> [Status]) -> [StatusListResponse] {
         var result = [StatusListResponse]()
         
         let accounts = param.accounts
@@ -56,14 +56,14 @@ class GetStatusesTask {
                 
             } catch let e {
                 debugPrint(e)
-                result.append(StatusListResponse(accountKey: UserKey(rawValue: account.accountKey!), error: e))
+                result.append(StatusListResponse(accountKey: account.key, error: e))
             }
         }
         return result
     }
     
-    private static func storeStatus(account: Account, statuses: [FlatStatus], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
-        let accountKey = UserKey(rawValue: account.accountKey!)
+    private static func storeStatus(account: Account, statuses: [Status], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
+        let accountKey = account.key
         let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
         
         let noItemsBefore = db.scalar(table.count) <= 0 // DataStoreUtils.getStatusCount(context, uri, accountKey) <= 0
@@ -93,10 +93,10 @@ class GetStatusesTask {
         // Delete all rows conflicting before new data inserted.
         var olderCount = -1
         if (minPositionKey > 0) {
-            olderCount = getStatusesCount(db, table: table, expression: FlatStatus.RowIndices.positionKey < minPositionKey, accountKeys: [accountKey])
+            olderCount = getStatusesCount(db, table: table, expression: Status.RowIndices.positionKey < minPositionKey, accountKeys: [accountKey])
         }
         
-        let rowsDeleted = try db.run(table.filter(FlatStatus.RowIndices.accountKey == accountKey && statusIds.contains(FlatStatus.RowIndices.id)).delete())
+        let rowsDeleted = try db.run(table.filter(Status.RowIndices.accountKey == accountKey && statusIds.contains(Status.RowIndices.id)).delete())
         
         // Insert a gap.
         let deletedOldGap = rowsDeleted > 0 && statusIds.contains({$0 == maxId})
@@ -109,13 +109,13 @@ class GetStatusesTask {
         // Insert previously fetched items.
         try db.transaction {
             for status in statuses {
-                try db.run(FlatStatus.insertData(table, model: status))
+                try db.run(Status.insertData(table, model: status))
             }
         }
         
         // Remove gap flag
         if (maxId != nil && sinceId == nil) {
-            try db.run(table.filter(FlatStatus.RowIndices.accountKey == accountKey && FlatStatus.RowIndices.id == maxId).update(FlatStatus.RowIndices.isGap <- false))
+            try db.run(table.filter(Status.RowIndices.accountKey == accountKey && Status.RowIndices.id == maxId).update(Status.RowIndices.isGap <- false))
         }
     }
     
@@ -147,10 +147,10 @@ class GetStatusesTask {
         
         var truncated: Bool = false
         
-        let statuses: [FlatStatus]!
+        let statuses: [Status]!
         let error: ErrorType!
         
-        init(accountKey: UserKey, statuses: [FlatStatus]) {
+        init(accountKey: UserKey, statuses: [Status]) {
             self.accountKey = accountKey
             self.statuses = statuses
             self.error = nil

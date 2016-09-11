@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SugarRecord
 import IQKeyboardManagerSwift
 import SQLite
 import AttributedLabel
@@ -17,14 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     static var performingScroll: Bool = false
     var window: UIWindow?
-    
-    lazy var coreDataStorage: CoreDataDefaultStorage = {
-        let store = CoreData.Store.Named("Twidere.db")
-        let bundle = NSBundle.mainBundle()
-        let model = CoreData.ObjectModel.Named("Twidere", bundle)
-        let defaultStorage = try! CoreDataDefaultStorage(store: store, model: model)
-        return defaultStorage
-    }()
     
     lazy var sqliteDatabase: Connection = {
         let docsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
@@ -74,14 +65,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let db = sqliteDatabase
         for account in try! allAccounts() {
             func clearByItemLimit(accountKey: UserKey, limit: Int, table: Table) -> Delete {
-                let accountWhere = FlatStatus.RowIndices.accountKey == accountKey
-                let minId = table.select(FlatStatus.RowIndices.positionKey).filter(accountWhere).order(FlatStatus.RowIndices.positionKey.desc).limit(1, offset: limit)
+                let accountWhere = Status.RowIndices.accountKey == accountKey
+                let minId = table.select(Status.RowIndices.positionKey).filter(accountWhere).order(Status.RowIndices.positionKey.desc).limit(1, offset: limit)
                 
                 
-                return table.filter(FlatStatus.RowIndices.positionKey < Expression<Int64?>(literal: "(\(minId.asSQL()))") && accountWhere).delete()
+                return table.filter(Status.RowIndices.positionKey < Expression<Int64?>(literal: "(\(minId.asSQL()))") && accountWhere).delete()
             }
             
-            let accountKey = UserKey(rawValue: account.accountKey!)
+            let accountKey = account.key!
             
             try! db.transaction {
                 try db.run(clearByItemLimit(accountKey, limit: 30, table: homeStatusesTable))
