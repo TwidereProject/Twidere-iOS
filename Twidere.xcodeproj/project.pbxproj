@@ -25,10 +25,10 @@
 		CE45CA871D85416C0004CC1C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CA841D85416C0004CC1C /* User.swift */; };
 		CE45CA881D85416C0004CC1C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CA851D85416C0004CC1C /* Account.swift */; };
 		CE45CABF1D8555700004CC1C /* FlatBuffersSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE45CABE1D8555700004CC1C /* FlatBuffersSwift.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		CE45CAEF1D8556DE0004CC1C /* AccountConfig+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CAEE1D8556DE0004CC1C /* AccountConfig+SQLite.swift */; };
+		CE45CAEF1D8556DE0004CC1C /* AccountConfig+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CAEE1D8556DE0004CC1C /* AccountConfig+Value.swift */; };
 		CE45CAF21D8559780004CC1C /* User.model.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE45CAF01D8559780004CC1C /* User.model.yml */; };
 		CE45CAF31D8559780004CC1C /* Account.model.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE45CAF11D8559780004CC1C /* Account.model.yml */; };
-		CE45CAF51D855AE10004CC1C /* User+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CAF41D855AE10004CC1C /* User+SQLite.swift */; };
+		CE45CAF51D855AE10004CC1C /* User+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CAF41D855AE10004CC1C /* User+Value.swift */; };
 		CE45CAF71D855EFA0004CC1C /* UserKeyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CAF61D855EFA0004CC1C /* UserKeyExtensions.swift */; };
 		CE478DDE1D7D45BA00F84D10 /* String+Glossy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE478DDD1D7D45BA00F84D10 /* String+Glossy.swift */; };
 		CE497F901D695835000F16D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE497F8F1D695835000F16D2 /* Main.storyboard */; };
@@ -43,13 +43,13 @@
 		CE497FB41D698B1B000F16D2 /* UsersListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE497FB21D698B1B000F16D2 /* UsersListController.xib */; };
 		CE497FB71D698C98000F16D2 /* users_list.json in Resources */ = {isa = PBXBuildFile; fileRef = CE497FB51D698C98000F16D2 /* users_list.json */; };
 		CE497FB81D698C98000F16D2 /* statuses_list.json in Resources */ = {isa = PBXBuildFile; fileRef = CE497FB61D698C98000F16D2 /* statuses_list.json */; };
-		CE497FBA1D6A8A65000F16D2 /* UserKey+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497FB91D6A8A65000F16D2 /* UserKey+SQLite.swift */; };
+		CE497FBA1D6A8A65000F16D2 /* UserKey+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497FB91D6A8A65000F16D2 /* UserKey+Value.swift */; };
 		CE497FBC1D6AF71E000F16D2 /* StatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE497FBB1D6AF71E000F16D2 /* StatusCell.xib */; };
 		CE497FBE1D6B01D1000F16D2 /* NSDateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497FBD1D6B01D1000F16D2 /* NSDateExtensions.swift */; };
 		CE497FC81D6B2017000F16D2 /* GapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497FC61D6B2017000F16D2 /* GapCell.swift */; };
 		CE497FC91D6B2017000F16D2 /* GapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE497FC71D6B2017000F16D2 /* GapCell.xib */; };
 		CE497FCD1D6BE643000F16D2 /* QuotedStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497FCC1D6BE643000F16D2 /* QuotedStatusView.swift */; };
-		CE4B1A9D1D7172F00017CB85 /* Metadata+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B1A9C1D7172F00017CB85 /* Metadata+SQLite.swift */; };
+		CE4B1A9D1D7172F00017CB85 /* Metadata+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B1A9C1D7172F00017CB85 /* Metadata+Value.swift */; };
 		CE4B1AA21D7175B10017CB85 /* StatusExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B1AA11D7175B10017CB85 /* StatusExtensions.swift */; };
 		CE4B1AA51D719E160017CB85 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B1AA41D719E160017CB85 /* StringExtensions.swift */; };
 		CE5993091D82E4DE00653220 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5993081D82E4DE00653220 /* AccountCell.swift */; };
@@ -157,10 +157,10 @@
 		CE45CA841D85416C0004CC1C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CE45CA851D85416C0004CC1C /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		CE45CABE1D8555700004CC1C /* FlatBuffersSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlatBuffersSwift.framework; path = Frameworks/FlatBuffersSwift/build/Debug/FlatBuffersSwift.framework; sourceTree = "<group>"; };
-		CE45CAEE1D8556DE0004CC1C /* AccountConfig+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountConfig+SQLite.swift"; sourceTree = "<group>"; };
+		CE45CAEE1D8556DE0004CC1C /* AccountConfig+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountConfig+Value.swift"; sourceTree = "<group>"; };
 		CE45CAF01D8559780004CC1C /* User.model.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = User.model.yml; sourceTree = "<group>"; };
 		CE45CAF11D8559780004CC1C /* Account.model.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Account.model.yml; sourceTree = "<group>"; };
-		CE45CAF41D855AE10004CC1C /* User+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+SQLite.swift"; sourceTree = "<group>"; };
+		CE45CAF41D855AE10004CC1C /* User+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+Value.swift"; sourceTree = "<group>"; };
 		CE45CAF61D855EFA0004CC1C /* UserKeyExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserKeyExtensions.swift; sourceTree = "<group>"; };
 		CE478DDD1D7D45BA00F84D10 /* String+Glossy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Glossy.swift"; sourceTree = "<group>"; };
 		CE497F8F1D695835000F16D2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -175,13 +175,13 @@
 		CE497FB21D698B1B000F16D2 /* UsersListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UsersListController.xib; sourceTree = "<group>"; };
 		CE497FB51D698C98000F16D2 /* users_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users_list.json; sourceTree = "<group>"; };
 		CE497FB61D698C98000F16D2 /* statuses_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = statuses_list.json; sourceTree = "<group>"; };
-		CE497FB91D6A8A65000F16D2 /* UserKey+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserKey+SQLite.swift"; sourceTree = "<group>"; };
+		CE497FB91D6A8A65000F16D2 /* UserKey+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserKey+Value.swift"; sourceTree = "<group>"; };
 		CE497FBB1D6AF71E000F16D2 /* StatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusCell.xib; sourceTree = "<group>"; };
 		CE497FBD1D6B01D1000F16D2 /* NSDateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtensions.swift; sourceTree = "<group>"; };
 		CE497FC61D6B2017000F16D2 /* GapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GapCell.swift; sourceTree = "<group>"; };
 		CE497FC71D6B2017000F16D2 /* GapCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GapCell.xib; sourceTree = "<group>"; };
 		CE497FCC1D6BE643000F16D2 /* QuotedStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotedStatusView.swift; sourceTree = "<group>"; };
-		CE4B1A9C1D7172F00017CB85 /* Metadata+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Metadata+SQLite.swift"; sourceTree = "<group>"; };
+		CE4B1A9C1D7172F00017CB85 /* Metadata+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Metadata+Value.swift"; sourceTree = "<group>"; };
 		CE4B1AA11D7175B10017CB85 /* StatusExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusExtensions.swift; sourceTree = "<group>"; };
 		CE4B1AA41D719E160017CB85 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		CE5993081D82E4DE00653220 /* AccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
@@ -445,11 +445,11 @@
 		CE497FBF1D6B08B4000F16D2 /* SQLite */ = {
 			isa = PBXGroup;
 			children = (
-				CE45CAEE1D8556DE0004CC1C /* AccountConfig+SQLite.swift */,
-				CE4B1A9C1D7172F00017CB85 /* Metadata+SQLite.swift */,
 				CEDC3B201D7D87F80082A8BA /* SQLite+UserVersion.swift */,
-				CE45CAF41D855AE10004CC1C /* User+SQLite.swift */,
-				CE497FB91D6A8A65000F16D2 /* UserKey+SQLite.swift */,
+				CE45CAEE1D8556DE0004CC1C /* AccountConfig+Value.swift */,
+				CE4B1A9C1D7172F00017CB85 /* Metadata+Value.swift */,
+				CE45CAF41D855AE10004CC1C /* User+Value.swift */,
+				CE497FB91D6A8A65000F16D2 /* UserKey+Value.swift */,
 			);
 			path = SQLite;
 			sourceTree = "<group>";
@@ -1086,7 +1086,7 @@
 				CE9574961D33B71B00504D52 /* DefaultsKeys.swift in Sources */,
 				CEDC3B2A1D7DB04F0082A8BA /* Paging.swift in Sources */,
 				CE95748F1D33871E00504D52 /* PasswordSignInController.swift in Sources */,
-				CE45CAF51D855AE10004CC1C /* User+SQLite.swift in Sources */,
+				CE45CAF51D855AE10004CC1C /* User+Value.swift in Sources */,
 				CE5993191D83CAAA00653220 /* DetailStatusCell.swift in Sources */,
 				CE478DDE1D7D45BA00F84D10 /* String+Glossy.swift in Sources */,
 				CEF2CF451D83F11200131EAE /* UserProfileController.swift in Sources */,
@@ -1128,11 +1128,11 @@
 				CED41F2F1D2FF7C80089E0B6 /* HomeController.swift in Sources */,
 				CED41F431D30E6E40089E0B6 /* Authorization.swift in Sources */,
 				CEA2E2CD1D3A732C0095BC57 /* AccountUtils.swift in Sources */,
-				CE497FBA1D6A8A65000F16D2 /* UserKey+SQLite.swift in Sources */,
+				CE497FBA1D6A8A65000F16D2 /* UserKey+Value.swift in Sources */,
 				CE9574B91D349C3F00504D52 /* BrowserSignInController.swift in Sources */,
 				CEA2E2BE1D3761780095BC57 /* StatusUpdate.swift in Sources */,
 				CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */,
-				CE45CAEF1D8556DE0004CC1C /* AccountConfig+SQLite.swift in Sources */,
+				CE45CAEF1D8556DE0004CC1C /* AccountConfig+Value.swift in Sources */,
 				CEF2CF481D840D7B00131EAE /* MediaPreviewContainer.swift in Sources */,
 				CE9574891D32232600504D52 /* OAuthService.swift in Sources */,
 				CE497FAC1D6988BA000F16D2 /* UserCell.swift in Sources */,
@@ -1150,7 +1150,7 @@
 				CE358B711D811C84002A33B3 /* SpanItem.swift in Sources */,
 				CE29039E1D4CEF2A0056D0E2 /* AccountExtensions.swift in Sources */,
 				CE497F991D6959B0000F16D2 /* StatusCell.swift in Sources */,
-				CE4B1A9D1D7172F00017CB85 /* Metadata+SQLite.swift in Sources */,
+				CE4B1A9D1D7172F00017CB85 /* Metadata+Value.swift in Sources */,
 				CE497FA91D697CEA000F16D2 /* ConvertUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
