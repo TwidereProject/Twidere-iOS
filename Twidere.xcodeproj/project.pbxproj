@@ -217,9 +217,9 @@
 		CE5993151D83C95800653220 /* StatusViewerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StatusViewerController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE5993181D83CAAA00653220 /* DetailStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailStatusCell.swift; sourceTree = "<group>"; };
 		CE59931A1D83CAE900653220 /* ViewSizeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewSizeUtils.swift; sourceTree = "<group>"; };
-		CE779F251D8563B60053B5C7 /* Account+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Account+SQLite.swift"; path = "Utils/Extensions/SQLite/Account+SQLite.swift"; sourceTree = "<group>"; };
-		CE779F261D8563B60053B5C7 /* Status+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Status+SQLite.swift"; path = "Utils/Extensions/SQLite/Status+SQLite.swift"; sourceTree = "<group>"; };
-		CE779F271D8563B60053B5C7 /* User+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+SQLite.swift"; path = "Utils/Extensions/SQLite/User+SQLite.swift"; sourceTree = "<group>"; };
+		CE779F251D8563B60053B5C7 /* Account+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+SQLite.swift"; sourceTree = "<group>"; };
+		CE779F261D8563B60053B5C7 /* Status+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Status+SQLite.swift"; sourceTree = "<group>"; };
+		CE779F271D8563B60053B5C7 /* User+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+SQLite.swift"; sourceTree = "<group>"; };
 		CE779F351D858B210053B5C7 /* User+MicroBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+MicroBlog.swift"; sourceTree = "<group>"; };
 		CE90A55A1D7EDC9D007050E5 /* SimpleRefreshTaskParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRefreshTaskParam.swift; sourceTree = "<group>"; };
 		CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAPIConfig.swift; sourceTree = "<group>"; };
@@ -363,13 +363,13 @@
 			isa = PBXGroup;
 			children = (
 				CE95747E1D32169D00504D52 /* Constants */,
+				CE4F6D7B1D86A55E0064DA14 /* Generated */,
 				CE95747B1D32107800504D52 /* Models */,
 				CEA2E2B71D368BCF0095BC57 /* Resources */,
 				CED41F3C1D30D2C80089E0B6 /* Services */,
 				CEDFEA681D4F392200E1F8B8 /* Templates */,
 				CE497F911D6958F7000F16D2 /* UI */,
 				CE9574941D33B6EA00504D52 /* Utils */,
-				CE4F6D7B1D86A55E0064DA14 /* Generated */,
 				CE0529E61CF7F35300E06364 /* AppDelegate.swift */,
 				CE0529F51CF7F35300E06364 /* Info.plist */,
 			);
@@ -536,7 +536,7 @@
 			children = (
 				CE4F6D7C1D86A5670064DA14 /* Extensions */,
 			);
-			name = Generated;
+			path = Generated;
 			sourceTree = "<group>";
 		};
 		CE4F6D7C1D86A5670064DA14 /* Extensions */ = {
@@ -546,7 +546,7 @@
 				CE779F261D8563B60053B5C7 /* Status+SQLite.swift */,
 				CE779F271D8563B60053B5C7 /* User+SQLite.swift */,
 			);
-			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		CE5993071D82E4CF00653220 /* Account */ = {
