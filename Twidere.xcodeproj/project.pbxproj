@@ -153,15 +153,15 @@
 		6B7616E89DDF2FDDCF64DCCF /* Pods-Twidere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twidere/Pods-Twidere.release.xcconfig"; sourceTree = "<group>"; };
 		A351F2523CA6229EF79900FD /* Pods-Twidere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twidere/Pods-Twidere.debug.xcconfig"; sourceTree = "<group>"; };
 		C57AE13A4A400AF1A533178D /* StatusMetadata.fbs */ = {isa = PBXFileReference; lastKnownFileType = file.fbs; path = StatusMetadata.fbs; sourceTree = "<group>"; };
-		C57AE2699BFD3F292F710BAB /* Account+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Account+MsgPack.swift"; path = "MsgPack/Account+MsgPack.swift"; sourceTree = "<group>"; };
+		C57AE2699BFD3F292F710BAB /* Account+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+MsgPack.swift"; sourceTree = "<group>"; };
 		C57AE4E5205BA13086302037 /* Model+MsgPack.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = file.gyb; path = "Model+MsgPack.swift.gyb"; sourceTree = "<group>"; };
 		C57AE5E6958143C29828D050 /* AccountConfig.fbs */ = {isa = PBXFileReference; lastKnownFileType = file.fbs; path = AccountConfig.fbs; sourceTree = "<group>"; };
-		C57AEAE3E07FB4B30DE459F4 /* User+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+MsgPack.swift"; path = "MsgPack/User+MsgPack.swift"; sourceTree = "<group>"; };
+		C57AEAE3E07FB4B30DE459F4 /* User+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+MsgPack.swift"; sourceTree = "<group>"; };
 		C57AEB1F3B3698B0593D1A7A /* User.fbs */ = {isa = PBXFileReference; lastKnownFileType = file.fbs; path = User.fbs; sourceTree = "<group>"; };
 		C57AEB92156F0BC60058B922 /* SpamItem.fbs */ = {isa = PBXFileReference; lastKnownFileType = file.fbs; path = SpamItem.fbs; sourceTree = "<group>"; };
 		C57AEBFE16928E238A2C39DC /* NSDate+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+MsgPack.swift"; sourceTree = "<group>"; };
 		C57AEC1E08786910159D9559 /* Model+SQLite.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = file.gyb; path = "Model+SQLite.swift.gyb"; sourceTree = "<group>"; };
-		C57AEC3660AF231C90BBBFC7 /* Status+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Status+MsgPack.swift"; path = "MsgPack/Status+MsgPack.swift"; sourceTree = "<group>"; };
+		C57AEC3660AF231C90BBBFC7 /* Status+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Status+MsgPack.swift"; sourceTree = "<group>"; };
 		C57AED99B0DA313A03E0C9B7 /* Status.fbs */ = {isa = PBXFileReference; lastKnownFileType = file.fbs; path = Status.fbs; sourceTree = "<group>"; };
 		C57AEE19CFC443F1699649D9 /* UserKey.fbs */ = {isa = PBXFileReference; lastKnownFileType = file.fbs; path = UserKey.fbs; sourceTree = "<group>"; };
 		C57AEE98EE356927BC9DB6DB /* Primitive+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Primitive+MsgPack.swift"; sourceTree = "<group>"; };
@@ -414,13 +414,13 @@
 			isa = PBXGroup;
 			children = (
 				C57AE2699BFD3F292F710BAB /* Account+MsgPack.swift */,
+				C57AEBFE16928E238A2C39DC /* NSDate+MsgPack.swift */,
+				C57AEE98EE356927BC9DB6DB /* Primitive+MsgPack.swift */,
 				C57AEC3660AF231C90BBBFC7 /* Status+MsgPack.swift */,
 				C57AEAE3E07FB4B30DE459F4 /* User+MsgPack.swift */,
 				C57AEFD49851A9C86C174C8D /* UserKey+MsgPack.swift */,
-				C57AEBFE16928E238A2C39DC /* NSDate+MsgPack.swift */,
-				C57AEE98EE356927BC9DB6DB /* Primitive+MsgPack.swift */,
 			);
-			name = MsgPack;
+			path = MsgPack;
 			sourceTree = "<group>";
 		};
 		CE497F911D6958F7000F16D2 /* UI */ = {
@@ -503,15 +503,15 @@
 		CE497FBF1D6B08B4000F16D2 /* SQLite */ = {
 			isa = PBXGroup;
 			children = (
-				CEDC3B201D7D87F80082A8BA /* SQLite+UserVersion.swift */,
 				CE779F251D8563B60053B5C7 /* Account+SQLite.swift */,
-				CE779F271D8563B60053B5C7 /* User+SQLite.swift */,
-				CE779F261D8563B60053B5C7 /* Status+SQLite.swift */,
 				CE45CAEE1D8556DE0004CC1C /* AccountConfig+Value.swift */,
+				CE347B5A1D865F07002152D7 /* MsgPack+Value.swift */,
+				CEDC3B201D7D87F80082A8BA /* SQLite+UserVersion.swift */,
+				CE779F261D8563B60053B5C7 /* Status+SQLite.swift */,
 				CE4B1A9C1D7172F00017CB85 /* Status+Value.swift */,
+				CE779F271D8563B60053B5C7 /* User+SQLite.swift */,
 				CE45CAF41D855AE10004CC1C /* User+Value.swift */,
 				CE497FB91D6A8A65000F16D2 /* UserKey+Value.swift */,
-				CE347B5A1D865F07002152D7 /* MsgPack+Value.swift */,
 			);
 			path = SQLite;
 			sourceTree = "<group>";
@@ -689,9 +689,9 @@
 		CEA2E2BF1D379CB10095BC57 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CE347B5C1D866594002152D7 /* MsgPack */,
 				CE4B1AA31D7175D80017CB85 /* MicroBlog */,
 				CE29039C1D4CEF0B0056D0E2 /* Model */,
+				CE347B5C1D866594002152D7 /* MsgPack */,
 				CE497FBF1D6B08B4000F16D2 /* SQLite */,
 				CEEFD0C31D810B6B007F44A6 /* AttributedLabelExtensions.swift */,
 				CEA2E2C01D379CD90095BC57 /* CoreLocationExtensions.swift */,
@@ -808,8 +808,8 @@
 		CEDFEA681D4F392200E1F8B8 /* Templates */ = {
 			isa = PBXGroup;
 			children = (
-				CEDFEA691D4F392900E1F8B8 /* Models */,
 				C57AEF08A154F0228C04EAB7 /* FlatBuffers */,
+				CEDFEA691D4F392900E1F8B8 /* Models */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -818,11 +818,11 @@
 			isa = PBXGroup;
 			children = (
 				CE45CAF11D8559780004CC1C /* Account.model.yml */,
-				CE45CA811D853D310004CC1C /* Status.model.yml */,
-				CE45CAF01D8559780004CC1C /* User.model.yml */,
 				C57AE4E5205BA13086302037 /* Model+MsgPack.swift.gyb */,
 				C57AEC1E08786910159D9559 /* Model+SQLite.swift.gyb */,
 				C57AEFBEE6655E4EA782DE0B /* Model.swift.gyb */,
+				CE45CA811D853D310004CC1C /* Status.model.yml */,
+				CE45CAF01D8559780004CC1C /* User.model.yml */,
 			);
 			path = Models;
 			sourceTree = "<group>";
