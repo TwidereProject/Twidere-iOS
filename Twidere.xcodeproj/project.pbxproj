@@ -63,6 +63,9 @@
 		CE4F6D821D86D9330064DA14 /* Status+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4F6D7F1D86D9330064DA14 /* Status+ObjectMapper.swift */; };
 		CE4F6D851D86EDA50064DA14 /* SpanItem+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4F6D831D86EDA50064DA14 /* SpanItem+ObjectMapper.swift */; };
 		CE4F6D881D86F6480064DA14 /* MediaItem+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4F6D871D86F6480064DA14 /* MediaItem+ObjectMapper.swift */; };
+		CE4F6D8C1D86F6EE0064DA14 /* Model+ObjectMapper.swift.gyb in Resources */ = {isa = PBXBuildFile; fileRef = CE4F6D891D86F6EE0064DA14 /* Model+ObjectMapper.swift.gyb */; };
+		CE4F6D8D1D86F6EE0064DA14 /* MediaItem.model.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE4F6D8A1D86F6EE0064DA14 /* MediaItem.model.yml */; };
+		CE4F6D8E1D86F6EE0064DA14 /* SpanItem.model.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE4F6D8B1D86F6EE0064DA14 /* SpanItem.model.yml */; };
 		CE5993091D82E4DE00653220 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5993081D82E4DE00653220 /* AccountCell.swift */; };
 		CE59930B1D82EDD100653220 /* Filters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE59930A1D82EDD100653220 /* Filters.storyboard */; };
 		CE59930E1D82F17F00653220 /* FiltersTabsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE59930D1D82F17F00653220 /* FiltersTabsController.swift */; };
@@ -209,6 +212,9 @@
 		CE4F6D7F1D86D9330064DA14 /* Status+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Status+ObjectMapper.swift"; sourceTree = "<group>"; };
 		CE4F6D831D86EDA50064DA14 /* SpanItem+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SpanItem+ObjectMapper.swift"; sourceTree = "<group>"; };
 		CE4F6D871D86F6480064DA14 /* MediaItem+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaItem+ObjectMapper.swift"; sourceTree = "<group>"; };
+		CE4F6D891D86F6EE0064DA14 /* Model+ObjectMapper.swift.gyb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Model+ObjectMapper.swift.gyb"; sourceTree = "<group>"; };
+		CE4F6D8A1D86F6EE0064DA14 /* MediaItem.model.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MediaItem.model.yml; sourceTree = "<group>"; };
+		CE4F6D8B1D86F6EE0064DA14 /* SpanItem.model.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpanItem.model.yml; sourceTree = "<group>"; };
 		CE5993081D82E4DE00653220 /* AccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		CE59930A1D82EDD100653220 /* Filters.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Filters.storyboard; sourceTree = "<group>"; };
 		CE59930D1D82F17F00653220 /* FiltersTabsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersTabsController.swift; sourceTree = "<group>"; };
@@ -531,13 +537,13 @@
 		CE4F6D7C1D86A5670064DA14 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CE4F6D7E1D86D9330064DA14 /* Account+ObjectMapper.swift */,
+				CE779F251D8563B60053B5C7 /* Account+SQLite.swift */,
 				CE4F6D871D86F6480064DA14 /* MediaItem+ObjectMapper.swift */,
 				CE4F6D831D86EDA50064DA14 /* SpanItem+ObjectMapper.swift */,
-				CE4F6D7D1D86D9330064DA14 /* User+ObjectMapper.swift */,
-				CE4F6D7E1D86D9330064DA14 /* Account+ObjectMapper.swift */,
 				CE4F6D7F1D86D9330064DA14 /* Status+ObjectMapper.swift */,
-				CE779F251D8563B60053B5C7 /* Account+SQLite.swift */,
 				CE779F261D8563B60053B5C7 /* Status+SQLite.swift */,
+				CE4F6D7D1D86D9330064DA14 /* User+ObjectMapper.swift */,
 				CE779F271D8563B60053B5C7 /* User+SQLite.swift */,
 			);
 			path = Extensions;
@@ -818,8 +824,11 @@
 			isa = PBXGroup;
 			children = (
 				CE45CAF11D8559780004CC1C /* Account.model.yml */,
+				CE4F6D8A1D86F6EE0064DA14 /* MediaItem.model.yml */,
+				CE4F6D891D86F6EE0064DA14 /* Model+ObjectMapper.swift.gyb */,
 				C57AEC1E08786910159D9559 /* Model+SQLite.swift.gyb */,
 				C57AEFBEE6655E4EA782DE0B /* Model.swift.gyb */,
+				CE4F6D8B1D86F6EE0064DA14 /* SpanItem.model.yml */,
 				CE45CA811D853D310004CC1C /* Status.model.yml */,
 				CE45CAF01D8559780004CC1C /* User.model.yml */,
 			);
@@ -964,10 +973,13 @@
 				CE0529F11CF7F35300E06364 /* Assets.xcassets in Resources */,
 				CED41F451D313B6C0089E0B6 /* Preferences.storyboard in Resources */,
 				CE497FA51D69625A000F16D2 /* StatusesListController.xib in Resources */,
+				CE4F6D8C1D86F6EE0064DA14 /* Model+ObjectMapper.swift.gyb in Resources */,
 				CE497FB71D698C98000F16D2 /* users_list.json in Resources */,
+				CE4F6D8E1D86F6EE0064DA14 /* SpanItem.model.yml in Resources */,
 				CEA2E2AF1D3681D00095BC57 /* Compose.storyboard in Resources */,
 				CE45CAF31D8559780004CC1C /* Account.model.yml in Resources */,
 				CE497FB41D698B1B000F16D2 /* UsersListController.xib in Resources */,
+				CE4F6D8D1D86F6EE0064DA14 /* MediaItem.model.yml in Resources */,
 				CE45CA821D853D310004CC1C /* Status.model.yml in Resources */,
 				CE497FAF1D6988CC000F16D2 /* UserCell.xib in Resources */,
 				C57AE5C144B41D4EAEAA208A /* Model+SQLite.swift.gyb in Resources */,
