@@ -30,7 +30,6 @@
 		CE052A0A1CF7F35300E06364 /* TwidereUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE052A091CF7F35300E06364 /* TwidereUITests.swift */; };
 		CE29039E1D4CEF2A0056D0E2 /* AccountExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE29039D1D4CEF2A0056D0E2 /* AccountExtensions.swift */; };
 		CE2903EC1D4F200A0056D0E2 /* UserExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */; };
-		CE347B5B1D865F07002152D7 /* MsgPack+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE347B5A1D865F07002152D7 /* MsgPack+Value.swift */; };
 		CE358B711D811C84002A33B3 /* SpanItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE358B701D811C84002A33B3 /* SpanItem.swift */; };
 		CE358B751D825942002A33B3 /* Viewers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE358B741D825942002A33B3 /* Viewers.storyboard */; };
 		CE45CA821D853D310004CC1C /* Status.model.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE45CA811D853D310004CC1C /* Status.model.yml */; };
@@ -175,7 +174,6 @@
 		CE052A0B1CF7F35300E06364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE29039D1D4CEF2A0056D0E2 /* AccountExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountExtensions.swift; sourceTree = "<group>"; };
 		CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserExtensions.swift; sourceTree = "<group>"; };
-		CE347B5A1D865F07002152D7 /* MsgPack+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MsgPack+Value.swift"; sourceTree = "<group>"; };
 		CE358B701D811C84002A33B3 /* SpanItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItem.swift; sourceTree = "<group>"; };
 		CE358B741D825942002A33B3 /* Viewers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Viewers.storyboard; sourceTree = "<group>"; };
 		CE45CA811D853D310004CC1C /* Status.model.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Status.model.yml; sourceTree = "<group>"; };
@@ -363,6 +361,7 @@
 			isa = PBXGroup;
 			children = (
 				CE95747E1D32169D00504D52 /* Constants */,
+				CEA2E2BF1D379CB10095BC57 /* Extensions */,
 				CE4F6D7B1D86A55E0064DA14 /* Generated */,
 				CE95747B1D32107800504D52 /* Models */,
 				CEA2E2B71D368BCF0095BC57 /* Resources */,
@@ -496,8 +495,6 @@
 			isa = PBXGroup;
 			children = (
 				CE45CAEE1D8556DE0004CC1C /* AccountConfig+Value.swift */,
-				CE347B5A1D865F07002152D7 /* MsgPack+Value.swift */,
-				CEDC3B201D7D87F80082A8BA /* SQLite+UserVersion.swift */,
 				CE4B1A9C1D7172F00017CB85 /* Status+Value.swift */,
 				CE45CAF41D855AE10004CC1C /* User+Value.swift */,
 				CE497FB91D6A8A65000F16D2 /* UserKey+Value.swift */,
@@ -624,7 +621,6 @@
 		CE9574941D33B6EA00504D52 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				CEA2E2BF1D379CB10095BC57 /* Extensions */,
 				CEDC3B241D7D9FDA0082A8BA /* Tasks */,
 				CEA2E2CC1D3A732C0095BC57 /* AccountUtils.swift */,
 				CE497FA81D697CEA000F16D2 /* ConvertUtils.swift */,
@@ -704,6 +700,7 @@
 				CEA2E2C01D379CD90095BC57 /* CoreLocationExtensions.swift */,
 				CEA2E2CE1D3A779B0095BC57 /* ImageViewExtensions.swift */,
 				CE497FBD1D6B01D1000F16D2 /* NSDateExtensions.swift */,
+				CEDC3B201D7D87F80082A8BA /* SQLite+UserVersion.swift */,
 				CE4B1AA41D719E160017CB85 /* StringExtensions.swift */,
 			);
 			path = Extensions;
@@ -1160,7 +1157,6 @@
 				CE45CAF51D855AE10004CC1C /* User+Value.swift in Sources */,
 				CE779F361D858B210053B5C7 /* User+MicroBlog.swift in Sources */,
 				CE5993191D83CAAA00653220 /* DetailStatusCell.swift in Sources */,
-				CE347B5B1D865F07002152D7 /* MsgPack+Value.swift in Sources */,
 				CEF2CF451D83F11200131EAE /* UserProfileController.swift in Sources */,
 				CE779F291D8563B60053B5C7 /* Account+SQLite.swift in Sources */,
 				CE9574981D33D87200504D52 /* NetworkPreferencesController.swift in Sources */,
