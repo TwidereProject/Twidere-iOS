@@ -1,4 +1,3 @@
-import SQLite
 
 class Account {
 
@@ -18,8 +17,5 @@ class Account {
     var config: AccountConfig!
     var user: User!
 
-    init() {
-
-    }
 
 }

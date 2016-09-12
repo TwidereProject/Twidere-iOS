@@ -27,12 +27,12 @@ target 'Twidere' do
   pod 'UIView+FDCollapsibleConstraints', '~> 1.1'
   pod 'UITableView+FDTemplateLayoutCell', '~> 1.5.beta'
   pod 'DateTools', '~> 1.7.0'
-  pod 'Gloss', '~> 0.7'
   pod 'ALSLayouts', '~> 0.2'
   pod 'ThumborURL', '0.0.4'
   pod 'StringExtensionHTML', '~> 0.1'
   pod 'AttributedLabel', '~> 0.3.1'
   pod 'KDInteractiveNavigationController', '~> 0.1.2'
+  pod 'MessagePack.swift', '~> 1.2.0'
 end
 
 target 'TwidereTests' do

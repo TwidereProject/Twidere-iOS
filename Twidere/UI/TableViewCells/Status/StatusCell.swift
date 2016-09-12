@@ -139,7 +139,7 @@ class StatusCell: UITableViewCell {
         return nameString
     }
     
-    static func createStatusText(text: String, linkColor: UIColor, metadata: Status.StatusMetadata?, displayRange: [Int]?) -> NSAttributedString {
+    static func createStatusText(text: String, linkColor: UIColor, metadata: Status.Metadata?, displayRange: [Int]?) -> NSAttributedString {
         let attributed = NSMutableAttributedString(string: text)
         metadata?.links?.forEach({ span in
             attributed.addAttributes(["link": span.link, NSForegroundColorAttributeName: linkColor], range: NSMakeRange(span.start, span.end - span.start))

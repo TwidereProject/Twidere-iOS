@@ -10,17 +10,29 @@ import Foundation
 import SQLite
 
 extension User: Value {
-    public static var declaredDatatype: String {
+    static var declaredDatatype: String {
         return Blob.declaredDatatype
     }
     
-    public static func fromDatatypeValue(datatypeValue: Blob) -> User {
-        return datatypeValue.bytes.withUnsafeBufferPointer { ptr -> User in
-            return User.fromByteArray(ptr)
-        }
+    static func fromDatatypeValue(datatypeValue: Blob) -> User {
+        return User()
     }
     
-    public var datatypeValue: Blob {
-        return Blob(bytes: self.toByteArray())
+    var datatypeValue: Blob {
+        return Blob(bytes: [])
+    }
+}
+
+extension User.Metadata: Value {
+    static var declaredDatatype: String {
+        return Blob.declaredDatatype
+    }
+    
+    static func fromDatatypeValue(datatypeValue: Blob) -> User.Metadata {
+        return User.Metadata()
+    }
+    
+    var datatypeValue: Blob {
+        return Blob(bytes: [])
     }
 }

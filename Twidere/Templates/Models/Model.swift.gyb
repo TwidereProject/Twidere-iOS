@@ -14,8 +14,13 @@
     with open(modelPath, 'r') as f:
         model = ordered_load(f, yaml.SafeLoader)
         fields = model['fields']
+        submodels = model.get('submodels', [])
+        importNames = model.get('imports', [])
         className = model['name']
 }%
+% for importName in importNames:
+import ${importName}
+%end
 
 class ${className} {
 
@@ -26,6 +31,21 @@ class ${className} {
     % else:
     var ${propertyName}: ${propertyType}!
     %end
+%end
+
+% for subModelName in submodels:
+    class ${subModelName} {
+    % subModelFields = submodels[subModelName]['fields']
+
+    % for propertyName in subModelFields:
+        % propertyType = subModelFields[propertyName]['type']
+        % if propertyType.endswith('?'):
+        var ${propertyName}: ${propertyType}
+        % else:
+        var ${propertyName}: ${propertyType}!
+        %end
+    %end
+    }
 %end
 
 }

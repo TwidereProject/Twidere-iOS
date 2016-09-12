@@ -11,12 +11,12 @@ PODS:
     - Boilerplate (~> 0.2)
   - CryptoSwift (0.5.1)
   - DateTools (1.7.0)
-  - Gloss (0.7.4)
   - IQKeyboardManagerSwift (4.0.4)
   - JDStatusBarNotification (1.5.4)
   - JVFloatLabeledTextField (1.1.1)
   - Kanna (1.1.0)
   - KDInteractiveNavigationController (0.1.2)
+  - MessagePack.swift (1.2.0)
   - OMGHTTPURLRQ (3.2.0):
     - OMGHTTPURLRQ/RQ (= 3.2.0)
   - OMGHTTPURLRQ/FormURLEncode (3.2.0)
@@ -63,12 +63,12 @@ DEPENDENCIES:
   - CrossroadRegex (= 0.8.0)
   - CryptoSwift (= 0.5.1)
   - DateTools (~> 1.7.0)
-  - Gloss (~> 0.7)
   - IQKeyboardManagerSwift (= 4.0.4)
   - JDStatusBarNotification (= 1.5.4)
   - JVFloatLabeledTextField (= 1.1.1)
   - Kanna (= 1.1.0)
   - KDInteractiveNavigationController (~> 0.1.2)
+  - MessagePack.swift (~> 1.2.0)
   - PromiseKit (= 3.4.0)
   - SDWebImage (= 3.8.2)
   - SQLite.swift (~> 0.10.1)
@@ -95,12 +95,12 @@ SPEC CHECKSUMS:
   CrossroadRegex: f1ab8cb19a65c1db9a2ed809e8f71b49a40aa8cb
   CryptoSwift: df42dda18baf6c76347a94e227dbcc0a341304bd
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
-  Gloss: d86009ef4d12c221d889c4e3f9e1eb547ee6251d
   IQKeyboardManagerSwift: e0964d04d6a29b71016fd346dca13ecb80a2823a
   JDStatusBarNotification: d47dded0594a50a39c84a2cc5aa356fcf6750d0e
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   Kanna: 355ed0193e5d8caf4fd996856b5bc98d586c11b6
   KDInteractiveNavigationController: c719bdf18062213315890c4648d37156a621b520
+  MessagePack.swift: a315fccfb4907b5a7c7958c16a72915f2660f27d
   OMGHTTPURLRQ: 1e54807cb7d5dbb506926e53498e1e9ac5720c79
   PromiseKit: 72a1500ddedd052b5f69b44e3bb4091da2fd1a7d
   Result: 18e1a7597fbcca5923c565b40a25a98afafdee02
@@ -119,6 +119,6 @@ SPEC CHECKSUMS:
   UIView+FDCollapsibleConstraints: 9357eaf03b4e088263ab74a3b86a382a64ce38dd
   UIView+TouchHighlighting: cedbcd90c965e7b1418c80a04fc8266398a738f1
 
-PODFILE CHECKSUM: b5aa13c567167beba0659308e748057052af6734
+PODFILE CHECKSUM: 817619497bcb78a06ab591a4b6a8c026000e46e3
 
 COCOAPODS: 1.1.0.beta.2

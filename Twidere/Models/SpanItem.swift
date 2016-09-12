@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Gloss
 
 class SpanItem: CustomDebugStringConvertible {
     var start: Int = -1
@@ -20,17 +19,12 @@ class SpanItem: CustomDebugStringConvertible {
         
     }
     
-    init?(json: JSON) {
-        self.start = "start" <~~ json ?? -1
-        self.end = "end" <~~ json ?? -1
-    }
-    
     var debugDescription: String {
         return "\(Mirror(reflecting: self).subjectType)(origStart: \(origStart), origEnd: \(origEnd), start: \(start), end: \(end))"
     }
 }
 
-class LinkSpanItem: SpanItem, Glossy {
+class LinkSpanItem: SpanItem {
 
     var display: String? = nil
     
@@ -41,22 +35,10 @@ class LinkSpanItem: SpanItem, Glossy {
         self.link = link
         super.init()
     }
-    
-    required override init?(json: JSON) {
-        self.link = "link" <~~ json  ?? ""
-        super.init(json: json)
-    }
-    
-    func toJSON() -> JSON? {
-        return jsonify([
-            "start" ~~> super.start,
-            "end" ~~> super.end,
-            "link" ~~> self.link
-            ])
-    }
+
 }
 
-class MentionSpanItem: SpanItem, Glossy {
+class MentionSpanItem: SpanItem {
  
     var key: UserKey
     var name: String? = nil
@@ -66,26 +48,10 @@ class MentionSpanItem: SpanItem, Glossy {
         self.key = key
         super.init()
     }
-    
-    required override init?(json: JSON) {
-        self.key = UserKey(rawValue: ("key" <~~ json)!)
-        self.name = "name" <~~ json
-        self.screenName = "screen_name" <~~ json
-        super.init(json: json)
-    }
-    
-    func toJSON() -> JSON? {
-        return jsonify([
-            "start" ~~> super.start,
-            "end" ~~> super.end,
-            "key" ~~> self.key.string,
-            "name" ~~> self.name,
-            "screen_name" ~~> self.screenName
-            ])
-    }
+
 }
 
-class HashtagSpanItem: SpanItem, Glossy {
+class HashtagSpanItem: SpanItem {
     var hashtag: String
     
     init(hashtag: String) {
@@ -93,16 +59,4 @@ class HashtagSpanItem: SpanItem, Glossy {
         super.init()
     }
     
-    required override init?(json: JSON) {
-        self.hashtag = "hashtag" <~~ json ?? ""
-        super.init(json: json)
-    }
-    
-    func toJSON() -> JSON? {
-        return jsonify([
-            "start" ~~> super.start,
-            "end" ~~> super.end,
-            "hashtag" ~~> self.hashtag
-            ])
-    }
 }

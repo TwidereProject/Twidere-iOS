@@ -18,7 +18,7 @@ extension User {
         self.init()
         self.accountKey = accountKey
         self.key = User.getUserKey(json)
-        self.createdAt = parseTwitterDate(json["created_at"].stringValue)?.timeIntervalSince1970Millis ?? -1
+        self.createdAt = parseTwitterDate(json["created_at"].stringValue)
         self.isProtected = json["protected"].boolValue
         self.isVerified = json["verified"].boolValue
         self.name = json["name"].string
@@ -31,7 +31,7 @@ extension User {
         self.url = json["url"].string
         self.urlExpanded = json["entities"]["url"]["urls"][0]["expanded_url"].string
         self.location = json["location"].string
-        self.metadata = UserMetadata(json: json)
+        self.metadata = User.Metadata(json: json)
     }
     
     static func getUserKey(json: JSON) -> UserKey {
@@ -49,7 +49,7 @@ extension User {
     }
 }
 
-extension UserMetadata {
+extension User.Metadata {
     
     convenience init(json: JSON) {
         self.init()

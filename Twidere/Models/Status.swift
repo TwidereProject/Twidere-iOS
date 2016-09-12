@@ -1,4 +1,4 @@
-import SQLite
+import Foundation
 
 class Status {
 
@@ -15,7 +15,7 @@ class Status {
     var userProfileImage: String!
     var textPlain: String!
     var textDisplay: String!
-    var metadata: StatusMetadata?
+    var metadata: Metadata?
     var quotedId: String?
     var quotedUserKey: UserKey?
     var quotedUserName: String?
@@ -23,15 +23,20 @@ class Status {
     var quotedUserProfileImage: String?
     var quotedTextPlain: String?
     var quotedTextDisplay: String?
-    var quotedMetadata: StatusMetadata?
+    var quotedMetadata: Metadata?
     var retweetedByUserKey: UserKey?
     var retweetedByUserName: String?
     var retweetedByUserScreenName: String?
     var retweetedByUserProfileImage: String?
     var retweetId: String?
 
-    init() {
+    class Metadata {
 
+        var links: [LinkSpanItem]?
+        var mentions: [MentionSpanItem]?
+        var hashtags: [HashtagSpanItem]?
+        var media: [MediaItem]?
+        var displayRange: [Int]?
     }
 
 }

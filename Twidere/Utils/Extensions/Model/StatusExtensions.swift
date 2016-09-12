@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import Gloss
-
 
 func < (lhs: Status, rhs: Status) -> Bool {
     return lhs.sortId < rhs.sortId
@@ -19,36 +17,6 @@ func == (lhs: Status, rhs: Status) -> Bool {
 }
 
 extension Status {
-    
-    class StatusMetadata: Glossy {
-        var links: [LinkSpanItem]? = nil
-        var mentions: [MentionSpanItem]? = nil
-        var hashtags: [HashtagSpanItem]? = nil
-        var media: [MediaItem]? = nil
-        var displayRange: [Int]? = nil
-        
-        init() {
-            
-        }
-        
-        required init?(json: JSON) {
-            self.links = "links" <~~ json
-            self.mentions = "mentions" <~~ json
-            self.hashtags = "hashtags" <~~ json
-            self.media = "media" <~~ json
-            self.displayRange = "display_range" <~~ json
-        }
-        
-        func toJSON() -> JSON? {
-            return jsonify([
-                "links" ~~> self.links,
-                "mentions" ~~> self.mentions,
-                "hashtags" ~~> self.hashtags,
-                "media" ~~> self.media,
-                "display_range" ~~> self.displayRange
-            ])
-        }
-    }
     
     func userProfileImageForSize(size: ProfileImageSize) -> String? {
         guard let url = userProfileImage else {

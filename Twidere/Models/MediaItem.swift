@@ -6,9 +6,7 @@
 //  Copyright © 2016年 Mariotaku Dev. All rights reserved.
 //
 
-import Gloss
-
-class MediaItem: Glossy {
+class MediaItem {
     
     var url: String!
     var mediaUrl: String? = nil
@@ -25,43 +23,11 @@ class MediaItem: Glossy {
         
     }
     
-    required init?(json: JSON) {
-        self.url = "url" <~~ json
-        self.mediaUrl = "media_url" <~~ json
-        self.previewUrl = "preview_url" <~~ json
-        if let type: String = "type" <~~ json {
-            self.type = MediaType(rawValue: type) ?? .Unknown
-        } else {
-            self.type = .Unknown
-        }
-        self.width = "width" <~~ json ?? 0
-        self.height = "height" <~~ json ?? 0
-        self.videoInfo = "video_info" <~~ json
-        self.pageUrl = "page_url" <~~ json
-        self.openBrowser = "open_browser" <~~ json ?? false
-        self.altText = "alt_text" <~~ json
-    }
-    
-    func toJSON() -> JSON? {
-        return jsonify([
-            "url" ~~> self.url,
-            "media_url" ~~> self.mediaUrl,
-            "preview_url" ~~> self.previewUrl,
-            "type" ~~> self.type.rawValue,
-            "width" ~~> self.width,
-            "height" ~~> self.height,
-            "video_info" ~~> self.videoInfo,
-            "page_url" ~~> self.pageUrl,
-            "open_browser" ~~> self.openBrowser,
-            "alt_text" ~~> self.altText
-        ])
-    }
-    
     enum MediaType: String {
         case Unknown, Image, Video, AnimatedGif, ExternalPlayer, VariableType
     }
     
-    class VideoInfo: Glossy {
+    class VideoInfo {
         
         var variants: [Variant]!
         var duration: Int64 = -1
@@ -70,19 +36,7 @@ class MediaItem: Glossy {
             
         }
         
-        required init?(json: JSON) {
-            self.variants = "variants" <~~ json
-            self.duration = "duration" <~~ json ?? -1
-        }
-        
-        func toJSON() -> JSON? {
-            return jsonify([
-                "variants" ~~> self.variants,
-                "duration" ~~> self.duration
-                ])
-        }
-        
-        class Variant: Glossy {
+        class Variant {
             
             var url: String!
             var contentType: String!
@@ -91,20 +45,7 @@ class MediaItem: Glossy {
             init() {
                 
             }
-            
-            required init?(json: JSON) {
-                self.url = "url" <~~ json
-                self.contentType = "content_type" <~~ json
-                self.bitrate = "bitrate" <~~ json ?? -1
-            }
-            
-            func toJSON() -> JSON? {
-                return jsonify([
-                    "url" ~~> self.url,
-                    "content_type" ~~> self.contentType,
-                    "bitrate" ~~> self.bitrate
-                    ])
-            }
+
         }
     }
 }

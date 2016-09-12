@@ -21,22 +21,28 @@ import SQLite
 extension ${className} {
 
     convenience init(row: Row) {
+        self.init()
     % for propertyName in fields:
+      % if fields[propertyName].get('column', None) is not None:
         self.${propertyName} = row.get(RowIndices.${propertyName})
+      %end
     %end
     }
 
     static func createTable(table: Table, temporary: Bool = false, ifNotExists: Bool = false) -> String {
         return table.create(temporary: temporary, ifNotExists: ifNotExists) { t in
         % for propertyName in fields:
-            %{
-            field = fields[propertyName]
-            columnArguments = ''
-            primaryKey = field.get('primary_key', None)
-            if primaryKey is not None:
-                columnArguments += ', primaryKey: .%s' % primaryKey
-            }%
+            % field = fields[propertyName]
+            % columnName = field.get('column', None)
+            % if columnName is not None:
+              %{
+              columnArguments = ''
+              primaryKey = field.get('primary_key', None)
+              if primaryKey is not None:
+                  columnArguments += ', primaryKey: .%s' % primaryKey
+              }%
             t.column(RowIndices.${propertyName}${columnArguments})
+            %end
         %end
         }
     }
@@ -45,7 +51,7 @@ extension ${className} {
         return table.insert( [
             % for idx, propertyName in enumerate(fields):
             % field = fields[propertyName]
-                % if field.get('primary_key', None) != 'Autoincrement':
+                % if field.get('primary_key', None) != 'Autoincrement' and field.get('column', None) is not None:
                 RowIndices.${propertyName} <- model.${propertyName},
                 %end
             %end
@@ -59,9 +65,8 @@ extension ${className} {
         % propertyType = field['type']
         % columnName = field.get('column', None)
         % if columnName is None:
-        % continue
-        %end
-        % if propertyType.endswith('?'):
+        %   pass
+        % elif propertyType.endswith('?'):
         static let ${propertyName} = Expression<${propertyType}>("${columnName}")
         % elif field.get('primary_key', None):
         static let ${propertyName} = Expression<${propertyType}>("${columnName}")
@@ -73,7 +78,9 @@ extension ${className} {
         static let columns: [Expressible] = [
     % propertiesCount = 0
     % for propertyName in fields:
+      % if fields[propertyName].get('column', None) is not None:
             ${propertyName},
+      %end
     %end
         ]
     }

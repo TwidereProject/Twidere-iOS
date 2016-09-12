@@ -79,8 +79,8 @@ extension Status {
     
     private static let carets = NSCharacterSet(charactersInString: "<>")
 
-    private func getMetadata(status: JSON) -> (plain: String, display: String, metadata: StatusMetadata) {
-        let metadata = StatusMetadata()
+    private func getMetadata(status: JSON) -> (plain: String, display: String, metadata: Status.Metadata) {
+        let metadata = Status.Metadata()
         var links = [LinkSpanItem]()
         var mentions = [MentionSpanItem]()
         var hashtags = [HashtagSpanItem]()

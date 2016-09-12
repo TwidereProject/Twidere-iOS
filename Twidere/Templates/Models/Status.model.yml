@@ -1,4 +1,6 @@
 name: 'Status'
+imports:
+  - Foundation
 fields:
   _id:
     type: Int64
@@ -84,3 +86,16 @@ fields:
   retweetId:
     type: String?
     column: retweet_id
+submodels:
+  Metadata:
+    fields:
+      links:
+        type: '[LinkSpanItem]?'
+      mentions:
+        type: '[MentionSpanItem]?'
+      hashtags:
+        type: '[HashtagSpanItem]?'
+      media:
+        type: '[MediaItem]?'
+      displayRange:
+        type: '[Int]?'

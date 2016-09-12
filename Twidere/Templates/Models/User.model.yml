@@ -1,7 +1,9 @@
 name: User
+imports:
+  - Foundation
 fields:
   _id:
-    type: long
+    type: Int64
     column: _id
     primary_key: Autoincrement
   accountKey:
@@ -11,46 +13,92 @@ fields:
     type: UserKey
     column: user_key
   createdAt:
-    type: long
+    type: NSDate
     column: created_at
   position:
-    type: long
+    type: Int64
   isProtected:
-    type: bool
+    type: Bool
     column: is_protected
   isVerified:
-    type: bool
+    type: Bool
     column: is_verified
   name:
-    type: string
+    type: String
     column: name
   screenName:
-    type: string
+    type: String
     column: screen_name
   profileImageUrl:
-    type: string
+    type: String
     column: profile_image_url
   profileBannerUrl:
-    type: string
+    type: String
     column: profile_banner_url
   profileBackgroundUrl:
-    type: string
+    type: String
     column: profile_background_url
   descriptionPlain:
-    type: string
+    type: String
     column: description_plain
   descriptionDisplay:
-    type: string
+    type: String
     column: description_display
   url:
-    type: string
+    type: String
     column: url
   urlExpanded:
-    type: string
+    type: String
     column: url_expanded
   location:
-    type: string
+    type: String
     column: location
   metadata:
     type: Metadata
     column: metadata
+submodels:
+  Metadata:
+    fields:
+      following:
+        type: Bool
+        column: following
+      followedBy:
+        type: Bool
+        column: followed_by
+      blocking:
+        type: Bool
+        column: blocking
+      blockedBy:
+        type: Bool
+        column: blocked_by
+      muting:
+        type: Bool
+        column: muting
+      followRequestSent:
+        type: Bool
+        column: follow_request_sent
+      # Counts
+      statusesCount:
+        type: Int64
+        column: statuses_count
+      followersCount:
+        type: Int64
+        column: followers_count
+      friendsCount:
+        type: Int64
+        column: friends_count
+      favoritesCount:
+        type: Int64
+        column: favorites_count
+      mediaCount:
+        type: Int64
+        column: media_count
+      listsCount:
+        type: Int64
+        column: lists_count
+      listedCount:
+        type: Int64
+        column: listed_count
+      groupsCount:
+        type: Int64
+        column: groups_count
