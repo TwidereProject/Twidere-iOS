@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SugarRecord
 
 class MainViewController: UIViewController {
     

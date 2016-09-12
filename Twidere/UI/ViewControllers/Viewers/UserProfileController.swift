@@ -9,14 +9,17 @@
 import UIKit
 import KDInteractiveNavigationController
 import ALSLayouts
+import AttributedLabel
 
 class UserProfileController: UIViewController, UINavigationBarDelegate {
     
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var profileBannerView: UIImageView!
+    @IBOutlet weak var bannerActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileContainer: ALSRelativeLayout!
     @IBOutlet weak var userButtonsBackground: UIView!
+    @IBOutlet weak var descriptionView: AttributedLabel!
     
     var user: User! {
         didSet {
@@ -39,6 +42,10 @@ class UserProfileController: UIViewController, UINavigationBarDelegate {
         profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
         profileImageView.layer.borderWidth = 1
     
+        bannerActivityIndicator.hidesWhenStopped = true
+        
+        descriptionView.font = UIFont.systemFontOfSize(15)
+        
         if let viewControllers = self.navigationController?.viewControllers {
             if (viewControllers.count > 1) {
                 let item = UINavigationItem(title: self.title!)
@@ -60,8 +67,12 @@ class UserProfileController: UIViewController, UINavigationBarDelegate {
             return
         }
         navBar.items?.last?.title = user.name
-        profileBannerView.displayImage(user.profileBannerUrlForSize(Int(self.view.frame.width)))
+        bannerActivityIndicator.startAnimating()
+        profileBannerView.displayImage(user.profileBannerUrlForSize(Int(self.view.frame.width)), completed: { image, error, cacheType, url in
+            self.bannerActivityIndicator.stopAnimating()
+        })
         profileImageView.displayImage(user.profileImageUrlForSize(.Original))
+        descriptionView.text = user.descriptionDisplay
     }
     
     override func viewWillLayoutSubviews() {

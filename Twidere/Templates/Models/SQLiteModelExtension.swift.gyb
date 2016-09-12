@@ -57,7 +57,10 @@ extension ${className} {
     % for propertyName in fields:
         % field = fields[propertyName]
         % propertyType = field['type']
-        % columnName = field['column']
+        % columnName = field.get('column', None)
+        % if columnName is None:
+        % continue
+        %end
         % if propertyType.endswith('?'):
         static let ${propertyName} = Expression<${propertyType}>("${columnName}")
         % elif field.get('primary_key', None):

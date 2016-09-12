@@ -8,7 +8,6 @@
 
 import UIKit
 import STPopup
-import SugarRecord
 import PromiseKit
 import SwiftyJSON
 import UITextView_Placeholder

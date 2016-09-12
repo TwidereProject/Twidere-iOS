@@ -8,7 +8,6 @@
 
 import UIKit
 import SDWebImage
-import SugarRecord
 import UIView_TouchHighlighting
 import PromiseKit
 import SQLite

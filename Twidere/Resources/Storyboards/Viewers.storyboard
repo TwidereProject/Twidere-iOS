@@ -206,18 +206,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Pad-7j-3yT" customClass="BannerImageView" customModule="Twidere" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
+                            <view contentMode="scaleToFill" id="VQ8-Qz-WED" customClass="ALSFrameLayout" customModule="ALSLayouts">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Pad-7j-3yT" customClass="BannerImageView" customModule="Twidere" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="profileBannerView"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutGravity" value="Center"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="f54-bV-vh3">
+                                        <rect key="frame" x="150" y="70" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutGravity" value="Center"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="profileBannerContainer"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTop" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="profileBannerView"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="ignoreLayoutMargins" value="YES"/>
                                 </userDefinedRuntimeAttributes>
-                            </imageView>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="JaE-Xn-c7l">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -247,8 +270,35 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="StaticSize"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignBottom" value="userButtonsBackground"/>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginLeading">
+                                                        <real key="value" value="16"/>
+                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
+                                            <view contentMode="scaleToFill" id="uXx-Dq-l8g" customClass="ALSLinearLayout" customModule="ALSLayouts">
+                                                <rect key="frame" x="0.0" y="174" width="320" height="242"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" id="30c-If-g24" customClass="AttributedLabel" customModule="AttributedLabel">
+                                                        <rect key="frame" x="8" y="8" width="304" height="45"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="orientationString" value="Vertical"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="userButtonsBackground"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                         </subviews>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="heightModeString" value="WrapContent"/>
@@ -301,6 +351,8 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="bannerActivityIndicator" destination="f54-bV-vh3" id="QZL-xf-R0x"/>
+                        <outlet property="descriptionView" destination="30c-If-g24" id="adE-Ez-wkt"/>
                         <outlet property="navBar" destination="eFg-Ip-0eP" id="cC0-Ao-SJc"/>
                         <outlet property="profileBannerView" destination="Pad-7j-3yT" id="7bc-p6-kKS"/>
                         <outlet property="profileContainer" destination="gpl-ko-XjS" id="Yak-Je-9gX"/>

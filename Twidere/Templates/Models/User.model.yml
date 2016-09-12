@@ -1,21 +1,56 @@
-name: 'User'
+name: User
 fields:
   _id:
-    type: Int64
+    type: long
     column: _id
     primary_key: Autoincrement
+  accountKey:
+    type: UserKey
+    column: account_key
   key:
     type: UserKey
     column: user_key
+  createdAt:
+    type: long
+    column: created_at
+  position:
+    type: long
+  isProtected:
+    type: bool
+    column: is_protected
+  isVerified:
+    type: bool
+    column: is_verified
   name:
-    type: String
+    type: string
     column: name
   screenName:
-    type: String
+    type: string
     column: screen_name
   profileImageUrl:
-    type: String
+    type: string
     column: profile_image_url
   profileBannerUrl:
-    type: String
+    type: string
     column: profile_banner_url
+  profileBackgroundUrl:
+    type: string
+    column: profile_background_url
+  descriptionPlain:
+    type: string
+    column: description_plain
+  descriptionDisplay:
+    type: string
+    column: description_display
+  url:
+    type: string
+    column: url
+  urlExpanded:
+    type: string
+    column: url_expanded
+  location:
+    type: string
+    column: location
+  metadata:
+    type: Metadata
+    column: metadata

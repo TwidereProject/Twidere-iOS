@@ -8,7 +8,6 @@
 
 import Foundation
 import SwiftyUserDefaults
-import SugarRecord
 
 func defaultAccount() throws -> Account? {
 //    let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
