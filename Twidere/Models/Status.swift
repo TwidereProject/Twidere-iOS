@@ -1,7 +1,9 @@
+// Automatically generated, DO NOT MODIFY
 import Foundation
 
 class Status {
 
+    // Fields
     var _id: Int64!
     var accountKey: UserKey!
     var sortId: Int64!
@@ -29,14 +31,22 @@ class Status {
     var retweetedByUserScreenName: String?
     var retweetedByUserProfileImage: String?
     var retweetId: String?
+    // Append body content
 
+    // Sub models
     class Metadata {
-
+    
+        // Fields
         var links: [LinkSpanItem]?
         var mentions: [MentionSpanItem]?
         var hashtags: [HashtagSpanItem]?
         var media: [MediaItem]?
         var displayRange: [Int]?
+        // Append body content
+    
+        // Sub models
+    
+    
     }
 
 }

@@ -32,7 +32,7 @@ target 'Twidere' do
   pod 'StringExtensionHTML', '~> 0.1'
   pod 'AttributedLabel', '~> 0.3.1'
   pod 'KDInteractiveNavigationController', '~> 0.1.2'
-  pod 'MessagePack.swift', '~> 1.2.0'
+  pod 'ObjectMapper', :git => 'https://github.com/Hearst-DD/ObjectMapper.git', :tag => '1.5.0'
 end
 
 target 'TwidereTests' do

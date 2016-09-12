@@ -8,6 +8,7 @@
 
 import Foundation
 import SQLite
+import ObjectMapper
 
 extension User: Value {
     static var declaredDatatype: String {

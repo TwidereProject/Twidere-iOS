@@ -1,6 +1,9 @@
+// Automatically generated, DO NOT MODIFY
+import Foundation
 
 class Account {
 
+    // Fields
     var _id: Int64!
     var key: UserKey!
     var type: String!
@@ -16,10 +19,18 @@ class Account {
     var sameOAuthSigningUrl: Bool!
     var config: Config!
     var user: User!
+    // Append body content
 
+    // Sub models
     class Config {
-
+    
+        // Fields
         var characterLimit: Int!
+        // Append body content
+    
+        // Sub models
+    
+    
     }
 
 }

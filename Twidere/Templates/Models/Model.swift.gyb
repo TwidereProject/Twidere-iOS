@@ -1,51 +1,77 @@
 %{
-    import yaml
-    from collections import OrderedDict
+import yaml
+from collections import OrderedDict
 
-    def ordered_load(stream, Loader=yaml.Loader, object_pairs_hook=OrderedDict):
-        class OrderedLoader(Loader):
+def ordered_load(stream, Loader=yaml.Loader, object_pairs_hook=OrderedDict):
+    class OrderedLoader(Loader):
+        pass
+    def construct_mapping(loader, node):
+        loader.flatten_mapping(node)
+        return object_pairs_hook(loader.construct_pairs(node))
+    OrderedLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, construct_mapping)
+    return yaml.load(stream, OrderedLoader)
+
+with open(modelPath, 'r') as f:
+    modelDef = ordered_load(f, yaml.SafeLoader)
+    importNames = modelDef.get('imports', [])
+
+def generateModelContent(name, model, indent=0):
+    fieldsLines = []
+    fields = model['fields']
+    for propertyName in fields:
+        propertyType = fields[propertyName]['type']
+        propertyInit = fields[propertyName].get('init', None)
+        if propertyType.endswith('?'):
             pass
-        def construct_mapping(loader, node):
-            loader.flatten_mapping(node)
-            return object_pairs_hook(loader.construct_pairs(node))
-        OrderedLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, construct_mapping)
-        return yaml.load(stream, OrderedLoader)
+        elif propertyInit is not None:
+            propertyType = propertyType
+        else:
+            propertyType = propertyType + '!'
+        if propertyInit is not None:
+            propertyInitContent = " = {init}".format(init=propertyInit)
+        else:
+            propertyInitContent = ''
+        fieldsLines.append("    var {propertyName}: {propertyType}{propertyInit}".format(
+            propertyName=propertyName,
+            propertyType=propertyType,
+            propertyInit=propertyInitContent
+            ))
+    subModelsLines = []
+    submodels = model.get('submodels', [])
+    inheritance = model.get('inheritance', None)
+    inheritanceContent = ''
+    appendBodyContent = model.get('append_body', '')
+    if inheritance is not None:
+        inheritanceContent = ' : ' + inheritance
+    for subModelName in submodels:
+        submodel = submodels[subModelName]
+        subModelsLines.append(generateModelContent(subModelName, submodel, indent + 1))
+    classTemplate ="""class {modelName}{inheritanceContent} {{
 
-    with open(modelPath, 'r') as f:
-        model = ordered_load(f, yaml.SafeLoader)
-        fields = model['fields']
-        submodels = model.get('submodels', [])
-        importNames = model.get('imports', [])
-        className = model['name']
+    // Fields
+{fieldsContent}
+    // Append body content
+{appendBodyContent}
+    // Sub models
+{subModelsContent}
+
+}}""".format(
+        modelName=name,
+        fieldsContent='\n'.join(fieldsLines),
+        subModelsContent='\n'.join(subModelsLines),
+        inheritanceContent=inheritanceContent,
+        appendBodyContent=appendBodyContent
+    )
+    classLines = classTemplate.splitlines()
+    indentedLines = [(' ' * 4 * indent) + l for l in classLines]
+    return '\n'.join(indentedLines)
 }%
+// Automatically generated, DO NOT MODIFY
 % for importName in importNames:
 import ${importName}
 %end
 
-class ${className} {
-
-% for propertyName in fields:
-    % propertyType = fields[propertyName]['type']
-    % if propertyType.endswith('?'):
-    var ${propertyName}: ${propertyType}
-    % else:
-    var ${propertyName}: ${propertyType}!
-    %end
+% rootModels = modelDef['submodels']
+% for modelName in rootModels:
+${generateModelContent(modelName, rootModels[modelName])}
 %end
-
-% for subModelName in submodels:
-    class ${subModelName} {
-    % subModelFields = submodels[subModelName]['fields']
-
-    % for propertyName in subModelFields:
-        % propertyType = subModelFields[propertyName]['type']
-        % if propertyType.endswith('?'):
-        var ${propertyName}: ${propertyType}
-        % else:
-        var ${propertyName}: ${propertyType}!
-        %end
-    %end
-    }
-%end
-
-}

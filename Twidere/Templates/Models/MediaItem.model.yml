@@ -1,0 +1,56 @@
+imports:
+   - Foundation
+sqlite: false
+submodels:
+  MediaItem:
+    append_body: "
+    enum MediaType: String {
+        case Unknown, Image, Video, AnimatedGif, ExternalPlayer, VariableType
+    }
+    "
+    fields:
+      url:
+        type: String
+      mediaUrl:
+        type: String?
+      previewUrl:
+        type: String?
+        init: nil
+      type:
+        type: MediaType
+        init: .Unknown
+      width:
+        type: Int
+        init: '0'
+      height:
+        type: Int
+        init: '0'
+      videoInfo:
+        type: VideoInfo
+      pageUrl:
+        type: String?
+        init: nil
+      openBrowser:
+        type: Bool
+        init: 'false'
+      altText:
+        type: String?
+        init: nil
+    submodels:
+      VideoInfo:
+        fields:
+          variants:
+            type: '[Variant]'
+          duration:
+            type: Int64
+            init: -1
+        submodels:
+          Variant:
+            fields:
+              url:
+                type: String
+              contentType:
+                type: String
+              bitrate:
+                type: Int64
+                init: -1

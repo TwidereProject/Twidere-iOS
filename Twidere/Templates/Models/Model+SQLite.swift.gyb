@@ -12,13 +12,22 @@
         return yaml.load(stream, OrderedLoader)
 
     with open(modelPath, 'r') as f:
-        model = ordered_load(f, yaml.SafeLoader)
-        fields = model['fields']
-        className = model['name']
+        modelDef = ordered_load(f, yaml.SafeLoader)
+        if not modelDef.get('sqlite', True):
+            exit(1)
+        importNames = modelDef.get('imports', [])
 }%
+
+// Automatically generated, DO NOT MODIFY
+% for importName in importNames:
+import ${importName}
+%end
 import SQLite
 
-extension ${className} {
+% rootModels = modelDef['submodels']
+% for modelName in rootModels:
+%   fields = rootModels[modelName]['fields']
+extension ${modelName} {
 
     convenience init(row: Row) {
         self.init()
@@ -47,7 +56,7 @@ extension ${className} {
         }
     }
 
-    static func insertData(table: Table, model: ${className}) -> Insert {
+    static func insertData(table: Table, model: ${modelName}) -> Insert {
         return table.insert( [
             % for idx, propertyName in enumerate(fields):
             % field = fields[propertyName]
@@ -86,3 +95,4 @@ extension ${className} {
     }
 
 }
+%end

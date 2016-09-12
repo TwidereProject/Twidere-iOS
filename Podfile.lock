@@ -16,7 +16,7 @@ PODS:
   - JVFloatLabeledTextField (1.1.1)
   - Kanna (1.1.0)
   - KDInteractiveNavigationController (0.1.2)
-  - MessagePack.swift (1.2.0)
+  - ObjectMapper (1.4.0)
   - OMGHTTPURLRQ (3.2.0):
     - OMGHTTPURLRQ/RQ (= 3.2.0)
   - OMGHTTPURLRQ/FormURLEncode (3.2.0)
@@ -68,7 +68,7 @@ DEPENDENCIES:
   - JVFloatLabeledTextField (= 1.1.1)
   - Kanna (= 1.1.0)
   - KDInteractiveNavigationController (~> 0.1.2)
-  - MessagePack.swift (~> 1.2.0)
+  - ObjectMapper (from `https://github.com/Hearst-DD/ObjectMapper.git`, tag `1.5.0`)
   - PromiseKit (= 3.4.0)
   - SDWebImage (= 3.8.2)
   - SQLite.swift (~> 0.10.1)
@@ -85,6 +85,16 @@ DEPENDENCIES:
   - UIView+FDCollapsibleConstraints (~> 1.1)
   - UIView+TouchHighlighting (= 1.1.0)
 
+EXTERNAL SOURCES:
+  ObjectMapper:
+    :git: https://github.com/Hearst-DD/ObjectMapper.git
+    :tag: 1.5.0
+
+CHECKOUT OPTIONS:
+  ObjectMapper:
+    :git: https://github.com/Hearst-DD/ObjectMapper.git
+    :tag: 1.5.0
+
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   Alamofire: 6aa33201d20d069e1598891cf928883ff1888c7a
@@ -100,7 +110,7 @@ SPEC CHECKSUMS:
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   Kanna: 355ed0193e5d8caf4fd996856b5bc98d586c11b6
   KDInteractiveNavigationController: c719bdf18062213315890c4648d37156a621b520
-  MessagePack.swift: a315fccfb4907b5a7c7958c16a72915f2660f27d
+  ObjectMapper: a07ad0462c5adf014adc0f89ef04c29b626e855e
   OMGHTTPURLRQ: 1e54807cb7d5dbb506926e53498e1e9ac5720c79
   PromiseKit: 72a1500ddedd052b5f69b44e3bb4091da2fd1a7d
   Result: 18e1a7597fbcca5923c565b40a25a98afafdee02
@@ -119,6 +129,6 @@ SPEC CHECKSUMS:
   UIView+FDCollapsibleConstraints: 9357eaf03b4e088263ab74a3b86a382a64ce38dd
   UIView+TouchHighlighting: cedbcd90c965e7b1418c80a04fc8266398a738f1
 
-PODFILE CHECKSUM: 817619497bcb78a06ab591a4b6a8c026000e46e3
+PODFILE CHECKSUM: 72ea84fe10853e5cc2d5d37643bddefc84e45b02
 
 COCOAPODS: 1.1.0.beta.2

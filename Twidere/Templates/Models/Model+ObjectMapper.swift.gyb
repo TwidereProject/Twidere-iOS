@@ -1,0 +1,68 @@
+%{
+import yaml
+from collections import OrderedDict
+
+def ordered_load(stream, Loader=yaml.Loader, object_pairs_hook=OrderedDict):
+    class OrderedLoader(Loader):
+        pass
+    def construct_mapping(loader, node):
+        loader.flatten_mapping(node)
+        return object_pairs_hook(loader.construct_pairs(node))
+    OrderedLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, construct_mapping)
+    return yaml.load(stream, OrderedLoader)
+
+with open(modelPath, 'r') as f:
+    modelDef = ordered_load(f, yaml.SafeLoader)
+    importNames = modelDef.get('imports', [])
+
+def generateModelContent(name, outerName, model):
+    className = name
+    if outerName is not None:
+        className = '{outer}.{inner}'.format(outer=outerName, inner=name)
+    mappingLines = []
+    fields = model['fields']
+    for propertyName in fields:
+        columnName = propertyName
+        mappingLines.append("        {propertyName} <- map[\"{columnName}\"]".format(propertyName=propertyName, columnName=columnName))
+    subModelsLines = []
+    submodels = model.get('submodels', [])
+    for subModelName in submodels:
+        submodel = submodels[subModelName]
+        subModelsLines.append(generateModelContent(
+        name = subModelName,
+        outerName = className,
+        model = submodel
+        ))
+    classTemplate ="""extension {modelName}: StaticMappable {{
+
+    func mapping(map: Map) {{
+{mappingContent}
+    }}
+
+    static func objectForMapping(map: Map) -> BaseMappable? {{
+        return {modelName}()
+    }}
+}}
+
+{subModelsContent}
+""".format(
+        modelName=className,
+        mappingContent='\n'.join(mappingLines),
+        subModelsContent='\n'.join(subModelsLines)
+    )
+    classLines = classTemplate.splitlines()
+    return '\n'.join(classLines)
+}%
+// Automatically generated, DO NOT MODIFY
+import ObjectMapper
+% for importName in importNames:
+import ${importName}
+%end
+
+% rootModels = modelDef['submodels']
+% for modelName in rootModels:
+% model = rootModels[modelName]
+    % if model.get('mapable', True):
+${generateModelContent(name = modelName, outerName = None, model = model)}
+    %end
+%end

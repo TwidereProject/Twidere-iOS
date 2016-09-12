@@ -1,7 +1,9 @@
+// Automatically generated, DO NOT MODIFY
 import Foundation
 
 class User {
 
+    // Fields
     var _id: Int64!
     var accountKey: UserKey!
     var key: UserKey!
@@ -20,9 +22,12 @@ class User {
     var urlExpanded: String!
     var location: String!
     var metadata: Metadata!
+    // Append body content
 
+    // Sub models
     class Metadata {
-
+    
+        // Fields
         var following: Bool!
         var followedBy: Bool!
         var blocking: Bool!
@@ -37,6 +42,11 @@ class User {
         var listsCount: Int64!
         var listedCount: Int64!
         var groupsCount: Int64!
+        // Append body content
+    
+        // Sub models
+    
+    
     }
 
 }

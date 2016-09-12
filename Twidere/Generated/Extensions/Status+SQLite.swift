@@ -1,3 +1,6 @@
+
+// Automatically generated, DO NOT MODIFY
+import Foundation
 import SQLite
 
 extension Status {

@@ -1,15 +1,11 @@
-//
-//  MediaItem.swift
-//  Twidere
-//
-//  Created by Mariotaku Lee on 16/9/10.
-//  Copyright © 2016年 Mariotaku Dev. All rights reserved.
-//
+// Automatically generated, DO NOT MODIFY
+import Foundation
 
 class MediaItem {
-    
+
+    // Fields
     var url: String!
-    var mediaUrl: String? = nil
+    var mediaUrl: String?
     var previewUrl: String? = nil
     var type: MediaType = .Unknown
     var width: Int = 0
@@ -18,34 +14,30 @@ class MediaItem {
     var pageUrl: String? = nil
     var openBrowser: Bool = false
     var altText: String? = nil
-    
-    init() {
-        
-    }
-    
-    enum MediaType: String {
-        case Unknown, Image, Video, AnimatedGif, ExternalPlayer, VariableType
-    }
-    
+    // Append body content
+ enum MediaType: String { case Unknown, Image, Video, AnimatedGif, ExternalPlayer, VariableType } 
+    // Sub models
     class VideoInfo {
-        
+    
+        // Fields
         var variants: [Variant]!
         var duration: Int64 = -1
-        
-        init() {
+        // Append body content
+    
+        // Sub models
+            class Variant {
             
-        }
-        
-        class Variant {
+                // Fields
+                var url: String!
+                var contentType: String!
+                var bitrate: Int64 = -1
+                // Append body content
             
-            var url: String!
-            var contentType: String!
-            var bitrate: Int64 = -1
+                // Sub models
             
-            init() {
-                
+            
             }
-
-        }
+    
     }
+
 }

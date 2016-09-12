@@ -288,8 +288,9 @@ extension Status {
     }
     
     private func spanFromUrlEntity(entity: JSON) -> LinkSpanItem {
-        let span = LinkSpanItem(display: entity["display_url"].stringValue, link: entity["expanded_url"].stringValue)
-        
+        let span = LinkSpanItem()
+        span.display = entity["display_url"].stringValue
+        span.link = entity["expanded_url"].stringValue
         span.origStart = entity["indices"][0].int ?? -1
         span.origEnd = entity["indices"][1].int ?? -1
         
@@ -298,7 +299,8 @@ extension Status {
     
     private func spanFromMentionEntity(entity: JSON) -> MentionSpanItem {
         let id = entity["id_str"].string ?? entity["id"].stringValue
-        let span = MentionSpanItem(key: UserKey(id: id, host: nil))
+        let span = MentionSpanItem()
+        span.key = UserKey(id: id, host: nil)
         span.name = entity["name"].string
         span.screenName = entity["screen_name"].string
         
@@ -309,8 +311,8 @@ extension Status {
     }
     
     private func spanFromHashtagEntity(entity: JSON) -> HashtagSpanItem {
-        let span = HashtagSpanItem(hashtag: entity["text"].stringValue)
-        
+        let span = HashtagSpanItem()
+        span.hashtag = entity["text"].stringValue
         span.origStart = entity["indices"][0].int ?? -1
         span.origEnd = entity["indices"][1].int ?? -1
         

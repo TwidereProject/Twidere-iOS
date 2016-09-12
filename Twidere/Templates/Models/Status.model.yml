@@ -1,101 +1,102 @@
-name: 'Status'
 imports:
   - Foundation
-fields:
-  _id:
-    type: Int64
-    column: _id
-    primary_key: Autoincrement
-  accountKey:
-    type: UserKey
-    column: account_key
-  sortId: # Added in database version 2
-    type: Int64
-    column: sort_id
-    min_version: 2
-  positionKey: # Added in database version 2
-    type: Int64
-    column: position_key
-    min_version: 2
-  isGap:
-    type: Bool
-    column: is_gap
-  createdAt:
-    type: NSDate
-    column: created_at
-  id:
-    type: String
-    column: status_id
-  userKey:
-    type: UserKey
-    column: user_key
-  userName:
-    type: String
-    column: user_name
-  userScreenName:
-    type: String
-    column: user_screen_name
-  userProfileImage:
-    type: String
-    column: user_profile_image
-  textPlain:
-    type: String
-    column: text_plain
-  textDisplay:
-    type: String
-    column: text_display
-  metadata:
-    type: Metadata?
-    column: metadata
-  quotedId:
-    type: String?
-    column: quoted_status_id
-  quotedUserKey:
-    type: UserKey?
-    column: quoted_user_key
-  quotedUserName:
-    type: String?
-    column: quoted_user_name
-  quotedUserScreenName:
-    type: String?
-    column: quoted_user_screen_name
-  quotedUserProfileImage:
-    type: String?
-    column: quoted_user_profile_image
-  quotedTextPlain:
-    type: String?
-    column: quoted_text_plain
-  quotedTextDisplay:
-    type: String?
-    column: quoted_text_display
-  quotedMetadata:
-    type: Metadata?
-    column: quoted_metadata
-  retweetedByUserKey:
-    type: UserKey?
-    column: retweeted_by_user_key
-  retweetedByUserName:
-    type: String?
-    column: retweeted_by_user_name
-  retweetedByUserScreenName:
-    type: String?
-    column: retweeted_by_user_screen_name
-  retweetedByUserProfileImage:
-    type: String?
-    column: retweeted_by_user_profile_image
-  retweetId:
-    type: String?
-    column: retweet_id
 submodels:
-  Metadata:
+  Status:
     fields:
-      links:
-        type: '[LinkSpanItem]?'
-      mentions:
-        type: '[MentionSpanItem]?'
-      hashtags:
-        type: '[HashtagSpanItem]?'
-      media:
-        type: '[MediaItem]?'
-      displayRange:
-        type: '[Int]?'
+      _id:
+        type: Int64
+        column: _id
+        primary_key: Autoincrement
+      accountKey:
+        type: UserKey
+        column: account_key
+      sortId: # Added in database version 2
+        type: Int64
+        column: sort_id
+        min_version: 2
+      positionKey: # Added in database version 2
+        type: Int64
+        column: position_key
+        min_version: 2
+      isGap:
+        type: Bool
+        column: is_gap
+      createdAt:
+        type: NSDate
+        column: created_at
+      id:
+        type: String
+        column: status_id
+      userKey:
+        type: UserKey
+        column: user_key
+      userName:
+        type: String
+        column: user_name
+      userScreenName:
+        type: String
+        column: user_screen_name
+      userProfileImage:
+        type: String
+        column: user_profile_image
+      textPlain:
+        type: String
+        column: text_plain
+      textDisplay:
+        type: String
+        column: text_display
+      metadata:
+        type: Metadata?
+        column: metadata
+      quotedId:
+        type: String?
+        column: quoted_status_id
+      quotedUserKey:
+        type: UserKey?
+        column: quoted_user_key
+      quotedUserName:
+        type: String?
+        column: quoted_user_name
+      quotedUserScreenName:
+        type: String?
+        column: quoted_user_screen_name
+      quotedUserProfileImage:
+        type: String?
+        column: quoted_user_profile_image
+      quotedTextPlain:
+        type: String?
+        column: quoted_text_plain
+      quotedTextDisplay:
+        type: String?
+        column: quoted_text_display
+      quotedMetadata:
+        type: Metadata?
+        column: quoted_metadata
+      retweetedByUserKey:
+        type: UserKey?
+        column: retweeted_by_user_key
+      retweetedByUserName:
+        type: String?
+        column: retweeted_by_user_name
+      retweetedByUserScreenName:
+        type: String?
+        column: retweeted_by_user_screen_name
+      retweetedByUserProfileImage:
+        type: String?
+        column: retweeted_by_user_profile_image
+      retweetId:
+        type: String?
+        column: retweet_id
+    submodels:
+      Metadata:
+        fields:
+          links:
+            type: '[LinkSpanItem]?'
+          mentions:
+            type: '[MentionSpanItem]?'
+          hashtags:
+            type: '[HashtagSpanItem]?'
+          media:
+            type: '[MediaItem]?'
+          displayRange:
+            type: '[Int]?'

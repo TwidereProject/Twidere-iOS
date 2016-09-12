@@ -1,0 +1,40 @@
+imports:
+   - Foundation
+sqlite: false
+submodels:
+  SpanItem:
+    mapable: false
+    fields:
+      start:
+        type: Int
+        init: -1
+      end:
+        type: Int
+        init: -1
+      origStart:
+        type: Int
+        init: -1
+      origEnd:
+        type: Int
+        init: -1
+  LinkSpanItem:
+    inheritance: SpanItem
+    fields:
+      link:
+        type: String
+      display:
+        type: String
+  MentionSpanItem:
+    inheritance: SpanItem
+    fields:
+      key:
+        type: UserKey
+      name:
+        type: String
+      screenName:
+        type: String
+  HashtagSpanItem:
+    inheritance: SpanItem
+    fields:
+      hashtag:
+        type: String

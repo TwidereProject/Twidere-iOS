@@ -1,62 +1,49 @@
-//
-//  SpanItem.swift
-//  Twidere
-//
-//  Created by Mariotaku Lee on 16/9/8.
-//  Copyright © 2016年 Mariotaku Dev. All rights reserved.
-//
-
+// Automatically generated, DO NOT MODIFY
 import Foundation
 
-class SpanItem: CustomDebugStringConvertible {
+class SpanItem {
+
+    // Fields
     var start: Int = -1
     var end: Int = -1
-    
     var origStart: Int = -1
     var origEnd: Int = -1
-    
-    init() {
-        
-    }
-    
-    var debugDescription: String {
-        return "\(Mirror(reflecting: self).subjectType)(origStart: \(origStart), origEnd: \(origEnd), start: \(start), end: \(end))"
-    }
-}
+    // Append body content
 
-class LinkSpanItem: SpanItem {
+    // Sub models
 
-    var display: String? = nil
-    
-    var link: String
-    
-    init(display: String, link: String) {
-        self.display = display
-        self.link = link
-        super.init()
-    }
 
 }
+class LinkSpanItem : SpanItem {
 
-class MentionSpanItem: SpanItem {
- 
-    var key: UserKey
-    var name: String? = nil
-    var screenName: String? = nil
-    
-    init(key: UserKey) {
-        self.key = key
-        super.init()
-    }
+    // Fields
+    var link: String!
+    var display: String!
+    // Append body content
+
+    // Sub models
+
 
 }
+class MentionSpanItem : SpanItem {
 
-class HashtagSpanItem: SpanItem {
-    var hashtag: String
-    
-    init(hashtag: String) {
-        self.hashtag = hashtag
-        super.init()
-    }
-    
+    // Fields
+    var key: UserKey!
+    var name: String!
+    var screenName: String!
+    // Append body content
+
+    // Sub models
+
+
+}
+class HashtagSpanItem : SpanItem {
+
+    // Fields
+    var hashtag: String!
+    // Append body content
+
+    // Sub models
+
+
 }
