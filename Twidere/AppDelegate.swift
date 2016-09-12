@@ -17,13 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static var performingScroll: Bool = false
     var window: UIWindow?
     
-    lazy var sqliteDatabase: Connection = {
+    private(set) lazy var sqliteDatabase: Connection = self.openSQLiteDatabase()
+    
+    private func openSQLiteDatabase() -> Connection {
         let docsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
         let dbPath = NSURL(fileURLWithPath: docsPath).URLByAppendingPathComponent("twidere.sqlite3")
-
-        let db = try! Connection(dbPath.path!)
         
-//        db.trace { print($0) }
+        let db = try! Connection(dbPath.path!)
         
         let oldVersion = db.userVersion
         if (oldVersion == 0) {
@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             db.userVersion = databaseVersion
         }
         return db
-    }()
+    }
     
     lazy var backgroundOperationService: BackgroundOperationService = {
        return BackgroundOperationService()

@@ -4,13 +4,17 @@
 //
 
 import Foundation
+import MessagePack_swift
 
 extension MessagePackValue {
     public var int64Value: Int64? {
         return self.integerValue
     }
 
-    public var intValue: Int? {
-        return self.integerValue
+    public var intValue: Swift.Int? {
+        guard let value = self.integerValue else {
+            return nil
+        }
+        return Swift.Int(value)
     }
 }

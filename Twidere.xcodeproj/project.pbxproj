@@ -11,15 +11,12 @@
 		76108B370EC1D34E816D79BF /* Pods_Twidere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F33C08D23C1DF70E405B5B09 /* Pods_Twidere.framework */; };
 		A0E71027400AC7355D45AA1E /* Pods_TwidereTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339BCAC9D930FF8CB3677AFC /* Pods_TwidereTests.framework */; };
 		C57AE0E1F78A5EF2EDD4326A /* NSDate+MsgPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AEBFE16928E238A2C39DC /* NSDate+MsgPack.swift */; };
-		C57AE152999C4C9918F9CEF1 /* Account+MsgPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AE2699BFD3F292F710BAB /* Account+MsgPack.swift */; };
-		C57AE1F6F9223B4B416CB18F /* User+MsgPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AEAE3E07FB4B30DE459F4 /* User+MsgPack.swift */; };
 		C57AE1FB6C2A13703F159759 /* SpamItem.fbs in Resources */ = {isa = PBXBuildFile; fileRef = C57AEB92156F0BC60058B922 /* SpamItem.fbs */; };
 		C57AE5C144B41D4EAEAA208A /* Model+SQLite.swift.gyb in Resources */ = {isa = PBXBuildFile; fileRef = C57AEC1E08786910159D9559 /* Model+SQLite.swift.gyb */; };
 		C57AE78DE03CD3814988E57B /* Model.swift.gyb in Resources */ = {isa = PBXBuildFile; fileRef = C57AEFBEE6655E4EA782DE0B /* Model.swift.gyb */; };
 		C57AE8870F9B823E2C89AFB8 /* Primitive+MsgPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AEE98EE356927BC9DB6DB /* Primitive+MsgPack.swift */; };
 		C57AE8C150FD70314E4CB84B /* Model+MsgPack.swift.gyb in Resources */ = {isa = PBXBuildFile; fileRef = C57AE4E5205BA13086302037 /* Model+MsgPack.swift.gyb */; };
 		C57AE91A5E5FAC7D98028959 /* Status.fbs in Resources */ = {isa = PBXBuildFile; fileRef = C57AED99B0DA313A03E0C9B7 /* Status.fbs */; };
-		C57AEA42EF7C3DE4D12991FE /* Status+MsgPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AEC3660AF231C90BBBFC7 /* Status+MsgPack.swift */; };
 		C57AEC9B664841852E575F35 /* UserKey+MsgPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AEFD49851A9C86C174C8D /* UserKey+MsgPack.swift */; };
 		C57AED98D3DA6236A9EAEDEB /* AccountConfig.fbs in Resources */ = {isa = PBXBuildFile; fileRef = C57AE5E6958143C29828D050 /* AccountConfig.fbs */; };
 		C57AEE68AA95743222EFAABA /* UserKey.fbs in Resources */ = {isa = PBXBuildFile; fileRef = C57AEE19CFC443F1699649D9 /* UserKey.fbs */; };
@@ -153,15 +150,12 @@
 		6B7616E89DDF2FDDCF64DCCF /* Pods-Twidere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twidere/Pods-Twidere.release.xcconfig"; sourceTree = "<group>"; };
 		A351F2523CA6229EF79900FD /* Pods-Twidere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twidere/Pods-Twidere.debug.xcconfig"; sourceTree = "<group>"; };
 		C57AE13A4A400AF1A533178D /* StatusMetadata.fbs */ = {isa = PBXFileReference; lastKnownFileType = file.fbs; path = StatusMetadata.fbs; sourceTree = "<group>"; };
-		C57AE2699BFD3F292F710BAB /* Account+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+MsgPack.swift"; sourceTree = "<group>"; };
 		C57AE4E5205BA13086302037 /* Model+MsgPack.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = file.gyb; path = "Model+MsgPack.swift.gyb"; sourceTree = "<group>"; };
 		C57AE5E6958143C29828D050 /* AccountConfig.fbs */ = {isa = PBXFileReference; lastKnownFileType = file.fbs; path = AccountConfig.fbs; sourceTree = "<group>"; };
-		C57AEAE3E07FB4B30DE459F4 /* User+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+MsgPack.swift"; sourceTree = "<group>"; };
 		C57AEB1F3B3698B0593D1A7A /* User.fbs */ = {isa = PBXFileReference; lastKnownFileType = file.fbs; path = User.fbs; sourceTree = "<group>"; };
 		C57AEB92156F0BC60058B922 /* SpamItem.fbs */ = {isa = PBXFileReference; lastKnownFileType = file.fbs; path = SpamItem.fbs; sourceTree = "<group>"; };
 		C57AEBFE16928E238A2C39DC /* NSDate+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+MsgPack.swift"; sourceTree = "<group>"; };
 		C57AEC1E08786910159D9559 /* Model+SQLite.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = file.gyb; path = "Model+SQLite.swift.gyb"; sourceTree = "<group>"; };
-		C57AEC3660AF231C90BBBFC7 /* Status+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Status+MsgPack.swift"; sourceTree = "<group>"; };
 		C57AED99B0DA313A03E0C9B7 /* Status.fbs */ = {isa = PBXFileReference; lastKnownFileType = file.fbs; path = Status.fbs; sourceTree = "<group>"; };
 		C57AEE19CFC443F1699649D9 /* UserKey.fbs */ = {isa = PBXFileReference; lastKnownFileType = file.fbs; path = UserKey.fbs; sourceTree = "<group>"; };
 		C57AEE98EE356927BC9DB6DB /* Primitive+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Primitive+MsgPack.swift"; sourceTree = "<group>"; };
@@ -223,9 +217,9 @@
 		CE5993151D83C95800653220 /* StatusViewerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StatusViewerController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE5993181D83CAAA00653220 /* DetailStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailStatusCell.swift; sourceTree = "<group>"; };
 		CE59931A1D83CAE900653220 /* ViewSizeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewSizeUtils.swift; sourceTree = "<group>"; };
-		CE779F251D8563B60053B5C7 /* Account+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+SQLite.swift"; sourceTree = "<group>"; };
-		CE779F261D8563B60053B5C7 /* Status+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Status+SQLite.swift"; sourceTree = "<group>"; };
-		CE779F271D8563B60053B5C7 /* User+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+SQLite.swift"; sourceTree = "<group>"; };
+		CE779F251D8563B60053B5C7 /* Account+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Account+SQLite.swift"; path = "Utils/Extensions/SQLite/Account+SQLite.swift"; sourceTree = "<group>"; };
+		CE779F261D8563B60053B5C7 /* Status+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Status+SQLite.swift"; path = "Utils/Extensions/SQLite/Status+SQLite.swift"; sourceTree = "<group>"; };
+		CE779F271D8563B60053B5C7 /* User+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+SQLite.swift"; path = "Utils/Extensions/SQLite/User+SQLite.swift"; sourceTree = "<group>"; };
 		CE779F351D858B210053B5C7 /* User+MicroBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+MicroBlog.swift"; sourceTree = "<group>"; };
 		CE90A55A1D7EDC9D007050E5 /* SimpleRefreshTaskParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRefreshTaskParam.swift; sourceTree = "<group>"; };
 		CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAPIConfig.swift; sourceTree = "<group>"; };
@@ -375,6 +369,7 @@
 				CEDFEA681D4F392200E1F8B8 /* Templates */,
 				CE497F911D6958F7000F16D2 /* UI */,
 				CE9574941D33B6EA00504D52 /* Utils */,
+				CE4F6D7B1D86A55E0064DA14 /* Generated */,
 				CE0529E61CF7F35300E06364 /* AppDelegate.swift */,
 				CE0529F51CF7F35300E06364 /* Info.plist */,
 			);
@@ -413,11 +408,8 @@
 		CE347B5C1D866594002152D7 /* MsgPack */ = {
 			isa = PBXGroup;
 			children = (
-				C57AE2699BFD3F292F710BAB /* Account+MsgPack.swift */,
 				C57AEBFE16928E238A2C39DC /* NSDate+MsgPack.swift */,
 				C57AEE98EE356927BC9DB6DB /* Primitive+MsgPack.swift */,
-				C57AEC3660AF231C90BBBFC7 /* Status+MsgPack.swift */,
-				C57AEAE3E07FB4B30DE459F4 /* User+MsgPack.swift */,
 				C57AEFD49851A9C86C174C8D /* UserKey+MsgPack.swift */,
 			);
 			path = MsgPack;
@@ -503,13 +495,10 @@
 		CE497FBF1D6B08B4000F16D2 /* SQLite */ = {
 			isa = PBXGroup;
 			children = (
-				CE779F251D8563B60053B5C7 /* Account+SQLite.swift */,
 				CE45CAEE1D8556DE0004CC1C /* AccountConfig+Value.swift */,
 				CE347B5A1D865F07002152D7 /* MsgPack+Value.swift */,
 				CEDC3B201D7D87F80082A8BA /* SQLite+UserVersion.swift */,
-				CE779F261D8563B60053B5C7 /* Status+SQLite.swift */,
 				CE4B1A9C1D7172F00017CB85 /* Status+Value.swift */,
-				CE779F271D8563B60053B5C7 /* User+SQLite.swift */,
 				CE45CAF41D855AE10004CC1C /* User+Value.swift */,
 				CE497FB91D6A8A65000F16D2 /* UserKey+Value.swift */,
 			);
@@ -540,6 +529,24 @@
 				CE779F351D858B210053B5C7 /* User+MicroBlog.swift */,
 			);
 			path = MicroBlog;
+			sourceTree = "<group>";
+		};
+		CE4F6D7B1D86A55E0064DA14 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				CE4F6D7C1D86A5670064DA14 /* Extensions */,
+			);
+			name = Generated;
+			sourceTree = "<group>";
+		};
+		CE4F6D7C1D86A5670064DA14 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE779F251D8563B60053B5C7 /* Account+SQLite.swift */,
+				CE779F261D8563B60053B5C7 /* Status+SQLite.swift */,
+				CE779F271D8563B60053B5C7 /* User+SQLite.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		CE5993071D82E4CF00653220 /* Account */ = {
@@ -1220,9 +1227,6 @@
 				CE4B1A9D1D7172F00017CB85 /* Status+Value.swift in Sources */,
 				CE497FA91D697CEA000F16D2 /* ConvertUtils.swift in Sources */,
 				CE779F2A1D8563B60053B5C7 /* Status+SQLite.swift in Sources */,
-				C57AE152999C4C9918F9CEF1 /* Account+MsgPack.swift in Sources */,
-				C57AEA42EF7C3DE4D12991FE /* Status+MsgPack.swift in Sources */,
-				C57AE1F6F9223B4B416CB18F /* User+MsgPack.swift in Sources */,
 				C57AEC9B664841852E575F35 /* UserKey+MsgPack.swift in Sources */,
 				C57AE0E1F78A5EF2EDD4326A /* NSDate+MsgPack.swift in Sources */,
 				C57AE8870F9B823E2C89AFB8 /* Primitive+MsgPack.swift in Sources */,
@@ -1370,6 +1374,7 @@
 				);
 				INFOPLIST_FILE = Twidere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.Twidere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Twidere/Twidere-Bridging-Header.h";
@@ -1389,6 +1394,7 @@
 				);
 				INFOPLIST_FILE = Twidere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.Twidere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Twidere/Twidere-Bridging-Header.h";
