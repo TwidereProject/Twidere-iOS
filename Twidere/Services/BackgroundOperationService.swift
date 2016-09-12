@@ -40,7 +40,7 @@ class BackgroundOperationService {
                     return account.key!
                 }
                 let ownerIds = owners.map { key -> String in
-                    return key.id!
+                    return key.id
                 }
                 for i in 0..<pendingUpdate.length {
                     let account = update.accounts[i]

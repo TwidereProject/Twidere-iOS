@@ -41,8 +41,13 @@ fields:
     type: Bool
     column: same_oauth_signing_url
   config:
-    type: AccountConfig
+    type: Config
     column: config
   user:
     type: User
     column: user
+submodels:
+  Config:
+    fields:
+      characterLimit:
+        type: Int

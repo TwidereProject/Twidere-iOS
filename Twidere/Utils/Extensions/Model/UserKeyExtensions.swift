@@ -16,7 +16,7 @@ extension UserKey {
     
     var string: String  {
         var chars = [Character]()
-        escape(id!, dest: &chars)
+        escape(id, dest: &chars)
         if (host != nil) {
             chars.append("@")
             escape(host!, dest: &chars)
@@ -24,7 +24,7 @@ extension UserKey {
         return String(chars)
     }
     
-    convenience init(rawValue: String) {
+    init(rawValue: String) {
         var escaping = false, idFinished = false
         var idBuilder = [Character](), hostBuilder = [Character]()
         

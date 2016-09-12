@@ -75,7 +75,7 @@ extension Account {
         static let oauthToken = Expression<String?>("oauth_token")
         static let oauthTokenSecret = Expression<String?>("oauth_token_secret")
         static let sameOAuthSigningUrl = Expression<Bool?>("same_oauth_signing_url")
-        static let config = Expression<AccountConfig?>("config")
+        static let config = Expression<Config?>("config")
         static let user = Expression<User?>("user")
 
         static let columns: [Expressible] = [

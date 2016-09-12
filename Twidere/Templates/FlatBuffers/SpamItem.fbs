@@ -3,7 +3,7 @@ table LinkSpanItem {
   end:int;
   origStart:int;
   origEnd:int;
-  
+
   display:string;
   link:string;
 }
@@ -26,9 +26,4 @@ table HashtagSpanItem {
   origEnd:int;
 
   hashtag:string;
-}
-
-table UserKey {
-  id:string;
-  host:string;
 }

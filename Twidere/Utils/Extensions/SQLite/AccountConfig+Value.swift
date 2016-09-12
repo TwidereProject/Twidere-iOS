@@ -9,18 +9,16 @@
 import Foundation
 import SQLite
 
-extension AccountConfig: Value {
-    public static var declaredDatatype: String {
+extension Account.Config: Value {
+    static var declaredDatatype: String {
         return Blob.declaredDatatype
     }
     
-    public static func fromDatatypeValue(datatypeValue: Blob) -> AccountConfig {
-        return datatypeValue.bytes.withUnsafeBufferPointer { ptr -> AccountConfig in
-            return AccountConfig.fromByteArray(ptr)
-        }
+    static func fromDatatypeValue(datatypeValue: Blob) -> Account.Config {
+        return Account.Config()
     }
     
-    public var datatypeValue: Blob {
-        return Blob(bytes: self.toByteArray())
+    var datatypeValue: Blob {
+        return Blob(bytes: [])
     }
 }

@@ -39,9 +39,4 @@ table UserMetadata {
   groupsCount:long = -1;
 }
 
-table UserKey {
-  id:string;
-  host:string;
-}
-
 root_type User;

@@ -7,4 +7,9 @@
 //
 
 import Foundation
-import MessagePack
+import MessagePack_swift
+import SQLite
+
+protocol Packable {
+    
+}

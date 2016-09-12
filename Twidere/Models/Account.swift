@@ -14,8 +14,12 @@ class Account {
     var oauthToken: String?
     var oauthTokenSecret: String?
     var sameOAuthSigningUrl: Bool!
-    var config: AccountConfig!
+    var config: Config!
     var user: User!
 
+    class Config {
+
+        var characterLimit: Int!
+    }
 
 }

@@ -10,6 +10,21 @@
 		094E3B04BBE9B03405CCC18D /* Pods_TwidereUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD6984F4D94D9627E5C1991 /* Pods_TwidereUITests.framework */; };
 		76108B370EC1D34E816D79BF /* Pods_Twidere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F33C08D23C1DF70E405B5B09 /* Pods_Twidere.framework */; };
 		A0E71027400AC7355D45AA1E /* Pods_TwidereTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339BCAC9D930FF8CB3677AFC /* Pods_TwidereTests.framework */; };
+		C57AE0E1F78A5EF2EDD4326A /* NSDate+MsgPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AEBFE16928E238A2C39DC /* NSDate+MsgPack.swift */; };
+		C57AE152999C4C9918F9CEF1 /* Account+MsgPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AE2699BFD3F292F710BAB /* Account+MsgPack.swift */; };
+		C57AE1F6F9223B4B416CB18F /* User+MsgPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AEAE3E07FB4B30DE459F4 /* User+MsgPack.swift */; };
+		C57AE1FB6C2A13703F159759 /* SpamItem.fbs in Resources */ = {isa = PBXBuildFile; fileRef = C57AEB92156F0BC60058B922 /* SpamItem.fbs */; };
+		C57AE5C144B41D4EAEAA208A /* Model+SQLite.swift.gyb in Resources */ = {isa = PBXBuildFile; fileRef = C57AEC1E08786910159D9559 /* Model+SQLite.swift.gyb */; };
+		C57AE78DE03CD3814988E57B /* Model.swift.gyb in Resources */ = {isa = PBXBuildFile; fileRef = C57AEFBEE6655E4EA782DE0B /* Model.swift.gyb */; };
+		C57AE8870F9B823E2C89AFB8 /* Primitive+MsgPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AEE98EE356927BC9DB6DB /* Primitive+MsgPack.swift */; };
+		C57AE8C150FD70314E4CB84B /* Model+MsgPack.swift.gyb in Resources */ = {isa = PBXBuildFile; fileRef = C57AE4E5205BA13086302037 /* Model+MsgPack.swift.gyb */; };
+		C57AE91A5E5FAC7D98028959 /* Status.fbs in Resources */ = {isa = PBXBuildFile; fileRef = C57AED99B0DA313A03E0C9B7 /* Status.fbs */; };
+		C57AEA42EF7C3DE4D12991FE /* Status+MsgPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AEC3660AF231C90BBBFC7 /* Status+MsgPack.swift */; };
+		C57AEC9B664841852E575F35 /* UserKey+MsgPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AEFD49851A9C86C174C8D /* UserKey+MsgPack.swift */; };
+		C57AED98D3DA6236A9EAEDEB /* AccountConfig.fbs in Resources */ = {isa = PBXBuildFile; fileRef = C57AE5E6958143C29828D050 /* AccountConfig.fbs */; };
+		C57AEE68AA95743222EFAABA /* UserKey.fbs in Resources */ = {isa = PBXBuildFile; fileRef = C57AEE19CFC443F1699649D9 /* UserKey.fbs */; };
+		C57AEF1FE74729FF47DD8346 /* StatusMetadata.fbs in Resources */ = {isa = PBXBuildFile; fileRef = C57AE13A4A400AF1A533178D /* StatusMetadata.fbs */; };
+		C57AEF30E45708D6D7D2A6A4 /* User.fbs in Resources */ = {isa = PBXBuildFile; fileRef = C57AEB1F3B3698B0593D1A7A /* User.fbs */; };
 		CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529E61CF7F35300E06364 /* AppDelegate.swift */; };
 		CE0529E91CF7F35300E06364 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529E81CF7F35300E06364 /* MainViewController.swift */; };
 		CE0529F11CF7F35300E06364 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0529F01CF7F35300E06364 /* Assets.xcassets */; };
@@ -62,10 +77,6 @@
 		CE779F291D8563B60053B5C7 /* Account+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F251D8563B60053B5C7 /* Account+SQLite.swift */; };
 		CE779F2A1D8563B60053B5C7 /* Status+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F261D8563B60053B5C7 /* Status+SQLite.swift */; };
 		CE779F2B1D8563B60053B5C7 /* User+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F271D8563B60053B5C7 /* User+SQLite.swift */; };
-		CE779F311D85692C0053B5C7 /* AccountConfig.fbs in Resources */ = {isa = PBXBuildFile; fileRef = CE779F2D1D85692C0053B5C7 /* AccountConfig.fbs */; };
-		CE779F321D85692C0053B5C7 /* User.fbs in Resources */ = {isa = PBXBuildFile; fileRef = CE779F2E1D85692C0053B5C7 /* User.fbs */; };
-		CE779F331D85692C0053B5C7 /* UserKey.fbs in Resources */ = {isa = PBXBuildFile; fileRef = CE779F2F1D85692C0053B5C7 /* UserKey.fbs */; };
-		CE779F341D85692C0053B5C7 /* Status.fbs in Resources */ = {isa = PBXBuildFile; fileRef = CE779F301D85692C0053B5C7 /* Status.fbs */; };
 		CE779F361D858B210053B5C7 /* User+MicroBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F351D858B210053B5C7 /* User+MicroBlog.swift */; };
 		CE90A55B1D7EDC9D007050E5 /* SimpleRefreshTaskParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90A55A1D7EDC9D007050E5 /* SimpleRefreshTaskParam.swift */; };
 		CE95747D1D3210A300504D52 /* CustomAPIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */; };
@@ -81,7 +92,6 @@
 		CE95749A1D33DC7B00504D52 /* BasePreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574991D33DC7B00504D52 /* BasePreferencesController.swift */; };
 		CE95749C1D33DEC300504D52 /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95749B1D33DEC300504D52 /* PreferencesController.swift */; };
 		CE9574B91D349C3F00504D52 /* BrowserSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574B81D349C3F00504D52 /* BrowserSignInController.swift */; };
-		CEA2212F1D4CA47E00F25516 /* AccountConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA221271D4CA47E00F25516 /* AccountConfig.swift */; };
 		CEA2E2A71D34C1610095BC57 /* DefaultAPISettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2A61D34C1610095BC57 /* DefaultAPISettingsController.swift */; };
 		CEA2E2AA1D34C2090095BC57 /* DefaultAPIConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEA2E2A91D34C2090095BC57 /* DefaultAPIConfig.plist */; };
 		CEA2E2AC1D3549480095BC57 /* UserKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2AB1D3549480095BC57 /* UserKey.swift */; };
@@ -110,7 +120,6 @@
 		CEDC3B281D7DAE2C0082A8BA /* RefreshTaskParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC3B271D7DAE2C0082A8BA /* RefreshTaskParam.swift */; };
 		CEDC3B2A1D7DB04F0082A8BA /* Paging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC3B291D7DB04F0082A8BA /* Paging.swift */; };
 		CEDC3B321D7E5FB30082A8BA /* DatabaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC3B311D7E5FB30082A8BA /* DatabaseConstants.swift */; };
-		CEDFEA6B1D4F396100E1F8B8 /* SQLiteModelExtension.swift.gyb in Resources */ = {isa = PBXBuildFile; fileRef = CEDFEA6A1D4F396100E1F8B8 /* SQLiteModelExtension.swift.gyb */; };
 		CEDFEA6D1D4F4BF600E1F8B8 /* Status+MicroBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFEA6C1D4F4BF600E1F8B8 /* Status+MicroBlog.swift */; };
 		CEEFD0C41D810B6B007F44A6 /* AttributedLabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEFD0C31D810B6B007F44A6 /* AttributedLabelExtensions.swift */; };
 		CEF2CF451D83F11200131EAE /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2CF441D83F11200131EAE /* UserProfileController.swift */; };
@@ -143,6 +152,21 @@
 		61F2AC8EB68E86535C22CA23 /* Pods-TwidereUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwidereUITests/Pods-TwidereUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6B7616E89DDF2FDDCF64DCCF /* Pods-Twidere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twidere/Pods-Twidere.release.xcconfig"; sourceTree = "<group>"; };
 		A351F2523CA6229EF79900FD /* Pods-Twidere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twidere/Pods-Twidere.debug.xcconfig"; sourceTree = "<group>"; };
+		C57AE13A4A400AF1A533178D /* StatusMetadata.fbs */ = {isa = PBXFileReference; lastKnownFileType = file.fbs; path = StatusMetadata.fbs; sourceTree = "<group>"; };
+		C57AE2699BFD3F292F710BAB /* Account+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Account+MsgPack.swift"; path = "MsgPack/Account+MsgPack.swift"; sourceTree = "<group>"; };
+		C57AE4E5205BA13086302037 /* Model+MsgPack.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = file.gyb; path = "Model+MsgPack.swift.gyb"; sourceTree = "<group>"; };
+		C57AE5E6958143C29828D050 /* AccountConfig.fbs */ = {isa = PBXFileReference; lastKnownFileType = file.fbs; path = AccountConfig.fbs; sourceTree = "<group>"; };
+		C57AEAE3E07FB4B30DE459F4 /* User+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+MsgPack.swift"; path = "MsgPack/User+MsgPack.swift"; sourceTree = "<group>"; };
+		C57AEB1F3B3698B0593D1A7A /* User.fbs */ = {isa = PBXFileReference; lastKnownFileType = file.fbs; path = User.fbs; sourceTree = "<group>"; };
+		C57AEB92156F0BC60058B922 /* SpamItem.fbs */ = {isa = PBXFileReference; lastKnownFileType = file.fbs; path = SpamItem.fbs; sourceTree = "<group>"; };
+		C57AEBFE16928E238A2C39DC /* NSDate+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+MsgPack.swift"; sourceTree = "<group>"; };
+		C57AEC1E08786910159D9559 /* Model+SQLite.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = file.gyb; path = "Model+SQLite.swift.gyb"; sourceTree = "<group>"; };
+		C57AEC3660AF231C90BBBFC7 /* Status+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Status+MsgPack.swift"; path = "MsgPack/Status+MsgPack.swift"; sourceTree = "<group>"; };
+		C57AED99B0DA313A03E0C9B7 /* Status.fbs */ = {isa = PBXFileReference; lastKnownFileType = file.fbs; path = Status.fbs; sourceTree = "<group>"; };
+		C57AEE19CFC443F1699649D9 /* UserKey.fbs */ = {isa = PBXFileReference; lastKnownFileType = file.fbs; path = UserKey.fbs; sourceTree = "<group>"; };
+		C57AEE98EE356927BC9DB6DB /* Primitive+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Primitive+MsgPack.swift"; sourceTree = "<group>"; };
+		C57AEFBEE6655E4EA782DE0B /* Model.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = file.gyb; path = Model.swift.gyb; sourceTree = "<group>"; };
+		C57AEFD49851A9C86C174C8D /* UserKey+MsgPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserKey+MsgPack.swift"; sourceTree = "<group>"; };
 		CE0529E31CF7F35300E06364 /* Twidere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twidere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0529E61CF7F35300E06364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE0529E81CF7F35300E06364 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -202,10 +226,6 @@
 		CE779F251D8563B60053B5C7 /* Account+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+SQLite.swift"; sourceTree = "<group>"; };
 		CE779F261D8563B60053B5C7 /* Status+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Status+SQLite.swift"; sourceTree = "<group>"; };
 		CE779F271D8563B60053B5C7 /* User+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+SQLite.swift"; sourceTree = "<group>"; };
-		CE779F2D1D85692C0053B5C7 /* AccountConfig.fbs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AccountConfig.fbs; sourceTree = "<group>"; };
-		CE779F2E1D85692C0053B5C7 /* User.fbs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = User.fbs; sourceTree = "<group>"; };
-		CE779F2F1D85692C0053B5C7 /* UserKey.fbs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UserKey.fbs; sourceTree = "<group>"; };
-		CE779F301D85692C0053B5C7 /* Status.fbs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Status.fbs; sourceTree = "<group>"; };
 		CE779F351D858B210053B5C7 /* User+MicroBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+MicroBlog.swift"; sourceTree = "<group>"; };
 		CE90A55A1D7EDC9D007050E5 /* SimpleRefreshTaskParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRefreshTaskParam.swift; sourceTree = "<group>"; };
 		CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAPIConfig.swift; sourceTree = "<group>"; };
@@ -221,7 +241,6 @@
 		CE9574991D33DC7B00504D52 /* BasePreferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePreferencesController.swift; sourceTree = "<group>"; };
 		CE95749B1D33DEC300504D52 /* PreferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
 		CE9574B81D349C3F00504D52 /* BrowserSignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserSignInController.swift; sourceTree = "<group>"; };
-		CEA221271D4CA47E00F25516 /* AccountConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountConfig.swift; sourceTree = "<group>"; };
 		CEA2E2A61D34C1610095BC57 /* DefaultAPISettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAPISettingsController.swift; sourceTree = "<group>"; };
 		CEA2E2A91D34C2090095BC57 /* DefaultAPIConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultAPIConfig.plist; sourceTree = "<group>"; };
 		CEA2E2AB1D3549480095BC57 /* UserKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserKey.swift; sourceTree = "<group>"; };
@@ -250,7 +269,6 @@
 		CEDC3B271D7DAE2C0082A8BA /* RefreshTaskParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTaskParam.swift; sourceTree = "<group>"; };
 		CEDC3B291D7DB04F0082A8BA /* Paging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paging.swift; sourceTree = "<group>"; };
 		CEDC3B311D7E5FB30082A8BA /* DatabaseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseConstants.swift; sourceTree = "<group>"; };
-		CEDFEA6A1D4F396100E1F8B8 /* SQLiteModelExtension.swift.gyb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SQLiteModelExtension.swift.gyb; sourceTree = "<group>"; };
 		CEDFEA6C1D4F4BF600E1F8B8 /* Status+MicroBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Status+MicroBlog.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CEEFD0C31D810B6B007F44A6 /* AttributedLabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedLabelExtensions.swift; sourceTree = "<group>"; };
 		CEF2CF441D83F11200131EAE /* UserProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
@@ -310,6 +328,19 @@
 				61F2AC8EB68E86535C22CA23 /* Pods-TwidereUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C57AEF08A154F0228C04EAB7 /* FlatBuffers */ = {
+			isa = PBXGroup;
+			children = (
+				C57AE5E6958143C29828D050 /* AccountConfig.fbs */,
+				C57AEB92156F0BC60058B922 /* SpamItem.fbs */,
+				C57AED99B0DA313A03E0C9B7 /* Status.fbs */,
+				C57AE13A4A400AF1A533178D /* StatusMetadata.fbs */,
+				C57AEB1F3B3698B0593D1A7A /* User.fbs */,
+				C57AEE19CFC443F1699649D9 /* UserKey.fbs */,
+			);
+			path = FlatBuffers;
 			sourceTree = "<group>";
 		};
 		CE0529DA1CF7F35300E06364 = {
@@ -377,6 +408,19 @@
 				CE45CAF61D855EFA0004CC1C /* UserKeyExtensions.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CE347B5C1D866594002152D7 /* MsgPack */ = {
+			isa = PBXGroup;
+			children = (
+				C57AE2699BFD3F292F710BAB /* Account+MsgPack.swift */,
+				C57AEC3660AF231C90BBBFC7 /* Status+MsgPack.swift */,
+				C57AEAE3E07FB4B30DE459F4 /* User+MsgPack.swift */,
+				C57AEFD49851A9C86C174C8D /* UserKey+MsgPack.swift */,
+				C57AEBFE16928E238A2C39DC /* NSDate+MsgPack.swift */,
+				C57AEE98EE356927BC9DB6DB /* Primitive+MsgPack.swift */,
+			);
+			name = MsgPack;
 			sourceTree = "<group>";
 		};
 		CE497F911D6958F7000F16D2 /* UI */ = {
@@ -459,12 +503,12 @@
 		CE497FBF1D6B08B4000F16D2 /* SQLite */ = {
 			isa = PBXGroup;
 			children = (
+				CEDC3B201D7D87F80082A8BA /* SQLite+UserVersion.swift */,
 				CE779F251D8563B60053B5C7 /* Account+SQLite.swift */,
+				CE779F271D8563B60053B5C7 /* User+SQLite.swift */,
+				CE779F261D8563B60053B5C7 /* Status+SQLite.swift */,
 				CE45CAEE1D8556DE0004CC1C /* AccountConfig+Value.swift */,
 				CE4B1A9C1D7172F00017CB85 /* Status+Value.swift */,
-				CEDC3B201D7D87F80082A8BA /* SQLite+UserVersion.swift */,
-				CE779F261D8563B60053B5C7 /* Status+SQLite.swift */,
-				CE779F271D8563B60053B5C7 /* User+SQLite.swift */,
 				CE45CAF41D855AE10004CC1C /* User+Value.swift */,
 				CE497FB91D6A8A65000F16D2 /* UserKey+Value.swift */,
 				CE347B5A1D865F07002152D7 /* MsgPack+Value.swift */,
@@ -535,7 +579,6 @@
 			isa = PBXGroup;
 			children = (
 				CE45CA851D85416C0004CC1C /* Account.swift */,
-				CEA221271D4CA47E00F25516 /* AccountConfig.swift */,
 				CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */,
 				CE59930F1D83901B00653220 /* MediaItem.swift */,
 				CEDC3B291D7DB04F0082A8BA /* Paging.swift */,
@@ -646,6 +689,7 @@
 		CEA2E2BF1D379CB10095BC57 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CE347B5C1D866594002152D7 /* MsgPack */,
 				CE4B1AA31D7175D80017CB85 /* MicroBlog */,
 				CE29039C1D4CEF0B0056D0E2 /* Model */,
 				CE497FBF1D6B08B4000F16D2 /* SQLite */,
@@ -765,6 +809,7 @@
 			isa = PBXGroup;
 			children = (
 				CEDFEA691D4F392900E1F8B8 /* Models */,
+				C57AEF08A154F0228C04EAB7 /* FlatBuffers */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -773,13 +818,11 @@
 			isa = PBXGroup;
 			children = (
 				CE45CAF11D8559780004CC1C /* Account.model.yml */,
-				CE779F2D1D85692C0053B5C7 /* AccountConfig.fbs */,
-				CEDFEA6A1D4F396100E1F8B8 /* SQLiteModelExtension.swift.gyb */,
-				CE779F301D85692C0053B5C7 /* Status.fbs */,
 				CE45CA811D853D310004CC1C /* Status.model.yml */,
-				CE779F2E1D85692C0053B5C7 /* User.fbs */,
 				CE45CAF01D8559780004CC1C /* User.model.yml */,
-				CE779F2F1D85692C0053B5C7 /* UserKey.fbs */,
+				C57AE4E5205BA13086302037 /* Model+MsgPack.swift.gyb */,
+				C57AEC1E08786910159D9559 /* Model+SQLite.swift.gyb */,
+				C57AEFBEE6655E4EA782DE0B /* Model.swift.gyb */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -915,12 +958,10 @@
 				CE45CAF21D8559780004CC1C /* User.model.yml in Resources */,
 				CE497FC91D6B2017000F16D2 /* GapCell.xib in Resources */,
 				CE5993131D83B5C200653220 /* Pages.storyboard in Resources */,
-				CE779F311D85692C0053B5C7 /* AccountConfig.fbs in Resources */,
 				CE0529F41CF7F35300E06364 /* LaunchScreen.storyboard in Resources */,
 				CE59930B1D82EDD100653220 /* Filters.storyboard in Resources */,
 				CE358B751D825942002A33B3 /* Viewers.storyboard in Resources */,
 				CEA2E2AA1D34C2090095BC57 /* DefaultAPIConfig.plist in Resources */,
-				CEDFEA6B1D4F396100E1F8B8 /* SQLiteModelExtension.swift.gyb in Resources */,
 				CE0529F11CF7F35300E06364 /* Assets.xcassets in Resources */,
 				CED41F451D313B6C0089E0B6 /* Preferences.storyboard in Resources */,
 				CE497FA51D69625A000F16D2 /* StatusesListController.xib in Resources */,
@@ -928,11 +969,17 @@
 				CEA2E2AF1D3681D00095BC57 /* Compose.storyboard in Resources */,
 				CE45CAF31D8559780004CC1C /* Account.model.yml in Resources */,
 				CE497FB41D698B1B000F16D2 /* UsersListController.xib in Resources */,
-				CE779F331D85692C0053B5C7 /* UserKey.fbs in Resources */,
-				CE779F321D85692C0053B5C7 /* User.fbs in Resources */,
 				CE45CA821D853D310004CC1C /* Status.model.yml in Resources */,
-				CE779F341D85692C0053B5C7 /* Status.fbs in Resources */,
 				CE497FAF1D6988CC000F16D2 /* UserCell.xib in Resources */,
+				C57AE8C150FD70314E4CB84B /* Model+MsgPack.swift.gyb in Resources */,
+				C57AE5C144B41D4EAEAA208A /* Model+SQLite.swift.gyb in Resources */,
+				C57AE78DE03CD3814988E57B /* Model.swift.gyb in Resources */,
+				C57AED98D3DA6236A9EAEDEB /* AccountConfig.fbs in Resources */,
+				C57AE1FB6C2A13703F159759 /* SpamItem.fbs in Resources */,
+				C57AE91A5E5FAC7D98028959 /* Status.fbs in Resources */,
+				C57AEF1FE74729FF47DD8346 /* StatusMetadata.fbs in Resources */,
+				C57AEF30E45708D6D7D2A6A4 /* User.fbs in Resources */,
+				C57AEE68AA95743222EFAABA /* UserKey.fbs in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1096,7 +1143,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE45CAF71D855EFA0004CC1C /* UserKeyExtensions.swift in Sources */,
-				CEA2212F1D4CA47E00F25516 /* AccountConfig.swift in Sources */,
 				CEA2E2AC1D3549480095BC57 /* UserKey.swift in Sources */,
 				CE0529E91CF7F35300E06364 /* MainViewController.swift in Sources */,
 				CEA2E2D11D3A7EA20095BC57 /* HomeRootController.swift in Sources */,
@@ -1174,6 +1220,12 @@
 				CE4B1A9D1D7172F00017CB85 /* Status+Value.swift in Sources */,
 				CE497FA91D697CEA000F16D2 /* ConvertUtils.swift in Sources */,
 				CE779F2A1D8563B60053B5C7 /* Status+SQLite.swift in Sources */,
+				C57AE152999C4C9918F9CEF1 /* Account+MsgPack.swift in Sources */,
+				C57AEA42EF7C3DE4D12991FE /* Status+MsgPack.swift in Sources */,
+				C57AE1F6F9223B4B416CB18F /* User+MsgPack.swift in Sources */,
+				C57AEC9B664841852E575F35 /* UserKey+MsgPack.swift in Sources */,
+				C57AE0E1F78A5EF2EDD4326A /* NSDate+MsgPack.swift in Sources */,
+				C57AE8870F9B823E2C89AFB8 /* Primitive+MsgPack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

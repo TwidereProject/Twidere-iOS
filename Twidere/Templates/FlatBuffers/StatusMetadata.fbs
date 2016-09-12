@@ -1,35 +1,7 @@
+include "UserKey.fbs"
+
 enum MediaItemType: byte {
   Unknown = 0, Image = 1, Video = 2, AnimatedGif = 3, ExternalPlayer = 4, VariableType = 5
-}
-
-table Status {
- _id:long;
- accountKey:UserKey;
- sortId:long;
- positionKey:long;
- isGap:bool;
- createdAt:long;
- id:string;
- userKey:UserKey;
- userName:string;
- userScreenName:string;
- userProfileImage:string;
- textPlain:string;
- textDisplay:string;
- metadata:StatusMetadata;
- quotedId:string;
- quotedUserKey:UserKey;
- quotedUserName:string;
- quotedUserScreenName:string;
- quotedUserProfileImage:string;
- quotedTextPlain:string;
- quotedTextDisplay:string;
- quotedMetadata:StatusMetadata;
- retweetedByUserKey:UserKey;
- retweetedByUserName:string;
- retweetedByUserScreenName:string;
- retweetedByUserProfileImage:string;
- retweetId:string;
 }
 
 table StatusMetadata {
@@ -99,9 +71,4 @@ table VideoMediaVariant {
   contentType: string;
 }
 
-table UserKey {
-  id:string;
-  host:string;
-}
-
-root_type Status;
+root_type StatusMetadata;
