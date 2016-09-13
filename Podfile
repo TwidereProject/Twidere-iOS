@@ -32,6 +32,7 @@ target 'Twidere' do
   pod 'AttributedLabel', '~> 0.3.1'
   pod 'KDInteractiveNavigationController', '~> 0.1.2'
   pod 'ObjectMapper', :git => 'https://github.com/Hearst-DD/ObjectMapper.git', :tag => '1.5.0'
+  pod 'SwiftOverlays', '~> 2.0.0'
 end
 
 target 'TwidereTests' do

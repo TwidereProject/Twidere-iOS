@@ -864,7 +864,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE052A0E1CF7F35300E06364 /* Build configuration list for PBXNativeTarget "Twidere" */;
 			buildPhases = (
-				FED443B8ADC217B91581E92A /* 📦 Check Pods Manifest.lock */,
+				FED443B8ADC217B91581E92A /* [CP] Check Pods Manifest.lock */,
 				1ECD101FF63F0B92B0AA2486 /* [CP] Check Pods Manifest.lock */,
 				CE0529DF1CF7F35300E06364 /* Sources */,
 				CE0529E01CF7F35300E06364 /* Frameworks */,
@@ -887,7 +887,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE052A111CF7F35300E06364 /* Build configuration list for PBXNativeTarget "TwidereTests" */;
 			buildPhases = (
-				8D901DCCC96D2795E94D6E3B /* 📦 Check Pods Manifest.lock */,
+				8D901DCCC96D2795E94D6E3B /* [CP] Check Pods Manifest.lock */,
 				122F59111B5305B7054B908D /* [CP] Check Pods Manifest.lock */,
 				CE0529F61CF7F35300E06364 /* Sources */,
 				CE0529F71CF7F35300E06364 /* Frameworks */,
@@ -911,7 +911,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE052A141CF7F35300E06364 /* Build configuration list for PBXNativeTarget "TwidereUITests" */;
 			buildPhases = (
-				76419A03C8DA32BB83854B1B /* 📦 Check Pods Manifest.lock */,
+				76419A03C8DA32BB83854B1B /* [CP] Check Pods Manifest.lock */,
 				549985ADC72B2FF2394728C5 /* [CP] Check Pods Manifest.lock */,
 				CE052A011CF7F35300E06364 /* Sources */,
 				CE052A021CF7F35300E06364 /* Frameworks */,
@@ -1122,19 +1122,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Twidere/Pods-Twidere-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		76419A03C8DA32BB83854B1B /* 📦 Check Pods Manifest.lock */ = {
+		76419A03C8DA32BB83854B1B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7B841558B50E9345C753B191 /* [CP] Copy Pods Resources */ = {
@@ -1167,19 +1167,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TwidereUITests/Pods-TwidereUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8D901DCCC96D2795E94D6E3B /* 📦 Check Pods Manifest.lock */ = {
+		8D901DCCC96D2795E94D6E3B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9EA744A7688B4064B093AD91 /* [CP] Copy Pods Resources */ = {
@@ -1272,19 +1272,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TwidereUITests/Pods-TwidereUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FED443B8ADC217B91581E92A /* 📦 Check Pods Manifest.lock */ = {
+		FED443B8ADC217B91581E92A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

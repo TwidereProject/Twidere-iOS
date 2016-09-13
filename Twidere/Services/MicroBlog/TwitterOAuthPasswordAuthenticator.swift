@@ -51,7 +51,7 @@ class TwitterOAuthPasswordAuthenticator {
                 }
                 throw error
             }.then { authorizeResponseData -> Promise<OAuthToken> in
-                // Got oauth pin, fetech access token
+                // Got oauth pin, fetch access token
                 return self.oauth.getAccessToken(authorizeResponseData.requestToken, oauthVerifier: authorizeResponseData.oauthPin)
         }
     }

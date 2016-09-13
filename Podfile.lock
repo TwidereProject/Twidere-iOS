@@ -43,6 +43,7 @@ PODS:
   - STPopup (1.8.0)
   - StringExtensionHTML (0.1.3)
   - SwiftEventBus (1.1.0)
+  - SwiftOverlays (2.0.1)
   - SwiftyJSON (2.3.2)
   - SwiftyUserDefaults (2.2.0)
   - ThumborURL (0.0.4)
@@ -73,6 +74,7 @@ DEPENDENCIES:
   - STPopup (~> 1.8)
   - StringExtensionHTML (~> 0.1)
   - SwiftEventBus (= 1.1.0)
+  - SwiftOverlays (~> 2.0.0)
   - SwiftyJSON (~> 2.3.2)
   - SwiftyUserDefaults (~> 2.2)
   - ThumborURL (= 0.0.4)
@@ -116,6 +118,7 @@ SPEC CHECKSUMS:
   STPopup: af630a85628e4226ffcbda5caaead0d99aed13a8
   StringExtensionHTML: a56bc49c4f11e7a3893b68aff7f7786eaa11d345
   SwiftEventBus: d33b51752d4e3e994f0ea7b31873f0beca7eada0
+  SwiftOverlays: 317afbb3eeb7f9d8545b1e6592500c89aadb6d8f
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   SwiftyUserDefaults: e7c8197a9d4068702e7f2406a968cae413b8de27
   ThumborURL: 0e1f058fb79c37660aa7d302fe77c48366902325
@@ -125,6 +128,6 @@ SPEC CHECKSUMS:
   UIView+FDCollapsibleConstraints: 9357eaf03b4e088263ab74a3b86a382a64ce38dd
   UIView+TouchHighlighting: cedbcd90c965e7b1418c80a04fc8266398a738f1
 
-PODFILE CHECKSUM: 5e2e4e0f72990aefbfacdaa7b4ad3ff22f683272
+PODFILE CHECKSUM: fd5e898d0529d921eddff6a22bb4255b8ea1be75
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.1.0.rc.1

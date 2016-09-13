@@ -12,6 +12,7 @@ import CoreData
 import PromiseKit
 import SwiftyJSON
 import ALSLayouts
+import SwiftOverlays
 
 class SignInController: UIViewController {
     
@@ -126,14 +127,24 @@ class SignInController: UIViewController {
         let auth = OAuthAuthorization(apiConfig.consumerKey!, apiConfig.consumerSecret!)
         let oauth = OAuthService(endpoint: endpoint, auth: auth)
         
-        oauth.getRequestToken("oob").then { token -> Void in
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("BrowserSignIn") as! BrowserSignInController
-            vc.customAPIConfig = self.customAPIConfig
-            vc.requestToken = token
-            vc.callback = self.finishBrowserSignIn
-            self.showViewController(vc, sender: self)
+        
+        firstly { () -> AnyPromise in
+            return AnyPromise(bound: Promise<Void> { fullfill, reject in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+                SwiftOverlays.showBlockingWaitOverlay()
+                fullfill()
+                })
+            }.then { _ in
+                return oauth.getRequestToken("oob")
+            }.then { token -> Void in
+                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("BrowserSignIn") as! BrowserSignInController
+                vc.customAPIConfig = self.customAPIConfig
+                vc.requestToken = token
+                vc.callback = self.finishBrowserSignIn
+                self.showViewController(vc, sender: self)
             }.always {
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                SwiftOverlays.removeAllBlockingOverlays()
             }.error { error in
                 debugPrint(error)
         }
@@ -253,37 +264,39 @@ class SignInController: UIViewController {
         firstly { () -> AnyPromise in
             return AnyPromise(bound: Promise<Void> { fullfill, reject in
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+                SwiftOverlays.showBlockingWaitOverlay()
                 fullfill()
-            })
-        }.then { void in
-            return action(config: self.customAPIConfig)
-        }.then { result throws -> Account in
-            let json = result.user
-            let config = self.customAPIConfig
-            let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
-            let account = Account()
-            let user = User(accountJson: json)
-            account.key = user.key
-            account.type = String(AccountType.Twitter)
-            account.apiUrlFormat = config.apiUrlFormat
-            account.authType = String(config.authType)
-            account.basicUsername = result.username
-            account.basicPassword = result.password
-            account.consumerKey = config.consumerKey
-            account.consumerSecret = config.consumerSecret
-            account.noVersionSuffix = config.noVersionSuffix
-            account.oauthToken = result.accessToken?.oauthToken
-            account.oauthTokenSecret = result.accessToken?.oauthTokenSecret
-            account.sameOAuthSigningUrl = config.sameOAuthSigningUrl
-            account.user = user
-            try db.transaction {
-                try db.run(Account.insertData(accountsTable, model: account))
-            }
-            return account
+                })
+            }.then { _ -> Promise<SignInResult> in
+                return action(config: self.customAPIConfig)
+            }.then { result throws -> Account in
+                let json = result.user
+                let config = self.customAPIConfig
+                let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
+                let account = Account()
+                let user = User(accountJson: json)
+                account.key = user.key
+                account.type = String(AccountType.Twitter)
+                account.apiUrlFormat = config.apiUrlFormat
+                account.authType = String(config.authType)
+                account.basicUsername = result.username
+                account.basicPassword = result.password
+                account.consumerKey = config.consumerKey
+                account.consumerSecret = config.consumerSecret
+                account.noVersionSuffix = config.noVersionSuffix
+                account.oauthToken = result.accessToken?.oauthToken
+                account.oauthTokenSecret = result.accessToken?.oauthTokenSecret
+                account.sameOAuthSigningUrl = config.sameOAuthSigningUrl
+                account.user = user
+                try db.transaction {
+                    try db.run(Account.insertData(accountsTable, model: account))
+                }
+                return account
             }.then { result -> Void in
                 let home = self.storyboard!.instantiateViewControllerWithIdentifier("Main")
                 self.presentViewController(home, animated: true, completion: nil)
             }.always {
+                SwiftOverlays.removeAllBlockingOverlays()
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             }.error { error in
                 if (error is AuthenticationError) {
