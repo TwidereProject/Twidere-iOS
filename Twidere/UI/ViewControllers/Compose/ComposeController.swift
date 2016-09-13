@@ -197,8 +197,15 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     }
     
     func textViewDidChange(textView: UITextView) {
-        let textLength = TwitterText.tweetLength(textView.text)
-        sendTextCountView.text = "\(textLength)"
+        let accounts = try! allAccounts()
+        let textLimit = accounts.map { $0.config?.characterLimit }.reduce(140) { (result, limit) -> Int in
+            if (limit > 0 && limit < result) {
+                return limit!
+            }
+            return result
+        }
+        let textLength = Int(TwitterText.tweetLength(textView.text))
+        sendTextCountView.text = "\(textLimit - textLength)"
     }
     
     

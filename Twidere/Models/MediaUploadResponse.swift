@@ -24,6 +24,16 @@ class MediaUploadResponse: StaticMappable {
         image <- map["image"]
         video <- map["video"]
         processingInfo <- map["processing_info"]
+        
+        if (map.mappingType == .FromJSON) {
+            if (mediaId == nil) {
+                mediaId = map["media_id_string"].value()
+            }
+            if (mediaId == nil) {
+                let idInt: Int64? = map["media_id"].value()
+                mediaId = String(idInt)
+            }
+        }
     }
     
     static func objectForMapping(map: Map) -> BaseMappable? {

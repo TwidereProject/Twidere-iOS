@@ -6,7 +6,7 @@ use_frameworks!
 target 'Twidere' do
   pod 'SwiftyJSON', '~> 2.3.2'
   pod 'CryptoSwift', '~> 0.5.2'
-  pod 'Alamofire', '~> 3.5'
+  pod 'Alamofire', '~> 3.5' # Has Swift 3 version
   pod 'JVFloatLabeledTextField', '1.1.1'
   pod 'ActionSheetPicker-3.0', '2.2.0'
   pod 'StaticDataTableViewController', '2.0.5'
@@ -14,7 +14,7 @@ target 'Twidere' do
   pod 'Kanna', '~> 1.1'
   pod 'CrossroadRegex', '~> 0.8'
   pod 'SwiftyUserDefaults', '~> 2.2'
-  pod 'PromiseKit', '~> 3.5'
+  pod 'PromiseKit', '~> 3.5' # Has Swift 3 version
   pod 'STPopup', '~> 1.8'
   pod 'UITextView+Placeholder', '~> 1.2'
   pod 'twitter-text', '~> 1.14'

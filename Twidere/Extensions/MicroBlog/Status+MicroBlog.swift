@@ -131,7 +131,7 @@ extension Status {
                 }
                 //
                 if let insertIdx = indices.indexOf({ item -> Bool in return item.startIndex > range.startIndex }) {
-                    indices.insert(range, at: insertIdx)
+                    indices.insert(range, atIndex: insertIdx)
                 } else {
                     indices.append(range)
                 }

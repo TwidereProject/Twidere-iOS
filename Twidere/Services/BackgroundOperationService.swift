@@ -16,171 +16,186 @@ class BackgroundOperationService {
     
     func updateStatus(update: StatusUpdate) {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        dispatch_promise { () -> UpdateStatusResult in
-            let BULK_SIZE = 256 * 1024// 128 Kib
-            
-            func uploadMedia(uploader: MediaUploader?, update: StatusUpdate, pendingUpdate: PendingStatusUpdate) throws {
-                // TODO on start uploading media
-                if (uploader == nil) {
-                    try uploadMediaWithDefaultProvider(update, pendingUpdate: pendingUpdate)
-                } else {
-                    uploadMediaWithExtension(uploader!, update: update, pendingUpdate: pendingUpdate)
+        
+        let BULK_SIZE = 256 * 1024// 128 Kib
+        
+        func uploadMedia(uploader: MediaUploader?, update: StatusUpdate, pendingUpdate: PendingStatusUpdate) -> Promise<Bool> {
+            // TODO on start uploading media
+            if (uploader == nil) {
+                return uploadMediaWithDefaultProvider(update, pendingUpdate: pendingUpdate)
+            } else {
+                return uploadMediaWithExtension(uploader!, update: update, pendingUpdate: pendingUpdate)
+            }
+        }
+        
+        func uploadMediaWithDefaultProvider(update: StatusUpdate, pendingUpdate: PendingStatusUpdate) -> Promise<Bool> {
+            // Return empty array if no media attached
+            if (update.media?.isEmpty ?? true) {
+                return Promise<Bool> { fullfill, reject in
+                    fullfill(true)
                 }
             }
-            
-            func uploadMediaWithDefaultProvider(update: StatusUpdate, pendingUpdate: PendingStatusUpdate) throws {
-                // Return empty array if no media attached
-                if (update.media?.isEmpty ?? true) {
-                    return
-                }
-                let owners = update.accounts.filter{ (account: Account) -> Bool in
-                    return account.typeInferred == .Twitter
-                    }.map { account -> UserKey in
-                        return account.key!
-                }
-                let ownerIds = owners.map { key -> String in
-                    return key.id
-                }
-                for i in 0..<pendingUpdate.length {
-                    let account = update.accounts[i]
-                    let mediaIds: [String]?
-                    switch (account.typeInferred) {
-                    case .Twitter:
-                        let upload = account.newMicroblogInstance("upload")
-                        if (pendingUpdate.sharedMediaIds != nil) {
-                            mediaIds = pendingUpdate.sharedMediaIds
-                        } else {
-                            mediaIds = try uploadAllMediaShared(upload, update: update, ownerIds: ownerIds, chucked: true)
-                            pendingUpdate.sharedMediaIds = mediaIds
+            let owners = update.accounts.filter{ (account: Account) -> Bool in
+                return account.typeInferred == .Twitter
+                }.map { account -> UserKey in
+                    return account.key!
+            }
+            let ownerIds = owners.map { key -> String in
+                return key.id
+            }
+            pendingUpdate.sharedMediaOwners = owners
+            return join((0..<pendingUpdate.length).map { i -> Promise<Bool> in
+                let account = update.accounts[i]
+                switch (account.typeInferred) {
+                case .Twitter:
+                    let upload = account.newMicroblogInstance("upload")
+                    if (pendingUpdate.sharedMediaIds != nil) {
+                        return Promise<Bool> { fullfill, reject in
+                            pendingUpdate.mediaIds[i] = pendingUpdate.sharedMediaIds
+                            fullfill(true)
                         }
-                        
-                    case .Fanfou:
-                        // Nope, fanfou uses photo uploading API
-                        mediaIds = nil
-                    case .StatusNet:
-                        // TODO use their native API
-                        let upload = account.newMicroblogInstance("upload")
-                        mediaIds = try uploadAllMediaShared(upload, update: update, ownerIds: ownerIds, chucked: false)
                     }
-                    pendingUpdate.mediaIds[i] = mediaIds
-                }
-                pendingUpdate.sharedMediaOwners = owners
-            }
-            
-            func uploadAllMediaShared(upload: MicroBlogService, update: StatusUpdate, ownerIds: [String], chucked: Bool) throws -> [String] {
-                return try update.media!.enumerate().map{ (index, media) throws -> String in
-                    // TODO upload then get id
-                    let fm = NSFileManager.defaultManager()
-                    let data = fm.contentsAtPath(media.path)!
-                    let promise: Promise<MediaUploadResponse>
-                    if (chucked) {
-                        promise = uploadMediaChucked(upload, body: data, contentType: "image/jpeg", ownerIds: ownerIds)
-                    } else {
-                        promise = upload.uploadMedia(data, additionalOwners: ownerIds)
+                    return uploadAllMediaShared(upload, update: update, ownerIds: ownerIds, chucked: true)
+                        .then { ids -> Bool in
+                            pendingUpdate.mediaIds[i] = ids
+                            pendingUpdate.sharedMediaIds = ids
+                            return true
                     }
-                    while (promise.pending) {}
-                    if (promise.fulfilled) {
-                        return promise.value!.mediaId
-                    } else {
-                        throw promise.error!
+                case .Fanfou:
+                    // Nope, fanfou uses photo uploading API
+                    return Promise { fullfill, reject in
+                        fullfill(true)
+                    }
+                case .StatusNet:
+                    // TODO use their native API
+                    let upload = account.newMicroblogInstance("upload")
+                    return uploadAllMediaShared(upload, update: update, ownerIds: ownerIds, chucked: false)
+                        .then { ids -> Bool in
+                            pendingUpdate.mediaIds[i] = ids
+                            return true
                     }
                 }
+                
+            }).then { results -> Bool in
+                return true
             }
-            
-            func uploadMediaChucked(upload: MicroBlogService, body: NSData, contentType: String, ownerIds: [String]) -> Promise<MediaUploadResponse> {
-                let length = body.length
-                return upload.initUploadMedia(contentType, totalBytes: length, additionalOwners: ownerIds).then { (response) -> Promise<MediaUploadResponse> in
+        }
+        
+        func uploadAllMediaShared(upload: MicroBlogService, update: StatusUpdate, ownerIds: [String], chucked: Bool) -> Promise<[String]> {
+            return join(update.media!.map { media -> Promise<MediaUploadResponse> in
+                // TODO upload then get id
+                let fm = NSFileManager.defaultManager()
+                let data = fm.contentsAtPath(media.path)!
+                if (chucked) {
+                    return uploadMediaChucked(upload, body: data, contentType: "image/jpeg", ownerIds: ownerIds)
+                } else {
+                    return upload.uploadMedia(data, additionalOwners: ownerIds)
+                }
+                }).then { responses -> [String] in
+                    return responses.map { $0.mediaId }
+            }
+        }
+        
+        func uploadMediaChucked(upload: MicroBlogService, body: NSData, contentType: String, ownerIds: [String]) -> Promise<MediaUploadResponse> {
+            let length = body.length
+            return upload.initUploadMedia(contentType, totalBytes: length, additionalOwners: ownerIds)
+                .then { (response) -> Promise<MediaUploadResponse> in
                     let segments = length == 0 ? 0 : length / BULK_SIZE + 1
-                    return when((0..<segments).map { (segmentIndex) -> Promise<Int> in
-                        let currentBulkSize = min(BULK_SIZE, length - segmentIndex * BULK_SIZE)
-                        let bulk = body.subdataWithRange(NSMakeRange(segmentIndex * BULK_SIZE, currentBulkSize))
-                        return upload.appendUploadMedia(response.mediaId, segmentIndex: segmentIndex, media: bulk)
+                    
+                    // Reject all if one task rejected
+                    return join((0..<segments)
+                        .map { (segmentIndex) -> Promise<Int> in
+                            let currentBulkSize = min(BULK_SIZE, length - segmentIndex * BULK_SIZE)
+                            let bulk = body.subdataWithRange(NSMakeRange(segmentIndex * BULK_SIZE, currentBulkSize))
+                            return upload.appendUploadMedia(response.mediaId, segmentIndex: segmentIndex, media: bulk)
                         }).then { responses -> MediaUploadResponse in
                             return response
                     }
-                    }.then { response -> Promise<MediaUploadResponse> in
-                        return upload.finalizeUploadMedia(response.mediaId)
-                    }.then { response -> Promise<MediaUploadResponse> in
-                        return Promise { fullfill, reject in
-                            var info = response.processingInfo
-                            while (info?.checkAfterSecs > 0) {
-                                sleep(UInt32(info!.checkAfterSecs!))
-                                upload.getUploadMediaStatus(response.mediaId).then { response -> Void in
-                                    info = response.processingInfo
-                                }
+                }.then { response -> Promise<MediaUploadResponse> in
+                    return upload.finalizeUploadMedia(response.mediaId)
+                }.then { response -> Promise<MediaUploadResponse> in
+                    
+                    func waitForProcess(response: MediaUploadResponse) -> Promise<MediaUploadResponse> {
+                        // Server side is processing media
+                        if let checkAfterSecs = response.processingInfo?.checkAfterSecs where checkAfterSecs > 0 {
+                            // Wait after `checkAfterSecs` seconds
+                            after(NSTimeInterval(checkAfterSecs))
+                                .then{ _ -> Promise<MediaUploadResponse> in
+                                    // Fetch new upload status
+                                    return upload.getUploadMediaStatus(response.mediaId)
+                                }.then { newResp -> Promise<MediaUploadResponse> in
+                                    // Recursions are bad, but it's the only possible way in Promise
+                                    return waitForProcess(newResp)
                             }
-                            if (info.state == "failed") {
+                        }
+                        // No processing info available, check failed or completed instead
+                        return Promise { fullfill, reject in
+                            if (response.processingInfo?.state == "failed") {
                                 reject(MicroBlogError.RequestError(code: 0, message: "uploadMediaChucked"))
                             }
                             fullfill(response)
                         }
-                }
-            }
-            
-            func uploadMediaWithExtension(uploader: MediaUploader, update: StatusUpdate, pendingUpdate: PendingStatusUpdate) {
-                
-            }
-            
-            func requestUpdateStatus(statusUpdate: StatusUpdate, pendingUpdate: PendingStatusUpdate) -> UpdateStatusResult {
-                var statuses: [Status?] = Array(count: pendingUpdate.length, repeatedValue: nil)
-                var exceptions: [ErrorType?] = Array(count: pendingUpdate.length, repeatedValue: nil)
-                
-                for i in 0 ..< pendingUpdate.length {
-                    let account = statusUpdate.accounts[i]
-                    let microBlog = account.newMicroblogInstance("api")
-                    switch (account.type) {
-                    default:
-                        let promise = twitterUpdateStatus(microBlog, statusUpdate: statusUpdate, pendingUpdate: pendingUpdate, overrideText: pendingUpdate.overrideTexts[i], index: i)
-                        while (promise.pending) {}
-                        statuses[i] = promise.value
-                        exceptions[i] = promise.error
                     }
-                }
-                return UpdateStatusResult(statuses: statuses, exceptions: exceptions)
+                    
+                    return waitForProcess(response)
             }
-            
-            func twitterUpdateStatus(microBlog: MicroBlogService, statusUpdate: StatusUpdate,
-                pendingUpdate: PendingStatusUpdate, overrideText: String,
-                index: Int) -> Promise<Status> {
-                let status = UpdateStatusRequest(text: overrideText)
-                if (statusUpdate.inReplyToStatus != nil) {
-                    status.inReplyToStatusId = statusUpdate.inReplyToStatus!.id
-                }
-                if (statusUpdate.repostStatusId != nil) {
-                    status.repostStatusId = statusUpdate.repostStatusId
-                }
-                if (statusUpdate.attachmentUrl != nil) {
-                    status.attachmentUrl = statusUpdate.attachmentUrl
-                }
-                if (statusUpdate.location != nil) {
-                    status.location = statusUpdate.location
-                    status.displayCoordinates = statusUpdate.displayCoordinates
-                }
-                if let mediaIds = pendingUpdate.mediaIds[index] {
-                    status.mediaIds = mediaIds
-                }
-                status.possiblySensitive = statusUpdate.possiblySensitive
-                return microBlog.updateStatus(status)
+        }
+        
+        func uploadMediaWithExtension(uploader: MediaUploader, update: StatusUpdate, pendingUpdate: PendingStatusUpdate) -> Promise<Bool> {
+            return Promise { fullfill, reject in
+                reject(NSError(domain: "uploadMediaWithExtension not implemented", code: -1, userInfo: nil))
             }
-            
-            let uploader: MediaUploader? = nil
-            
-            let pendingUpdate = PendingStatusUpdate(length: update.accounts.count, defaultText: update.text)
-            
-            try uploadMedia(uploader, update: update, pendingUpdate: pendingUpdate)
-            
-            let result: UpdateStatusResult = requestUpdateStatus(update, pendingUpdate: pendingUpdate)
-            if (!result.successful) {
-                throw StatusUpdateError.SendFailed
+        }
+        
+        func requestUpdateStatus(statusUpdate: StatusUpdate, pendingUpdate: PendingStatusUpdate) -> Promise<[Status]> {
+            return when((0..<pendingUpdate.length).map { i -> Promise<Status> in
+                let account = statusUpdate.accounts[i]
+                let microBlog = account.newMicroblogInstance("api")
+                switch (account.type) {
+                default:
+                    return twitterUpdateStatus(microBlog, statusUpdate: statusUpdate, pendingUpdate: pendingUpdate, overrideText: pendingUpdate.overrideTexts[i], index: i)
+                }
+                })
+        }
+        
+        func twitterUpdateStatus(microBlog: MicroBlogService, statusUpdate: StatusUpdate,
+                                 pendingUpdate: PendingStatusUpdate, overrideText: String,
+                                 index: Int) -> Promise<Status> {
+            let status = UpdateStatusRequest(text: overrideText)
+            if (statusUpdate.inReplyToStatus != nil) {
+                status.inReplyToStatusId = statusUpdate.inReplyToStatus!.id
             }
-            return result
-        }.then { result -> Void in
-            JDStatusBarNotification.showWithStatus("Tweet sent!", dismissAfter: 1.5, styleName: JDStatusBarStyleSuccess)
-        }.always {
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-        }.error { error in
-            debugPrint(error)
-            JDStatusBarNotification.showWithStatus("\(error)", dismissAfter: 1.5, styleName: JDStatusBarStyleError)
+            if (statusUpdate.repostStatusId != nil) {
+                status.repostStatusId = statusUpdate.repostStatusId
+            }
+            if (statusUpdate.attachmentUrl != nil) {
+                status.attachmentUrl = statusUpdate.attachmentUrl
+            }
+            if (statusUpdate.location != nil) {
+                status.location = statusUpdate.location
+                status.displayCoordinates = statusUpdate.displayCoordinates
+            }
+            if let mediaIds = pendingUpdate.mediaIds[index] {
+                status.mediaIds = mediaIds
+            }
+            status.possiblySensitive = statusUpdate.possiblySensitive
+            return microBlog.updateStatus(status)
+        }
+        
+        let uploader: MediaUploader? = nil
+        
+        let pendingUpdate = PendingStatusUpdate(length: update.accounts.count, defaultText: update.text)
+        
+        uploadMedia(uploader, update: update, pendingUpdate: pendingUpdate)
+            .then { succeed in
+                return requestUpdateStatus(update, pendingUpdate: pendingUpdate)
+            }.then { result -> Void in
+                JDStatusBarNotification.showWithStatus("Tweet sent!", dismissAfter: 1.5, styleName: JDStatusBarStyleSuccess)
+            }.always {
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            }.error { error in
+                debugPrint(error)
+                JDStatusBarNotification.showWithStatus("\(error)", dismissAfter: 1.5, styleName: JDStatusBarStyleError)
         }
     }
     

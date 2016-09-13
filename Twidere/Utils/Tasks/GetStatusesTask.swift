@@ -22,6 +22,7 @@ class GetStatusesTask {
         let sinceSortIds = param.sinceSortIds
         
         let loadItemLimit = Defaults[.loadItemLimit] ?? defaultLoadItemLimit
+        // Try to fetch for all accounts, continue even there are rejected tasks
         return when(accounts.enumerate().map { (i, account) -> Promise<StatusListResponse> in
             let twitter = account.newMicroblogInstance()
             let paging = Paging()
@@ -49,14 +50,14 @@ class GetStatusesTask {
                     paging.latestResults = true
                 }
             }
-            return Promise {fullfill, reject in
-                fetchAction(account, twitter, paging).then { statuses -> [Status] in
+            return Promise<StatusListResponse> {fullfill, reject in
+                fetchAction(account, twitter, paging).thenInBackground { statuses -> [Status] in
                     
                     try storeStatus(account, statuses: statuses, sinceId: sinceId, maxId: maxId, sinceSortId: sinceSortId, maxSortId: maxSortId, loadItemLimit: loadItemLimit, table: table, notify: false)
                     
                     // TODO cache related data and preload
                     return statuses
-                    }.then { statuses in
+                    }.then { statuses -> Void in
                         fullfill(StatusListResponse(accountKey: account.key, statuses: statuses))
                     }.error { error in
                         debugPrint(error)

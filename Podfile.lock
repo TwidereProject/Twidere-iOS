@@ -9,10 +9,10 @@ PODS:
     - Boilerplate (~> 0.2)
   - CryptoSwift (0.5.2)
   - DateTools (1.7.0)
-  - IQKeyboardManagerSwift (4.0.4)
+  - IQKeyboardManagerSwift (4.0.5)
   - JDStatusBarNotification (1.5.4)
   - JVFloatLabeledTextField (1.1.1)
-  - Kanna (1.1.0)
+  - Kanna (1.1.1)
   - KDInteractiveNavigationController (0.1.2)
   - ObjectMapper (1.4.0)
   - OMGHTTPURLRQ (3.2.0):
@@ -45,7 +45,7 @@ PODS:
   - SwiftEventBus (1.1.0)
   - SwiftOverlays (2.0.1)
   - SwiftyJSON (2.3.2)
-  - SwiftyUserDefaults (2.2.0)
+  - SwiftyUserDefaults (2.2.1)
   - ThumborURL (0.0.4)
   - twitter-text (1.14.0)
   - UITableView+FDTemplateLayoutCell (1.5.beta)
@@ -103,10 +103,10 @@ SPEC CHECKSUMS:
   CrossroadRegex: f1ab8cb19a65c1db9a2ed809e8f71b49a40aa8cb
   CryptoSwift: c1ef79f901b86099a6fe8b3c7524cf9f3f3c8c40
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
-  IQKeyboardManagerSwift: e0964d04d6a29b71016fd346dca13ecb80a2823a
+  IQKeyboardManagerSwift: 41fd3a45a2cdb2a0e031af697708a95b865068a1
   JDStatusBarNotification: d47dded0594a50a39c84a2cc5aa356fcf6750d0e
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
-  Kanna: 355ed0193e5d8caf4fd996856b5bc98d586c11b6
+  Kanna: 9d3118cff609bd21eb374be5be590b544941160f
   KDInteractiveNavigationController: c719bdf18062213315890c4648d37156a621b520
   ObjectMapper: a07ad0462c5adf014adc0f89ef04c29b626e855e
   OMGHTTPURLRQ: 1e54807cb7d5dbb506926e53498e1e9ac5720c79
@@ -120,7 +120,7 @@ SPEC CHECKSUMS:
   SwiftEventBus: d33b51752d4e3e994f0ea7b31873f0beca7eada0
   SwiftOverlays: 317afbb3eeb7f9d8545b1e6592500c89aadb6d8f
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  SwiftyUserDefaults: e7c8197a9d4068702e7f2406a968cae413b8de27
+  SwiftyUserDefaults: 7abdba50a50ea0c18ee8903af3c88e4c1cb8448d
   ThumborURL: 0e1f058fb79c37660aa7d302fe77c48366902325
   twitter-text: 703e84901722b7e6e2e22b7ac12afabfb40be1e5
   UITableView+FDTemplateLayoutCell: 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
