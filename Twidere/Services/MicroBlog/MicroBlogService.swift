@@ -12,6 +12,8 @@ import Alamofire
 
 class MicroBlogService: RestClient {
     
+    var accountKey: UserKey!
+    
     let statusQueries: [String: String] = [
         "tweet_mode": "extended"
     ]
@@ -40,7 +42,7 @@ class MicroBlogService: RestClient {
             forms["attachment_url"] = request.attachmentUrl
         }
         forms["possibly_sensitive"] = request.possiblySensitive ? "true" : "false"
-        return makeTypedRequest(.POST, path: "/statuses/update.json", params: forms, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatus)
+        return makeTypedRequest(.POST, path: "/statuses/update.json", params: forms, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatus(accountKey))
     }
     
     func uploadMedia(media: NSData, additionalOwners: [String]? = nil) -> Promise<MediaUploadResponse> {
@@ -77,17 +79,17 @@ class MicroBlogService: RestClient {
     
     func getHomeTimeline(paging: Paging) -> Promise<[Status]> {
         let queries = makeQueries(statusQueries, paging.queries)
-        return makeTypedRequest(.GET, path: "/statuses/home_timeline.json", queries: queries, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatuses)
+        return makeTypedRequest(.GET, path: "/statuses/home_timeline.json", queries: queries, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatuses(accountKey))
     }
     
     func getUserTimeline(screenName: String, paging: Paging) -> Promise<[Status]> {
         let queries = makeQueries(statusQueries, ["screen_name": screenName], paging.queries)
-        return makeTypedRequest(.GET, path: "/statuses/user_timeline.json", queries: queries, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatuses)
+        return makeTypedRequest(.GET, path: "/statuses/user_timeline.json", queries: queries, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatuses(accountKey))
     }
     
     func lookupStatuses(ids: [String]) -> Promise<[Status]> {
         let queries = makeQueries(statusQueries, ["id": ids.joinWithSeparator(",")])
-        return makeTypedRequest(.GET, path: "/statuses/lookup.json", queries: queries, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatuses)
+        return makeTypedRequest(.GET, path: "/statuses/lookup.json", queries: queries, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatuses(accountKey))
     }
     
     func makeQueries(def: [String: String], _ queries: [String: String]...) -> [String: String] {
@@ -135,19 +137,23 @@ class MicroBlogService: RestClient {
         return .Failure(.RequestError(code: resp?.statusCode ?? -1, message: nil))
     }
     
-    static let convertStatus = ResponseSerializer { (req, resp, data, err) -> Result<Status, MicroBlogError> in
-        if let data = data {
-            return .Success(Status(status: JSON(data: data)))
-        }
-        return .Failure(.RequestError(code: resp?.statusCode ?? -1, message: nil))
-    }
-    
-    static let convertStatuses = ResponseSerializer { (req, resp, data, err) -> Result<[Status], MicroBlogError> in
+    static func convertStatus(accountKey: UserKey) -> ResponseSerializer<Status, MicroBlogError> {
+        return ResponseSerializer { (req, resp, data, err) -> Result<Status, MicroBlogError> in
             if let data = data {
-                return .Success(Status.arrayFromJson(JSON(data: data)))
+                return .Success(Status(status: JSON(data: data), accountKey: accountKey))
             }
             return .Failure(.RequestError(code: resp?.statusCode ?? -1, message: nil))
         }
+    }
+    
+    static func convertStatuses(accountKey: UserKey) -> ResponseSerializer<[Status], MicroBlogError> {
+        return ResponseSerializer { (req, resp, data, err) -> Result<[Status], MicroBlogError> in
+            if let data = data {
+                return .Success(Status.arrayFromJson(JSON(data: data), accountKey: accountKey))
+            }
+            return .Failure(.RequestError(code: resp?.statusCode ?? -1, message: nil))
+        }
+    }
 }
 
 enum MicroBlogError: ErrorType {

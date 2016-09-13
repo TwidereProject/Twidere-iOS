@@ -87,13 +87,18 @@ class HomeController: UITabBarController {
         func loadStatuses(opts: StatusesListController.LoadOptions) -> Promise<[Status]> {
             return dispatch_promise { () -> [UserKey] in
                 return self.getAccounts().map({ $0.key! })
-                }.then{ accountKeys -> [UserKey] in
-                    if let params = opts.params where !opts.initLoad {
-                        GetStatusesTask.execute(params, table: self.table) { account, microblog, paging -> Promise<[Status]> in
-                            return microblog.getHomeTimeline(paging)
+                }.then{ accountKeys -> Promise<[UserKey]> in
+                    return Promise { fullfill, reject in
+                        if let params = opts.params where !opts.initLoad {
+                            GetStatusesTask.execute(params, table: self.table, fetchAction: { account, microblog, paging -> Promise<[Status]> in
+                                return microblog.getHomeTimeline(paging)
+                            }).always {
+                                fullfill(accountKeys)
+                            }
+                        } else {
+                            fullfill(accountKeys)
                         }
                     }
-                    return accountKeys
                 }.then({ (accountKeys) -> [Status] in
                     
                     let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
@@ -143,7 +148,7 @@ class HomeController: UITabBarController {
             return dispatch_promise {  () -> [Status] in
                 let account = try defaultAccount()!
                 let json = JSON(data: NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("statuses_list", ofType: "json")!)!)
-                return Status.arrayFromJson(json, account: account)
+                return Status.arrayFromJson(json, accountKey: account.key)
             }
         }
         

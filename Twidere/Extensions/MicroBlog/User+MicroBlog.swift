@@ -14,10 +14,10 @@ extension User {
         self.init(json: accountJson, accountKey: User.getUserKey(accountJson))
     }
     
-    convenience init(json: JSON, accountKey: UserKey) {
+    convenience init(json: JSON, accountKey: UserKey?) {
         self.init()
         self.accountKey = accountKey
-        self.key = User.getUserKey(json)
+        self.key = User.getUserKey(json, accountHost: accountKey?.host)
         self.createdAt = parseTwitterDate(json["created_at"].stringValue)
         self.isProtected = json["protected"].boolValue
         self.isVerified = json["verified"].boolValue
@@ -34,18 +34,18 @@ extension User {
         self.metadata = User.Metadata(json: json)
     }
     
-    static func getUserKey(json: JSON) -> UserKey {
-        return UserKey(id: json["id_str"].string ?? json["id"].string!, host: User.getUserHost(json))
+    static func getUserKey(user: JSON, accountHost: String? = nil) -> UserKey {
+        return UserKey(id: user["id_str"].string ?? user["id"].string!, host: User.getUserHost(user, accountHost: accountHost))
     }
     
-    static func getUserHost(json: JSON) -> String {
+    static func getUserHost(json: JSON, accountHost: String?) -> String? {
         if (json["unique_id"].isExists() && json["profile_image_url_large"].isExists()) {
             return "fanfou.com"
         }
         guard let profileUrl = json["statusnet_profile_url"].string else {
             return "twitter.com"
         }
-        return NSURLComponents(string: profileUrl)!.host!
+        return NSURLComponents(string: profileUrl)!.host ?? accountHost
     }
 }
 

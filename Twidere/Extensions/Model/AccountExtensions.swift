@@ -36,7 +36,9 @@ extension Account {
         let apiConfig = createAPIConfig()
         let endpoint = apiConfig.createEndpoint(domain)
         let auth = createAuthorization()
-        return MicroBlogService(endpoint: endpoint, auth: auth)
+        let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
+        microBlog.accountKey = self.key
+        return microBlog
     }
     
     var typeInferred: AccountType {
