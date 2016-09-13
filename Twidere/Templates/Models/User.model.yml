@@ -10,96 +10,114 @@ submodels:
       accountKey:
         type: UserKey
         column: account_key
+        json_field: account_key
+        json_transform: UserKeyTransform
       key:
         type: UserKey
         column: user_key
+        json_field: user_key
+        json_transform: UserKeyTransform
       createdAt:
         type: NSDate
         column: created_at
+        json_field: created_at
       position:
         type: Int64
       isProtected:
         type: Bool
         column: is_protected
+        json_field: is_protected
       isVerified:
         type: Bool
         column: is_verified
+        json_field: is_verified
       name:
         type: String
         column: name
+        json_field: name
       screenName:
         type: String
         column: screen_name
+        json_field: screen_name
       profileImageUrl:
         type: String
         column: profile_image_url
+        json_field: profile_image_url
       profileBannerUrl:
         type: String
         column: profile_banner_url
+        json_field: profile_banner_url
       profileBackgroundUrl:
         type: String
         column: profile_background_url
+        json_field: profile_background_url
       descriptionPlain:
         type: String
         column: description_plain
+        json_field: description_plain
       descriptionDisplay:
         type: String
         column: description_display
+        json_field: description_display
       url:
         type: String
         column: url
+        json_field: url
       urlExpanded:
         type: String
         column: url_expanded
+        json_field: url_expanded
       location:
         type: String
         column: location
+        json_field: location
       metadata:
         type: Metadata
         column: metadata
+        json_field: metadata
     submodels:
       Metadata:
         fields:
           following:
             type: Bool
-            column: following
+            json_field: following
           followedBy:
             type: Bool
-            column: followed_by
+            json_field: followed_by
           blocking:
             type: Bool
-            column: blocking
+            json_field: blocking
           blockedBy:
             type: Bool
-            column: blocked_by
+            json_field: blocked_by
           muting:
             type: Bool
-            column: muting
+            json_field: muting
           followRequestSent:
             type: Bool
-            column: follow_request_sent
+            json_field: follow_request_sent
           # Counts
           statusesCount:
             type: Int64
-            column: statuses_count
+            json_field: statuses_count
           followersCount:
             type: Int64
-            column: followers_count
+            json_field: followers_count
           friendsCount:
             type: Int64
-            column: friends_count
+            json_field: friends_count
           favoritesCount:
             type: Int64
-            column: favorites_count
+            json_field: favorites_count
           mediaCount:
             type: Int64
-            column: media_count
+            json_field: media_count
           listsCount:
             type: Int64
-            column: lists_count
+            json_field: lists_count
           listedCount:
             type: Int64
-            column: listed_count
+            json_field: listed_count
           groupsCount:
             type: Int64
-            column: groups_count
+            json_field: groups_count

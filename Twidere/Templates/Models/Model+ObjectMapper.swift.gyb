@@ -22,8 +22,17 @@ def generateModelContent(name, outerName, model):
     mappingLines = []
     fields = model['fields']
     for propertyName in fields:
-        columnName = propertyName
-        mappingLines.append("        {propertyName} <- map[\"{columnName}\"]".format(propertyName=propertyName, columnName=columnName))
+        jsonField = fields[propertyName].get('json_field', None)
+        if (jsonField is None):
+            continue
+        jsonTransform = fields[propertyName].get('json_transform', None)
+        if (jsonTransform is not None):
+            mappingLines.append("        {propertyName} <- (map[\"{jsonField}\"], {jsonTransform}())"
+                .format(propertyName=propertyName, jsonField=jsonField,
+                jsonTransform=jsonTransform))
+        else:
+            mappingLines.append("        {propertyName} <- map[\"{jsonField}\"]"
+                .format(propertyName=propertyName, jsonField=jsonField))
     subModelsLines = []
     submodels = model.get('submodels', [])
     for subModelName in submodels:

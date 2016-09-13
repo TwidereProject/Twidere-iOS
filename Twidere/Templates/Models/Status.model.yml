@@ -10,93 +10,124 @@ submodels:
       accountKey:
         type: UserKey
         column: account_key
+        json_field: account_key
       sortId: # Added in database version 2
         type: Int64
         column: sort_id
+        json_field: sort_id
         min_version: 2
       positionKey: # Added in database version 2
         type: Int64
         column: position_key
+        json_field: position_key
         min_version: 2
       isGap:
         type: Bool
         column: is_gap
+        json_field: is_gap
       createdAt:
         type: NSDate
         column: created_at
+        json_field: created_at
       id:
         type: String
         column: status_id
+        json_field: status_id
       userKey:
         type: UserKey
         column: user_key
+        json_field: user_key
       userName:
         type: String
         column: user_name
+        json_field: user_name
       userScreenName:
         type: String
         column: user_screen_name
+        json_field: user_screen_name
       userProfileImage:
         type: String
         column: user_profile_image
+        json_field: user_profile_image
       textPlain:
         type: String
         column: text_plain
+        json_field: text_plain
       textDisplay:
         type: String
         column: text_display
+        json_field: text_display
       metadata:
         type: Metadata?
         column: metadata
+        json_field: metadata
       quotedId:
         type: String?
         column: quoted_status_id
+        json_field: quoted_status_id
       quotedUserKey:
         type: UserKey?
         column: quoted_user_key
+        json_field: quoted_user_key
       quotedUserName:
         type: String?
         column: quoted_user_name
+        json_field: quoted_user_name
       quotedUserScreenName:
         type: String?
         column: quoted_user_screen_name
+        json_field: quoted_user_screen_name
       quotedUserProfileImage:
         type: String?
         column: quoted_user_profile_image
+        json_field: quoted_user_profile_image
       quotedTextPlain:
         type: String?
         column: quoted_text_plain
+        json_field: quoted_text_plain
       quotedTextDisplay:
         type: String?
         column: quoted_text_display
+        json_field: quoted_text_display
       quotedMetadata:
         type: Metadata?
         column: quoted_metadata
+        json_field: quoted_metadata
       retweetedByUserKey:
         type: UserKey?
         column: retweeted_by_user_key
+        json_field: retweeted_by_user_key
       retweetedByUserName:
         type: String?
         column: retweeted_by_user_name
+        json_field: retweeted_by_user_name
       retweetedByUserScreenName:
         type: String?
         column: retweeted_by_user_screen_name
+        json_field: retweeted_by_user_screen_name
       retweetedByUserProfileImage:
         type: String?
         column: retweeted_by_user_profile_image
+        json_field: retweeted_by_user_profile_image
       retweetId:
         type: String?
         column: retweet_id
+        json_field: retweet_id
     submodels:
       Metadata:
         fields:
           links:
             type: '[LinkSpanItem]?'
+            json_field: 'links'
           mentions:
             type: '[MentionSpanItem]?'
+            json_field: 'mentions'
           hashtags:
             type: '[HashtagSpanItem]?'
+            json_field: 'hashtags'
           media:
             type: '[MediaItem]?'
+            json_field: 'media'
           displayRange:
             type: '[Int]?'
+            json_field: 'display_range'

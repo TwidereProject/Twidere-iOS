@@ -8,7 +8,7 @@
 
 import SwiftyJSON
 import Alamofire
-import Alamofire_Synchronous
+import PromiseKit
 
 typealias HttpResult = (request: NSURLRequest?, response: NSHTTPURLResponse?, data: NSData?, error: NSError?)
 
@@ -24,79 +24,48 @@ class RestClient {
         self.userAgent = userAgent
     }
     
-    func makeTypedRequest<T>(method: Alamofire.Method,
+    func makeTypedRequest<T: ResponseSerializerType>(method: Alamofire.Method,
                           path: String,
                           headers: [String: String]? = nil,
                           queries:[String: String]? = nil,
-                          forms: [String: AnyObject]? = nil,
+                          params: [String: AnyObject]? = nil,
                           requestBody:NSData? = nil,
                           authOverride: Authorization? = nil,
-                          checker: ((HttpResult) throws -> Void)? = nil,
-                          converter: ((HttpResult) -> T)) throws -> T {
-        let result = makeRequest(method, path: path, headers: headers, queries: queries, params: forms, authOverride: authOverride)
-        if (result.error != nil) {
-            throw RestError.NetworkError(err: result.error)
-        } else if (checker != nil) {
-            try checker!(result)
-        } else if (!(result.response?.ok ?? false)) {
-            throw RestError.RequestError(statusCode: result.response!.statusCode)
-        }
-        return converter(result)
-    }
-    
-    func makeRequest(method: Alamofire.Method,
-                             path: String,
-                             headers: [String: String]? = nil,
-                             queries:[String: String]? = nil,
-                             params: [String: AnyObject]? = nil,
-                             authOverride: Authorization? = nil) -> HttpResult {
-        let url = constructUrl(path, queries: queries)
-        let finalAuth: Authorization? = authOverride ?? auth
-        let isMultipart = params?.contains { (k, v) -> Bool in v is NSData } ?? false
-        var finalHeaders = constructHeaders(method, path: path, headers: headers, queries: queries, forms: params, auth: finalAuth, isMultipart: isMultipart)
-        if (isMultipart) {
-            let multipart = MultipartFormData()
-            params?.forEach{ (k, v) in
-                if (v is NSData) {
-                    multipart.appendBodyPart(data: v as! NSData, name: k, mimeType: "application/octet-stream")
-                } else {
-                    multipart.appendBodyPart(data: "\(v)".dataUsingEncoding(NSUTF8StringEncoding)!, name: k)
+                          validation: Request.Validation? = nil,
+                          serializer: T) -> Promise<T.SerializedObject> {
+        return Promise { fullfill, reject in
+            let url = constructUrl(path, queries: queries)
+            let finalAuth: Authorization? = authOverride ?? auth
+            let isMultipart = params?.contains { (k, v) -> Bool in v is NSData } ?? false
+            var finalHeaders = constructHeaders(method, path: path, headers: headers, queries: queries, forms: params, auth: finalAuth, isMultipart: isMultipart)
+            let completionHandler: Response<T.SerializedObject, T.ErrorObject> -> Void = { response in
+                switch response.result {
+                case .Success(let value):
+                    fullfill(value)
+                case .Failure(let error):
+                    reject(error)
                 }
             }
-            finalHeaders["Content-Type"] = multipart.contentType
-            return Alamofire.upload(method, url, headers: finalHeaders, data: try! multipart.encode()).response()
-        }
-        return Alamofire.request(method, url, parameters: params, encoding: .Custom({ (urlRequest: URLRequestConvertible, params: [String: AnyObject]?) -> (NSMutableURLRequest, NSError?) in
-            
-            let queryUrlEncodeAllowedSet: NSCharacterSet = {
-                let allowed = NSMutableCharacterSet.alphanumericCharacterSet()
-                allowed.addCharactersInString("-._ ")
-                return allowed
-            }()
-            
-            func escape(str: String) -> String {
-                return str.stringByAddingPercentEncodingWithAllowedCharacters(queryUrlEncodeAllowedSet)!.stringByReplacingOccurrencesOfString(" ", withString: "+")
-            }
-            
-            let request: NSMutableURLRequest = urlRequest.URLRequest
-            if (params == nil) {
-                return (request, nil)
-            }
-            let method = Alamofire.Method(rawValue: request.HTTPMethod)
-            let paramInUrl = method == .GET || method == .HEAD || method == .DELETE
-            if (paramInUrl) {
-                let url = NSURLComponents(URL: request.URL!, resolvingAgainstBaseURL: false)
-                url?.queryItems = params!.map { k, v -> NSURLQueryItem in
-                    return NSURLQueryItem(name: k, value: "\(v)")
+            let request: Request
+            if (isMultipart) {
+                let multipart = MultipartFormData()
+                params?.forEach{ (k, v) in
+                    if (v is NSData) {
+                        multipart.appendBodyPart(data: v as! NSData, name: k, mimeType: "application/octet-stream")
+                    } else {
+                        multipart.appendBodyPart(data: "\(v)".dataUsingEncoding(NSUTF8StringEncoding)!, name: k)
+                    }
                 }
+                finalHeaders["Content-Type"] = multipart.contentType
+                request = Alamofire.upload(method, url, headers: finalHeaders, data: try! multipart.encode())
             } else {
-                request.addValue("application/x-www-form-urlencoded; encoding=utf-8", forHTTPHeaderField: "Content-Type")
-                request.HTTPBody = params!.map { k, v -> String in
-                    return escape(k) + "=" + escape(String(v))
-                }.joinWithSeparator("&").dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+                request = Alamofire.request(method, url, parameters: params, encoding: .Custom(self.restEncoding), headers: finalHeaders)
             }
-            return (request, nil)
-        }), headers: finalHeaders).response()
+            if (validation != nil) {
+                request.validate(validation!)
+            }
+            request.response(responseSerializer: serializer, completionHandler: completionHandler)
+        }
     }
     
     private func constructUrl(path: String, queries: [String: String]? = nil) -> String {
@@ -125,6 +94,38 @@ class RestClient {
         return mergedHeaders
     }
     
+    private func restEncoding(urlRequest: URLRequestConvertible, params: [String: AnyObject]?) -> (NSMutableURLRequest, NSError?) {
+        
+        let queryUrlEncodeAllowedSet: NSCharacterSet = {
+            let allowed = NSMutableCharacterSet.alphanumericCharacterSet()
+            allowed.addCharactersInString("-._ ")
+            return allowed
+        }()
+        
+        func escape(str: String) -> String {
+            return str.stringByAddingPercentEncodingWithAllowedCharacters(queryUrlEncodeAllowedSet)!.stringByReplacingOccurrencesOfString(" ", withString: "+")
+        }
+        
+        let request: NSMutableURLRequest = urlRequest.URLRequest
+        if (params == nil) {
+            return (request, nil)
+        }
+        let method = Alamofire.Method(rawValue: request.HTTPMethod)
+        let paramInUrl = method == .GET || method == .HEAD || method == .DELETE
+        if (paramInUrl) {
+            let url = NSURLComponents(URL: request.URL!, resolvingAgainstBaseURL: false)
+            url?.queryItems = params!.map { k, v -> NSURLQueryItem in
+                return NSURLQueryItem(name: k, value: "\(v)")
+            }
+        } else {
+            request.addValue("application/x-www-form-urlencoded; encoding=utf-8", forHTTPHeaderField: "Content-Type")
+            request.HTTPBody = params!.map { k, v -> String in
+                return escape(k) + "=" + escape(String(v))
+                }.joinWithSeparator("&").dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        }
+        return (request, nil)
+    }
+    
     internal class StatelessCookieStorage: NSHTTPCookieStorage {
         override func cookiesForURL(URL: NSURL) -> [NSHTTPCookie]? {
             return nil
@@ -142,10 +143,7 @@ class RestClient {
             // No-op
         }
     }
-    
-    func isOk(result: NSHTTPURLResponse?) {
-        return
-    }
+ 
 }
 
 enum RestError: ErrorType {

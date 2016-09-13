@@ -6,15 +6,15 @@ extension MediaItem: StaticMappable {
 
     func mapping(map: Map) {
         url <- map["url"]
-        mediaUrl <- map["mediaUrl"]
-        previewUrl <- map["previewUrl"]
+        mediaUrl <- map["media_url"]
+        previewUrl <- map["preview_url"]
         type <- map["type"]
         width <- map["width"]
         height <- map["height"]
-        videoInfo <- map["videoInfo"]
-        pageUrl <- map["pageUrl"]
-        openBrowser <- map["openBrowser"]
-        altText <- map["altText"]
+        videoInfo <- map["video_info"]
+        pageUrl <- map["page_url"]
+        openBrowser <- map["open_browser"]
+        altText <- map["alt_text"]
     }
 
     static func objectForMapping(map: Map) -> BaseMappable? {
@@ -38,7 +38,7 @@ extension MediaItem.VideoInfo.Variant: StaticMappable {
 
     func mapping(map: Map) {
         url <- map["url"]
-        contentType <- map["contentType"]
+        contentType <- map["content_type"]
         bitrate <- map["bitrate"]
     }
 

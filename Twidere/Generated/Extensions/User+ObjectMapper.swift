@@ -5,22 +5,20 @@ import Foundation
 extension User: StaticMappable {
 
     func mapping(map: Map) {
-        _id <- map["_id"]
-        accountKey <- map["accountKey"]
-        key <- map["key"]
-        createdAt <- map["createdAt"]
-        position <- map["position"]
-        isProtected <- map["isProtected"]
-        isVerified <- map["isVerified"]
+        accountKey <- (map["account_key"], UserKeyTransform())
+        key <- (map["user_key"], UserKeyTransform())
+        createdAt <- map["created_at"]
+        isProtected <- map["is_protected"]
+        isVerified <- map["is_verified"]
         name <- map["name"]
-        screenName <- map["screenName"]
-        profileImageUrl <- map["profileImageUrl"]
-        profileBannerUrl <- map["profileBannerUrl"]
-        profileBackgroundUrl <- map["profileBackgroundUrl"]
-        descriptionPlain <- map["descriptionPlain"]
-        descriptionDisplay <- map["descriptionDisplay"]
+        screenName <- map["screen_name"]
+        profileImageUrl <- map["profile_image_url"]
+        profileBannerUrl <- map["profile_banner_url"]
+        profileBackgroundUrl <- map["profile_background_url"]
+        descriptionPlain <- map["description_plain"]
+        descriptionDisplay <- map["description_display"]
         url <- map["url"]
-        urlExpanded <- map["urlExpanded"]
+        urlExpanded <- map["url_expanded"]
         location <- map["location"]
         metadata <- map["metadata"]
     }
@@ -34,19 +32,19 @@ extension User.Metadata: StaticMappable {
 
     func mapping(map: Map) {
         following <- map["following"]
-        followedBy <- map["followedBy"]
+        followedBy <- map["followed_by"]
         blocking <- map["blocking"]
-        blockedBy <- map["blockedBy"]
+        blockedBy <- map["blocked_by"]
         muting <- map["muting"]
-        followRequestSent <- map["followRequestSent"]
-        statusesCount <- map["statusesCount"]
-        followersCount <- map["followersCount"]
-        friendsCount <- map["friendsCount"]
-        favoritesCount <- map["favoritesCount"]
-        mediaCount <- map["mediaCount"]
-        listsCount <- map["listsCount"]
-        listedCount <- map["listedCount"]
-        groupsCount <- map["groupsCount"]
+        followRequestSent <- map["follow_request_sent"]
+        statusesCount <- map["statuses_count"]
+        followersCount <- map["followers_count"]
+        friendsCount <- map["friends_count"]
+        favoritesCount <- map["favorites_count"]
+        mediaCount <- map["media_count"]
+        listsCount <- map["lists_count"]
+        listedCount <- map["listed_count"]
+        groupsCount <- map["groups_count"]
     }
 
     static func objectForMapping(map: Map) -> BaseMappable? {

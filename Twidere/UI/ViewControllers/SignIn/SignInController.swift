@@ -51,7 +51,7 @@ class SignInController: UIViewController {
         default: break
         }
     }
-
+    
     @IBAction func unwindFromPasswordSignIn(segue: UIStoryboardSegue) {
         switch segue.identifier {
         case "DoPasswordSignIn"?:
@@ -120,18 +120,18 @@ class SignInController: UIViewController {
     
     private func doBrowserSignIn() {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        
         let apiConfig = self.customAPIConfig
         let endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true, fixUrl: SignInController.fixSignInUrl)
         let auth = OAuthAuthorization(apiConfig.consumerKey!, apiConfig.consumerSecret!)
         let oauth = OAuthService(endpoint: endpoint, auth: auth)
-        dispatch_promise {
-            return try oauth.getRequestToken("oob")
-            }.then { token -> Void in
-                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("BrowserSignIn") as! BrowserSignInController
-                vc.customAPIConfig = self.customAPIConfig
-                vc.requestToken = token
-                vc.callback = self.finishBrowserSignIn
-                self.showViewController(vc, sender: self)
+        
+        oauth.getRequestToken("oob").then { token -> Void in
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("BrowserSignIn") as! BrowserSignInController
+            vc.customAPIConfig = self.customAPIConfig
+            vc.requestToken = token
+            vc.callback = self.finishBrowserSignIn
+            self.showViewController(vc, sender: self)
             }.always {
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             }.error { error in
@@ -142,7 +142,7 @@ class SignInController: UIViewController {
     private func doOAuthPasswordSignIn(username: String, password: String) {
         let userAgent = UIWebView().stringByEvaluatingJavaScriptFromString("navigator.userAgent")
         
-        doSignIn { config throws -> SignInResult in
+        doSignIn { config -> Promise<SignInResult> in
             let apiConfig = self.customAPIConfig
             var endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true)
             let authenticator = TwitterOAuthPasswordAuthenticator(endpoint: endpoint, consumerKey: apiConfig.consumerKey!, consumerSecret: apiConfig.consumerSecret!, loginVerificationCallback: { challengeType -> String? in
@@ -160,67 +160,104 @@ class SignInController: UIViewController {
                 dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER)
                 return challangeResponse
                 }, browserUserAgent: userAgent)
-            let accessToken = try authenticator.getOAuthAccessToken(username, password: password)
-            let auth = OAuthAuthorization(apiConfig.consumerKey!, apiConfig.consumerSecret!, oauthToken: accessToken)
-                endpoint = apiConfig.createEndpoint("api")
-                
-            let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
-            return try SignInResult(user: microBlog.verifyCredentials(), accessToken: accessToken)
+            return authenticator.getOAuthAccessToken(username, password: password)
+                .then { accessToken -> Promise<SignInResult> in
+                    return Promise { fullfull, reject in
+                        
+                        let auth = OAuthAuthorization(apiConfig.consumerKey!, apiConfig.consumerSecret!, oauthToken: accessToken)
+                        endpoint = apiConfig.createEndpoint("api")
+                        
+                        let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
+                        microBlog.verifyCredentials().then { user -> Void in
+                            fullfull(SignInResult(user: user, accessToken: accessToken))
+                            }.error { error -> Void in
+                                reject(error)
+                        }
+                    }
+            }
         }
     }
     
     private func doXAuthSignIn() {
         let username = editUsername.text ?? ""
         let password = editPassword.text ?? ""
-        doSignIn { config throws -> SignInResult in
+        doSignIn { config -> Promise<SignInResult> in
             let apiConfig = self.customAPIConfig
             var endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true, fixUrl: SignInController.fixSignInUrl)
             let oauth = OAuthService(endpoint: endpoint, auth: OAuthAuthorization(apiConfig.consumerKey!, apiConfig.consumerSecret!))
-            let accessToken = try oauth.getAccessToken(username, xauthPassword: password)
-            let auth = OAuthAuthorization(apiConfig.consumerKey!, apiConfig.consumerSecret!, oauthToken: accessToken)
-            endpoint = apiConfig.createEndpoint("api")
-            let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
-            return try SignInResult(user: microBlog.verifyCredentials(), accessToken: accessToken)
+            return oauth.getAccessToken(username, xauthPassword: password)
+                .then { accessToken -> Promise<SignInResult> in
+                    return Promise { fullfull, reject in
+                        
+                        let auth = OAuthAuthorization(apiConfig.consumerKey!, apiConfig.consumerSecret!, oauthToken: accessToken)
+                        endpoint = apiConfig.createEndpoint("api")
+                        
+                        let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
+                        microBlog.verifyCredentials().then { user -> Void in
+                            fullfull(SignInResult(user: user, accessToken: accessToken))
+                            }.error { error -> Void in
+                                reject(error)
+                        }
+                    }
+            }
         }
     }
     
     private func doBasicSignIn() {
         let username = editUsername.text ?? ""
         let password = editPassword.text ?? ""
-        doSignIn { config -> SignInResult in
+        doSignIn { config -> Promise<SignInResult> in
             let endpoint = self.customAPIConfig.createEndpoint("api")
             let auth = BasicAuthorization(username: username, password: password)
             let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
-            return try SignInResult(user: microBlog.verifyCredentials(), username: username, password: password)
+            return microBlog.verifyCredentials().then { user -> SignInResult in
+                return SignInResult(user: user, username: username, password: password)
+            }
         }
     }
     
     private func doTwipOSignIn() {
-        doSignIn { config -> SignInResult in
+        doSignIn { config -> Promise<SignInResult> in
             let endpoint = self.customAPIConfig.createEndpoint("api")
             let microBlog = MicroBlogService(endpoint: endpoint)
-            return try SignInResult(user: microBlog.verifyCredentials())
+            return microBlog.verifyCredentials().then { user -> SignInResult in
+                return SignInResult(user: user)
+            }
         }
     }
     
     private func finishBrowserSignIn(requestToken: OAuthToken, oauthVerifier: String?) {
-        doSignIn { config throws -> SignInResult in
+        doSignIn { config -> Promise<SignInResult> in
             let apiConfig = self.customAPIConfig
             var endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true, fixUrl: SignInController.fixSignInUrl)
             let oauth = OAuthService(endpoint: endpoint, auth: OAuthAuthorization(apiConfig.consumerKey!, apiConfig.consumerSecret!))
-            let accessToken = try oauth.getAccessToken(requestToken, oauthVerifier: oauthVerifier)
-            let auth = OAuthAuthorization(apiConfig.consumerKey!, apiConfig.consumerSecret!, oauthToken: accessToken)
-            endpoint = apiConfig.createEndpoint("api")
-            let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
-            return try SignInResult(user: microBlog.verifyCredentials(), accessToken: accessToken)
+            return oauth.getAccessToken(requestToken, oauthVerifier: oauthVerifier)
+                .then { accessToken -> Promise<SignInResult> in
+                    return Promise { fullfull, reject in
+                        
+                        let auth = OAuthAuthorization(apiConfig.consumerKey!, apiConfig.consumerSecret!, oauthToken: accessToken)
+                        endpoint = apiConfig.createEndpoint("api")
+                        
+                        let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
+                        microBlog.verifyCredentials().then { user -> Void in
+                            fullfull(SignInResult(user: user, accessToken: accessToken))
+                            }.error { error -> Void in
+                                reject(error)
+                        }
+                    }
+            }
         }
     }
     
-    private func doSignIn(action: (config: CustomAPIConfig) throws -> SignInResult) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        dispatch_promise {
-            return try action(config: self.customAPIConfig)
-        }.thenInBackground { result throws -> Account in
+    private func doSignIn(action: (config: CustomAPIConfig) -> Promise<SignInResult>) {
+        firstly { () -> AnyPromise in
+            return AnyPromise(bound: Promise<Void> { fullfill, reject in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+                fullfill()
+            })
+        }.then { void in
+            return action(config: self.customAPIConfig)
+        }.then { result throws -> Account in
             let json = result.user
             let config = self.customAPIConfig
             let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
@@ -243,30 +280,30 @@ class SignInController: UIViewController {
                 try db.run(Account.insertData(accountsTable, model: account))
             }
             return account
-        }.then { result -> Void in
-            let home = self.storyboard!.instantiateViewControllerWithIdentifier("Main")
-            self.presentViewController(home, animated: true, completion: nil)
-        }.always {
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-        }.error { error in
-            if (error is AuthenticationError) {
-                switch (error) {
-                case AuthenticationError.AccessTokenFailed:
-                    let vc = UIAlertController(title: nil, message: "Unable to get access token", preferredStyle: .Alert)
-                    self.presentViewController(vc, animated: true, completion: nil)
-                case AuthenticationError.RequestTokenFailed:
-                    let vc = UIAlertController(title: nil, message: "Unable to get request token", preferredStyle: .Alert)
-                    self.presentViewController(vc, animated: true, completion: nil)
-                case AuthenticationError.WrongUsernamePassword:
-                    let vc = UIAlertController(title: nil, message: "Wrong username or password", preferredStyle: .Alert)
-                    self.presentViewController(vc, animated: true, completion: nil)
-                case AuthenticationError.VerificationFailed:
-                    let vc = UIAlertController(title: nil, message: "Verification failed", preferredStyle: .Alert)
-                    self.presentViewController(vc, animated: true, completion: nil)
-                default: break
+            }.then { result -> Void in
+                let home = self.storyboard!.instantiateViewControllerWithIdentifier("Main")
+                self.presentViewController(home, animated: true, completion: nil)
+            }.always {
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            }.error { error in
+                if (error is AuthenticationError) {
+                    switch (error) {
+                    case AuthenticationError.AccessTokenFailed:
+                        let vc = UIAlertController(title: nil, message: "Unable to get access token", preferredStyle: .Alert)
+                        self.presentViewController(vc, animated: true, completion: nil)
+                    case AuthenticationError.RequestTokenFailed:
+                        let vc = UIAlertController(title: nil, message: "Unable to get request token", preferredStyle: .Alert)
+                        self.presentViewController(vc, animated: true, completion: nil)
+                    case AuthenticationError.WrongUsernamePassword:
+                        let vc = UIAlertController(title: nil, message: "Wrong username or password", preferredStyle: .Alert)
+                        self.presentViewController(vc, animated: true, completion: nil)
+                    case AuthenticationError.VerificationFailed:
+                        let vc = UIAlertController(title: nil, message: "Verification failed", preferredStyle: .Alert)
+                        self.presentViewController(vc, animated: true, completion: nil)
+                    default: break
+                    }
                 }
-            }
-            debugPrint(error)
+                debugPrint(error)
         }
     }
     

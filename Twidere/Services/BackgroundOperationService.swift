@@ -13,11 +13,10 @@ import JDStatusBarNotification
 import SwiftyJSON
 
 class BackgroundOperationService {
-
+    
     func updateStatus(update: StatusUpdate) {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        dispatch_promise {
-            () -> UpdateStatusResult in
+        dispatch_promise { () -> UpdateStatusResult in
             let BULK_SIZE = 256 * 1024// 128 Kib
             
             func uploadMedia(uploader: MediaUploader?, update: StatusUpdate, pendingUpdate: PendingStatusUpdate) throws {
@@ -36,8 +35,8 @@ class BackgroundOperationService {
                 }
                 let owners = update.accounts.filter{ (account: Account) -> Bool in
                     return account.typeInferred == .Twitter
-                }.map { account -> UserKey in
-                    return account.key!
+                    }.map { account -> UserKey in
+                        return account.key!
                 }
                 let ownerIds = owners.map { key -> String in
                     return key.id
@@ -47,21 +46,21 @@ class BackgroundOperationService {
                     let mediaIds: [String]?
                     switch (account.typeInferred) {
                     case .Twitter:
-                            let upload = account.newMicroblogInstance("upload")
-                            if (pendingUpdate.sharedMediaIds != nil) {
-                                mediaIds = pendingUpdate.sharedMediaIds
-                            } else {
-                                mediaIds = try uploadAllMediaShared(upload, update: update, ownerIds: ownerIds, chucked: true)
-                                pendingUpdate.sharedMediaIds = mediaIds
-                            }
+                        let upload = account.newMicroblogInstance("upload")
+                        if (pendingUpdate.sharedMediaIds != nil) {
+                            mediaIds = pendingUpdate.sharedMediaIds
+                        } else {
+                            mediaIds = try uploadAllMediaShared(upload, update: update, ownerIds: ownerIds, chucked: true)
+                            pendingUpdate.sharedMediaIds = mediaIds
+                        }
                         
                     case .Fanfou:
-                            // Nope, fanfou uses photo uploading API
+                        // Nope, fanfou uses photo uploading API
                         mediaIds = nil
                     case .StatusNet:
-                            // TODO use their native API
-                            let upload = account.newMicroblogInstance("upload")
-                            mediaIds = try uploadAllMediaShared(upload, update: update, ownerIds: ownerIds, chucked: false)
+                        // TODO use their native API
+                        let upload = account.newMicroblogInstance("upload")
+                        mediaIds = try uploadAllMediaShared(upload, update: update, ownerIds: ownerIds, chucked: false)
                     }
                     pendingUpdate.mediaIds[i] = mediaIds
                 }
@@ -73,44 +72,49 @@ class BackgroundOperationService {
                     // TODO upload then get id
                     let fm = NSFileManager.defaultManager()
                     let data = fm.contentsAtPath(media.path)!
-                    let json: JSON
+                    let promise: Promise<MediaUploadResponse>
                     if (chucked) {
-                        json = try uploadMediaChucked(upload, body: data, contentType: "image/jpeg", ownerIds: ownerIds)
+                        promise = uploadMediaChucked(upload, body: data, contentType: "image/jpeg", ownerIds: ownerIds)
                     } else {
-                        json = try upload.uploadMedia(data, additionalOwners: ownerIds)
+                        promise = upload.uploadMedia(data, additionalOwners: ownerIds)
                     }
-                    return json["media_id_string"].stringValue
+                    while (promise.pending) {}
+                    if (promise.fulfilled) {
+                        return promise.value!.mediaId
+                    } else {
+                        throw promise.error!
+                    }
                 }
             }
-
-            func uploadMediaChucked(upload: MicroBlogService, body: NSData, contentType: String, ownerIds: [String]) throws -> JSON {
+            
+            func uploadMediaChucked(upload: MicroBlogService, body: NSData, contentType: String, ownerIds: [String]) -> Promise<MediaUploadResponse> {
                 let length = body.length
-                var response = try upload.initUploadMedia(contentType, totalBytes: length, additionalOwners: ownerIds)
-                let id = response["media_id"].stringValue
-                if (id.isEmpty) {
-                    // TODO control flow
-                    throw NSError(domain: "uploadMediaChucked", code: 0, userInfo: nil)
-                }
-                let segments = length == 0 ? 0 : length / BULK_SIZE + 1
-                for segmentIndex in 0..<segments {
-                    let currentBulkSize = min(BULK_SIZE, length - segmentIndex * BULK_SIZE)
-                    let bulk = body.subdataWithRange(NSMakeRange(segmentIndex * BULK_SIZE, currentBulkSize))
-                    try upload.appendUploadMedia(id, segmentIndex: segmentIndex, media: bulk)
-                }
-                response = try upload.finalizeUploadMedia(id)
-                var info = response["processing_info"]
-                while (info["check_after_secs"].isExists()) {
-                    guard let checkAfterSecs = info["check_after_secs"].uInt32 else {
-                        break
+                return upload.initUploadMedia(contentType, totalBytes: length, additionalOwners: ownerIds).then { (response) -> Promise<MediaUploadResponse> in
+                    let segments = length == 0 ? 0 : length / BULK_SIZE + 1
+                    return when((0..<segments).map { (segmentIndex) -> Promise<Int> in
+                        let currentBulkSize = min(BULK_SIZE, length - segmentIndex * BULK_SIZE)
+                        let bulk = body.subdataWithRange(NSMakeRange(segmentIndex * BULK_SIZE, currentBulkSize))
+                        return upload.appendUploadMedia(response.mediaId, segmentIndex: segmentIndex, media: bulk)
+                        }).then { responses -> MediaUploadResponse in
+                            return response
                     }
-                    sleep(checkAfterSecs)
-                    response = try upload.getUploadMediaStatus(id)
-                    info = response["processing_info"]
+                    }.then { response -> Promise<MediaUploadResponse> in
+                        return upload.finalizeUploadMedia(response.mediaId)
+                    }.then { response -> Promise<MediaUploadResponse> in
+                        return Promise { fullfill, reject in
+                            var info = response.processingInfo
+                            while (info?.checkAfterSecs > 0) {
+                                sleep(UInt32(info!.checkAfterSecs!))
+                                upload.getUploadMediaStatus(response.mediaId).then { response -> Void in
+                                    info = response.processingInfo
+                                }
+                            }
+                            if (info.state == "failed") {
+                                reject(MicroBlogError.RequestError(code: 0, message: "uploadMediaChucked"))
+                            }
+                            fullfill(response)
+                        }
                 }
-                if (info["state"].string == "failed") {
-                    throw NSError(domain: "uploadMediaChucked", code: 0, userInfo: nil)
-                }
-                return response
             }
             
             func uploadMediaWithExtension(uploader: MediaUploader, update: StatusUpdate, pendingUpdate: PendingStatusUpdate) {
@@ -120,27 +124,24 @@ class BackgroundOperationService {
             func requestUpdateStatus(statusUpdate: StatusUpdate, pendingUpdate: PendingStatusUpdate) -> UpdateStatusResult {
                 var statuses: [Status?] = Array(count: pendingUpdate.length, repeatedValue: nil)
                 var exceptions: [ErrorType?] = Array(count: pendingUpdate.length, repeatedValue: nil)
-
+                
                 for i in 0 ..< pendingUpdate.length {
                     let account = statusUpdate.accounts[i]
                     let microBlog = account.newMicroblogInstance("api")
                     switch (account.type) {
                     default:
-                        do {
-                            let requestResult = try twitterUpdateStatus(microBlog, statusUpdate: statusUpdate, pendingUpdate: pendingUpdate, overrideText: pendingUpdate.overrideTexts[i], index: i)
-                            let status = Status(status: requestResult, account: account)
-                            statuses[i] = status
-                        } catch let error {
-                            exceptions[i] = error
-                        }
+                        let promise = twitterUpdateStatus(microBlog, statusUpdate: statusUpdate, pendingUpdate: pendingUpdate, overrideText: pendingUpdate.overrideTexts[i], index: i)
+                        while (promise.pending) {}
+                        statuses[i] = promise.value
+                        exceptions[i] = promise.error
                     }
                 }
                 return UpdateStatusResult(statuses: statuses, exceptions: exceptions)
             }
-
+            
             func twitterUpdateStatus(microBlog: MicroBlogService, statusUpdate: StatusUpdate,
-                                     pendingUpdate: PendingStatusUpdate, overrideText: String,
-                                     index: Int) throws -> JSON {
+                pendingUpdate: PendingStatusUpdate, overrideText: String,
+                index: Int) -> Promise<Status> {
                 let status = UpdateStatusRequest(text: overrideText)
                 if (statusUpdate.inReplyToStatus != nil) {
                     status.inReplyToStatusId = statusUpdate.inReplyToStatus!.id
@@ -159,14 +160,15 @@ class BackgroundOperationService {
                     status.mediaIds = mediaIds
                 }
                 status.possiblySensitive = statusUpdate.possiblySensitive
-                return try microBlog.updateStatus(status)
+                return microBlog.updateStatus(status)
             }
             
             let uploader: MediaUploader? = nil
-
+            
             let pendingUpdate = PendingStatusUpdate(length: update.accounts.count, defaultText: update.text)
             
             try uploadMedia(uploader, update: update, pendingUpdate: pendingUpdate)
+            
             let result: UpdateStatusResult = requestUpdateStatus(update, pendingUpdate: pendingUpdate)
             if (!result.successful) {
                 throw StatusUpdateError.SendFailed

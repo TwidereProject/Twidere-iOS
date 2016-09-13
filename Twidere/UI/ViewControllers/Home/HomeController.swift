@@ -85,20 +85,22 @@ class HomeController: UITabBarController {
         }
         
         func loadStatuses(opts: StatusesListController.LoadOptions) -> Promise<[Status]> {
-            return dispatch_promise {  () -> [Status] in
-                let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
-                
-                if let params = opts.params where !opts.initLoad {
-                    GetStatusesTask.execute(params, table: self.table) { account, microblog, paging -> [Status] in
-                        return Status.arrayFromJson(try microblog.getHomeTimeline(paging), account: account)
+            return dispatch_promise { () -> [UserKey] in
+                return self.getAccounts().map({ $0.key! })
+                }.then{ accountKeys -> [UserKey] in
+                    if let params = opts.params where !opts.initLoad {
+                        GetStatusesTask.execute(params, table: self.table) { account, microblog, paging -> Promise<[Status]> in
+                            return microblog.getHomeTimeline(paging)
+                        }
                     }
-                }
-                let accountKeys = self.getAccounts().map({ $0.key! })
-                
-                return try db.prepare(self.table.filter(accountKeys.contains(Status.RowIndices.accountKey)).order(Status.RowIndices.positionKey.desc)).map { row -> Status in
-                    return Status(row: row)
-                }
-            }
+                    return accountKeys
+                }.then({ (accountKeys) -> [Status] in
+                    
+                    let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
+                    return try db.prepare(self.table.filter(accountKeys.contains(Status.RowIndices.accountKey)).order(Status.RowIndices.positionKey.desc)).map { row -> Status in
+                        return Status(row: row)
+                    }
+                })
         }
         
         func getNewestStatusIds(accounts: [Account]) -> [String?]? {

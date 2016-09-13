@@ -8,6 +8,8 @@
 
 import Foundation
 import Kanna
+import PromiseKit
+import Alamofire
 
 class TwitterOAuthPasswordAuthenticator {
     
@@ -23,68 +25,56 @@ class TwitterOAuthPasswordAuthenticator {
         self.browserUserAgent = browserUserAgent
     }
     
-    func getOAuthAccessToken(username: String, password: String) throws -> OAuthToken {
-        do {
-            let requestToken: OAuthToken
-            do {
-                requestToken = try oauth.getRequestToken(oauthCallbackOob)
-            } catch RestError.RequestError(_) {
-                throw AuthenticationError.RequestTokenFailed
-            }
-
-            let authorizeRequestData = try getAuthorizeRequestData(requestToken)
-            var authorizeResponseData = try getAuthorizeResponseData(requestToken, authorizeRequestData: authorizeRequestData, username: username, password: password)
-            if (!(authorizeResponseData.oauthPin?.isEmpty ?? true)) {
-                do {
-                    return try oauth.getAccessToken(requestToken, oauthVerifier: authorizeResponseData.oauthPin)
-                } catch RestError.RequestError(_) {
-                    throw AuthenticationError.AccessTokenFailed
+    func getOAuthAccessToken(username: String, password: String) -> Promise<OAuthToken> {
+        return firstly { () -> Promise<OAuthToken> in
+            return self.oauth.getRequestToken(oauthCallbackOob)
+            }.then { requestToken -> Promise<AuthorizeRequestData> in
+                return self.getAuthorizeRequestData(requestToken)
+            }.then { authorizeRequestData -> Promise<AuthorizeResponseData> in
+                return self.getAuthorizeResponseData(authorizeRequestData, username: username, password: password)
+            }.recover { error throws -> Promise<AuthorizeResponseData> in
+                // Got challange
+                guard let authError = error as? AuthenticationError else {
+                    throw error
                 }
-            } else if (authorizeResponseData.challenge == nil) {
-                throw AuthenticationError.WrongUsernamePassword
-            }
-        
-            // Go to password verification flow
-            let challengeType = authorizeResponseData.challenge!.challengeType
-            if (challengeType == nil) {
-                throw AuthenticationError.VerificationFailed
-            }
-            let loginVerification = loginVerificationCallback(challangeType: challengeType!)
-            let verificationData = try getVerificationData(authorizeResponseData,
-                                                   challengeResponse: loginVerification)
-            authorizeResponseData = try getAuthorizeResponseData(requestToken, authorizeRequestData: verificationData, username: username, password: password)
-            if (authorizeResponseData.oauthPin?.isEmpty ?? true) {
-                throw AuthenticationError.VerificationFailed
-            }
-            do {
-                return try oauth.getAccessToken(requestToken, oauthVerifier: authorizeResponseData.oauthPin)
-            } catch RestError.RequestError(_) {
-                throw AuthenticationError.AccessTokenFailed
-            }
-        } catch RestError.NetworkError(let err) {
-            throw AuthenticationError.NetworkError(err: err)
+                switch authError {
+                case .ChallangeRequired(let authorizeResponseData):
+                    let challengeType = authorizeResponseData.challenge!.challengeType
+                    if (challengeType == nil) {
+                        throw AuthenticationError.VerificationFailed
+                    }
+                    let loginVerification = self.loginVerificationCallback(challangeType: challengeType!)
+                    self.getVerificationData(authorizeResponseData, challengeResponse: loginVerification).then { verificationData -> Promise<AuthorizeResponseData> in
+                        return self.getAuthorizeResponseData(verificationData, username: username, password: password)
+                    }
+                default: break
+                }
+                throw error
+            }.then { authorizeResponseData -> Promise<OAuthToken> in
+                // Got oauth pin, fetech access token
+                return self.oauth.getAccessToken(authorizeResponseData.requestToken, oauthVerifier: authorizeResponseData.oauthPin)
         }
     }
-
-    func getAuthorizeRequestData(requestToken: OAuthToken) throws -> AuthorizeRequestData {
+    
+    func getAuthorizeRequestData(requestToken: OAuthToken) -> Promise<AuthorizeRequestData> {
         var requestHeaders = [String: String]()
         if (browserUserAgent != nil) {
             requestHeaders["User-Agent"] = browserUserAgent!
         }
         let queries = ["oauth_token": requestToken.oauthToken]
-        let data: AuthorizeRequestData
-        do {
-            try data = rest.makeTypedRequest(.GET, path: "/oauth/authorize", headers: requestHeaders, queries: queries, converter: AuthorizeRequestData.parseFromHttpResult)
-        }
-        data.referer = Endpoint.construct("https://api.twitter.com/", path: "/oauth/authorize", queries: queries)
-        return data
+        
+        return rest.makeTypedRequest(.GET, path: "/oauth/authorize", headers: requestHeaders, queries: queries, serializer: ResponseSerializer { (req, resp, data, error) -> Result<AuthorizeRequestData, AuthenticationError> in
+            let result = AuthorizeRequestData.parseFromHttpResult(data!)
+            result.requestToken = requestToken
+            result.referer = Endpoint.construct("https://api.twitter.com/", path: "/oauth/authorize", queries: queries)
+            return .Success(result)
+            })
     }
     
-    func getAuthorizeResponseData(requestToken: OAuthToken,
-                                  authorizeRequestData: AuthorizeRequestData,
-                                  username: String, password: String) throws -> AuthorizeResponseData {
+    func getAuthorizeResponseData(authorizeRequestData: AuthorizeRequestData,
+                                  username: String, password: String) -> Promise<AuthorizeResponseData> {
         var forms = [String: AnyObject]()
-        forms["oauth_token"] = requestToken.oauthToken
+        forms["oauth_token"] = authorizeRequestData.requestToken.oauthToken
         forms["authenticity_token"] = authorizeRequestData.authenticityToken
         forms["redirect_after_login"] = authorizeRequestData.redirectAfterLogin
         
@@ -96,16 +86,22 @@ class TwitterOAuthPasswordAuthenticator {
             requestHeaders["User-Agent"] = browserUserAgent!
         }
         
-        let data: AuthorizeResponseData
-        do {
-            data = try rest.makeTypedRequest(.POST, path: "/oauth/authorize", headers: requestHeaders, forms: forms, converter: AuthorizeResponseData.parseFromHttpResult)
-        }
-        data.referer = authorizeRequestData.referer
-        return data
+        return rest.makeTypedRequest(.POST, path: "/oauth/authorize", headers: requestHeaders, params: forms, serializer: ResponseSerializer { (req, resp, data, error) -> Result<AuthorizeResponseData, AuthenticationError> in
+            let result = AuthorizeResponseData.parseFromHttpResult(data!)
+            result.requestToken = authorizeRequestData.requestToken
+            result.referer = authorizeRequestData.referer
+            if (result.oauthPin != nil) {
+                return .Success(result)
+            } else if (result.challenge != nil) {
+                return .Failure(AuthenticationError.ChallangeRequired(data: result))
+            }
+            return .Failure(AuthenticationError.WrongUsernamePassword)
+            })
+        
     }
     
     private func getVerificationData(authorizeResponseData: AuthorizeResponseData,
-                             challengeResponse: String?) throws -> AuthorizeRequestData {
+                                     challengeResponse: String?) -> Promise<AuthorizeRequestData> {
         var forms = [String: AnyObject]()
         let verification = authorizeResponseData.challenge!
         forms["authenticity_token"] = verification.authenticityToken
@@ -124,14 +120,15 @@ class TwitterOAuthPasswordAuthenticator {
             requestHeaders["User-Agent"] = browserUserAgent!
         }
         
-        let data: AuthorizeRequestData
-        do {
-            try data = rest.makeTypedRequest(.POST, path: "/account/login_verification", headers: requestHeaders, forms: forms, converter: AuthorizeRequestData.parseFromHttpResult)
-        }
-        if (data.authenticityToken?.isEmpty ?? true) {
-            // TODO verification failed
-        }
-        return data
+        return rest.makeTypedRequest(.POST, path: "/account/login_verification", headers: requestHeaders, params: forms, serializer: ResponseSerializer { (req, resp, data, error) -> Result<AuthorizeRequestData, AuthenticationError> in
+            let result = AuthorizeRequestData.parseFromHttpResult(data!)
+            
+            if (result.authenticityToken?.isEmpty ?? true) {
+                // TODO verification failed
+            }
+            return .Success(result)
+            })
+        
     }
 }
 
@@ -140,31 +137,35 @@ enum AuthenticationError: ErrorType {
     case AccessTokenFailed
     case WrongUsernamePassword
     case VerificationFailed
+    case ChallangeRequired(data: AuthorizeResponseData)
     case NetworkError(err: NSError?)
 }
 
 internal class AuthorizeRequestData {
+    var requestToken: OAuthToken!
+    
     var authenticityToken: String? = nil
     var redirectAfterLogin: String? = nil
     
     var referer: String? = nil
     
-    static func parseFromHttpResult(result: HttpResult) -> AuthorizeRequestData {
-        let data = AuthorizeRequestData()
-        if let doc = Kanna.HTML(html: result.data!, encoding: NSUTF8StringEncoding) {
+    static func parseFromHttpResult(data: NSData) -> AuthorizeRequestData {
+        let result = AuthorizeRequestData()
+        if let doc = Kanna.HTML(html: data, encoding: NSUTF8StringEncoding) {
             
             let oauthForm = doc.at_css("form#oauth_form")
             if (oauthForm != nil) {
-                data.authenticityToken = oauthForm!.at_css("input[name=\"authenticity_token\"]")?["value"]
-                data.redirectAfterLogin = oauthForm!.at_css("input[name=\"redirect_after_login\"]")?["value"]
+                result.authenticityToken = oauthForm!.at_css("input[name=\"authenticity_token\"]")?["value"]
+                result.redirectAfterLogin = oauthForm!.at_css("input[name=\"redirect_after_login\"]")?["value"]
             }
         }
-        return data
+        return result
     }
 }
 
 
 internal class AuthorizeResponseData {
+    var requestToken: OAuthToken!
     
     var oauthPin: String? = nil
     var challenge: Verification? = nil
@@ -181,15 +182,15 @@ internal class AuthorizeResponseData {
         var redirectAfterLogin: String? = nil
     }
     
-    static func parseFromHttpResult(result: HttpResult) -> AuthorizeResponseData {
-        let data = AuthorizeResponseData()
+    static func parseFromHttpResult(data: NSData) -> AuthorizeResponseData {
+        let result = AuthorizeResponseData()
         
-        if let doc = Kanna.HTML(html: result.data!, encoding: NSUTF8StringEncoding) {
+        if let doc = Kanna.HTML(html: data, encoding: NSUTF8StringEncoding) {
             
             // Find OAuth pin
             if let oauthPin = doc.at_css("div#oauth_pin") {
                 let numericSet = NSCharacterSet.decimalDigitCharacterSet().invertedSet
-                data.oauthPin = oauthPin.css("*").filter({ (child) -> Bool in
+                result.oauthPin = oauthPin.css("*").filter({ (child) -> Bool in
                     if (child.text == nil) {
                         return false
                     }
@@ -205,12 +206,12 @@ internal class AuthorizeResponseData {
                 challenge.platform = challangeForm.at_css("input[name=\"platform\"]")?["value"]
                 challenge.userId = challangeForm.at_css("input[name=\"user_id\"]")?["value"]
                 challenge.redirectAfterLogin = challangeForm.at_css("input[name=\"redirect_after_login\"]")?["value"]
-             
                 
-                data.challenge = challenge
+                
+                result.challenge = challenge
             }
             
         }
-        return data
+        return result
     }
 }

@@ -1,15 +1,13 @@
 PODS:
   - ActionSheetPicker-3.0 (2.2.0)
-  - Alamofire (3.4.2)
-  - Alamofire-Synchronous (3.0.0):
-    - Alamofire (~> 3.0)
-  - ALSLayouts (0.2.3)
+  - Alamofire (3.5.0)
+  - ALSLayouts (0.2.7)
   - AttributedLabel (0.3.1)
   - Boilerplate (0.2.4):
     - Result (~> 2.0)
   - CrossroadRegex (0.8.0):
     - Boilerplate (~> 0.2)
-  - CryptoSwift (0.5.1)
+  - CryptoSwift (0.5.2)
   - DateTools (1.7.0)
   - IQKeyboardManagerSwift (4.0.4)
   - JDStatusBarNotification (1.5.4)
@@ -24,17 +22,17 @@ PODS:
     - OMGHTTPURLRQ/FormURLEncode
     - OMGHTTPURLRQ/UserAgent
   - OMGHTTPURLRQ/UserAgent (3.2.0)
-  - PromiseKit (3.4.0):
-    - PromiseKit/Foundation (= 3.4.0)
-    - PromiseKit/QuartzCore (= 3.4.0)
-    - PromiseKit/UIKit (= 3.4.0)
-  - PromiseKit/CorePromise (3.4.0)
-  - PromiseKit/Foundation (3.4.0):
+  - PromiseKit (3.5.1):
+    - PromiseKit/Foundation (= 3.5.1)
+    - PromiseKit/QuartzCore (= 3.5.1)
+    - PromiseKit/UIKit (= 3.5.1)
+  - PromiseKit/CorePromise (3.5.1)
+  - PromiseKit/Foundation (3.5.1):
     - OMGHTTPURLRQ (~> 3.2.0)
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (3.4.0):
+  - PromiseKit/QuartzCore (3.5.1):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (3.4.0):
+  - PromiseKit/UIKit (3.5.1):
     - PromiseKit/CorePromise
   - Result (2.1.3)
   - SDWebImage (3.8.2):
@@ -56,34 +54,33 @@ PODS:
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (= 2.2.0)
-  - Alamofire (~> 3.4)
-  - Alamofire-Synchronous (= 3.0.0)
+  - Alamofire (~> 3.5)
   - ALSLayouts (~> 0.2)
   - AttributedLabel (~> 0.3.1)
-  - CrossroadRegex (= 0.8.0)
-  - CryptoSwift (= 0.5.1)
+  - CrossroadRegex (~> 0.8)
+  - CryptoSwift (~> 0.5.2)
   - DateTools (~> 1.7.0)
-  - IQKeyboardManagerSwift (= 4.0.4)
+  - IQKeyboardManagerSwift (~> 4.0)
   - JDStatusBarNotification (= 1.5.4)
   - JVFloatLabeledTextField (= 1.1.1)
-  - Kanna (= 1.1.0)
+  - Kanna (~> 1.1)
   - KDInteractiveNavigationController (~> 0.1.2)
   - ObjectMapper (from `https://github.com/Hearst-DD/ObjectMapper.git`, tag `1.5.0`)
-  - PromiseKit (= 3.4.0)
-  - SDWebImage (= 3.8.2)
+  - PromiseKit (~> 3.5)
+  - SDWebImage (~> 3.8.2)
   - SQLite.swift (~> 0.10.1)
   - StaticDataTableViewController (= 2.0.5)
-  - STPopup (= 1.8.0)
+  - STPopup (~> 1.8)
   - StringExtensionHTML (~> 0.1)
   - SwiftEventBus (= 1.1.0)
-  - SwiftyJSON (= 2.3.2)
-  - SwiftyUserDefaults (= 2.2.0)
+  - SwiftyJSON (~> 2.3.2)
+  - SwiftyUserDefaults (~> 2.2)
   - ThumborURL (= 0.0.4)
   - twitter-text (~> 1.14)
   - UITableView+FDTemplateLayoutCell (~> 1.5.beta)
-  - UITextView+Placeholder (= 1.2.0)
+  - UITextView+Placeholder (~> 1.2)
   - UIView+FDCollapsibleConstraints (~> 1.1)
-  - UIView+TouchHighlighting (= 1.1.0)
+  - UIView+TouchHighlighting (~> 1.1)
 
 EXTERNAL SOURCES:
   ObjectMapper:
@@ -97,13 +94,12 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
-  Alamofire: 6aa33201d20d069e1598891cf928883ff1888c7a
-  Alamofire-Synchronous: dc5dccc284e03c3b760e09c655dfe6fa292364b6
-  ALSLayouts: b9ad6d51eef66b7e049d81383c75241a700f532b
+  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
+  ALSLayouts: dd439f7ad0ea10c92ff0d134ce9c3c7ba6b74c5c
   AttributedLabel: a7d48b22b464b834792a796309847ad88e26aa07
   Boilerplate: cc76b26f60747f7b75f43b8ac38d2071cfb0e75a
   CrossroadRegex: f1ab8cb19a65c1db9a2ed809e8f71b49a40aa8cb
-  CryptoSwift: df42dda18baf6c76347a94e227dbcc0a341304bd
+  CryptoSwift: c1ef79f901b86099a6fe8b3c7524cf9f3f3c8c40
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   IQKeyboardManagerSwift: e0964d04d6a29b71016fd346dca13ecb80a2823a
   JDStatusBarNotification: d47dded0594a50a39c84a2cc5aa356fcf6750d0e
@@ -112,7 +108,7 @@ SPEC CHECKSUMS:
   KDInteractiveNavigationController: c719bdf18062213315890c4648d37156a621b520
   ObjectMapper: a07ad0462c5adf014adc0f89ef04c29b626e855e
   OMGHTTPURLRQ: 1e54807cb7d5dbb506926e53498e1e9ac5720c79
-  PromiseKit: 72a1500ddedd052b5f69b44e3bb4091da2fd1a7d
+  PromiseKit: 99ea973444a4bff6c38ffb97fa1bb175e619bcf0
   Result: 18e1a7597fbcca5923c565b40a25a98afafdee02
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SQLite.swift: 6a6e4b034efc317ce4e203b6af2d3024fee2b570
@@ -129,6 +125,6 @@ SPEC CHECKSUMS:
   UIView+FDCollapsibleConstraints: 9357eaf03b4e088263ab74a3b86a382a64ce38dd
   UIView+TouchHighlighting: cedbcd90c965e7b1418c80a04fc8266398a738f1
 
-PODFILE CHECKSUM: 72ea84fe10853e5cc2d5d37643bddefc84e45b02
+PODFILE CHECKSUM: 5e2e4e0f72990aefbfacdaa7b4ad3ff22f683272
 
-COCOAPODS: 1.1.0.beta.2
+COCOAPODS: 1.0.0

@@ -8,17 +8,18 @@
 
 import Foundation
 import SQLite
+import ObjectMapper
 
 extension Status.Metadata: Value {
     static var declaredDatatype: String {
-        return Blob.declaredDatatype
+        return String.declaredDatatype
     }
     
-    static func fromDatatypeValue(datatypeValue: Blob) -> Status.Metadata? {
-        return Status.Metadata()
+    static func fromDatatypeValue(datatypeValue: String) -> Status.Metadata? {
+        return Mapper<Status.Metadata>().map(datatypeValue)
     }
     
-    var datatypeValue: Blob {
-        return Blob(bytes: [])
+    var datatypeValue: String {
+        return Mapper().toJSONString(self, prettyPrint: false) ?? ""
     }
 }

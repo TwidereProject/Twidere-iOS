@@ -9,11 +9,11 @@
 import Foundation
 import SwiftyUserDefaults
 import SQLite
+import PromiseKit
 
 class GetStatusesTask {
     
-    static func execute(param: RefreshTaskParam, table: Table, fetchAction: (Account, MicroBlogService, Paging) throws -> [Status]) -> [StatusListResponse] {
-        var result = [StatusListResponse]()
+    static func execute(param: RefreshTaskParam, table: Table, fetchAction: (Account, MicroBlogService, Paging) -> Promise<[Status]>) -> Promise<[StatusListResponse]> {
         
         let accounts = param.accounts
         let maxIds = param.maxIds
@@ -22,44 +22,48 @@ class GetStatusesTask {
         let sinceSortIds = param.sinceSortIds
         
         let loadItemLimit = Defaults[.loadItemLimit] ?? defaultLoadItemLimit
-        for (i, account) in accounts.enumerate() {
+        return when(accounts.enumerate().map { (i, account) -> Promise<StatusListResponse> in
             let twitter = account.newMicroblogInstance()
-            do {
-                let paging = Paging()
-                paging.count = loadItemLimit
-                
-                var maxSortId: Int64 = -1
-                var sinceSortId: Int64 = -1
-                let maxId = maxIds?[i]
-                if (maxId != nil) {
-                    paging.maxId = maxId!
-                    maxSortId = maxSortIds?[i] ?? -1
-                }
-                
-                let sinceId = sinceIds?[i]
-                if (sinceId != nil) {
-                    let sinceIdLong = Int64(sinceId!) ?? -1
-                    //TODO handle non-twitter case
-                    if (sinceIdLong != -1) {
-                        paging.sinceId = String(sinceIdLong - 1)
-                    } else {
-                        paging.sinceId = String(sinceId)
-                    }
-                    sinceSortId = sinceSortIds?[i] ?? -1
-                    if (maxId == nil) {
-                        paging.latestResults = true
-                    }
-                }
-                let statuses = try fetchAction(account, twitter, paging)
-                try storeStatus(account, statuses: statuses, sinceId: sinceId, maxId: maxId, sinceSortId: sinceSortId, maxSortId: maxSortId, loadItemLimit: loadItemLimit, table: table, notify: false)
-                // TODO cache related data and preload
-                
-            } catch let e {
-                debugPrint(e)
-                result.append(StatusListResponse(accountKey: account.key, error: e))
+            let paging = Paging()
+            paging.count = loadItemLimit
+            
+            var maxSortId: Int64 = -1
+            var sinceSortId: Int64 = -1
+            let maxId = maxIds?[i]
+            if (maxId != nil) {
+                paging.maxId = maxId!
+                maxSortId = maxSortIds?[i] ?? -1
             }
-        }
-        return result
+            
+            let sinceId = sinceIds?[i]
+            if (sinceId != nil) {
+                let sinceIdLong = Int64(sinceId!) ?? -1
+                //TODO handle non-twitter case
+                if (sinceIdLong != -1) {
+                    paging.sinceId = String(sinceIdLong - 1)
+                } else {
+                    paging.sinceId = String(sinceId)
+                }
+                sinceSortId = sinceSortIds?[i] ?? -1
+                if (maxId == nil) {
+                    paging.latestResults = true
+                }
+            }
+            return Promise {fullfill, reject in
+                fetchAction(account, twitter, paging).then { statuses -> [Status] in
+                    
+                    try storeStatus(account, statuses: statuses, sinceId: sinceId, maxId: maxId, sinceSortId: sinceSortId, maxSortId: maxSortId, loadItemLimit: loadItemLimit, table: table, notify: false)
+                    
+                    // TODO cache related data and preload
+                    return statuses
+                    }.then { statuses in
+                        fullfill(StatusListResponse(accountKey: account.key, statuses: statuses))
+                    }.error { error in
+                        debugPrint(error)
+                        fullfill(StatusListResponse(accountKey: account.key, error: error))
+                }
+            }
+            })
     }
     
     private static func storeStatus(account: Account, statuses: [Status], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {

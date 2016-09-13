@@ -12,9 +12,9 @@ import StringExtensionHTML
 
 extension Status {
     
-    convenience init(status: JSON, account: Account) {
+    convenience init(status: JSON, account: Account? = nil) {
         self.init()
-        self.accountKey = account.key
+        self.accountKey = account?.key
         self.id = getTwitterEntityId(status)
         self.createdAt = parseTwitterDate(status["created_at"].stringValue)
         self.sortId = generateSortId(self, rawId: status["raw_id"].int64 ?? -1)
@@ -65,7 +65,7 @@ extension Status {
         
     }
     
-    static func arrayFromJson(json: JSON, account: Account) -> [Status] {
+    static func arrayFromJson(json: JSON, account: Account? = nil) -> [Status] {
         if let array = json.array {
             return array.map { item in return Status(status: item, account: account) }
         } else {

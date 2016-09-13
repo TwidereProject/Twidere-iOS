@@ -8,17 +8,18 @@
 
 import Foundation
 import SQLite
+import ObjectMapper
 
 extension Account.Config: Value {
     static var declaredDatatype: String {
-        return Blob.declaredDatatype
+        return String.declaredDatatype
     }
     
-    static func fromDatatypeValue(datatypeValue: Blob) -> Account.Config {
-        return Account.Config()
+    static func fromDatatypeValue(datatypeValue: String) -> Account.Config? {
+        return Mapper<Account.Config>().map(datatypeValue)
     }
     
-    var datatypeValue: Blob {
-        return Blob(bytes: [])
+    var datatypeValue: String {
+        return Mapper().toJSONString(self, prettyPrint: false) ?? ""
     }
 }

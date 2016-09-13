@@ -12,28 +12,28 @@ import ObjectMapper
 
 extension User: Value {
     static var declaredDatatype: String {
-        return Blob.declaredDatatype
+        return String.declaredDatatype
     }
     
-    static func fromDatatypeValue(datatypeValue: Blob) -> User {
-        return User()
+    static func fromDatatypeValue(datatypeValue: String) -> User? {
+        return Mapper<User>().map(datatypeValue)
     }
     
-    var datatypeValue: Blob {
-        return Blob(bytes: [])
+    var datatypeValue: String {
+        return Mapper().toJSONString(self, prettyPrint: false) ?? ""
     }
 }
 
 extension User.Metadata: Value {
     static var declaredDatatype: String {
-        return Blob.declaredDatatype
+        return String.declaredDatatype
     }
     
-    static func fromDatatypeValue(datatypeValue: Blob) -> User.Metadata {
-        return User.Metadata()
+    static func fromDatatypeValue(datatypeValue: String) -> User.Metadata? {
+        return Mapper<User.Metadata>().map(datatypeValue)
     }
     
-    var datatypeValue: Blob {
-        return Blob(bytes: [])
+    var datatypeValue: String {
+        return Mapper().toJSONString(self, prettyPrint: false) ?? ""
     }
 }

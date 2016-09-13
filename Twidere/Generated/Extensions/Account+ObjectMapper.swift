@@ -5,19 +5,18 @@ import Foundation
 extension Account: StaticMappable {
 
     func mapping(map: Map) {
-        _id <- map["_id"]
-        key <- map["key"]
-        type <- map["type"]
-        apiUrlFormat <- map["apiUrlFormat"]
-        authType <- map["authType"]
-        basicPassword <- map["basicPassword"]
-        basicUsername <- map["basicUsername"]
-        consumerKey <- map["consumerKey"]
-        consumerSecret <- map["consumerSecret"]
-        noVersionSuffix <- map["noVersionSuffix"]
-        oauthToken <- map["oauthToken"]
-        oauthTokenSecret <- map["oauthTokenSecret"]
-        sameOAuthSigningUrl <- map["sameOAuthSigningUrl"]
+        key <- (map["account_key"], UserKeyTransform())
+        type <- map["account_type"]
+        apiUrlFormat <- map["api_url_format"]
+        authType <- map["auth_type"]
+        basicPassword <- map["basic_password"]
+        basicUsername <- map["basic_username"]
+        consumerKey <- map["consumer_key"]
+        consumerSecret <- map["consumer_secret"]
+        noVersionSuffix <- map["no_version_suffix"]
+        oauthToken <- map["oauth_token"]
+        oauthTokenSecret <- map["oauth_token_secret"]
+        sameOAuthSigningUrl <- map["same_oauth_signing_url"]
         config <- map["config"]
         user <- map["user"]
     }
@@ -30,7 +29,7 @@ extension Account: StaticMappable {
 extension Account.Config: StaticMappable {
 
     func mapping(map: Map) {
-        characterLimit <- map["characterLimit"]
+        characterLimit <- map["character_limit"]
     }
 
     static func objectForMapping(map: Map) -> BaseMappable? {

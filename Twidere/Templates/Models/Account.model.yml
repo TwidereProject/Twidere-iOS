@@ -10,47 +10,63 @@ submodels:
       key:
         type: UserKey
         column: account_key
+        json_field: account_key
+        json_transform: UserKeyTransform
       type:
         type: String
         column: account_type
+        json_field: account_type
       apiUrlFormat:
         type: String
         column: api_url_format
+        json_field: api_url_format
       authType:
         type: String
         column: auth_type
+        json_field: auth_type
       basicPassword:
         type: String?
         column: basic_password
+        json_field: basic_password
       basicUsername:
         type: String?
         column: basic_username
+        json_field: basic_username
       consumerKey:
         type: String?
         column: consumer_key
+        json_field: consumer_key
       consumerSecret:
         type: String?
         column: consumer_secret
+        json_field: consumer_secret
       noVersionSuffix:
         type: Bool
         column: no_version_suffix
+        json_field: no_version_suffix
       oauthToken:
         type: String?
         column: oauth_token
+        json_field: oauth_token
       oauthTokenSecret:
         type: String?
         column: oauth_token_secret
+        json_field: oauth_token_secret
       sameOAuthSigningUrl:
         type: Bool
         column: same_oauth_signing_url
+        json_field: same_oauth_signing_url
       config:
         type: Config
         column: config
+        json_field: config
       user:
         type: User
         column: user
+        json_field: user
     submodels:
       Config:
         fields:
           characterLimit:
             type: Int
+            json_field: character_limit

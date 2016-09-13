@@ -8,13 +8,14 @@
 
 import Foundation
 import SwiftyJSON
+import Alamofire
 
 class ModelConverter {
     
-    static func oauthToken(result: HttpResult) -> OAuthToken {
+    static let oauthToken = ResponseSerializer { req, resp, data, err -> Result<OAuthToken, MicroBlogError> in
         var oauthToken = "", oauthTokenSecret = "", userId = "", screenName = ""
         
-        for paramString in (String(data: result.data!, encoding: NSUTF8StringEncoding)!.componentsSeparatedByString("&")) {
+        for paramString in (String(data: data!, encoding: NSUTF8StringEncoding)!.componentsSeparatedByString("&")) {
             if (paramString.containsString("=")) {
                 let param = paramString.componentsSeparatedByString("=").map({ (s) -> String in
                     return s.stringByRemovingPercentEncoding!
@@ -37,7 +38,7 @@ class ModelConverter {
         let token = OAuthToken(oauthToken, oauthTokenSecret)
         token.userId = userId
         token.screenName = screenName
-        return token
+        return .Success(token)
     }
     
     static func toJson(result: HttpResult!) -> JSON {

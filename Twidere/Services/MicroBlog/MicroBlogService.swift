@@ -7,18 +7,20 @@
 //
 
 import SwiftyJSON
+import PromiseKit
+import Alamofire
 
 class MicroBlogService: RestClient {
     
     let statusQueries: [String: String] = [
         "tweet_mode": "extended"
     ]
-
-    func verifyCredentials() throws -> JSON {
-        return try makeTypedRequest(.GET, path: "/account/verify_credentials.json", checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+    
+    func verifyCredentials() -> Promise<JSON> {
+        return makeTypedRequest(.GET, path: "/account/verify_credentials.json", validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertJSON)
     }
-
-    func updateStatus(request: UpdateStatusRequest) throws -> JSON {
+    
+    func updateStatus(request: UpdateStatusRequest) -> Promise<Status> {
         var forms: [String:AnyObject] = ["status": request.text]
         if (request.mediaIds != nil) {
             forms["media_ids"] = request.mediaIds?.joinWithSeparator(",")
@@ -38,60 +40,54 @@ class MicroBlogService: RestClient {
             forms["attachment_url"] = request.attachmentUrl
         }
         forms["possibly_sensitive"] = request.possiblySensitive ? "true" : "false"
-        return try makeTypedRequest(.POST, path: "/statuses/update.json", forms: forms,
-                checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+        return makeTypedRequest(.POST, path: "/statuses/update.json", params: forms, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatus)
     }
     
-    func uploadMedia(media: NSData, additionalOwners: [String]? = nil) throws -> JSON {
+    func uploadMedia(media: NSData, additionalOwners: [String]? = nil) -> Promise<MediaUploadResponse> {
         var forms: [String:AnyObject] = ["media": media]
         if (additionalOwners != nil) {
             forms["additional_owners"] = additionalOwners!.joinWithSeparator(",")
         }
-        return try makeTypedRequest(.POST, path: "/media/upload.json", forms: forms,
-                                    checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+        return makeTypedRequest(.POST, path: "/media/upload.json", params: forms, validation: MicroBlogService.checkRequest, serializer: MediaUploadResponse.serialization)
     }
     
-    func initUploadMedia(mediaType: String, totalBytes: Int, additionalOwners: [String]? = nil) throws -> JSON {
+    func initUploadMedia(mediaType: String, totalBytes: Int, additionalOwners: [String]? = nil) -> Promise<MediaUploadResponse> {
         var forms: [String:AnyObject] = ["command": "INIT", "media_type": mediaType, "total_bytes": "\(totalBytes)"]
         if (additionalOwners != nil) {
             forms["additional_owners"] = additionalOwners!.joinWithSeparator(",")
         }
-        return try makeTypedRequest(.POST, path: "/media/upload.json", forms: forms,
-                                    checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+        return makeTypedRequest(.POST, path: "/media/upload.json", params: forms, validation: MicroBlogService.checkRequest, serializer: MediaUploadResponse.serialization)
     }
     
-    func appendUploadMedia(mediaId: String, segmentIndex: Int, media: NSData) throws -> JSON {
+    func appendUploadMedia(mediaId: String, segmentIndex: Int, media: NSData) -> Promise<Int> {
         var forms: [String:AnyObject] = ["command": "APPEND", "media_id": mediaId, "segment_index": "\(segmentIndex)"]
         forms["media"] = media
-        return try makeTypedRequest(.POST, path: "/media/upload.json", forms: forms,
-                                    checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+        return makeTypedRequest(.POST, path: "/media/upload.json", params: forms, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertResponseCode)
     }
     
-    func finalizeUploadMedia(mediaId: String) throws -> JSON {
+    func finalizeUploadMedia(mediaId: String) -> Promise<MediaUploadResponse> {
         let forms: [String:AnyObject] = ["command": "FINALIZE", "media_id": mediaId]
-        return try makeTypedRequest(.POST, path: "/media/upload.json", forms: forms,
-                                    checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+        return makeTypedRequest(.POST, path: "/media/upload.json", params: forms, validation: MicroBlogService.checkRequest, serializer: MediaUploadResponse.serialization)
     }
     
-    func getUploadMediaStatus(mediaId: String) throws -> JSON {
+    func getUploadMediaStatus(mediaId: String) -> Promise<MediaUploadResponse> {
         let queries: [String:String] = ["command": "STATUS", "media_id": mediaId]
-        return try makeTypedRequest(.POST, path: "/media/upload.json", queries: queries,
-                                    checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+        return makeTypedRequest(.POST, path: "/media/upload.json", queries: queries, validation: MicroBlogService.checkRequest, serializer: MediaUploadResponse.serialization)
     }
     
-    func getHomeTimeline(paging: Paging) throws -> JSON {
+    func getHomeTimeline(paging: Paging) -> Promise<[Status]> {
         let queries = makeQueries(statusQueries, paging.queries)
-        return try makeTypedRequest(.GET, path: "/statuses/home_timeline.json", queries: queries, checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+        return makeTypedRequest(.GET, path: "/statuses/home_timeline.json", queries: queries, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatuses)
     }
     
-    func getUserTimeline(screenName: String, paging: Paging) throws -> JSON {
+    func getUserTimeline(screenName: String, paging: Paging) -> Promise<[Status]> {
         let queries = makeQueries(statusQueries, ["screen_name": screenName], paging.queries)
-        return try makeTypedRequest(.GET, path: "/statuses/user_timeline.json", queries: queries, checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+        return makeTypedRequest(.GET, path: "/statuses/user_timeline.json", queries: queries, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatuses)
     }
     
-    func lookupStatuses(ids: [String]) throws -> JSON {
+    func lookupStatuses(ids: [String]) -> Promise<[Status]> {
         let queries = makeQueries(statusQueries, ["id": ids.joinWithSeparator(",")])
-        return try makeTypedRequest(.GET, path: "/statuses/lookup.json", queries: queries, checker: MicroBlogService.checkRequest, converter: MicroBlogService.convertJSON)
+        return makeTypedRequest(.GET, path: "/statuses/lookup.json", queries: queries, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatuses)
     }
     
     func makeQueries(def: [String: String], _ queries: [String: String]...) -> [String: String] {
@@ -106,25 +102,57 @@ class MicroBlogService: RestClient {
         }
         return result
     }
-
-    static func checkRequest(result: HttpResult) throws {
-        if (!(result.response?.ok ?? false)) {
-            if let data = result.data {
-                let json = JSON(data)
-                let code = json["errors"][0]["code"].int ?? -1
-                let message = json["errors"][0]["message"].string
-                throw MicroBlogError.RequestError(code: code, message: message)
-            }
+    
+    static func checkRequest(req: NSURLRequest?, resp: NSHTTPURLResponse) -> Request.ValidationResult {
+        if (resp.ok) {
+            return .Success
         }
+        let failureReason = "Response status code was unacceptable: \(resp.statusCode)"
+        
+        let error = NSError(
+            domain: Error.Domain,
+            code: Error.Code.StatusCodeValidationFailed.rawValue,
+            userInfo: [
+                NSLocalizedFailureReasonErrorKey: failureReason,
+                Error.UserInfoKeys.StatusCode: resp.statusCode
+            ]
+        )
+        
+        return .Failure(error)
     }
-
-    static func convertJSON(result: HttpResult) -> JSON {
-        return SwiftyJSON.JSON(data: result.data!)
+    
+    static let convertJSON = ResponseSerializer { (req, resp, data, err) -> Result<JSON, MicroBlogError> in
+        if let data = data {
+            return .Success(JSON(data: data))
+        }
+        return .Failure(.RequestError(code: resp?.statusCode ?? -1, message: nil))
     }
+    
+    static let convertResponseCode = ResponseSerializer { (req, resp, data, err) -> Result<Int, MicroBlogError> in
+        if let resp = resp {
+            return .Success(resp.statusCode)
+        }
+        return .Failure(.RequestError(code: resp?.statusCode ?? -1, message: nil))
+    }
+    
+    static let convertStatus = ResponseSerializer { (req, resp, data, err) -> Result<Status, MicroBlogError> in
+        if let data = data {
+            return .Success(Status(status: JSON(data: data)))
+        }
+        return .Failure(.RequestError(code: resp?.statusCode ?? -1, message: nil))
+    }
+    
+    static let convertStatuses = ResponseSerializer { (req, resp, data, err) -> Result<[Status], MicroBlogError> in
+            if let data = data {
+                return .Success(Status.arrayFromJson(JSON(data: data)))
+            }
+            return .Failure(.RequestError(code: resp?.statusCode ?? -1, message: nil))
+        }
 }
 
 enum MicroBlogError: ErrorType {
     case RequestError(code:Int, message:String?)
+    case DecodeError
 }
 
 class UpdateStatusRequest {
@@ -136,7 +164,7 @@ class UpdateStatusRequest {
     var repostStatusId: String? = nil
     var attachmentUrl: String? = nil
     var possiblySensitive: Bool = false
-
+    
     init(text: String) {
         self.text = text
     }

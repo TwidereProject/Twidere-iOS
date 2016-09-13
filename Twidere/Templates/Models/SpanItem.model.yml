@@ -8,9 +8,11 @@ submodels:
       start:
         type: Int
         init: -1
+        json_field: start
       end:
         type: Int
         init: -1
+        json_field: end
       origStart:
         type: Int
         init: -1
@@ -20,21 +22,40 @@ submodels:
   LinkSpanItem:
     inheritance: SpanItem
     fields:
+      start:
+        json_field: start
+      end:
+        json_field: end
       link:
         type: String
+        json_field: link
       display:
         type: String
+        json_field: display
   MentionSpanItem:
     inheritance: SpanItem
     fields:
+      start:
+        json_field: start
+      end:
+        json_field: end
       key:
         type: UserKey
+        json_field: key
+        json_transform: UserKeyTransform
       name:
         type: String
+        json_field: name
       screenName:
         type: String
+        json_field: screen_name
   HashtagSpanItem:
     inheritance: SpanItem
     fields:
+      start:
+        json_field: start
+      end:
+        json_field: end
       hashtag:
         type: String
+        json_field: hashtag

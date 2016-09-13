@@ -5,6 +5,8 @@ import Foundation
 extension LinkSpanItem: StaticMappable {
 
     func mapping(map: Map) {
+        start <- map["start"]
+        end <- map["end"]
         link <- map["link"]
         display <- map["display"]
     }
@@ -18,9 +20,11 @@ extension LinkSpanItem: StaticMappable {
 extension MentionSpanItem: StaticMappable {
 
     func mapping(map: Map) {
-        key <- map["key"]
+        start <- map["start"]
+        end <- map["end"]
+        key <- (map["key"], UserKeyTransform())
         name <- map["name"]
-        screenName <- map["screenName"]
+        screenName <- map["screen_name"]
     }
 
     static func objectForMapping(map: Map) -> BaseMappable? {
@@ -32,6 +36,8 @@ extension MentionSpanItem: StaticMappable {
 extension HashtagSpanItem: StaticMappable {
 
     func mapping(map: Map) {
+        start <- map["start"]
+        end <- map["end"]
         hashtag <- map["hashtag"]
     }
 
