@@ -1,38 +1,30 @@
 PODS:
   - ActionSheetPicker-3.0 (2.2.0)
-  - Alamofire (3.5.0)
+  - Alamofire (4.0.0)
   - ALSLayouts (0.2.7)
-  - AttributedLabel (0.3.1)
+  - AttributedLabel (0.5.0)
   - Boilerplate (0.2.4):
     - Result (~> 2.0)
   - CrossroadRegex (0.8.0):
     - Boilerplate (~> 0.2)
-  - CryptoSwift (0.5.2)
+  - CryptoSwift (0.6.0)
   - DateTools (1.7.0)
-  - IQKeyboardManagerSwift (4.0.5)
+  - IQKeyboardManager (4.0.5)
   - JDStatusBarNotification (1.5.4)
   - JVFloatLabeledTextField (1.1.1)
-  - Kanna (1.1.1)
+  - Kanna (2.0.0)
   - KDInteractiveNavigationController (0.1.2)
   - ObjectMapper (1.4.0)
-  - OMGHTTPURLRQ (3.2.0):
-    - OMGHTTPURLRQ/RQ (= 3.2.0)
-  - OMGHTTPURLRQ/FormURLEncode (3.2.0)
-  - OMGHTTPURLRQ/RQ (3.2.0):
-    - OMGHTTPURLRQ/FormURLEncode
-    - OMGHTTPURLRQ/UserAgent
-  - OMGHTTPURLRQ/UserAgent (3.2.0)
-  - PromiseKit (3.5.1):
-    - PromiseKit/Foundation (= 3.5.1)
-    - PromiseKit/QuartzCore (= 3.5.1)
-    - PromiseKit/UIKit (= 3.5.1)
-  - PromiseKit/CorePromise (3.5.1)
-  - PromiseKit/Foundation (3.5.1):
-    - OMGHTTPURLRQ (~> 3.2.0)
+  - PromiseKit (4.0.1):
+    - PromiseKit/Foundation (= 4.0.1)
+    - PromiseKit/QuartzCore (= 4.0.1)
+    - PromiseKit/UIKit (= 4.0.1)
+  - PromiseKit/CorePromise (4.0.1)
+  - PromiseKit/Foundation (4.0.1):
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (3.5.1):
+  - PromiseKit/QuartzCore (4.0.1):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (3.5.1):
+  - PromiseKit/UIKit (4.0.1):
     - PromiseKit/CorePromise
   - Result (2.1.3)
   - SDWebImage (3.8.2):
@@ -42,10 +34,8 @@ PODS:
   - StaticDataTableViewController (2.0.5)
   - STPopup (1.8.0)
   - StringExtensionHTML (0.1.3)
-  - SwiftEventBus (1.1.0)
-  - SwiftOverlays (2.0.1)
   - SwiftyJSON (2.3.2)
-  - SwiftyUserDefaults (2.2.1)
+  - SwiftyUserDefaults (3.0.0)
   - ThumborURL (0.0.4)
   - twitter-text (1.14.0)
   - UITableView+FDTemplateLayoutCell (1.5.beta)
@@ -55,28 +45,26 @@ PODS:
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (= 2.2.0)
-  - Alamofire (~> 3.5)
-  - ALSLayouts (~> 0.2)
-  - AttributedLabel (~> 0.3.1)
+  - Alamofire (~> 4.0)
+  - ALSLayouts (from `https://github.com/mariotaku/ALSLayouts.git`, branch `swift3`)
+  - AttributedLabel (from `https://github.com/KyoheiG3/AttributedLabel.git`, tag `0.5.0`)
   - CrossroadRegex (~> 0.8)
-  - CryptoSwift (~> 0.5.2)
+  - CryptoSwift (from `https://github.com/krzyzanowskim/CryptoSwift.git`, tag `0.6.0`)
   - DateTools (~> 1.7.0)
-  - IQKeyboardManagerSwift (~> 4.0)
+  - IQKeyboardManager (~> 4.0)
   - JDStatusBarNotification (= 1.5.4)
   - JVFloatLabeledTextField (= 1.1.1)
-  - Kanna (~> 1.1)
+  - Kanna (from `https://github.com/tid-kijyun/Kanna.git`, branch `swift3.0`)
   - KDInteractiveNavigationController (~> 0.1.2)
-  - ObjectMapper (from `https://github.com/Hearst-DD/ObjectMapper.git`, tag `1.5.0`)
-  - PromiseKit (~> 3.5)
+  - ObjectMapper (from `https://github.com/Hearst-DD/ObjectMapper.git`, tag `2.0.0`)
+  - PromiseKit (~> 4.0)
   - SDWebImage (~> 3.8.2)
   - SQLite.swift (~> 0.10.1)
   - StaticDataTableViewController (= 2.0.5)
   - STPopup (~> 1.8)
   - StringExtensionHTML (~> 0.1)
-  - SwiftEventBus (= 1.1.0)
-  - SwiftOverlays (~> 2.0.0)
   - SwiftyJSON (~> 2.3.2)
-  - SwiftyUserDefaults (~> 2.2)
+  - SwiftyUserDefaults (from `https://github.com/radex/SwiftyUserDefaults.git`, tag `3.0.0`)
   - ThumborURL (= 0.0.4)
   - twitter-text (~> 1.14)
   - UITableView+FDTemplateLayoutCell (~> 1.5.beta)
@@ -85,42 +73,69 @@ DEPENDENCIES:
   - UIView+TouchHighlighting (~> 1.1)
 
 EXTERNAL SOURCES:
+  ALSLayouts:
+    :branch: swift3
+    :git: https://github.com/mariotaku/ALSLayouts.git
+  AttributedLabel:
+    :git: https://github.com/KyoheiG3/AttributedLabel.git
+    :tag: 0.5.0
+  CryptoSwift:
+    :git: https://github.com/krzyzanowskim/CryptoSwift.git
+    :tag: 0.6.0
+  Kanna:
+    :branch: swift3.0
+    :git: https://github.com/tid-kijyun/Kanna.git
   ObjectMapper:
     :git: https://github.com/Hearst-DD/ObjectMapper.git
-    :tag: 1.5.0
+    :tag: 2.0.0
+  SwiftyUserDefaults:
+    :git: https://github.com/radex/SwiftyUserDefaults.git
+    :tag: 3.0.0
 
 CHECKOUT OPTIONS:
+  ALSLayouts:
+    :commit: 18af3df8ee3ef9e9314eb17f39b4dc625d873c21
+    :git: https://github.com/mariotaku/ALSLayouts.git
+  AttributedLabel:
+    :git: https://github.com/KyoheiG3/AttributedLabel.git
+    :tag: 0.5.0
+  CryptoSwift:
+    :git: https://github.com/krzyzanowskim/CryptoSwift.git
+    :tag: 0.6.0
+  Kanna:
+    :commit: 109249451c32e14dac541bfbfeaa91b4dcb47a87
+    :git: https://github.com/tid-kijyun/Kanna.git
   ObjectMapper:
     :git: https://github.com/Hearst-DD/ObjectMapper.git
-    :tag: 1.5.0
+    :tag: 2.0.0
+  SwiftyUserDefaults:
+    :git: https://github.com/radex/SwiftyUserDefaults.git
+    :tag: 3.0.0
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
-  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
+  Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
   ALSLayouts: dd439f7ad0ea10c92ff0d134ce9c3c7ba6b74c5c
-  AttributedLabel: a7d48b22b464b834792a796309847ad88e26aa07
+  AttributedLabel: 5df434efa72fad5a6cf5563b558030fd50fb180d
   Boilerplate: cc76b26f60747f7b75f43b8ac38d2071cfb0e75a
   CrossroadRegex: f1ab8cb19a65c1db9a2ed809e8f71b49a40aa8cb
-  CryptoSwift: c1ef79f901b86099a6fe8b3c7524cf9f3f3c8c40
+  CryptoSwift: 4a599b7241b8d3b857d6e2c28867d0bd5d1aae24
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
-  IQKeyboardManagerSwift: 41fd3a45a2cdb2a0e031af697708a95b865068a1
+  IQKeyboardManager: 50b62c0603308968256f8208886e206c1dcce607
   JDStatusBarNotification: d47dded0594a50a39c84a2cc5aa356fcf6750d0e
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
-  Kanna: 9d3118cff609bd21eb374be5be590b544941160f
+  Kanna: 8d60d86a3580f7dee732811e5163a5e3e41a32a7
   KDInteractiveNavigationController: c719bdf18062213315890c4648d37156a621b520
   ObjectMapper: a07ad0462c5adf014adc0f89ef04c29b626e855e
-  OMGHTTPURLRQ: 1e54807cb7d5dbb506926e53498e1e9ac5720c79
-  PromiseKit: 99ea973444a4bff6c38ffb97fa1bb175e619bcf0
+  PromiseKit: ae9e7f97ee758e23f7b9c5e80380a2e78d6338c5
   Result: 18e1a7597fbcca5923c565b40a25a98afafdee02
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SQLite.swift: 6a6e4b034efc317ce4e203b6af2d3024fee2b570
   StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a
   STPopup: af630a85628e4226ffcbda5caaead0d99aed13a8
   StringExtensionHTML: a56bc49c4f11e7a3893b68aff7f7786eaa11d345
-  SwiftEventBus: d33b51752d4e3e994f0ea7b31873f0beca7eada0
-  SwiftOverlays: 317afbb3eeb7f9d8545b1e6592500c89aadb6d8f
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  SwiftyUserDefaults: 7abdba50a50ea0c18ee8903af3c88e4c1cb8448d
+  SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   ThumborURL: 0e1f058fb79c37660aa7d302fe77c48366902325
   twitter-text: 703e84901722b7e6e2e22b7ac12afabfb40be1e5
   UITableView+FDTemplateLayoutCell: 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
@@ -128,6 +143,6 @@ SPEC CHECKSUMS:
   UIView+FDCollapsibleConstraints: 9357eaf03b4e088263ab74a3b86a382a64ce38dd
   UIView+TouchHighlighting: cedbcd90c965e7b1418c80a04fc8266398a738f1
 
-PODFILE CHECKSUM: fd5e898d0529d921eddff6a22bb4255b8ea1be75
+PODFILE CHECKSUM: 0e898f4b55d4bc2a5b770de6fed9cf1cbef20308
 
 COCOAPODS: 1.1.0.rc.1
