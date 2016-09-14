@@ -75,31 +75,10 @@ class StatusShortenResult {
 }
 
 class UpdateStatusResult {
-    let statuses: [Status?]
-    let exceptions: [ErrorType?]
+    let statuses: [Status]
     
-    let exception: ErrorType?
-    
-    var successful: Bool {
-        get {
-            for item in statuses {
-                if (item == nil) {
-                    return false
-                }
-            }
-            return true
-        }
-    }
-    
-    init(statuses: [Status?], exceptions: [ErrorType?]) {
+    init(statuses: [Status]) {
         self.statuses = statuses
-        self.exceptions = exceptions
-        self.exception = nil
     }
     
-    init(exception: ErrorType) {
-        self.exception = exception
-        self.statuses = []
-        self.exceptions = []
-    }
 }

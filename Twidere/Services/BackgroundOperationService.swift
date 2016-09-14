@@ -76,8 +76,8 @@ class BackgroundOperationService {
                     }
                 }
                 
-            }).then { results -> Bool in
-                return true
+                }).then { results -> Bool in
+                    return true
             }
         }
         
@@ -148,14 +148,31 @@ class BackgroundOperationService {
         }
         
         func requestUpdateStatus(statusUpdate: StatusUpdate, pendingUpdate: PendingStatusUpdate) -> Promise<[Status]> {
-            return when((0..<pendingUpdate.length).map { i -> Promise<Status> in
-                let account = statusUpdate.accounts[i]
-                let microBlog = account.newMicroblogInstance("api")
-                switch (account.type) {
-                default:
-                    return twitterUpdateStatus(microBlog, statusUpdate: statusUpdate, pendingUpdate: pendingUpdate, overrideText: pendingUpdate.overrideTexts[i], index: i)
-                }
-                })
+            return when((0..<pendingUpdate.length)
+                .map { i -> Promise<(Status?, (UserKey, ErrorType)?)> in
+                    let account = statusUpdate.accounts[i]
+                    let microBlog = account.newMicroblogInstance("api")
+                    return Promise { fullfill, reject in
+                        let statusPromise: Promise<Status>
+                        switch (account.typeInferred) {
+                        default:
+                            statusPromise = twitterUpdateStatus(microBlog, statusUpdate: statusUpdate, pendingUpdate: pendingUpdate, overrideText: pendingUpdate.overrideTexts[i], index: i)
+                        }
+                        statusPromise.then { status -> Void in
+                            fullfill((status, nil))
+                            }.error { error in
+                                fullfill((nil, (account.key!, error)))
+                        }
+                    }
+                }).then { results -> [Status] in
+                    if (results.contains { $0.0 == nil }) {
+                        // Throw errors
+                        let errors = results.filter{ $0.1 != nil }.map { $0.1!.1 }
+                        let failedKeys = results.filter{ $0.1 != nil }.map { $0.1!.0 }
+                        throw StatusUpdateError.UpdateFailed(errors: errors, failedKeys: failedKeys)
+                    }
+                    return results.map { $0.0! }
+            }
         }
         
         func twitterUpdateStatus(microBlog: MicroBlogService, statusUpdate: StatusUpdate,
@@ -194,14 +211,52 @@ class BackgroundOperationService {
             }.always {
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             }.error { error in
-                debugPrint(error)
-                JDStatusBarNotification.showWithStatus("\(error)", dismissAfter: 1.5, styleName: JDStatusBarStyleError)
+                let errorMessage: String
+                switch error {
+                case let updateError as StatusUpdateError:
+                    switch updateError {
+                    case .NoAccount:
+                        errorMessage = "No account"
+                    case .UploadFailed:
+                        errorMessage = "Upload error"
+                    case let .UpdateFailed(errors, failedKeys):
+                        switch errors.first! {
+                        case let e as MicroBlogError:
+                            errorMessage = e.errorMessage
+                        default:
+                            errorMessage = String(errors.first!)
+                        }
+                    }
+                default:
+                    errorMessage = String(error)
+                }
+                JDStatusBarNotification.showWithStatus(errorMessage, dismissAfter: 1.5, styleName: JDStatusBarStyleError)
         }
     }
     
     enum StatusUpdateError: ErrorType {
-        case UploadError
-        case SendFailed
+        case NoAccount
+        case UploadFailed
+        case UpdateFailed(errors: [ErrorType], failedKeys: [UserKey])
+    }
+    
+}
+
+extension BackgroundOperationService.StatusUpdateError {
+    var errorMessage: String {
+        switch self {
+        case .NoAccount:
+            return "No account selected"
+        case .UploadFailed:
+            return "Media upload failed"
+        case .UpdateFailed(let errors, _):
+            switch errors.first! {
+            case let e as MicroBlogError:
+                return e.errorMessage
+            default:
+                return "Unkown error"
+            }
+        }
     }
 }
 

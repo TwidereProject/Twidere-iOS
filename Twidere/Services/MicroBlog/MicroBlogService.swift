@@ -138,27 +138,67 @@ class MicroBlogService: RestClient {
     }
     
     static func convertStatus(accountKey: UserKey) -> ResponseSerializer<Status, MicroBlogError> {
-        return ResponseSerializer { (req, resp, data, err) -> Result<Status, MicroBlogError> in
-            if let data = data {
-                return .Success(Status(status: JSON(data: data), accountKey: accountKey))
-            }
-            return .Failure(.RequestError(code: resp?.statusCode ?? -1, message: nil))
-        }
+        return convertMicroBlogResponse { Status(status: JSON(data: $0), accountKey: accountKey) }
     }
     
     static func convertStatuses(accountKey: UserKey) -> ResponseSerializer<[Status], MicroBlogError> {
-        return ResponseSerializer { (req, resp, data, err) -> Result<[Status], MicroBlogError> in
-            if let data = data {
-                return .Success(Status.arrayFromJson(JSON(data: data), accountKey: accountKey))
+        return convertMicroBlogResponse { Status.arrayFromJson(JSON(data: $0), accountKey: accountKey) }
+    }
+    
+    
+    static func convertMicroBlogResponse<T>(convert: (NSData) -> T?) -> ResponseSerializer<T, MicroBlogError> {
+        return ResponseSerializer { (req, resp, data, err) -> Result<T, MicroBlogError> in
+            if err != nil, let resp = resp {
+                if let data = data {
+                    let json = JSON(data: data)
+                    let errors = json["errors"].map({ (_, error) -> MicroBlogError.ErrorInfo in
+                        return MicroBlogError.ErrorInfo(code: error["code"].intValue, name: error["name"].string, message: error["message"].stringValue)
+                    })
+                    if (!errors.isEmpty) {
+                        return .Failure(.ServiceError(errors: errors))
+                    }
+                }
+                return .Failure(.RequestError(code: resp.statusCode, message: nil))
+            } else if let data = data {
+                guard let converted = convert(data) else {
+                    return .Failure(.DecodeError)
+                }
+                return .Success(converted)
             }
-            return .Failure(.RequestError(code: resp?.statusCode ?? -1, message: nil))
+            return .Failure(.NetworkError)
         }
     }
+
 }
 
 enum MicroBlogError: ErrorType {
+    case NetworkError
+    case ServiceError(errors: [ErrorInfo])
     case RequestError(code:Int, message:String?)
     case DecodeError
+    
+    struct ErrorInfo {
+        let code: Int
+        let name: String?
+        let message: String
+    }
+
+}
+
+extension MicroBlogError {
+    var errorMessage: String {
+        switch self {
+        case .NetworkError:
+            return "Network error"
+        case .DecodeError:
+            return "Server returned invalid response"
+        case let .ServiceError(errors):
+            return errors.first!.message
+        case let .RequestError(code, message):
+            // TODO return human readable message
+            return "Request error \(code): \(message ?? "nil")"
+        }
+    }
 }
 
 class UpdateStatusRequest {
