@@ -47,8 +47,8 @@ class MediaUploadResponse: StaticMappable {
         var imageType: String!
         
         func mapping(map: Map) {
-            width <- map["width"]
-            height <- map["height"]
+            width <- map["w"]
+            height <- map["h"]
             imageType <- map["image_type"]
         }
         

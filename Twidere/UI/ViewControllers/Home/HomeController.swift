@@ -148,6 +148,7 @@ class HomeController: UITabBarController {
             return dispatch_promise {  () -> [Status] in
                 let account = try defaultAccount()!
                 let json = JSON(data: NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("statuses_list", ofType: "json")!)!)
+                sleep(2)
                 return Status.arrayFromJson(json, accountKey: account.key)
             }
         }
