@@ -7,7 +7,7 @@ class User {
     var _id: Int64!
     var accountKey: UserKey!
     var key: UserKey!
-    var createdAt: NSDate!
+    var createdAt: Date!
     var position: Int64!
     var isProtected: Bool!
     var isVerified: Bool!

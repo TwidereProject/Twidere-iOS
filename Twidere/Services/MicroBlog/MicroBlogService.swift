@@ -22,7 +22,7 @@ class MicroBlogService: RestClient {
         return makeTypedRequest(.GET, path: "/account/verify_credentials.json", validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertJSON)
     }
     
-    func updateStatus(request: UpdateStatusRequest) -> Promise<Status> {
+    func updateStatus(_ request: UpdateStatusRequest) -> Promise<Status> {
         var forms: [String:AnyObject] = ["status": request.text]
         if (request.mediaIds != nil) {
             forms["media_ids"] = request.mediaIds?.joinWithSeparator(",")
@@ -45,7 +45,7 @@ class MicroBlogService: RestClient {
         return makeTypedRequest(.POST, path: "/statuses/update.json", params: forms, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatus(accountKey))
     }
     
-    func uploadMedia(media: NSData, additionalOwners: [String]? = nil) -> Promise<MediaUploadResponse> {
+    func uploadMedia(_ media: NSData, additionalOwners: [String]? = nil) -> Promise<MediaUploadResponse> {
         var forms: [String:AnyObject] = ["media": media]
         if (additionalOwners != nil) {
             forms["additional_owners"] = additionalOwners!.joinWithSeparator(",")
@@ -53,7 +53,7 @@ class MicroBlogService: RestClient {
         return makeTypedRequest(.POST, path: "/media/upload.json", params: forms, validation: MicroBlogService.checkRequest, serializer: MediaUploadResponse.serialization)
     }
     
-    func initUploadMedia(mediaType: String, totalBytes: Int, additionalOwners: [String]? = nil) -> Promise<MediaUploadResponse> {
+    func initUploadMedia(_ mediaType: String, totalBytes: Int, additionalOwners: [String]? = nil) -> Promise<MediaUploadResponse> {
         var forms: [String:AnyObject] = ["command": "INIT", "media_type": mediaType, "total_bytes": "\(totalBytes)"]
         if (additionalOwners != nil) {
             forms["additional_owners"] = additionalOwners!.joinWithSeparator(",")
@@ -61,38 +61,38 @@ class MicroBlogService: RestClient {
         return makeTypedRequest(.POST, path: "/media/upload.json", params: forms, validation: MicroBlogService.checkRequest, serializer: MediaUploadResponse.serialization)
     }
     
-    func appendUploadMedia(mediaId: String, segmentIndex: Int, media: NSData) -> Promise<Int> {
+    func appendUploadMedia(_ mediaId: String, segmentIndex: Int, media: NSData) -> Promise<Int> {
         var forms: [String:AnyObject] = ["command": "APPEND", "media_id": mediaId, "segment_index": "\(segmentIndex)"]
         forms["media"] = media
         return makeTypedRequest(.POST, path: "/media/upload.json", params: forms, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertResponseCode)
     }
     
-    func finalizeUploadMedia(mediaId: String) -> Promise<MediaUploadResponse> {
+    func finalizeUploadMedia(_ mediaId: String) -> Promise<MediaUploadResponse> {
         let forms: [String:AnyObject] = ["command": "FINALIZE", "media_id": mediaId]
         return makeTypedRequest(.POST, path: "/media/upload.json", params: forms, validation: MicroBlogService.checkRequest, serializer: MediaUploadResponse.serialization)
     }
     
-    func getUploadMediaStatus(mediaId: String) -> Promise<MediaUploadResponse> {
+    func getUploadMediaStatus(_ mediaId: String) -> Promise<MediaUploadResponse> {
         let queries: [String:String] = ["command": "STATUS", "media_id": mediaId]
         return makeTypedRequest(.POST, path: "/media/upload.json", queries: queries, validation: MicroBlogService.checkRequest, serializer: MediaUploadResponse.serialization)
     }
     
-    func getHomeTimeline(paging: Paging) -> Promise<[Status]> {
+    func getHomeTimeline(_ paging: Paging) -> Promise<[Status]> {
         let queries = makeQueries(statusQueries, paging.queries)
         return makeTypedRequest(.GET, path: "/statuses/home_timeline.json", queries: queries, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatuses(accountKey))
     }
     
-    func getUserTimeline(screenName: String, paging: Paging) -> Promise<[Status]> {
+    func getUserTimeline(_ screenName: String, paging: Paging) -> Promise<[Status]> {
         let queries = makeQueries(statusQueries, ["screen_name": screenName], paging.queries)
         return makeTypedRequest(.GET, path: "/statuses/user_timeline.json", queries: queries, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatuses(accountKey))
     }
     
-    func lookupStatuses(ids: [String]) -> Promise<[Status]> {
+    func lookupStatuses(_ ids: [String]) -> Promise<[Status]> {
         let queries = makeQueries(statusQueries, ["id": ids.joinWithSeparator(",")])
         return makeTypedRequest(.GET, path: "/statuses/lookup.json", queries: queries, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatuses(accountKey))
     }
     
-    func makeQueries(def: [String: String], _ queries: [String: String]...) -> [String: String] {
+    func makeQueries(_ def: [String: String], _ queries: [String: String]...) -> [String: String] {
         var result = [String: String]()
         for (k, v) in def {
             result[k] = v
@@ -105,7 +105,7 @@ class MicroBlogService: RestClient {
         return result
     }
     
-    static func checkRequest(req: NSURLRequest?, resp: NSHTTPURLResponse) -> Request.ValidationResult {
+    static func checkRequest(_ req: NSURLRequest?, resp: NSHTTPURLResponse) -> Request.ValidationResult {
         if (resp.ok) {
             return .Success
         }
@@ -137,16 +137,16 @@ class MicroBlogService: RestClient {
         return .Failure(.RequestError(code: resp?.statusCode ?? -1, message: nil))
     }
     
-    static func convertStatus(accountKey: UserKey) -> ResponseSerializer<Status, MicroBlogError> {
+    static func convertStatus(_ accountKey: UserKey) -> ResponseSerializer<Status, MicroBlogError> {
         return convertMicroBlogResponse { Status(status: JSON(data: $0), accountKey: accountKey) }
     }
     
-    static func convertStatuses(accountKey: UserKey) -> ResponseSerializer<[Status], MicroBlogError> {
+    static func convertStatuses(_ accountKey: UserKey) -> ResponseSerializer<[Status], MicroBlogError> {
         return convertMicroBlogResponse { Status.arrayFromJson(JSON(data: $0), accountKey: accountKey) }
     }
     
     
-    static func convertMicroBlogResponse<T>(convert: (NSData) -> T?) -> ResponseSerializer<T, MicroBlogError> {
+    static func convertMicroBlogResponse<T>(_ convert: (NSData) -> T?) -> ResponseSerializer<T, MicroBlogError> {
         return ResponseSerializer { (req, resp, data, err) -> Result<T, MicroBlogError> in
             if err != nil, let resp = resp {
                 if let data = data {
@@ -171,11 +171,11 @@ class MicroBlogService: RestClient {
 
 }
 
-enum MicroBlogError: ErrorType {
-    case NetworkError
-    case ServiceError(errors: [ErrorInfo])
-    case RequestError(code:Int, message:String?)
-    case DecodeError
+enum MicroBlogError: Error {
+    case networkError
+    case serviceError(errors: [ErrorInfo])
+    case requestError(code:Int, message:String?)
+    case decodeError
     
     struct ErrorInfo {
         let code: Int
@@ -188,13 +188,13 @@ enum MicroBlogError: ErrorType {
 extension MicroBlogError {
     var errorMessage: String {
         switch self {
-        case .NetworkError:
+        case .networkError:
             return "Network error"
-        case .DecodeError:
+        case .decodeError:
             return "Server returned invalid response"
-        case let .ServiceError(errors):
+        case let .serviceError(errors):
             return errors.first!.message
-        case let .RequestError(code, message):
+        case let .requestError(code, message):
             // TODO return human readable message
             return "Request error \(code): \(message ?? "nil")"
         }

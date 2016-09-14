@@ -15,17 +15,17 @@ class TwitterOAuthPasswordAuthenticator {
     
     let oauth: OAuthService
     let rest: RestClient
-    let loginVerificationCallback: ((challangeType: String) -> String?)
+    let loginVerificationCallback: ((_ challangeType: String) -> String?)
     let browserUserAgent: String?
     
-    init(endpoint: Endpoint, consumerKey:String, consumerSecret: String, loginVerificationCallback: ((challangeType: String) -> String?), browserUserAgent: String? = nil) {
+    init(endpoint: Endpoint, consumerKey:String, consumerSecret: String, loginVerificationCallback: @escaping ((_ challangeType: String) -> String?), browserUserAgent: String? = nil) {
         self.oauth = OAuthService(endpoint: endpoint, auth: OAuthAuthorization(consumerKey, consumerSecret))
         self.rest = RestClient(endpoint: endpoint)
         self.loginVerificationCallback = loginVerificationCallback
         self.browserUserAgent = browserUserAgent
     }
     
-    func getOAuthAccessToken(username: String, password: String) -> Promise<OAuthToken> {
+    func getOAuthAccessToken(_ username: String, password: String) -> Promise<OAuthToken> {
         return firstly { () -> Promise<OAuthToken> in
             return self.oauth.getRequestToken(oauthCallbackOob)
             }.then { requestToken -> Promise<AuthorizeRequestData> in
@@ -56,7 +56,7 @@ class TwitterOAuthPasswordAuthenticator {
         }
     }
     
-    func getAuthorizeRequestData(requestToken: OAuthToken) -> Promise<AuthorizeRequestData> {
+    func getAuthorizeRequestData(_ requestToken: OAuthToken) -> Promise<AuthorizeRequestData> {
         var requestHeaders = [String: String]()
         if (browserUserAgent != nil) {
             requestHeaders["User-Agent"] = browserUserAgent!
@@ -71,7 +71,7 @@ class TwitterOAuthPasswordAuthenticator {
             })
     }
     
-    func getAuthorizeResponseData(authorizeRequestData: AuthorizeRequestData,
+    func getAuthorizeResponseData(_ authorizeRequestData: AuthorizeRequestData,
                                   username: String, password: String) -> Promise<AuthorizeResponseData> {
         var forms = [String: AnyObject]()
         forms["oauth_token"] = authorizeRequestData.requestToken.oauthToken
@@ -100,7 +100,7 @@ class TwitterOAuthPasswordAuthenticator {
         
     }
     
-    private func getVerificationData(authorizeResponseData: AuthorizeResponseData,
+    fileprivate func getVerificationData(_ authorizeResponseData: AuthorizeResponseData,
                                      challengeResponse: String?) -> Promise<AuthorizeRequestData> {
         var forms = [String: AnyObject]()
         let verification = authorizeResponseData.challenge!
@@ -132,13 +132,13 @@ class TwitterOAuthPasswordAuthenticator {
     }
 }
 
-enum AuthenticationError: ErrorType {
-    case RequestTokenFailed
-    case AccessTokenFailed
-    case WrongUsernamePassword
-    case VerificationFailed
-    case ChallangeRequired(data: AuthorizeResponseData)
-    case NetworkError(err: NSError?)
+enum AuthenticationError: Error {
+    case requestTokenFailed
+    case accessTokenFailed
+    case wrongUsernamePassword
+    case verificationFailed
+    case challangeRequired(data: AuthorizeResponseData)
+    case networkError(err: NSError?)
 }
 
 internal class AuthorizeRequestData {
@@ -149,9 +149,9 @@ internal class AuthorizeRequestData {
     
     var referer: String? = nil
     
-    static func parseFromHttpResult(data: NSData) -> AuthorizeRequestData {
+    static func parseFromHttpResult(_ data: Data) -> AuthorizeRequestData {
         let result = AuthorizeRequestData()
-        if let doc = Kanna.HTML(html: data, encoding: NSUTF8StringEncoding) {
+        if let doc = Kanna.HTML(html: data, encoding: String.Encoding.utf8) {
             
             let oauthForm = doc.at_css("form#oauth_form")
             if (oauthForm != nil) {
@@ -182,14 +182,14 @@ internal class AuthorizeResponseData {
         var redirectAfterLogin: String? = nil
     }
     
-    static func parseFromHttpResult(data: NSData) -> AuthorizeResponseData {
+    static func parseFromHttpResult(_ data: Data) -> AuthorizeResponseData {
         let result = AuthorizeResponseData()
         
-        if let doc = Kanna.HTML(html: data, encoding: NSUTF8StringEncoding) {
+        if let doc = Kanna.HTML(html: data, encoding: String.Encoding.utf8) {
             
             // Find OAuth pin
             if let oauthPin = doc.at_css("div#oauth_pin") {
-                let numericSet = NSCharacterSet.decimalDigitCharacterSet().invertedSet
+                let numericSet = CharacterSet.decimalDigits.inverted
                 result.oauthPin = oauthPin.css("*").filter({ (child) -> Bool in
                     if (child.text == nil) {
                         return false

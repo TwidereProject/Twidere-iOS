@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Regex
 import SwiftyUserDefaults
 
 class CustomAPIConfig {
@@ -36,11 +35,11 @@ class CustomAPIConfig {
         }
     }
     
-    func createEndpoint(domain: String?) -> Endpoint {
+    func createEndpoint(_ domain: String?) -> Endpoint {
         return createEndpoint(domain, noVersionSuffix: noVersionSuffix)
     }
     
-    func createEndpoint(domain: String?, noVersionSuffix: Bool, fixUrl: (String -> String)? = nil) -> Endpoint {
+    func createEndpoint(_ domain: String?, noVersionSuffix: Bool, fixUrl: ((String) -> String)? = nil) -> Endpoint {
         let base: String
         if (noVersionSuffix) {
             base = getApiBaseUrl(apiUrlFormat, domain: domain)
@@ -63,12 +62,12 @@ class CustomAPIConfig {
         }
     }
     
-    func getApiUrl(format: String, domain: String?, appendPath: String?) -> String {
+    func getApiUrl(_ format: String, domain: String?, appendPath: String?) -> String {
         let urlBase = getApiBaseUrl(format, domain: domain)
         return Endpoint.construct(urlBase, path: appendPath ?? "")
     }
     
-    func getApiBaseUrl(format: String, domain: String?) -> String {
+    func getApiBaseUrl(_ format: String, domain: String?) -> String {
         let compiled = "\\[(\\.?)DOMAIN(\\.?)\\]".r!
         if (compiled.findFirst(in: format) == nil) {
             // For backward compatibility
@@ -85,7 +84,7 @@ class CustomAPIConfig {
         }
     }
     
-    func substituteLegacyApiBaseUrl(format: String, domain: String?) -> String {
+    func substituteLegacyApiBaseUrl(_ format: String, domain: String?) -> String {
         return format
     }
     

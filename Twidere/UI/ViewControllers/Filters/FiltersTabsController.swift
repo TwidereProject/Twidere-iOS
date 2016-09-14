@@ -11,7 +11,7 @@ import UIKit
 class FiltersTabsController: UITabBarController {
     
     
-    @IBAction func closeFilters(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeFilters(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
 }

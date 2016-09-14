@@ -17,23 +17,23 @@ class ComposeLocationController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var preciseLocationSwitch: UISwitch!
     @IBOutlet weak var preciseLocationLabel: UILabel!
     
-    var callback: ((location: CLLocationCoordinate2D, precise: Bool) -> Void)? = nil
+    var callback: ((_ location: CLLocationCoordinate2D, _ precise: Bool) -> Void)? = nil
     
     override func viewDidLoad() {
         mapView.delegate = self
         preciseLocationSwitch.on = Defaults[.attachPreciseLocation] ?? false
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         Defaults[.attachPreciseLocation] = preciseLocationSwitch.on
     }
     
-    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         preciseLocationLabel.text = String(format: "%.2f,%.2f",userLocation.coordinate.latitude, userLocation.coordinate.longitude)
     }
     
-    @IBAction func doneAttachLocation(sender: UIBarButtonItem) {
-        callback?(location: mapView.userLocation.coordinate, precise: preciseLocationSwitch.on)
-        popupController.popViewControllerAnimated(true)
+    @IBAction func doneAttachLocation(_ sender: UIBarButtonItem) {
+        callback?(mapView.userLocation.coordinate, preciseLocationSwitch.isOn)
+        popupController.popViewController(animated: true)
     }
 }

@@ -4,7 +4,7 @@ import Foundation
 
 extension Status: StaticMappable {
 
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         accountKey <- map["account_key"]
         sortId <- map["sort_id"]
         positionKey <- map["position_key"]
@@ -33,14 +33,14 @@ extension Status: StaticMappable {
         retweetId <- map["retweet_id"]
     }
 
-    static func objectForMapping(map: Map) -> BaseMappable? {
+    static func objectForMapping(_ map: Map) -> BaseMappable? {
         return Status()
     }
 }
 
 extension Status.Metadata: StaticMappable {
 
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         links <- map["links"]
         mentions <- map["mentions"]
         hashtags <- map["hashtags"]
@@ -48,7 +48,7 @@ extension Status.Metadata: StaticMappable {
         displayRange <- map["display_range"]
     }
 
-    static func objectForMapping(map: Map) -> BaseMappable? {
+    static func objectForMapping(_ map: Map) -> BaseMappable? {
         return Status.Metadata()
     }
 }

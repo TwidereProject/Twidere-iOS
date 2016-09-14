@@ -9,7 +9,7 @@ class Status {
     var sortId: Int64!
     var positionKey: Int64!
     var isGap: Bool!
-    var createdAt: NSDate!
+    var createdAt: Date!
     var id: String!
     var userKey: UserKey!
     var userName: String!

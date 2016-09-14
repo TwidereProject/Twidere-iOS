@@ -25,18 +25,18 @@ class HomeController: UITabBarController {
         self.accountProfileImageView.layer.cornerRadius = self.accountProfileImageView.frame.size.width / 2
         self.accountProfileImageView.clipsToBounds = true
         
-        menuToggleItem.customView?.touchHighlightingStyle = .TransparentMask
+        menuToggleItem.customView?.touchHighlightingStyle = .transparentMask
         
         let pages = UIStoryboard(name: "Pages", bundle: nil)
         
-        let homeTimelineController = pages.instantiateViewControllerWithIdentifier("StatusesList") as! StatusesListController
+        let homeTimelineController = pages.instantiateViewController(withIdentifier: "StatusesList") as! StatusesListController
         homeTimelineController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "Tab Icon Home"), tag: 1)
         homeTimelineController.delegate = HomeTimelineStatusesListControllerDelegate()
-        let notificationsTimelineController = pages.instantiateViewControllerWithIdentifier("StubTab")
+        let notificationsTimelineController = pages.instantiateViewController(withIdentifier: "StubTab")
         notificationsTimelineController.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(named: "Tab Icon Notification"), tag: 2)
-        let messageConversationsController = pages.instantiateViewControllerWithIdentifier("StubTab")
+        let messageConversationsController = pages.instantiateViewController(withIdentifier: "StubTab")
         messageConversationsController.tabBarItem = UITabBarItem(title: "Messages", image: UIImage(named: "Tab Icon Message"), tag: 3)
-        let testController = pages.instantiateViewControllerWithIdentifier("StatusesList") as! StatusesListController
+        let testController = pages.instantiateViewController(withIdentifier: "StatusesList") as! StatusesListController
         testController.delegate = UserTimelineStatusesListControllerDelegate()
         testController.tabBarItem = UITabBarItem(title: "User", image: UIImage(named: "Tab Icon User"), tag: 4)
         setViewControllers([homeTimelineController, notificationsTimelineController, messageConversationsController, testController], animated: false)
@@ -56,9 +56,9 @@ class HomeController: UITabBarController {
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         let account = try! defaultAccount()!
-        accountProfileImageView.displayImage(account.user!.profileImageUrlForSize(.ReasonablySmall), placeholder: UIImage(named: "Profile Image Default"))
+        accountProfileImageView.displayImage(account.user!.profileImageUrlForSize(.reasonablySmall), placeholder: UIImage(named: "Profile Image Default"))
     }
     
     override func didReceiveMemoryWarning() {
@@ -66,15 +66,15 @@ class HomeController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func composeClicked(sender: UIBarButtonItem) {
-        ComposeController.show(self.parentViewController ?? self, identifier: "Compose")
+    @IBAction func composeClicked(_ sender: UIBarButtonItem) {
+        ComposeController.show(self.parent ?? self, identifier: "Compose")
     }
     
-    @IBAction func accountIconClicked(sender: UITapGestureRecognizer) {
+    @IBAction func accountIconClicked(_ sender: UITapGestureRecognizer) {
         let account = try! defaultAccount()!
-        let vc = storyboard!.instantiateViewControllerWithIdentifier("AccountProfile") as! UserProfileController
+        let vc = storyboard!.instantiateViewController(withIdentifier: "AccountProfile") as! UserProfileController
         vc.user = account.user
-        navigationController?.showViewController(vc, sender: self)
+        navigationController?.show(vc, sender: self)
     }
     
     class HomeTimelineStatusesListControllerDelegate: StatusesListControllerDelegate {
@@ -84,12 +84,12 @@ class HomeController: UITabBarController {
             return [try! defaultAccount()!]
         }
         
-        func loadStatuses(opts: StatusesListController.LoadOptions) -> Promise<[Status]> {
+        func loadStatuses(_ opts: StatusesListController.LoadOptions) -> Promise<[Status]> {
             return dispatch_promise { () -> [UserKey] in
                 return self.getAccounts().map({ $0.key! })
                 }.then{ accountKeys -> Promise<[UserKey]> in
                     return Promise { fullfill, reject in
-                        if let params = opts.params where !opts.initLoad {
+                        if let params = opts.params , !opts.initLoad {
                             GetStatusesTask.execute(params, table: self.table, fetchAction: { account, microblog, paging -> Promise<[Status]> in
                                 return microblog.getHomeTimeline(paging)
                             }).always {
@@ -108,11 +108,11 @@ class HomeController: UITabBarController {
                 })
         }
         
-        func getNewestStatusIds(accounts: [Account]) -> [String?]? {
+        func getNewestStatusIds(_ accounts: [Account]) -> [String?]? {
             let accountKeys = accounts.map({ $0.key! })
-            let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
+            let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
             
-            var result = [String?](count: accounts.count, repeatedValue: nil)
+            var result = [String?](repeating: nil, count: accounts.count)
             for row in try! db.prepare(table.select(Status.RowIndices.accountKey, Status.RowIndices.id)
                 .group(Status.RowIndices.accountKey, having: accountKeys.contains(Status.RowIndices.accountKey))
                 .order(Status.RowIndices.createdAt.max)) {
@@ -123,11 +123,11 @@ class HomeController: UITabBarController {
             return result
         }
         
-        func getNewestStatusSortIds(accounts: [Account]) -> [Int64]? {
+        func getNewestStatusSortIds(_ accounts: [Account]) -> [Int64]? {
             let accountKeys = accounts.map({ $0.key! })
-            let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
+            let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
             
-            var result = [Int64](count: accounts.count, repeatedValue: -1)
+            var result = [Int64](repeating: -1, count: accounts.count)
             for row in try! db.prepare(table.select(Status.RowIndices.accountKey, Status.RowIndices.sortId)
                 .group(Status.RowIndices.accountKey, having: accountKeys.contains(Status.RowIndices.accountKey))
                 .order(Status.RowIndices.createdAt.max)) {
@@ -144,7 +144,7 @@ class HomeController: UITabBarController {
             return [try! defaultAccount()!]
         }
         
-        func loadStatuses(opts: StatusesListController.LoadOptions) -> Promise<[Status]> {
+        func loadStatuses(_ opts: StatusesListController.LoadOptions) -> Promise<[Status]> {
             return dispatch_promise {  () -> [Status] in
                 let account = try defaultAccount()!
                 let json = JSON(data: NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("statuses_list", ofType: "json")!)!)
@@ -153,11 +153,11 @@ class HomeController: UITabBarController {
             }
         }
         
-        func getNewestStatusIds(accounts: [Account]) -> [String?]? {
+        func getNewestStatusIds(_ accounts: [Account]) -> [String?]? {
             return nil
         }
         
-        func getNewestStatusSortIds(accounts: [Account]) -> [Int64]? {
+        func getNewestStatusSortIds(_ accounts: [Account]) -> [Int64]? {
             return nil
         }
     }

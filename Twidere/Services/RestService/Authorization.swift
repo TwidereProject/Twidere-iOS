@@ -12,7 +12,7 @@ import Security
 
 protocol Authorization {
     var hasAuthorization: Bool { get }
-    func getHeader(method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: AnyObject]?) -> String?
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: AnyObject]?) -> String?
 }
 class EmptyAuthorization: Authorization {
     
@@ -22,7 +22,7 @@ class EmptyAuthorization: Authorization {
         }
     }
     
-    func getHeader(method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : AnyObject]?) -> String? {
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : AnyObject]?) -> String? {
         return nil
     }
 }
@@ -46,7 +46,7 @@ class BasicAuthorization: Authorization {
         }
     }
     
-    func getHeader(method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : AnyObject]?) -> String? {
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : AnyObject]?) -> String? {
         return "\(username):\(password)".utf8.map({$0}).toBase64()
     }
     
@@ -58,10 +58,10 @@ class BasicAuthorization: Authorization {
 //
 class OAuthAuthorization: Authorization {
     
-    let oauthUrlEncodeAllowedSet: NSCharacterSet = {
-        let allowed = NSMutableCharacterSet.alphanumericCharacterSet()
-        allowed.addCharactersInString("-._~")
-        return allowed
+    let oauthUrlEncodeAllowedSet: CharacterSet = {
+        let allowed = NSMutableCharacterSet.alphanumeric()
+        allowed.addCharacters(in: "-._~")
+        return allowed as CharacterSet
     }()
     
     let charsetEncoding = "UTF-8"
@@ -83,18 +83,18 @@ class OAuthAuthorization: Authorization {
         }
     }
     
-    func getHeader(method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: AnyObject]?) -> String? {
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: AnyObject]?) -> String? {
         let oauthEndpoint = endpoint as! OAuthEndpoint
         let signingUrl = oauthEndpoint.constructSigningUrl(path, queries: queries)
         let oauthParams = generateOAuthParams(method, url: signingUrl, oauthToken: oauthToken, queries: queries, forms: forms)
         return "OAuth " + oauthParams.map({ (k, v) -> String in
             return "\(k)=\"\(v)\""
-        }).joinWithSeparator(", ")
+        }).joined(separator: ", ")
     }
     
-    private func generateOAuthParams(method: String, url: String, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: AnyObject]?) -> [(String, String)] {
+    fileprivate func generateOAuthParams(_ method: String, url: String, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: AnyObject]?) -> [(String, String)] {
         let oauthNonce = generateOAuthNonce()
-        let timestamp =  UInt64(NSDate().timeIntervalSince1970)
+        let timestamp =  UInt64(Date().timeIntervalSince1970)
         let oauthSignature = generateOAuthSignature(method, url: url, oauthNonce: oauthNonce, timestamp: timestamp, oauthToken: oauthToken, queries: queries, forms: forms)
         var encodeParams: [(String, String)] = [
             ("oauth_consumer_key", consumerKey),
@@ -107,14 +107,14 @@ class OAuthAuthorization: Authorization {
         if (oauthToken != nil) {
             encodeParams.append(("oauth_token", oauthToken!.oauthToken))
         }
-        encodeParams.sortInPlace { (l, r) -> Bool in
+        encodeParams.sort { (l, r) -> Bool in
             return l.0 < r.0
         }
         return encodeParams;
         
     }
     
-    private func generateOAuthSignature(method: String, url: String, oauthNonce: String, timestamp: UInt64, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: AnyObject]?) -> String {
+    fileprivate func generateOAuthSignature(_ method: String, url: String, oauthNonce: String, timestamp: UInt64, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: AnyObject]?) -> String {
         var oauthParams: [String] = [
             encodeOAuthKeyValue("oauth_consumer_key", value: consumerKey),
             encodeOAuthKeyValue("oauth_nonce", value: oauthNonce),
@@ -132,14 +132,14 @@ class OAuthAuthorization: Authorization {
         }
         if (forms != nil) {
             for (k, v) in forms! {
-                oauthParams.append(encodeOAuthKeyValue(k, value: String(v)))
+                oauthParams.append(encodeOAuthKeyValue(k, value: String(describing: v)))
             }
         }
         // Sort params
-        oauthParams.sortInPlace { (l, r) -> Bool in
+        oauthParams.sort { (l, r) -> Bool in
             return l < r
         }
-        let paramsString = oauthParams.joinWithSeparator("&")
+        let paramsString = oauthParams.joined(separator: "&")
         let signingKey: String
         if (oauthToken != nil) {
             signingKey = encodeOAuth(consumerSecret) + "&" + encodeOAuth(oauthToken!.oauthTokenSecret);
@@ -149,16 +149,16 @@ class OAuthAuthorization: Authorization {
         let signingKeyBytes = signingKey.utf8.map{$0}
         
 
-        let urlNoQuery = url.rangeOfString("?") != nil ? url.substringToIndex(url.rangeOfString("?")!.startIndex) : url
+        let urlNoQuery = url.range(of: "?") != nil ? url.substring(to: url.range(of: "?")!.lowerBound) : url
         let baseString = encodeOAuth(method) + "&" + encodeOAuth(urlNoQuery) + "&" + encodeOAuth(paramsString)
         let baseBytes = baseString.utf8.map{$0}
         let hmac: [UInt8] = try! Authenticator.HMAC(key: signingKeyBytes, variant: .sha1).authenticate(baseBytes)
         return hmac.toBase64()!
     }
     
-    private func generateOAuthNonce() -> String {
+    fileprivate func generateOAuthNonce() -> String {
         let bytesCount = 8 // number of bytes
-        var randomBytes = [UInt8](count: bytesCount, repeatedValue: 0) // array to hold randoms bytes
+        var randomBytes = [UInt8](repeating: 0, count: bytesCount) // array to hold randoms bytes
         
         // Gen random bytes
         SecRandomCopyBytes(kSecRandomDefault, bytesCount, &randomBytes)
@@ -166,11 +166,11 @@ class OAuthAuthorization: Authorization {
         return randomBytes.toHexString()
     }
     
-    private func encodeOAuth(str: String) -> String {
-        return str.stringByAddingPercentEncodingWithAllowedCharacters(oauthUrlEncodeAllowedSet)!
+    fileprivate func encodeOAuth(_ str: String) -> String {
+        return str.addingPercentEncoding(withAllowedCharacters: oauthUrlEncodeAllowedSet)!
     }
     
-    private func encodeOAuthKeyValue(key: String, value: String) -> String {
+    fileprivate func encodeOAuthKeyValue(_ key: String, value: String) -> String {
         return encodeOAuth(key) + "=" + encodeOAuth(value)
     }
     

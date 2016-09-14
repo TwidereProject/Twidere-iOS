@@ -17,21 +17,21 @@ class MainViewController: UIViewController {
         
         // Do any additional setup after loading the view, typically from a nib.
         
-        let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
+        let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
         hasAccount = db.scalar(accountsTable.count) > 0
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if (hasAccount) {
             
             // Create content and menu controllers
             //
-            let homeController = storyboard!.instantiateViewControllerWithIdentifier("HomeRoot") as! HomeRootController
+            let homeController = storyboard!.instantiateViewController(withIdentifier: "HomeRoot") as! HomeRootController
             presentViewController(homeController, animated: false, completion: nil)
         } else {
             
-            performSegueWithIdentifier("ShowSignIn", sender: self)
+            performSegue(withIdentifier: "ShowSignIn", sender: self)
         }
     }
     

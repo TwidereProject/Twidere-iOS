@@ -33,14 +33,14 @@ class APIEditorController: StaticDataTableViewController {
     var callback: ((CustomAPIConfig) -> Void)? = nil
     var disappearCallback: ((CustomAPIConfig) -> Void)? = nil
     
-    private var authType: CustomAPIConfig.AuthType = .OAuth
+    fileprivate var authType: CustomAPIConfig.AuthType = .OAuth
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         hideSectionsWithHiddenRows = true
         
-        let initialSelection = authTypeValues.indexOf(customAPIConfig.authType) ?? 0
+        let initialSelection = authTypeValues.index(of: customAPIConfig.authType) ?? 0
         updateOptions(initialSelection)
         
         authType = customAPIConfig.authType
@@ -48,15 +48,15 @@ class APIEditorController: StaticDataTableViewController {
         updateView()
         
         if (callback != nil) {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(self.cancelEditAPI))
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Done, target: self, action: #selector(self.finishEditAPI))
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelEditAPI))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.finishEditAPI))
         }
         
         cell(loadDefaultCell, setHidden: callback == nil)
-        reloadDataAnimated(false)
+        reloadData(animated: false)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         saveAPISettings()
         disappearCallback?(customAPIConfig)
         super.viewWillDisappear(animated)
@@ -70,14 +70,14 @@ class APIEditorController: StaticDataTableViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         switch segue.identifier {
         case "FinishEditAPI"?:
             saveAPISettings()
         case "LoadDefaultAPIConfig"?:
-            let dest = segue.destinationViewController as! DefaultAPISettingsController
+            let dest = segue.destination as! DefaultAPISettingsController
             dest.callback = { config in
                 self.authType = config.authType
                 self.customAPIConfig = config
@@ -87,9 +87,9 @@ class APIEditorController: StaticDataTableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let cell = tableView.cellForRow(at: indexPath)
         if (cell != nil) {
             switch cell! {
             case authTypeCell:
@@ -100,37 +100,37 @@ class APIEditorController: StaticDataTableViewController {
     }
     
     internal func cancelEditAPI() {
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
     internal func finishEditAPI() {
         saveAPISettings()
         callback?(customAPIConfig)
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
-    private func saveAPISettings() {
+    fileprivate func saveAPISettings() {
         customAPIConfig.apiUrlFormat = editApiUrlFormat.text ?? ""
         customAPIConfig.authType = authType
         customAPIConfig.consumerKey = editConsumerKey.text ?? ""
         customAPIConfig.consumerSecret = editConsumerSecret.text ?? ""
-        customAPIConfig.noVersionSuffix = editNoVersionSuffix.on
-        customAPIConfig.sameOAuthSigningUrl = editSameOauthSigningUrl.on
+        customAPIConfig.noVersionSuffix = editNoVersionSuffix.isOn
+        customAPIConfig.sameOAuthSigningUrl = editSameOauthSigningUrl.isOn
     }
     
-    private func openEditAuthType(sender: AnyObject) {
+    fileprivate func openEditAuthType(_ sender: AnyObject) {
         view.endEditing(true)
-        let initialSelection = authTypeValues.indexOf(customAPIConfig.authType) ?? 0
-        let picker = ActionSheetStringPicker.showPickerWithTitle("Auth Type", rows: authTypeEntries, initialSelection: initialSelection, doneBlock: self.authTypeSelected, cancelBlock: { _ in }, origin: sender)
-        picker.tapDismissAction = .Cancel
+        let initialSelection = authTypeValues.index(of: customAPIConfig.authType) ?? 0
+        let picker = ActionSheetStringPicker.show(withTitle: "Auth Type", rows: authTypeEntries, initialSelection: initialSelection, doneBlock: self.authTypeSelected, cancel: { _ in }, origin: sender)
+        picker.tapDismissAction = .cancel
     }
     
-    private func authTypeSelected(picker: ActionSheetStringPicker!, index: Int, value: AnyObject!) {
+    fileprivate func authTypeSelected(_ picker: ActionSheetStringPicker!, index: Int, value: AnyObject!) {
         self.authType = self.authTypeValues[index]
         self.updateOptions(index)
     }
     
-    private func updateOptions(index: Int) {
+    fileprivate func updateOptions(_ index: Int) {
         
         authTypeDetails.text = authTypeEntries[index]
         
@@ -141,15 +141,15 @@ class APIEditorController: StaticDataTableViewController {
         cell(consumerKeyCell, setHidden: !isOAuthType)
         cell(consumerSecretCell, setHidden: !isOAuthType)
         
-        reloadDataAnimated(true)
+        reloadData(animated: true)
     }
     
-    private func updateView() {
+    fileprivate func updateView() {
         editApiUrlFormat.text = customAPIConfig.apiUrlFormat
-        editSameOauthSigningUrl.on = customAPIConfig.sameOAuthSigningUrl
-        editNoVersionSuffix.on = customAPIConfig.noVersionSuffix
+        editSameOauthSigningUrl.isOn = customAPIConfig.sameOAuthSigningUrl
+        editNoVersionSuffix.isOn = customAPIConfig.noVersionSuffix
         editConsumerKey.text = customAPIConfig.consumerKey
         editConsumerSecret.text = customAPIConfig.consumerSecret
-        authTypeDetails.text = authTypeEntries[authTypeValues.indexOf(authType) ?? 0]
+        authTypeDetails.text = authTypeEntries[authTypeValues.index(of: authType) ?? 0]
     }
 }

@@ -18,6 +18,26 @@ import SwiftyUserDefaults
 import AssetsLibrary
 import Photos
 import UIView_FDCollapsibleConstraints
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class ComposeController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -61,10 +81,10 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         locationManager.delegate = self
         // Do any additional setup after loading the view.
         
-        sendItem.customView?.touchHighlightingStyle = .TransparentMask
+        sendItem.customView?.touchHighlightingStyle = .transparentMask
         
         sendIconView.tintColor = sendItem.tintColor
-        let tintedImage = sendIconView.image!.imageWithRenderingMode(.AlwaysTemplate)
+        let tintedImage = sendIconView.image!.withRenderingMode(.alwaysTemplate)
         sendIconView.image = tintedImage
         
         editText.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
@@ -85,7 +105,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         updateMediaPreview()
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
@@ -94,17 +114,17 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         // Dispose of any resources that can be recreated.
     }
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return attachedMedia?.count ?? 0
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MediaItem", forIndexPath: indexPath)
-        guard let media = attachedMedia?[indexPath.item] else {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MediaItem", for: indexPath)
+        guard let media = attachedMedia?[(indexPath as NSIndexPath).item] else {
             return cell
         }
         let previewImageView = cell.viewWithTag(101) as! UIImageView
@@ -113,7 +133,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     }
     
     
-    func addMedia(media: MediaUpdate) {
+    func addMedia(_ media: MediaUpdate) {
         if (self.attachedMedia == nil) {
             self.attachedMedia = []
         }
@@ -126,12 +146,12 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         attachmedMediaCollectionView.fd_collapsed = attachedMedia?.isEmpty ?? true
     }
 
-    @IBAction func updateStatusTapped(sender: UITapGestureRecognizer) {
+    @IBAction func updateStatusTapped(_ sender: UITapGestureRecognizer) {
         guard let text = self.editText.text else {
             //
             return
         }
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let bos = appDelegate.backgroundOperationService
         let accounts = try! allAccounts()
         let update = StatusUpdate(accounts: accounts, text: text)
@@ -144,7 +164,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         popupController.dismiss()
     }
     
-    @IBAction func attachLocationClicked(sender: UIBarButtonItem) {
+    @IBAction func attachLocationClicked(_ sender: UIBarButtonItem) {
         if (self.attachLocation) {
             // Remove location
             self.attachLocation = false
@@ -156,9 +176,9 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         }
     }
     
-    @IBAction func attachMediaClicked(sender: UIBarButtonItem) {
+    @IBAction func attachMediaClicked(_ sender: UIBarButtonItem) {
         let picker = UIImagePickerController()
-        picker.sourceType = .PhotoLibrary
+        picker.sourceType = .photoLibrary
         firstly { () -> Promise<[String: AnyObject]> in
             return promiseViewController(picker, animated: true, completion: nil)
         }.then { (info) -> Promise<NSData> in
@@ -196,7 +216,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         
     }
     
-    func textViewDidChange(textView: UITextView) {
+    func textViewDidChange(_ textView: UITextView) {
         let accounts = try! allAccounts()
         let textLimit = accounts.map { $0.config?.characterLimit }.reduce(140) { (result, limit) -> Int in
             if (limit > 0 && limit < result) {
@@ -210,17 +230,17 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     
     
     func showLocationViewController() {
-        let vc = storyboard?.instantiateViewControllerWithIdentifier("ComposeLocation") as! ComposeLocationController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ComposeLocation") as! ComposeLocationController
         vc.callback = { location, precise in
             self.attachLocation = true
             self.recentLocation = location
         }
-        popupController.pushViewController(vc, animated: true)
+        popupController.push(vc, animated: true)
     }
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if (status.hasAuthorization && locationAuthorizationGrantedSelector != nil) {
-            performSelector(locationAuthorizationGrantedSelector!, withObject: self)
+            perform(locationAuthorizationGrantedSelector!, with: self)
         }
         locationAuthorizationGrantedSelector = nil
     }
@@ -236,12 +256,12 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     }
     */
     
-    static func show(parent: UIViewController, identifier: String) {
-        let root = parent.storyboard?.instantiateViewControllerWithIdentifier(identifier)
+    static func show(_ parent: UIViewController, identifier: String) {
+        let root = parent.storyboard?.instantiateViewController(withIdentifier: identifier)
         let controller = STPopupController(rootViewController: root)
-        controller.containerView.layer.cornerRadius = 4;
+        controller?.containerView.layer.cornerRadius = 4;
 
-        controller.presentInViewController(parent)
+        controller?.present(in: parent)
     }
 
 }

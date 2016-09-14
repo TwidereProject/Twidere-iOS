@@ -10,8 +10,8 @@ import UIKit
 
 class PreferencesController: BasePreferencesController {
 
-    @IBAction func closeSettings(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeSettings(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
 }

@@ -9,6 +9,35 @@
 import Foundation
 import SwiftyJSON
 import StringExtensionHTML
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l <= r
+  default:
+    return !(rhs < lhs)
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 extension Status {
     
@@ -64,7 +93,7 @@ extension Status {
         
     }
     
-    static func arrayFromJson(json: JSON, accountKey: UserKey) -> [Status] {
+    static func arrayFromJson(_ json: JSON, accountKey: UserKey) -> [Status] {
         if let array = json.array {
             return array.map { item in return Status(status: item, accountKey: accountKey) }
         } else {
@@ -72,13 +101,13 @@ extension Status {
         }
     }
     
-    private func getProfileImage(user: JSON) -> String {
+    fileprivate func getProfileImage(_ user: JSON) -> String {
         return user["profile_image_url_https"].string ?? user["profile_image_url"].stringValue
     }
     
-    private static let carets = NSCharacterSet(charactersInString: "<>")
+    fileprivate static let carets = CharacterSet(charactersIn: "<>")
 
-    private func getMetadata(status: JSON) -> (plain: String, display: String, metadata: Status.Metadata) {
+    fileprivate func getMetadata(_ status: JSON) -> (plain: String, display: String, metadata: Status.Metadata) {
         let metadata = Status.Metadata()
         var links = [LinkSpanItem]()
         var mentions = [MentionSpanItem]()
@@ -118,7 +147,7 @@ extension Status {
                 }
             }
             
-            var indices = [Range<Int>]()
+            var indices = [CountableRange<Int>]()
             
             // Remove duplicate entities
             spans = spans.filter { entity -> Bool in
@@ -130,8 +159,8 @@ extension Status {
                     return false
                 }
                 //
-                if let insertIdx = indices.indexOf({ item -> Bool in return item.startIndex > range.startIndex }) {
-                    indices.insert(range, atIndex: insertIdx)
+                if let insertIdx = indices.index(where: { item -> Bool in return item.lowerBound > range.lowerBound }) {
+                    indices.insert(range, at: insertIdx)
                 } else {
                     indices.append(range)
                 }
@@ -139,7 +168,7 @@ extension Status {
             }
             
             // Order entities
-            spans.sortInPlace { (l, r) -> Bool in
+            spans.sort { (l, r) -> Bool in
                 return l.origStart < r.origEnd
             }
             
@@ -240,7 +269,7 @@ extension Status {
         return (textPlain, textDisplay, metadata)
     }
     
-    private func mediaItemFromEntity(entity: JSON) -> MediaItem {
+    fileprivate func mediaItemFromEntity(_ entity: JSON) -> MediaItem {
         let media = MediaItem()
         media.url = entity["media_url_https"].string ?? entity["media_url"].string
         media.mediaUrl = media.url
@@ -260,7 +289,7 @@ extension Status {
         return media
     }
     
-    private func getMediaType(type: String?) -> MediaItem.MediaType {
+    fileprivate func getMediaType(_ type: String?) -> MediaItem.MediaType {
         switch type {
         case "photo"?:
             return .Image
@@ -273,7 +302,7 @@ extension Status {
         return .Unknown
     }
     
-    private func getVideoInfo(json: JSON) -> MediaItem.VideoInfo {
+    fileprivate func getVideoInfo(_ json: JSON) -> MediaItem.VideoInfo {
         let info = MediaItem.VideoInfo()
         info.duration = json["duration"].int64Value
         info.variants = json["variants"].map { (k, v) -> MediaItem.VideoInfo.Variant in
@@ -286,7 +315,7 @@ extension Status {
         return info
     }
     
-    private func spanFromUrlEntity(entity: JSON) -> LinkSpanItem {
+    fileprivate func spanFromUrlEntity(_ entity: JSON) -> LinkSpanItem {
         let span = LinkSpanItem()
         span.display = entity["display_url"].stringValue
         span.link = entity["expanded_url"].stringValue
@@ -296,7 +325,7 @@ extension Status {
         return span
     }
     
-    private func spanFromMentionEntity(entity: JSON) -> MentionSpanItem {
+    fileprivate func spanFromMentionEntity(_ entity: JSON) -> MentionSpanItem {
         let id = entity["id_str"].string ?? entity["id"].stringValue
         let span = MentionSpanItem()
         span.key = UserKey(id: id, host: nil)
@@ -309,7 +338,7 @@ extension Status {
         return span
     }
     
-    private func spanFromHashtagEntity(entity: JSON) -> HashtagSpanItem {
+    fileprivate func spanFromHashtagEntity(_ entity: JSON) -> HashtagSpanItem {
         let span = HashtagSpanItem()
         span.hashtag = entity["text"].stringValue
         span.origStart = entity["indices"][0].int ?? -1
@@ -319,22 +348,22 @@ extension Status {
     }
     
     
-    private func getResultRangeLength(source: String.UnicodeScalarView, spans: [SpanItem], origStart: Int, origEnd: Int) -> Int {
+    fileprivate func getResultRangeLength(_ source: String.UnicodeScalarView, spans: [SpanItem], origStart: Int, origEnd: Int) -> Int {
         let findResult = findByOrigRange(spans, start: origStart, end: origEnd)
         let startIndex = source.startIndex
         if (findResult.isEmpty) {
-            return source.utf16Count(startIndex.advancedBy(origStart)..<startIndex.advancedBy(origEnd))
+            return source.utf16Count(<#T##String.UnicodeScalarView corresponding to `startIndex`##String.UnicodeScalarView#>.index(startIndex, offsetBy: origStart)..<<#T##String.UnicodeScalarView corresponding to `startIndex`##String.UnicodeScalarView#>.index(startIndex, offsetBy: origEnd))
         }
         guard let first = findResult.first, let last = findResult.last else {
             return 0
         }
         if (first.origStart == -1 || last.origEnd == -1){
-            return source.utf16Count(source.startIndex.advancedBy(origStart)..<source.startIndex.advancedBy(origEnd))
+            return source.utf16Count(source.index(source.startIndex, offsetBy: origStart)..<source.index(source.startIndex, offsetBy: origEnd))
         }
-        return source.utf16Count(startIndex.advancedBy(origStart)..<startIndex.advancedBy(first.origStart)) + (last.end - first.start) + source.utf16Count(startIndex.advancedBy(first.origEnd)..<startIndex.advancedBy(origEnd))
+        return source.utf16Count(<#T##String.UnicodeScalarView corresponding to `startIndex`##String.UnicodeScalarView#>.index(startIndex, offsetBy: origStart)..<<#T##String.UnicodeScalarView corresponding to `startIndex`##String.UnicodeScalarView#>.index(startIndex, offsetBy: first.origStart)) + (last.end - first.start) + source.utf16Count(<#T##String.UnicodeScalarView corresponding to `startIndex`##String.UnicodeScalarView#>.index(startIndex, offsetBy: first.origEnd)..<<#T##String.UnicodeScalarView corresponding to `startIndex`##String.UnicodeScalarView#>.index(startIndex, offsetBy: origEnd))
     }
     
-    private func findByOrigRange(spans: [SpanItem], start: Int, end:Int)-> [SpanItem] {
+    fileprivate func findByOrigRange(_ spans: [SpanItem], start: Int, end:Int)-> [SpanItem] {
         var result = [SpanItem]()
         for span in spans {
             if (span.origStart >= start && span.origEnd <= end) {
@@ -344,18 +373,18 @@ extension Status {
         return result
     }
     
-    private func hasClash(sortedIndices: [Range<Int>], range: Range<Int>) -> Bool {
-        if (range.endIndex < sortedIndices.first?.startIndex) {
+    fileprivate func hasClash(_ sortedIndices: [CountableRange<Int>], range: Range<Int>) -> Bool {
+        if (range.upperBound < sortedIndices.first?.lowerBound) {
             return false
         }
-        if (range.startIndex > sortedIndices.last?.endIndex) {
+        if (range.lowerBound > sortedIndices.last?.upperBound) {
             return false
         }
         var i = 0
         while i < sortedIndices.endIndex - 1 {
-            let end = sortedIndices[i].endIndex
-            let start = sortedIndices[i + 1].startIndex
-            if (range.startIndex > end && range.endIndex < start) {
+            let end = sortedIndices[i].upperBound
+            let start = sortedIndices[i + 1].lowerBound
+            if (range.lowerBound > end && range.upperBound < start) {
                 return false
             }
             i += 1
@@ -363,7 +392,7 @@ extension Status {
         return true
     }
     
-    private func generateSortId(status: Status, rawId: Int64) -> Int64 {
+    fileprivate func generateSortId(_ status: Status, rawId: Int64) -> Int64 {
         var sortId = rawId;
         if (sortId == -1) {
             // Try use long id
@@ -376,7 +405,7 @@ extension Status {
         return sortId;
     }
     
-    private enum EntityType {
-        case Mention, Url, Hashtag
+    fileprivate enum EntityType {
+        case mention, url, hashtag
     }
 }

@@ -11,7 +11,7 @@ import Foundation
 
 class Endpoint {
     
-    typealias FixUrl = (String -> String)
+    typealias FixUrl = ((String) -> String)
     
     let base: String
     var fixUrl: FixUrl?
@@ -21,7 +21,7 @@ class Endpoint {
         self.fixUrl = fixUrl
     }
     
-    func constructUrl(path: String, queries: [String: String]? = nil) -> String {
+    func constructUrl(_ path: String, queries: [String: String]? = nil) -> String {
         let url = Endpoint.construct(base, path: path, queries: queries)
         if (fixUrl != nil) {
             return fixUrl!(url)
@@ -29,23 +29,23 @@ class Endpoint {
         return url
     }
     
-    static func construct(base: String, path: String, queries: [String: String]? = nil) -> String {
-        let components = NSURLComponents(string: base)!
+    static func construct(_ base: String, path: String, queries: [String: String]? = nil) -> String {
+        var components = URLComponents(string: base)!
         var basePath = components.path ?? ""
         if (basePath.hasSuffix("/")) {
-            basePath = basePath.substringToIndex(basePath.endIndex.advancedBy(-1))
+            basePath = basePath.substring(to: basePath.characters.index(basePath.endIndex, offsetBy: -1))
         }
         if (path.hasPrefix("/")) {
             components.path = "\(basePath)\(path)"
         } else {
             components.path = "\(basePath)/\(path)"
         }
-        var queryItems = [NSURLQueryItem]()
+        var queryItems = [URLQueryItem]()
         if (components.queryItems != nil) {
-            queryItems.appendContentsOf(components.queryItems!)
+            queryItems.append(contentsOf: components.queryItems!)
         }
         queries?.forEach{ k, v in
-            queryItems.append(NSURLQueryItem(name: k, value: v))
+            queryItems.append(URLQueryItem(name: k, value: v))
         }
         if (queryItems.isEmpty) {
             components.queryItems = nil
@@ -73,7 +73,7 @@ class OAuthEndpoint: Endpoint {
     }
     
     
-    func constructSigningUrl(path: String, queries: [String: String]? = nil) -> String {
+    func constructSigningUrl(_ path: String, queries: [String: String]? = nil) -> String {
         let url = Endpoint.construct(signingBase, path: path, queries: queries)
         if (fixUrl != nil) {
             return fixUrl!(url)

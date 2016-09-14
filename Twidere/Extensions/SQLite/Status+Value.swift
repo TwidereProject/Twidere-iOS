@@ -15,7 +15,7 @@ extension Status.Metadata: Value {
         return String.declaredDatatype
     }
     
-    static func fromDatatypeValue(datatypeValue: String) -> Status.Metadata? {
+    static func fromDatatypeValue(_ datatypeValue: String) -> Status.Metadata? {
         return Mapper<Status.Metadata>().map(datatypeValue)
     }
     

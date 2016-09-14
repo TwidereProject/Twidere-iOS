@@ -21,14 +21,14 @@ class UserCell: UITableViewCell {
         // Initialization code
     }
     
-    func displayUser(user: JSON) {
+    func displayUser(_ user: JSON) {
         let name = user["name"].stringValue
         let screenName = user["screen_name"].stringValue
         let nameString = NSMutableAttributedString()
         nameString.appendAttributedString(NSAttributedString(string: name, attributes: [
             NSFontAttributeName: UIFont.boldSystemFontOfSize(nameView.font.pointSize)
             ]))
-        nameString.appendAttributedString(NSAttributedString(string: "\n"))
+        nameString.append(NSAttributedString(string: "\n"))
         nameString.appendAttributedString(NSAttributedString(string: "@" + screenName, attributes: [
             NSFontAttributeName: UIFont.systemFontOfSize(nameView.font.pointSize * 0.9)
             ]))

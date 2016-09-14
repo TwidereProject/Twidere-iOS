@@ -10,8 +10,8 @@ import UIKit
 
 class MediaPreviewContainer: UIImageView {
     
-    func displayMedia(media: [MediaItem]?) {
-        contentMode = .ScaleAspectFill
+    func displayMedia(_ media: [MediaItem]?) {
+        contentMode = .scaleAspectFill
         if let item = media?.first {
             displayImage(item.previewUrl)
             layoutParams.hidden = false
@@ -21,7 +21,7 @@ class MediaPreviewContainer: UIImageView {
         }
     }
     
-    override func sizeThatFits(size: CGSize) -> CGSize {
-        return CGSizeMake(size.width, size.width / 2)
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        return CGSize(width: size.width, height: size.width / 2)
     }
 }

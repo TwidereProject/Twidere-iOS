@@ -11,10 +11,10 @@ import SwiftyUserDefaults
 
 class NetworkPreferencesController: BasePreferencesController {
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "OpenDefaultAPISettings"?:
-            let editor = segue.destinationViewController as! APIEditorController
+            let editor = segue.destination as! APIEditorController
             editor.customAPIConfig.loadDefaults()
             editor.disappearCallback = { config in
                 Defaults[.apiUrlFormat] = config.apiUrlFormat

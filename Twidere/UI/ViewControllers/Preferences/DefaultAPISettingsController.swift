@@ -10,7 +10,7 @@ import UIKit
 
 class DefaultAPISettingsController: UITableViewController {
     
-    private var defaultApiConfigs: NSArray!
+    fileprivate var defaultApiConfigs: NSArray!
     var callback: ((CustomAPIConfig) -> Void)!
     
     override func viewDidLoad() {
@@ -22,7 +22,7 @@ class DefaultAPISettingsController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        let path = NSBundle.mainBundle().pathForResource("DefaultAPIConfig", ofType: "plist")
+        let path = Bundle.main.path(forResource: "DefaultAPIConfig", ofType: "plist")
         defaultApiConfigs = NSArray(contentsOfFile: path!)
     }
     
@@ -33,11 +33,11 @@ class DefaultAPISettingsController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 1
@@ -48,26 +48,26 @@ class DefaultAPISettingsController: UITableViewController {
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath)
-        switch indexPath.section {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Item", for: indexPath)
+        switch (indexPath as NSIndexPath).section {
         case 0:
             cell.textLabel?.text = "Default"
         case 1:
-            let dict = defaultApiConfigs[indexPath.item] as! NSDictionary
+            let dict = defaultApiConfigs[(indexPath as NSIndexPath).item] as! NSDictionary
             cell.textLabel?.text = dict["name"] as? String
         default: break
         }
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let config = CustomAPIConfig()
-        switch indexPath.section {
+        switch (indexPath as NSIndexPath).section {
         case 0:
             config.loadDefaults()
         case 1:
-            let dict = defaultApiConfigs[indexPath.item] as! NSDictionary
+            let dict = defaultApiConfigs[(indexPath as NSIndexPath).item] as! NSDictionary
             config.apiUrlFormat = dict["apiUrlFormat"] as? String ?? defaultApiUrlFormat
             config.authType = CustomAPIConfig.AuthType(rawValue: dict["authType"] as? String ?? "OAuth") ?? .OAuth
             config.consumerKey = dict["consumerKey"] as? String ?? defaultApiUrlFormat
@@ -77,7 +77,7 @@ class DefaultAPISettingsController: UITableViewController {
         default: break
         }
         self.callback(config)
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     

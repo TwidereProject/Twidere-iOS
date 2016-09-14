@@ -18,14 +18,14 @@ func == (lhs: Status, rhs: Status) -> Bool {
 
 extension Status {
     
-    func userProfileImageForSize(size: ProfileImageSize) -> String? {
+    func userProfileImageForSize(_ size: ProfileImageSize) -> String? {
         guard let url = userProfileImage else {
             return nil
         }
         return getProfileImageUrlForSize(url, size: size)
     }
     
-    func quotedUserProfileImageForSize(size: ProfileImageSize) -> String? {
+    func quotedUserProfileImageForSize(_ size: ProfileImageSize) -> String? {
         guard let url = quotedUserProfileImage else {
             return nil
         }

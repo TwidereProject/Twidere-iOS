@@ -11,7 +11,7 @@ import CoreLocation
 extension CLAuthorizationStatus {
     var hasAuthorization: Bool {
         get {
-            return self == .AuthorizedAlways || self == .AuthorizedWhenInUse
+            return self == .authorizedAlways || self == .authorizedWhenInUse
         }
     }
     

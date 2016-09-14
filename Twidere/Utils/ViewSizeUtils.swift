@@ -10,7 +10,7 @@ import UIKit
 import ALSLayouts
 
 extension UITableViewCell {
-    func sizeThatFitsALS(size: CGSize) -> CGSize {
+    func sizeThatFitsALS(_ size: CGSize) -> CGSize {
         let layout = contentView.subviews.first as! ALSBaseLayout
         var layoutSize = size
         layoutSize.width -= contentView.layoutMargins.left + contentView.layoutMargins.right

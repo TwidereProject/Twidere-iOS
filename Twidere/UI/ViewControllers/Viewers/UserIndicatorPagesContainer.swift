@@ -13,10 +13,10 @@ class UserIndicatorPagesContainer: ALSLinearLayout {
     
     var contentHeight: CGFloat = 0
     
-    override func sizeThatFits(size: CGSize) -> CGSize {
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
         if (contentHeight.isZero) {
             return size
         }
-        return CGSizeMake(size.width, contentHeight)
+        return CGSize(width: size.width, height: contentHeight)
     }
 }

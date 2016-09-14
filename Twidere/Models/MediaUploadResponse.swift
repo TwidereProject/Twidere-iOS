@@ -18,7 +18,7 @@ class MediaUploadResponse: StaticMappable {
     var video: Video!
     var processingInfo: ProcessingInfo!
     
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         mediaId <- map["media_id"]
         size <- map["size"]
         image <- map["image"]
@@ -31,12 +31,12 @@ class MediaUploadResponse: StaticMappable {
             }
             if (mediaId == nil) {
                 let idInt: Int64? = map["media_id"].value()
-                mediaId = String(idInt)
+                mediaId = String(describing: idInt)
             }
         }
     }
     
-    static func objectForMapping(map: Map) -> BaseMappable? {
+    static func objectForMapping(_ map: Map) -> BaseMappable? {
         return MediaUploadResponse()
     }
     
@@ -46,13 +46,13 @@ class MediaUploadResponse: StaticMappable {
         var height: Int!
         var imageType: String!
         
-        func mapping(map: Map) {
+        func mapping(_ map: Map) {
             width <- map["w"]
             height <- map["h"]
             imageType <- map["image_type"]
         }
         
-        static func objectForMapping(map: Map) -> BaseMappable? {
+        static func objectForMapping(_ map: Map) -> BaseMappable? {
             return Image()
         }
     }
@@ -61,11 +61,11 @@ class MediaUploadResponse: StaticMappable {
         
         var videoType: String!
         
-        func mapping(map: Map) {
+        func mapping(_ map: Map) {
             videoType <- map["video_type"]
         }
         
-        static func objectForMapping(map: Map) -> BaseMappable? {
+        static func objectForMapping(_ map: Map) -> BaseMappable? {
             return Video()
         }
     }
@@ -77,21 +77,21 @@ class MediaUploadResponse: StaticMappable {
         var progressPercent: Int!
 //        var error: ErrorInfo!
         
-        func mapping(map: Map) {
+        func mapping(_ map: Map) {
             state <- map["state"]
             checkAfterSecs <- map["check_after_secs"]
             progressPercent <- map["progress_percent"]
 //            error <- map["error"]
         }
         
-        static func objectForMapping(map: Map) -> BaseMappable? {
+        static func objectForMapping(_ map: Map) -> BaseMappable? {
             return ProcessingInfo()
         }
     }
     
     static let serialization = ResponseSerializer<MediaUploadResponse, MicroBlogError> { (req, resp, data, err) -> Result<MediaUploadResponse, MicroBlogError> in
         if let data = data, let json = String(data: data, encoding: NSUTF8StringEncoding) {
-            if let response = Mapper<MediaUploadResponse>().map(json) where response.mediaId != nil {
+            if let response = Mapper<MediaUploadResponse>().map(json) , response.mediaId != nil {
                 return .Success(response)
             }
         }

@@ -14,7 +14,7 @@ extension UserKey: Value {
         return String.declaredDatatype
     }
     
-    static func fromDatatypeValue(datatypeValue: String) -> UserKey {
+    static func fromDatatypeValue(_ datatypeValue: String) -> UserKey {
         return UserKey(rawValue: datatypeValue)
     }
     

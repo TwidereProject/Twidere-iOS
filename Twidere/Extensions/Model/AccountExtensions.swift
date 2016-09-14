@@ -32,7 +32,7 @@ extension Account {
         }
     }
     
-    func newMicroblogInstance(domain: String? = "api") -> MicroBlogService {
+    func newMicroblogInstance(_ domain: String? = "api") -> MicroBlogService {
         let apiConfig = createAPIConfig()
         let endpoint = apiConfig.createEndpoint(domain)
         let auth = createAuthorization()
@@ -45,14 +45,14 @@ extension Account {
         get {
             switch type {
             case "fanfou"?:
-                return .Fanfou
+                return .fanfou
             default:
-                return .Twitter
+                return .twitter
             }
         }
     }
     
     enum AccountType {
-        case Twitter, Fanfou, StatusNet
+        case twitter, fanfou, statusNet
     }
 }

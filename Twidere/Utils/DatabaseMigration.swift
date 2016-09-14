@@ -10,14 +10,14 @@ import SQLite
 
 class DatabaseMigration {
     
-    func create(db: Connection) throws {
+    func create(_ db: Connection) throws {
         try db.transaction {
             try db.run(Account.createTable(accountsTable))
             try db.run(Status.createTable(homeStatusesTable))
         }
     }
     
-    func upgrade(db: Connection, oldVersion: Int, newVersion: Int) throws {
+    func upgrade(_ db: Connection, oldVersion: Int, newVersion: Int) throws {
         var curVersion = oldVersion
         while (curVersion < newVersion) {
             let nextVersion = curVersion + 1
@@ -29,7 +29,7 @@ class DatabaseMigration {
         }
     }
     
-    func upgrade(db: Connection, from: Int, to: Int) throws -> Bool {
+    func upgrade(_ db: Connection, from: Int, to: Int) throws -> Bool {
         switch to {
         case 1:
             return true

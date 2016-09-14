@@ -14,14 +14,14 @@ class UserKeyTransform: TransformType {
     typealias Object = UserKey
     typealias JSON = String
     
-    func transformFromJSON(value: AnyObject?) -> UserKey? {
+    func transformFromJSON(_ value: AnyObject?) -> UserKey? {
         if let string = value as? String {
             return UserKey(rawValue: string)
         }
         return nil
     }
     
-    func transformToJSON(value: UserKey?) -> String? {
+    func transformToJSON(_ value: UserKey?) -> String? {
         if let userKey = value {
             return userKey.string
         }

@@ -946,15 +946,18 @@
 					CE0529E21CF7F35300E06364 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = K5277Y55W8;
+						LastSwiftMigration = 0800;
 					};
 					CE0529F91CF7F35300E06364 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = K5277Y55W8;
+						LastSwiftMigration = 0800;
 						TestTargetID = CE0529E21CF7F35300E06364;
 					};
 					CE052A041CF7F35300E06364 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = K5277Y55W8;
+						LastSwiftMigration = 0800;
 						TestTargetID = CE0529E21CF7F35300E06364;
 					};
 				};
@@ -1432,6 +1435,7 @@
 		CE052A0C1CF7F35300E06364 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1480,6 +1484,7 @@
 		CE052A0D1CF7F35300E06364 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1523,7 +1528,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A351F2523CA6229EF79900FD /* Pods-Twidere.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1537,6 +1542,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Twidere/Twidere-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1544,7 +1550,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6B7616E89DDF2FDDCF64DCCF /* Pods-Twidere.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1557,6 +1563,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.Twidere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Twidere/Twidere-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1564,11 +1571,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8A574B1651642A3BEEC8AAE /* Pods-TwidereTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TwidereTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.TwidereTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twidere.app/Twidere";
 			};
 			name = Debug;
@@ -1577,11 +1586,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 56F376BF1F75D5F95E44E16C /* Pods-TwidereTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TwidereTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.TwidereTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twidere.app/Twidere";
 			};
 			name = Release;
@@ -1590,10 +1601,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 08D56BA5DDFE3020D6C31612 /* Pods-TwidereUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				INFOPLIST_FILE = TwidereUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.TwidereUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Twidere;
 			};
 			name = Debug;
@@ -1602,10 +1615,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 61F2AC8EB68E86535C22CA23 /* Pods-TwidereUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				INFOPLIST_FILE = TwidereUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.TwidereUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Twidere;
 			};
 			name = Release;

@@ -41,7 +41,7 @@ class ModelConverter {
         return .Success(token)
     }
     
-    static func toJson(result: HttpResult!) -> JSON {
+    static func toJson(_ result: HttpResult!) -> JSON {
         return JSON(data: result.data!)
     }
 }

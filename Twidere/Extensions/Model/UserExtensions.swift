@@ -7,20 +7,19 @@
 //
 
 import Foundation
-import Regex
 import SwiftyJSON
 
 
 extension User {
     
-    func profileImageUrlForSize(size: ProfileImageSize) -> String? {
+    func profileImageUrlForSize(_ size: ProfileImageSize) -> String? {
         guard let url = profileImageUrl else {
             return nil
         }
         return getProfileImageUrlForSize(url, size: size)
     }
     
-    func profileBannerUrlForSize(size: Int) -> String? {
+    func profileBannerUrlForSize(_ size: Int) -> String? {
         guard let url = profileBannerUrl else {
             return nil
         }

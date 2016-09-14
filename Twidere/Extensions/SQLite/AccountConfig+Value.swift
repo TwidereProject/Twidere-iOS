@@ -15,7 +15,7 @@ extension Account.Config: Value {
         return String.declaredDatatype
     }
     
-    static func fromDatatypeValue(datatypeValue: String) -> Account.Config? {
+    static func fromDatatypeValue(_ datatypeValue: String) -> Account.Config? {
         return Mapper<Account.Config>().map(datatypeValue)
     }
     

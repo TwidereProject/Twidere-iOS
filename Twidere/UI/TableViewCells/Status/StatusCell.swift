@@ -49,7 +49,7 @@ class StatusCell: UITableViewCell {
         quotedView.layer.cornerRadius = 4.0
         
         // border
-        quotedView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        quotedView.layer.borderColor = UIColor.lightGray.cgColor
         quotedView.layer.borderWidth = 0.5
         // Initialization code
         
@@ -57,11 +57,11 @@ class StatusCell: UITableViewCell {
         quotedNameView.numberOfLines = 1
     }
     
-    override func sizeThatFits(size: CGSize) -> CGSize {
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
         return sizeThatFitsALS(size)
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
@@ -103,7 +103,7 @@ class StatusCell: UITableViewCell {
         } else {
             quotedView.layoutParams.hidden = true
         }
-        profileImageView.displayImage(getProfileImageUrlForSize(status.userProfileImage, size: .ReasonablySmall))
+        profileImageView.displayImage(getProfileImageUrlForSize(status.userProfileImage, size: .reasonablySmall))
         
         updateTime(status)
         
@@ -111,8 +111,8 @@ class StatusCell: UITableViewCell {
         layout.setNeedsLayout()
     }
     
-    dynamic func updateTime(obj: AnyObject?) {
-        guard let status = obj as? Status where status.id == self.status?.id else {
+    dynamic func updateTime(_ obj: AnyObject?) {
+        guard let status = obj as? Status , status.id == self.status?.id else {
             return
         }
         if (abs(status.createdAt.minutesAgo()) > 1) {
@@ -124,22 +124,22 @@ class StatusCell: UITableViewCell {
             let layout = contentView.subviews.first as! ALSRelativeLayout
             layout.setNeedsLayout()
         }
-        performSelector(#selector(self.updateTime), withObject: obj, afterDelay: 10.0)
+        perform(#selector(self.updateTime), with: obj, afterDelay: 10.0)
     }
     
-    static func createNameText(size: CGFloat, name: String, screenName: String, separator: String) -> NSAttributedString {
+    static func createNameText(_ size: CGFloat, name: String, screenName: String, separator: String) -> NSAttributedString {
         let nameString = NSMutableAttributedString()
-        nameString.appendAttributedString(NSAttributedString(string: name, attributes: [
-            NSFontAttributeName: UIFont.boldSystemFontOfSize(size)
+        nameString.append(NSAttributedString(string: name, attributes: [
+            NSFontAttributeName: UIFont.boldSystemFont(ofSize: size)
             ]))
-        nameString.appendAttributedString(NSAttributedString(string: separator))
-        nameString.appendAttributedString(NSAttributedString(string: "@" + screenName, attributes: [
-            NSFontAttributeName: UIFont.systemFontOfSize(size * 0.9)
+        nameString.append(NSAttributedString(string: separator))
+        nameString.append(NSAttributedString(string: "@" + screenName, attributes: [
+            NSFontAttributeName: UIFont.systemFont(ofSize: size * 0.9)
             ]))
         return nameString
     }
     
-    static func createStatusText(text: String, linkColor: UIColor, metadata: Status.Metadata?, displayRange: [Int]?) -> NSAttributedString {
+    static func createStatusText(_ text: String, linkColor: UIColor, metadata: Status.Metadata?, displayRange: [Int]?) -> NSAttributedString {
         let attributed = NSMutableAttributedString(string: text)
         metadata?.links?.forEach({ span in
             attributed.addAttributes(["link": span.link, NSForegroundColorAttributeName: linkColor], range: NSMakeRange(span.start, span.end - span.start))
@@ -153,7 +153,7 @@ class StatusCell: UITableViewCell {
         if let range = displayRange {
             let len = range[1]
             if (len <= attributed.length) {
-                return attributed.attributedSubstringFromRange(NSMakeRange(0, len))
+                return attributed.attributedSubstring(from: NSMakeRange(0, len))
             }
         }
         return attributed

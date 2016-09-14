@@ -31,19 +31,19 @@ class SignInController: UIViewController {
         super.viewDidLoad()
         
         // Setup button colors
-        signUpButton.layer.borderColor = signUpButton.tintColor.CGColor
+        signUpButton.layer.borderColor = signUpButton.tintColor.cgColor
         loginButton.tintColor = materialLightGreen
-        loginButton.layer.borderColor = materialLightGreen.CGColor
+        loginButton.layer.borderColor = materialLightGreen.cgColor
         
         customAPIConfig.loadDefaults()
         
         updateSignInUi()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "ShowAPIEditor"?:
-            let dest = segue.destinationViewController as! APIEditorController
+            let dest = segue.destination as! APIEditorController
             dest.customAPIConfig = customAPIConfig
             dest.callback = { config in
                 self.customAPIConfig = config
@@ -53,17 +53,17 @@ class SignInController: UIViewController {
         }
     }
     
-    @IBAction func unwindFromPasswordSignIn(segue: UIStoryboardSegue) {
+    @IBAction func unwindFromPasswordSignIn(_ segue: UIStoryboardSegue) {
         switch segue.identifier {
         case "DoPasswordSignIn"?:
-            let vc = segue.sourceViewController as! PasswordSignInController
+            let vc = segue.source as! PasswordSignInController
             let (username, password) = vc.usernamePassword
             doOAuthPasswordSignIn(username, password: password)
         default: break
         }
     }
     
-    @IBAction func signInClicked(sender: UIButton) {
+    @IBAction func signInClicked(_ sender: UIButton) {
         switch customAPIConfig.authType {
         case .OAuth:
             doBrowserSignIn()
@@ -77,29 +77,29 @@ class SignInController: UIViewController {
         
     }
     
-    @IBAction func cancelSignIn(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancelSignIn(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func openSettingsMenu(sender: UIBarButtonItem) {
-        let actionSheet: UIAlertController = UIAlertController(title: "Settings", message: nil, preferredStyle: .ActionSheet)
+    @IBAction func openSettingsMenu(_ sender: UIBarButtonItem) {
+        let actionSheet: UIAlertController = UIAlertController(title: "Settings", message: nil, preferredStyle: .actionSheet)
         
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         actionSheet.addAction(cancelAction)
         
-        let saveAction: UIAlertAction = UIAlertAction(title: "Edit API", style: .Default) { action -> Void in
-            self.performSegueWithIdentifier("ShowAPIEditor", sender: self)
+        let saveAction: UIAlertAction = UIAlertAction(title: "Edit API", style: .default) { action -> Void in
+            self.performSegue(withIdentifier: "ShowAPIEditor", sender: self)
         }
         actionSheet.addAction(saveAction)
         
-        let deleteAction: UIAlertAction = UIAlertAction(title: "Settings", style: .Default) { action -> Void in
-            self.performSegueWithIdentifier("ShowPreferences", sender: self)
+        let deleteAction: UIAlertAction = UIAlertAction(title: "Settings", style: .default) { action -> Void in
+            self.performSegue(withIdentifier: "ShowPreferences", sender: self)
         }
         actionSheet.addAction(deleteAction)
-        presentViewController(actionSheet, animated: true, completion: nil)
+        present(actionSheet, animated: true, completion: nil)
     }
     
-    private func updateSignInUi() {
+    fileprivate func updateSignInUi() {
         if (customAPIConfig.authType == .OAuth) {
             passwordSignInButton.layoutParams.hidden = false
         } else {
@@ -119,13 +119,13 @@ class SignInController: UIViewController {
         signInContainer.setNeedsLayout()
     }
     
-    private func doBrowserSignIn() {
+    fileprivate func doBrowserSignIn() {
         let apiConfig = self.customAPIConfig
         let endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true, fixUrl: SignInController.fixSignInUrl)
         let auth = OAuthAuthorization(apiConfig.consumerKey!, apiConfig.consumerSecret!)
         let oauth = OAuthService(endpoint: endpoint, auth: auth)
         
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         SwiftOverlays.showBlockingWaitOverlay()
         
         oauth.getRequestToken("oob").then { token -> Void in
@@ -142,8 +142,8 @@ class SignInController: UIViewController {
         }
     }
     
-    private func doOAuthPasswordSignIn(username: String, password: String) {
-        let userAgent = UIWebView().stringByEvaluatingJavaScriptFromString("navigator.userAgent")
+    fileprivate func doOAuthPasswordSignIn(_ username: String, password: String) {
+        let userAgent = UIWebView().stringByEvaluatingJavaScript(from: "navigator.userAgent")
         
         doSignIn { config -> Promise<SignInResult> in
             let apiConfig = self.customAPIConfig
@@ -181,7 +181,7 @@ class SignInController: UIViewController {
         }
     }
     
-    private func doXAuthSignIn() {
+    fileprivate func doXAuthSignIn() {
         let username = editUsername.text ?? ""
         let password = editPassword.text ?? ""
         doSignIn { config -> Promise<SignInResult> in
@@ -206,7 +206,7 @@ class SignInController: UIViewController {
         }
     }
     
-    private func doBasicSignIn() {
+    fileprivate func doBasicSignIn() {
         let username = editUsername.text ?? ""
         let password = editPassword.text ?? ""
         doSignIn { config -> Promise<SignInResult> in
@@ -219,7 +219,7 @@ class SignInController: UIViewController {
         }
     }
     
-    private func doTwipOSignIn() {
+    fileprivate func doTwipOSignIn() {
         doSignIn { config -> Promise<SignInResult> in
             let endpoint = self.customAPIConfig.createEndpoint("api")
             let microBlog = MicroBlogService(endpoint: endpoint)
@@ -229,7 +229,7 @@ class SignInController: UIViewController {
         }
     }
     
-    private func finishBrowserSignIn(requestToken: OAuthToken, oauthVerifier: String?) {
+    fileprivate func finishBrowserSignIn(_ requestToken: OAuthToken, oauthVerifier: String?) {
         doSignIn { config -> Promise<SignInResult> in
             let apiConfig = self.customAPIConfig
             var endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true, fixUrl: SignInController.fixSignInUrl)
@@ -252,8 +252,8 @@ class SignInController: UIViewController {
         }
     }
     
-    private func doSignIn(action: (config: CustomAPIConfig) -> Promise<SignInResult>) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    fileprivate func doSignIn(_ action: (_ config: CustomAPIConfig) -> Promise<SignInResult>) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         SwiftOverlays.showBlockingWaitOverlay()
         action(config: self.customAPIConfig).then { result throws -> Account in
             let json = result.user
@@ -306,12 +306,12 @@ class SignInController: UIViewController {
         }
     }
     
-    static func fixSignInUrl(url: String) -> String {
-        guard let urlComponents = NSURLComponents(string: url) else {
+    static func fixSignInUrl(_ url: String) -> String {
+        guard let urlComponents = URLComponents(string: url) else {
             return url
         }
         if ("api.fanfou.com" == urlComponents.host) {
-            if (urlComponents.path?.hasPrefix("/oauth/") ?? false) {
+            if (urlComponents.path.hasPrefix("/oauth/") ?? false) {
                 urlComponents.host = "fanfou.com"
             }
         }

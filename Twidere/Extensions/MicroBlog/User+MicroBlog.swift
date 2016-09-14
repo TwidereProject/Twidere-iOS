@@ -34,11 +34,11 @@ extension User {
         self.metadata = User.Metadata(json: json)
     }
     
-    static func getUserKey(user: JSON, accountHost: String? = nil) -> UserKey {
+    static func getUserKey(_ user: JSON, accountHost: String? = nil) -> UserKey {
         return UserKey(id: user["id_str"].string ?? user["id"].string!, host: User.getUserHost(user, accountHost: accountHost))
     }
     
-    static func getUserHost(json: JSON, accountHost: String?) -> String? {
+    static func getUserHost(_ json: JSON, accountHost: String?) -> String? {
         if (json["unique_id"].isExists() && json["profile_image_url_large"].isExists()) {
             return "fanfou.com"
         }

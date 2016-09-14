@@ -10,8 +10,8 @@ import UIKit
 
 class BannerImageView: UIImageView {
     
-    override func sizeThatFits(size: CGSize) -> CGSize {
-        return CGSizeMake(size.width, size.width / 2)
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        return CGSize(width: size.width, height: size.width / 2)
     }
     
 }

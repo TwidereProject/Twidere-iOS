@@ -32,7 +32,7 @@ class DetailStatusCell: UITableViewCell {
         }
     }
 
-    override func sizeThatFits(size: CGSize) -> CGSize {
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
         return sizeThatFitsALS(size)
     }
 
@@ -43,10 +43,10 @@ class DetailStatusCell: UITableViewCell {
         fd_enforceFrameLayout = true
     }
 
-    func display(status: Status) {
+    func display(_ status: Status) {
         userNameView.attributedText = StatusCell.createNameText(16, name: status.userName, screenName: status.userScreenName, separator: " ")
         timeSourceView.attributedText = createTimeSourceText(status.createdAt)
-        userProfileImageView.displayImage(status.userProfileImageForSize(.ReasonablySmall))
+        userProfileImageView.displayImage(status.userProfileImageForSize(.reasonablySmall))
 
         textView.attributedText = StatusCell.createStatusText(status.textDisplay, linkColor: textView.tintColor, metadata: status.metadata, displayRange: status.metadata?.displayRange)
         mediaPreview.displayMedia(status.metadata?.media)
@@ -68,8 +68,8 @@ class DetailStatusCell: UITableViewCell {
         layout.setNeedsLayout()
     }
 
-    func createTimeSourceText(createdAt: NSDate) -> NSAttributedString {
-        let string = NSAttributedString(string: createdAt.formattedDateWithStyle(.LongStyle))
+    func createTimeSourceText(_ createdAt: Date) -> NSAttributedString {
+        let string = NSAttributedString(string: (createdAt as NSDate).formattedDate(with: .long))
         return string
     }
 }

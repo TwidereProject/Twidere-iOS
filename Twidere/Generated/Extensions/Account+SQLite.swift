@@ -24,7 +24,7 @@ extension Account {
         self.user = row.get(RowIndices.user)
     }
 
-    static func createTable(table: Table, temporary: Bool = false, ifNotExists: Bool = false) -> String {
+    static func createTable(_ table: Table, temporary: Bool = false, ifNotExists: Bool = false) -> String {
         return table.create(temporary: temporary, ifNotExists: ifNotExists) { t in
             t.column(RowIndices._id, primaryKey: .Autoincrement)
             t.column(RowIndices.key)
@@ -44,7 +44,7 @@ extension Account {
         }
     }
 
-    static func insertData(table: Table, model: Account) -> Insert {
+    static func insertData(_ table: Table, model: Account) -> Insert {
         return table.insert( [
                 RowIndices.key <- model.key,
                 RowIndices.type <- model.type,

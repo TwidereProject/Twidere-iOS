@@ -14,12 +14,12 @@ import SwiftyJSON
 
 class BackgroundOperationService {
     
-    func updateStatus(update: StatusUpdate) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    func updateStatus(_ update: StatusUpdate) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         let BULK_SIZE = 256 * 1024// 128 Kib
         
-        func uploadMedia(uploader: MediaUploader?, update: StatusUpdate, pendingUpdate: PendingStatusUpdate) -> Promise<Bool> {
+        func uploadMedia(_ uploader: MediaUploader?, update: StatusUpdate, pendingUpdate: PendingStatusUpdate) -> Promise<Bool> {
             // TODO on start uploading media
             if (uploader == nil) {
                 return uploadMediaWithDefaultProvider(update, pendingUpdate: pendingUpdate)
@@ -28,7 +28,7 @@ class BackgroundOperationService {
             }
         }
         
-        func uploadMediaWithDefaultProvider(update: StatusUpdate, pendingUpdate: PendingStatusUpdate) -> Promise<Bool> {
+        func uploadMediaWithDefaultProvider(_ update: StatusUpdate, pendingUpdate: PendingStatusUpdate) -> Promise<Bool> {
             // Return empty array if no media attached
             if (update.media?.isEmpty ?? true) {
                 return Promise<Bool> { fullfill, reject in
@@ -81,7 +81,7 @@ class BackgroundOperationService {
             }
         }
         
-        func uploadAllMediaShared(upload: MicroBlogService, update: StatusUpdate, ownerIds: [String], chucked: Bool) -> Promise<[String]> {
+        func uploadAllMediaShared(_ upload: MicroBlogService, update: StatusUpdate, ownerIds: [String], chucked: Bool) -> Promise<[String]> {
             return join(update.media!.map { media -> Promise<MediaUploadResponse> in
                 // TODO upload then get id
                 let fm = NSFileManager.defaultManager()
@@ -96,7 +96,7 @@ class BackgroundOperationService {
             }
         }
         
-        func uploadMediaChucked(upload: MicroBlogService, body: NSData, contentType: String, ownerIds: [String]) -> Promise<MediaUploadResponse> {
+        func uploadMediaChucked(_ upload: MicroBlogService, body: NSData, contentType: String, ownerIds: [String]) -> Promise<MediaUploadResponse> {
             let length = body.length
             return upload.initUploadMedia(contentType, totalBytes: length, additionalOwners: ownerIds)
                 .then { (response) -> Promise<MediaUploadResponse> in
@@ -115,9 +115,9 @@ class BackgroundOperationService {
                     return upload.finalizeUploadMedia(response.mediaId)
                 }.then { response -> Promise<MediaUploadResponse> in
                     
-                    func waitForProcess(response: MediaUploadResponse) -> Promise<MediaUploadResponse> {
+                    func waitForProcess(_ response: MediaUploadResponse) -> Promise<MediaUploadResponse> {
                         // Server side is processing media
-                        if let checkAfterSecs = response.processingInfo?.checkAfterSecs where checkAfterSecs > 0 {
+                        if let checkAfterSecs = response.processingInfo?.checkAfterSecs , checkAfterSecs > 0 {
                             // Wait after `checkAfterSecs` seconds
                             after(NSTimeInterval(checkAfterSecs))
                                 .then{ _ -> Promise<MediaUploadResponse> in
@@ -141,13 +141,13 @@ class BackgroundOperationService {
             }
         }
         
-        func uploadMediaWithExtension(uploader: MediaUploader, update: StatusUpdate, pendingUpdate: PendingStatusUpdate) -> Promise<Bool> {
+        func uploadMediaWithExtension(_ uploader: MediaUploader, update: StatusUpdate, pendingUpdate: PendingStatusUpdate) -> Promise<Bool> {
             return Promise { fullfill, reject in
                 reject(NSError(domain: "uploadMediaWithExtension not implemented", code: -1, userInfo: nil))
             }
         }
         
-        func requestUpdateStatus(statusUpdate: StatusUpdate, pendingUpdate: PendingStatusUpdate) -> Promise<[Status]> {
+        func requestUpdateStatus(_ statusUpdate: StatusUpdate, pendingUpdate: PendingStatusUpdate) -> Promise<[Status]> {
             return when((0..<pendingUpdate.length)
                 .map { i -> Promise<(Status?, (UserKey, ErrorType)?)> in
                     let account = statusUpdate.accounts[i]
@@ -175,7 +175,7 @@ class BackgroundOperationService {
             }
         }
         
-        func twitterUpdateStatus(microBlog: MicroBlogService, statusUpdate: StatusUpdate,
+        func twitterUpdateStatus(_ microBlog: MicroBlogService, statusUpdate: StatusUpdate,
                                  pendingUpdate: PendingStatusUpdate, overrideText: String,
                                  index: Int) -> Promise<Status> {
             let status = UpdateStatusRequest(text: overrideText)
@@ -234,10 +234,10 @@ class BackgroundOperationService {
         }
     }
     
-    enum StatusUpdateError: ErrorType {
-        case NoAccount
-        case UploadFailed
-        case UpdateFailed(errors: [ErrorType], failedKeys: [UserKey])
+    enum StatusUpdateError: Error {
+        case noAccount
+        case uploadFailed
+        case updateFailed(errors: [Error], failedKeys: [UserKey])
     }
     
 }
@@ -245,11 +245,11 @@ class BackgroundOperationService {
 extension BackgroundOperationService.StatusUpdateError {
     var errorMessage: String {
         switch self {
-        case .NoAccount:
+        case .noAccount:
             return "No account selected"
-        case .UploadFailed:
+        case .uploadFailed:
             return "Media upload failed"
-        case .UpdateFailed(let errors, _):
+        case .updateFailed(let errors, _):
             switch errors.first! {
             case let e as MicroBlogError:
                 return e.errorMessage

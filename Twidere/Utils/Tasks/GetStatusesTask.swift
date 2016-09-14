@@ -13,7 +13,7 @@ import PromiseKit
 
 class GetStatusesTask {
     
-    static func execute(param: RefreshTaskParam, table: Table, fetchAction: (Account, MicroBlogService, Paging) -> Promise<[Status]>) -> Promise<[StatusListResponse]> {
+    static func execute(_ param: RefreshTaskParam, table: Table, fetchAction: (Account, MicroBlogService, Paging) -> Promise<[Status]>) -> Promise<[StatusListResponse]> {
         
         let accounts = param.accounts
         let maxIds = param.maxIds
@@ -67,7 +67,7 @@ class GetStatusesTask {
             })
     }
     
-    private static func storeStatus(account: Account, statuses: [Status], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
+    fileprivate static func storeStatus(_ account: Account, statuses: [Status], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
         let accountKey = account.key
         let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
         
@@ -83,8 +83,8 @@ class GetStatusesTask {
             // Get id diff of first and last item
             let sortDiff = firstSortId - lastSortId
             
-            for (i, status) in statuses.enumerate() {
-                status.positionKey = getPositionKey(status.createdAt, sortId: status.sortId, lastSortId: lastSortId, sortDiff: sortDiff, position: i, count: statuses.count)
+            for (i, status) in statuses.enumerated() {
+                status.positionKey = getPositionKey(status.createdAt as Date, sortId: status.sortId, lastSortId: lastSortId, sortDiff: sortDiff, position: i, count: statuses.count)
                 //                status.inserted_date = System.currentTimeMillis()
                 if (minIdx == -1 || status < statuses[minIdx]) {
                     minIdx = i
@@ -124,12 +124,12 @@ class GetStatusesTask {
         }
     }
     
-    static func getStatusesCount(db: Connection, table: Table, expression: Expression<Bool?>, accountKeys: [UserKey]) -> Int {
+    static func getStatusesCount(_ db: Connection, table: Table, expression: Expression<Bool?>, accountKeys: [UserKey]) -> Int {
         return db.scalar(table.filter(expression).count)
     }
     
     
-    static func getPositionKey(createdAt: NSDate, sortId: Int64, lastSortId: Int64, sortDiff: Int64, position: Int, count: Int) -> Int64 {
+    static func getPositionKey(_ createdAt: Date, sortId: Int64, lastSortId: Int64, sortDiff: Int64, position: Int, count: Int) -> Int64 {
         if (sortDiff == 0) {
             return createdAt.timeIntervalSince1970Millis
         }
@@ -153,7 +153,7 @@ class GetStatusesTask {
         var truncated: Bool = false
         
         let statuses: [Status]!
-        let error: ErrorType!
+        let error: Error!
         
         init(accountKey: UserKey, statuses: [Status]) {
             self.accountKey = accountKey
@@ -161,7 +161,7 @@ class GetStatusesTask {
             self.error = nil
         }
         
-        init(accountKey: UserKey, error: ErrorType) {
+        init(accountKey: UserKey, error: Error) {
             self.accountKey = accountKey
             self.statuses = nil
             self.error = error

@@ -14,21 +14,21 @@ class StatusViewerController: UITableViewController {
     var status: Status!
     var cellDisplayOption = StatusCell.DisplayOption()
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let statusCell = tableView.dequeueReusableCellWithIdentifier("DetailStatus", forIndexPath: indexPath) as! DetailStatusCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let statusCell = tableView.dequeueReusableCell(withIdentifier: "DetailStatus", for: indexPath) as! DetailStatusCell
         statusCell.displayOption = self.cellDisplayOption
         return statusCell
     }
     
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         switch cell {
         case is DetailStatusCell:
             let statusCell = cell as! DetailStatusCell
@@ -38,8 +38,8 @@ class StatusViewerController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return tableView.fd_heightForCellWithIdentifier("DetailStatus", cacheByIndexPath: indexPath) { cell in
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.fd_heightForCell(withIdentifier: "DetailStatus", cacheBy: indexPath) { cell in
             let statusCell = cell as! DetailStatusCell
             statusCell.displayOption = self.cellDisplayOption
             statusCell.display(self.status)

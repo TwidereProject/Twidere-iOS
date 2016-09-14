@@ -11,12 +11,12 @@ import PromiseKit
 
 class OAuthService: RestClient {
     
-    func getRequestToken(oauthCallback: String) -> Promise<OAuthToken> {
+    func getRequestToken(_ oauthCallback: String) -> Promise<OAuthToken> {
         let forms: [String: AnyObject] = ["oauth_callback": oauthCallback]
         return makeTypedRequest(.POST, path: "/oauth/request_token", params: forms, validation: MicroBlogService.checkRequest, serializer: ModelConverter.oauthToken)
     }
     
-    func getAccessToken(xauthUsername:String, xauthPassword: String) -> Promise<OAuthToken> {
+    func getAccessToken(_ xauthUsername:String, xauthPassword: String) -> Promise<OAuthToken> {
         let forms: [String: AnyObject] = [
             "x_auth_mode": "client_auth",
             "x_auth_username": xauthUsername,
@@ -27,7 +27,7 @@ class OAuthService: RestClient {
     }
     
     
-    func getAccessToken(requestToken: OAuthToken, oauthVerifier: String? = nil) -> Promise<OAuthToken> {
+    func getAccessToken(_ requestToken: OAuthToken, oauthVerifier: String? = nil) -> Promise<OAuthToken> {
         let forms: [String: AnyObject]
         if (oauthVerifier != nil) {
             forms = ["oauth_verifier": oauthVerifier!]

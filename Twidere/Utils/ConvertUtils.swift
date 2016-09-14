@@ -12,28 +12,28 @@ import SwiftyJSON
 private let twitterProfileImageRegex = "(https?://)?(twimg[\\d\\w\\-]+\\.akamaihd\\.net|[\\w\\d]+\\.twimg\\.com)/profile_images/([\\d\\w\\-_]+)/([\\d\\w\\-_]+)_(bigger|normal|mini|reasonably_small)(\\.?(png|jpeg|jpg|gif|bmp))?".r!
 private let twitterBannerImageRegex = "(https?://)?(twimg[\\d\\w\\-]+\\.akamaihd\\.net|[\\w\\d]+\\.twimg\\.com)/profile_banners/([\\d\\w\\-_]+)/([\\d\\w\\-_]+)(/[\\d\\w\\-_]+)?".r!
 
-private let twitterDateFormatter: NSDateFormatter = {
-    let f = NSDateFormatter()
-    f.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+private let twitterDateFormatter: DateFormatter = {
+    let f = DateFormatter()
+    f.locale = Locale(identifier: "en_US_POSIX")
     f.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
     return f
 }()
 
-func getProfileImageUrlForSize(url: String, size: ProfileImageSize) -> String {
+func getProfileImageUrlForSize(_ url: String, size: ProfileImageSize) -> String {
     if (twitterProfileImageRegex.matches(url)) {
         return twitterProfileImageRegex.replaceFirst(in: url, with: "$1$2/profile_images/$3/$4\(size.suffix)$6")
     }
     return url
 }
 
-func getProfileBannerUrlForSize(url: String, size: Int) -> String {
+func getProfileBannerUrlForSize(_ url: String, size: Int) -> String {
     if (twitterBannerImageRegex.matches(url)) {
         return twitterBannerImageRegex.replaceFirst(in: url, with: "$1$2/profile_banners/$3/$4/\(getBestBannerType(size))")
     }
     return url
 }
 
-func getBestBannerType(width: Int) -> String {
+func getBestBannerType(_ width: Int) -> String {
     switch width {
     case  0...320:
         return "mobile";
@@ -50,28 +50,28 @@ func getBestBannerType(width: Int) -> String {
     }
 }
 
-func parseTwitterDate(str: String) -> NSDate? {
-    return twitterDateFormatter.dateFromString(str)
+func parseTwitterDate(_ str: String) -> Date? {
+    return twitterDateFormatter.date(from: str)
 }
 
-func getTwitterEntityId(json: JSON) -> String {
+func getTwitterEntityId(_ json: JSON) -> String {
     return json["id_str"].string ?? json["id"].stringValue
 }
 
 enum ProfileImageSize {
-    case Bigger, Normal, Mini, ReasonablySmall, Original
+    case bigger, normal, mini, reasonablySmall, original
     var suffix: String {
         get {
             switch self {
-            case .Bigger:
+            case .bigger:
                 return "_bigger"
-            case .Normal:
+            case .normal:
                 return "_normal"
-            case .Mini:
+            case .mini:
                 return "_mini"
-            case .ReasonablySmall:
+            case .reasonablySmall:
                 return "_reasonably_small"
-            case .Original:
+            case .original:
                 return ""
             }
         }

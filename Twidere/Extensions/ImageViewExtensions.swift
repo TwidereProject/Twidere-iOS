@@ -10,9 +10,9 @@ import UIKit
 import SDWebImage
 
 extension UIImageView {
-    func displayImage(url: String?, placeholder: UIImage? = nil, completed: SDWebImageCompletionBlock? = nil) {
+    func displayImage(_ url: String?, placeholder: UIImage? = nil, completed: SDWebImageCompletionBlock? = nil) {
         if (url != nil) {
-            sd_setImageWithURL(NSURL(string: url!), placeholderImage: placeholder, completed: completed)
+            sd_setImage(with: URL(string: url!), placeholderImage: placeholder, completed: completed)
         } else {
             image = placeholder
         }

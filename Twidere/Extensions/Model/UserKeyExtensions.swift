@@ -59,7 +59,7 @@ extension UserKey {
         }
     }
     
-    private func escape(str: String, inout dest: [Character]) {
+    fileprivate func escape(_ str: String, dest: inout [Character]) {
         str.characters.forEach { ch in
             if (isSpecialChar(ch)) {
                 dest.append("\\")
@@ -68,7 +68,7 @@ extension UserKey {
         }
     }
     
-    private func isSpecialChar(ch: Character) -> Bool {
+    fileprivate func isSpecialChar(_ ch: Character) -> Bool {
         return ch == "\\" || ch == "@" || ch == ","
     }
 }

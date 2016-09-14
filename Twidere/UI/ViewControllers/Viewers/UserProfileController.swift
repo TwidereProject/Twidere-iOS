@@ -26,12 +26,12 @@ class UserProfileController: UIViewController, UINavigationBarDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var userIndicatorPagesContainer: UserIndicatorPagesContainer!
     
-    private var userInfoTags: [[UserInfoTag]]? = nil
-    private var currentViewController: UIViewController!
+    fileprivate var userInfoTags: [[UserInfoTag]]? = nil
+    fileprivate var currentViewController: UIViewController!
     
     var user: User! {
         didSet {
-            if (self.isViewLoaded()) {
+            if (self.isViewLoaded) {
                 display()
             }
         }
@@ -39,15 +39,15 @@ class UserProfileController: UIViewController, UINavigationBarDelegate {
     
     override func viewDidLoad() {
         interactiveNavigationBarHidden = true
-        navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        navBar.setBackgroundImage(UIImage(), for: .default)
         navBar.shadowImage = UIImage()
         navBar.delegate = self
         
-        profileBannerView.contentMode = .ScaleAspectFill
+        profileBannerView.contentMode = .scaleAspectFill
         
-        profileImageView.contentMode = .ScaleAspectFill
+        profileImageView.contentMode = .scaleAspectFill
         profileImageView.makeCircular()
-        profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImageView.layer.borderColor = UIColor.white.cgColor
         profileImageView.layer.borderWidth = 1
         
         bannerActivityIndicator.hidesWhenStopped = true
@@ -58,9 +58,9 @@ class UserProfileController: UIViewController, UINavigationBarDelegate {
             if (viewControllers.count > 1) {
                 let item = UINavigationItem(title: self.title!)
                 item.hidesBackButton = false
-                item.backBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: nil)
+                item.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: nil)
                 navBar.topItem?.title = viewControllers[viewControllers.endIndex - 2].navigationItem.title
-                navBar.pushNavigationItem(item, animated: false)
+                navBar.pushItem(item, animated: false)
             }
         }
         userIndicatorPagesContainer.showDividers = .Middle
@@ -71,7 +71,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate {
     
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         display()
     }
     
@@ -84,7 +84,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate {
         profileBannerView.displayImage(user.profileBannerUrlForSize(Int(self.view.frame.width)), completed: { image, error, cacheType, url in
             self.bannerActivityIndicator.stopAnimating()
         })
-        profileImageView.displayImage(user.profileImageUrlForSize(.Original))
+        profileImageView.displayImage(user.profileImageUrlForSize(.original))
         descriptionView.text = user.descriptionDisplay
         
         var infoTags = [UserInfoTag]()
@@ -114,7 +114,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate {
     }
     
     override func viewWillLayoutSubviews() {
-        let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
         let navBarHeight = navBar.frame.height
         navBar.frame.origin.y = statusBarHeight
         visualEffectContentView.frame.size.height = statusBarHeight + navBarHeight
@@ -126,27 +126,27 @@ class UserProfileController: UIViewController, UINavigationBarDelegate {
         scrollView.contentSize = profileContainer.sizeThatFits(scrollView.frame.size)
     }
     
-    func navigationBar(navigationBar: UINavigationBar, shouldPopItem item: UINavigationItem) -> Bool {
-        navigationController?.popViewControllerAnimated(true)
+    func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
+        navigationController?.popViewController(animated: true)
         return true
     }
     
-    @IBAction func segmentChanged(sender: UISegmentedControl) {
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         displayPage(sender.selectedSegmentIndex)
     }
     
-    func displayPage(idx: Int) {
+    func displayPage(_ idx: Int) {
         let pages = UIStoryboard(name: "Pages", bundle: nil)
         let newController: UIViewController
         switch idx {
         default:
-            let testController = pages.instantiateViewControllerWithIdentifier("StatusesList") as! StatusesListController
+            let testController = pages.instantiateViewController(withIdentifier: "StatusesList") as! StatusesListController
             testController.delegate = HomeController.UserTimelineStatusesListControllerDelegate()
             newController = testController
         }
         
         self.addChildViewController(newController)
-        newController.didMoveToParentViewController(self)
+        newController.didMove(toParentViewController: self)
         newController.view.frame = self.userPagesContainer.bounds;
         self.userPagesContainer.addSubview(newController.view)
         self.currentViewController?.removeFromParentViewController()
@@ -160,17 +160,17 @@ class UserProfileController: UIViewController, UINavigationBarDelegate {
 
 extension UIImage {
     
-    static func imageWithColor(color: UIColor) -> UIImage {
-        let rect = CGRectMake(0.0, 0.0, 1.0, 1.0)
+    static func imageWithColor(_ color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
         
-        CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextFillRect(context, rect)
+        context?.setFillColor(color.cgColor)
+        context?.fill(rect)
         
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return image
+        return image!
     }
 }

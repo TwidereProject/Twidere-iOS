@@ -16,7 +16,7 @@ class BrowserSignInController: UIViewController, UIWebViewDelegate {
     
     var customAPIConfig: CustomAPIConfig!
     var requestToken: OAuthToken!
-    var callback: ((requestToken: OAuthToken, oauthVerifier: String?) -> Void)!
+    var callback: ((_ requestToken: OAuthToken, _ oauthVerifier: String?) -> Void)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +24,14 @@ class BrowserSignInController: UIViewController, UIWebViewDelegate {
         // Do any additional setup after loading the view.
         let endpoint = customAPIConfig.createEndpoint("api", noVersionSuffix: true, fixUrl: SignInController.fixSignInUrl)
         let requestUrl = endpoint.constructUrl("/oauth/authorize", queries: ["oauth_token": requestToken.oauthToken])
-        let request = NSURLRequest(URL: NSURL(string: requestUrl)!)
+        let request = URLRequest(url: URL(string: requestUrl)!)
         webView.loadRequest(request)
         webView.delegate = self
     }
     
-    @IBAction func cancelBrowserSignIn(sender: UIBarButtonItem) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-        navigationController?.popViewControllerAnimated(true)
+    @IBAction func cancelBrowserSignIn(_ sender: UIBarButtonItem) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        navigationController?.popViewController(animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,28 +39,28 @@ class BrowserSignInController: UIViewController, UIWebViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func webViewDidStartLoad(webView: UIWebView) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         guard let request = webView.request else {
             return
         }
-        guard let url = request.URL else {
+        guard let url = request.url else {
             return
         }
         if (url.host == "fanfou.com") {
             if (url.path == "/oauth/authorize") {
-                let components = NSURLComponents(URL: url, resolvingAgainstBaseURL: true)
+                let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
                 
-                let oauthCallbackIndex = components?.queryItems?.indexOf { item -> Bool in
+                let oauthCallbackIndex = components?.queryItems?.index { item -> Bool in
                     return item.name == "oauth_callback"
                 }
                 if (oauthCallbackIndex != nil) {
                     callback(requestToken: self.requestToken, oauthVerifier: nil)
-                    self.navigationController?.popViewControllerAnimated(true)
+                    self.navigationController?.popViewController(animated: true)
                 }
             }
         } else {
@@ -100,13 +100,13 @@ class BrowserSignInController: UIViewController, UIWebViewDelegate {
         
     }
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         return true
     }
     
-    internal enum BrowserSignInError: ErrorType {
-        case NoContent
-        case ParseError
+    internal enum BrowserSignInError: Error {
+        case noContent
+        case parseError
     }
     
 }

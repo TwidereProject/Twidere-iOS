@@ -43,10 +43,10 @@ class PendingStatusUpdate {
     
     init(length: Int, defaultText: String) {
         self.length = length
-        overrideTexts = Array(count: length, repeatedValue: defaultText)
-        mediaUploadResults = Array(count: length, repeatedValue: nil)
-        statusShortenResults = Array(count: length, repeatedValue: nil)
-        mediaIds = Array(count: length, repeatedValue: nil)
+        overrideTexts = Array(repeating: defaultText, count: length)
+        mediaUploadResults = Array(repeating: nil, count: length)
+        statusShortenResults = Array(repeating: nil, count: length)
+        mediaIds = Array(repeating: nil, count: length)
     }
     
 }

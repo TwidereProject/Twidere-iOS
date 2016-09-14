@@ -24,7 +24,7 @@ class RestClient {
         self.userAgent = userAgent
     }
     
-    func makeTypedRequest<T: ResponseSerializerType>(method: Alamofire.Method,
+    func makeTypedRequest<T: ResponseSerializerType>(_ method: Alamofire.Method,
                           path: String,
                           headers: [String: String]? = nil,
                           queries:[String: String]? = nil,
@@ -38,7 +38,7 @@ class RestClient {
             let finalAuth: Authorization? = authOverride ?? auth
             let isMultipart = params?.contains { (k, v) -> Bool in v is NSData } ?? false
             var finalHeaders = constructHeaders(method, path: path, headers: headers, queries: queries, forms: params, auth: finalAuth, isMultipart: isMultipart)
-            let completionHandler: Response<T.SerializedObject, T.ErrorObject> -> Void = { response in
+            let completionHandler: (Response<T.SerializedObject, T.ErrorObject>) -> Void = { response in
                 switch response.result {
                 case .Success(let value):
                     fullfill(value)
@@ -68,11 +68,11 @@ class RestClient {
         }
     }
     
-    private func constructUrl(path: String, queries: [String: String]? = nil) -> String {
+    fileprivate func constructUrl(_ path: String, queries: [String: String]? = nil) -> String {
         return endpoint.constructUrl(path, queries: queries)
     }
     
-    private func constructHeaders(method: Alamofire.Method,
+    fileprivate func constructHeaders(_ method: Alamofire.Method,
                                   path: String,
                                   headers: [String: String]? = nil,
                                   queries: [String: String]? = nil,
@@ -94,7 +94,7 @@ class RestClient {
         return mergedHeaders
     }
     
-    private func restEncoding(urlRequest: URLRequestConvertible, params: [String: AnyObject]?) -> (NSMutableURLRequest, NSError?) {
+    fileprivate func restEncoding(_ urlRequest: URLRequestConvertible, params: [String: AnyObject]?) -> (NSMutableURLRequest, NSError?) {
         
         let queryUrlEncodeAllowedSet: NSCharacterSet = {
             let allowed = NSMutableCharacterSet.alphanumericCharacterSet()
@@ -102,7 +102,7 @@ class RestClient {
             return allowed
         }()
         
-        func escape(str: String) -> String {
+        func escape(_ str: String) -> String {
             return str.stringByAddingPercentEncodingWithAllowedCharacters(queryUrlEncodeAllowedSet)!.stringByReplacingOccurrencesOfString(" ", withString: "+")
         }
         
@@ -127,28 +127,28 @@ class RestClient {
     }
     
     internal class StatelessCookieStorage: NSHTTPCookieStorage {
-        override func cookiesForURL(URL: NSURL) -> [NSHTTPCookie]? {
+        override func cookiesForURL(_ URL: NSURL) -> [NSHTTPCookie]? {
             return nil
         }
         
-        override func setCookie(cookie: NSHTTPCookie) {
+        override func setCookie(_ cookie: NSHTTPCookie) {
             // No-op
         }
         
-        override func setCookies(cookies: [NSHTTPCookie], forURL URL: NSURL?, mainDocumentURL: NSURL?) {
+        override func setCookies(_ cookies: [NSHTTPCookie], forURL URL: NSURL?, mainDocumentURL: NSURL?) {
             // No-op
         }
         
-        override func storeCookies(cookies: [NSHTTPCookie], forTask task: NSURLSessionTask) {
+        override func storeCookies(_ cookies: [NSHTTPCookie], forTask task: NSURLSessionTask) {
             // No-op
         }
     }
  
 }
 
-enum RestError: ErrorType {
-    case NetworkError(err: NSError?)
-    case RequestError(statusCode: Int)
+enum RestError: Error {
+    case networkError(err: NSError?)
+    case requestError(statusCode: Int)
 }
 
 extension NSHTTPURLResponse {

@@ -32,11 +32,11 @@ class StatusesListController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        tableView.registerNib(UINib(nibName: "StatusCell", bundle: nil), forCellReuseIdentifier: "Status")
-        tableView.registerNib(UINib(nibName: "GapCell", bundle: nil), forCellReuseIdentifier: "Gap")
+        tableView.register(UINib(nibName: "StatusCell", bundle: nil), forCellReuseIdentifier: "Status")
+        tableView.register(UINib(nibName: "GapCell", bundle: nil), forCellReuseIdentifier: "Gap")
         
         let control = UIRefreshControl()
-        control.addTarget(self, action: #selector(self.refreshFromStart), forControlEvents: .ValueChanged)
+        control.addTarget(self, action: #selector(self.refreshFromStart), for: .valueChanged)
         refreshControl = control
         
         refreshControl?.beginRefreshing()
@@ -47,7 +47,7 @@ class StatusesListController: UITableViewController {
         
         loadStatuses(opts)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(willEnterForeground), name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
     
     func willEnterForeground() {
@@ -68,39 +68,39 @@ class StatusesListController: UITableViewController {
     
     
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return statuses?.count ?? 0
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let status = statuses![indexPath.item]
-        if (statuses!.endIndex != indexPath.item && status.isGap ?? false) {
-            return tableView.dequeueReusableCellWithIdentifier("Gap", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let status = statuses![(indexPath as NSIndexPath).item]
+        if (statuses!.endIndex != (indexPath as NSIndexPath).item && status.isGap ?? false) {
+            return tableView.dequeueReusableCell(withIdentifier: "Gap", for: indexPath)
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("Status", forIndexPath: indexPath) as! StatusCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Status", for: indexPath) as! StatusCell
             cell.displayOption = self.cellDisplayOption
             return cell
         }
     }
     
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         switch cell {
         case is StatusCell:
-            (cell as! StatusCell).status = statuses![indexPath.item]
+            (cell as! StatusCell).status = statuses![(indexPath as NSIndexPath).item]
         default: break
         }
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let status = statuses![indexPath.item]
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let status = statuses![(indexPath as NSIndexPath).item]
         if (status.isGap ?? false) {
-            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+            return super.tableView(tableView, heightForRowAt: indexPath)
         } else {
-            return tableView.fd_heightForCellWithIdentifier("Status", cacheByIndexPath: indexPath) { cell in
+            return tableView.fd_heightForCell(withIdentifier: "Status", cacheBy: indexPath) { cell in
                 let statusCell = cell as! StatusCell
                 statusCell.displayOption = self.cellDisplayOption
                 statusCell.status = status
@@ -108,8 +108,8 @@ class StatusesListController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let status = statuses![indexPath.item]
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let status = statuses![(indexPath as NSIndexPath).item]
         let accounts = delegate.getAccounts()
         if (status.isGap ?? false) {
             guard let accountKey = accounts.filter({$0.key == status.accountKey}).first else {
@@ -125,26 +125,26 @@ class StatusesListController: UITableViewController {
             loadStatuses(opts)
         } else {
             let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
-            let vc = storyboard.instantiateViewControllerWithIdentifier("StatusDetails") as! StatusViewerController
+            let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
             vc.status = status
-            navigationController?.showViewController(vc, sender: self)
+            navigationController?.show(vc, sender: self)
         }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         AppDelegate.performingScroll = true
     }
     
-    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         AppDelegate.performingScroll = true
     }
     
-    override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         AppDelegate.performingScroll = false
     }
     
-    override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if (!decelerate) {
             AppDelegate.performingScroll = false
         }
@@ -158,7 +158,7 @@ class StatusesListController: UITableViewController {
         loadStatuses(opts)
     }
     
-    private func loadStatuses(opts: LoadOptions) {
+    fileprivate func loadStatuses(_ opts: LoadOptions) {
         if let promise = delegate?.loadStatuses(opts) {
             promise.then { statuses in
                 self.statuses = statuses
@@ -202,10 +202,10 @@ protocol StatusesListControllerDelegate {
     
     func getAccounts() -> [Account]
     
-    func loadStatuses(opts: StatusesListController.LoadOptions) -> Promise<[Status]>
+    func loadStatuses(_ opts: StatusesListController.LoadOptions) -> Promise<[Status]>
     
-    func getNewestStatusIds(accounts: [Account]) -> [String?]?
+    func getNewestStatusIds(_ accounts: [Account]) -> [String?]?
     
-    func getNewestStatusSortIds(accounts: [Account]) -> [Int64]?
+    func getNewestStatusSortIds(_ accounts: [Account]) -> [Int64]?
     
 }

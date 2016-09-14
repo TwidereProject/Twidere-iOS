@@ -8,10 +8,10 @@
 
 import Foundation
 
-extension NSDate {
+extension Date {
     
-    convenience init(timeIntervalSince1970Millis: Int64) {
-        self.init(timeIntervalSince1970: Double(timeIntervalSince1970Millis) / 1000.0)
+    init(timeIntervalSince1970Millis: Int64) {
+        (self as NSDate).init(timeIntervalSince1970: Double(timeIntervalSince1970Millis) / 1000.0)
     }
     
     var timeIntervalSince1970Millis: Int64 {
