@@ -11,6 +11,7 @@ submodels:
         type: UserKey
         column: account_key
         json_field: account_key
+        json_transform: UserKeyTransform
       sortId: # Added in database version 2
         type: Int64
         column: sort_id
@@ -37,6 +38,7 @@ submodels:
         type: UserKey
         column: user_key
         json_field: user_key
+        json_transform: UserKeyTransform
       userName:
         type: String
         column: user_name
@@ -69,6 +71,7 @@ submodels:
         type: UserKey?
         column: quoted_user_key
         json_field: quoted_user_key
+        json_transform: UserKeyTransform
       quotedUserName:
         type: String?
         column: quoted_user_name
@@ -97,6 +100,7 @@ submodels:
         type: UserKey?
         column: retweeted_by_user_key
         json_field: retweeted_by_user_key
+        json_transform: UserKeyTransform
       retweetedByUserName:
         type: String?
         column: retweeted_by_user_name
