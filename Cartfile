@@ -1,5 +1,4 @@
-github "SwiftyJSON/SwiftyJSON" ~> 2.3.2
-github "stephencelis/SQLite.swift" ~> 0.10.1
+# github "stephencelis/SQLite.swift" ~> 0.10.1
 github "krzyzanowskim/CryptoSwift" ~> 0.6.0
 github "Alamofire/Alamofire" ~> 4.0
 github "rs/SDWebImage" ~> 3.8.2
@@ -14,12 +13,8 @@ github "radex/SwiftyUserDefaults" ~> 3.0.0
 github "mxcl/PromiseKit" ~> 4.0
 github "kevin0571/STPopup" ~> 1.8
 github "devxoul/UITextView-Placeholder" ~> 1.2
-github "forkingdog/UIView-FDCollapsibleConstraints" ~> 1.1
-# github "forkingdog/UITableView-FDTemplateLayoutCell" ~> "1.5.beta"
 github "MatthewYork/DateTools" ~> 1.7.0
-github "mariotaku/ALSLayouts" "swift3"
-github "adela-chang/StringExtensionHTML" ~> 0.1
-github "square/ThumborURL" ~> 0.0.4
+github "mariotaku/ALSLayouts" ~> 2.0.0
 github "KyoheiG3/AttributedLabel" ~> 0.5.0
 # Incompatible Obj-C/Swift module
 # github "kingiol/KDInteractiveNavigationController" ~> 0.1.2

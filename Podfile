@@ -34,16 +34,13 @@ target 'Twidere' do
   # Available in Carthage
   # pod 'SDWebImage', '~> 3.8.2' # Obj-C
   pod 'JDStatusBarNotification', '1.5.4' # Obj-C
-  # Available in Carthage
-  # pod 'UIView+FDCollapsibleConstraints', '~> 1.1' # Obj-C
-  # Available in Carthage
+  pod 'UIView+FDCollapsibleConstraints', '~> 1.1' # Obj-C
   pod 'UITableView+FDTemplateLayoutCell', '~> 1.5.beta' # Obj-C
   # Available in Carthage
   # pod 'DateTools', '~> 1.7.0' # Obj-C
   # Available in Carthage
   # pod 'ALSLayouts', :git => 'https://github.com/mariotaku/ALSLayouts.git', :branch => 'swift3' # Swift 3
-  # Available in Carthage
-  # pod 'ThumborURL', '0.0.4' # Obj-C
+  pod 'ThumborURL', '0.0.4' # Obj-C
   # Available in Carthage
   #pod 'StringExtensionHTML', '~> 0.1'
   # Available in Carthage

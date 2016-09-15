@@ -4,6 +4,7 @@ PODS:
   - StaticDataTableViewController (2.0.5)
   - twitter-text (1.14.0)
   - UITableView+FDTemplateLayoutCell (1.5.beta)
+  - UIView+FDCollapsibleConstraints (1.1)
   - UIView+TouchHighlighting (1.1.0)
 
 DEPENDENCIES:
@@ -12,6 +13,7 @@ DEPENDENCIES:
   - StaticDataTableViewController (= 2.0.5)
   - twitter-text (~> 1.14)
   - UITableView+FDTemplateLayoutCell (~> 1.5.beta)
+  - UIView+FDCollapsibleConstraints (~> 1.1)
   - UIView+TouchHighlighting (~> 1.1)
 
 SPEC CHECKSUMS:
@@ -20,8 +22,9 @@ SPEC CHECKSUMS:
   StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a
   twitter-text: 703e84901722b7e6e2e22b7ac12afabfb40be1e5
   UITableView+FDTemplateLayoutCell: 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
+  UIView+FDCollapsibleConstraints: 9357eaf03b4e088263ab74a3b86a382a64ce38dd
   UIView+TouchHighlighting: cedbcd90c965e7b1418c80a04fc8266398a738f1
 
-PODFILE CHECKSUM: 7b91041c0795bce0244285f1fbc4b937db8ec842
+PODFILE CHECKSUM: f63f858fb326967a1e2497b89ae6ac9d5642e8b0
 
 COCOAPODS: 1.1.0.rc.1
