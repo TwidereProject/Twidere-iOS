@@ -184,7 +184,6 @@
 		CE45CA831D85416C0004CC1C /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		CE45CA841D85416C0004CC1C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CE45CA851D85416C0004CC1C /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		CE45CABE1D8555700004CC1C /* FlatBuffersSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlatBuffersSwift.framework; path = Frameworks/FlatBuffersSwift/build/Debug/FlatBuffersSwift.framework; sourceTree = "<group>"; };
 		CE45CAEE1D8556DE0004CC1C /* AccountConfig+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountConfig+Value.swift"; sourceTree = "<group>"; };
 		CE45CAF01D8559780004CC1C /* User.model.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = User.model.yml; sourceTree = "<group>"; };
 		CE45CAF11D8559780004CC1C /* Account.model.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Account.model.yml; sourceTree = "<group>"; };
@@ -315,7 +314,6 @@
 		0F80558F5C8F18CCEBAD61DC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CE45CABE1D8555700004CC1C /* FlatBuffersSwift.framework */,
 				F33C08D23C1DF70E405B5B09 /* Pods_Twidere.framework */,
 				339BCAC9D930FF8CB3677AFC /* Pods_TwidereTests.framework */,
 				0DD6984F4D94D9627E5C1991 /* Pods_TwidereUITests.framework */,
