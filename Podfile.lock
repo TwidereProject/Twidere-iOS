@@ -1,30 +1,100 @@
 PODS:
+  - ActionSheetPicker-3.0 (2.2.0)
+  - Alamofire (4.0.0)
+  - ALSLayouts (2.0.1)
+  - AttributedLabel (0.5.0)
+  - CryptoSwift (0.6.0)
+  - DateTools (1.7.0)
   - IQKeyboardManager (4.0.5)
   - JDStatusBarNotification (1.5.4)
+  - JVFloatLabeledTextField (1.1.1)
+  - ObjectMapper (2.0.0)
+  - PromiseKit (4.0.1):
+    - PromiseKit/Foundation (= 4.0.1)
+    - PromiseKit/QuartzCore (= 4.0.1)
+    - PromiseKit/UIKit (= 4.0.1)
+  - PromiseKit/CorePromise (4.0.1)
+  - PromiseKit/Foundation (4.0.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (4.0.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (4.0.1):
+    - PromiseKit/CorePromise
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
   - StaticDataTableViewController (2.0.5)
+  - STPopup (1.8.0)
+  - SwiftyUserDefaults (3.0.0)
+  - ThumborURL (0.0.4)
   - twitter-text (1.14.0)
   - UITableView+FDTemplateLayoutCell (1.5.beta)
+  - UITextView+Placeholder (1.2.0)
   - UIView+FDCollapsibleConstraints (1.1)
   - UIView+TouchHighlighting (1.1.0)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0 (= 2.2.0)
+  - Alamofire (~> 4.0)
+  - ALSLayouts (~> 2.0)
+  - AttributedLabel (from `https://github.com/KyoheiG3/AttributedLabel.git`, tag `0.5.0`)
+  - CryptoSwift (from `https://github.com/krzyzanowskim/CryptoSwift.git`, tag `0.6.0`)
+  - DateTools (~> 1.7.0)
   - IQKeyboardManager (~> 4.0)
   - JDStatusBarNotification (= 1.5.4)
+  - JVFloatLabeledTextField (= 1.1.1)
+  - ObjectMapper (~> 2.0)
+  - PromiseKit (~> 4.0)
+  - SDWebImage (~> 3.8.2)
   - StaticDataTableViewController (= 2.0.5)
+  - STPopup (~> 1.8)
+  - SwiftyUserDefaults (~> 3.0)
+  - ThumborURL (= 0.0.4)
   - twitter-text (~> 1.14)
   - UITableView+FDTemplateLayoutCell (~> 1.5.beta)
+  - UITextView+Placeholder (~> 1.2)
   - UIView+FDCollapsibleConstraints (~> 1.1)
   - UIView+TouchHighlighting (~> 1.1)
 
+EXTERNAL SOURCES:
+  AttributedLabel:
+    :git: https://github.com/KyoheiG3/AttributedLabel.git
+    :tag: 0.5.0
+  CryptoSwift:
+    :git: https://github.com/krzyzanowskim/CryptoSwift.git
+    :tag: 0.6.0
+
+CHECKOUT OPTIONS:
+  AttributedLabel:
+    :git: https://github.com/KyoheiG3/AttributedLabel.git
+    :tag: 0.5.0
+  CryptoSwift:
+    :git: https://github.com/krzyzanowskim/CryptoSwift.git
+    :tag: 0.6.0
+
 SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
+  Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
+  ALSLayouts: fb22675af6e360a47936cb380ce580bed51f16d2
+  AttributedLabel: 5df434efa72fad5a6cf5563b558030fd50fb180d
+  CryptoSwift: 4a599b7241b8d3b857d6e2c28867d0bd5d1aae24
+  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   IQKeyboardManager: 50b62c0603308968256f8208886e206c1dcce607
   JDStatusBarNotification: d47dded0594a50a39c84a2cc5aa356fcf6750d0e
+  JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
+  ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
+  PromiseKit: ae9e7f97ee758e23f7b9c5e80380a2e78d6338c5
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a
+  STPopup: af630a85628e4226ffcbda5caaead0d99aed13a8
+  SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
+  ThumborURL: 0e1f058fb79c37660aa7d302fe77c48366902325
   twitter-text: 703e84901722b7e6e2e22b7ac12afabfb40be1e5
   UITableView+FDTemplateLayoutCell: 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
+  UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
   UIView+FDCollapsibleConstraints: 9357eaf03b4e088263ab74a3b86a382a64ce38dd
   UIView+TouchHighlighting: cedbcd90c965e7b1418c80a04fc8266398a738f1
 
-PODFILE CHECKSUM: f63f858fb326967a1e2497b89ae6ac9d5642e8b0
+PODFILE CHECKSUM: 1bb09574e41ac9e56e43525337e84d7d9f06eef8
 
-COCOAPODS: 1.1.0.rc.1
+COCOAPODS: 1.1.0.rc.2
