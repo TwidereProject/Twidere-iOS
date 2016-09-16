@@ -12,23 +12,23 @@ import PromiseKit
 class OAuthService: RestClient {
     
     func getRequestToken(_ oauthCallback: String) -> Promise<OAuthToken> {
-        let forms: [String: AnyObject] = ["oauth_callback": oauthCallback]
-        return makeTypedRequest(.POST, path: "/oauth/request_token", params: forms, validation: MicroBlogService.checkRequest, serializer: ModelConverter.oauthToken)
+        let forms: [String: Any] = ["oauth_callback": oauthCallback]
+        return makeTypedRequest(.post, path: "/oauth/request_token", params: forms, serializer: ModelConverter.oauthToken)
     }
     
     func getAccessToken(_ xauthUsername:String, xauthPassword: String) -> Promise<OAuthToken> {
-        let forms: [String: AnyObject] = [
+        let forms: [String: Any] = [
             "x_auth_mode": "client_auth",
             "x_auth_username": xauthUsername,
             "x_auth_password": xauthPassword
         ]
-        return makeTypedRequest(.POST, path: "/oauth/access_token", params: forms, validation: MicroBlogService.checkRequest, serializer: ModelConverter.oauthToken)
+        return makeTypedRequest(.post, path: "/oauth/access_token", params: forms, serializer: ModelConverter.oauthToken)
         
     }
     
     
     func getAccessToken(_ requestToken: OAuthToken, oauthVerifier: String? = nil) -> Promise<OAuthToken> {
-        let forms: [String: AnyObject]
+        let forms: [String: Any]
         if (oauthVerifier != nil) {
             forms = ["oauth_verifier": oauthVerifier!]
         } else {
@@ -39,7 +39,7 @@ class OAuthService: RestClient {
             let oauth = auth as! OAuthAuthorization
             finalAuth = OAuthAuthorization(oauth.consumerKey, oauth.consumerSecret, oauthToken: requestToken)
         }
-        return makeTypedRequest(.POST, path: "/oauth/access_token", params: forms, authOverride: finalAuth, validation: MicroBlogService.checkRequest, serializer: ModelConverter.oauthToken)
+        return makeTypedRequest(.post, path: "/oauth/access_token", params: forms, authOverride: finalAuth, serializer: ModelConverter.oauthToken)
         
     }
     

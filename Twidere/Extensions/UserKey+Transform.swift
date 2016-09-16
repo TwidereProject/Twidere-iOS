@@ -14,7 +14,7 @@ class UserKeyTransform: TransformType {
     typealias Object = UserKey
     typealias JSON = String
     
-    func transformFromJSON(_ value: AnyObject?) -> UserKey? {
+    func transformFromJSON(_ value: Any?) -> UserKey? {
         if let string = value as? String {
             return UserKey(rawValue: string)
         }

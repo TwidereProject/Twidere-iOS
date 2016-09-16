@@ -16,7 +16,7 @@ extension Status.Metadata: Value {
     }
     
     static func fromDatatypeValue(_ datatypeValue: String) -> Status.Metadata? {
-        return Mapper<Status.Metadata>().map(datatypeValue)
+        return Mapper<Status.Metadata>().map(JSONString:  datatypeValue)
     }
     
     var datatypeValue: String {

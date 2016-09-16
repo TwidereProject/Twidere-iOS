@@ -19,7 +19,7 @@ class MicroBlogService: RestClient {
     ]
     
     func verifyCredentials() -> Promise<JSON> {
-        return makeTypedRequest(.GET, path: "/account/verify_credentials.json", validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertJSON)
+        return makeTypedRequest(.get, path: "/account/verify_credentials.json", serializer: MicroBlogService.convertJSON)
     }
     
     func updateStatus(_ request: UpdateStatusRequest) -> Promise<Status> {
@@ -42,7 +42,7 @@ class MicroBlogService: RestClient {
             forms["attachment_url"] = request.attachmentUrl
         }
         forms["possibly_sensitive"] = request.possiblySensitive ? "true" : "false"
-        return makeTypedRequest(.POST, path: "/statuses/update.json", params: forms, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatus(accountKey))
+        return makeTypedRequest(.post, path: "/statuses/update.json", params: forms, serializer: MicroBlogService.convertStatus(accountKey))
     }
     
     func uploadMedia(_ media: Data, additionalOwners: [String]? = nil) -> Promise<MediaUploadResponse> {
@@ -50,7 +50,7 @@ class MicroBlogService: RestClient {
         if (additionalOwners != nil) {
             forms["additional_owners"] = additionalOwners!.joined(separator: ",")
         }
-        return makeTypedRequest(.POST, path: "/media/upload.json", params: forms, validation: MicroBlogService.checkRequest, serializer: MediaUploadResponse.serialization)
+        return makeTypedRequest(.post, path: "/media/upload.json", params: forms, serializer: MediaUploadResponse.serialization)
     }
     
     func initUploadMedia(_ mediaType: String, totalBytes: Int, additionalOwners: [String]? = nil) -> Promise<MediaUploadResponse> {
@@ -58,38 +58,38 @@ class MicroBlogService: RestClient {
         if (additionalOwners != nil) {
             forms["additional_owners"] = additionalOwners!.joined(separator: ",")
         }
-        return makeTypedRequest(.POST, path: "/media/upload.json", params: forms, validation: MicroBlogService.checkRequest, serializer: MediaUploadResponse.serialization)
+        return makeTypedRequest(.post, path: "/media/upload.json", params: forms, serializer: MediaUploadResponse.serialization)
     }
     
     func appendUploadMedia(_ mediaId: String, segmentIndex: Int, media: Data) -> Promise<Int> {
         var forms: [String:Any] = ["command": "APPEND", "media_id": mediaId, "segment_index": "\(segmentIndex)"]
         forms["media"] = media
-        return makeTypedRequest(.POST, path: "/media/upload.json", params: forms, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertResponseCode)
+        return makeTypedRequest(.post, path: "/media/upload.json", params: forms, serializer: MicroBlogService.convertResponseCode)
     }
     
     func finalizeUploadMedia(_ mediaId: String) -> Promise<MediaUploadResponse> {
         let forms: [String:Any] = ["command": "FINALIZE", "media_id": mediaId]
-        return makeTypedRequest(.POST, path: "/media/upload.json", params: forms, validation: MicroBlogService.checkRequest, serializer: MediaUploadResponse.serialization)
+        return makeTypedRequest(.post, path: "/media/upload.json", params: forms, serializer: MediaUploadResponse.serialization)
     }
     
     func getUploadMediaStatus(_ mediaId: String) -> Promise<MediaUploadResponse> {
         let queries: [String:String] = ["command": "STATUS", "media_id": mediaId]
-        return makeTypedRequest(.POST, path: "/media/upload.json", queries: queries, validation: MicroBlogService.checkRequest, serializer: MediaUploadResponse.serialization)
+        return makeTypedRequest(.post, path: "/media/upload.json", queries: queries, serializer: MediaUploadResponse.serialization)
     }
     
     func getHomeTimeline(_ paging: Paging) -> Promise<[Status]> {
         let queries = makeQueries(statusQueries, paging.queries)
-        return makeTypedRequest(.GET, path: "/statuses/home_timeline.json", queries: queries, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatuses(accountKey))
+        return makeTypedRequest(.get, path: "/statuses/home_timeline.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
     }
     
     func getUserTimeline(_ screenName: String, paging: Paging) -> Promise<[Status]> {
         let queries = makeQueries(statusQueries, ["screen_name": screenName], paging.queries)
-        return makeTypedRequest(.GET, path: "/statuses/user_timeline.json", queries: queries, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatuses(accountKey))
+        return makeTypedRequest(.get, path: "/statuses/user_timeline.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
     }
     
     func lookupStatuses(_ ids: [String]) -> Promise<[Status]> {
         let queries = makeQueries(statusQueries, ["id": ids.joined(separator: ",")])
-        return makeTypedRequest(.GET, path: "/statuses/lookup.json", queries: queries, validation: MicroBlogService.checkRequest, serializer: MicroBlogService.convertStatuses(accountKey))
+        return makeTypedRequest(.get, path: "/statuses/lookup.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
     }
     
     func makeQueries(_ def: [String: String], _ queries: [String: String]...) -> [String: String] {

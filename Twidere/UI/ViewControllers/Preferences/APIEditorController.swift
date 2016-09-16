@@ -100,13 +100,13 @@ class APIEditorController: StaticDataTableViewController {
     }
     
     internal func cancelEditAPI() {
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     internal func finishEditAPI() {
         saveAPISettings()
         callback?(customAPIConfig)
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     fileprivate func saveAPISettings() {
@@ -121,11 +121,15 @@ class APIEditorController: StaticDataTableViewController {
     fileprivate func openEditAuthType(_ sender: AnyObject) {
         view.endEditing(true)
         let initialSelection = authTypeValues.index(of: customAPIConfig.authType) ?? 0
-        let picker = ActionSheetStringPicker.show(withTitle: "Auth Type", rows: authTypeEntries, initialSelection: initialSelection, doneBlock: self.authTypeSelected, cancel: { _ in }, origin: sender)
+        let doneBlock: ActionStringDoneBlock = { picker, index, value -> Void in
+            self.authTypeSelected(picker, index: index, value: value)
+        }
+        
+        let picker = ActionSheetStringPicker.show(withTitle: "Auth Type", rows: authTypeEntries, initialSelection: initialSelection, doneBlock: doneBlock, cancel: nil, origin: sender)!
         picker.tapDismissAction = .cancel
     }
     
-    fileprivate func authTypeSelected(_ picker: ActionSheetStringPicker!, index: Int, value: AnyObject!) {
+    fileprivate func authTypeSelected(_ picker: ActionSheetStringPicker?, index: Int, value: Any?) {
         self.authType = self.authTypeValues[index]
         self.updateOptions(index)
     }

@@ -9,8 +9,8 @@
 import Foundation
 import SwiftyJSON
 
-private let twitterProfileImageRegex = "(https?://)?(twimg[\\d\\w\\-]+\\.akamaihd\\.net|[\\w\\d]+\\.twimg\\.com)/profile_images/([\\d\\w\\-_]+)/([\\d\\w\\-_]+)_(bigger|normal|mini|reasonably_small)(\\.?(png|jpeg|jpg|gif|bmp))?".r!
-private let twitterBannerImageRegex = "(https?://)?(twimg[\\d\\w\\-]+\\.akamaihd\\.net|[\\w\\d]+\\.twimg\\.com)/profile_banners/([\\d\\w\\-_]+)/([\\d\\w\\-_]+)(/[\\d\\w\\-_]+)?".r!
+private let twitterProfileImageRegex = try! NSRegularExpression(pattern: "(https?://)?(twimg[\\d\\w\\-]+\\.akamaihd\\.net|[\\w\\d]+\\.twimg\\.com)/profile_images/([\\d\\w\\-_]+)/([\\d\\w\\-_]+)_(bigger|normal|mini|reasonably_small)(\\.?(png|jpeg|jpg|gif|bmp))?")
+private let twitterBannerImageRegex = try! NSRegularExpression(pattern: "(https?://)?(twimg[\\d\\w\\-]+\\.akamaihd\\.net|[\\w\\d]+\\.twimg\\.com)/profile_banners/([\\d\\w\\-_]+)/([\\d\\w\\-_]+)(/[\\d\\w\\-_]+)?")
 
 private let twitterDateFormatter: DateFormatter = {
     let f = DateFormatter()
@@ -20,15 +20,17 @@ private let twitterDateFormatter: DateFormatter = {
 }()
 
 func getProfileImageUrlForSize(_ url: String, size: ProfileImageSize) -> String {
-    if (twitterProfileImageRegex.matches(url)) {
-        return twitterProfileImageRegex.replaceFirst(in: url, with: "$1$2/profile_images/$3/$4\(size.suffix)$6")
+    let range = NSMakeRange(0, url.utf16.count)
+    if (!twitterProfileImageRegex.matches(in: url, options: [], range: range).isEmpty) {
+        return twitterProfileImageRegex.stringByReplacingMatches(in: url, options: [], range: range, withTemplate: "$1$2/profile_images/$3/$4\(size.suffix)$6")
     }
     return url
 }
 
 func getProfileBannerUrlForSize(_ url: String, size: Int) -> String {
-    if (twitterBannerImageRegex.matches(url)) {
-        return twitterBannerImageRegex.replaceFirst(in: url, with: "$1$2/profile_banners/$3/$4/\(getBestBannerType(size))")
+    let range = NSMakeRange(0, url.utf16.count)
+    if (!twitterBannerImageRegex.matches(in: url, options: [], range: range).isEmpty) {
+        return twitterBannerImageRegex.stringByReplacingMatches(in: url, options: [], range: range, withTemplate: "$1$2/profile_banners/$3/$4/\(getBestBannerType(size))")
     }
     return url
 }

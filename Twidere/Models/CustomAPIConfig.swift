@@ -68,8 +68,8 @@ class CustomAPIConfig {
     }
     
     func getApiBaseUrl(_ format: String, domain: String?) -> String {
-        let compiled = "\\[(\\.?)DOMAIN(\\.?)\\]".r!
-        if (compiled.findFirst(in: format) == nil) {
+        let regex = try! NSRegularExpression(pattern: "\\[(\\.?)DOMAIN(\\.?)\\]", options: .caseInsensitive)
+        if (regex.firstMatch(in: format, range: NSRange(0..<format.utf16.count)) == nil) {
             // For backward compatibility
             let legacyFormat = substituteLegacyApiBaseUrl(format, domain: domain)
             if (!legacyFormat.hasSuffix("/1.1") && !legacyFormat.hasSuffix("/1.1/")) {
@@ -78,9 +78,9 @@ class CustomAPIConfig {
             return legacyFormat
         }
         if (domain != nil) {
-            return compiled.replaceAll(in: format, with: "$1\(domain!)$2")
+            return regex.stringByReplacingMatches(in: format, options: [], range: NSRange(0..<format.utf16.count), withTemplate: "$1\(domain!)$2")
         } else {
-            return compiled.replaceAll(in: format, with: "")
+            return regex.stringByReplacingMatches(in: format, options: [], range: NSRange(0..<format.utf16.count), withTemplate: "")
         }
     }
     

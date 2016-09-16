@@ -12,8 +12,8 @@ class DatabaseMigration {
     
     func create(_ db: Connection) throws {
         try db.transaction {
-            try db.run(Account.createTable(accountsTable))
-            try db.run(Status.createTable(homeStatusesTable))
+            _ = try db.run(Account.createTable(table: accountsTable))
+            _ = try db.run(Status.createTable(table: homeStatusesTable))
         }
     }
     

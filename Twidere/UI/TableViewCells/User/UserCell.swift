@@ -25,19 +25,19 @@ class UserCell: UITableViewCell {
         let name = user["name"].stringValue
         let screenName = user["screen_name"].stringValue
         let nameString = NSMutableAttributedString()
-        nameString.appendAttributedString(NSAttributedString(string: name, attributes: [
-            NSFontAttributeName: UIFont.boldSystemFontOfSize(nameView.font.pointSize)
+        nameString.append(NSAttributedString(string: name, attributes: [
+            NSFontAttributeName: UIFont.boldSystemFont(ofSize: nameView.font.pointSize)
             ]))
         nameString.append(NSAttributedString(string: "\n"))
-        nameString.appendAttributedString(NSAttributedString(string: "@" + screenName, attributes: [
-            NSFontAttributeName: UIFont.systemFontOfSize(nameView.font.pointSize * 0.9)
+        nameString.append(NSAttributedString(string: "@" + screenName, attributes: [
+            NSFontAttributeName: UIFont.systemFont(ofSize: nameView.font.pointSize * 0.9)
             ]))
         nameView.attributedText = nameString
         let profileImageUrl = user["profile_image_url_https"].string ?? user["profile_image_url"].stringValue
         
         descriptionView.text = user["description"].string
         
-        profileImageView.displayImage(getProfileImageUrlForSize(profileImageUrl, size: .ReasonablySmall))
+        profileImageView.displayImage(getProfileImageUrlForSize(profileImageUrl, size: .reasonablySmall))
     }
     
 }

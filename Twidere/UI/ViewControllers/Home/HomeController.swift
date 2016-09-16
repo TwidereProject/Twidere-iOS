@@ -90,7 +90,7 @@ class HomeController: UITabBarController {
                 }.then{ accountKeys -> Promise<[UserKey]> in
                     return Promise { fullfill, reject in
                         if let params = opts.params , !opts.initLoad {
-                            GetStatusesTask.execute(params, table: self.table, fetchAction: { account, microblog, paging -> Promise<[Status]> in
+                            _ = GetStatusesTask.execute(params, table: self.table, fetchAction: { account, microblog, paging -> Promise<[Status]> in
                                 return microblog.getHomeTimeline(paging)
                             }).always {
                                 fullfill(accountKeys)

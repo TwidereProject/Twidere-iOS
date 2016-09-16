@@ -271,7 +271,7 @@ class SignInController: UIViewController {
             account.sameOAuthSigningUrl = config.sameOAuthSigningUrl
             account.user = user
             try db.transaction {
-                try db.run(Account.insertData(accountsTable, model: account))
+                try _ = db.run(Account.insertData(table: accountsTable, model: account))
             }
             return account
             }.then { result -> Void in

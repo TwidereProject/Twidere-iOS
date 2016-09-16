@@ -127,7 +127,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate {
     }
     
     func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
         return true
     }
     

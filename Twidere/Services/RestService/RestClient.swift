@@ -24,7 +24,7 @@ class RestClient {
         self.userAgent = userAgent
     }
     
-    func makeTypedRequest<T: DataResponseSerializer>(_ method: HTTPMethod,
+    func makeTypedRequest<T>(_ method: Alamofire.HTTPMethod,
                           path: String,
                           headers: [String: String]? = nil,
                           queries:[String: String]? = nil,
@@ -32,39 +32,48 @@ class RestClient {
                           requestBody:Data? = nil,
                           authOverride: Authorization? = nil,
                           validation: DataRequest.Validation? = nil,
-                          serializer: T) -> Promise<T.SerializedObject> {
+                          serializer: DataResponseSerializer<T>) -> Promise<T> {
         return Promise { fullfill, reject in
             let url = constructUrl(path, queries: queries)
             let finalAuth: Authorization? = authOverride ?? auth
-            let isMultipart = params?.contains { (k, v) -> Bool in v is NSData } ?? false
-            var finalHeaders = constructHeaders(method, path: path, headers: headers, queries: queries, forms: params, auth: finalAuth, isMultipart: isMultipart)
-            let completionHandler: (Response<T.SerializedObject>) -> Void = { response in
+            let isMultipart: Bool = params != nil && params!.contains(where: { $0.1 is Data })
+            let finalHeaders = constructHeaders(method, path: path, headers: headers, queries: queries, forms: params, auth: finalAuth, isMultipart: isMultipart)
+            let completionHandler: (DataResponse<T>) -> Void = { response in
                 switch response.result {
-                case .Success(let value):
+                case .success(let value):
                     fullfill(value)
-                case .Failure(let error):
+                case .failure(let error):
                     reject(error)
                 }
             }
-            let request: Request
             if (isMultipart) {
-                let multipart = MultipartFormData()
-                params?.forEach{ (k, v) in
-                    if (v is Data) {
-                        multipart.appendBodyPart(data: v as! NSData, name: k, mimeType: "application/octet-stream")
-                    } else {
-                        multipart.appendBodyPart(data: "\(v)".data(using: String.Encoding.utf8)!, name: k)
-                    }
-                }
-                finalHeaders["Content-Type"] = multipart.contentType
-                request = Alamofire.upload(url, method, headers: finalHeaders, data: try! multipart.encode())
+                //finalHeaders["Content-Type"] = multipart.contentType
+                Alamofire.upload(
+                    multipartFormData: { multipart in
+                        for (k, v) in params! {
+                            switch v {
+                            case let d as Data:
+                                multipart.append(d, withName: k, mimeType: "application/octet-stream")
+                            default:
+                                multipart.append("\(v)".data(using: String.Encoding.utf8)!, withName: k)
+                            }
+                        }
+                    }, to: url, method: method, headers: finalHeaders,
+                       encodingCompletion: { encodingResult in
+                        switch encodingResult {
+                        case let .success(request, _, _):
+                            request.response(responseSerializer: serializer, completionHandler: completionHandler)
+                        case let .failure(error):
+                            reject(error)
+                        }
+                })
             } else {
-                request = Alamofire.request(url, method, parameters: params, encoding: .custom(self.restEncoding), headers: finalHeaders)
+                let request = Alamofire.request(url, method: method, parameters: params, headers: finalHeaders)
+                if (validation != nil) {
+                    request.validate(validation!)
+                }
+                request.response(responseSerializer: serializer, completionHandler: completionHandler)
             }
-            if (validation != nil) {
-                request.validate(validation!)
-            }
-            request.response(responseSerializer: serializer, completionHandler: completionHandler)
         }
     }
     
@@ -73,12 +82,12 @@ class RestClient {
     }
     
     fileprivate func constructHeaders(_ method: HTTPMethod,
-                                  path: String,
-                                  headers: [String: String]? = nil,
-                                  queries: [String: String]? = nil,
-                                  forms: [String: Any]? = nil,
-                                  auth: Authorization?,
-                                  isMultipart: Bool) -> [String: String] {
+                                      path: String,
+                                      headers: [String: String]? = nil,
+                                      queries: [String: String]? = nil,
+                                      forms: [String: Any]? = nil,
+                                      auth: Authorization?,
+                                      isMultipart: Bool) -> [String: String] {
         var mergedHeaders = [String: String]()
         if (headers != nil) {
             for (k, v) in headers! {
@@ -108,7 +117,7 @@ class RestClient {
         if (params == nil) {
             return (request, nil)
         }
-
+        
         let method = request.httpMethod
         let paramInUrl = method == HTTPMethod.get.rawValue || method == HTTPMethod.head.rawValue || method == HTTPMethod.delete.rawValue
         if (paramInUrl) {
@@ -142,7 +151,7 @@ class RestClient {
             // No-op
         }
     }
- 
+    
 }
 
 enum RestError: Error {

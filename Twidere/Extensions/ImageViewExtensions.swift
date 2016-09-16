@@ -11,8 +11,13 @@ import SDWebImage
 
 extension UIImageView {
     func displayImage(_ url: String?, placeholder: UIImage? = nil, completed: SDWebImageCompletionBlock? = nil) {
-        if (url != nil) {
-            sd_setImage(with: URL(string: url!), placeholderImage: placeholder, completed: completed)
+        if let url = url {
+//            if let completed = completed {
+//                self.sd_setImage(with: URL(string: url), placeholderImage: placeholder, completed: completed)
+//            } else {
+//                self.sd_setImage(with: URL(string: url), placeholderImage: placeholder)
+//            }
+            self.sd_setImage(with: URL(string: url), placeholderImage: placeholder)
         } else {
             image = placeholder
         }

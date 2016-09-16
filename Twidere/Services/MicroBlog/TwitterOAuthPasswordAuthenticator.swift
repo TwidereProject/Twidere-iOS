@@ -63,7 +63,7 @@ class TwitterOAuthPasswordAuthenticator {
         }
         let queries = ["oauth_token": requestToken.oauthToken]
         
-        return rest.makeTypedRequest(.GET, path: "/oauth/authorize", headers: requestHeaders, queries: queries, serializer: DataResponseSerializer { (req, resp, data, error) -> Alamofire.Result<AuthorizeRequestData> in
+        return rest.makeTypedRequest(.get, path: "/oauth/authorize", headers: requestHeaders, queries: queries, serializer: DataResponseSerializer { (req, resp, data, error) -> Alamofire.Result<AuthorizeRequestData> in
             let result = AuthorizeRequestData.parseFromHttpResult(data!)
             result.requestToken = requestToken
             result.referer = Endpoint.construct("https://api.twitter.com/", path: "/oauth/authorize", queries: queries)
@@ -86,12 +86,12 @@ class TwitterOAuthPasswordAuthenticator {
             requestHeaders["User-Agent"] = browserUserAgent!
         }
         
-        return rest.makeTypedRequest(.POST, path: "/oauth/authorize", headers: requestHeaders, params: forms, serializer: DataResponseSerializer { (req, resp, data, error) -> Alamofire.Result<AuthorizeResponseData> in
+        return rest.makeTypedRequest(.post, path: "/oauth/authorize", headers: requestHeaders, params: forms, serializer: DataResponseSerializer { (req, resp, data, error) -> Alamofire.Result<AuthorizeResponseData> in
             let result = AuthorizeResponseData.parseFromHttpResult(data!)
             result.requestToken = authorizeRequestData.requestToken
             result.referer = authorizeRequestData.referer
             if (result.oauthPin != nil) {
-                return .Success(result)
+                return .success(result)
             } else if (result.challenge != nil) {
                 return .failure(AuthenticationError.challangeRequired(data: result))
             }
@@ -120,13 +120,14 @@ class TwitterOAuthPasswordAuthenticator {
             requestHeaders["User-Agent"] = browserUserAgent!
         }
         
-        return rest.makeTypedRequest(.POST, path: "/account/login_verification", headers: requestHeaders, params: forms, serializer: DataResponseSerializer { (req, resp, data, error) -> Alamofire.Result<AuthorizeRequestData> in
+        return rest.makeTypedRequest(.post, path: "/account/login_verification", headers: requestHeaders, params: forms, serializer: DataResponseSerializer { (req, resp, data, error) -> Alamofire.Result<AuthorizeRequestData> in
             let result = AuthorizeRequestData.parseFromHttpResult(data!)
             
             if (result.authenticityToken?.isEmpty ?? true) {
                 // TODO verification failed
+                return .failure(AuthenticationError.verificationFailed)
             }
-            return .Success(result)
+            return .success(result)
             })
         
     }

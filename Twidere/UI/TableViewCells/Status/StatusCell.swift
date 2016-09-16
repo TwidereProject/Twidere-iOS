@@ -33,11 +33,11 @@ class StatusCell: UITableViewCell {
     
     var displayOption: DisplayOption! {
         didSet {
-            quotedNameView.font = UIFont.systemFontOfSize(displayOption.fontSize * 0.9)
-            nameView.font = UIFont.systemFontOfSize(displayOption.fontSize * 0.9)
+            quotedNameView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.9)
+            nameView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.9)
             
-            quotedTextView.font = UIFont.systemFontOfSize(displayOption.fontSize)
-            textView.font = UIFont.systemFontOfSize(displayOption.fontSize)
+            quotedTextView.font = UIFont.systemFont(ofSize: displayOption.fontSize)
+            textView.font = UIFont.systemFont(ofSize: displayOption.fontSize)
         }
     }
     
@@ -115,8 +115,11 @@ class StatusCell: UITableViewCell {
         guard let status = obj as? Status , status.id == self.status?.id else {
             return
         }
-        if (abs(status.createdAt.minutesAgo()) > 1) {
-            timeView.text = status.createdAt.shortTimeAgoSinceNow()
+        
+        let createdAt: NSDate = status.createdAt as NSDate
+        
+        if (abs(createdAt.minutesAgo()) > 1) {
+            timeView.text = createdAt.shortTimeAgoSinceNow()
         } else {
             timeView.text = "just now"
         }

@@ -76,28 +76,28 @@ class BackgroundOperationService {
                     }
                 }
                 
-                }).then { results -> Bool in
-                    return true
+            }).then { results -> Bool in
+                return true
             }
         }
         
         func uploadAllMediaShared(_ upload: MicroBlogService, update: StatusUpdate, ownerIds: [String], chucked: Bool) -> Promise<[String]> {
-            return when(resolved: update.media!.map { media -> Promise<MediaUploadResponse> in
+            return when(fulfilled: update.media!.map { media -> Promise<MediaUploadResponse> in
                 // TODO upload then get id
-                let fm = FileManager.defaultManager()
-                let data = fm.contentsAtPath(media.path)!
+                let fm = FileManager.default
+                let data = fm.contents(atPath: media.path)!
                 if (chucked) {
                     return uploadMediaChucked(upload, body: data, contentType: "image/jpeg", ownerIds: ownerIds)
                 } else {
                     return upload.uploadMedia(data, additionalOwners: ownerIds)
                 }
-                }).then { responses -> [String] in
-                    return responses.map { $0.mediaId }
+            }).then { responses -> [String] in
+                return responses.map { $0.mediaId }
             }
         }
         
-        func uploadMediaChucked(_ upload: MicroBlogService, body: NSData, contentType: String, ownerIds: [String]) -> Promise<MediaUploadResponse> {
-            let length = body.length
+        func uploadMediaChucked(_ upload: MicroBlogService, body: Data, contentType: String, ownerIds: [String]) -> Promise<MediaUploadResponse> {
+            let length = body.count
             return upload.initUploadMedia(contentType, totalBytes: length, additionalOwners: ownerIds)
                 .then { (response) -> Promise<MediaUploadResponse> in
                     let segments = length == 0 ? 0 : length / BULK_SIZE + 1
@@ -106,10 +106,12 @@ class BackgroundOperationService {
                     return when(resolved: (0..<segments)
                         .map { (segmentIndex) -> Promise<Int> in
                             let currentBulkSize = min(BULK_SIZE, length - segmentIndex * BULK_SIZE)
-                            let bulk = body.subdata(with: NSMakeRange(segmentIndex * BULK_SIZE, currentBulkSize))
+                            let dataStart = body.index(body.startIndex, offsetBy: segmentIndex * BULK_SIZE)
+                            let dataEnd = body.index(dataStart, offsetBy: currentBulkSize)
+                            let bulk = body.subdata(in: dataStart..<dataEnd)
                             return upload.appendUploadMedia(response.mediaId, segmentIndex: segmentIndex, media: bulk)
-                        }).then { responses -> MediaUploadResponse in
-                            return response
+                    }).then { responses -> MediaUploadResponse in
+                        return response
                     }
                 }.then { response -> Promise<MediaUploadResponse> in
                     return upload.finalizeUploadMedia(response.mediaId)
@@ -119,7 +121,7 @@ class BackgroundOperationService {
                         // Server side is processing media
                         if let checkAfterSecs = response.processingInfo?.checkAfterSecs , checkAfterSecs > 0 {
                             // Wait after `checkAfterSecs` seconds
-                            after(TimeInterval(checkAfterSecs))
+                            _ = after(interval: TimeInterval(checkAfterSecs))
                                 .then{ _ -> Promise<MediaUploadResponse> in
                                     // Fetch new upload status
                                     return upload.getUploadMediaStatus(response.mediaId)
@@ -164,14 +166,14 @@ class BackgroundOperationService {
                                 fullfill((nil, (account.key!, error)))
                         }
                     }
-                }).then { results -> [Status] in
-                    if (results.contains { $0.0 == nil }) {
-                        // Throw errors
-                        let errors = results.filter{ $0.1 != nil }.map { $0.1!.1 }
-                        let failedKeys = results.filter{ $0.1 != nil }.map { $0.1!.0 }
-                        throw StatusUpdateError.updateFailed(errors: errors, failedKeys: failedKeys)
-                    }
-                    return results.map { $0.0! }
+            }).then { results -> [Status] in
+                if (results.contains { $0.0 == nil }) {
+                    // Throw errors
+                    let errors = results.filter{ $0.1 != nil }.map { $0.1!.1 }
+                    let failedKeys = results.filter{ $0.1 != nil }.map { $0.1!.0 }
+                    throw StatusUpdateError.updateFailed(errors: errors, failedKeys: failedKeys)
+                }
+                return results.map { $0.0! }
             }
         }
         
