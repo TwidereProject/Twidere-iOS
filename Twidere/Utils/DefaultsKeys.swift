@@ -25,9 +25,9 @@ extension DefaultsKeys {
 }
 
 
-extension NSUserDefaults {
+extension UserDefaults {
     subscript(key: DefaultsKey<CustomAPIConfig.AuthType?>) -> CustomAPIConfig.AuthType? {
-        get { return unarchive(key) }
-        set { archive(key, newValue) }
+        get { return self.unarchive(key) }
+        set { self.archive(key, newValue) }
     }
 }

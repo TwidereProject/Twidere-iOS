@@ -12,14 +12,14 @@ import Alamofire
 
 class ModelConverter {
     
-    static let oauthToken = ResponseSerializer { req, resp, data, err -> Result<OAuthToken, MicroBlogError> in
+    static let oauthToken = DataResponseSerializer { req, resp, data, err -> Result<OAuthToken> in
         var oauthToken = "", oauthTokenSecret = "", userId = "", screenName = ""
-        
-        for paramString in (String(data: data!, encoding: NSUTF8StringEncoding)!.componentsSeparatedByString("&")) {
-            if (paramString.containsString("=")) {
-                let param = paramString.componentsSeparatedByString("=").map({ (s) -> String in
-                    return s.stringByRemovingPercentEncoding!
-                })
+        for paramString in String(data: data!, encoding: String.Encoding.utf8)!.components(separatedBy: "&") {
+            
+            if (paramString.contains("=")) {
+                let param = paramString.components(separatedBy: "=").map { s -> String in
+                    return s.removingPercentEncoding!
+                }
                 if (param.count == 2) {
                     switch (param[0]) {
                     case "oauth_token":
@@ -38,7 +38,7 @@ class ModelConverter {
         let token = OAuthToken(oauthToken, oauthTokenSecret)
         token.userId = userId
         token.screenName = screenName
-        return .Success(token)
+        return .success(token)
     }
     
     static func toJson(_ result: HttpResult!) -> JSON {

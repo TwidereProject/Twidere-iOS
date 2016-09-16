@@ -26,9 +26,9 @@ class DetailStatusCell: UITableViewCell {
 
     var displayOption: StatusCell.DisplayOption! {
         didSet {
-            userNameView.font = UIFont.systemFontOfSize(displayOption.fontSize * 1.1)
-            timeSourceView.font = UIFont.systemFontOfSize(displayOption.fontSize * 0.9)
-            textView.font = UIFont.systemFontOfSize(displayOption.fontSize * 1.1)
+            userNameView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 1.1)
+            timeSourceView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.9)
+            textView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 1.1)
         }
     }
 

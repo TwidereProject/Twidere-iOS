@@ -52,7 +52,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate {
         
         bannerActivityIndicator.hidesWhenStopped = true
         
-        descriptionView.font = UIFont.systemFontOfSize(15)
+        descriptionView.font = UIFont.systemFont(ofSize: 15)
         
         if let viewControllers = self.navigationController?.viewControllers {
             if (viewControllers.count > 1) {

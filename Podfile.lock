@@ -5,9 +5,11 @@ PODS:
   - AttributedLabel (0.5.0)
   - CryptoSwift (0.6.0)
   - DateTools (1.7.0)
-  - IQKeyboardManager (4.0.5)
+  - IQKeyboardManagerSwift (4.0.5)
   - JDStatusBarNotification (1.5.4)
   - JVFloatLabeledTextField (1.1.1)
+  - Kanna (2.0.0)
+  - KDInteractiveNavigationController (0.1.2)
   - ObjectMapper (2.0.0)
   - PromiseKit (4.0.1):
     - PromiseKit/Foundation (= 4.0.1)
@@ -23,8 +25,12 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
+  - SQLite.swift (0.10.1):
+    - SQLite.swift/standard (= 0.10.1)
+  - SQLite.swift/standard (0.10.1)
   - StaticDataTableViewController (2.0.5)
   - STPopup (1.8.0)
+  - SwiftyJSON (2.3.2)
   - SwiftyUserDefaults (3.0.0)
   - ThumborURL (0.0.4)
   - twitter-text (1.14.0)
@@ -40,14 +46,18 @@ DEPENDENCIES:
   - AttributedLabel (from `https://github.com/KyoheiG3/AttributedLabel.git`, tag `0.5.0`)
   - CryptoSwift (from `https://github.com/krzyzanowskim/CryptoSwift.git`, tag `0.6.0`)
   - DateTools (~> 1.7.0)
-  - IQKeyboardManager (~> 4.0)
+  - IQKeyboardManagerSwift (from `https://github.com/hackiftekhar/IQKeyboardManager.git`)
   - JDStatusBarNotification (= 1.5.4)
   - JVFloatLabeledTextField (= 1.1.1)
+  - Kanna (from `https://github.com/tid-kijyun/Kanna.git`, branch `swift3.0`)
+  - KDInteractiveNavigationController (from `https://github.com/kingiol/KDInteractiveNavigationController.git`)
   - ObjectMapper (~> 2.0)
   - PromiseKit (~> 4.0)
   - SDWebImage (~> 3.8.2)
+  - SQLite.swift (from `https://github.com/mariotaku/SQLite.swift.git`, branch `swift3-new`)
   - StaticDataTableViewController (= 2.0.5)
   - STPopup (~> 1.8)
+  - SwiftyJSON (from `https://github.com/IBM-Swift/SwiftyJSON.git`)
   - SwiftyUserDefaults (~> 3.0)
   - ThumborURL (= 0.0.4)
   - twitter-text (~> 1.14)
@@ -63,6 +73,18 @@ EXTERNAL SOURCES:
   CryptoSwift:
     :git: https://github.com/krzyzanowskim/CryptoSwift.git
     :tag: 0.6.0
+  IQKeyboardManagerSwift:
+    :git: https://github.com/hackiftekhar/IQKeyboardManager.git
+  Kanna:
+    :branch: swift3.0
+    :git: https://github.com/tid-kijyun/Kanna.git
+  KDInteractiveNavigationController:
+    :git: https://github.com/kingiol/KDInteractiveNavigationController.git
+  SQLite.swift:
+    :branch: swift3-new
+    :git: https://github.com/mariotaku/SQLite.swift.git
+  SwiftyJSON:
+    :git: https://github.com/IBM-Swift/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
   AttributedLabel:
@@ -71,6 +93,21 @@ CHECKOUT OPTIONS:
   CryptoSwift:
     :git: https://github.com/krzyzanowskim/CryptoSwift.git
     :tag: 0.6.0
+  IQKeyboardManagerSwift:
+    :commit: 5abd305258f8c1456ad4e3b1932e398a0623892d
+    :git: https://github.com/hackiftekhar/IQKeyboardManager.git
+  Kanna:
+    :commit: 109249451c32e14dac541bfbfeaa91b4dcb47a87
+    :git: https://github.com/tid-kijyun/Kanna.git
+  KDInteractiveNavigationController:
+    :commit: 767a1fb7a0d0cf951ea1caa5f409640fbda35941
+    :git: https://github.com/kingiol/KDInteractiveNavigationController.git
+  SQLite.swift:
+    :commit: 86d8d799aaa2ee511e91f74767aa3ce56288a264
+    :git: https://github.com/mariotaku/SQLite.swift.git
+  SwiftyJSON:
+    :commit: 73b523a107b798021ca9af74b5f7c20e435c8809
+    :git: https://github.com/IBM-Swift/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
@@ -79,14 +116,18 @@ SPEC CHECKSUMS:
   AttributedLabel: 5df434efa72fad5a6cf5563b558030fd50fb180d
   CryptoSwift: 4a599b7241b8d3b857d6e2c28867d0bd5d1aae24
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
-  IQKeyboardManager: 50b62c0603308968256f8208886e206c1dcce607
+  IQKeyboardManagerSwift: 41fd3a45a2cdb2a0e031af697708a95b865068a1
   JDStatusBarNotification: d47dded0594a50a39c84a2cc5aa356fcf6750d0e
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
+  Kanna: 8d60d86a3580f7dee732811e5163a5e3e41a32a7
+  KDInteractiveNavigationController: c719bdf18062213315890c4648d37156a621b520
   ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
   PromiseKit: ae9e7f97ee758e23f7b9c5e80380a2e78d6338c5
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SQLite.swift: c7fede1aca0d62d55721482e23f9a9c71c628bc0
   StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a
   STPopup: af630a85628e4226ffcbda5caaead0d99aed13a8
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   ThumborURL: 0e1f058fb79c37660aa7d302fe77c48366902325
   twitter-text: 703e84901722b7e6e2e22b7ac12afabfb40be1e5
@@ -95,6 +136,6 @@ SPEC CHECKSUMS:
   UIView+FDCollapsibleConstraints: 9357eaf03b4e088263ab74a3b86a382a64ce38dd
   UIView+TouchHighlighting: cedbcd90c965e7b1418c80a04fc8266398a738f1
 
-PODFILE CHECKSUM: 1bb09574e41ac9e56e43525337e84d7d9f06eef8
+PODFILE CHECKSUM: b61430d17e5c96a411993f26d6f709a018082aaf
 
 COCOAPODS: 1.1.0.rc.2

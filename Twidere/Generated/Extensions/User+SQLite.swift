@@ -26,9 +26,9 @@ extension User {
         self.metadata = row.get(RowIndices.metadata)
     }
 
-    static func createTable(_ table: Table, temporary: Bool = false, ifNotExists: Bool = false) -> String {
+    static func createTable(table: Table, temporary: Bool = false, ifNotExists: Bool = false) -> String {
         return table.create(temporary: temporary, ifNotExists: ifNotExists) { t in
-            t.column(RowIndices._id, primaryKey: .Autoincrement)
+            t.column(RowIndices._id, primaryKey: .autoincrement)
             t.column(RowIndices.accountKey)
             t.column(RowIndices.key)
             t.column(RowIndices.createdAt)
@@ -48,7 +48,7 @@ extension User {
         }
     }
 
-    static func insertData(_ table: Table, model: User) -> Insert {
+    static func insertData(table: Table, model: User) -> Insert {
         return table.insert( [
                 RowIndices.accountKey <- model.accountKey,
                 RowIndices.key <- model.key,

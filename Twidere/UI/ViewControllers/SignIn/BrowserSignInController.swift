@@ -31,7 +31,7 @@ class BrowserSignInController: UIViewController, UIWebViewDelegate {
     
     @IBAction func cancelBrowserSignIn(_ sender: UIBarButtonItem) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,40 +59,40 @@ class BrowserSignInController: UIViewController, UIWebViewDelegate {
                     return item.name == "oauth_callback"
                 }
                 if (oauthCallbackIndex != nil) {
-                    callback(requestToken: self.requestToken, oauthVerifier: nil)
-                    self.navigationController?.popViewController(animated: true)
+                    callback?(self.requestToken, nil)
+                    _ = self.navigationController?.popViewController(animated: true)
                 }
             }
         } else {
             
              firstly { () -> Promise<String> in
                 return Promise<String> { fullfill, reject in
-                    if let html = webView.stringByEvaluatingJavaScriptFromString("document.body.innerHTML") {
+                    if let html = webView.stringByEvaluatingJavaScript(from: "document.body.innerHTML") {
                         fullfill(html)
                     } else {
-                        reject(BrowserSignInError.NoContent)
+                        reject(BrowserSignInError.noContent)
                     }
                     
                 }
             }.then { html throws -> HTMLDocument in
-                guard let doc = Kanna.HTML(html: html, encoding: NSUTF8StringEncoding) else {
-                            throw BrowserSignInError.ParseError
+                guard let doc = Kanna.HTML(html: html, encoding: String.Encoding.utf8) else {
+                    throw BrowserSignInError.parseError
                 }
                 return doc
             }.then { doc throws -> String? in
-                let numericSet = NSCharacterSet.decimalDigitCharacterSet().invertedSet
+                let numericSet = NSCharacterSet.decimalDigits.inverted
                 return doc.at_css("div#oauth_pin")?.css("*").filter({ (child) -> Bool in
                     if (child.text == nil) {
                         return false
                     }
-                    return child.text!.rangeOfCharacterFromSet(numericSet) == nil
+                    return child.text!.rangeOfCharacter(from: numericSet) == nil
                 }).first?.text
             }.then { oauthPin -> Void in
                 if (oauthPin != nil) {
-                    self.callback(requestToken: self.requestToken, oauthVerifier: oauthPin!)
-                    self.navigationController?.popViewControllerAnimated(true)
+                    self.callback?(self.requestToken, oauthPin!)
+                    _ = self.navigationController?.popViewController(animated: true)
                 }
-            }.error { error in
+            }.catch { error in
                     
             }
             
@@ -104,7 +104,7 @@ class BrowserSignInController: UIViewController, UIWebViewDelegate {
         return true
     }
     
-    internal enum BrowserSignInError: Error {
+    internal enum BrowserSignInError: Swift.Error {
         case noContent
         case parseError
     }

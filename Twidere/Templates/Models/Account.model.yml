@@ -6,7 +6,7 @@ submodels:
       _id:
         type: Int64
         column: _id
-        primary_key: Autoincrement
+        primary_key: autoincrement
       key:
         type: UserKey
         column: account_key

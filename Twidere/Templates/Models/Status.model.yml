@@ -6,7 +6,7 @@ submodels:
       _id:
         type: Int64
         column: _id
-        primary_key: Autoincrement
+        primary_key: autoincrement
       accountKey:
         type: UserKey
         column: account_key
@@ -27,7 +27,7 @@ submodels:
         column: is_gap
         json_field: is_gap
       createdAt:
-        type: NSDate
+        type: Date
         column: created_at
         json_field: created_at
       id:

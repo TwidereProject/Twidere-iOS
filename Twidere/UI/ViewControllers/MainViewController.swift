@@ -18,7 +18,7 @@ class MainViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
-        hasAccount = db.scalar(accountsTable.count) > 0
+        hasAccount = try! db.scalar(accountsTable.count) > 0
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -28,7 +28,7 @@ class MainViewController: UIViewController {
             // Create content and menu controllers
             //
             let homeController = storyboard!.instantiateViewController(withIdentifier: "HomeRoot") as! HomeRootController
-            presentViewController(homeController, animated: false, completion: nil)
+            present(homeController, animated: false, completion: nil)
         } else {
             
             performSegue(withIdentifier: "ShowSignIn", sender: self)

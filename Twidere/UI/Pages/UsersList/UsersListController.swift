@@ -12,7 +12,7 @@ import SwiftyJSON
 class UsersListController: UITableViewController {
     
     lazy var users: JSON = {
-        return JSON(data: NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("users_list", ofType: "json")!)!)
+        return JSON(data: try! Data(contentsOf: Bundle.main.url(forResource: "users_list", withExtension: "json")!))
     }()
     
     override func viewDidLoad() {

@@ -38,13 +38,13 @@ class TwitterOAuthPasswordAuthenticator {
                     throw error
                 }
                 switch authError {
-                case .ChallangeRequired(let authorizeResponseData):
+                case .challangeRequired(let authorizeResponseData):
                     let challengeType = authorizeResponseData.challenge!.challengeType
                     if (challengeType == nil) {
-                        throw AuthenticationError.VerificationFailed
+                        throw AuthenticationError.verificationFailed
                     }
-                    let loginVerification = self.loginVerificationCallback(challangeType: challengeType!)
-                    self.getVerificationData(authorizeResponseData, challengeResponse: loginVerification).then { verificationData -> Promise<AuthorizeResponseData> in
+                    let loginVerification = self.loginVerificationCallback(challengeType!)
+                    return self.getVerificationData(authorizeResponseData, challengeResponse: loginVerification).then { verificationData -> Promise<AuthorizeResponseData> in
                         return self.getAuthorizeResponseData(verificationData, username: username, password: password)
                     }
                 default: break
@@ -63,17 +63,17 @@ class TwitterOAuthPasswordAuthenticator {
         }
         let queries = ["oauth_token": requestToken.oauthToken]
         
-        return rest.makeTypedRequest(.GET, path: "/oauth/authorize", headers: requestHeaders, queries: queries, serializer: ResponseSerializer { (req, resp, data, error) -> Result<AuthorizeRequestData, AuthenticationError> in
+        return rest.makeTypedRequest(.GET, path: "/oauth/authorize", headers: requestHeaders, queries: queries, serializer: DataResponseSerializer { (req, resp, data, error) -> Alamofire.Result<AuthorizeRequestData> in
             let result = AuthorizeRequestData.parseFromHttpResult(data!)
             result.requestToken = requestToken
             result.referer = Endpoint.construct("https://api.twitter.com/", path: "/oauth/authorize", queries: queries)
-            return .Success(result)
+            return .success(result)
             })
     }
     
     func getAuthorizeResponseData(_ authorizeRequestData: AuthorizeRequestData,
                                   username: String, password: String) -> Promise<AuthorizeResponseData> {
-        var forms = [String: AnyObject]()
+        var forms = [String: Any]()
         forms["oauth_token"] = authorizeRequestData.requestToken.oauthToken
         forms["authenticity_token"] = authorizeRequestData.authenticityToken
         forms["redirect_after_login"] = authorizeRequestData.redirectAfterLogin
@@ -86,23 +86,23 @@ class TwitterOAuthPasswordAuthenticator {
             requestHeaders["User-Agent"] = browserUserAgent!
         }
         
-        return rest.makeTypedRequest(.POST, path: "/oauth/authorize", headers: requestHeaders, params: forms, serializer: ResponseSerializer { (req, resp, data, error) -> Result<AuthorizeResponseData, AuthenticationError> in
+        return rest.makeTypedRequest(.POST, path: "/oauth/authorize", headers: requestHeaders, params: forms, serializer: DataResponseSerializer { (req, resp, data, error) -> Alamofire.Result<AuthorizeResponseData> in
             let result = AuthorizeResponseData.parseFromHttpResult(data!)
             result.requestToken = authorizeRequestData.requestToken
             result.referer = authorizeRequestData.referer
             if (result.oauthPin != nil) {
                 return .Success(result)
             } else if (result.challenge != nil) {
-                return .Failure(AuthenticationError.ChallangeRequired(data: result))
+                return .failure(AuthenticationError.challangeRequired(data: result))
             }
-            return .Failure(AuthenticationError.WrongUsernamePassword)
+            return .failure(AuthenticationError.wrongUsernamePassword)
             })
         
     }
     
     fileprivate func getVerificationData(_ authorizeResponseData: AuthorizeResponseData,
                                      challengeResponse: String?) -> Promise<AuthorizeRequestData> {
-        var forms = [String: AnyObject]()
+        var forms = [String: Any]()
         let verification = authorizeResponseData.challenge!
         forms["authenticity_token"] = verification.authenticityToken
         forms["user_id"] = verification.userId
@@ -120,7 +120,7 @@ class TwitterOAuthPasswordAuthenticator {
             requestHeaders["User-Agent"] = browserUserAgent!
         }
         
-        return rest.makeTypedRequest(.POST, path: "/account/login_verification", headers: requestHeaders, params: forms, serializer: ResponseSerializer { (req, resp, data, error) -> Result<AuthorizeRequestData, AuthenticationError> in
+        return rest.makeTypedRequest(.POST, path: "/account/login_verification", headers: requestHeaders, params: forms, serializer: DataResponseSerializer { (req, resp, data, error) -> Alamofire.Result<AuthorizeRequestData> in
             let result = AuthorizeRequestData.parseFromHttpResult(data!)
             
             if (result.authenticityToken?.isEmpty ?? true) {
@@ -194,7 +194,7 @@ internal class AuthorizeResponseData {
                     if (child.text == nil) {
                         return false
                     }
-                    return child.text!.rangeOfCharacterFromSet(numericSet) == nil
+                    return child.text!.rangeOfCharacter(from: numericSet) == nil
                 }).first?.text
             } else if let challangeForm = doc.at_css("form#login-verification-form") ?? doc.at_css("form#login-challenge-form") {
                 

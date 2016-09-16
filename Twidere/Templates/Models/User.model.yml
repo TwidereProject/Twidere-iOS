@@ -6,7 +6,7 @@ submodels:
       _id:
         type: Int64
         column: _id
-        primary_key: Autoincrement
+        primary_key: autoincrement
       accountKey:
         type: UserKey
         column: account_key
@@ -18,7 +18,7 @@ submodels:
         json_field: user_key
         json_transform: UserKeyTransform
       createdAt:
-        type: NSDate
+        type: Date
         column: created_at
         json_field: created_at
       position:

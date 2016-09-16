@@ -18,7 +18,7 @@ func defaultAccount() throws -> Account? {
 }
 
 func allAccounts() throws -> [Account] {
-    let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
+    let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
     return try db.prepare(accountsTable).map { Account(row: $0) }
 }
 

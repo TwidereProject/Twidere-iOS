@@ -180,33 +180,33 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         let picker = UIImagePickerController()
         picker.sourceType = .photoLibrary
         firstly { () -> Promise<[String: AnyObject]> in
-            return promiseViewController(picker, animated: true, completion: nil)
-        }.then { (info) -> Promise<NSData> in
+            return promise(picker, animate: [.appear, .disappear], completion: nil)
+        }.then { (info) -> Promise<Data> in
             return Promise { fullfill, reject in
-                let imageUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
+                let imageUrl = info[UIImagePickerControllerReferenceURL] as! URL
                 
-                let asset = PHAsset.fetchAssetsWithALAssetURLs([imageUrl], options: nil).firstObject as! PHAsset
-                self.imageManager.requestImageDataForAsset(asset, options: nil, resultHandler: { (data, dataUTI, orientation, info) in
+                let asset = PHAsset.fetchAssets(withALAssetURLs: [imageUrl], options: nil).firstObject! 
+                self.imageManager.requestImageData(for: asset, options: nil, resultHandler: { (data, dataUTI, orientation, info) in
                     if (data != nil) {
                         fullfill(data!)
                     }
                 })
             }
-        }.thenInBackground { data -> MediaUpdate? in
-            guard let path = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true).first else {
+        }.then(on: .global()) { data -> MediaUpdate? in
+            guard let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else {
                 return nil
             }
             
-            let timestamp = NSDate().timeIntervalSince1970
-            var writePath = NSURL(fileURLWithPath: path).URLByAppendingPathComponent("\(timestamp)").path!
-            let fm = NSFileManager.defaultManager()
+            let timestamp = Date().timeIntervalSince1970
+            var writePath = URL(fileURLWithPath: path).appendingPathComponent("\(timestamp)").path
+            let fm = FileManager.default
             var n = 0
-            while (fm.fileExistsAtPath(writePath)) {
-                writePath = NSURL(fileURLWithPath: path).URLByAppendingPathComponent("\(timestamp)_\(n)").path!
+            while (fm.fileExists(atPath: writePath)) {
+                writePath = NSURL(fileURLWithPath: path).appendingPathComponent("\(timestamp)_\(n)")!.path
                 n += 1
             }
-            fm.createFileAtPath(writePath, contents: data, attributes: nil)
-            let media = MediaUpdate(path: writePath, type: .Image)
+            fm.createFile(atPath: writePath, contents: data, attributes: nil)
+            let media = MediaUpdate(path: writePath, type: .image)
             return media
         }.then { media -> Void in
             if (media != nil) {

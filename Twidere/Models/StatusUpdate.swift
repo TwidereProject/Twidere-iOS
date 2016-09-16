@@ -53,16 +53,16 @@ class PendingStatusUpdate {
 
 class MediaUpdate {
     var path: String
-    var type: Type
+    var type: MediaType
     var altText: String? = nil
     
-    init(path: String, type: Type) {
+    init(path: String, type: MediaType) {
         self.path = path
         self.type = type
     }
     
-    enum Type: String {
-        case Image, Video
+    enum MediaType: String {
+        case image, video
     }
 }
 

@@ -36,7 +36,7 @@ class BackgroundOperationService {
                 }
             }
             let owners = update.accounts.filter{ (account: Account) -> Bool in
-                return account.typeInferred == .Twitter
+                return account.typeInferred == .twitter
                 }.map { account -> UserKey in
                     return account.key!
             }
@@ -44,10 +44,10 @@ class BackgroundOperationService {
                 return key.id
             }
             pendingUpdate.sharedMediaOwners = owners
-            return join((0..<pendingUpdate.length).map { i -> Promise<Bool> in
+            return when(resolved: (0..<pendingUpdate.length).map { i -> Promise<Bool> in
                 let account = update.accounts[i]
                 switch (account.typeInferred) {
-                case .Twitter:
+                case .twitter:
                     let upload = account.newMicroblogInstance("upload")
                     if (pendingUpdate.sharedMediaIds != nil) {
                         return Promise<Bool> { fullfill, reject in
@@ -61,12 +61,12 @@ class BackgroundOperationService {
                             pendingUpdate.sharedMediaIds = ids
                             return true
                     }
-                case .Fanfou:
+                case .fanfou:
                     // Nope, fanfou uses photo uploading API
                     return Promise { fullfill, reject in
                         fullfill(true)
                     }
-                case .StatusNet:
+                case .statusNet:
                     // TODO use their native API
                     let upload = account.newMicroblogInstance("upload")
                     return uploadAllMediaShared(upload, update: update, ownerIds: ownerIds, chucked: false)
@@ -82,9 +82,9 @@ class BackgroundOperationService {
         }
         
         func uploadAllMediaShared(_ upload: MicroBlogService, update: StatusUpdate, ownerIds: [String], chucked: Bool) -> Promise<[String]> {
-            return join(update.media!.map { media -> Promise<MediaUploadResponse> in
+            return when(resolved: update.media!.map { media -> Promise<MediaUploadResponse> in
                 // TODO upload then get id
-                let fm = NSFileManager.defaultManager()
+                let fm = FileManager.defaultManager()
                 let data = fm.contentsAtPath(media.path)!
                 if (chucked) {
                     return uploadMediaChucked(upload, body: data, contentType: "image/jpeg", ownerIds: ownerIds)
@@ -103,10 +103,10 @@ class BackgroundOperationService {
                     let segments = length == 0 ? 0 : length / BULK_SIZE + 1
                     
                     // Reject all if one task rejected
-                    return join((0..<segments)
+                    return when(resolved: (0..<segments)
                         .map { (segmentIndex) -> Promise<Int> in
                             let currentBulkSize = min(BULK_SIZE, length - segmentIndex * BULK_SIZE)
-                            let bulk = body.subdataWithRange(NSMakeRange(segmentIndex * BULK_SIZE, currentBulkSize))
+                            let bulk = body.subdata(with: NSMakeRange(segmentIndex * BULK_SIZE, currentBulkSize))
                             return upload.appendUploadMedia(response.mediaId, segmentIndex: segmentIndex, media: bulk)
                         }).then { responses -> MediaUploadResponse in
                             return response
@@ -119,7 +119,7 @@ class BackgroundOperationService {
                         // Server side is processing media
                         if let checkAfterSecs = response.processingInfo?.checkAfterSecs , checkAfterSecs > 0 {
                             // Wait after `checkAfterSecs` seconds
-                            after(NSTimeInterval(checkAfterSecs))
+                            after(TimeInterval(checkAfterSecs))
                                 .then{ _ -> Promise<MediaUploadResponse> in
                                     // Fetch new upload status
                                     return upload.getUploadMediaStatus(response.mediaId)
@@ -131,7 +131,7 @@ class BackgroundOperationService {
                         // No processing info available, check failed or completed instead
                         return Promise { fullfill, reject in
                             if (response.processingInfo?.state == "failed") {
-                                reject(MicroBlogError.RequestError(code: 0, message: "uploadMediaChucked"))
+                                reject(MicroBlogError.requestError(code: 0, message: "uploadMediaChucked"))
                             }
                             fullfill(response)
                         }
@@ -148,8 +148,8 @@ class BackgroundOperationService {
         }
         
         func requestUpdateStatus(_ statusUpdate: StatusUpdate, pendingUpdate: PendingStatusUpdate) -> Promise<[Status]> {
-            return when((0..<pendingUpdate.length)
-                .map { i -> Promise<(Status?, (UserKey, ErrorType)?)> in
+            return when(fulfilled: (0..<pendingUpdate.length)
+                .map { i -> Promise<(Status?, (UserKey, Error)?)> in
                     let account = statusUpdate.accounts[i]
                     let microBlog = account.newMicroblogInstance("api")
                     return Promise { fullfill, reject in
@@ -160,7 +160,7 @@ class BackgroundOperationService {
                         }
                         statusPromise.then { status -> Void in
                             fullfill((status, nil))
-                            }.error { error in
+                            }.catch { error in
                                 fullfill((nil, (account.key!, error)))
                         }
                     }
@@ -169,7 +169,7 @@ class BackgroundOperationService {
                         // Throw errors
                         let errors = results.filter{ $0.1 != nil }.map { $0.1!.1 }
                         let failedKeys = results.filter{ $0.1 != nil }.map { $0.1!.0 }
-                        throw StatusUpdateError.UpdateFailed(errors: errors, failedKeys: failedKeys)
+                        throw StatusUpdateError.updateFailed(errors: errors, failedKeys: failedKeys)
                     }
                     return results.map { $0.0! }
             }
@@ -207,30 +207,30 @@ class BackgroundOperationService {
             .then { succeed in
                 return requestUpdateStatus(update, pendingUpdate: pendingUpdate)
             }.then { result -> Void in
-                JDStatusBarNotification.showWithStatus("Tweet sent!", dismissAfter: 1.5, styleName: JDStatusBarStyleSuccess)
+                JDStatusBarNotification.show(withStatus: "Tweet sent!", dismissAfter: 1.5, styleName: JDStatusBarStyleSuccess)
             }.always {
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-            }.error { error in
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }.catch { error in
                 let errorMessage: String
                 switch error {
                 case let updateError as StatusUpdateError:
                     switch updateError {
-                    case .NoAccount:
+                    case .noAccount:
                         errorMessage = "No account"
-                    case .UploadFailed:
+                    case .uploadFailed:
                         errorMessage = "Upload error"
-                    case let .UpdateFailed(errors, failedKeys):
+                    case let .updateFailed(errors, failedKeys):
                         switch errors.first! {
                         case let e as MicroBlogError:
                             errorMessage = e.errorMessage
                         default:
-                            errorMessage = String(errors.first!)
+                            errorMessage = String(describing: errors.first!)
                         }
                     }
                 default:
-                    errorMessage = String(error)
+                    errorMessage = String(describing: error)
                 }
-                JDStatusBarNotification.showWithStatus(errorMessage, dismissAfter: 1.5, styleName: JDStatusBarStyleError)
+                JDStatusBarNotification.show(withStatus: errorMessage, dismissAfter: 1.5, styleName: JDStatusBarStyleError)
         }
     }
     

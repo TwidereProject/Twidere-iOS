@@ -164,7 +164,7 @@ class StatusesListController: UITableViewController {
                 self.statuses = statuses
             }.always {
                 self.refreshControl?.endRefreshing()
-            }.error { error in
+            }.catch { error in
                 // TODO show error
                 debugPrint(error)
             }

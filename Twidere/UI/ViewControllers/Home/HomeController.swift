@@ -85,7 +85,7 @@ class HomeController: UITabBarController {
         }
         
         func loadStatuses(_ opts: StatusesListController.LoadOptions) -> Promise<[Status]> {
-            return dispatch_promise { () -> [UserKey] in
+            return DispatchQueue.global().promise { () -> [UserKey] in
                 return self.getAccounts().map({ $0.key! })
                 }.then{ accountKeys -> Promise<[UserKey]> in
                     return Promise { fullfill, reject in
@@ -99,13 +99,13 @@ class HomeController: UITabBarController {
                             fullfill(accountKeys)
                         }
                     }
-                }.then({ (accountKeys) -> [Status] in
+                }.then { (accountKeys) -> [Status] in
                     
-                    let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
+                    let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
                     return try db.prepare(self.table.filter(accountKeys.contains(Status.RowIndices.accountKey)).order(Status.RowIndices.positionKey.desc)).map { row -> Status in
                         return Status(row: row)
                     }
-                })
+                }
         }
         
         func getNewestStatusIds(_ accounts: [Account]) -> [String?]? {
@@ -116,7 +116,7 @@ class HomeController: UITabBarController {
             for row in try! db.prepare(table.select(Status.RowIndices.accountKey, Status.RowIndices.id)
                 .group(Status.RowIndices.accountKey, having: accountKeys.contains(Status.RowIndices.accountKey))
                 .order(Status.RowIndices.createdAt.max)) {
-                    if let key = row.get(Status.RowIndices.accountKey), let idx = accountKeys.indexOf({$0 == key}) {
+                    if let key = row.get(Status.RowIndices.accountKey), let idx = accountKeys.index(where: {$0 == key}) {
                         result[idx] = row.get(Status.RowIndices.id)
                     }
             }
@@ -131,7 +131,7 @@ class HomeController: UITabBarController {
             for row in try! db.prepare(table.select(Status.RowIndices.accountKey, Status.RowIndices.sortId)
                 .group(Status.RowIndices.accountKey, having: accountKeys.contains(Status.RowIndices.accountKey))
                 .order(Status.RowIndices.createdAt.max)) {
-                    if let key = row.get(Status.RowIndices.accountKey), let idx = accountKeys.indexOf({$0 == key}) {
+                    if let key = row.get(Status.RowIndices.accountKey), let idx = accountKeys.index(where: {$0 == key}) {
                         result[idx] = row.get(Status.RowIndices.sortId) ?? -1
                     }
             }
@@ -145,9 +145,9 @@ class HomeController: UITabBarController {
         }
         
         func loadStatuses(_ opts: StatusesListController.LoadOptions) -> Promise<[Status]> {
-            return dispatch_promise {  () -> [Status] in
+            return DispatchQueue.global().promise {  () -> [Status] in
                 let account = try defaultAccount()!
-                let json = JSON(data: NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("statuses_list", ofType: "json")!)!)
+                let json = JSON(data: try Data(contentsOf: Bundle.main.url(forResource: "statuses_list", withExtension: "json")!))
                 sleep(2)
                 return Status.arrayFromJson(json, accountKey: account.key)
             }

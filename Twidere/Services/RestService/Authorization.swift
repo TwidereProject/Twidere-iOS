@@ -12,7 +12,7 @@ import Security
 
 protocol Authorization {
     var hasAuthorization: Bool { get }
-    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: AnyObject]?) -> String?
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: Any]?) -> String?
 }
 class EmptyAuthorization: Authorization {
     
@@ -22,7 +22,7 @@ class EmptyAuthorization: Authorization {
         }
     }
     
-    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : AnyObject]?) -> String? {
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : Any]?) -> String? {
         return nil
     }
 }
@@ -46,7 +46,7 @@ class BasicAuthorization: Authorization {
         }
     }
     
-    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : AnyObject]?) -> String? {
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : Any]?) -> String? {
         return "\(username):\(password)".utf8.map({$0}).toBase64()
     }
     
@@ -83,7 +83,7 @@ class OAuthAuthorization: Authorization {
         }
     }
     
-    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: AnyObject]?) -> String? {
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: Any]?) -> String? {
         let oauthEndpoint = endpoint as! OAuthEndpoint
         let signingUrl = oauthEndpoint.constructSigningUrl(path, queries: queries)
         let oauthParams = generateOAuthParams(method, url: signingUrl, oauthToken: oauthToken, queries: queries, forms: forms)
@@ -92,7 +92,7 @@ class OAuthAuthorization: Authorization {
         }).joined(separator: ", ")
     }
     
-    fileprivate func generateOAuthParams(_ method: String, url: String, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: AnyObject]?) -> [(String, String)] {
+    fileprivate func generateOAuthParams(_ method: String, url: String, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: Any]?) -> [(String, String)] {
         let oauthNonce = generateOAuthNonce()
         let timestamp =  UInt64(Date().timeIntervalSince1970)
         let oauthSignature = generateOAuthSignature(method, url: url, oauthNonce: oauthNonce, timestamp: timestamp, oauthToken: oauthToken, queries: queries, forms: forms)
@@ -114,7 +114,7 @@ class OAuthAuthorization: Authorization {
         
     }
     
-    fileprivate func generateOAuthSignature(_ method: String, url: String, oauthNonce: String, timestamp: UInt64, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: AnyObject]?) -> String {
+    fileprivate func generateOAuthSignature(_ method: String, url: String, oauthNonce: String, timestamp: UInt64, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: Any]?) -> String {
         var oauthParams: [String] = [
             encodeOAuthKeyValue("oauth_consumer_key", value: consumerKey),
             encodeOAuthKeyValue("oauth_nonce", value: oauthNonce),
@@ -152,7 +152,7 @@ class OAuthAuthorization: Authorization {
         let urlNoQuery = url.range(of: "?") != nil ? url.substring(to: url.range(of: "?")!.lowerBound) : url
         let baseString = encodeOAuth(method) + "&" + encodeOAuth(urlNoQuery) + "&" + encodeOAuth(paramsString)
         let baseBytes = baseString.utf8.map{$0}
-        let hmac: [UInt8] = try! Authenticator.HMAC(key: signingKeyBytes, variant: .sha1).authenticate(baseBytes)
+        let hmac: [UInt8] = try! HMAC(key: signingKeyBytes, variant: .sha1).authenticate(baseBytes)
         return hmac.toBase64()!
     }
     
@@ -161,7 +161,7 @@ class OAuthAuthorization: Authorization {
         var randomBytes = [UInt8](repeating: 0, count: bytesCount) // array to hold randoms bytes
         
         // Gen random bytes
-        SecRandomCopyBytes(kSecRandomDefault, bytesCount, &randomBytes)
+        _ = SecRandomCopyBytes(kSecRandomDefault, bytesCount, &randomBytes)
         
         return randomBytes.toHexString()
     }

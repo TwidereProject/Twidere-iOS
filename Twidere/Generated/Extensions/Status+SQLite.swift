@@ -36,9 +36,9 @@ extension Status {
         self.retweetId = row.get(RowIndices.retweetId)
     }
 
-    static func createTable(_ table: Table, temporary: Bool = false, ifNotExists: Bool = false) -> String {
+    static func createTable(table: Table, temporary: Bool = false, ifNotExists: Bool = false) -> String {
         return table.create(temporary: temporary, ifNotExists: ifNotExists) { t in
-            t.column(RowIndices._id, primaryKey: .Autoincrement)
+            t.column(RowIndices._id, primaryKey: .autoincrement)
             t.column(RowIndices.accountKey)
             t.column(RowIndices.sortId)
             t.column(RowIndices.positionKey)
@@ -68,7 +68,7 @@ extension Status {
         }
     }
 
-    static func insertData(_ table: Table, model: Status) -> Insert {
+    static func insertData(table: Table, model: Status) -> Insert {
         return table.insert( [
                 RowIndices.accountKey <- model.accountKey,
                 RowIndices.sortId <- model.sortId,

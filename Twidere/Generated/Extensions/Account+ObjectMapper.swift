@@ -4,7 +4,7 @@ import Foundation
 
 extension Account: StaticMappable {
 
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         key <- (map["account_key"], UserKeyTransform())
         type <- map["account_type"]
         apiUrlFormat <- map["api_url_format"]
@@ -21,18 +21,18 @@ extension Account: StaticMappable {
         user <- map["user"]
     }
 
-    static func objectForMapping(_ map: Map) -> BaseMappable? {
+    static func objectForMapping(map: Map) -> BaseMappable? {
         return Account()
     }
 }
 
 extension Account.Config: StaticMappable {
 
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         characterLimit <- map["character_limit"]
     }
 
-    static func objectForMapping(_ map: Map) -> BaseMappable? {
+    static func objectForMapping(map: Map) -> BaseMappable? {
         return Account.Config()
     }
 }

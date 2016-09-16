@@ -8,34 +8,34 @@
 
 import Foundation
 import SwiftyJSON
-import StringExtensionHTML
+
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l < r
+    case (nil, _?):
+        return true
+    default:
+        return false
+    }
 }
 
 fileprivate func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l <= r
-  default:
-    return !(rhs < lhs)
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l <= r
+    default:
+        return !(rhs < lhs)
+    }
 }
 
 fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l > r
+    default:
+        return rhs < lhs
+    }
 }
 
 
@@ -49,7 +49,7 @@ extension Status {
         self.sortId = generateSortId(self, rawId: status["raw_id"].int64 ?? -1)
         
         var primary = status["retweeted_status"]
-        if (primary.isExists()) {
+        if (primary.exists()) {
             self.retweetId = getTwitterEntityId(primary)
             
             let retweetedBy = status["user"]
@@ -75,7 +75,7 @@ extension Status {
         self.metadata = metadata
         
         let quoted = primary["quoted_status"]
-        if (quoted.isExists()) {
+        if (quoted.exists()) {
             self.quotedId = getTwitterEntityId(quoted)
             
             let quotedUser = quoted["user"]
@@ -106,7 +106,7 @@ extension Status {
     }
     
     fileprivate static let carets = CharacterSet(charactersIn: "<>")
-
+    
     fileprivate func getMetadata(_ status: JSON) -> (plain: String, display: String, metadata: Status.Metadata) {
         let metadata = Status.Metadata()
         var links = [LinkSpanItem]()
@@ -116,7 +116,7 @@ extension Status {
         let textPlain: String
         let textDisplay: String
         if let statusNetHtml = status["statusnet_html"].string {
-            textPlain = statusNetHtml.stringByDecodingHTMLEntities
+            textPlain = statusNetHtml.decodeHTMLEntitiesWithOffset()
             textDisplay = textPlain
         } else if let fullText = status["full_text"].string ?? status["text"].string {
             var spans = [SpanItem]()
@@ -182,8 +182,8 @@ extension Status {
             if let displayStart = status["display_text_range"][0].int, let displayEnd = status["display_text_range"][1].int {
                 displayTextRangeCodePoint = [displayStart, displayEnd]
                 displayTextRangeUtf16 = [
-                    codePoints.utf16Count(codePoints.startIndex..<codePoints.startIndex.advancedBy(displayStart)),
-                    codePoints.utf16Count(codePoints.startIndex..<codePoints.startIndex.advancedBy(displayEnd))
+                    codePoints.utf16Count(codePoints.startIndex..<codePoints.index(codePoints.startIndex, offsetBy: displayStart)),
+                    codePoints.utf16Count(codePoints.startIndex..<codePoints.index(codePoints.startIndex, offsetBy: displayEnd))
                 ]
             }
             
@@ -202,15 +202,15 @@ extension Status {
                     let displayCodePointsLength = displayUrlCodePoints.count
                     let displayUtf16Length = typed.display!.utf16.count
                     
-                    let subRange = startIndex.advancedBy(offsetedStart)..<startIndex.advancedBy(offsetedEnd)
+                    let subRange = codePoints.index(codePoints.startIndex, offsetBy: offsetedStart)..<codePoints.index(codePoints.startIndex, offsetBy: offsetedEnd)
                     
                     let subRangeUtf16Length = codePoints.utf16Count(subRange)
                     
-                    codePoints.replaceRange(subRange, with: displayUrlCodePoints)
+                    codePoints.replaceSubrange(subRange, with: displayUrlCodePoints)
                     
                     startIndex = codePoints.startIndex
                     
-                    typed.start = codePoints.utf16Count(startIndex..<startIndex.advancedBy(offsetedStart))
+                    typed.start = codePoints.utf16Count(startIndex..<codePoints.index(codePoints.startIndex, offsetBy: offsetedStart))
                     typed.end = typed.start + displayUtf16Length
                     links.append(typed)
                     
@@ -226,13 +226,13 @@ extension Status {
                 case is MentionSpanItem:
                     let typed = span as! MentionSpanItem
                     
-                    typed.start = codePoints.utf16Count(startIndex..<startIndex.advancedBy(offsetedStart))
+                    typed.start = codePoints.utf16Count(startIndex..<codePoints.index(codePoints.startIndex, offsetBy: offsetedStart))
                     typed.end = typed.start + origEnd - origStart
                     mentions.append(typed)
                 case is HashtagSpanItem:
                     let typed = span as! HashtagSpanItem
                     
-                    typed.start = codePoints.utf16Count(startIndex..<startIndex.advancedBy(offsetedStart))
+                    typed.start = codePoints.utf16Count(startIndex..<codePoints.index(codePoints.startIndex, offsetBy: offsetedStart))
                     typed.end = typed.start + origEnd - origStart
                     hashtags.append(typed)
                 default: abort()
@@ -242,20 +242,22 @@ extension Status {
             
             let str = String(codePoints)
             textDisplay = str.decodeHTMLEntitiesWithOffset { (index, utf16Offset) in
-                let intIndex = str.startIndex.distanceTo(index)
+                let intIndex = str.distance(from: str.startIndex, to: index)
                 
                 for span in spans where span.origStart >= intIndex {
                     span.start += utf16Offset
                     span.end += utf16Offset
                 }
-                if (displayTextRangeUtf16?[0] >= intIndex) {
-                    displayTextRangeUtf16?[0] += utf16Offset
-                }
-                if (displayTextRangeUtf16?[1] >= intIndex) {
-                    displayTextRangeUtf16?[1] += utf16Offset
+                if (displayTextRangeUtf16 != nil ) {
+                    if (displayTextRangeUtf16![0] >= intIndex) {
+                        displayTextRangeUtf16![0] += utf16Offset
+                    }
+                    if (displayTextRangeUtf16![1] >= intIndex) {
+                        displayTextRangeUtf16![1] += utf16Offset
+                    }
                 }
             }
-            textPlain = fullText.stringByDecodingHTMLEntities
+            textPlain = fullText.decodeHTMLEntitiesWithOffset()
             
             metadata.displayRange = displayTextRangeUtf16
         } else {
@@ -278,7 +280,7 @@ extension Status {
         media.type = getMediaType(entity["type"].string)
         media.altText = entity["alt_text"].string
         let size = entity["sizes"]["large"]
-        if (size.isExists()) {
+        if (size.exists()) {
             media.width = size["width"].intValue
             media.height = size["height"].intValue
         } else {
@@ -347,22 +349,6 @@ extension Status {
         return span
     }
     
-    
-    fileprivate func getResultRangeLength(_ source: String.UnicodeScalarView, spans: [SpanItem], origStart: Int, origEnd: Int) -> Int {
-        let findResult = findByOrigRange(spans, start: origStart, end: origEnd)
-        let startIndex = source.startIndex
-        if (findResult.isEmpty) {
-            return source.utf16Count(<#T##String.UnicodeScalarView corresponding to `startIndex`##String.UnicodeScalarView#>.index(startIndex, offsetBy: origStart)..<<#T##String.UnicodeScalarView corresponding to `startIndex`##String.UnicodeScalarView#>.index(startIndex, offsetBy: origEnd))
-        }
-        guard let first = findResult.first, let last = findResult.last else {
-            return 0
-        }
-        if (first.origStart == -1 || last.origEnd == -1){
-            return source.utf16Count(source.index(source.startIndex, offsetBy: origStart)..<source.index(source.startIndex, offsetBy: origEnd))
-        }
-        return source.utf16Count(<#T##String.UnicodeScalarView corresponding to `startIndex`##String.UnicodeScalarView#>.index(startIndex, offsetBy: origStart)..<<#T##String.UnicodeScalarView corresponding to `startIndex`##String.UnicodeScalarView#>.index(startIndex, offsetBy: first.origStart)) + (last.end - first.start) + source.utf16Count(<#T##String.UnicodeScalarView corresponding to `startIndex`##String.UnicodeScalarView#>.index(startIndex, offsetBy: first.origEnd)..<<#T##String.UnicodeScalarView corresponding to `startIndex`##String.UnicodeScalarView#>.index(startIndex, offsetBy: origEnd))
-    }
-    
     fileprivate func findByOrigRange(_ spans: [SpanItem], start: Int, end:Int)-> [SpanItem] {
         var result = [SpanItem]()
         for span in spans {
@@ -373,7 +359,7 @@ extension Status {
         return result
     }
     
-    fileprivate func hasClash(_ sortedIndices: [CountableRange<Int>], range: Range<Int>) -> Bool {
+    fileprivate func hasClash(_ sortedIndices: [CountableRange<Int>], range: CountableRange<Int>) -> Bool {
         if (range.upperBound < sortedIndices.first?.lowerBound) {
             return false
         }

@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let docsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         let dbPath = URL(fileURLWithPath: docsPath).appendingPathComponent("twidere.sqlite3")
         
-        let db = try! Connection(dbPath.path!)
+        let db = try! Connection(dbPath.path)
         
         let oldVersion = db.userVersion
         if (oldVersion == 0) {

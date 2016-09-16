@@ -39,7 +39,7 @@ extension User {
     }
     
     static func getUserHost(_ json: JSON, accountHost: String?) -> String? {
-        if (json["unique_id"].isExists() && json["profile_image_url_large"].isExists()) {
+        if (json["unique_id"].exists() && json["profile_image_url_large"].exists()) {
             return "fanfou.com"
         }
         guard let profileUrl = json["statusnet_profile_url"].string else {

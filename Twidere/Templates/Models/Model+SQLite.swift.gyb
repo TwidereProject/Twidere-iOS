@@ -60,7 +60,7 @@ extension ${modelName} {
         return table.insert( [
             % for idx, propertyName in enumerate(fields):
             % field = fields[propertyName]
-                % if field.get('primary_key', None) != 'Autoincrement' and field.get('column', None) is not None:
+                % if field.get('primary_key', None) != 'autoincrement' and field.get('column', None) is not None:
                 RowIndices.${propertyName} <- model.${propertyName},
                 %end
             %end

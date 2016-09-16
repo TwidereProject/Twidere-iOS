@@ -16,7 +16,7 @@ extension User: Value {
     }
     
     static func fromDatatypeValue(_ datatypeValue: String) -> User? {
-        return Mapper<User>().map(datatypeValue)
+        return Mapper<User>().map(JSONString: datatypeValue)
     }
     
     var datatypeValue: String {
@@ -30,7 +30,7 @@ extension User.Metadata: Value {
     }
     
     static func fromDatatypeValue(_ datatypeValue: String) -> User.Metadata? {
-        return Mapper<User.Metadata>().map(datatypeValue)
+        return Mapper<User.Metadata>().map(JSONString: datatypeValue)
     }
     
     var datatypeValue: String {

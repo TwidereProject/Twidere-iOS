@@ -12,7 +12,6 @@ import CoreData
 import PromiseKit
 import SwiftyJSON
 import ALSLayouts
-import SwiftOverlays
 
 class SignInController: UIViewController {
     
@@ -126,18 +125,16 @@ class SignInController: UIViewController {
         let oauth = OAuthService(endpoint: endpoint, auth: auth)
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        SwiftOverlays.showBlockingWaitOverlay()
         
         oauth.getRequestToken("oob").then { token -> Void in
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("BrowserSignIn") as! BrowserSignInController
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "BrowserSignIn") as! BrowserSignInController
             vc.customAPIConfig = self.customAPIConfig
             vc.requestToken = token
             vc.callback = self.finishBrowserSignIn
-            self.showViewController(vc, sender: self)
+            self.show(vc, sender: self)
             }.always {
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                SwiftOverlays.removeAllBlockingOverlays()
-            }.error { error in
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }.catch { error in
                 debugPrint(error)
         }
     }
@@ -149,18 +146,18 @@ class SignInController: UIViewController {
             let apiConfig = self.customAPIConfig
             var endpoint = apiConfig.createEndpoint("api", noVersionSuffix: true)
             let authenticator = TwitterOAuthPasswordAuthenticator(endpoint: endpoint, consumerKey: apiConfig.consumerKey!, consumerSecret: apiConfig.consumerSecret!, loginVerificationCallback: { challengeType -> String? in
-                let sem = dispatch_semaphore_create(0)
-                let vc = UIAlertController(title: "Login verification", message: "[Verification message here]", preferredStyle: .Alert)
+                let sem = DispatchSemaphore(value: 0)
+                let vc = UIAlertController(title: "Login verification", message: "[Verification message here]", preferredStyle: .alert)
                 var challangeResponse: String? = nil
-                vc.addTextFieldWithConfigurationHandler{ textField in
-                    textField.keyboardType = .EmailAddress
+                vc.addTextField{ textField in
+                    textField.keyboardType = .emailAddress
                 }
-                vc.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+                vc.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                     challangeResponse = vc.textFields?[0].text
-                    dispatch_semaphore_signal(sem)
+                    sem.signal()
                 }))
-                vc.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-                dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER)
+                vc.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                _ = sem.wait(timeout: DispatchTime.distantFuture)
                 return challangeResponse
                 }, browserUserAgent: userAgent)
             return authenticator.getOAuthAccessToken(username, password: password)
@@ -173,7 +170,7 @@ class SignInController: UIViewController {
                         let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
                         microBlog.verifyCredentials().then { user -> Void in
                             fullfull(SignInResult(user: user, accessToken: accessToken))
-                            }.error { error -> Void in
+                            }.catch { error -> Void in
                                 reject(error)
                         }
                     }
@@ -198,7 +195,7 @@ class SignInController: UIViewController {
                         let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
                         microBlog.verifyCredentials().then { user -> Void in
                             fullfull(SignInResult(user: user, accessToken: accessToken))
-                            }.error { error -> Void in
+                            }.catch { error -> Void in
                                 reject(error)
                         }
                     }
@@ -244,7 +241,7 @@ class SignInController: UIViewController {
                         let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
                         microBlog.verifyCredentials().then { user -> Void in
                             fullfull(SignInResult(user: user, accessToken: accessToken))
-                            }.error { error -> Void in
+                            }.catch { error -> Void in
                                 reject(error)
                         }
                     }
@@ -254,17 +251,16 @@ class SignInController: UIViewController {
     
     fileprivate func doSignIn(_ action: (_ config: CustomAPIConfig) -> Promise<SignInResult>) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        SwiftOverlays.showBlockingWaitOverlay()
-        action(config: self.customAPIConfig).then { result throws -> Account in
+        action(self.customAPIConfig).then { result throws -> Account in
             let json = result.user
             let config = self.customAPIConfig
-            let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
+            let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
             let account = Account()
             let user = User(accountJson: json)
             account.key = user.key
-            account.type = String(AccountType.Twitter)
+            account.type = String(describing: AccountType.Twitter)
             account.apiUrlFormat = config.apiUrlFormat
-            account.authType = String(config.authType)
+            account.authType = String(describing: config.authType)
             account.basicUsername = result.username
             account.basicPassword = result.password
             account.consumerKey = config.consumerKey
@@ -279,26 +275,25 @@ class SignInController: UIViewController {
             }
             return account
             }.then { result -> Void in
-                let home = self.storyboard!.instantiateViewControllerWithIdentifier("Main")
-                self.presentViewController(home, animated: true, completion: nil)
+                let home = self.storyboard!.instantiateViewController(withIdentifier: "Main")
+                self.present(home, animated: true, completion: nil)
             }.always {
-                SwiftOverlays.removeAllBlockingOverlays()
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-            }.error { error in
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }.catch { error in
                 if (error is AuthenticationError) {
                     switch (error) {
-                    case AuthenticationError.AccessTokenFailed:
-                        let vc = UIAlertController(title: nil, message: "Unable to get access token", preferredStyle: .Alert)
-                        self.presentViewController(vc, animated: true, completion: nil)
-                    case AuthenticationError.RequestTokenFailed:
-                        let vc = UIAlertController(title: nil, message: "Unable to get request token", preferredStyle: .Alert)
-                        self.presentViewController(vc, animated: true, completion: nil)
-                    case AuthenticationError.WrongUsernamePassword:
-                        let vc = UIAlertController(title: nil, message: "Wrong username or password", preferredStyle: .Alert)
-                        self.presentViewController(vc, animated: true, completion: nil)
-                    case AuthenticationError.VerificationFailed:
-                        let vc = UIAlertController(title: nil, message: "Verification failed", preferredStyle: .Alert)
-                        self.presentViewController(vc, animated: true, completion: nil)
+                    case AuthenticationError.accessTokenFailed:
+                        let vc = UIAlertController(title: nil, message: "Unable to get access token", preferredStyle: .alert)
+                        self.present(vc, animated: true, completion: nil)
+                    case AuthenticationError.requestTokenFailed:
+                        let vc = UIAlertController(title: nil, message: "Unable to get request token", preferredStyle: .alert)
+                        self.present(vc, animated: true, completion: nil)
+                    case AuthenticationError.wrongUsernamePassword:
+                        let vc = UIAlertController(title: nil, message: "Wrong username or password", preferredStyle: .alert)
+                        self.present(vc, animated: true, completion: nil)
+                    case AuthenticationError.verificationFailed:
+                        let vc = UIAlertController(title: nil, message: "Verification failed", preferredStyle: .alert)
+                        self.present(vc, animated: true, completion: nil)
                     default: break
                     }
                 }
@@ -307,11 +302,11 @@ class SignInController: UIViewController {
     }
     
     static func fixSignInUrl(_ url: String) -> String {
-        guard let urlComponents = URLComponents(string: url) else {
+        guard var urlComponents = URLComponents(string: url) else {
             return url
         }
         if ("api.fanfou.com" == urlComponents.host) {
-            if (urlComponents.path.hasPrefix("/oauth/") ?? false) {
+            if (urlComponents.path.hasPrefix("/oauth/")) {
                 urlComponents.host = "fanfou.com"
             }
         }

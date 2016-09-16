@@ -11,8 +11,8 @@ import SQLite
 extension Connection {
 
     public var userVersion: Int {
-        get { return Int(scalar("PRAGMA user_version") as! Int64) }
-        set { try! run("PRAGMA user_version = \(newValue)") }
+        get { return try! Int(scalar("PRAGMA user_version") as! Int64) }
+        set { try! _ = run("PRAGMA user_version = \(newValue)") }
     }
     
 }

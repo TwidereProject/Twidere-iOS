@@ -13,7 +13,7 @@ import PromiseKit
 
 class GetStatusesTask {
     
-    static func execute(_ param: RefreshTaskParam, table: Table, fetchAction: (Account, MicroBlogService, Paging) -> Promise<[Status]>) -> Promise<[StatusListResponse]> {
+    static func execute(_ param: RefreshTaskParam, table: Table, fetchAction: @escaping (Account, MicroBlogService, Paging) -> Promise<[Status]>) -> Promise<[StatusListResponse]> {
         
         let accounts = param.accounts
         let maxIds = param.maxIds
@@ -23,7 +23,7 @@ class GetStatusesTask {
         
         let loadItemLimit = Defaults[.loadItemLimit] ?? defaultLoadItemLimit
         // Try to fetch for all accounts, continue even there are rejected tasks
-        return when(accounts.enumerate().map { (i, account) -> Promise<StatusListResponse> in
+        return when(fulfilled: accounts.enumerated().map { (i, account) -> Promise<StatusListResponse> in
             let twitter = account.newMicroblogInstance()
             let paging = Paging()
             paging.count = loadItemLimit
@@ -43,15 +43,15 @@ class GetStatusesTask {
                 if (sinceIdLong != -1) {
                     paging.sinceId = String(sinceIdLong - 1)
                 } else {
-                    paging.sinceId = String(sinceId)
+                    paging.sinceId = String(describing: sinceId)
                 }
                 sinceSortId = sinceSortIds?[i] ?? -1
                 if (maxId == nil) {
                     paging.latestResults = true
                 }
             }
-            return Promise<StatusListResponse> {fullfill, reject in
-                fetchAction(account, twitter, paging).thenInBackground { statuses -> [Status] in
+            return Promise<StatusListResponse> { fullfill, reject in
+                fetchAction(account, twitter, paging).then(on: .global()) { statuses -> [Status] in
                     
                     try storeStatus(account, statuses: statuses, sinceId: sinceId, maxId: maxId, sinceSortId: sinceSortId, maxSortId: maxSortId, loadItemLimit: loadItemLimit, table: table, notify: false)
                     
@@ -59,7 +59,7 @@ class GetStatusesTask {
                     return statuses
                     }.then { statuses -> Void in
                         fullfill(StatusListResponse(accountKey: account.key, statuses: statuses))
-                    }.error { error in
+                    }.catch { error in
                         debugPrint(error)
                         fullfill(StatusListResponse(accountKey: account.key, error: error))
                 }
@@ -68,10 +68,10 @@ class GetStatusesTask {
     }
     
     fileprivate static func storeStatus(_ account: Account, statuses: [Status], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
-        let accountKey = account.key
-        let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
+        let accountKey = account.key!
+        let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
         
-        let noItemsBefore = db.scalar(table.count) <= 0 // DataStoreUtils.getStatusCount(context, uri, accountKey) <= 0
+        let noItemsBefore = try db.scalar(table.count) <= 0 // DataStoreUtils.getStatusCount(context, uri, accountKey) <= 0
         
         let statusIds = statuses.map({ $0.id! })
         var minIdx = -1
@@ -98,13 +98,13 @@ class GetStatusesTask {
         // Delete all rows conflicting before new data inserted.
         var olderCount = -1
         if (minPositionKey > 0) {
-            olderCount = getStatusesCount(db, table: table, expression: Status.RowIndices.positionKey < minPositionKey, accountKeys: [accountKey])
+            olderCount = try getStatusesCount(db, table: table, expression: Status.RowIndices.positionKey < minPositionKey, accountKeys: [accountKey])
         }
         
         let rowsDeleted = try db.run(table.filter(Status.RowIndices.accountKey == accountKey && statusIds.contains(Status.RowIndices.id)).delete())
         
         // Insert a gap.
-        let deletedOldGap = rowsDeleted > 0 && statusIds.contains({$0 == maxId})
+        let deletedOldGap = rowsDeleted > 0 && statusIds.contains(where: {$0 == maxId})
         let noRowsDeleted = rowsDeleted == 0
         // Why loadItemLimit / 2? because it will not acting strange in most cases
         let insertGap = minIdx != -1 && olderCount > 0 && (noRowsDeleted || deletedOldGap) && !noItemsBefore && !hasIntersection && statuses.count > loadItemLimit / 2
@@ -114,18 +114,18 @@ class GetStatusesTask {
         // Insert previously fetched items.
         try db.transaction {
             for status in statuses {
-                try db.run(Status.insertData(table, model: status))
+                _ = try db.run(Status.insertData(table: table, model: status))
             }
         }
         
         // Remove gap flag
         if (maxId != nil && sinceId == nil) {
-            try db.run(table.filter(Status.RowIndices.accountKey == accountKey && Status.RowIndices.id == maxId).update(Status.RowIndices.isGap <- false))
+            _ = try db.run(table.filter(Status.RowIndices.accountKey == accountKey && Status.RowIndices.id == maxId).update(Status.RowIndices.isGap <- false))
         }
     }
     
-    static func getStatusesCount(_ db: Connection, table: Table, expression: Expression<Bool?>, accountKeys: [UserKey]) -> Int {
-        return db.scalar(table.filter(expression).count)
+    static func getStatusesCount(_ db: Connection, table: Table, expression: Expression<Bool?>, accountKeys: [UserKey]) throws -> Int {
+        return try db.scalar(table.filter(expression).count)
     }
     
     

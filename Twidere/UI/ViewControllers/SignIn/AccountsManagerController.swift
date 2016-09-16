@@ -14,12 +14,12 @@ class AccountsManagerController: UITableViewController {
     var accounts: [Account]? = nil
     
     override func viewDidLoad() {
-        dispatch_promise { () -> [Account] in
-            let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
+        _ = DispatchQueue.global().promise { () -> [Account] in
+            let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
             return try! db.prepare(accountsTable).map{ Account(row: $0) }
-        }.then { accounts  in
+        }.then { accounts in
             self.accounts = accounts
-        }.always { 
+        }.always {
             self.tableView.reloadData()
         }
     }

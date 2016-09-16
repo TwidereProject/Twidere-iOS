@@ -1532,6 +1532,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks/FlatBuffersSwift/build/Debug",
 					"$(PROJECT_DIR)/Compatibility/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Twidere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1554,6 +1555,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks/FlatBuffersSwift/build/Debug",
 					"$(PROJECT_DIR)/Compatibility/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Twidere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -4,7 +4,7 @@ import Foundation
 
 extension User: StaticMappable {
 
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         accountKey <- (map["account_key"], UserKeyTransform())
         key <- (map["user_key"], UserKeyTransform())
         createdAt <- map["created_at"]
@@ -23,14 +23,14 @@ extension User: StaticMappable {
         metadata <- map["metadata"]
     }
 
-    static func objectForMapping(_ map: Map) -> BaseMappable? {
+    static func objectForMapping(map: Map) -> BaseMappable? {
         return User()
     }
 }
 
 extension User.Metadata: StaticMappable {
 
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         following <- map["following"]
         followedBy <- map["followed_by"]
         blocking <- map["blocking"]
@@ -47,7 +47,7 @@ extension User.Metadata: StaticMappable {
         groupsCount <- map["groups_count"]
     }
 
-    static func objectForMapping(_ map: Map) -> BaseMappable? {
+    static func objectForMapping(map: Map) -> BaseMappable? {
         return User.Metadata()
     }
 }
