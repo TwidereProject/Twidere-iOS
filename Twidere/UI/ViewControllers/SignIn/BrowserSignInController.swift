@@ -9,10 +9,11 @@
 import UIKit
 import Kanna
 import PromiseKit
+import WebKit
 
-class BrowserSignInController: UIViewController, UIWebViewDelegate {
+class BrowserSignInController: UIViewController, WKNavigationDelegate {
     
-    @IBOutlet weak var webView: UIWebView!
+    var webView: WKWebView!
     
     var customAPIConfig: CustomAPIConfig!
     var requestToken: OAuthToken!
@@ -20,13 +21,16 @@ class BrowserSignInController: UIViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        webView = WKWebView(frame: self.view.frame, configuration: WKWebViewConfiguration())
+        webView.navigationDelegate = self
+        
+        self.view.addSubview(webView)
         
         // Do any additional setup after loading the view.
         let endpoint = customAPIConfig.createEndpoint("api", noVersionSuffix: true, fixUrl: SignInController.fixSignInUrl)
         let requestUrl = endpoint.constructUrl("/oauth/authorize", queries: ["oauth_token": requestToken.oauthToken])
         let request = URLRequest(url: URL(string: requestUrl)!)
-        webView.loadRequest(request)
-        webView.delegate = self
+        webView.load(request)
     }
     
     @IBAction func cancelBrowserSignIn(_ sender: UIBarButtonItem) {
@@ -39,18 +43,18 @@ class BrowserSignInController: UIViewController, UIWebViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func webViewDidStartLoad(_ webView: UIWebView) {
+    
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
     
-    func webViewDidFinishLoad(_ webView: UIWebView) {
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        guard let request = webView.request else {
+        guard let url = webView.url else {
             return
         }
-        guard let url = request.url else {
-            return
-        }
+        
         if (url.host == "fanfou.com") {
             if (url.path == "/oauth/authorize") {
                 let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
@@ -64,15 +68,15 @@ class BrowserSignInController: UIViewController, UIWebViewDelegate {
                 }
             }
         } else {
-            
              firstly { () -> Promise<String> in
                 return Promise<String> { fullfill, reject in
-                    if let html = webView.stringByEvaluatingJavaScript(from: "document.body.innerHTML") {
-                        fullfill(html)
-                    } else {
-                        reject(BrowserSignInError.noContent)
+                    webView.evaluateJavaScript("document.body.innerHTML") { (result, error) in
+                        if let html = result as? String {
+                            fullfill(html)
+                        } else {
+                            reject(BrowserSignInError.noContent)
+                        }
                     }
-                    
                 }
             }.then { html throws -> HTMLDocument in
                 guard let doc = Kanna.HTML(html: html, encoding: String.Encoding.utf8) else {

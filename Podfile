@@ -5,7 +5,7 @@ use_frameworks!
 
 target 'Twidere' do
   pod 'SwiftyJSON', :git => 'https://github.com/IBM-Swift/SwiftyJSON.git' # Swift 3
-  pod 'SQLite.swift', :git => 'https://github.com/mariotaku/SQLite.swift.git', :branch => 'swift3-new' # Swift 3
+  pod 'SQLite.swift', :git => 'https://github.com/stephencelis/SQLite.swift.git', :branch => 'swift3-mariotaku' # Swift 3
   pod 'CryptoSwift', :git => 'https://github.com/krzyzanowskim/CryptoSwift.git', :tag => '0.6.0'  # Swift 3
   pod 'Alamofire', '~> 4.0' # Swift 3
   pod 'JVFloatLabeledTextField', '1.1.1' # Obj-C
@@ -13,7 +13,6 @@ target 'Twidere' do
   pod 'StaticDataTableViewController', '2.0.5' # Obj-C
   pod 'IQKeyboardManagerSwift', :git => 'https://github.com/hackiftekhar/IQKeyboardManager.git' # Swift 3
   pod 'Kanna', :git => 'https://github.com/tid-kijyun/Kanna.git', :branch => 'swift3.0' # Swift 3
-  #pod 'CrossroadRegex', '~> 0.8' # Swift 2.2
   pod 'SwiftyUserDefaults', '~> 3.0' # Swift 3
   pod 'PromiseKit', '~> 4.0' # Swift 3
   pod 'STPopup', '~> 1.8' # Obj-C
