@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let accountKey = account.key!
             
             try! db.transaction {
-                try db.run(clearByItemLimit(accountKey, limit: 30, table: homeStatusesTable))
+                _ = try db.run(clearByItemLimit(accountKey, limit: 30, table: homeStatusesTable))
             }
         }
         

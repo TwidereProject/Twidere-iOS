@@ -82,12 +82,27 @@ class MicroBlogService: RestClient {
         return makeTypedRequest(.get, path: "/statuses/home_timeline.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
     }
     
-    func getUserTimeline(_ screenName: String, paging: Paging) -> Promise<[Status]> {
+    func getUserTimeline(screenName: String, paging: Paging) -> Promise<[Status]> {
         let queries = makeQueries(statusQueries, ["screen_name": screenName], paging.queries)
         return makeTypedRequest(.get, path: "/statuses/user_timeline.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
     }
     
-    func lookupStatuses(_ ids: [String]) -> Promise<[Status]> {
+    func getUserTimeline(id: String, paging: Paging) -> Promise<[Status]> {
+        let queries = makeQueries(statusQueries, ["user_id": id], paging.queries)
+        return makeTypedRequest(.get, path: "/statuses/user_timeline.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
+    }
+    
+    func getFavorites(screenName: String, paging: Paging) -> Promise<[Status]> {
+        let queries = makeQueries(statusQueries, ["screen_name": screenName], paging.queries)
+        return makeTypedRequest(.get, path: "/favorites/list.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
+    }
+    
+    func getFavorites(id: String, paging: Paging) -> Promise<[Status]> {
+        let queries = makeQueries(statusQueries, ["user_id": id], paging.queries)
+        return makeTypedRequest(.get, path: "/favorites/list.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
+    }
+    
+    func lookupStatuses(ids: [String]) -> Promise<[Status]> {
         let queries = makeQueries(statusQueries, ["id": ids.joined(separator: ",")])
         return makeTypedRequest(.get, path: "/statuses/lookup.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
     }
@@ -158,6 +173,7 @@ enum MicroBlogError: Error {
     case serviceError(errors: [ErrorInfo])
     case requestError(code:Int, message:String?)
     case decodeError
+    case argumentError(message: String?)
     
     struct ErrorInfo {
         let code: Int
@@ -179,6 +195,8 @@ extension MicroBlogError {
         case let .requestError(code, message):
             // TODO return human readable message
             return "Request error \(code): \(message ?? "nil")"
+        default:
+            return "Internal error"
         }
     }
 }

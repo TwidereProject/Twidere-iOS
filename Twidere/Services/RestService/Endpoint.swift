@@ -31,7 +31,7 @@ class Endpoint {
     
     static func construct(_ base: String, path: String, queries: [String: String]? = nil) -> String {
         var components = URLComponents(string: base)!
-        var basePath = components.path ?? ""
+        var basePath = components.path 
         if (basePath.hasSuffix("/")) {
             basePath = basePath.substring(to: basePath.characters.index(basePath.endIndex, offsetBy: -1))
         }

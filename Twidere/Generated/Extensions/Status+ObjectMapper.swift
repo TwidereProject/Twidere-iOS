@@ -46,10 +46,25 @@ extension Status.Metadata: StaticMappable {
         hashtags <- map["hashtags"]
         media <- map["media"]
         displayRange <- map["display_range"]
+        inReplyTo <- map["in_reply_to"]
     }
 
     static func objectForMapping(map: Map) -> BaseMappable? {
         return Status.Metadata()
+    }
+}
+
+extension Status.Metadata.InReplyTo: StaticMappable {
+
+    func mapping(map: Map) {
+        statusId <- map["status_id"]
+        userKey <- map["user_key"]
+        userName <- map["user_name"]
+        userScreenName <- map["user_screen_name"]
+    }
+
+    static func objectForMapping(map: Map) -> BaseMappable? {
+        return Status.Metadata.InReplyTo()
     }
 }
 

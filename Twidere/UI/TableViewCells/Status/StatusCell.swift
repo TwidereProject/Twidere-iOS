@@ -83,6 +83,10 @@ class StatusCell: UITableViewCell {
             statusTypeLabelView.text = "Retweeted by \((status.retweetedByUserName ?? "User"))"
             
             statusTypeLabelView.layoutParams.hidden = false
+        } else if let inReplyTo = status.metadata?.inReplyTo {
+            statusTypeLabelView.text = "In reply to \((inReplyTo.userName ?? inReplyTo.userScreenName!))"
+            
+            statusTypeLabelView.layoutParams.hidden = false
         } else {
             statusTypeLabelView.text = nil
             

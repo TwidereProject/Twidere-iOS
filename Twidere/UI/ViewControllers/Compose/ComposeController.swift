@@ -179,7 +179,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     @IBAction func attachMediaClicked(_ sender: UIBarButtonItem) {
         let picker = UIImagePickerController()
         picker.sourceType = .photoLibrary
-        firstly { () -> Promise<[String: AnyObject]> in
+        _ = firstly { () -> Promise<[String: AnyObject]> in
             return promise(picker, animate: [.appear, .disappear], completion: nil)
         }.then { (info) -> Promise<Data> in
             return Promise { fullfill, reject in
@@ -259,7 +259,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     static func show(_ parent: UIViewController, identifier: String) {
         let root = parent.storyboard?.instantiateViewController(withIdentifier: identifier)
         let controller = STPopupController(rootViewController: root)
-        controller?.containerView.layer.cornerRadius = 4;
+        controller?.containerView.layer.cornerRadius = 4
 
         controller?.present(in: parent)
     }

@@ -21,7 +21,7 @@ class ComposeLocationController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         mapView.delegate = self
-        preciseLocationSwitch.isOn = Defaults[.attachPreciseLocation] ?? false
+        preciseLocationSwitch.isOn = Defaults[.attachPreciseLocation] 
     }
     
     override func viewWillDisappear(_ animated: Bool) {

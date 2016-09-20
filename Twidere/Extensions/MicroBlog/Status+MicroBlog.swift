@@ -137,7 +137,7 @@ extension Status {
             
             if let userMentions = status["entities"]["user_mentions"].array {
                 for entity in userMentions {
-                    spans.append(spanFromMentionEntity(entity))
+                    spans.append(spanFromMentionEntity(entity, accountKey: accountKey))
                 }
             }
             
@@ -196,8 +196,7 @@ extension Status {
                 var startIndex = codePoints.startIndex
                 
                 switch span {
-                case is LinkSpanItem:
-                    let typed = span as! LinkSpanItem
+                case let typed as LinkSpanItem:
                     let displayUrlCodePoints = typed.display!.unicodeScalars
                     let displayCodePointsLength = displayUrlCodePoints.count
                     let displayUtf16Length = typed.display!.utf16.count
@@ -223,15 +222,11 @@ extension Status {
                     if (typed.origEnd <= displayTextRangeCodePoint?[1]) {
                         displayTextRangeUtf16?[1] += utf16Diff
                     }
-                case is MentionSpanItem:
-                    let typed = span as! MentionSpanItem
-                    
+                case let typed as MentionSpanItem:
                     typed.start = codePoints.utf16Count(startIndex..<codePoints.index(codePoints.startIndex, offsetBy: offsetedStart))
                     typed.end = typed.start + origEnd - origStart
                     mentions.append(typed)
-                case is HashtagSpanItem:
-                    let typed = span as! HashtagSpanItem
-                    
+                case let typed as HashtagSpanItem:
                     typed.start = codePoints.utf16Count(startIndex..<codePoints.index(codePoints.startIndex, offsetBy: offsetedStart))
                     typed.end = typed.start + origEnd - origStart
                     hashtags.append(typed)
@@ -268,6 +263,14 @@ extension Status {
         metadata.mentions = mentions
         metadata.hashtags = hashtags
         metadata.media = mediaItems
+        
+        if let inReplyTo = Status.Metadata.InReplyTo(status: status, accountKey: accountKey) {
+            inReplyTo.userName = mentions.filter { $0.key.id == inReplyTo.userKey.id }.first?.name
+            metadata.inReplyTo = inReplyTo
+        } else {
+            metadata.inReplyTo = nil
+        }
+        
         return (textPlain, textDisplay, metadata)
     }
     
@@ -284,10 +287,10 @@ extension Status {
             media.width = size["width"].intValue
             media.height = size["height"].intValue
         } else {
-            media.width = 0;
-            media.height = 0;
+            media.width = 0
+            media.height = 0
         }
-        media.videoInfo = getVideoInfo(entity["video_info"]);
+        media.videoInfo = getVideoInfo(entity["video_info"])
         return media
     }
     
@@ -327,10 +330,10 @@ extension Status {
         return span
     }
     
-    fileprivate func spanFromMentionEntity(_ entity: JSON) -> MentionSpanItem {
+    fileprivate func spanFromMentionEntity(_ entity: JSON, accountKey: UserKey?) -> MentionSpanItem {
         let id = entity["id_str"].string ?? entity["id"].stringValue
         let span = MentionSpanItem()
-        span.key = UserKey(id: id, host: nil)
+        span.key = UserKey(id: id, host: accountKey?.host)
         span.name = entity["name"].string
         span.screenName = entity["screen_name"].string
         
@@ -379,7 +382,7 @@ extension Status {
     }
     
     fileprivate func generateSortId(_ status: Status, rawId: Int64) -> Int64 {
-        var sortId = rawId;
+        var sortId = rawId
         if (sortId == -1) {
             // Try use long id
             sortId = Int64(status.id) ?? -1
@@ -388,10 +391,26 @@ extension Status {
             // Try use timestamp
             sortId = createdAt!.timeIntervalSince1970Millis
         }
-        return sortId;
+        return sortId
     }
     
     fileprivate enum EntityType {
         case mention, url, hashtag
+    }
+}
+
+extension Status.Metadata.InReplyTo {
+    convenience init?(status: JSON, accountKey: UserKey?) {
+        let statusId = status["in_reply_to_status_id"].stringValue
+        let userId = status["in_reply_to_user_id"].stringValue
+        if statusId.isEmpty || userId.isEmpty {
+            return nil
+        }
+        
+        self.init()
+        self.statusId = statusId
+        self.userKey = UserKey(id: userId, host: accountKey?.host)
+        self.userScreenName = status["in_reply_to_screen_name"].string
+        
     }
 }

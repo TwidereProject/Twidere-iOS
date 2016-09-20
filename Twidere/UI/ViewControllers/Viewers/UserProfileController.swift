@@ -10,24 +10,23 @@ import UIKit
 import KDInteractiveNavigationController
 import ALSLayouts
 import AttributedLabel
+import MXParallaxHeader
 
-class UserProfileController: UIViewController, UINavigationBarDelegate {
+class UserProfileController: UIViewController, UINavigationBarDelegate, SegmentedContainerViewDelegate, SegmentedContainerViewDataSource {
     
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var profileBannerView: UIImageView!
-    @IBOutlet weak var bannerActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileContainer: ALSRelativeLayout!
     @IBOutlet weak var userButtonsBackground: UIView!
     @IBOutlet weak var descriptionView: AttributedLabel!
-    @IBOutlet weak var visualEffectView: UIVisualEffectView!
+    @IBOutlet weak var visualEffectView: UIView!
     @IBOutlet weak var visualEffectContentView: UIView!
-    @IBOutlet weak var userPagesContainer: UIView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var userIndicatorPagesContainer: UserIndicatorPagesContainer!
+    
+    @IBOutlet weak var segmentedContainerView: SegmentedContainerView!
     
     fileprivate var userInfoTags: [[UserInfoTag]]? = nil
-    fileprivate var currentViewController: UIViewController!
+    fileprivate var viewControllers: [UIViewController?] = [UIViewController?](repeating: nil, count: 3)
     
     var user: User! {
         didSet {
@@ -50,7 +49,16 @@ class UserProfileController: UIViewController, UINavigationBarDelegate {
         profileImageView.layer.borderColor = UIColor.white.cgColor
         profileImageView.layer.borderWidth = 1
         
-        bannerActivityIndicator.hidesWhenStopped = true
+        self.segmentedContainerView.dataSource = self
+        self.segmentedContainerView.delegate = self
+        
+        self.segmentedContainerView.contentDividerSize = 0.5
+        self.segmentedContainerView.contentDividerColor = UIColor.lightGray
+        
+        self.segmentedContainerView.parallaxHeader.view = self.profileContainer
+        self.segmentedContainerView.parallaxHeader.mode = .bottom
+        
+        self.segmentedContainerView.parallaxHeader.contentView.layoutMargins = UIEdgeInsets.zero
         
         descriptionView.font = UIFont.systemFont(ofSize: 15)
         
@@ -63,16 +71,31 @@ class UserProfileController: UIViewController, UINavigationBarDelegate {
                 navBar.pushItem(item, animated: false)
             }
         }
-        userIndicatorPagesContainer.showDividers = .Middle
-        userIndicatorPagesContainer.divider = UIImage.imageWithColor(UIColor(white: 0.5, alpha: 0.2))
-
-        displayPage(0)
+        
     }
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
         display()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        let app = UIApplication.shared
+        let statusBarHeight = app.isStatusBarHidden ? 0 : app.statusBarFrame.height
+        let navBarHeight = self.navigationController!.navigationBar.frame.height
+        
+        navBar.frame.origin.y = statusBarHeight
+        navBar.frame.size.height = navBarHeight
+        visualEffectView.frame.size.height = statusBarHeight + navBarHeight
+        visualEffectContentView.frame.size = visualEffectView.frame.size
+        
+        self.segmentedContainerView.parallaxHeader.minimumHeight = statusBarHeight + navBarHeight
+
+        self.profileContainer.frame = CGRect.zero
+
+        self.profileContainer.frame.size = self.profileContainer.sizeThatFits(self.segmentedContainerView.frame.size)
+        
+        self.segmentedContainerView.parallaxHeader.height = self.profileContainer.frame.height
+
     }
     
     func display() {
@@ -80,9 +103,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate {
             return
         }
         navBar.items?.last?.title = user.name
-        bannerActivityIndicator.startAnimating()
         profileBannerView.displayImage(user.profileBannerUrlForSize(Int(self.view.frame.width)), completed: { image, error, cacheType, url in
-            self.bannerActivityIndicator.stopAnimating()
         })
         profileImageView.displayImage(user.profileImageUrlForSize(.original))
         descriptionView.text = user.descriptionDisplay
@@ -113,49 +134,110 @@ class UserProfileController: UIViewController, UINavigationBarDelegate {
         self.userInfoTags = userInfoTags
     }
     
-    override func viewWillLayoutSubviews() {
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        let navBarHeight = navBar.frame.height
-        navBar.frame.origin.y = statusBarHeight
-        visualEffectContentView.frame.size.height = statusBarHeight + navBarHeight
-        userButtonsBackground.layoutParams.marginTop = profileBannerView.frame.height
-        userIndicatorPagesContainer.contentHeight = scrollView.frame.height - statusBarHeight - navBarHeight
-    }
-    
-    override func viewDidLayoutSubviews() {
-        scrollView.contentSize = profileContainer.sizeThatFits(scrollView.frame.size)
-    }
-    
     func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
         _ = navigationController?.popViewController(animated: true)
         return true
     }
     
-    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
-        displayPage(sender.selectedSegmentIndex)
+    // MARK: ScrollView delegate
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.updateBannerScaleTransfom()
     }
     
-    func displayPage(_ idx: Int) {
-        let pages = UIStoryboard(name: "Pages", bundle: nil)
-        let newController: UIViewController
-        switch idx {
+    func scrollView(_ scrollView: MXScrollView, shouldScrollWithSubView subView: UIScrollView) -> Bool {
+        return true
+    }
+    
+    func updateBannerScaleTransfom() {
+        let topOffset = segmentedContainerView.contentOffset.y
+        
+        var headerTransform = CATransform3DIdentity
+        if (topOffset < 0) {
+            
+            let headerScaleFactor: CGFloat = max(0, -topOffset) / profileBannerView.bounds.height
+            let headerSizevariation = ((profileBannerView.bounds.height * (1.0 + headerScaleFactor)) - profileBannerView.bounds.height)/2
+            
+            headerTransform = CATransform3DTranslate(headerTransform, 0, headerSizevariation + topOffset, 0)
+            headerTransform = CATransform3DScale(headerTransform, 1.0 + headerScaleFactor, 1.0 + headerScaleFactor, 0)
+        }
+        // Apply Transformations
+        profileBannerView.layer.transform = headerTransform
+        
+    }
+    
+    func numberOfViews(in containerView: SegmentedContainerView) -> Int {
+        return 3
+    }
+    
+    func segmentedContainer(_ containerView: SegmentedContainerView, titleFor index: Int) -> String {
+        switch index {
+        case 0:
+            return "Tweets"
+        case 1:
+            return "Media"
+        case 2:
+            return "Favorites"
         default:
-            let testController = pages.instantiateViewController(withIdentifier: "StatusesList") as! StatusesListController
-            testController.delegate = HomeController.UserTimelineStatusesListControllerDelegate()
-            newController = testController
+            abort()
+        }
+    }
+    
+    func segmentedContainer(_ containerView: SegmentedContainerView, viewFor index: Int) -> UIView {
+        let newController: UIViewController
+        if let cached = viewControllers[index] {
+            newController = cached
+        } else {
+            switch index {
+            case 0:
+                let pages = UIStoryboard(name: "Pages", bundle: nil)
+                let vc = pages.instantiateViewController(withIdentifier: "StatusesList") as! StatusesListController
+                let account = getAccount(forKey: user.accountKey)!
+                let statusesDelegate = UserTimelineStatusesListControllerDelegate(account: account, userKey: user.key, screenName: user.screenName)
+                statusesDelegate.refreshEnabled = false
+                statusesDelegate.fillEmptyEndSpace = true
+                vc.delegate = statusesDelegate
+                newController = vc
+            case 1:
+                let pages = UIStoryboard(name: "Pages", bundle: nil)
+                newController = pages.instantiateViewController(withIdentifier: "StubTab")
+            case 2:
+                let pages = UIStoryboard(name: "Pages", bundle: nil)
+                let vc = pages.instantiateViewController(withIdentifier: "StatusesList") as! StatusesListController
+                let account = getAccount(forKey: user.accountKey)!
+                let statusesDelegate = UserFavoritesStatusesListControllerDelegate(account: account, userKey: user.key, screenName: user.screenName)
+                statusesDelegate.refreshEnabled = false
+                statusesDelegate.fillEmptyEndSpace = true
+                vc.delegate = statusesDelegate
+                newController = vc
+            default:
+                abort()
+            }
+            viewControllers[index] = newController
         }
         
         self.addChildViewController(newController)
         newController.didMove(toParentViewController: self)
-        newController.view.frame = self.userPagesContainer.bounds;
-        self.userPagesContainer.addSubview(newController.view)
-        self.currentViewController?.removeFromParentViewController()
+        return newController.view
+    }
+    
+    func segmentedContainer(_ containerView: SegmentedContainerView, didReselectedAt index: Int) {
+        guard let vc = self.viewControllers[index] else {
+            return
+        }
+        switch vc {
+        case let tvc as UITableViewController:
+            let tbv = tvc.tableView!
+            let inset = tbv.contentInset
+            tbv.setContentOffset(CGPoint(x: -inset.left, y: -inset.top), animated: true)
+        default:
+            break
+        }
     }
     
     struct UserInfoTag {
         var text: String
     }
-    
 }
 
 extension UIImage {

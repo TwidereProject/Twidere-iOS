@@ -19,31 +19,43 @@ class StatusesListController: UITableViewController {
         }
     }
     
+    var contentInsetBackup: UIEdgeInsets!
+    
     var delegate: StatusesListControllerDelegate!
+    var scrollDelegate: UIScrollViewDelegate!
+    
     var cellDisplayOption: StatusCell.DisplayOption!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         self.cellDisplayOption = StatusCell.DisplayOption()
         self.cellDisplayOption.fontSize = 15
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
         tableView.register(UINib(nibName: "StatusCell", bundle: nil), forCellReuseIdentifier: "Status")
         tableView.register(UINib(nibName: "GapCell", bundle: nil), forCellReuseIdentifier: "Gap")
         
-        let control = UIRefreshControl()
-        control.addTarget(self, action: #selector(self.refreshFromStart), for: .valueChanged)
-        refreshControl = control
-        
+        if (delegate.refreshEnabled) {
+            if (self.refreshControl == nil) {
+                let control = UIRefreshControl()
+                control.addTarget(self, action: #selector(self.refreshFromStart), for: .valueChanged)
+                refreshControl = control
+            }
+        } else {
+            refreshControl = nil
+        }
         refreshControl?.beginRefreshing()
+        
         let opts = LoadOptions()
         
         opts.initLoad = true
         opts.params = SimpleRefreshTaskParam(accounts: delegate.getAccounts())
+        
+        self.contentInsetBackup = self.tableView.contentInset
+        
+        statuses = nil
         
         loadStatuses(opts)
         
@@ -58,24 +70,20 @@ class StatusesListController: UITableViewController {
         
         loadStatuses(opts)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
     
-    
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return statuses?.count ?? 0
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let status = statuses![(indexPath as NSIndexPath).item]
         if (statuses!.endIndex != (indexPath as NSIndexPath).item && status.isGap ?? false) {
@@ -132,22 +140,28 @@ class StatusesListController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    // MARK: ScrollView delegate
+    
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         AppDelegate.performingScroll = true
+        self.scrollDelegate?.scrollViewDidScroll?(scrollView)
     }
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         AppDelegate.performingScroll = true
+        self.scrollDelegate?.scrollViewWillBeginDragging?(scrollView)
     }
     
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         AppDelegate.performingScroll = false
+        self.scrollDelegate?.scrollViewDidEndDecelerating?(scrollView)
     }
     
     override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if (!decelerate) {
             AppDelegate.performingScroll = false
         }
+        self.scrollDelegate?.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
     }
     
     func refreshFromStart() {
@@ -162,11 +176,11 @@ class StatusesListController: UITableViewController {
         if let promise = delegate?.loadStatuses(opts) {
             promise.then { statuses in
                 self.statuses = statuses
-            }.always {
-                self.refreshControl?.endRefreshing()
-            }.catch { error in
-                // TODO show error
-                debugPrint(error)
+                }.always {
+                    self.refreshControl?.endRefreshing()
+                }.catch { error in
+                    // TODO show error
+                    debugPrint(error)
             }
         }
     }
@@ -194,11 +208,16 @@ class StatusesListController: UITableViewController {
         var sinceSortIds: [Int64]? {
             return delegate.getNewestStatusSortIds(accounts)
         }
-
+        
     }
+    
 }
 
 protocol StatusesListControllerDelegate {
+    
+    var refreshEnabled: Bool {
+        get
+    }
     
     func getAccounts() -> [Account]
     

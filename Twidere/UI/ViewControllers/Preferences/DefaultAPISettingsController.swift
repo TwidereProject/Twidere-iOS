@@ -77,7 +77,7 @@ class DefaultAPISettingsController: UITableViewController {
         default: break
         }
         self.callback(config)
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     

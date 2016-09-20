@@ -135,3 +135,21 @@ submodels:
           displayRange:
             type: '[Int]?'
             json_field: 'display_range'
+          inReplyTo:
+            type: 'InReplyTo?'
+            json_field: 'in_reply_to'
+        submodels:
+          InReplyTo:
+            fields:
+              statusId:
+                type: String
+                json_field: 'status_id'
+              userKey:
+                type: UserKey
+                json_field: 'user_key'
+              userName:
+                type: String?
+                json_field: 'user_name'
+              userScreenName:
+                type: String
+                json_field: 'user_screen_name'

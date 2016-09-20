@@ -38,17 +38,17 @@ func getProfileBannerUrlForSize(_ url: String, size: Int) -> String {
 func getBestBannerType(_ width: Int) -> String {
     switch width {
     case  0...320:
-        return "mobile";
+        return "mobile"
     case 321...520:
-        return "web";
+        return "web"
     case 521...626:
         return "ipad";
     case 627...640:
-        return "mobile_retina";
+        return "mobile_retina"
     case 641...1040:
-        return "web_retina";
+        return "web_retina"
     default:
-        return "ipad_retina";
+        return "ipad_retina"
     }
 }
 

@@ -76,11 +76,16 @@
 		CE5993161D83C95800653220 /* StatusViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5993151D83C95800653220 /* StatusViewerController.swift */; };
 		CE5993191D83CAAA00653220 /* DetailStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5993181D83CAAA00653220 /* DetailStatusCell.swift */; };
 		CE59931B1D83CAE900653220 /* ViewSizeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE59931A1D83CAE900653220 /* ViewSizeUtils.swift */; };
-		CE5CA7671D89351D002C1D5A /* UserIndicatorPagesContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5CA7661D89351D002C1D5A /* UserIndicatorPagesContainer.swift */; };
 		CE779F291D8563B60053B5C7 /* Account+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F251D8563B60053B5C7 /* Account+SQLite.swift */; };
 		CE779F2A1D8563B60053B5C7 /* Status+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F261D8563B60053B5C7 /* Status+SQLite.swift */; };
 		CE779F2B1D8563B60053B5C7 /* User+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F271D8563B60053B5C7 /* User+SQLite.swift */; };
 		CE779F361D858B210053B5C7 /* User+MicroBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F351D858B210053B5C7 /* User+MicroBlog.swift */; };
+		CE7A573C1D910EB00027BECE /* SegmentedContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A573B1D910EB00027BECE /* SegmentedContainerView.swift */; };
+		CE7A57401D917B580027BECE /* HomeTimelineStatusesListControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A573F1D917B580027BECE /* HomeTimelineStatusesListControllerDelegate.swift */; };
+		CE7A57421D917BDB0027BECE /* SingleAccountStatusesListControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A57411D917BDB0027BECE /* SingleAccountStatusesListControllerDelegate.swift */; };
+		CE7A57441D917E1C0027BECE /* UserTimelineStatusesListControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A57431D917E1C0027BECE /* UserTimelineStatusesListControllerDelegate.swift */; };
+		CE7A57471D9185DC0027BECE /* UserFavoritesStatusesListControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A57461D9185DC0027BECE /* UserFavoritesStatusesListControllerDelegate.swift */; };
+		CE7A57491D918A5C0027BECE /* ReselectUISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A57481D918A5C0027BECE /* ReselectUISegmentedControl.swift */; };
 		CE90A55B1D7EDC9D007050E5 /* SimpleRefreshTaskParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90A55A1D7EDC9D007050E5 /* SimpleRefreshTaskParam.swift */; };
 		CE95747D1D3210A300504D52 /* CustomAPIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */; };
 		CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95747F1D3216BC00504D52 /* ServiceConstants.swift */; };
@@ -128,6 +133,7 @@
 		CEF2CF451D83F11200131EAE /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2CF441D83F11200131EAE /* UserProfileController.swift */; };
 		CEF2CF481D840D7B00131EAE /* MediaPreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2CF471D840D7B00131EAE /* MediaPreviewContainer.swift */; };
 		CEF2CF4A1D84F98200131EAE /* BannerImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2CF491D84F98200131EAE /* BannerImageView.swift */; };
+		CEF53C501D8FC40B0032F434 /* LoadMoreFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF53C4F1D8FC40B0032F434 /* LoadMoreFooter.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -227,11 +233,16 @@
 		CE5993151D83C95800653220 /* StatusViewerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StatusViewerController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE5993181D83CAAA00653220 /* DetailStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailStatusCell.swift; sourceTree = "<group>"; };
 		CE59931A1D83CAE900653220 /* ViewSizeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewSizeUtils.swift; sourceTree = "<group>"; };
-		CE5CA7661D89351D002C1D5A /* UserIndicatorPagesContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserIndicatorPagesContainer.swift; sourceTree = "<group>"; };
 		CE779F251D8563B60053B5C7 /* Account+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+SQLite.swift"; sourceTree = "<group>"; };
 		CE779F261D8563B60053B5C7 /* Status+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Status+SQLite.swift"; sourceTree = "<group>"; };
 		CE779F271D8563B60053B5C7 /* User+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+SQLite.swift"; sourceTree = "<group>"; };
 		CE779F351D858B210053B5C7 /* User+MicroBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+MicroBlog.swift"; sourceTree = "<group>"; };
+		CE7A573B1D910EB00027BECE /* SegmentedContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegmentedContainerView.swift; path = ../ViewControllers/Viewers/SegmentedContainerView.swift; sourceTree = "<group>"; };
+		CE7A573F1D917B580027BECE /* HomeTimelineStatusesListControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineStatusesListControllerDelegate.swift; sourceTree = "<group>"; };
+		CE7A57411D917BDB0027BECE /* SingleAccountStatusesListControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleAccountStatusesListControllerDelegate.swift; sourceTree = "<group>"; };
+		CE7A57431D917E1C0027BECE /* UserTimelineStatusesListControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimelineStatusesListControllerDelegate.swift; sourceTree = "<group>"; };
+		CE7A57461D9185DC0027BECE /* UserFavoritesStatusesListControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFavoritesStatusesListControllerDelegate.swift; sourceTree = "<group>"; };
+		CE7A57481D918A5C0027BECE /* ReselectUISegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReselectUISegmentedControl.swift; sourceTree = "<group>"; };
 		CE90A55A1D7EDC9D007050E5 /* SimpleRefreshTaskParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRefreshTaskParam.swift; sourceTree = "<group>"; };
 		CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAPIConfig.swift; sourceTree = "<group>"; };
 		CE95747F1D3216BC00504D52 /* ServiceConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceConstants.swift; sourceTree = "<group>"; };
@@ -279,6 +290,7 @@
 		CEF2CF441D83F11200131EAE /* UserProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		CEF2CF471D840D7B00131EAE /* MediaPreviewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPreviewContainer.swift; sourceTree = "<group>"; };
 		CEF2CF491D84F98200131EAE /* BannerImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerImageView.swift; sourceTree = "<group>"; };
+		CEF53C4F1D8FC40B0032F434 /* LoadMoreFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadMoreFooter.xib; sourceTree = "<group>"; };
 		F33C08D23C1DF70E405B5B09 /* Pods_Twidere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twidere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8A574B1651642A3BEEC8AAE /* Pods-TwidereTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwidereTests/Pods-TwidereTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -440,6 +452,7 @@
 		CE497F931D695912000F16D2 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				CEF53C4D1D8FC3ED0032F434 /* LoadMoreFooter */,
 				CE5993071D82E4CF00653220 /* Account */,
 				CE5993171D83CAA200653220 /* DetailStatus */,
 				CE497FC31D6B1FC9000F16D2 /* Gap */,
@@ -469,6 +482,7 @@
 		CE497FA11D69622F000F16D2 /* StatusesList */ = {
 			isa = PBXGroup;
 			children = (
+				CE7A573D1D917B410027BECE /* Delegates */,
 				CE497FA21D69625A000F16D2 /* StatusesListController.swift */,
 				CE497FA31D69625A000F16D2 /* StatusesListController.xib */,
 			);
@@ -582,7 +596,6 @@
 			children = (
 				CE5993151D83C95800653220 /* StatusViewerController.swift */,
 				CEF2CF441D83F11200131EAE /* UserProfileController.swift */,
-				CE5CA7661D89351D002C1D5A /* UserIndicatorPagesContainer.swift */,
 			);
 			path = Viewers;
 			sourceTree = "<group>";
@@ -593,6 +606,17 @@
 				CE5993181D83CAAA00653220 /* DetailStatusCell.swift */,
 			);
 			path = DetailStatus;
+			sourceTree = "<group>";
+		};
+		CE7A573D1D917B410027BECE /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				CE7A573F1D917B580027BECE /* HomeTimelineStatusesListControllerDelegate.swift */,
+				CE7A57411D917BDB0027BECE /* SingleAccountStatusesListControllerDelegate.swift */,
+				CE7A57431D917E1C0027BECE /* UserTimelineStatusesListControllerDelegate.swift */,
+				CE7A57461D9185DC0027BECE /* UserFavoritesStatusesListControllerDelegate.swift */,
+			);
+			name = Delegates;
 			sourceTree = "<group>";
 		};
 		CE95747B1D32107800504D52 /* Models */ = {
@@ -676,6 +700,8 @@
 				CEF2CF461D840D5C00131EAE /* MediaPreview */,
 				CE497FCB1D6BE625000F16D2 /* QuotedStatus */,
 				CEF2CF491D84F98200131EAE /* BannerImageView.swift */,
+				CE7A573B1D910EB00027BECE /* SegmentedContainerView.swift */,
+				CE7A57481D918A5C0027BECE /* ReselectUISegmentedControl.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -858,6 +884,14 @@
 			path = MediaPreview;
 			sourceTree = "<group>";
 		};
+		CEF53C4D1D8FC3ED0032F434 /* LoadMoreFooter */ = {
+			isa = PBXGroup;
+			children = (
+				CEF53C4F1D8FC40B0032F434 /* LoadMoreFooter.xib */,
+			);
+			name = LoadMoreFooter;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -990,6 +1024,7 @@
 				CE497F901D695835000F16D2 /* Main.storyboard in Resources */,
 				CE497FB81D698C98000F16D2 /* statuses_list.json in Resources */,
 				CE45CAF21D8559780004CC1C /* User.model.yml in Resources */,
+				CEF53C501D8FC40B0032F434 /* LoadMoreFooter.xib in Resources */,
 				CE497FC91D6B2017000F16D2 /* GapCell.xib in Resources */,
 				CE5993131D83B5C200653220 /* Pages.storyboard in Resources */,
 				CE0529F41CF7F35300E06364 /* LaunchScreen.storyboard in Resources */,
@@ -1314,19 +1349,23 @@
 				CE9574981D33D87200504D52 /* NetworkPreferencesController.swift in Sources */,
 				CEA2E2C51D37C2590095BC57 /* ComposeLocationController.swift in Sources */,
 				CE45CA861D85416C0004CC1C /* Status.swift in Sources */,
+				CE7A57441D917E1C0027BECE /* UserTimelineStatusesListControllerDelegate.swift in Sources */,
 				CE5993101D83901B00653220 /* MediaItem.swift in Sources */,
 				CE497FB31D698B1B000F16D2 /* UsersListController.swift in Sources */,
 				CE45CA871D85416C0004CC1C /* User.swift in Sources */,
 				CE497FA41D69625A000F16D2 /* StatusesListController.swift in Sources */,
 				CEDC3B261D7D9FE70082A8BA /* GetStatusesTask.swift in Sources */,
+				CE7A57421D917BDB0027BECE /* SingleAccountStatusesListControllerDelegate.swift in Sources */,
 				CE2903EC1D4F200A0056D0E2 /* UserExtensions.swift in Sources */,
 				CEA2E2D31D3B42180095BC57 /* AccountsManagerController.swift in Sources */,
 				CE497FBE1D6B01D1000F16D2 /* NSDateExtensions.swift in Sources */,
+				CE7A57401D917B580027BECE /* HomeTimelineStatusesListControllerDelegate.swift in Sources */,
 				CE497FC81D6B2017000F16D2 /* GapCell.swift in Sources */,
 				CE4F6D851D86EDA50064DA14 /* SpanItem+ObjectMapper.swift in Sources */,
 				CE4F6D911D878BB40064DA14 /* UserKey+Transform.swift in Sources */,
 				CE4F6D821D86D9330064DA14 /* Status+ObjectMapper.swift in Sources */,
 				CED41F411D30E6B80089E0B6 /* Endpoint.swift in Sources */,
+				CE7A57491D918A5C0027BECE /* ReselectUISegmentedControl.swift in Sources */,
 				CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */,
 				CEDC3B211D7D87F80082A8BA /* SQLite+UserVersion.swift in Sources */,
 				CE497F9D1D695F79000F16D2 /* UIImageViewExtension.swift in Sources */,
@@ -1335,7 +1374,6 @@
 				CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */,
 				CED41F481D3147460089E0B6 /* APIEditorController.swift in Sources */,
 				CE59931B1D83CAE900653220 /* ViewSizeUtils.swift in Sources */,
-				CE5CA7671D89351D002C1D5A /* UserIndicatorPagesContainer.swift in Sources */,
 				CE45CA881D85416C0004CC1C /* Account.swift in Sources */,
 				CE9574871D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift in Sources */,
 				CEA2E2C11D379CD90095BC57 /* CoreLocationExtensions.swift in Sources */,
@@ -1351,6 +1389,7 @@
 				CEBED5FB1D4C86C700619D1C /* BackgroundOperationService.swift in Sources */,
 				CEA2E2B11D3681FD0095BC57 /* ComposeController.swift in Sources */,
 				CE9574851D32221A00504D52 /* RestClient.swift in Sources */,
+				CE7A57471D9185DC0027BECE /* UserFavoritesStatusesListControllerDelegate.swift in Sources */,
 				CED41F2F1D2FF7C80089E0B6 /* HomeController.swift in Sources */,
 				CED41F431D30E6E40089E0B6 /* Authorization.swift in Sources */,
 				CEA2E2CD1D3A732C0095BC57 /* AccountUtils.swift in Sources */,
@@ -1381,6 +1420,7 @@
 				CE497F991D6959B0000F16D2 /* StatusCell.swift in Sources */,
 				CE4B1A9D1D7172F00017CB85 /* Status+Value.swift in Sources */,
 				CE497FA91D697CEA000F16D2 /* ConvertUtils.swift in Sources */,
+				CE7A573C1D910EB00027BECE /* SegmentedContainerView.swift in Sources */,
 				CE4F6D801D86D9330064DA14 /* User+ObjectMapper.swift in Sources */,
 				CE779F2A1D8563B60053B5C7 /* Status+SQLite.swift in Sources */,
 			);
@@ -1526,12 +1566,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A351F2523CA6229EF79900FD /* Pods-Twidere.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Twidere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -debug-time-function-bodies";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.Twidere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Twidere/Twidere-Bridging-Header.h";
@@ -1544,12 +1585,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6B7616E89DDF2FDDCF64DCCF /* Pods-Twidere.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Twidere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -debug-time-function-bodies";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.Twidere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Twidere/Twidere-Bridging-Header.h";

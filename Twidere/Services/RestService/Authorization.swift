@@ -110,8 +110,7 @@ class OAuthAuthorization: Authorization {
         encodeParams.sort { (l, r) -> Bool in
             return l.0 < r.0
         }
-        return encodeParams;
-        
+        return encodeParams
     }
     
     fileprivate func generateOAuthSignature(_ method: String, url: String, oauthNonce: String, timestamp: UInt64, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: Any]?) -> String {
@@ -142,9 +141,9 @@ class OAuthAuthorization: Authorization {
         let paramsString = oauthParams.joined(separator: "&")
         let signingKey: String
         if (oauthToken != nil) {
-            signingKey = encodeOAuth(consumerSecret) + "&" + encodeOAuth(oauthToken!.oauthTokenSecret);
+            signingKey = encodeOAuth(consumerSecret) + "&" + encodeOAuth(oauthToken!.oauthTokenSecret)
         } else {
-            signingKey = encodeOAuth(consumerSecret) + "&";
+            signingKey = encodeOAuth(consumerSecret) + "&"
         }
         let signingKeyBytes = signingKey.utf8.map{$0}
         

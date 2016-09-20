@@ -42,10 +42,23 @@ class Status {
         var hashtags: [HashtagSpanItem]?
         var media: [MediaItem]?
         var displayRange: [Int]?
+        var inReplyTo: InReplyTo?
         // Append body content
     
         // Sub models
-    
+            class InReplyTo {
+            
+                // Fields
+                var statusId: String!
+                var userKey: UserKey!
+                var userName: String?
+                var userScreenName: String!
+                // Append body content
+            
+                // Sub models
+            
+            
+            }
     
     }
 

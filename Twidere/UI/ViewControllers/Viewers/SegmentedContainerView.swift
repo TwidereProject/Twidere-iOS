@@ -8,65 +8,177 @@
 
 import UIKit
 import MXParallaxHeader
+import MXPagerView
 
-class SegmentedContainerView: UIView {
-
-    var dataSource: SegmentedContainerViewDataSource!
+class SegmentedContainerView: UIView, MXPagerViewDataSource {
     
-    var contentView: MXScrollView
-    var segmentControl: UISegmentedControl
+    var dataSource: SegmentedContainerViewDataSource! {
+        didSet {
+            reloadData()
+        }
+    }
+    
+    var delegate: SegmentedContainerViewDelegate! {
+        didSet { self.contentView.delegate = delegate }
+    }
+    
+    var contentOffset: CGPoint {
+        var offset = self.contentView.contentOffset
+        offset.y += self.contentView.contentInset.top
+        return offset
+    }
+    
+    var contentDividerColor: UIColor? {
+        get { return self.dividerView.backgroundColor }
+        set { self.dividerView.backgroundColor = newValue }
+    }
+    
+    var contentDividerSize: CGFloat = 0
+    
+    private var contentView: MXScrollView
+    private var segmentedControl: ReselectUISegmentedControl
+    private var dividerView: UIView
+    private var pagerView: MXPagerView
+    
+    var parallaxHeader: MXParallaxHeader {
+        return contentView.parallaxHeader
+    }
     
     required init?(coder aDecoder: NSCoder) {
         self.contentView = MXScrollView()
-        self.segmentControl = UISegmentedControl()
-
+        self.segmentedControl = ReselectUISegmentedControl()
+        self.dividerView = UIView()
+        self.pagerView = MXPagerView()
+        
         super.init(coder: aDecoder)
         
         self.addSubview(self.contentView)
-        contentView.addSubview(self.segmentControl)
+        contentView.addSubview(self.pagerView)
+        contentView.addSubview(self.segmentedControl)
+        contentView.addSubview(self.dividerView)
+        
+        self.segmentedControl.isEnabled = true
+        self.segmentedControl.addTarget(self, action: #selector(self.segmentSelectionChanged), for: .valueChanged)
+        self.segmentedControl.reselectAction = self.segmentSectionReselected
+        
+        self.pagerView.dataSource = self
+        self.pagerView.isScrollEnabled = false
     }
     
     override func layoutSubviews() {
-        // Layout content view
-        var frame = self.bounds;
+        layoutContentView()
+        layoutSegmentedControl()
+        layoutDividerView()
+        layoutViewContainer()
+    }
+    
+    func layoutContentView() {
         
-        // Set origin to (0, 0)
+        // Use superview size and set origin to (0, 0)
+        var frame = self.bounds
         frame.origin = CGPoint.zero
+        
         self.contentView.frame = frame
         self.contentView.contentSize = self.contentView.frame.size
         self.contentView.isScrollEnabled = self.contentView.parallaxHeader.view != nil
         self.contentView.contentInset = UIEdgeInsetsMake(self.contentView.parallaxHeader.height, 0, 0, 0)
+    }
+    
+    func layoutSegmentedControl() {
+        var frame = self.bounds
         
+        frame.origin.x = 8
+        frame.origin.y = 8
         
-        frame = contentView.bounds
+        frame.size.width -= 8
+        frame.size.width -= 8
+        frame.size.height = self.segmentedControl.intrinsicContentSize.height
         
-        // Set origin to (0, 0)
-        frame.insetBy(dx: 16, dy: 16)
+        self.segmentedControl.frame = frame
+    }
+    
+    func layoutDividerView() {
+        var frame = self.bounds
         
-        frame.size = segmentControl.sizeThatFits(frame.size)
+        frame.origin = CGPoint.zero
         
-        segmentControl.frame = frame
+        frame.origin.y = self.segmentedControl.intrinsicContentSize.height
+        frame.origin.y += 8
+        frame.origin.y += 8
+        
+        frame.size.height = contentDividerSize
+        
+        self.dividerView.frame = frame
+    }
+    
+    func layoutViewContainer() {
+        var frame = self.bounds
+        
+        frame.origin = CGPoint.zero
+        
+        frame.origin.y = contentDividerSize
+        frame.origin.y += self.segmentedControl.intrinsicContentSize.height
+        frame.origin.y += 8
+        frame.origin.y += 8
+        
+        frame.size.height -= frame.origin.y
+        frame.size.height -= self.contentView.parallaxHeader.minimumHeight
+        
+        self.pagerView.frame = frame
+    }
+    
+    func switchTo(index: Int) {
+        pagerView.showPage(at: index, animated: false)
     }
     
     func reloadData() {
-        let count = dataSource.numberOfViewControllers(in: self)
+        let count = dataSource.numberOfViews(in: self)
         
-        segmentControl.removeAllSegments()
+        segmentedControl.removeAllSegments()
         
         for idx in 0..<count {
-            let title = dataSource.segmentedContainer(self, titleAt: idx)
-            segmentControl.insertSegment(withTitle: title, at: segmentControl.numberOfSegments, animated: false)
+            let title = dataSource.segmentedContainer(self, titleFor: idx)
+            segmentedControl.insertSegment(withTitle: title, at: segmentedControl.numberOfSegments, animated: false)
+        }
+        pagerView.reloadData()
+        
+        let idx = min(max(0, segmentedControl.selectedSegmentIndex), count - 1)
+        
+        if idx < count {
+            switchTo(index: idx)
+            segmentedControl.selectedSegmentIndex = idx
         }
     }
     
+    func numberOfPages(in pagerView: MXPagerView) -> Int {
+        return dataSource.numberOfViews(in: self)
+    }
+    
+    func pagerView(_ pagerView: MXPagerView, viewForPageAt index: Int) -> UIView? {
+        return dataSource.segmentedContainer(self, viewFor: index)
+    }
+    
+    @objc private func segmentSelectionChanged() {
+        switchTo(index: segmentedControl.selectedSegmentIndex)
+    }
+    
+    @objc private func segmentSectionReselected() {
+        delegate.segmentedContainer?(self, didReselectedAt: segmentedControl.selectedSegmentIndex)
+    }
 }
 
 protocol SegmentedContainerViewDataSource {
     
-    func numberOfViewControllers(in tableView: SegmentedContainerView) -> Int
+    func numberOfViews(in containerView: SegmentedContainerView) -> Int
     
-    func segmentedContainer(_ containerView: SegmentedContainerView, viewControllerAt index: Int) -> UIViewController
+    func segmentedContainer(_ containerView: SegmentedContainerView, viewFor index: Int) -> UIView
     
-    func segmentedContainer(_ containerView: SegmentedContainerView, titleAt index: Int) -> String
+    func segmentedContainer(_ containerView: SegmentedContainerView, titleFor index: Int) -> String
+    
+}
+
+@objc protocol SegmentedContainerViewDelegate: MXScrollViewDelegate {
+    
+    @objc optional func segmentedContainer(_ containerView: SegmentedContainerView, didReselectedAt index: Int)
     
 }

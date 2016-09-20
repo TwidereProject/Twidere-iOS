@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyUserDefaults
+import SQLite
 
 func defaultAccount() throws -> Account? {
 //    let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
@@ -22,7 +23,11 @@ func allAccounts() throws -> [Account] {
     return try db.prepare(accountsTable).map { Account(row: $0) }
 }
 
-//func getAccount(key: String) throws -> Account? {
-//    let db = (UIApplication.sharedApplication().delegate as! AppDelegate).sqliteDatabase
-//    return try db.prepare(accountsTable.filter(Expression<Bool>)).first
-//}
+func getAccount(forKey key: UserKey) -> Account? {
+    let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
+    let query = accountsTable.filter(Account.RowIndices.key == key).limit(1)
+    if let row = try! db.prepare(query).first{ _ in true } {
+        return Account(row: row)
+    }
+    return nil
+}

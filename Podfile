@@ -29,6 +29,8 @@ target 'Twidere' do
   pod 'AttributedLabel', :git => 'https://github.com/KyoheiG3/AttributedLabel.git', :tag => '0.5.0' # Swift 3
   pod 'KDInteractiveNavigationController', :git => 'https://github.com/kingiol/KDInteractiveNavigationController.git' # Swift 3
   pod 'ObjectMapper', '~> 2.0' # Swift 3
+  pod 'MXPagerView', '~> 0.1.3'
+  pod 'MXParallaxHeader', '~> 0.5.2'
 end
 
 target 'TwidereTests' do
