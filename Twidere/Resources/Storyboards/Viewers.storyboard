@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -222,30 +222,14 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="MatchParent"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <visualEffectView contentMode="scaleToFill" id="Fio-Ue-4VW">
-                                <frame key="frameInset" height="64"/>
+                            <navigationBar opaque="NO" contentMode="scaleToFill" misplaced="YES" id="eFg-Ip-0eP">
+                                <frame key="frameInset" minY="22" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="lSl-vN-Dm7">
-                                    <frame key="frameInset"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <navigationBar opaque="NO" contentMode="scaleToFill" id="eFg-Ip-0eP">
-                                            <frame key="frameInset" minY="20" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <items>
-                                                <navigationItem title="User" id="3m5-3O-dRV"/>
-                                            </items>
-                                        </navigationBar>
-                                    </subviews>
-                                    <edgeInsets key="layoutMargins" top="20" left="0.0" bottom="0.0" right="0.0"/>
-                                </view>
-                                <blurEffect style="light"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
-                                </userDefinedRuntimeAttributes>
-                            </visualEffectView>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <items>
+                                    <navigationItem title="User" id="3m5-3O-dRV"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <userDefinedRuntimeAttributes>
@@ -255,15 +239,15 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="blurredBannerView" destination="rnc-ao-He1" id="4bC-qP-bX7"/>
                         <outlet property="descriptionView" destination="30c-If-g24" id="adE-Ez-wkt"/>
                         <outlet property="navBar" destination="eFg-Ip-0eP" id="cC0-Ao-SJc"/>
+                        <outlet property="profileBannerContainer" destination="AUv-lq-axA" id="L6X-pz-L58"/>
                         <outlet property="profileBannerView" destination="Pad-7j-3yT" id="7bc-p6-kKS"/>
                         <outlet property="profileContainer" destination="gpl-ko-XjS" id="Yak-Je-9gX"/>
                         <outlet property="profileImageView" destination="u3M-nX-Zeo" id="eeH-jL-1q2"/>
                         <outlet property="segmentedContainerView" destination="JrR-Ok-vNf" id="fuO-bT-fVk"/>
                         <outlet property="userButtonsBackground" destination="zIU-On-WWQ" id="dAj-rB-kTU"/>
-                        <outlet property="visualEffectContentView" destination="lSl-vN-Dm7" id="b0U-mo-nFN"/>
-                        <outlet property="visualEffectView" destination="Fio-Ue-4VW" id="5hp-z4-kp1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gME-Ca-Cbn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -271,19 +255,29 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Pad-7j-3yT" customClass="BannerImageView" customModule="Twidere" customModuleProvider="target">
+                        <view contentMode="scaleToFill" misplaced="YES" id="AUv-lq-axA" customClass="ProfileBannerContainer" customModule="Twidere" customModuleProvider="target">
                             <frame key="frameInset" width="375" height="141.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Pad-7j-3yT">
+                                    <frame key="frameInset" width="375" height="141.5"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="rnc-ao-He1">
+                                    <frame key="frameInset" width="375" height="142"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="profileBannerView"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="layoutGravity" value="Center"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTop" value="YES"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="profileBannerContainer"/>
                             </userDefinedRuntimeAttributes>
-                        </imageView>
+                        </view>
                         <view opaque="NO" contentMode="scaleToFill" id="zIU-On-WWQ">
                             <frame key="frameInset" minX="-1.5" minY="137.5" width="377" height="48"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -293,7 +287,7 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="StaticSize"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="userButtonsBackground"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="profileBannerView"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="profileBannerContainer"/>
                             </userDefinedRuntimeAttributes>
                         </view>
                         <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="u3M-nX-Zeo">

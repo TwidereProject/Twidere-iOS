@@ -27,10 +27,10 @@ target 'Twidere' do
   pod 'ALSLayouts', '~> 2.0' # Swift 3
   pod 'ThumborURL', '0.0.4' # Obj-C
   pod 'AttributedLabel', :git => 'https://github.com/KyoheiG3/AttributedLabel.git', :tag => '0.5.0' # Swift 3
-  pod 'KDInteractiveNavigationController', :git => 'https://github.com/kingiol/KDInteractiveNavigationController.git' # Swift 3
   pod 'ObjectMapper', '~> 2.0' # Swift 3
   pod 'MXPagerView', '~> 0.1.3'
   pod 'MXParallaxHeader', '~> 0.5.2'
+  pod 'FXBlurView', '~> 1.6'
 end
 
 target 'TwidereTests' do

@@ -20,6 +20,7 @@ class HomeController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
         
         self.accountProfileImageView.layer.cornerRadius = self.accountProfileImageView.frame.size.width / 2

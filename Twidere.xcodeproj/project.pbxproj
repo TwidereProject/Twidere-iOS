@@ -52,7 +52,7 @@
 		CE497FB81D698C98000F16D2 /* statuses_list.json in Resources */ = {isa = PBXBuildFile; fileRef = CE497FB61D698C98000F16D2 /* statuses_list.json */; };
 		CE497FBA1D6A8A65000F16D2 /* UserKey+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497FB91D6A8A65000F16D2 /* UserKey+Value.swift */; };
 		CE497FBC1D6AF71E000F16D2 /* StatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE497FBB1D6AF71E000F16D2 /* StatusCell.xib */; };
-		CE497FBE1D6B01D1000F16D2 /* NSDateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497FBD1D6B01D1000F16D2 /* NSDateExtensions.swift */; };
+		CE497FBE1D6B01D1000F16D2 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497FBD1D6B01D1000F16D2 /* DateExtensions.swift */; };
 		CE497FC81D6B2017000F16D2 /* GapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497FC61D6B2017000F16D2 /* GapCell.swift */; };
 		CE497FC91D6B2017000F16D2 /* GapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE497FC71D6B2017000F16D2 /* GapCell.xib */; };
 		CE497FCD1D6BE643000F16D2 /* QuotedStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497FCC1D6BE643000F16D2 /* QuotedStatusView.swift */; };
@@ -128,6 +128,7 @@
 		CEDC3B281D7DAE2C0082A8BA /* RefreshTaskParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC3B271D7DAE2C0082A8BA /* RefreshTaskParam.swift */; };
 		CEDC3B2A1D7DB04F0082A8BA /* Paging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC3B291D7DB04F0082A8BA /* Paging.swift */; };
 		CEDC3B321D7E5FB30082A8BA /* DatabaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC3B311D7E5FB30082A8BA /* DatabaseConstants.swift */; };
+		CEDEE3F51D9270BA00001BE8 /* UIRefreshControlExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEE3F41D9270BA00001BE8 /* UIRefreshControlExtension.swift */; };
 		CEDFEA6D1D4F4BF600E1F8B8 /* Status+MicroBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFEA6C1D4F4BF600E1F8B8 /* Status+MicroBlog.swift */; };
 		CEEFD0C41D810B6B007F44A6 /* AttributedLabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEFD0C31D810B6B007F44A6 /* AttributedLabelExtensions.swift */; };
 		CEF2CF451D83F11200131EAE /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2CF441D83F11200131EAE /* UserProfileController.swift */; };
@@ -209,7 +210,7 @@
 		CE497FB61D698C98000F16D2 /* statuses_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = statuses_list.json; sourceTree = "<group>"; };
 		CE497FB91D6A8A65000F16D2 /* UserKey+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserKey+Value.swift"; sourceTree = "<group>"; };
 		CE497FBB1D6AF71E000F16D2 /* StatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusCell.xib; sourceTree = "<group>"; };
-		CE497FBD1D6B01D1000F16D2 /* NSDateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtensions.swift; sourceTree = "<group>"; };
+		CE497FBD1D6B01D1000F16D2 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		CE497FC61D6B2017000F16D2 /* GapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GapCell.swift; sourceTree = "<group>"; };
 		CE497FC71D6B2017000F16D2 /* GapCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GapCell.xib; sourceTree = "<group>"; };
 		CE497FCC1D6BE643000F16D2 /* QuotedStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotedStatusView.swift; sourceTree = "<group>"; };
@@ -285,6 +286,7 @@
 		CEDC3B271D7DAE2C0082A8BA /* RefreshTaskParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTaskParam.swift; sourceTree = "<group>"; };
 		CEDC3B291D7DB04F0082A8BA /* Paging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paging.swift; sourceTree = "<group>"; };
 		CEDC3B311D7E5FB30082A8BA /* DatabaseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseConstants.swift; sourceTree = "<group>"; };
+		CEDEE3F41D9270BA00001BE8 /* UIRefreshControlExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRefreshControlExtension.swift; sourceTree = "<group>"; };
 		CEDFEA6C1D4F4BF600E1F8B8 /* Status+MicroBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Status+MicroBlog.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CEEFD0C31D810B6B007F44A6 /* AttributedLabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedLabelExtensions.swift; sourceTree = "<group>"; };
 		CEF2CF441D83F11200131EAE /* UserProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
@@ -742,9 +744,10 @@
 				CEEFD0C31D810B6B007F44A6 /* AttributedLabelExtensions.swift */,
 				CEA2E2C01D379CD90095BC57 /* CoreLocationExtensions.swift */,
 				CEA2E2CE1D3A779B0095BC57 /* ImageViewExtensions.swift */,
-				CE497FBD1D6B01D1000F16D2 /* NSDateExtensions.swift */,
+				CE497FBD1D6B01D1000F16D2 /* DateExtensions.swift */,
 				CEDC3B201D7D87F80082A8BA /* SQLite+UserVersion.swift */,
 				CE4B1AA41D719E160017CB85 /* StringExtensions.swift */,
+				CEDEE3F41D9270BA00001BE8 /* UIRefreshControlExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1341,6 +1344,7 @@
 				CE9574961D33B71B00504D52 /* DefaultsKeys.swift in Sources */,
 				CEDC3B2A1D7DB04F0082A8BA /* Paging.swift in Sources */,
 				CE95748F1D33871E00504D52 /* PasswordSignInController.swift in Sources */,
+				CEDEE3F51D9270BA00001BE8 /* UIRefreshControlExtension.swift in Sources */,
 				CE45CAF51D855AE10004CC1C /* User+Value.swift in Sources */,
 				CE779F361D858B210053B5C7 /* User+MicroBlog.swift in Sources */,
 				CE5993191D83CAAA00653220 /* DetailStatusCell.swift in Sources */,
@@ -1358,7 +1362,7 @@
 				CE7A57421D917BDB0027BECE /* SingleAccountStatusesListControllerDelegate.swift in Sources */,
 				CE2903EC1D4F200A0056D0E2 /* UserExtensions.swift in Sources */,
 				CEA2E2D31D3B42180095BC57 /* AccountsManagerController.swift in Sources */,
-				CE497FBE1D6B01D1000F16D2 /* NSDateExtensions.swift in Sources */,
+				CE497FBE1D6B01D1000F16D2 /* DateExtensions.swift in Sources */,
 				CE7A57401D917B580027BECE /* HomeTimelineStatusesListControllerDelegate.swift in Sources */,
 				CE497FC81D6B2017000F16D2 /* GapCell.swift in Sources */,
 				CE4F6D851D86EDA50064DA14 /* SpanItem+ObjectMapper.swift in Sources */,

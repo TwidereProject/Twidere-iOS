@@ -7,26 +7,27 @@
 //
 
 import UIKit
-import KDInteractiveNavigationController
 import ALSLayouts
 import AttributedLabel
 import MXParallaxHeader
+import FXBlurView
 
 class UserProfileController: UIViewController, UINavigationBarDelegate, SegmentedContainerViewDelegate, SegmentedContainerViewDataSource {
     
     @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var profileBannerContainer: ProfileBannerContainer!
     @IBOutlet weak var profileBannerView: UIImageView!
+    @IBOutlet weak var blurredBannerView: UIImageView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileContainer: ALSRelativeLayout!
     @IBOutlet weak var userButtonsBackground: UIView!
     @IBOutlet weak var descriptionView: AttributedLabel!
-    @IBOutlet weak var visualEffectView: UIView!
-    @IBOutlet weak var visualEffectContentView: UIView!
-    
     @IBOutlet weak var segmentedContainerView: SegmentedContainerView!
     
     fileprivate var userInfoTags: [[UserInfoTag]]? = nil
     fileprivate var viewControllers: [UIViewController?] = [UIViewController?](repeating: nil, count: 3)
+    fileprivate var profileImageExceddedSize: CGFloat = CGFloat.nan
+    fileprivate var profileImageSize: CGFloat = CGFloat.nan
     
     var user: User! {
         didSet {
@@ -37,12 +38,13 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     }
     
     override func viewDidLoad() {
-        interactiveNavigationBarHidden = true
+        super.viewDidLoad()
         navBar.setBackgroundImage(UIImage(), for: .default)
         navBar.shadowImage = UIImage()
         navBar.delegate = self
         
         profileBannerView.contentMode = .scaleAspectFill
+        blurredBannerView.contentMode = .scaleAspectFill
         
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.makeCircular()
@@ -60,6 +62,8 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         
         self.segmentedContainerView.parallaxHeader.contentView.layoutMargins = UIEdgeInsets.zero
         
+        self.blurredBannerView.alpha = 0
+        
         descriptionView.font = UIFont.systemFont(ofSize: 15)
         
         if let viewControllers = self.navigationController?.viewControllers {
@@ -75,7 +79,21 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController!.setNavigationBarHidden(true, animated: animated)
+        if let recognizer = self.navigationController?.interactivePopGestureRecognizer {
+            recognizer.isEnabled = true
+            if let delegate = navigationController as? UIGestureRecognizerDelegate {
+                recognizer.delegate = delegate
+            }
+        }
+        
         display()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController!.setNavigationBarHidden(false, animated: animated)
     }
     
     override func viewWillLayoutSubviews() {
@@ -83,27 +101,41 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         let statusBarHeight = app.isStatusBarHidden ? 0 : app.statusBarFrame.height
         let navBarHeight = self.navigationController!.navigationBar.frame.height
         
-        navBar.frame.origin.y = statusBarHeight
-        navBar.frame.size.height = navBarHeight
-        visualEffectView.frame.size.height = statusBarHeight + navBarHeight
-        visualEffectContentView.frame.size = visualEffectView.frame.size
+        navBar.layoutParams.marginTop = statusBarHeight
         
         self.segmentedContainerView.parallaxHeader.minimumHeight = statusBarHeight + navBarHeight
-
+        
         self.profileContainer.frame = CGRect.zero
-
+        
         self.profileContainer.frame.size = self.profileContainer.sizeThatFits(self.segmentedContainerView.frame.size)
         
         self.segmentedContainerView.parallaxHeader.height = self.profileContainer.frame.height
-
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.profileImageSize = profileImageView.frame.height
+        self.profileImageExceddedSize = profileImageSize - userButtonsBackground.frame.height
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     func display() {
         guard let user = self.user else {
             return
+        
         }
+        navBar.tintColor = UIColor.white
+        navBar.titleTextAttributes?[NSForegroundColorAttributeName] = UIColor.white
         navBar.items?.last?.title = user.name
         profileBannerView.displayImage(user.profileBannerUrlForSize(Int(self.view.frame.width)), completed: { image, error, cacheType, url in
+            if let image = image {
+                self.blurredBannerView.image = image.blurredImage(withRadius: 10, iterations: 20, tintColor: UIColor.clear)
+            } else {
+                self.blurredBannerView.image = nil
+            }
         })
         profileImageView.displayImage(user.profileImageUrlForSize(.original))
         descriptionView.text = user.descriptionDisplay
@@ -150,20 +182,51 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     }
     
     func updateBannerScaleTransfom() {
-        let topOffset = segmentedContainerView.contentOffset.y
+        guard let navigationController = self.navigationController else {
+            return
+        }
         
-        var headerTransform = CATransform3DIdentity
+        let topOffset = segmentedContainerView.contentOffset.y
+        let bannerHeight = profileBannerContainer.bounds.height
+        
+        
+        let app = UIApplication.shared
+        let statusBarHeight = app.isStatusBarHidden ? 0 : app.statusBarFrame.height
+        let navBarHeight = navigationController.navigationBar.frame.height
+        
+        var bannerTransform = CATransform3DIdentity
+        var profileImageTransform = CATransform3DIdentity
+        
         if (topOffset < 0) {
             
-            let headerScaleFactor: CGFloat = max(0, -topOffset) / profileBannerView.bounds.height
-            let headerSizevariation = ((profileBannerView.bounds.height * (1.0 + headerScaleFactor)) - profileBannerView.bounds.height)/2
+            let headerScaleFactor: CGFloat = max(0, -topOffset) / bannerHeight
+            let headerSizevariation = ((bannerHeight * (1.0 + headerScaleFactor)) - bannerHeight) / 2
             
-            headerTransform = CATransform3DTranslate(headerTransform, 0, headerSizevariation + topOffset, 0)
-            headerTransform = CATransform3DScale(headerTransform, 1.0 + headerScaleFactor, 1.0 + headerScaleFactor, 0)
+            bannerTransform = CATransform3DTranslate(bannerTransform, 0, headerSizevariation + topOffset, 0)
+            bannerTransform = CATransform3DScale(bannerTransform, 1.0 + headerScaleFactor, 1.0 + headerScaleFactor, 0)
+            
+            self.blurredBannerView.alpha = min(1, -topOffset / 30)
+        } else if (topOffset > (bannerHeight - statusBarHeight - navBarHeight)) {
+            bannerTransform = CATransform3DTranslate(bannerTransform, 0, topOffset - (bannerHeight - statusBarHeight - navBarHeight), 1)
+            let diff = profileImageExceddedSize
+            let scaleFactor = diff / profileImageSize
+            profileImageTransform = CATransform3DScale(profileImageTransform, 1.0 - scaleFactor, 1.0 - scaleFactor, 0)
+            profileImageTransform = CATransform3DTranslate(profileImageTransform, -diff, diff, 0)
+            // Show blurred banner
+            self.blurredBannerView.alpha = 1
+        } else if (topOffset > (bannerHeight - statusBarHeight - navBarHeight - profileImageExceddedSize)) {
+            let diff = topOffset - (bannerHeight - statusBarHeight - navBarHeight - profileImageExceddedSize)
+            let scaleFactor = diff / profileImageSize
+            profileImageTransform = CATransform3DScale(profileImageTransform, 1.0 - scaleFactor, 1.0 - scaleFactor, 0)
+            profileImageTransform = CATransform3DTranslate(profileImageTransform, -diff, diff, 0)
+            
+            self.blurredBannerView.alpha = min(1, diff / 10)
+        } else {
+            self.blurredBannerView.alpha = 0
         }
         // Apply Transformations
-        profileBannerView.layer.transform = headerTransform
-        
+        profileBannerContainer.layer.transform = bannerTransform
+        profileImageView.layer.transform = profileImageTransform
     }
     
     func numberOfViews(in containerView: SegmentedContainerView) -> Int {
@@ -194,8 +257,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
                 let vc = pages.instantiateViewController(withIdentifier: "StatusesList") as! StatusesListController
                 let account = getAccount(forKey: user.accountKey)!
                 let statusesDelegate = UserTimelineStatusesListControllerDelegate(account: account, userKey: user.key, screenName: user.screenName)
-                statusesDelegate.refreshEnabled = false
-                statusesDelegate.fillEmptyEndSpace = true
+                statusesDelegate.refreshEnabled = true
                 vc.delegate = statusesDelegate
                 newController = vc
             case 1:
@@ -206,8 +268,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
                 let vc = pages.instantiateViewController(withIdentifier: "StatusesList") as! StatusesListController
                 let account = getAccount(forKey: user.accountKey)!
                 let statusesDelegate = UserFavoritesStatusesListControllerDelegate(account: account, userKey: user.key, screenName: user.screenName)
-                statusesDelegate.refreshEnabled = false
-                statusesDelegate.fillEmptyEndSpace = true
+                statusesDelegate.refreshEnabled = true
                 vc.delegate = statusesDelegate
                 newController = vc
             default:

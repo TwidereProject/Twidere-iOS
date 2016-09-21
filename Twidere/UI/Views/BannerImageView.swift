@@ -8,10 +8,18 @@
 
 import UIKit
 
-class BannerImageView: UIImageView {
+class ProfileBannerContainer: UIView {
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         return CGSize(width: size.width, height: size.width / 2)
+    }
+    
+    override func layoutSubviews() {
+        var frame = self.frame
+        frame.origin = CGPoint.zero
+        for subview in subviews {
+            subview.frame = frame
+        }
     }
     
 }

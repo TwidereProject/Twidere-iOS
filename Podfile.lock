@@ -5,11 +5,11 @@ PODS:
   - AttributedLabel (0.5.0)
   - CryptoSwift (0.6.0)
   - DateTools (1.7.0)
+  - FXBlurView (1.6.4)
   - IQKeyboardManagerSwift (4.0.6)
   - JDStatusBarNotification (1.5.4)
   - JVFloatLabeledTextField (1.1.1)
   - Kanna (2.0.0)
-  - KDInteractiveNavigationController (0.1.2)
   - MXPagerView (0.1.3)
   - MXParallaxHeader (0.5.2)
   - ObjectMapper (2.0.0)
@@ -48,11 +48,11 @@ DEPENDENCIES:
   - AttributedLabel (from `https://github.com/KyoheiG3/AttributedLabel.git`, tag `0.5.0`)
   - CryptoSwift (from `https://github.com/krzyzanowskim/CryptoSwift.git`, tag `0.6.0`)
   - DateTools (~> 1.7.0)
+  - FXBlurView (~> 1.6)
   - IQKeyboardManagerSwift (from `https://github.com/hackiftekhar/IQKeyboardManager.git`)
   - JDStatusBarNotification (= 1.5.4)
   - JVFloatLabeledTextField (= 1.1.1)
   - Kanna (from `https://github.com/tid-kijyun/Kanna.git`, branch `swift3.0`)
-  - KDInteractiveNavigationController (from `https://github.com/kingiol/KDInteractiveNavigationController.git`)
   - MXPagerView (~> 0.1.3)
   - MXParallaxHeader (~> 0.5.2)
   - ObjectMapper (~> 2.0)
@@ -82,8 +82,6 @@ EXTERNAL SOURCES:
   Kanna:
     :branch: swift3.0
     :git: https://github.com/tid-kijyun/Kanna.git
-  KDInteractiveNavigationController:
-    :git: https://github.com/kingiol/KDInteractiveNavigationController.git
   SQLite.swift:
     :branch: swift3-mariotaku
     :git: https://github.com/stephencelis/SQLite.swift.git
@@ -103,9 +101,6 @@ CHECKOUT OPTIONS:
   Kanna:
     :commit: 109249451c32e14dac541bfbfeaa91b4dcb47a87
     :git: https://github.com/tid-kijyun/Kanna.git
-  KDInteractiveNavigationController:
-    :commit: 767a1fb7a0d0cf951ea1caa5f409640fbda35941
-    :git: https://github.com/kingiol/KDInteractiveNavigationController.git
   SQLite.swift:
     :commit: 8f08796afc608322797a3b699e7d2abcc3e26c0f
     :git: https://github.com/stephencelis/SQLite.swift.git
@@ -120,11 +115,11 @@ SPEC CHECKSUMS:
   AttributedLabel: 5df434efa72fad5a6cf5563b558030fd50fb180d
   CryptoSwift: 4a599b7241b8d3b857d6e2c28867d0bd5d1aae24
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   IQKeyboardManagerSwift: b3015e819559ca76381f87a0833f44d178564603
   JDStatusBarNotification: d47dded0594a50a39c84a2cc5aa356fcf6750d0e
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   Kanna: 8d60d86a3580f7dee732811e5163a5e3e41a32a7
-  KDInteractiveNavigationController: c719bdf18062213315890c4648d37156a621b520
   MXPagerView: db0c020aeada6a0c704f18f8053468560e346982
   MXParallaxHeader: 5070ba8e8af27ec793c0d32ae82cfd2318e59635
   ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
@@ -142,6 +137,6 @@ SPEC CHECKSUMS:
   UIView+FDCollapsibleConstraints: 9357eaf03b4e088263ab74a3b86a382a64ce38dd
   UIView+TouchHighlighting: cedbcd90c965e7b1418c80a04fc8266398a738f1
 
-PODFILE CHECKSUM: 9359c0ce113d2fca4183094ed0bb5c74eae8c7a0
+PODFILE CHECKSUM: 0476d01b885ce52dd18bd46cda38bcd2bb5a4f43
 
 COCOAPODS: 1.1.0.rc.2

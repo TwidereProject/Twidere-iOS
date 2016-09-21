@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import KDInteractiveNavigationController
 
-class HomeRootController: KDInteractiveNavigationController {
+class HomeRootController: UINavigationController, UIGestureRecognizerDelegate {
 
 }

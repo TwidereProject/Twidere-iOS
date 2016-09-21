@@ -11,8 +11,6 @@ import PromiseKit
 
 class SingleAccountStatusesListControllerDelegate: StatusesListControllerDelegate {
     
-    var fillEmptyEndSpace: Bool = false
-    
     var refreshEnabled: Bool = true
     
     var account: Account

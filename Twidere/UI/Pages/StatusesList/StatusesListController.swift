@@ -19,8 +19,6 @@ class StatusesListController: UITableViewController {
         }
     }
     
-    var contentInsetBackup: UIEdgeInsets!
-    
     var delegate: StatusesListControllerDelegate!
     var scrollDelegate: UIScrollViewDelegate!
     
@@ -46,20 +44,22 @@ class StatusesListController: UITableViewController {
         } else {
             refreshControl = nil
         }
-        refreshControl?.beginRefreshing()
-        
-        let opts = LoadOptions()
-        
-        opts.initLoad = true
-        opts.params = SimpleRefreshTaskParam(accounts: delegate.getAccounts())
-        
-        self.contentInsetBackup = self.tableView.contentInset
         
         statuses = nil
         
-        loadStatuses(opts)
+        
+        self.refreshControl?.beginRefreshingManually()
+        
+        let opts = LoadOptions()
+        opts.initLoad = true
+        opts.params = SimpleRefreshTaskParam(accounts: self.delegate.getAccounts())
+        self.loadStatuses(opts)
         
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("viewWillAppear")
     }
     
     func willEnterForeground() {
