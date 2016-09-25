@@ -35,7 +35,7 @@ extension User {
     }
     
     static func getUserKey(_ user: JSON, accountHost: String? = nil) -> UserKey {
-        return UserKey(id: user["id_str"].string ?? user["id"].string!, host: User.getUserHost(user, accountHost: accountHost))
+        return UserKey(id: user["id_str"].string ?? user["id"].stringValue, host: User.getUserHost(user, accountHost: accountHost))
     }
     
     static func getUserHost(_ json: JSON, accountHost: String?) -> String? {

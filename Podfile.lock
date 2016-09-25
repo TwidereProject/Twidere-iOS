@@ -6,6 +6,7 @@ PODS:
   - CryptoSwift (0.6.0)
   - DateTools (1.7.0)
   - FXBlurView (1.6.4)
+  - FXImageView (1.3.5)
   - IQKeyboardManagerSwift (4.0.6)
   - JDStatusBarNotification (1.5.4)
   - JVFloatLabeledTextField (1.1.1)
@@ -49,6 +50,7 @@ DEPENDENCIES:
   - CryptoSwift (from `https://github.com/krzyzanowskim/CryptoSwift.git`, tag `0.6.0`)
   - DateTools (~> 1.7.0)
   - FXBlurView (~> 1.6)
+  - FXImageView (~> 1.3.5)
   - IQKeyboardManagerSwift (from `https://github.com/hackiftekhar/IQKeyboardManager.git`)
   - JDStatusBarNotification (= 1.5.4)
   - JVFloatLabeledTextField (= 1.1.1)
@@ -116,6 +118,7 @@ SPEC CHECKSUMS:
   CryptoSwift: 4a599b7241b8d3b857d6e2c28867d0bd5d1aae24
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
+  FXImageView: 7d84722b37f0afea9a64f12fdd4a6c7f9ecc4b16
   IQKeyboardManagerSwift: b3015e819559ca76381f87a0833f44d178564603
   JDStatusBarNotification: d47dded0594a50a39c84a2cc5aa356fcf6750d0e
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
@@ -137,6 +140,6 @@ SPEC CHECKSUMS:
   UIView+FDCollapsibleConstraints: 9357eaf03b4e088263ab74a3b86a382a64ce38dd
   UIView+TouchHighlighting: cedbcd90c965e7b1418c80a04fc8266398a738f1
 
-PODFILE CHECKSUM: 0476d01b885ce52dd18bd46cda38bcd2bb5a4f43
+PODFILE CHECKSUM: 90b0fcc7ae966ac0e5136c67a444fea7cf1d922b
 
 COCOAPODS: 1.1.0.rc.2

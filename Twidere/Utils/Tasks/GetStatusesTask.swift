@@ -24,7 +24,7 @@ class GetStatusesTask {
         let loadItemLimit = Defaults[.loadItemLimit] ?? defaultLoadItemLimit
         // Try to fetch for all accounts, continue even there are rejected tasks
         return when(fulfilled: accounts.enumerated().map { (i, account) -> Promise<StatusListResponse> in
-            let twitter = account.newMicroblogInstance()
+            let twitter = account.newMicroBlogService()
             let paging = Paging()
             paging.count = loadItemLimit
             

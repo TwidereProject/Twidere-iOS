@@ -12,10 +12,6 @@ import SQLite
 
 class HomeTimelineStatusesListControllerDelegate: StatusesListControllerDelegate {
     
-    var fillEmptyEndSpace: Bool = false
-    
-    var refreshEnabled: Bool = true
-    
     let table = Table("home_statuses")
     
     func getAccounts() -> [Account] {

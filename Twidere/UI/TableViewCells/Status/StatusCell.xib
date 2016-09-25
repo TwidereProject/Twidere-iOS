@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,15 +12,15 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="486"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" userLabel="Content View">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="485.5"/>
+                <frame key="frameInset" width="320" height="485"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view opaque="NO" contentMode="scaleToFill" id="MQJ-bB-t62" customClass="ALSRelativeLayout" customModule="ALSLayouts">
-                        <rect key="frame" x="8" y="8" width="304" height="469.5"/>
+                        <frame key="frameInset" minX="8" minY="8" maxX="8" maxY="7.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="5KQ-xb-nha" userLabel="Profile Image View">
-                                <rect key="frame" x="0.0" y="24" width="40" height="40"/>
+                                <frame key="frameInset" minY="24" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
@@ -33,10 +34,10 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Retweeted by user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="V07-d6-6R9" userLabel="Status Type Label">
-                                <rect key="frame" x="48" y="0.0" width="256" height="15"/>
+                                <frame key="frameInset" minX="48" width="256" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="statusTypeLabel"/>
@@ -51,7 +52,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view opaque="NO" userInteractionEnabled="NO" contentMode="left" id="LKp-da-MGc" userLabel="Name View" customClass="AttributedLabel" customModule="AttributedLabel">
-                                <rect key="frame" x="56" y="23" width="210" height="17"/>
+                                <frame key="frameInset" minX="56" minY="23" width="210" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="statusTypeLabel"/>
@@ -66,10 +67,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="3h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ciw-NL-y95" userLabel="Time View">
-                                <rect key="frame" x="283" y="24" width="21" height="16"/>
+                                <frame key="frameInset" minX="283" minY="24" width="21" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignBaseline" value="nameLabel"/>
@@ -80,7 +81,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" id="2U2-1i-w3g" userLabel="Text View" customClass="AttributedLabel" customModule="AttributedLabel">
-                                <rect key="frame" x="56" y="46" width="248" height="46"/>
+                                <frame key="frameInset" minX="56" minY="46" width="248" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="textLabel"/>
@@ -95,9 +96,9 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" id="FZt-su-LuA" userLabel="Media Preview" customClass="MediaPreviewContainer" customModule="Twidere" customModuleProvider="target">
-                                <rect key="frame" x="56" y="100" width="248" height="128"/>
+                                <frame key="frameInset" minX="56" minY="100" width="248" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="mediaPreview"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="textLabel"/>
@@ -111,11 +112,11 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="xFN-8A-eFZ" userLabel="Quoted View" customClass="ALSLinearLayout" customModule="ALSLayouts">
-                                <rect key="frame" x="56" y="236" width="248" height="221"/>
+                                <frame key="frameInset" minX="56" minY="236" width="248" height="221"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view opaque="NO" userInteractionEnabled="NO" contentMode="left" id="QgV-ep-mVC" userLabel="Quoted Name View" customClass="AttributedLabel" customModule="AttributedLabel">
-                                        <rect key="frame" x="8" y="8" width="240" height="17"/>
+                                        <frame key="frameInset" minX="8" minY="8" width="240" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
@@ -123,7 +124,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="vsy-OI-1yT" userLabel="Quoted Text View" customClass="AttributedLabel" customModule="AttributedLabel">
-                                        <rect key="frame" x="8" y="31" width="240" height="46"/>
+                                        <frame key="frameInset" minX="8" minY="31" width="240" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
@@ -134,9 +135,9 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" id="3Ko-xQ-yxo" userLabel="Quoted Media Preview" customClass="MediaPreviewContainer" customModule="Twidere" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="85" width="240" height="128"/>
+                                        <frame key="frameInset" minX="8" minY="85" width="240" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="quotedMediaPreview"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
@@ -147,7 +148,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
@@ -186,4 +187,9 @@
             <point key="canvasLocation" x="233" y="358"/>
         </tableViewCell>
     </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
 </document>

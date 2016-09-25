@@ -32,7 +32,7 @@ extension Account {
         }
     }
     
-    func newMicroblogInstance(_ domain: String? = "api") -> MicroBlogService {
+    func newMicroBlogService(_ domain: String? = "api") -> MicroBlogService {
         let apiConfig = createAPIConfig()
         let endpoint = apiConfig.createEndpoint(domain)
         let auth = createAuthorization()

@@ -38,6 +38,14 @@ class DetailStatusCell: UITableViewCell {
 
     override func awakeFromNib() {
         userProfileImageView.makeCircular()
+        
+        // border radius
+        quotedView.layer.cornerRadius = 4.0
+        
+        // border
+        quotedView.layer.borderColor = UIColor.lightGray.cgColor
+        quotedView.layer.borderWidth = 0.5
+        
         userNameView.numberOfLines = 1
         timeSourceView.numberOfLines = 1
         fd_enforceFrameLayout = true

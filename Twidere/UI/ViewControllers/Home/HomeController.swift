@@ -74,7 +74,7 @@ class HomeController: UITabBarController {
     @IBAction func accountIconClicked(_ sender: UITapGestureRecognizer) {
         let account = try! defaultAccount()!
         let vc = storyboard!.instantiateViewController(withIdentifier: "AccountProfile") as! UserProfileController
-        vc.user = account.user
+        vc.displayUser(user: account.user, reload: true)
         navigationController?.show(vc, sender: self)
     }
     

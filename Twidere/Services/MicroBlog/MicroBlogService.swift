@@ -22,6 +22,16 @@ class MicroBlogService: RestClient {
         return makeTypedRequest(.get, path: "/account/verify_credentials.json", serializer: MicroBlogService.convertJSON)
     }
     
+    func showUser(id: String) -> Promise<User> {
+        let queries: [String: String] = ["user_id": id]
+        return makeTypedRequest(.get, path: "/users/show.json", queries: queries, serializer: MicroBlogService.convertUser(accountKey))
+    }
+    
+    func showUser(screenName: String) -> Promise<User> {
+        let queries: [String: String] = ["screen_name": screenName]
+        return makeTypedRequest(.get, path: "/users/show.json", queries: queries, serializer: MicroBlogService.convertUser(accountKey))
+    }
+    
     func updateStatus(_ request: UpdateStatusRequest) -> Promise<Status> {
         var forms: [String: Any] = ["status": request.text]
         if (request.mediaIds != nil) {
@@ -132,6 +142,10 @@ class MicroBlogService: RestClient {
             return .success(resp.statusCode)
         }
         return .failure(MicroBlogError.requestError(code: resp?.statusCode ?? -1, message: nil))
+    }
+    
+    static func convertUser(_ accountKey: UserKey) -> DataResponseSerializer<User> {
+        return convertMicroBlogResponse { User(json: JSON(data: $0), accountKey: accountKey) }
     }
     
     static func convertStatus(_ accountKey: UserKey) -> DataResponseSerializer<Status> {

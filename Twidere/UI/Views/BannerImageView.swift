@@ -11,7 +11,7 @@ import UIKit
 class ProfileBannerContainer: UIView {
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        return CGSize(width: size.width, height: size.width / 2)
+        return CGSize(width: size.width, height: size.width / 3)
     }
     
     override func layoutSubviews() {

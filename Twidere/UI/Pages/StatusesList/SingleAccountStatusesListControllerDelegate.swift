@@ -11,8 +11,6 @@ import PromiseKit
 
 class SingleAccountStatusesListControllerDelegate: StatusesListControllerDelegate {
     
-    var refreshEnabled: Bool = true
-    
     var account: Account
     
     init(account: Account) {
@@ -24,7 +22,7 @@ class SingleAccountStatusesListControllerDelegate: StatusesListControllerDelegat
     }
     
     final func loadStatuses(_ opts: StatusesListController.LoadOptions) -> Promise<[Status]> {
-        let microBlog = self.account.newMicroblogInstance("api")
+        let microBlog = self.account.newMicroBlogService("api")
         var paging = Paging()
         return getStatusesRequest(microBlog: microBlog, paging: paging)
     }

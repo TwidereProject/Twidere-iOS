@@ -11,7 +11,7 @@ import SwiftyJSON
 import PromiseKit
 import UITableView_FDTemplateLayoutCell
 
-class StatusesListController: UITableViewController {
+class StatusesListController: UITableViewController, StatusCellDelegate {
     
     var statuses: [Status]? = nil {
         didSet {
@@ -19,10 +19,21 @@ class StatusesListController: UITableViewController {
         }
     }
     
+    var refreshEnabled: Bool = true {
+        didSet {
+            refreshControl?.isEnabled = refreshEnabled
+        }
+    }
+    
+    var loadMoreEnabled: Bool = true
+    
     var delegate: StatusesListControllerDelegate!
     var scrollDelegate: UIScrollViewDelegate!
     
     var cellDisplayOption: StatusCell.DisplayOption!
+    
+    private var firstRefreshShowed: Bool = false
+    private var refreshTaskRunning: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,32 +45,37 @@ class StatusesListController: UITableViewController {
         
         tableView.register(UINib(nibName: "StatusCell", bundle: nil), forCellReuseIdentifier: "Status")
         tableView.register(UINib(nibName: "GapCell", bundle: nil), forCellReuseIdentifier: "Gap")
+        tableView.register(UINib(nibName: "LoadMoreCell", bundle: nil), forCellReuseIdentifier: "LoadMore")
+        let control = UIRefreshControl()
+        control.addTarget(self, action: #selector(self.refreshFromStart), for: .valueChanged)
+        refreshControl = control
         
-        if (delegate.refreshEnabled) {
-            if (self.refreshControl == nil) {
-                let control = UIRefreshControl()
-                control.addTarget(self, action: #selector(self.refreshFromStart), for: .valueChanged)
-                refreshControl = control
-            }
-        } else {
-            refreshControl = nil
-        }
+        self.refreshControl?.isEnabled = self.refreshEnabled
         
         statuses = nil
-        
-        
-        self.refreshControl?.beginRefreshingManually()
-        
         let opts = LoadOptions()
         opts.initLoad = true
         opts.params = SimpleRefreshTaskParam(accounts: self.delegate.getAccounts())
         self.loadStatuses(opts)
         
+        
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("viewWillAppear")
+        super.viewDidAppear(animated)
+        
+        if (!firstRefreshShowed && self.refreshEnabled) {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.tableView.contentOffset = CGPoint(x: 0, y: -self.refreshControl!.frame.size.height)
+                self.refreshControl!.beginRefreshing()
+                }, completion: { _ in
+                    if (self.statuses != nil) {
+                        self.refreshControl!.endRefreshing()
+                    }
+            })
+            self.firstRefreshShowed = true
+        }
     }
     
     func willEnterForeground() {
@@ -81,64 +97,103 @@ class StatusesListController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return statuses?.count ?? 0
+        var count = statuses?.count ?? 0
+        if (self.loadMoreEnabled) {
+            count += 1
+        }
+        return count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let status = statuses![(indexPath as NSIndexPath).item]
-        if (statuses!.endIndex != (indexPath as NSIndexPath).item && status.isGap ?? false) {
-            return tableView.dequeueReusableCell(withIdentifier: "Gap", for: indexPath)
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Status", for: indexPath) as! StatusCell
-            cell.displayOption = self.cellDisplayOption
+        if (indexPath.item == self.tableView(tableView, numberOfRowsInSection: indexPath.section) - 1) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadMore", for: indexPath)
+            cell.selectionStyle = .none
             return cell
+        } else {
+            let status = statuses![(indexPath as NSIndexPath).item]
+            
+            if (statuses!.endIndex != (indexPath as NSIndexPath).item && status.isGap ?? false) {
+                return tableView.dequeueReusableCell(withIdentifier: "Gap", for: indexPath)
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Status", for: indexPath) as! StatusCell
+                cell.displayOption = self.cellDisplayOption
+                cell.delegate = self
+                return cell
+            }
         }
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         switch cell {
-        case is StatusCell:
-            (cell as! StatusCell).status = statuses![(indexPath as NSIndexPath).item]
+        case let cell as StatusCell:
+            cell.status = statuses![(indexPath as NSIndexPath).item]
+        case let cell as LoadMoreCell:
+            cell.startAnimating()
+            guard let lastStatus = statuses?.last else {
+                return
+            }
+            let accounts = delegate.getAccounts()
+            if (!self.refreshTaskRunning) {
+                if let accountKey = accounts.filter({$0.key == lastStatus.accountKey}).first {
+                    let opts = LoadOptions()
+                    let params = SimpleRefreshTaskParam(accounts: [accountKey])
+                    params.maxIds = [lastStatus.id]
+                    params.maxSortIds = [lastStatus.sortId ?? -1]
+                    params.isLoadingMore = true
+                    opts.initLoad = false
+                    opts.params = params
+                    loadStatuses(opts)
+                }
+            }
         default: break
         }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let status = statuses![(indexPath as NSIndexPath).item]
-        if (status.isGap ?? false) {
+        if (indexPath.item == self.tableView(tableView, numberOfRowsInSection: indexPath.section) - 1) {
             return super.tableView(tableView, heightForRowAt: indexPath)
         } else {
-            return tableView.fd_heightForCell(withIdentifier: "Status", cacheBy: indexPath) { cell in
-                let statusCell = cell as! StatusCell
-                statusCell.displayOption = self.cellDisplayOption
-                statusCell.status = status
+            let status = statuses![(indexPath as NSIndexPath).item]
+            if (status.isGap ?? false) {
+                return super.tableView(tableView, heightForRowAt: indexPath)
+            } else {
+                return tableView.fd_heightForCell(withIdentifier: "Status", cacheBy: indexPath) { cell in
+                    let statusCell = cell as! StatusCell
+                    statusCell.displayOption = self.cellDisplayOption
+                    statusCell.status = status
+                }
             }
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let status = statuses![(indexPath as NSIndexPath).item]
-        let accounts = delegate.getAccounts()
-        if (status.isGap ?? false) {
-            guard let accountKey = accounts.filter({$0.key == status.accountKey}).first else {
-                return
-            }
-            let opts = LoadOptions()
-            let params = SimpleRefreshTaskParam(accounts: [accountKey])
-            params.maxIds = [status.id]
-            params.maxSortIds = [status.sortId ?? -1]
-            params.isLoadingMore = true
-            opts.initLoad = false
-            opts.params = params
-            loadStatuses(opts)
+        if (indexPath.item == self.tableView(tableView, numberOfRowsInSection: indexPath.section) - 1) {
+            
         } else {
-            let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
-            vc.status = status
-            navigationController?.show(vc, sender: self)
+            let status = statuses![(indexPath as NSIndexPath).item]
+            let accounts = delegate.getAccounts()
+            if (status.isGap ?? false) {
+                if let accountKey = accounts.filter({$0.key == status.accountKey}).first {
+                    let opts = LoadOptions()
+                    let params = SimpleRefreshTaskParam(accounts: [accountKey])
+                    params.maxIds = [status.id]
+                    params.maxSortIds = [status.sortId ?? -1]
+                    params.isLoadingMore = true
+                    opts.initLoad = false
+                    opts.params = params
+                    loadStatuses(opts)
+                }
+            } else {
+                let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
+                vc.status = status
+                navigationController?.show(vc, sender: self)
+            }
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    
     
     // MARK: ScrollView delegate
     
@@ -172,12 +227,21 @@ class StatusesListController: UITableViewController {
         loadStatuses(opts)
     }
     
+    func profileImageTapped(status: Status) {
+        let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "UserProfile") as! UserProfileController
+        vc.loadUser(userInfo: (status.accountKey, status.userKey, status.userScreenName))
+        navigationController?.show(vc, sender: self)
+    }
+    
     fileprivate func loadStatuses(_ opts: LoadOptions) {
+        self.refreshTaskRunning = true
         if let promise = delegate?.loadStatuses(opts) {
             promise.then { statuses in
                 self.statuses = statuses
                 }.always {
                     self.refreshControl?.endRefreshing()
+                    self.refreshTaskRunning = false
                 }.catch { error in
                     // TODO show error
                     debugPrint(error)
@@ -214,10 +278,6 @@ class StatusesListController: UITableViewController {
 }
 
 protocol StatusesListControllerDelegate {
-    
-    var refreshEnabled: Bool {
-        get
-    }
     
     func getAccounts() -> [Account]
     

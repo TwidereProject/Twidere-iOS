@@ -14,6 +14,11 @@ class StatusViewerController: UITableViewController {
     var status: Status!
     var cellDisplayOption = StatusCell.DisplayOption()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

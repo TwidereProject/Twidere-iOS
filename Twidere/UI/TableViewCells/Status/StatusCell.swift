@@ -25,6 +25,8 @@ class StatusCell: UITableViewCell {
     @IBOutlet weak var mediaPreview: MediaPreviewContainer!
     @IBOutlet weak var quotedMediaPreview: MediaPreviewContainer!
     
+    var delegate: StatusCellDelegate!
+    
     var status: Status! {
         didSet {
             display()
@@ -43,6 +45,11 @@ class StatusCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        let profileImageViewTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.profileImageTapped(_:)))
+        self.profileImageView.isUserInteractionEnabled = true
+        self.profileImageView.addGestureRecognizer(profileImageViewTapRecognizer)
+        
         profileImageView.makeCircular()
         
         // border radius
@@ -134,6 +141,10 @@ class StatusCell: UITableViewCell {
         perform(#selector(self.updateTime), with: obj, afterDelay: 10.0)
     }
     
+    @IBAction func profileImageTapped(_ sender: UITapGestureRecognizer) {
+        delegate?.profileImageTapped(status: self.status)
+    }
+    
     static func createNameText(_ size: CGFloat, name: String, screenName: String, separator: String) -> NSAttributedString {
         let nameString = NSMutableAttributedString()
         nameString.append(NSAttributedString(string: name, attributes: [
@@ -171,4 +182,8 @@ class StatusCell: UITableViewCell {
         var fontSize: CGFloat = 15
         var linkHighlight: Bool = true
     }
+}
+
+protocol StatusCellDelegate {
+    func profileImageTapped(status: Status)
 }

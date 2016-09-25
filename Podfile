@@ -31,6 +31,7 @@ target 'Twidere' do
   pod 'MXPagerView', '~> 0.1.3'
   pod 'MXParallaxHeader', '~> 0.5.2'
   pod 'FXBlurView', '~> 1.6'
+  pod 'FXImageView', '~> 1.3.5'
 end
 
 target 'TwidereTests' do

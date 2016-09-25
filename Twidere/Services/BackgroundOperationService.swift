@@ -48,7 +48,7 @@ class BackgroundOperationService {
                 let account = update.accounts[i]
                 switch (account.typeInferred) {
                 case .twitter:
-                    let upload = account.newMicroblogInstance("upload")
+                    let upload = account.newMicroBlogService("upload")
                     if (pendingUpdate.sharedMediaIds != nil) {
                         return Promise<Bool> { fullfill, reject in
                             pendingUpdate.mediaIds[i] = pendingUpdate.sharedMediaIds
@@ -68,7 +68,7 @@ class BackgroundOperationService {
                     }
                 case .statusNet:
                     // TODO use their native API
-                    let upload = account.newMicroblogInstance("upload")
+                    let upload = account.newMicroBlogService("upload")
                     return uploadAllMediaShared(upload, update: update, ownerIds: ownerIds, chucked: false)
                         .then { ids -> Bool in
                             pendingUpdate.mediaIds[i] = ids
@@ -153,7 +153,7 @@ class BackgroundOperationService {
             return when(fulfilled: (0..<pendingUpdate.length)
                 .map { i -> Promise<(Status?, (UserKey, Error)?)> in
                     let account = statusUpdate.accounts[i]
-                    let microBlog = account.newMicroblogInstance("api")
+                    let microBlog = account.newMicroBlogService("api")
                     return Promise { fullfill, reject in
                         let statusPromise: Promise<Status>
                         switch (account.typeInferred) {
