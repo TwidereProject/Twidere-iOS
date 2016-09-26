@@ -218,7 +218,7 @@
         <scene sceneID="xM8-j4-Z2i">
             <objects>
                 <viewController storyboardIdentifier="UserProfile" title="User Profile" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YzN-GI-JwS" customClass="UserProfileController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ZW8-F3-4De" customClass="ALSFrameLayout" customModule="ALSLayouts">
+                    <view key="view" contentMode="scaleToFill" id="ZW8-F3-4De">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -226,10 +226,6 @@
                                 <frame key="frameInset"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="MatchParent"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <navigationBar opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" id="eFg-Ip-0eP">
                                 <frame key="frameInset" minY="20" height="44"/>
@@ -243,9 +239,6 @@
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="ignoreLayoutMargins" value="YES"/>
-                        </userDefinedRuntimeAttributes>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -273,11 +266,11 @@
                             <frame key="frameInset" width="375" height="141.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Pad-7j-3yT">
+                                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Pad-7j-3yT">
                                     <frame key="frameInset" width="375" height="141.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="rnc-ao-He1">
+                                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="rnc-ao-He1">
                                     <frame key="frameInset" width="375" height="142"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
@@ -303,7 +296,6 @@
                                         <view contentMode="scaleToFill" misplaced="YES" id="UOu-Se-rd8" customClass="AttributedLabel" customModule="AttributedLabel">
                                             <frame key="frameInset" width="240" height="19"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
@@ -313,7 +305,6 @@
                                         <view contentMode="scaleToFill" id="Yjc-JK-LNJ" customClass="AttributedLabel" customModule="AttributedLabel">
                                             <frame key="frameInset" minY="14" width="240" height="19"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
@@ -321,7 +312,6 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layoutCenterVertical" value="YES"/>
                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
@@ -346,7 +336,6 @@
                                             </userDefinedRuntimeAttributes>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layoutCenterVertical" value="YES"/>

@@ -33,6 +33,7 @@ PODS:
   - SQLite.swift/standard (0.10.1)
   - StaticDataTableViewController (2.0.5)
   - STPopup (1.8.0)
+  - SVPullToRefresh (0.4.1)
   - SwiftyJSON (2.3.2)
   - SwiftyUserDefaults (3.0.0)
   - ThumborURL (0.0.4)
@@ -63,6 +64,7 @@ DEPENDENCIES:
   - SQLite.swift (from `https://github.com/stephencelis/SQLite.swift.git`, branch `swift3-mariotaku`)
   - StaticDataTableViewController (= 2.0.5)
   - STPopup (~> 1.8)
+  - SVPullToRefresh (~> 0.4.1)
   - SwiftyJSON (from `https://github.com/IBM-Swift/SwiftyJSON.git`)
   - SwiftyUserDefaults (~> 3.0)
   - ThumborURL (= 0.0.4)
@@ -131,6 +133,7 @@ SPEC CHECKSUMS:
   SQLite.swift: c54b2cb32c2ec77cd52bc7442d05dd51b0623861
   StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a
   STPopup: af630a85628e4226ffcbda5caaead0d99aed13a8
+  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   ThumborURL: 0e1f058fb79c37660aa7d302fe77c48366902325
@@ -140,6 +143,6 @@ SPEC CHECKSUMS:
   UIView+FDCollapsibleConstraints: 9357eaf03b4e088263ab74a3b86a382a64ce38dd
   UIView+TouchHighlighting: cedbcd90c965e7b1418c80a04fc8266398a738f1
 
-PODFILE CHECKSUM: 90b0fcc7ae966ac0e5136c67a444fea7cf1d922b
+PODFILE CHECKSUM: 5571b1c6cfb3d7dc348b14323f57e830054506b5
 
 COCOAPODS: 1.1.0.rc.2

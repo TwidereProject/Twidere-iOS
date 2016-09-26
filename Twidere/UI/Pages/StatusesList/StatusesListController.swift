@@ -15,6 +15,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate {
     
     var statuses: [Status]? = nil {
         didSet {
+            rebuildItemCounts()
             tableView?.reloadData()
         }
     }
@@ -34,6 +35,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate {
     
     private var firstRefreshShowed: Bool = false
     private var refreshTaskRunning: Bool = false
+    private var itemCounts: [Int] = [Int](repeating: 0, count: 2)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,19 +99,12 @@ class StatusesListController: UITableViewController, StatusCellDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count = statuses?.count ?? 0
-        if (self.loadMoreEnabled) {
-            count += 1
-        }
-        return count
+        return itemCounts.reduce(0) { $0 + $1 }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (indexPath.item == self.tableView(tableView, numberOfRowsInSection: indexPath.section) - 1) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadMore", for: indexPath)
-            cell.selectionStyle = .none
-            return cell
-        } else {
+        switch getItemCountIndex(position: indexPath.item) {
+        case 0:
             let status = statuses![(indexPath as NSIndexPath).item]
             
             if (statuses!.endIndex != (indexPath as NSIndexPath).item && status.isGap ?? false) {
@@ -120,6 +115,11 @@ class StatusesListController: UITableViewController, StatusCellDelegate {
                 cell.delegate = self
                 return cell
             }
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadMore", for: indexPath)
+            cell.selectionStyle = .none
+            return cell
+        default: abort()
         }
     }
     
@@ -150,9 +150,8 @@ class StatusesListController: UITableViewController, StatusCellDelegate {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (indexPath.item == self.tableView(tableView, numberOfRowsInSection: indexPath.section) - 1) {
-            return super.tableView(tableView, heightForRowAt: indexPath)
-        } else {
+        switch getItemCountIndex(position: indexPath.item) {
+        case 0:
             let status = statuses![(indexPath as NSIndexPath).item]
             if (status.isGap ?? false) {
                 return super.tableView(tableView, heightForRowAt: indexPath)
@@ -163,13 +162,16 @@ class StatusesListController: UITableViewController, StatusCellDelegate {
                     statusCell.status = status
                 }
             }
+        case 1:
+            return super.tableView(tableView, heightForRowAt: indexPath)
+        default:
+            abort()
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (indexPath.item == self.tableView(tableView, numberOfRowsInSection: indexPath.section) - 1) {
-            
-        } else {
+        switch getItemCountIndex(position: indexPath.item) {
+        case 0:
             let status = statuses![(indexPath as NSIndexPath).item]
             let accounts = delegate.getAccounts()
             if (status.isGap ?? false) {
@@ -189,6 +191,10 @@ class StatusesListController: UITableViewController, StatusCellDelegate {
                 vc.status = status
                 navigationController?.show(vc, sender: self)
             }
+        case 1:
+            break
+        default:
+            abort()
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -247,6 +253,32 @@ class StatusesListController: UITableViewController, StatusCellDelegate {
                     debugPrint(error)
             }
         }
+    }
+    
+    func rebuildItemCounts() {
+        if let statuses = self.statuses, !statuses.isEmpty {
+            itemCounts[0] = statuses.count
+            itemCounts[1] = self.loadMoreEnabled ? 1 : 0
+        } else {
+            itemCounts[0] = 0
+            itemCounts[1] = 0
+        }
+    }
+    
+    func getItemCountIndex(position: Int) -> Int {
+        var sum: Int = 0
+        for (idx, count) in itemCounts.enumerated() {
+            
+            sum += count
+            if (position < sum) {
+                return idx
+            }
+        }
+        return -1
+    }
+    
+    func getItemStartPosition(index: Int) -> Int {
+        return self.itemCounts[0..<index].reduce(0) { $0 + $1 }
     }
     
     class LoadOptions {

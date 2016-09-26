@@ -25,6 +25,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileContainer: ALSRelativeLayout!
     @IBOutlet weak var userButtonsBackground: UIView!
+    @IBOutlet weak var profileRefreshIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var userActionButton: UIButton!
     @IBOutlet weak var nameView: AttributedLabel!
@@ -126,7 +127,8 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if let navigationController = self.navigationController {
-            navigationController.setNavigationBarHidden(false, animated: animated)
+            let top = navigationController.topViewController
+            navigationController.setNavigationBarHidden(top is UserProfileController, animated: animated)
         }
     }
     
@@ -134,7 +136,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         let navBarHeight = self.navigationController!.navigationBar.frame.height
         
         let topLayoutGuideLength = topLayoutGuide.length
-        navBar.layoutParams.marginTop = topLayoutGuideLength
+        navBar.frame.origin.y = topLayoutGuideLength
         
         self.segmentedContainerView.parallaxHeader.minimumHeight = topLayoutGuideLength + navBarHeight
         
@@ -143,7 +145,6 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         self.profileContainer.frame.size = self.profileContainer.sizeThatFits(self.segmentedContainerView.frame.size)
         
         self.segmentedContainerView.parallaxHeader.height = self.profileContainer.frame.height
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -151,6 +152,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
             self.profileImageHeight = profileImageView.frame.height
             self.profileImageExceddedHeight = profileImageHeight - userButtonsBackground.frame.height
         }
+        updateBannerScaleTransfom()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -210,6 +212,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
             return
             
         }
+        self.title = user.name
         navBar.topItem?.title = user.name
         profileBannerView.displayImage(user.profileBannerUrlForSize(Int(self.view.frame.width)), completed: { image, error, cacheType, url in
             if let image = image {

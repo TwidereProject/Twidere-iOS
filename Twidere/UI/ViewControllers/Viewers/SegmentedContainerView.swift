@@ -35,7 +35,7 @@ class SegmentedContainerView: UIView, MXPagerViewDataSource {
     
     var contentDividerSize: CGFloat = 0
     
-    private var contentView: MXScrollView
+    private(set) var contentView: MXScrollView
     private var segmentedControl: ReselectUISegmentedControl
     private var dividerView: UIView
     private var pagerView: MXPagerView
