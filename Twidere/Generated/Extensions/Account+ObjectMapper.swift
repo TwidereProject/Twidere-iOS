@@ -30,6 +30,7 @@ extension Account.Config: StaticMappable {
 
     func mapping(map: Map) {
         characterLimit <- map["character_limit"]
+        officialCredentials <- map["official_credentials"]
     }
 
     static func objectForMapping(map: Map) -> BaseMappable? {

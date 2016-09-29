@@ -4,15 +4,15 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'Twidere' do
-  pod 'SwiftyJSON', :git => 'https://github.com/IBM-Swift/SwiftyJSON.git' # Swift 3
+  pod 'SwiftyJSON', '~> 3.1.0' # Swift 3
   pod 'SQLite.swift', :git => 'https://github.com/stephencelis/SQLite.swift.git', :branch => 'swift3-mariotaku' # Swift 3
-  pod 'CryptoSwift', :git => 'https://github.com/krzyzanowskim/CryptoSwift.git', :tag => '0.6.0'  # Swift 3
+  pod 'CryptoSwift', '~> 0.6.0'  # Swift 3
   pod 'Alamofire', '~> 4.0' # Swift 3
   pod 'JVFloatLabeledTextField', '1.1.1' # Obj-C
   pod 'ActionSheetPicker-3.0', '2.2.0' # Obj-C
   pod 'StaticDataTableViewController', '2.0.5' # Obj-C
-  pod 'IQKeyboardManagerSwift', :git => 'https://github.com/hackiftekhar/IQKeyboardManager.git' # Swift 3
-  pod 'Kanna', :git => 'https://github.com/tid-kijyun/Kanna.git', :branch => 'swift3.0' # Swift 3
+  pod 'IQKeyboardManagerSwift', '~> 4.0.6' # Swift 3
+  pod 'Kanna', '~> 2.0.0' # Swift 3
   pod 'SwiftyUserDefaults', '~> 3.0' # Swift 3
   pod 'PromiseKit', '~> 4.0' # Swift 3
   pod 'STPopup', '~> 1.8' # Obj-C
@@ -26,7 +26,7 @@ target 'Twidere' do
   pod 'DateTools', '~> 1.7.0' # Obj-C
   pod 'ALSLayouts', '~> 2.0' # Swift 3
   pod 'ThumborURL', '0.0.4' # Obj-C
-  pod 'AttributedLabel', :git => 'https://github.com/KyoheiG3/AttributedLabel.git', :tag => '0.5.0' # Swift 3
+  pod 'AttributedLabel', '~> 0.5.0' # Swift 3
   pod 'ObjectMapper', '~> 2.0' # Swift 3
   pod 'MXPagerView', '~> 0.1.3'
   pod 'MXParallaxHeader', '~> 0.5.2'

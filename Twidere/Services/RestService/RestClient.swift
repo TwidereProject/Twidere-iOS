@@ -71,6 +71,8 @@ class RestClient {
                 let request = Alamofire.request(url, method: method, parameters: params, headers: finalHeaders)
                 if (validation != nil) {
                     request.validate(validation!)
+                } else {
+                    request.validate()
                 }
                 request.response(responseSerializer: serializer, completionHandler: completionHandler)
             }

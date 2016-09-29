@@ -28,3 +28,22 @@ class UserKeyTransform: TransformType {
         return nil
     }
 }
+
+class UserKeyArrayTransform: TransformType {
+    typealias Object = UserKeyArray
+    typealias JSON = [String]
+    
+    func transformFromJSON(_ value: Any?) -> UserKeyArray? {
+        if let stringArray = value as? [String] {
+            return UserKeyArray(stringArray.map { UserKey(rawValue: $0) })
+        }
+        return nil
+    }
+    
+    func transformToJSON(_ value: UserKeyArray?) -> [String]? {
+        if let userKey = value {
+            return userKey.array.map{ $0.string }
+        }
+        return nil
+    }
+}

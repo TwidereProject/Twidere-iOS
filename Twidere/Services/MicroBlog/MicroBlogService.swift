@@ -22,6 +22,47 @@ class MicroBlogService: RestClient {
         return makeTypedRequest(.get, path: "/account/verify_credentials.json", serializer: MicroBlogService.convertJSON)
     }
     
+    // MARK: Timeline functions
+    
+    func getHomeTimeline(_ paging: Paging) -> Promise<[Status]> {
+        let queries = makeQueries(statusQueries, paging.queries)
+        return makeTypedRequest(.get, path: "/statuses/home_timeline.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
+    }
+    
+    func getUserTimeline(screenName: String, paging: Paging) -> Promise<[Status]> {
+        let queries = makeQueries(statusQueries, ["screen_name": screenName], paging.queries)
+        return makeTypedRequest(.get, path: "/statuses/user_timeline.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
+    }
+    
+    func getUserTimeline(id: String, paging: Paging) -> Promise<[Status]> {
+        let queries = makeQueries(statusQueries, ["user_id": id], paging.queries)
+        return makeTypedRequest(.get, path: "/statuses/user_timeline.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
+    }
+    
+    func getFavorites(screenName: String, paging: Paging) -> Promise<[Status]> {
+        let queries = makeQueries(statusQueries, ["screen_name": screenName], paging.queries)
+        return makeTypedRequest(.get, path: "/favorites/list.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
+    }
+    
+    func getFavorites(id: String, paging: Paging) -> Promise<[Status]> {
+        let queries = makeQueries(statusQueries, ["user_id": id], paging.queries)
+        return makeTypedRequest(.get, path: "/favorites/list.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
+    }
+    
+    func lookupStatuses(ids: [String]) -> Promise<[Status]> {
+        let queries = makeQueries(statusQueries, ["id": ids.joined(separator: ",")])
+        return makeTypedRequest(.get, path: "/statuses/lookup.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
+    }
+    
+    // MARK: Activity functions
+    
+    func getActivitiesAboutMe(paging: Paging) -> Promise<[Activity]> {
+        let queries = makeQueries(statusQueries, paging.queries)
+        return makeTypedRequest(.get, path: "/activity/about_me.json", queries: queries, serializer: MicroBlogService.convertActivities(accountKey))
+    }
+    
+    // MARK: User functions
+    
     func showUser(id: String) -> Promise<User> {
         let queries: [String: String] = ["user_id": id]
         return makeTypedRequest(.get, path: "/users/show.json", queries: queries, serializer: MicroBlogService.convertUser(accountKey))
@@ -87,36 +128,6 @@ class MicroBlogService: RestClient {
         return makeTypedRequest(.post, path: "/media/upload.json", queries: queries, serializer: MediaUploadResponse.serialization)
     }
     
-    func getHomeTimeline(_ paging: Paging) -> Promise<[Status]> {
-        let queries = makeQueries(statusQueries, paging.queries)
-        return makeTypedRequest(.get, path: "/statuses/home_timeline.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
-    }
-    
-    func getUserTimeline(screenName: String, paging: Paging) -> Promise<[Status]> {
-        let queries = makeQueries(statusQueries, ["screen_name": screenName], paging.queries)
-        return makeTypedRequest(.get, path: "/statuses/user_timeline.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
-    }
-    
-    func getUserTimeline(id: String, paging: Paging) -> Promise<[Status]> {
-        let queries = makeQueries(statusQueries, ["user_id": id], paging.queries)
-        return makeTypedRequest(.get, path: "/statuses/user_timeline.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
-    }
-    
-    func getFavorites(screenName: String, paging: Paging) -> Promise<[Status]> {
-        let queries = makeQueries(statusQueries, ["screen_name": screenName], paging.queries)
-        return makeTypedRequest(.get, path: "/favorites/list.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
-    }
-    
-    func getFavorites(id: String, paging: Paging) -> Promise<[Status]> {
-        let queries = makeQueries(statusQueries, ["user_id": id], paging.queries)
-        return makeTypedRequest(.get, path: "/favorites/list.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
-    }
-    
-    func lookupStatuses(ids: [String]) -> Promise<[Status]> {
-        let queries = makeQueries(statusQueries, ["id": ids.joined(separator: ",")])
-        return makeTypedRequest(.get, path: "/statuses/lookup.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
-    }
-    
     func makeQueries(_ def: [String: String], _ queries: [String: String]...) -> [String: String] {
         var result = [String: String]()
         for (k, v) in def {
@@ -154,6 +165,11 @@ class MicroBlogService: RestClient {
     
     static func convertStatuses(_ accountKey: UserKey) -> DataResponseSerializer<[Status]> {
         return convertMicroBlogResponse { Status.arrayFromJson(JSON(data: $0), accountKey: accountKey) }
+    }
+    
+    
+    static func convertActivities(_ accountKey: UserKey) -> DataResponseSerializer<[Activity]> {
+        return convertMicroBlogResponse { Activity.arrayFromJson(JSON(data: $0), accountKey: accountKey) }
     }
     
     

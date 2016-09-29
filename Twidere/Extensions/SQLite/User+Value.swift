@@ -37,3 +37,23 @@ extension User.Metadata: Value {
         return Mapper().toJSONString(self, prettyPrint: false) ?? ""
     }
 }
+
+struct UserArray: Value {
+    let array: [User]
+    
+    init(_ array: [User]) {
+        self.array = array
+    }
+    
+    static var declaredDatatype: String {
+        return String.declaredDatatype
+    }
+    
+    static func fromDatatypeValue(_ datatypeValue: String) -> UserArray {
+        return UserArray(Mapper<User>().mapArray(JSONString: datatypeValue) ?? [])
+    }
+    
+    var datatypeValue: String {
+        return Mapper().toJSONString(self.array, prettyPrint: false) ?? ""
+    }
+}

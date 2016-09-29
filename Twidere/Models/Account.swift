@@ -26,6 +26,7 @@ class Account {
     
         // Fields
         var characterLimit: Int!
+        var officialCredentials: Bool!
         // Append body content
     
         // Sub models

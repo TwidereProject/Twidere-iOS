@@ -33,7 +33,7 @@ class HomeController: UITabBarController {
         let homeTimelineController = pages.instantiateViewController(withIdentifier: "StatusesList") as! StatusesListController
         homeTimelineController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "Tab Icon Home"), tag: 1)
         homeTimelineController.dataSource = HomeTimelineStatusesListControllerDataSource()
-        let notificationsTimelineController = pages.instantiateViewController(withIdentifier: "StubTab")
+        let notificationsTimelineController = pages.instantiateViewController(withIdentifier: "ActivitiesList")
         notificationsTimelineController.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(named: "Tab Icon Notification"), tag: 2)
         let messageConversationsController = pages.instantiateViewController(withIdentifier: "StubTab")
         messageConversationsController.tabBarItem = UITabBarItem(title: "Messages", image: UIImage(named: "Tab Icon Message"), tag: 3)
@@ -58,8 +58,11 @@ class HomeController: UITabBarController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let account = try! defaultAccount()!
-        accountProfileImageView.displayImage(account.user!.profileImageUrlForSize(.reasonablySmall), placeholder: UIImage(named: "Profile Image Default"))
+        _ = DispatchQueue.global().promise { () -> Account in
+            return try defaultAccount()!
+        }.then { account -> Void in
+            self.accountProfileImageView.displayImage(account.user!.profileImageUrlForSize(.reasonablySmall), placeholder: UIImage(named: "Profile Image Default"))
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,10 +75,16 @@ class HomeController: UITabBarController {
     }
     
     @IBAction func accountIconClicked(_ sender: UITapGestureRecognizer) {
-        let account = try! defaultAccount()!
-        let vc = storyboard!.instantiateViewController(withIdentifier: "AccountProfile") as! UserProfileController
-        vc.displayUser(user: account.user, reload: true)
-        navigationController?.show(vc, sender: self)
+        sender.isEnabled = false
+        _ = DispatchQueue.global().promise { () -> Account in
+            return try defaultAccount()!
+        }.then { account -> Void in
+            let vc = self.storyboard!.instantiateViewController(withIdentifier: "AccountProfile") as! UserProfileController
+            vc.displayUser(user: account.user, reload: true)
+            self.navigationController?.show(vc, sender: self)
+        }.always {
+            sender.isEnabled = true
+        }
     }
     
  

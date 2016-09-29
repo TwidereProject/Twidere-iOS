@@ -59,6 +59,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         opts.params = SimpleRefreshTaskParam(accounts: self.dataSource.getAccounts())
         self.loadStatuses(opts)
         
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }

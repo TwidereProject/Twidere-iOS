@@ -70,3 +70,6 @@ submodels:
           characterLimit:
             type: Int
             json_field: character_limit
+          officialCredentials:
+            type: Bool
+            json_field: official_credentials

@@ -1,6 +1,6 @@
 PODS:
   - ActionSheetPicker-3.0 (2.2.0)
-  - Alamofire (4.0.0)
+  - Alamofire (4.0.1)
   - ALSLayouts (2.0.2)
   - AttributedLabel (0.5.0)
   - CryptoSwift (0.6.0)
@@ -14,16 +14,16 @@ PODS:
   - MXPagerView (0.1.3)
   - MXParallaxHeader (0.5.2)
   - ObjectMapper (2.0.0)
-  - PromiseKit (4.0.1):
-    - PromiseKit/Foundation (= 4.0.1)
-    - PromiseKit/QuartzCore (= 4.0.1)
-    - PromiseKit/UIKit (= 4.0.1)
-  - PromiseKit/CorePromise (4.0.1)
-  - PromiseKit/Foundation (4.0.1):
+  - PromiseKit (4.0.3):
+    - PromiseKit/Foundation (= 4.0.3)
+    - PromiseKit/QuartzCore (= 4.0.3)
+    - PromiseKit/UIKit (= 4.0.3)
+  - PromiseKit/CorePromise (4.0.3)
+  - PromiseKit/Foundation (4.0.3):
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (4.0.1):
+  - PromiseKit/QuartzCore (4.0.3):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (4.0.1):
+  - PromiseKit/UIKit (4.0.3):
     - PromiseKit/CorePromise
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
@@ -33,29 +33,28 @@ PODS:
   - SQLite.swift/standard (0.10.1)
   - StaticDataTableViewController (2.0.5)
   - STPopup (1.8.0)
-  - SVPullToRefresh (0.4.1)
-  - SwiftyJSON (2.3.2)
+  - SwiftyJSON (3.1.0)
   - SwiftyUserDefaults (3.0.0)
   - ThumborURL (0.0.4)
   - twitter-text (1.14.0)
   - UITableView+FDTemplateLayoutCell (1.5.beta)
   - UITextView+Placeholder (1.2.0)
   - UIView+FDCollapsibleConstraints (1.1)
-  - UIView+TouchHighlighting (1.1.0)
+  - UIView+TouchHighlighting (1.2.0)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (= 2.2.0)
   - Alamofire (~> 4.0)
   - ALSLayouts (~> 2.0)
-  - AttributedLabel (from `https://github.com/KyoheiG3/AttributedLabel.git`, tag `0.5.0`)
-  - CryptoSwift (from `https://github.com/krzyzanowskim/CryptoSwift.git`, tag `0.6.0`)
+  - AttributedLabel (~> 0.5.0)
+  - CryptoSwift (~> 0.6.0)
   - DateTools (~> 1.7.0)
   - FXBlurView (~> 1.6)
   - FXImageView (~> 1.3.5)
-  - IQKeyboardManagerSwift (from `https://github.com/hackiftekhar/IQKeyboardManager.git`)
+  - IQKeyboardManagerSwift (~> 4.0.6)
   - JDStatusBarNotification (= 1.5.4)
   - JVFloatLabeledTextField (= 1.1.1)
-  - Kanna (from `https://github.com/tid-kijyun/Kanna.git`, branch `swift3.0`)
+  - Kanna (~> 2.0.0)
   - MXPagerView (~> 0.1.3)
   - MXParallaxHeader (~> 0.5.2)
   - ObjectMapper (~> 2.0)
@@ -64,8 +63,7 @@ DEPENDENCIES:
   - SQLite.swift (from `https://github.com/stephencelis/SQLite.swift.git`, branch `swift3-mariotaku`)
   - StaticDataTableViewController (= 2.0.5)
   - STPopup (~> 1.8)
-  - SVPullToRefresh (~> 0.4.1)
-  - SwiftyJSON (from `https://github.com/IBM-Swift/SwiftyJSON.git`)
+  - SwiftyJSON (~> 3.1.0)
   - SwiftyUserDefaults (~> 3.0)
   - ThumborURL (= 0.0.4)
   - twitter-text (~> 1.14)
@@ -75,46 +73,18 @@ DEPENDENCIES:
   - UIView+TouchHighlighting (~> 1.1)
 
 EXTERNAL SOURCES:
-  AttributedLabel:
-    :git: https://github.com/KyoheiG3/AttributedLabel.git
-    :tag: 0.5.0
-  CryptoSwift:
-    :git: https://github.com/krzyzanowskim/CryptoSwift.git
-    :tag: 0.6.0
-  IQKeyboardManagerSwift:
-    :git: https://github.com/hackiftekhar/IQKeyboardManager.git
-  Kanna:
-    :branch: swift3.0
-    :git: https://github.com/tid-kijyun/Kanna.git
   SQLite.swift:
     :branch: swift3-mariotaku
     :git: https://github.com/stephencelis/SQLite.swift.git
-  SwiftyJSON:
-    :git: https://github.com/IBM-Swift/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
-  AttributedLabel:
-    :git: https://github.com/KyoheiG3/AttributedLabel.git
-    :tag: 0.5.0
-  CryptoSwift:
-    :git: https://github.com/krzyzanowskim/CryptoSwift.git
-    :tag: 0.6.0
-  IQKeyboardManagerSwift:
-    :commit: 440807dfcb2403d66bd48ffbe0bdccaba04e95f9
-    :git: https://github.com/hackiftekhar/IQKeyboardManager.git
-  Kanna:
-    :commit: 109249451c32e14dac541bfbfeaa91b4dcb47a87
-    :git: https://github.com/tid-kijyun/Kanna.git
   SQLite.swift:
-    :commit: 8f08796afc608322797a3b699e7d2abcc3e26c0f
+    :commit: 1ae7acbcb1b59877cf2e034f72f3d411287a4119
     :git: https://github.com/stephencelis/SQLite.swift.git
-  SwiftyJSON:
-    :commit: 73b523a107b798021ca9af74b5f7c20e435c8809
-    :git: https://github.com/IBM-Swift/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
-  Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   ALSLayouts: 747fab60eba2d593c4e56ed0f0c79c1f9a83ce0e
   AttributedLabel: 5df434efa72fad5a6cf5563b558030fd50fb180d
   CryptoSwift: 4a599b7241b8d3b857d6e2c28867d0bd5d1aae24
@@ -124,25 +94,24 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: b3015e819559ca76381f87a0833f44d178564603
   JDStatusBarNotification: d47dded0594a50a39c84a2cc5aa356fcf6750d0e
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
-  Kanna: 8d60d86a3580f7dee732811e5163a5e3e41a32a7
+  Kanna: 9a6637f72f5c77fe9c045b1efb2a5bb074754af8
   MXPagerView: db0c020aeada6a0c704f18f8053468560e346982
   MXParallaxHeader: 5070ba8e8af27ec793c0d32ae82cfd2318e59635
   ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
-  PromiseKit: ae9e7f97ee758e23f7b9c5e80380a2e78d6338c5
+  PromiseKit: dfe8fcc6445674fb23378d89990838c1cbdbf05a
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SQLite.swift: c54b2cb32c2ec77cd52bc7442d05dd51b0623861
   StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a
   STPopup: af630a85628e4226ffcbda5caaead0d99aed13a8
-  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  SwiftyJSON: 29b9f2a64f118c07e691667c2ba1efe536acfe0b
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   ThumborURL: 0e1f058fb79c37660aa7d302fe77c48366902325
   twitter-text: 703e84901722b7e6e2e22b7ac12afabfb40be1e5
   UITableView+FDTemplateLayoutCell: 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
   UIView+FDCollapsibleConstraints: 9357eaf03b4e088263ab74a3b86a382a64ce38dd
-  UIView+TouchHighlighting: cedbcd90c965e7b1418c80a04fc8266398a738f1
+  UIView+TouchHighlighting: e05a338801522cbdc4a1e236bd189f2a928a781f
 
-PODFILE CHECKSUM: 5571b1c6cfb3d7dc348b14323f57e830054506b5
+PODFILE CHECKSUM: 7068400212d600fa8aa107417dd2c9807603f452
 
 COCOAPODS: 1.1.0.rc.2

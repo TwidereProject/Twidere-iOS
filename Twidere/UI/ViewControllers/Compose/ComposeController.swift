@@ -107,6 +107,11 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        _ = DispatchQueue.global().promise { () -> Account in
+            return try defaultAccount()!
+        }.then { account -> Void in
+                self.accountProfileImageView.displayImage(account.user!.profileImageUrlForSize(.reasonablySmall), placeholder: UIImage(named: "Profile Image Default"))
+        }
     }
     
     override func didReceiveMemoryWarning() {
