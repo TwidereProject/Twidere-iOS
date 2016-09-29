@@ -79,6 +79,8 @@
 		CE59931B1D83CAE900653220 /* ViewSizeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE59931A1D83CAE900653220 /* ViewSizeUtils.swift */; };
 		CE65B1B41D9BA35A00A38A61 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1B31D9BA35A00A38A61 /* ActivityIndicator.swift */; };
 		CE65B1B61D9C20AE00A38A61 /* PullToRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1B51D9C20AE00A38A61 /* PullToRefreshProtocol.swift */; };
+		CE65B1BB1D9CB2B100A38A61 /* ActivityTitleSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1B91D9CB2B100A38A61 /* ActivityTitleSummaryCell.swift */; };
+		CE65B1BC1D9CB2B100A38A61 /* ActivityTitleSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE65B1BA1D9CB2B100A38A61 /* ActivityTitleSummaryCell.xib */; };
 		CE779F291D8563B60053B5C7 /* Account+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F251D8563B60053B5C7 /* Account+SQLite.swift */; };
 		CE779F2A1D8563B60053B5C7 /* Status+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F261D8563B60053B5C7 /* Status+SQLite.swift */; };
 		CE779F2B1D8563B60053B5C7 /* User+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F271D8563B60053B5C7 /* User+SQLite.swift */; };
@@ -243,6 +245,8 @@
 		CE59931A1D83CAE900653220 /* ViewSizeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewSizeUtils.swift; sourceTree = "<group>"; };
 		CE65B1B31D9BA35A00A38A61 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		CE65B1B51D9C20AE00A38A61 /* PullToRefreshProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefreshProtocol.swift; sourceTree = "<group>"; };
+		CE65B1B91D9CB2B100A38A61 /* ActivityTitleSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTitleSummaryCell.swift; sourceTree = "<group>"; };
+		CE65B1BA1D9CB2B100A38A61 /* ActivityTitleSummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityTitleSummaryCell.xib; sourceTree = "<group>"; };
 		CE779F251D8563B60053B5C7 /* Account+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+SQLite.swift"; sourceTree = "<group>"; };
 		CE779F261D8563B60053B5C7 /* Status+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Status+SQLite.swift"; sourceTree = "<group>"; };
 		CE779F271D8563B60053B5C7 /* User+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+SQLite.swift"; sourceTree = "<group>"; };
@@ -467,6 +471,7 @@
 		CE497F931D695912000F16D2 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				CE65B1B71D9CB27A00A38A61 /* ActivityTitleSummary */,
 				CEF53C4D1D8FC3ED0032F434 /* LoadMoreCell */,
 				CE5993071D82E4CF00653220 /* Account */,
 				CE5993171D83CAA200653220 /* DetailStatus */,
@@ -621,6 +626,15 @@
 				CE5993181D83CAAA00653220 /* DetailStatusCell.swift */,
 			);
 			path = DetailStatus;
+			sourceTree = "<group>";
+		};
+		CE65B1B71D9CB27A00A38A61 /* ActivityTitleSummary */ = {
+			isa = PBXGroup;
+			children = (
+				CE65B1B91D9CB2B100A38A61 /* ActivityTitleSummaryCell.swift */,
+				CE65B1BA1D9CB2B100A38A61 /* ActivityTitleSummaryCell.xib */,
+			);
+			name = ActivityTitleSummary;
 			sourceTree = "<group>";
 		};
 		CE7A573D1D917B410027BECE /* Delegates */ = {
@@ -1067,6 +1081,7 @@
 				C57AE5C144B41D4EAEAA208A /* Model+SQLite.swift.gyb in Resources */,
 				C57AE78DE03CD3814988E57B /* Model.swift.gyb in Resources */,
 				C57AED98D3DA6236A9EAEDEB /* AccountConfig.fbs in Resources */,
+				CE65B1BC1D9CB2B100A38A61 /* ActivityTitleSummaryCell.xib in Resources */,
 				C57AE1FB6C2A13703F159759 /* SpamItem.fbs in Resources */,
 				C57AE91A5E5FAC7D98028959 /* Status.fbs in Resources */,
 				C57AEF1FE74729FF47DD8346 /* StatusMetadata.fbs in Resources */,
@@ -1356,6 +1371,7 @@
 			files = (
 				CE45CAF71D855EFA0004CC1C /* UserKeyExtensions.swift in Sources */,
 				CEA2E2AC1D3549480095BC57 /* UserKey.swift in Sources */,
+				CE65B1BB1D9CB2B100A38A61 /* ActivityTitleSummaryCell.swift in Sources */,
 				CE0529E91CF7F35300E06364 /* MainViewController.swift in Sources */,
 				CEA2E2D11D3A7EA20095BC57 /* HomeRootController.swift in Sources */,
 				CE4B1AA21D7175B10017CB85 /* StatusExtensions.swift in Sources */,
