@@ -9,7 +9,7 @@
 import Foundation
 import PromiseKit
 
-class SingleAccountStatusesListControllerDelegate: StatusesListControllerDelegate {
+class SingleAccountStatusesListControllerDataSource: StatusesListControllerDataSource {
     
     var account: Account
     

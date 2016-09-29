@@ -16,7 +16,7 @@ import SQLite
 
 typealias UserInfo = (accountKey: UserKey, userKey: UserKey?, screenName: String?)
 
-class UserProfileController: UIViewController, UINavigationBarDelegate, SegmentedContainerViewDelegate, SegmentedContainerViewDataSource {
+class UserProfileController: UIViewController, UINavigationBarDelegate, SegmentedContainerViewDelegate, SegmentedContainerViewDataSource, StatusesListControllerDelegate {
     
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var profileBannerContainer: ProfileBannerContainer!
@@ -25,7 +25,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileContainer: ALSRelativeLayout!
     @IBOutlet weak var userButtonsBackground: UIView!
-    @IBOutlet weak var profileRefreshIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var profileRefreshIndicator: ActivityIndicator!
     
     @IBOutlet weak var userActionButton: UIButton!
     @IBOutlet weak var nameView: AttributedLabel!
@@ -41,6 +41,13 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     private var user: User!
     private var userInfo: UserInfo!
     private var reloadNeeded: Bool = false
+    
+    private var bannerShadowLayer: CAGradientLayer = {
+        let layer = CAGradientLayer()
+        layer.colors = [UIColor(white: 0, alpha: 0.3).cgColor, UIColor(white: 0, alpha: 0.1).cgColor, UIColor(white: 0, alpha: 0).cgColor]
+        layer.zPosition = 1
+        return layer
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +73,8 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         self.segmentedContainerView.parallaxHeader.mode = .bottom
         
         self.segmentedContainerView.parallaxHeader.contentView.layoutMargins = UIEdgeInsets.zero
+        
+        self.segmentedContainerView.layer.addSublayer(self.bannerShadowLayer)
         
         self.blurredBannerView.alpha = 0
         
@@ -95,7 +104,6 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
                 navBar.setItems(items, animated: false)
             }
         }
-        
         
         navBar.topItem?.rightBarButtonItems?.forEach { item in
             item.makeShadowed(shadow)
@@ -134,17 +142,23 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     
     override func viewWillLayoutSubviews() {
         let navBarHeight = self.navigationController!.navigationBar.frame.height
-        
         let topLayoutGuideLength = topLayoutGuide.length
-        navBar.frame.origin.y = topLayoutGuideLength
+        let topBarsHeight = topLayoutGuideLength + navBarHeight
         
-        self.segmentedContainerView.parallaxHeader.minimumHeight = topLayoutGuideLength + navBarHeight
+        let containerSize = self.segmentedContainerView.frame.size
+        
+        navBar.frame.origin.y = topLayoutGuideLength
+        navBar.frame.size.height = navBarHeight
+        
+        self.segmentedContainerView.parallaxHeader.minimumHeight = topBarsHeight
         
         self.profileContainer.frame = CGRect.zero
         
-        self.profileContainer.frame.size = self.profileContainer.sizeThatFits(self.segmentedContainerView.frame.size)
+        self.profileContainer.frame.size = self.profileContainer.sizeThatFits(containerSize)
         
         self.segmentedContainerView.parallaxHeader.height = self.profileContainer.frame.height
+        
+        self.bannerShadowLayer.frame.size = CGSize(width: containerSize.width, height: topBarsHeight)
     }
     
     override func viewDidLayoutSubviews() {
@@ -152,7 +166,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
             self.profileImageHeight = profileImageView.frame.height
             self.profileImageExceddedHeight = profileImageHeight - userButtonsBackground.frame.height
         }
-        updateBannerScaleTransfom()
+        updateBannerScaleTransfom(false)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -185,24 +199,24 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         self.reloadNeeded = false
         _ = DispatchQueue.global().promise { () -> Account in
             return getAccount(forKey: userInfo.accountKey)!
-        }.then { account -> Promise<User> in
-            let api = account.newMicroBlogService()
-            if let key = userInfo.userKey {
-                return api.showUser(id: key.id)
-            } else if let screenName = userInfo.screenName {
-                return api.showUser(screenName: screenName)
-            }
-            return Promise(error: MicroBlogError.argumentError(message: "Invalid user info"))
-        }.then { user -> Void in
-            self.displayUser(user: user)
-            // Save user
-            if (user.accountKey == user.key) {
-                _ = DispatchQueue.global().promise { () -> Void in
-                    let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
-                    let update = accountsTable.filter(Account.RowIndices.key == user.accountKey).update(Account.RowIndices.user <- user)
-                    _ = try db.run(update)
+            }.then { account -> Promise<User> in
+                let api = account.newMicroBlogService()
+                if let key = userInfo.userKey {
+                    return api.showUser(id: key.id)
+                } else if let screenName = userInfo.screenName {
+                    return api.showUser(screenName: screenName)
                 }
-            }
+                return Promise(error: MicroBlogError.argumentError(message: "Invalid user info"))
+            }.then { user -> Void in
+                self.displayUser(user: user)
+                // Save user
+                if (user.accountKey == user.key) {
+                    _ = DispatchQueue.global().promise { () -> Void in
+                        let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
+                        let update = accountsTable.filter(Account.RowIndices.key == user.accountKey).update(Account.RowIndices.user <- user)
+                        _ = try db.run(update)
+                    }
+                }
         }
         
     }
@@ -260,14 +274,14 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     // MARK: ScrollView delegate
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.updateBannerScaleTransfom()
+        self.updateBannerScaleTransfom(scrollView.isDragging || scrollView.isTracking || scrollView.isDecelerating)
     }
     
     func scrollView(_ scrollView: MXScrollView, shouldScrollWithSubView subView: UIScrollView) -> Bool {
         return true
     }
     
-    func updateBannerScaleTransfom() {
+    private func updateBannerScaleTransfom(_ fromUserInteraction: Bool) {
         guard let navigationController = self.navigationController else {
             return
         }
@@ -284,6 +298,8 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         var titleTextAttributes = navBar.titleTextAttributes
         
         var titleTextColor = UIColor.white
+        var indicatorOffset: CGFloat = 0
+        var indicatorProgress: CGFloat = 0
         
         if (topOffset < 0) {
             let headerScaleFactor: CGFloat = max(0, -topOffset) / bannerHeight
@@ -291,6 +307,9 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
             
             bannerTransform = CATransform3DTranslate(bannerTransform, 0, headerSizevariation + topOffset, 0)
             bannerTransform = CATransform3DScale(bannerTransform, 1.0 + headerScaleFactor, 1.0 + headerScaleFactor, 0)
+            
+            indicatorOffset = -(headerSizevariation + topOffset)
+            indicatorProgress = (-topOffset / 60)
             
             self.blurredBannerView.alpha = min(1, -topOffset / 30)
             titleTextColor = titleTextColor.withAlphaComponent(0)
@@ -318,10 +337,23 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
             self.blurredBannerView.alpha = 0
             titleTextColor = titleTextColor.withAlphaComponent(0)
         }
+        
         titleTextAttributes?[NSForegroundColorAttributeName] = titleTextColor
         // Apply Transformations
         profileBannerContainer.layer.transform = bannerTransform
         profileImageView.layer.transform = profileImageTransform
+        
+        profileRefreshIndicator.layer.bounds.origin.y = -(bannerHeight - profileRefreshIndicator.frame.height) / 2 + indicatorOffset
+        if (fromUserInteraction && !self.profileRefreshIndicator.animationStarted) {
+            if (indicatorProgress >= 1) {
+                self.profileRefreshIndicator.startAnimation()
+                if let vc = self.viewControllers[self.segmentedContainerView.selectedViewIndex] as? PullToRefreshProtocol {
+                    vc.refreshFromStart()
+                }
+            } else {
+                self.profileRefreshIndicator.showProgress(indicatorProgress)
+            }
+        }
         navBar.titleTextAttributes = titleTextAttributes
     }
     
@@ -352,8 +384,8 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
                 let pages = UIStoryboard(name: "Pages", bundle: nil)
                 let vc = pages.instantiateViewController(withIdentifier: "StatusesList") as! StatusesListController
                 let account = getAccount(forKey: userInfo.accountKey)!
-                let statusesDelegate = UserTimelineStatusesListControllerDelegate(account: account, userKey: userInfo.userKey, screenName: userInfo.screenName)
-                vc.delegate = statusesDelegate
+                vc.dataSource = UserTimelineStatusesListControllerDataSource(account: account, userKey: userInfo.userKey, screenName: userInfo.screenName)
+                vc.delegate = self
                 newController = vc
             case 1:
                 let pages = UIStoryboard(name: "Pages", bundle: nil)
@@ -362,8 +394,8 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
                 let pages = UIStoryboard(name: "Pages", bundle: nil)
                 let vc = pages.instantiateViewController(withIdentifier: "StatusesList") as! StatusesListController
                 let account = getAccount(forKey: userInfo.accountKey)!
-                let statusesDelegate = UserFavoritesStatusesListControllerDelegate(account: account, userKey: userInfo.userKey, screenName: userInfo.screenName)
-                vc.delegate = statusesDelegate
+                vc.dataSource = UserFavoritesStatusesListControllerDataSource(account: account, userKey: userInfo.userKey, screenName: userInfo.screenName)
+                vc.delegate = self
                 newController = vc
             default:
                 abort()
@@ -374,7 +406,6 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
             newController = pages.instantiateViewController(withIdentifier: "StubTab")
             viewControllers[index] = newController
         }
-        
         self.addChildViewController(newController)
         newController.didMove(toParentViewController: self)
         return newController.view
@@ -392,6 +423,10 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         default:
             break
         }
+    }
+    
+    func refreshEnded() {
+        self.profileRefreshIndicator.stopAnimation()
     }
     
     struct UserInfoTag {

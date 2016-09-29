@@ -44,6 +44,10 @@ class SegmentedContainerView: UIView, MXPagerViewDataSource {
         return contentView.parallaxHeader
     }
     
+    var selectedViewIndex: Int {
+        return segmentedControl.selectedSegmentIndex
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         self.contentView = MXScrollView()
         self.segmentedControl = ReselectUISegmentedControl()

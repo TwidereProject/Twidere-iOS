@@ -1,5 +1,5 @@
 //
-//  UserFavoritesStatusesListControllerDelegate.swift
+//  UserTimelineStatusesListControllerDelegate.swift
 //  Twidere
 //
 //  Created by Mariotaku Lee on 16/9/20.
@@ -9,7 +9,7 @@
 import Foundation
 import PromiseKit
 
-class UserFavoritesStatusesListControllerDelegate: SingleAccountStatusesListControllerDelegate {
+class UserTimelineStatusesListControllerDataSource: SingleAccountStatusesListControllerDataSource {
     
     var userKey: UserKey?
     var screenName: String?
@@ -22,9 +22,9 @@ class UserFavoritesStatusesListControllerDelegate: SingleAccountStatusesListCont
     
     override func getStatusesRequest(microBlog: MicroBlogService, paging: Paging) -> Promise<[Status]> {
         if let userKey = self.userKey {
-            return microBlog.getFavorites(id: userKey.id, paging: paging)
+            return microBlog.getUserTimeline(id: userKey.id, paging: paging)
         } else if let screenName = self.screenName {
-            return microBlog.getFavorites(screenName: screenName, paging: paging)
+            return microBlog.getUserTimeline(screenName: screenName, paging: paging)
         }
         return Promise(error: MicroBlogError.argumentError(message: "Invalid parameter"))
     }

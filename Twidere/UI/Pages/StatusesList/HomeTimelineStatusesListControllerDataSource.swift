@@ -10,7 +10,7 @@ import Foundation
 import PromiseKit
 import SQLite
 
-class HomeTimelineStatusesListControllerDelegate: StatusesListControllerDelegate {
+class HomeTimelineStatusesListControllerDataSource: StatusesListControllerDataSource {
     
     let table = Table("home_statuses")
     

@@ -11,7 +11,7 @@ import SwiftyJSON
 import PromiseKit
 import UITableView_FDTemplateLayoutCell
 
-class StatusesListController: UITableViewController, StatusCellDelegate {
+class StatusesListController: UITableViewController, StatusCellDelegate, PullToRefreshProtocol {
     
     var statuses: [Status]? = nil {
         didSet {
@@ -28,6 +28,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate {
     
     var loadMoreEnabled: Bool = true
     
+    var dataSource: StatusesListControllerDataSource!
     var delegate: StatusesListControllerDelegate!
     var scrollDelegate: UIScrollViewDelegate!
     
@@ -57,7 +58,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate {
         statuses = nil
         let opts = LoadOptions()
         opts.initLoad = true
-        opts.params = SimpleRefreshTaskParam(accounts: self.delegate.getAccounts())
+        opts.params = SimpleRefreshTaskParam(accounts: self.dataSource.getAccounts())
         self.loadStatuses(opts)
         
         
@@ -84,7 +85,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate {
         let opts = LoadOptions()
         
         opts.initLoad = true
-        opts.params = SimpleRefreshTaskParam(accounts: delegate.getAccounts())
+        opts.params = SimpleRefreshTaskParam(accounts: dataSource.getAccounts())
         
         loadStatuses(opts)
     }
@@ -132,7 +133,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate {
             guard let lastStatus = statuses?.last else {
                 return
             }
-            let accounts = delegate.getAccounts()
+            let accounts = dataSource.getAccounts()
             if (!self.refreshTaskRunning) {
                 if let accountKey = accounts.filter({$0.key == lastStatus.accountKey}).first {
                     let opts = LoadOptions()
@@ -173,7 +174,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate {
         switch getItemCountIndex(position: indexPath.item) {
         case 0:
             let status = statuses![(indexPath as NSIndexPath).item]
-            let accounts = delegate.getAccounts()
+            let accounts = dataSource.getAccounts()
             if (status.isGap ?? false) {
                 if let accountKey = accounts.filter({$0.key == status.accountKey}).first {
                     let opts = LoadOptions()
@@ -229,7 +230,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate {
         let opts = LoadOptions()
         opts.initLoad = false
         
-        opts.params = RefreshFromStartParam(accounts: delegate.getAccounts(), delegate!)
+        opts.params = RefreshFromStartParam(accounts: dataSource.getAccounts(), dataSource!)
         loadStatuses(opts)
     }
     
@@ -242,11 +243,12 @@ class StatusesListController: UITableViewController, StatusCellDelegate {
     
     fileprivate func loadStatuses(_ opts: LoadOptions) {
         self.refreshTaskRunning = true
-        if let promise = delegate?.loadStatuses(opts) {
+        if let promise = dataSource?.loadStatuses(opts) {
             promise.then { statuses in
                 self.statuses = statuses
                 }.always {
                     self.refreshControl?.endRefreshing()
+                    self.delegate?.refreshEnded()
                     self.refreshTaskRunning = false
                 }.catch { error in
                     // TODO show error
@@ -290,9 +292,9 @@ class StatusesListController: UITableViewController, StatusCellDelegate {
     
     class RefreshFromStartParam: RefreshTaskParam {
         var accounts: [Account]
-        var delegate: StatusesListControllerDelegate
+        var delegate: StatusesListControllerDataSource
         
-        init(accounts: [Account], _ delegate: StatusesListControllerDelegate) {
+        init(accounts: [Account], _ delegate: StatusesListControllerDataSource) {
             self.accounts = accounts
             self.delegate = delegate
         }
@@ -309,7 +311,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate {
     
 }
 
-protocol StatusesListControllerDelegate {
+protocol StatusesListControllerDataSource {
     
     func getAccounts() -> [Account]
     
@@ -318,5 +320,9 @@ protocol StatusesListControllerDelegate {
     func getNewestStatusIds(_ accounts: [Account]) -> [String?]?
     
     func getNewestStatusSortIds(_ accounts: [Account]) -> [Int64]?
-    
+ 
+}
+
+protocol StatusesListControllerDelegate {
+    func refreshEnded()
 }
