@@ -9,13 +9,26 @@
 import UIKit
 import UITableView_FDTemplateLayoutCell
 
+typealias StatusInfo = (accountKey: UserKey, id: String)
+
 class StatusViewerController: UITableViewController {
     
-    var status: Status!
+    private var status: Status!
+    private var conversation: [Status]!
+    private var statusInfo: StatusInfo!
     var cellDisplayOption = StatusCell.DisplayOption()
+    private var itemCounts: [Int] = [Int](repeating: 0, count: 5)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.cellDisplayOption = StatusCell.DisplayOption()
+        self.cellDisplayOption.fontSize = 15
+        
+        tableView.register(UINib(nibName: "StatusCell", bundle: nil), forCellReuseIdentifier: "Status")
+        tableView.register(UINib(nibName: "GapCell", bundle: nil), forCellReuseIdentifier: "Gap")
+        tableView.register(UINib(nibName: "LoadMoreCell", bundle: nil), forCellReuseIdentifier: "LoadMore")
+        
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
@@ -49,6 +62,14 @@ class StatusViewerController: UITableViewController {
             statusCell.displayOption = self.cellDisplayOption
             statusCell.display(self.status)
         }
+    }
+    
+    func displayStatus(_ status: Status) {
+        self.status = status
+    }
+    
+    func rebuildIndices() {
+        
     }
     
 }

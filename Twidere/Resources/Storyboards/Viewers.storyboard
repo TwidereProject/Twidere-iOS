@@ -10,24 +10,24 @@
         <scene sceneID="MDL-Wt-udz">
             <objects>
                 <tableViewController storyboardIdentifier="StatusDetails" useStoryboardIdentifierAsRestorationIdentifier="YES" id="p18-0J-V0M" userLabel="Status Details" customClass="StatusViewerController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="511" sectionHeaderHeight="28" sectionFooterHeight="28" id="dwM-Ft-Dav">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="547" sectionHeaderHeight="28" sectionFooterHeight="28" id="dwM-Ft-Dav">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DetailStatus" rowHeight="511" id="uo2-VL-hN1" customClass="DetailStatusCell" customModule="Twidere" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="511"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DetailStatus" id="uo2-VL-hN1" customClass="DetailStatusCell" customModule="Twidere" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="547"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uo2-VL-hN1" id="r0x-Xu-RSH">
-                                    <frame key="frameInset" width="375" height="510.5"/>
+                                    <frame key="frameInset" width="375" height="546.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" id="yvD-GY-np3" customClass="ALSRelativeLayout" customModule="ALSLayouts">
-                                            <frame key="frameInset" minX="8" minY="8" maxX="7" maxY="8.5"/>
+                                        <view contentMode="scaleToFill" misplaced="YES" id="yvD-GY-np3" customClass="ALSRelativeLayout" customModule="ALSLayouts">
+                                            <frame key="frameInset"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" id="9Nr-aP-WwP" userLabel="User Profile Container" customClass="ALSRelativeLayout" customModule="ALSLayouts">
-                                                    <frame key="frameInset" width="305" height="64"/>
+                                                <view contentMode="scaleToFill" misplaced="YES" id="9Nr-aP-WwP" userLabel="User Profile Container" customClass="ALSRelativeLayout" customModule="ALSLayouts">
+                                                    <frame key="frameInset" width="375" height="64"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Ohu-qT-aRL">
@@ -41,12 +41,12 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="userProfileImage"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
-                                                        <view contentMode="scaleToFill" id="mrF-6F-fhz" customClass="ALSLinearLayout" customModule="ALSLayouts">
-                                                            <frame key="frameInset" minX="64" minY="8" width="233" height="48"/>
+                                                        <view contentMode="scaleToFill" misplaced="YES" id="mrF-6F-fhz" customClass="ALSLinearLayout" customModule="ALSLayouts">
+                                                            <frame key="frameInset" minX="64" minY="8" width="288" height="48"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
-                                                                <view opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="q87-qX-Xgv" customClass="AttributedLabel" customModule="AttributedLabel">
-                                                                    <frame key="frameInset" minX="8" minY="8" width="225" height="15"/>
+                                                                <view opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="q87-qX-Xgv" customClass="AttributedLabel" customModule="AttributedLabel">
+                                                                    <frame key="frameInset" minX="8" minY="8" width="272" height="15"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
@@ -54,8 +54,8 @@
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="text" value="Name"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
-                                                                <view opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="IEs-zh-rjw" customClass="AttributedLabel" customModule="AttributedLabel">
-                                                                    <frame key="frameInset" minX="8" minY="27" width="225" height="13"/>
+                                                                <view opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="IEs-zh-rjw" customClass="AttributedLabel" customModule="AttributedLabel">
+                                                                    <frame key="frameInset" minX="8" minY="27" width="272" height="13"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
@@ -91,10 +91,12 @@
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="userProfileContainer"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <view contentMode="scaleToFill" id="mrg-gu-BJS" customClass="AttributedLabel" customModule="AttributedLabel">
-                                                    <frame key="frameInset" minY="72" width="305" height="46"/>
+                                                <view contentMode="scaleToFill" misplaced="YES" id="mrg-gu-BJS" customClass="AttributedLabel" customModule="AttributedLabel">
+                                                    <frame key="frameInset" minY="72" width="360" height="46"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <userDefinedRuntimeAttributes>
@@ -106,8 +108,8 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <view clipsSubviews="YES" contentMode="scaleToFill" id="c1F-5p-6XE" customClass="MediaPreviewContainer" customModule="Twidere" customModuleProvider="target">
-                                                    <frame key="frameInset" minY="126" width="305" height="132"/>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" id="c1F-5p-6XE" customClass="MediaPreviewContainer" customModule="Twidere" customModuleProvider="target">
+                                                    <frame key="frameInset" minY="126" width="360" height="132"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <userDefinedRuntimeAttributes>
@@ -119,20 +121,20 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <view autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="e0V-Sh-l3w" userLabel="Quoted View" customClass="ALSLinearLayout" customModule="ALSLayouts">
-                                                    <frame key="frameInset" minY="266" width="305" height="221"/>
+                                                <view autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" id="e0V-Sh-l3w" userLabel="Quoted View" customClass="ALSLinearLayout" customModule="ALSLayouts">
+                                                    <frame key="frameInset" minY="266" width="360" height="221"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <view opaque="NO" userInteractionEnabled="NO" contentMode="left" id="va0-Wh-dKL" userLabel="Quoted Name View" customClass="AttributedLabel" customModule="AttributedLabel">
-                                                            <frame key="frameInset" minX="8" minY="8" width="289" height="17"/>
+                                                        <view opaque="NO" userInteractionEnabled="NO" contentMode="left" misplaced="YES" id="va0-Wh-dKL" userLabel="Quoted Name View" customClass="AttributedLabel" customModule="AttributedLabel">
+                                                            <frame key="frameInset" minX="8" minY="8" width="344" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="abF-bh-zDN" userLabel="Quoted Text View" customClass="AttributedLabel" customModule="AttributedLabel">
-                                                            <frame key="frameInset" minX="8" minY="31" width="289" height="46"/>
+                                                        <view opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" id="abF-bh-zDN" userLabel="Quoted Text View" customClass="AttributedLabel" customModule="AttributedLabel">
+                                                            <frame key="frameInset" minX="8" minY="31" width="344" height="46"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
@@ -142,8 +144,8 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view clipsSubviews="YES" contentMode="scaleToFill" id="Gmc-H9-Scl" userLabel="Quoted Media Preview" customClass="MediaPreviewContainer" customModule="Twidere" customModuleProvider="target">
-                                                            <frame key="frameInset" minX="8" minY="85" width="289" height="128"/>
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" id="Gmc-H9-Scl" userLabel="Quoted Media Preview" customClass="MediaPreviewContainer" customModule="Twidere" customModuleProvider="target">
+                                                            <frame key="frameInset" minX="8" minY="85" width="344" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <userDefinedRuntimeAttributes>
@@ -171,22 +173,50 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
+                                                <toolbar opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="4o6-cx-kYl">
+                                                    <frame key="frameInset" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                    <items>
+                                                        <barButtonItem image="Button Action Reply" id="Gfa-bD-8gM"/>
+                                                        <barButtonItem style="plain" systemItem="flexibleSpace" id="baS-Zc-pan"/>
+                                                        <barButtonItem image="Button Action Retweet" id="z8P-ji-h6u"/>
+                                                        <barButtonItem style="plain" systemItem="flexibleSpace" id="gG0-Ug-0sL"/>
+                                                        <barButtonItem image="Button Action Star" id="Dh8-D7-e3N"/>
+                                                        <barButtonItem style="plain" systemItem="flexibleSpace" id="aEc-Hd-rF4"/>
+                                                        <barButtonItem image="Button Action Share" id="iW2-WX-Gnm"/>
+                                                        <barButtonItem style="plain" systemItem="flexibleSpace" id="SDq-bX-MCx"/>
+                                                        <barButtonItem image="Button Action More" id="aQd-dP-Ivt"/>
+                                                    </items>
+                                                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="quotedView"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
+                                                            <real key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </toolbar>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="widthModeString" value="MatchParent"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="heightModeString" value="WrapContent"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="ignoreLayoutMargins" value="NO"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                 <connections>
                                     <outlet property="mediaPreview" destination="c1F-5p-6XE" id="4Ni-Zt-fnV"/>
                                     <outlet property="quotedMediaPreview" destination="Gmc-H9-Scl" id="siQ-bA-tEN"/>
                                     <outlet property="quotedNameView" destination="va0-Wh-dKL" id="NJH-WC-bzo"/>
                                     <outlet property="quotedTextView" destination="abF-bh-zDN" id="LzM-c6-d9b"/>
                                     <outlet property="quotedView" destination="e0V-Sh-l3w" id="KTh-iH-D0V"/>
+                                    <outlet property="statusToolbar" destination="4o6-cx-kYl" id="Ket-Mw-mKj"/>
                                     <outlet property="textView" destination="mrg-gu-BJS" id="qNI-nm-jlm"/>
                                     <outlet property="timeSourceView" destination="IEs-zh-rjw" id="9p8-9n-E8K"/>
                                     <outlet property="userNameView" destination="q87-qX-Xgv" id="e7y-4P-oF9"/>
@@ -204,7 +234,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QPZ-iZ-WjJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="164.375" y="116.72499999999999"/>
+            <point key="canvasLocation" x="163.5" y="116.5"/>
         </scene>
         <!--StatusesList-->
         <scene sceneID="UtW-G0-AOU">
@@ -419,6 +449,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Button Action More" width="30" height="30"/>
+        <image name="Button Action Reply" width="30" height="30"/>
+        <image name="Button Action Retweet" width="30" height="30"/>
+        <image name="Button Action Share" width="30" height="30"/>
+        <image name="Button Action Star" width="30" height="30"/>
         <image name="Toolbar Settings" width="22" height="22"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

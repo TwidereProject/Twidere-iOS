@@ -23,6 +23,7 @@ class DetailStatusCell: UITableViewCell {
     @IBOutlet weak var quotedNameView: AttributedLabel!
     @IBOutlet weak var quotedTextView: AttributedLabel!
     @IBOutlet weak var quotedMediaPreview: MediaPreviewContainer!
+    @IBOutlet weak var statusToolbar: UIToolbar!
 
     var displayOption: StatusCell.DisplayOption! {
         didSet {
@@ -49,6 +50,11 @@ class DetailStatusCell: UITableViewCell {
         userNameView.numberOfLines = 1
         timeSourceView.numberOfLines = 1
         fd_enforceFrameLayout = true
+        
+        statusToolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
+        statusToolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
+        
+        self.contentView.layoutMargins = UIEdgeInsets.zero
     }
 
     func display(_ status: Status) {

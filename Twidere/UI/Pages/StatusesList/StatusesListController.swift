@@ -41,8 +41,6 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
         self.cellDisplayOption = StatusCell.DisplayOption()
         self.cellDisplayOption.fontSize = 15
         
@@ -189,7 +187,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
             } else {
                 let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
-                vc.status = status
+                vc.displayStatus(status)
                 navigationController?.show(vc, sender: self)
             }
         case 1:
