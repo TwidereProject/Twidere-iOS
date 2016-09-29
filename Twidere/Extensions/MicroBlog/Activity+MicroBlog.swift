@@ -13,9 +13,12 @@ extension Activity {
     convenience init(_ json: JSON, accountKey: UserKey?) {
         self.init()
         self.accountKey = accountKey
+        self.createdAt = parseTwitterDate(json["created_at"].stringValue)
+        self.action = json["action"].string
+        self.sources = UserArray(User.arrayFromJson(json["sources"], accountKey: accountKey))
     }
     
-    static func arrayFromJson(_ json: JSON, accountKey: UserKey) -> [Activity] {
+    static func arrayFromJson(_ json: JSON, accountKey: UserKey?) -> [Activity] {
         if let array = json.array {
             return array.map { Activity($0, accountKey: accountKey) }
         } else {

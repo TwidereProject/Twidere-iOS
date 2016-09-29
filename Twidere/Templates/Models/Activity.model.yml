@@ -1,0 +1,72 @@
+ # Added in database version 3
+imports:
+  - Foundation
+submodels:
+  Activity:
+    fields:
+      _id:
+        type: Int64
+        column: _id
+        primary_key: autoincrement
+      accountKey:
+        type: UserKey
+        column: account_key
+        json_field: account_key
+        json_transform: UserKeyTransform
+      positionKey:
+        type: Int64
+        column: position_key
+        json_field: position_key
+        min_version: 2
+      createdAt:
+        type: Date
+        column: created_at
+        json_field: created_at
+      maxSortPosition:
+        type: Int64
+        column: max_sort_position
+        json_field: max_sort_position
+      minSortPosition:
+        type: Int64
+        column: min_sort_position
+        json_field: min_sort_position
+      maxPosition:
+        type: String
+        column: max_position
+        json_field: max_position
+      minPosition:
+        type: String
+        column: min_position
+        json_field: min_position
+      action:
+        type: String
+        column: action
+        json_field: action
+      sources:
+        type: UserArray
+        column: sources
+        json_field: sources
+      sourceKeys:
+        type: UserKeyArray
+        column: source_keys
+        json_field: source_keys
+      targets:
+        type: ObjectList
+        column: targets
+        json_field: targets
+      targetObjects:
+        type: ObjectList
+        column: target_objects
+        json_field: target_objects
+    submodels:
+      ObjectList:
+        fields:
+          statuses:
+            type: '[Status]'
+            json_field: statuses
+          users:
+            type: '[User]'
+            json_field: users
+          userLists:
+            type: '[UserList]'
+            json_field: user_lists

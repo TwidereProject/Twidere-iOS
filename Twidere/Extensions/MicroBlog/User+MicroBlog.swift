@@ -47,6 +47,14 @@ extension User {
         }
         return NSURLComponents(string: profileUrl)!.host ?? accountHost
     }
+    
+    static func arrayFromJson(_ json: JSON, accountKey: UserKey?) -> [User] {
+        if let array = json.array {
+            return array.map { User(json: $0, accountKey: accountKey) }
+        } else {
+            return json["users"].map { User(json: $1, accountKey: accountKey) }
+        }
+    }
 }
 
 extension User.Metadata {
