@@ -1,4 +1,5 @@
- # Added in database version 3
+# Added in database version 2
+min_version: 2
 imports:
   - Foundation
 submodels:
@@ -18,11 +19,14 @@ submodels:
         column: account_key
         json_field: account_key
         json_transform: UserKeyTransform
+      isGap:
+        type: Bool
+        column: is_gap
+        json_field: is_gap
       positionKey:
         type: Int64
         column: position_key
         json_field: position_key
-        min_version: 2
       createdAt:
         type: Date
         column: created_at

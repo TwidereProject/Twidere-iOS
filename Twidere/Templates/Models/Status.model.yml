@@ -12,16 +12,14 @@ submodels:
         column: account_key
         json_field: account_key
         json_transform: UserKeyTransform
-      sortId: # Added in database version 2
+      sortId:
         type: Int64
         column: sort_id
         json_field: sort_id
-        min_version: 2
-      positionKey: # Added in database version 2
+      positionKey:
         type: Int64
         column: position_key
         json_field: position_key
-        min_version: 2
       isGap:
         type: Bool
         column: is_gap

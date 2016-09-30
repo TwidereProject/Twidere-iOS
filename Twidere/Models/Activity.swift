@@ -6,6 +6,7 @@ class Activity {
     // Fields
     var _id: Int64!
     var accountKey: UserKey!
+    var isGap: Bool!
     var positionKey: Int64!
     var createdAt: Date!
     var maxSortPosition: Int64!

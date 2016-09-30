@@ -6,6 +6,7 @@ extension Activity: StaticMappable {
 
     func mapping(map: Map) {
         accountKey <- (map["account_key"], UserKeyTransform())
+        isGap <- map["is_gap"]
         positionKey <- map["position_key"]
         createdAt <- map["created_at"]
         maxSortPosition <- map["max_sort_position"]

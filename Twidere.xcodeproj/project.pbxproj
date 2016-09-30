@@ -92,6 +92,8 @@
 		CE65B1D71D9D173C00A38A61 /* Enum+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1D61D9D173C00A38A61 /* Enum+Value.swift */; };
 		CE65B1DB1D9D525C00A38A61 /* ActivityExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1DA1D9D525C00A38A61 /* ActivityExtension.swift */; };
 		CE65B1DD1D9E0D4900A38A61 /* ShortTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1DC1D9E0D4900A38A61 /* ShortTimeView.swift */; };
+		CE65B1E01D9E901900A38A61 /* Activity.model.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE65B1DE1D9E901900A38A61 /* Activity.model.yml */; };
+		CE65B1E11D9E901900A38A61 /* UserList.model.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE65B1DF1D9E901900A38A61 /* UserList.model.yml */; };
 		CE779F291D8563B60053B5C7 /* Account+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F251D8563B60053B5C7 /* Account+SQLite.swift */; };
 		CE779F2A1D8563B60053B5C7 /* Status+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F261D8563B60053B5C7 /* Status+SQLite.swift */; };
 		CE779F2B1D8563B60053B5C7 /* User+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F271D8563B60053B5C7 /* User+SQLite.swift */; };
@@ -269,6 +271,8 @@
 		CE65B1D61D9D173C00A38A61 /* Enum+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Enum+Value.swift"; sourceTree = "<group>"; };
 		CE65B1DA1D9D525C00A38A61 /* ActivityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityExtension.swift; sourceTree = "<group>"; };
 		CE65B1DC1D9E0D4900A38A61 /* ShortTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortTimeView.swift; sourceTree = "<group>"; };
+		CE65B1DE1D9E901900A38A61 /* Activity.model.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Activity.model.yml; sourceTree = "<group>"; };
+		CE65B1DF1D9E901900A38A61 /* UserList.model.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UserList.model.yml; sourceTree = "<group>"; };
 		CE779F251D8563B60053B5C7 /* Account+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+SQLite.swift"; sourceTree = "<group>"; };
 		CE779F261D8563B60053B5C7 /* Status+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Status+SQLite.swift"; sourceTree = "<group>"; };
 		CE779F271D8563B60053B5C7 /* User+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+SQLite.swift"; sourceTree = "<group>"; };
@@ -939,6 +943,8 @@
 		CEDFEA691D4F392900E1F8B8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CE65B1DE1D9E901900A38A61 /* Activity.model.yml */,
+				CE65B1DF1D9E901900A38A61 /* UserList.model.yml */,
 				CE45CAF11D8559780004CC1C /* Account.model.yml */,
 				CE4F6D8A1D86F6EE0064DA14 /* MediaItem.model.yml */,
 				CE4F6D891D86F6EE0064DA14 /* Model+ObjectMapper.swift.gyb */,
@@ -1105,6 +1111,7 @@
 				CE5993131D83B5C200653220 /* Pages.storyboard in Resources */,
 				CE0529F41CF7F35300E06364 /* LaunchScreen.storyboard in Resources */,
 				CE59930B1D82EDD100653220 /* Filters.storyboard in Resources */,
+				CE65B1E01D9E901900A38A61 /* Activity.model.yml in Resources */,
 				CE358B751D825942002A33B3 /* Viewers.storyboard in Resources */,
 				CEA2E2AA1D34C2090095BC57 /* DefaultAPIConfig.plist in Resources */,
 				CE0529F11CF7F35300E06364 /* Assets.xcassets in Resources */,
@@ -1114,6 +1121,7 @@
 				CE4F6D8E1D86F6EE0064DA14 /* SpanItem.model.yml in Resources */,
 				CEA2E2AF1D3681D00095BC57 /* Compose.storyboard in Resources */,
 				CE45CAF31D8559780004CC1C /* Account.model.yml in Resources */,
+				CE65B1E11D9E901900A38A61 /* UserList.model.yml in Resources */,
 				CE497FB41D698B1B000F16D2 /* UsersListController.xib in Resources */,
 				CE4F6D8D1D86F6EE0064DA14 /* MediaItem.model.yml in Resources */,
 				CE45CA821D853D310004CC1C /* Status.model.yml in Resources */,

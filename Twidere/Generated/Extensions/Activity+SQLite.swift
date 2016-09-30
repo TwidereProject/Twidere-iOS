@@ -9,6 +9,7 @@ extension Activity {
         self.init()
         self._id = row.get(RowIndices._id)
         self.accountKey = row.get(RowIndices.accountKey)
+        self.isGap = row.get(RowIndices.isGap)
         self.positionKey = row.get(RowIndices.positionKey)
         self.createdAt = row.get(RowIndices.createdAt)
         self.maxSortPosition = row.get(RowIndices.maxSortPosition)
@@ -26,6 +27,7 @@ extension Activity {
         return table.create(temporary: temporary, ifNotExists: ifNotExists) { t in
             t.column(RowIndices._id, primaryKey: .autoincrement)
             t.column(RowIndices.accountKey)
+            t.column(RowIndices.isGap)
             t.column(RowIndices.positionKey)
             t.column(RowIndices.createdAt)
             t.column(RowIndices.maxSortPosition)
@@ -43,6 +45,7 @@ extension Activity {
     static func insertData(table: Table, model: Activity) -> Insert {
         return table.insert( [
                 RowIndices.accountKey <- model.accountKey,
+                RowIndices.isGap <- model.isGap,
                 RowIndices.positionKey <- model.positionKey,
                 RowIndices.createdAt <- model.createdAt,
                 RowIndices.maxSortPosition <- model.maxSortPosition,
@@ -61,6 +64,7 @@ extension Activity {
 
         static let _id = Expression<Int64>("_id")
         static let accountKey = Expression<UserKey?>("account_key")
+        static let isGap = Expression<Bool?>("is_gap")
         static let positionKey = Expression<Int64?>("position_key")
         static let createdAt = Expression<Date?>("created_at")
         static let maxSortPosition = Expression<Int64?>("max_sort_position")
@@ -76,6 +80,7 @@ extension Activity {
         static let columns: [Expressible] = [
             _id,
             accountKey,
+            isGap,
             positionKey,
             createdAt,
             maxSortPosition,

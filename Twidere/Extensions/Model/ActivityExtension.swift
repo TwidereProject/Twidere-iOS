@@ -37,6 +37,16 @@ extension Activity {
             return ("\(getSourcesName(self.sources.array)) favorited a tweet you were mentioned in", getTextOnlySummary(self.targets.statuses))
         case .retweetedMention:
             return ("\(getSourcesName(self.sources.array)) retweeted a tweet you were mentioned in", getTextOnlySummary(self.targets.statuses))
+        case .listMemberAdded:
+            return ("\(getSourcesName(self.sources.array)) added you to their lists", nil)
+        case .joinedTwitter:
+            return ("\(getSourcesName(self.sources.array)) joined Twitter", nil)
+        case .mediaTagged:
+            return ("\(getSourcesName(self.sources.array)) tagged you", getTextOnlySummary(self.targets.statuses))
+        case .favoritedMediaTagged:
+            return ("\(getSourcesName(self.sources.array)) favorited a tweet you were tagged in", getTextOnlySummary(self.targets.statuses))
+        case .retweetedMediaTagged:
+            return ("\(getSourcesName(self.sources.array)) retweeted a tweet you were tagged in", getTextOnlySummary(self.targets.statuses))
         default:
             return (action.rawValue, "Message")
         }
