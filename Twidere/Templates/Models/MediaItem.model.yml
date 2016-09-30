@@ -5,7 +5,7 @@ submodels:
   MediaItem:
     append_body: "
     enum MediaType: String {
-        case Unknown, Image, Video, AnimatedGif, ExternalPlayer, VariableType
+        case unknown, image, video, animatedGif, externalPlayer, variableType
     }
     "
     fields:
@@ -21,8 +21,9 @@ submodels:
         json_field: preview_url
       type:
         type: MediaType
-        init: .Unknown
+        init: .unknown
         json_field: type
+        json_transform: MediaTypeTransform
       width:
         type: Int
         init: '0'

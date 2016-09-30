@@ -17,7 +17,7 @@ import CoreLocation
 import SwiftyUserDefaults
 import AssetsLibrary
 import Photos
-import UIView_FDCollapsibleConstraints
+
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
@@ -148,7 +148,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     
     func updateMediaPreview() {
         attachmedMediaCollectionView.reloadData()
-        attachmedMediaCollectionView.fd_collapsed = attachedMedia?.isEmpty ?? true
+//        attachmedMediaCollectionView.fd_collapsed = attachedMedia?.isEmpty ?? true
     }
 
     @IBAction func updateStatusTapped(_ sender: UITapGestureRecognizer) {

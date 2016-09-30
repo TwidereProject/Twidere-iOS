@@ -14,6 +14,18 @@ extension String {
         return self[characters.index(startIndex, offsetBy: range.lowerBound)...characters.index(startIndex, offsetBy: range.upperBound)]
     }
     
+    func uppercasingFirstLetter() -> String {
+        let first = String(characters.prefix(1)).uppercased()
+        let other = String(characters.dropFirst())
+        return first + other
+    }
+    
+    func lowercasingFirstLetter() -> String {
+        let first = String(characters.prefix(1)).lowercased()
+        let other = String(characters.dropFirst())
+        return first + other
+    }
+    
     /// Returns a tuple containing the string made by relpacing in the
     /// `String` all HTML character entity references with the corresponding
     /// character. Also returned is an array of offset information describing

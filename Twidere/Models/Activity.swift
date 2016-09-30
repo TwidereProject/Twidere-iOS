@@ -12,13 +12,13 @@ class Activity {
     var minSortPosition: Int64!
     var maxPosition: String!
     var minPosition: String!
-    var action: String!
+    var action: Action!
     var sources: UserArray!
     var sourceKeys: UserKeyArray!
     var targets: ObjectList!
     var targetObjects: ObjectList!
     // Append body content
-
+ enum Action: String { case favorite, follow, mention, reply, retweet, listMemberAdded, listCreated, favoritedRetweet, retweetedRetweet, quote, retweetedMention, favoritedMention, joinedTwitter, mediaTagged, favoritedMediaTagged, retweetedMediaTagged } 
     // Sub models
     class ObjectList {
     

@@ -21,10 +21,9 @@ target 'Twidere' do
   pod 'UIView+TouchHighlighting', '~> 1.1' # Obj-C
   pod 'SDWebImage', '~> 3.8.2' # Obj-C
   pod 'JDStatusBarNotification', '1.5.4' # Obj-C
-  pod 'UIView+FDCollapsibleConstraints', '~> 1.1' # Obj-C
   pod 'UITableView+FDTemplateLayoutCell', '~> 1.5.beta' # Obj-C
   pod 'DateTools', '~> 1.7.0' # Obj-C
-  pod 'ALSLayouts', '~> 2.0' # Swift 3
+  pod 'ALSLayouts', '~> 2.0.3' # Swift 3
   pod 'ThumborURL', '0.0.4' # Obj-C
   pod 'AttributedLabel', '~> 0.5.0' # Swift 3
   pod 'ObjectMapper', '~> 2.0' # Swift 3

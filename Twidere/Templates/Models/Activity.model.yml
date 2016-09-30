@@ -3,6 +3,11 @@ imports:
   - Foundation
 submodels:
   Activity:
+    append_body: "
+    enum Action: String {
+        case favorite, follow, mention, reply, retweet, listMemberAdded, listCreated, favoritedRetweet, retweetedRetweet, quote, retweetedMention, favoritedMention, joinedTwitter, mediaTagged, favoritedMediaTagged, retweetedMediaTagged
+    }
+    "
     fields:
       _id:
         type: Int64
@@ -39,7 +44,7 @@ submodels:
         column: min_position
         json_field: min_position
       action:
-        type: String
+        type: Action
         column: action
         json_field: action
       sources:

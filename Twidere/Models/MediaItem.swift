@@ -7,7 +7,7 @@ class MediaItem {
     var url: String!
     var mediaUrl: String?
     var previewUrl: String? = nil
-    var type: MediaType = .Unknown
+    var type: MediaType = .unknown
     var width: Int = 0
     var height: Int = 0
     var videoInfo: VideoInfo!
@@ -15,7 +15,7 @@ class MediaItem {
     var openBrowser: Bool = false
     var altText: String? = nil
     // Append body content
- enum MediaType: String { case Unknown, Image, Video, AnimatedGif, ExternalPlayer, VariableType } 
+ enum MediaType: String { case unknown, image, video, animatedGif, externalPlayer, variableType } 
     // Sub models
     class VideoInfo {
     

@@ -93,7 +93,7 @@ extension Status {
         
     }
     
-    static func arrayFromJson(_ json: JSON, accountKey: UserKey) -> [Status] {
+    static func arrayFromJson(_ json: JSON, accountKey: UserKey?) -> [Status] {
         if let array = json.array {
             return array.map { item in return Status(status: item, accountKey: accountKey) }
         } else {
@@ -297,14 +297,14 @@ extension Status {
     fileprivate func getMediaType(_ type: String?) -> MediaItem.MediaType {
         switch type {
         case "photo"?:
-            return .Image
+            return .image
         case "video"?:
-            return .Video
+            return .video
         case "animated_gif"?:
-            return .AnimatedGif
+            return .animatedGif
         default: break
         }
-        return .Unknown
+        return .unknown
     }
     
     fileprivate func getVideoInfo(_ json: JSON) -> MediaItem.VideoInfo {

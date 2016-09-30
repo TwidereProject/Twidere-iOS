@@ -33,12 +33,9 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Retweeted by user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="V07-d6-6R9" userLabel="Status Type Label">
+                            <view opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="V07-d6-6R9" userLabel="Status Type Label" customClass="AttributedLabel" customModule="AttributedLabel">
                                 <frame key="frameInset" minX="48" width="256" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="statusTypeLabel"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
@@ -49,10 +46,13 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginBottom">
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                            </label>
-                            <view opaque="NO" userInteractionEnabled="NO" contentMode="left" id="LKp-da-MGc" userLabel="Name View" customClass="AttributedLabel" customModule="AttributedLabel">
-                                <frame key="frameInset" minX="56" minY="23" width="210" height="17"/>
+                            </view>
+                            <view opaque="NO" userInteractionEnabled="NO" contentMode="left" misplaced="YES" id="LKp-da-MGc" userLabel="Name View" customClass="AttributedLabel" customModule="AttributedLabel">
+                                <frame key="frameInset" minX="48" minY="23" width="227" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="statusTypeLabel"/>
@@ -66,22 +66,22 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="3h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ciw-NL-y95" userLabel="Time View">
+                            <view opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" id="Ciw-NL-y95" userLabel="Time View" customClass="ShortTimeView" customModule="Twidere" customModuleProvider="target">
                                 <frame key="frameInset" minX="283" minY="24" width="21" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignBaseline" value="nameLabel"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="timeLabel"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                            </label>
-                            <view contentMode="scaleToFill" id="2U2-1i-w3g" userLabel="Text View" customClass="AttributedLabel" customModule="AttributedLabel">
-                                <frame key="frameInset" minX="56" minY="46" width="248" height="46"/>
+                            </view>
+                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" id="2U2-1i-w3g" userLabel="Text View" customClass="AttributedLabel" customModule="AttributedLabel">
+                                <frame key="frameInset" minX="48" minY="46" width="256" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="textLabel"/>
@@ -95,8 +95,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignTrailing" value="timeLabel"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" id="FZt-su-LuA" userLabel="Media Preview" customClass="MediaPreviewContainer" customModule="Twidere" customModuleProvider="target">
-                                <frame key="frameInset" minX="56" minY="100" width="248" height="128"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" id="FZt-su-LuA" userLabel="Media Preview" customClass="MediaPreviewContainer" customModule="Twidere" customModuleProvider="target">
+                                <frame key="frameInset" minX="48" minY="100" width="256" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
@@ -111,8 +111,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="xFN-8A-eFZ" userLabel="Quoted View" customClass="ALSLinearLayout" customModule="ALSLayouts">
-                                <frame key="frameInset" minX="56" minY="236" width="248" height="221"/>
+                            <view autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" id="xFN-8A-eFZ" userLabel="Quoted View" customClass="ALSLinearLayout" customModule="ALSLayouts">
+                                <frame key="frameInset" minX="48" minY="236" width="256" height="221"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view opaque="NO" userInteractionEnabled="NO" contentMode="left" id="QgV-ep-mVC" userLabel="Quoted Name View" customClass="AttributedLabel" customModule="AttributedLabel">

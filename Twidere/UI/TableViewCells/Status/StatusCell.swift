@@ -12,16 +12,16 @@ import DateTools
 import ALSLayouts
 import AttributedLabel
 
-class StatusCell: UITableViewCell {
+class StatusCell: ALSTableViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameView: AttributedLabel!
     @IBOutlet weak var textView: AttributedLabel!
-    @IBOutlet weak var timeView: UILabel!
+    @IBOutlet weak var timeView: ShortTimeView!
     @IBOutlet weak var quotedView: UIView!
     @IBOutlet weak var quotedNameView: AttributedLabel!
     @IBOutlet weak var quotedTextView: AttributedLabel!
-    @IBOutlet weak var statusTypeLabelView: UILabel!
+    @IBOutlet weak var statusTypeLabelView: AttributedLabel!
     @IBOutlet weak var mediaPreview: MediaPreviewContainer!
     @IBOutlet weak var quotedMediaPreview: MediaPreviewContainer!
     
@@ -35,8 +35,11 @@ class StatusCell: UITableViewCell {
     
     var displayOption: DisplayOption! {
         didSet {
-            quotedNameView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.9)
-            nameView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.9)
+            quotedNameView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.95)
+            nameView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.95)
+            
+            timeView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.85)
+            statusTypeLabelView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.9)
             
             quotedTextView.font = UIFont.systemFont(ofSize: displayOption.fontSize)
             textView.font = UIFont.systemFont(ofSize: displayOption.fontSize)
@@ -62,10 +65,6 @@ class StatusCell: UITableViewCell {
         
         nameView.numberOfLines = 1
         quotedNameView.numberOfLines = 1
-    }
-    
-    override func sizeThatFits(_ size: CGSize) -> CGSize {
-        return sizeThatFitsALS(size)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -115,30 +114,10 @@ class StatusCell: UITableViewCell {
             quotedView.layoutParams.hidden = true
         }
         profileImageView.displayImage(getProfileImageUrlForSize(status.userProfileImage, size: .reasonablySmall))
-        
-        updateTime(status)
+        timeView.time = status.createdAt
         
         let layout = contentView.subviews.first as! ALSRelativeLayout
         layout.setNeedsLayout()
-    }
-    
-    dynamic func updateTime(_ obj: AnyObject?) {
-        guard let status = obj as? Status , status.id == self.status?.id else {
-            return
-        }
-        
-        let createdAt: NSDate = status.createdAt as NSDate
-        
-        if (abs(createdAt.minutesAgo()) > 1) {
-            timeView.text = createdAt.shortTimeAgoSinceNow()
-        } else {
-            timeView.text = "just now"
-        }
-        if (!AppDelegate.performingScroll) {
-            let layout = contentView.subviews.first as! ALSRelativeLayout
-            layout.setNeedsLayout()
-        }
-        perform(#selector(self.updateTime), with: obj, afterDelay: 10.0)
     }
     
     @IBAction func profileImageTapped(_ sender: UITapGestureRecognizer) {
@@ -181,6 +160,10 @@ class StatusCell: UITableViewCell {
         var displayProfileImage: Bool = true
         var fontSize: CGFloat = 15
         var linkHighlight: Bool = true
+        
+        func loadUserDefaults() {
+            self.fontSize = 15
+        }
     }
 }
 

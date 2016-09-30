@@ -10,9 +10,8 @@ import UIKit
 import AttributedLabel
 import DateTools
 import ALSLayouts
-import UIView_FDCollapsibleConstraints
 
-class DetailStatusCell: UITableViewCell {
+class DetailStatusCell: ALSTableViewCell {
 
     @IBOutlet weak var userProfileImageView: UIImageView!
     @IBOutlet weak var userNameView: AttributedLabel!
@@ -31,10 +30,6 @@ class DetailStatusCell: UITableViewCell {
             timeSourceView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.9)
             textView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 1.1)
         }
-    }
-
-    override func sizeThatFits(_ size: CGSize) -> CGSize {
-        return sizeThatFitsALS(size)
     }
 
     override func awakeFromNib() {

@@ -67,7 +67,7 @@ extension Activity {
         static let minSortPosition = Expression<Int64?>("min_sort_position")
         static let maxPosition = Expression<String?>("max_position")
         static let minPosition = Expression<String?>("min_position")
-        static let action = Expression<String?>("action")
+        static let action = Expression<Action?>("action")
         static let sources = Expression<UserArray?>("sources")
         static let sourceKeys = Expression<UserKeyArray?>("source_keys")
         static let targets = Expression<ObjectList?>("targets")

@@ -1,7 +1,7 @@
 PODS:
   - ActionSheetPicker-3.0 (2.2.0)
   - Alamofire (4.0.1)
-  - ALSLayouts (2.0.2)
+  - ALSLayouts (2.0.3)
   - AttributedLabel (0.5.0)
   - CryptoSwift (0.6.0)
   - DateTools (1.7.0)
@@ -39,13 +39,12 @@ PODS:
   - twitter-text (1.14.0)
   - UITableView+FDTemplateLayoutCell (1.5.beta)
   - UITextView+Placeholder (1.2.0)
-  - UIView+FDCollapsibleConstraints (1.1)
   - UIView+TouchHighlighting (1.2.0)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (= 2.2.0)
   - Alamofire (~> 4.0)
-  - ALSLayouts (~> 2.0)
+  - ALSLayouts (~> 2.0.3)
   - AttributedLabel (~> 0.5.0)
   - CryptoSwift (~> 0.6.0)
   - DateTools (~> 1.7.0)
@@ -69,7 +68,6 @@ DEPENDENCIES:
   - twitter-text (~> 1.14)
   - UITableView+FDTemplateLayoutCell (~> 1.5.beta)
   - UITextView+Placeholder (~> 1.2)
-  - UIView+FDCollapsibleConstraints (~> 1.1)
   - UIView+TouchHighlighting (~> 1.1)
 
 EXTERNAL SOURCES:
@@ -85,7 +83,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
-  ALSLayouts: 747fab60eba2d593c4e56ed0f0c79c1f9a83ce0e
+  ALSLayouts: 5b3d0b5e65090c47a180f8dc79ce125a71d286c7
   AttributedLabel: 5df434efa72fad5a6cf5563b558030fd50fb180d
   CryptoSwift: 4a599b7241b8d3b857d6e2c28867d0bd5d1aae24
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
@@ -109,9 +107,8 @@ SPEC CHECKSUMS:
   twitter-text: 703e84901722b7e6e2e22b7ac12afabfb40be1e5
   UITableView+FDTemplateLayoutCell: 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
-  UIView+FDCollapsibleConstraints: 9357eaf03b4e088263ab74a3b86a382a64ce38dd
   UIView+TouchHighlighting: e05a338801522cbdc4a1e236bd189f2a928a781f
 
-PODFILE CHECKSUM: 7068400212d600fa8aa107417dd2c9807603f452
+PODFILE CHECKSUM: e7f46d58bb5410134c847140bbb0564641cd7779
 
 COCOAPODS: 1.1.0.rc.2

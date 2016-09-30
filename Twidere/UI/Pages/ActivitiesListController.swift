@@ -8,17 +8,29 @@
 
 import UIKit
 import PromiseKit
+import UITableView_FDTemplateLayoutCell
 
 class ActivitiesListController: UITableViewController {
+    
+    var activities: [Activity]! {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    
+    var cellDisplayOption: StatusCell.DisplayOption!
         
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        self.cellDisplayOption = StatusCell.DisplayOption()
+        self.cellDisplayOption.loadUserDefaults()
+        
+        tableView.register(UINib(nibName: "ActivityTitleSummaryCell", bundle: nil), forCellReuseIdentifier: "Activity")
+        tableView.register(UINib(nibName: "StatusCell", bundle: nil), forCellReuseIdentifier: "Status")
+        tableView.register(UINib(nibName: "GapCell", bundle: nil), forCellReuseIdentifier: "Gap")
+        tableView.register(UINib(nibName: "LoadMoreCell", bundle: nil), forCellReuseIdentifier: "LoadMore")
+        
         
         let control = UIRefreshControl()
         control.addTarget(self, action: #selector(self.refreshFromStart), for: .valueChanged)
@@ -35,69 +47,54 @@ class ActivitiesListController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return activities?.count ?? 0
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        switch self.activities[indexPath.item].action! {
+        case .mention, .reply, .quote:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Status", for: indexPath) as! StatusCell
+            cell.displayOption = cellDisplayOption
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Activity", for: indexPath) as! ActivityTitleSummaryCell
+            cell.displayOption = cellDisplayOption
+            return cell
+        }
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        switch cell {
+        case let cell as ActivityTitleSummaryCell:
+            cell.displayActivity(self.activities[indexPath.item])
+        case let cell as StatusCell:
+            cell.status = self.activities[indexPath.item].activityStatus
+        default:
+            break
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch self.activities[indexPath.item].action! {
+        case .mention, .reply, .quote:
+            return tableView.fd_heightForCell(withIdentifier: "Status", cacheBy: indexPath) { cell in
+                let cell = (cell as! StatusCell)
+                cell.displayOption = self.cellDisplayOption
+                cell.status = self.activities[indexPath.item].activityStatus
+            }
+        default:
+            return tableView.fd_heightForCell(withIdentifier: "Activity", cacheBy: indexPath) { cell in
+                let cell = (cell as! ActivityTitleSummaryCell)
+                cell.displayOption = self.cellDisplayOption
+                cell.displayActivity(self.activities[indexPath.item])
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func refreshFromStart() {
         _ = DispatchQueue.global().promise { () -> Account in
@@ -106,7 +103,7 @@ class ActivitiesListController: UITableViewController {
             let paging = Paging()
             return account.newMicroBlogService().getActivitiesAboutMe(paging: paging)
         }.then { activities in
-            print(activities)
+            self.activities = activities
         }.catch { error in
             print(error)
         }.always {
