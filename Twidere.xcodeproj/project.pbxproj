@@ -690,7 +690,7 @@
 			children = (
 				CE65B1E51D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift */,
 			);
-			name = DataSources;
+			path = DataSources;
 			sourceTree = "<group>";
 		};
 		CE7A573D1D917B410027BECE /* DataSources */ = {
@@ -701,8 +701,7 @@
 				CE7A57461D9185DC0027BECE /* UserFavoritesStatusesListControllerDelaSourceegate.swift */,
 				CE7A57431D917E1C0027BECE /* UserTimelineStatusesListControllerDataSource.swift */,
 			);
-			name = DataSources;
-			path = Delegates;
+			path = DataSources;
 			sourceTree = "<group>";
 		};
 		CE95747B1D32107800504D52 /* Models */ = {
@@ -940,8 +939,8 @@
 		CEDC3B241D7D9FDA0082A8BA /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
-				CEDC3B251D7D9FE70082A8BA /* GetStatusesTask.swift */,
 				CE65B1E21D9E97D700A38A61 /* GetActivitiesTask.swift */,
+				CEDC3B251D7D9FE70082A8BA /* GetStatusesTask.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -958,9 +957,8 @@
 		CEDFEA691D4F392900E1F8B8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CE65B1DE1D9E901900A38A61 /* Activity.model.yml */,
-				CE65B1DF1D9E901900A38A61 /* UserList.model.yml */,
 				CE45CAF11D8559780004CC1C /* Account.model.yml */,
+				CE65B1DE1D9E901900A38A61 /* Activity.model.yml */,
 				CE4F6D8A1D86F6EE0064DA14 /* MediaItem.model.yml */,
 				CE4F6D891D86F6EE0064DA14 /* Model+ObjectMapper.swift.gyb */,
 				C57AEC1E08786910159D9559 /* Model+SQLite.swift.gyb */,
@@ -968,6 +966,7 @@
 				CE4F6D8B1D86F6EE0064DA14 /* SpanItem.model.yml */,
 				CE45CA811D853D310004CC1C /* Status.model.yml */,
 				CE45CAF01D8559780004CC1C /* User.model.yml */,
+				CE65B1DF1D9E901900A38A61 /* UserList.model.yml */,
 			);
 			path = Models;
 			sourceTree = "<group>";
