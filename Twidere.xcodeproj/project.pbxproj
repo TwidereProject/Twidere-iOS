@@ -461,10 +461,10 @@
 			isa = PBXGroup;
 			children = (
 				CE29039D1D4CEF2A0056D0E2 /* AccountExtensions.swift */,
+				CE65B1DA1D9D525C00A38A61 /* ActivityExtension.swift */,
 				CE4B1AA11D7175B10017CB85 /* StatusExtensions.swift */,
 				CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */,
 				CE45CAF61D855EFA0004CC1C /* UserKeyExtensions.swift */,
-				CE65B1DA1D9D525C00A38A61 /* ActivityExtension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -554,11 +554,11 @@
 			isa = PBXGroup;
 			children = (
 				CE45CAEE1D8556DE0004CC1C /* AccountConfig+Value.swift */,
+				CE65B1CB1D9CC21000A38A61 /* Activity+Value.swift */,
+				CE65B1D61D9D173C00A38A61 /* Enum+Value.swift */,
 				CE4B1A9C1D7172F00017CB85 /* Status+Value.swift */,
 				CE45CAF41D855AE10004CC1C /* User+Value.swift */,
 				CE497FB91D6A8A65000F16D2 /* UserKey+Value.swift */,
-				CE65B1CB1D9CC21000A38A61 /* Activity+Value.swift */,
-				CE65B1D61D9D173C00A38A61 /* Enum+Value.swift */,
 			);
 			path = SQLite;
 			sourceTree = "<group>";
@@ -583,9 +583,9 @@
 		CE4B1AA31D7175D80017CB85 /* MicroBlog */ = {
 			isa = PBXGroup;
 			children = (
+				CE65B1D21D9CE3C800A38A61 /* Activity+MicroBlog.swift */,
 				CEDFEA6C1D4F4BF600E1F8B8 /* Status+MicroBlog.swift */,
 				CE779F351D858B210053B5C7 /* User+MicroBlog.swift */,
-				CE65B1D21D9CE3C800A38A61 /* Activity+MicroBlog.swift */,
 			);
 			path = MicroBlog;
 			sourceTree = "<group>";
@@ -601,18 +601,18 @@
 		CE4F6D7C1D86A5670064DA14 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CE65B1C51D9CC10A00A38A61 /* UserList+ObjectMapper.swift */,
-				CE65B1C61D9CC10A00A38A61 /* UserList+SQLite.swift */,
-				CE65B1C11D9CC0AA00A38A61 /* Activity+ObjectMapper.swift */,
-				CE65B1C21D9CC0AA00A38A61 /* Activity+SQLite.swift */,
 				CE4F6D7E1D86D9330064DA14 /* Account+ObjectMapper.swift */,
 				CE779F251D8563B60053B5C7 /* Account+SQLite.swift */,
+				CE65B1C11D9CC0AA00A38A61 /* Activity+ObjectMapper.swift */,
+				CE65B1C21D9CC0AA00A38A61 /* Activity+SQLite.swift */,
 				CE4F6D871D86F6480064DA14 /* MediaItem+ObjectMapper.swift */,
 				CE4F6D831D86EDA50064DA14 /* SpanItem+ObjectMapper.swift */,
 				CE4F6D7F1D86D9330064DA14 /* Status+ObjectMapper.swift */,
 				CE779F261D8563B60053B5C7 /* Status+SQLite.swift */,
 				CE4F6D7D1D86D9330064DA14 /* User+ObjectMapper.swift */,
 				CE779F271D8563B60053B5C7 /* User+SQLite.swift */,
+				CE65B1C51D9CC10A00A38A61 /* UserList+ObjectMapper.swift */,
+				CE65B1C61D9CC10A00A38A61 /* UserList+SQLite.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -620,8 +620,8 @@
 		CE4F6D8F1D878B9E0064DA14 /* ObjectMapper */ = {
 			isa = PBXGroup;
 			children = (
-				CE4F6D901D878BB40064DA14 /* UserKey+Transform.swift */,
 				CE65B1D41D9CFF4E00A38A61 /* Enum+Transform.swift */,
+				CE4F6D901D878BB40064DA14 /* UserKey+Transform.swift */,
 			);
 			path = ObjectMapper;
 			sourceTree = "<group>";
@@ -673,7 +673,7 @@
 			children = (
 				CE65B1CD1D9CDFEA00A38A61 /* ActivitiesListController.swift */,
 			);
-			name = ActivitiesList;
+			path = ActivitiesList;
 			sourceTree = "<group>";
 		};
 		CE7A573D1D917B410027BECE /* Delegates */ = {
@@ -690,9 +690,8 @@
 		CE95747B1D32107800504D52 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CE65B1C91D9CC11600A38A61 /* UserList.swift */,
-				CE65B1BD1D9CC01500A38A61 /* Activity.swift */,
 				CE45CA851D85416C0004CC1C /* Account.swift */,
+				CE65B1BD1D9CC01500A38A61 /* Activity.swift */,
 				CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */,
 				CE59930F1D83901B00653220 /* MediaItem.swift */,
 				CE0311891D87D946009475E8 /* MediaUploadResponse.swift */,
@@ -704,6 +703,7 @@
 				CEA2E2BD1D3761780095BC57 /* StatusUpdate.swift */,
 				CE45CA841D85416C0004CC1C /* User.swift */,
 				CEA2E2AB1D3549480095BC57 /* UserKey.swift */,
+				CE65B1C91D9CC11600A38A61 /* UserList.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
