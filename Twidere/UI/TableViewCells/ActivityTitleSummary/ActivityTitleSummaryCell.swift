@@ -22,7 +22,7 @@ class ActivityTitleSummaryCell: ALSTableViewCell {
             timeView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.85)
             
             titleView.font = UIFont.systemFont(ofSize: displayOption.fontSize)
-            summaryView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.95)
+            summaryView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.9)
         }
     }
     
