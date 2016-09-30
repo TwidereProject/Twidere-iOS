@@ -8,6 +8,14 @@
 
 import Foundation
 
+func < (lhs: Activity, rhs: Activity) -> Bool {
+    return lhs.createdAt < rhs.createdAt
+}
+
+func == (lhs: Activity, rhs: Activity) -> Bool {
+    return lhs.accountKey == rhs.accountKey && lhs.createdAt == rhs.createdAt
+}
+
 extension Activity {
     
     var activityStatus: Status? {

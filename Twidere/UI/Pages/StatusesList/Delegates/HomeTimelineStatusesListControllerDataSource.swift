@@ -12,7 +12,7 @@ import SQLite
 
 class HomeTimelineStatusesListControllerDataSource: StatusesListControllerDataSource {
     
-    let table = Table("home_statuses")
+    let table = homeStatusesTable
     
     func getAccounts() -> [Account] {
         return [try! defaultAccount()!]
@@ -49,7 +49,7 @@ class HomeTimelineStatusesListControllerDataSource: StatusesListControllerDataSo
         var result = [String?](repeating: nil, count: accounts.count)
         for row in try! db.prepare(table.select(Status.RowIndices.accountKey, Status.RowIndices.id)
             .group(Status.RowIndices.accountKey, having: accountKeys.contains(Status.RowIndices.accountKey))
-            .order(Status.RowIndices.createdAt.max)) {
+            .order(Status.RowIndices.positionKey.max)) {
                 if let key = row.get(Status.RowIndices.accountKey), let idx = accountKeys.index(where: {$0 == key}) {
                     result[idx] = row.get(Status.RowIndices.id)
                 }
@@ -64,12 +64,13 @@ class HomeTimelineStatusesListControllerDataSource: StatusesListControllerDataSo
         var result = [Int64](repeating: -1, count: accounts.count)
         for row in try! db.prepare(table.select(Status.RowIndices.accountKey, Status.RowIndices.sortId)
             .group(Status.RowIndices.accountKey, having: accountKeys.contains(Status.RowIndices.accountKey))
-            .order(Status.RowIndices.createdAt.max)) {
+            .order(Status.RowIndices.positionKey.max)) {
                 if let key = row.get(Status.RowIndices.accountKey), let idx = accountKeys.index(where: {$0 == key}) {
                     result[idx] = row.get(Status.RowIndices.sortId) ?? -1
                 }
         }
         return result
     }
+    
 }
     

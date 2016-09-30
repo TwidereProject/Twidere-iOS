@@ -52,14 +52,13 @@ class GetStatusesTask {
             }
             return Promise<StatusListResponse> { fullfill, reject in
                 fetchAction(account, twitter, paging).then(on: .global()) { statuses -> [Status] in
-                    
-                    try storeStatus(account, statuses: statuses, sinceId: sinceId, maxId: maxId, sinceSortId: sinceSortId, maxSortId: maxSortId, loadItemLimit: loadItemLimit, table: table, notify: false)
+                    try storeStatuses(account, statuses: statuses, sinceId: sinceId, maxId: maxId, sinceSortId: sinceSortId, maxSortId: maxSortId, loadItemLimit: loadItemLimit, table: table, notify: false)
                     
                     // TODO cache related data and preload
                     return statuses
-                    }.then { statuses -> Void in
+                }.then { statuses -> Void in
                         fullfill(StatusListResponse(accountKey: account.key, statuses: statuses))
-                    }.catch { error in
+                }.catch { error in
                         debugPrint(error)
                         fullfill(StatusListResponse(accountKey: account.key, error: error))
                 }
@@ -67,11 +66,11 @@ class GetStatusesTask {
             })
     }
     
-    fileprivate static func storeStatus(_ account: Account, statuses: [Status], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
+    fileprivate static func storeStatuses(_ account: Account, statuses: [Status], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
         let accountKey = account.key!
         let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
         
-        let noItemsBefore = try db.scalar(table.count) <= 0 // DataStoreUtils.getStatusCount(context, uri, accountKey) <= 0
+        let noItemsBefore = try db.scalar(table.filter(accountKey == Status.RowIndices.accountKey).count) <= 0
         
         let statusIds = statuses.map({ $0.id! })
         var minIdx = -1
@@ -98,7 +97,7 @@ class GetStatusesTask {
         // Delete all rows conflicting before new data inserted.
         var olderCount = -1
         if (minPositionKey > 0) {
-            olderCount = try getStatusesCount(db, table: table, expression: Status.RowIndices.positionKey < minPositionKey, accountKeys: [accountKey])
+            olderCount = try db.scalar(table.filter(Status.RowIndices.positionKey < minPositionKey && accountKey == Status.RowIndices.accountKey).count)
         }
         
         let rowsDeleted = try db.run(table.filter(Status.RowIndices.accountKey == accountKey && statusIds.contains(Status.RowIndices.id)).delete())
@@ -123,11 +122,6 @@ class GetStatusesTask {
             _ = try db.run(table.filter(Status.RowIndices.accountKey == accountKey && Status.RowIndices.id == maxId).update(Status.RowIndices.isGap <- false))
         }
     }
-    
-    static func getStatusesCount(_ db: Connection, table: Table, expression: Expression<Bool?>, accountKeys: [UserKey]) throws -> Int {
-        return try db.scalar(table.filter(expression).count)
-    }
-    
     
     static func getPositionKey(_ createdAt: Date, sortId: Int64, lastSortId: Int64, sortDiff: Int64, position: Int, count: Int) -> Int64 {
         if (sortDiff == 0) {

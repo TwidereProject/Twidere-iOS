@@ -18,8 +18,21 @@ class ActivitiesListController: UITableViewController {
         }
     }
     
+    var refreshEnabled: Bool = true {
+        didSet {
+            refreshControl?.isEnabled = refreshEnabled
+        }
+    }
+    
+    var loadMoreEnabled: Bool = true
+    
     var cellDisplayOption: StatusCell.DisplayOption!
-        
+    var dataSource: ActivitiesListControllerDataSource!
+    var delegate: ActivitiesListControllerDelegate!
+    
+    private var firstRefreshShowed: Bool = false
+    private var refreshTaskRunning: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,10 +44,17 @@ class ActivitiesListController: UITableViewController {
         tableView.register(UINib(nibName: "GapCell", bundle: nil), forCellReuseIdentifier: "Gap")
         tableView.register(UINib(nibName: "LoadMoreCell", bundle: nil), forCellReuseIdentifier: "LoadMore")
         
-        
         let control = UIRefreshControl()
         control.addTarget(self, action: #selector(self.refreshFromStart), for: .valueChanged)
-        refreshControl = control
+        self.refreshControl = control
+        
+        self.refreshControl?.isEnabled = self.refreshEnabled
+        
+        activities = nil
+        let opts = LoadOptions()
+        opts.initLoad = true
+        opts.params = SimpleRefreshTaskParam(accounts: self.dataSource.getAccounts())
+        self.loadActivities(opts)
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
@@ -97,17 +117,68 @@ class ActivitiesListController: UITableViewController {
     }
     
     func refreshFromStart() {
-        _ = DispatchQueue.global().promise { () -> Account in
-            return try defaultAccount()!
-        }.then { account -> Promise<[Activity]> in
-            let paging = Paging()
-            return account.newMicroBlogService().getActivitiesAboutMe(paging: paging)
-        }.then { activities in
-            self.activities = activities
-        }.catch { error in
-            print(error)
-        }.always {
-            self.refreshControl?.endRefreshing()
+        let opts = LoadOptions()
+        opts.initLoad = false
+        
+        opts.params = RefreshFromStartParam(dataSource.getAccounts(), dataSource!)
+        loadActivities(opts)
+    }
+    
+    fileprivate func loadActivities(_ opts: LoadOptions) {
+        self.refreshTaskRunning = true
+        if let promise = dataSource?.loadActivities(opts) {
+            promise.then { activities in
+                self.activities = activities
+            }.always {
+                self.refreshControl?.endRefreshing()
+                self.delegate?.refreshEnded()
+                self.refreshTaskRunning = false
+            }.catch { error in
+                // TODO show error
+                debugPrint(error)
+            }
         }
     }
+    
+    class LoadOptions {
+        
+        var initLoad: Bool = false
+        
+        var params: RefreshTaskParam? = nil
+    }
+    
+    class RefreshFromStartParam: RefreshTaskParam {
+        var accounts: [Account]
+        var dataSource: ActivitiesListControllerDataSource
+        
+        init(_ accounts: [Account], _ dataSource: ActivitiesListControllerDataSource) {
+            self.accounts = accounts
+            self.dataSource = dataSource
+        }
+        
+        var sinceIds: [String?]? {
+            return dataSource.getNewestActivityMaxPositions(accounts)
+        }
+        
+        var sinceSortIds: [Int64]? {
+            return dataSource.getNewestActivityMaxSortPositions(accounts)
+        }
+        
+    }
+}
+
+protocol ActivitiesListControllerDataSource {
+    
+    func getAccounts() -> [Account]
+    
+    func loadActivities(_ opts: ActivitiesListController.LoadOptions) -> Promise<[Activity]>
+    
+    func getNewestActivityMaxPositions(_ accounts: [Account]) -> [String?]?
+    
+    func getNewestActivityMaxSortPositions(_ accounts: [Account]) -> [Int64]?
+    
+}
+
+protocol ActivitiesListControllerDelegate {
+    func refreshEnded()
 }

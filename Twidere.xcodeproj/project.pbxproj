@@ -94,6 +94,8 @@
 		CE65B1DD1D9E0D4900A38A61 /* ShortTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1DC1D9E0D4900A38A61 /* ShortTimeView.swift */; };
 		CE65B1E01D9E901900A38A61 /* Activity.model.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE65B1DE1D9E901900A38A61 /* Activity.model.yml */; };
 		CE65B1E11D9E901900A38A61 /* UserList.model.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE65B1DF1D9E901900A38A61 /* UserList.model.yml */; };
+		CE65B1E31D9E97D700A38A61 /* GetActivitiesTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1E21D9E97D700A38A61 /* GetActivitiesTask.swift */; };
+		CE65B1E61D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1E51D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift */; };
 		CE779F291D8563B60053B5C7 /* Account+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F251D8563B60053B5C7 /* Account+SQLite.swift */; };
 		CE779F2A1D8563B60053B5C7 /* Status+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F261D8563B60053B5C7 /* Status+SQLite.swift */; };
 		CE779F2B1D8563B60053B5C7 /* User+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F271D8563B60053B5C7 /* User+SQLite.swift */; };
@@ -273,6 +275,8 @@
 		CE65B1DC1D9E0D4900A38A61 /* ShortTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortTimeView.swift; sourceTree = "<group>"; };
 		CE65B1DE1D9E901900A38A61 /* Activity.model.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Activity.model.yml; sourceTree = "<group>"; };
 		CE65B1DF1D9E901900A38A61 /* UserList.model.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UserList.model.yml; sourceTree = "<group>"; };
+		CE65B1E21D9E97D700A38A61 /* GetActivitiesTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetActivitiesTask.swift; sourceTree = "<group>"; };
+		CE65B1E51D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionsActivitiesListControllerDataSource.swift; sourceTree = "<group>"; };
 		CE779F251D8563B60053B5C7 /* Account+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+SQLite.swift"; sourceTree = "<group>"; };
 		CE779F261D8563B60053B5C7 /* Status+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Status+SQLite.swift"; sourceTree = "<group>"; };
 		CE779F271D8563B60053B5C7 /* User+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+SQLite.swift"; sourceTree = "<group>"; };
@@ -530,7 +534,7 @@
 		CE497FA11D69622F000F16D2 /* StatusesList */ = {
 			isa = PBXGroup;
 			children = (
-				CE7A573D1D917B410027BECE /* Delegates */,
+				CE7A573D1D917B410027BECE /* DataSources */,
 				CE497FA21D69625A000F16D2 /* StatusesListController.swift */,
 			);
 			path = StatusesList;
@@ -675,12 +679,21 @@
 		CE65B1D11D9CDFEE00A38A61 /* ActivitiesList */ = {
 			isa = PBXGroup;
 			children = (
+				CE65B1E41D9EAB2600A38A61 /* DataSources */,
 				CE65B1CD1D9CDFEA00A38A61 /* ActivitiesListController.swift */,
 			);
 			path = ActivitiesList;
 			sourceTree = "<group>";
 		};
-		CE7A573D1D917B410027BECE /* Delegates */ = {
+		CE65B1E41D9EAB2600A38A61 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				CE65B1E51D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift */,
+			);
+			name = DataSources;
+			sourceTree = "<group>";
+		};
+		CE7A573D1D917B410027BECE /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
 				CE7A573F1D917B580027BECE /* HomeTimelineStatusesListControllerDataSource.swift */,
@@ -688,6 +701,7 @@
 				CE7A57461D9185DC0027BECE /* UserFavoritesStatusesListControllerDelaSourceegate.swift */,
 				CE7A57431D917E1C0027BECE /* UserTimelineStatusesListControllerDataSource.swift */,
 			);
+			name = DataSources;
 			path = Delegates;
 			sourceTree = "<group>";
 		};
@@ -927,6 +941,7 @@
 			isa = PBXGroup;
 			children = (
 				CEDC3B251D7D9FE70082A8BA /* GetStatusesTask.swift */,
+				CE65B1E21D9E97D700A38A61 /* GetActivitiesTask.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -1417,6 +1432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE65B1E31D9E97D700A38A61 /* GetActivitiesTask.swift in Sources */,
 				CE45CAF71D855EFA0004CC1C /* UserKeyExtensions.swift in Sources */,
 				CEA2E2AC1D3549480095BC57 /* UserKey.swift in Sources */,
 				CE65B1BB1D9CB2B100A38A61 /* ActivityTitleSummaryCell.swift in Sources */,
@@ -1466,6 +1482,7 @@
 				CE497F9D1D695F79000F16D2 /* UIImageViewExtension.swift in Sources */,
 				CE95749A1D33DC7B00504D52 /* BasePreferencesController.swift in Sources */,
 				CE65B1BE1D9CC01500A38A61 /* Activity.swift in Sources */,
+				CE65B1E61D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift in Sources */,
 				CE4B1AA51D719E160017CB85 /* StringExtensions.swift in Sources */,
 				CE65B1DB1D9D525C00A38A61 /* ActivityExtension.swift in Sources */,
 				CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */,

@@ -33,6 +33,9 @@ class DatabaseMigration {
         switch to {
         case 1:
             return true
+        case 2:
+            _ = try db.run(Activity.createTable(table: interactionsTable))
+            return true
         default:
             return false
         }

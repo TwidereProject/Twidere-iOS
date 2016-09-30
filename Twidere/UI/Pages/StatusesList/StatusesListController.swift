@@ -47,9 +47,10 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         tableView.register(UINib(nibName: "StatusCell", bundle: nil), forCellReuseIdentifier: "Status")
         tableView.register(UINib(nibName: "GapCell", bundle: nil), forCellReuseIdentifier: "Gap")
         tableView.register(UINib(nibName: "LoadMoreCell", bundle: nil), forCellReuseIdentifier: "LoadMore")
+        
         let control = UIRefreshControl()
         control.addTarget(self, action: #selector(self.refreshFromStart), for: .valueChanged)
-        refreshControl = control
+        self.refreshControl = control
         
         self.refreshControl?.isEnabled = self.refreshEnabled
         

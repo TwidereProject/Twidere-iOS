@@ -33,8 +33,9 @@ class HomeController: UITabBarController {
         let homeTimelineController = pages.instantiateViewController(withIdentifier: "StatusesList") as! StatusesListController
         homeTimelineController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "Tab Icon Home"), tag: 1)
         homeTimelineController.dataSource = HomeTimelineStatusesListControllerDataSource()
-        let notificationsTimelineController = pages.instantiateViewController(withIdentifier: "ActivitiesList")
+        let notificationsTimelineController = pages.instantiateViewController(withIdentifier: "ActivitiesList") as! ActivitiesListController
         notificationsTimelineController.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(named: "Tab Icon Notification"), tag: 2)
+        notificationsTimelineController.dataSource = InteractionsActivitiesListControllerDataSource()
         let messageConversationsController = pages.instantiateViewController(withIdentifier: "StubTab")
         messageConversationsController.tabBarItem = UITabBarItem(title: "Messages", image: UIImage(named: "Tab Icon Message"), tag: 3)
         let testController = pages.instantiateViewController(withIdentifier: "StubTab")
