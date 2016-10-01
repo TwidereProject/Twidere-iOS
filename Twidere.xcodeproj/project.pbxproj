@@ -96,6 +96,7 @@
 		CE65B1E11D9E901900A38A61 /* UserList.model.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE65B1DF1D9E901900A38A61 /* UserList.model.yml */; };
 		CE65B1E31D9E97D700A38A61 /* GetActivitiesTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1E21D9E97D700A38A61 /* GetActivitiesTask.swift */; };
 		CE65B1E61D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1E51D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift */; };
+		CE65B1E81D9F546700A38A61 /* ItemIndices.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1E71D9F546700A38A61 /* ItemIndices.swift */; };
 		CE779F291D8563B60053B5C7 /* Account+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F251D8563B60053B5C7 /* Account+SQLite.swift */; };
 		CE779F2A1D8563B60053B5C7 /* Status+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F261D8563B60053B5C7 /* Status+SQLite.swift */; };
 		CE779F2B1D8563B60053B5C7 /* User+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F271D8563B60053B5C7 /* User+SQLite.swift */; };
@@ -277,6 +278,7 @@
 		CE65B1DF1D9E901900A38A61 /* UserList.model.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UserList.model.yml; sourceTree = "<group>"; };
 		CE65B1E21D9E97D700A38A61 /* GetActivitiesTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetActivitiesTask.swift; sourceTree = "<group>"; };
 		CE65B1E51D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionsActivitiesListControllerDataSource.swift; sourceTree = "<group>"; };
+		CE65B1E71D9F546700A38A61 /* ItemIndices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemIndices.swift; sourceTree = "<group>"; };
 		CE779F251D8563B60053B5C7 /* Account+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+SQLite.swift"; sourceTree = "<group>"; };
 		CE779F261D8563B60053B5C7 /* Status+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Status+SQLite.swift"; sourceTree = "<group>"; };
 		CE779F271D8563B60053B5C7 /* User+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+SQLite.swift"; sourceTree = "<group>"; };
@@ -721,6 +723,7 @@
 				CE45CA841D85416C0004CC1C /* User.swift */,
 				CEA2E2AB1D3549480095BC57 /* UserKey.swift */,
 				CE65B1C91D9CC11600A38A61 /* UserList.swift */,
+				CE65B1E71D9F546700A38A61 /* ItemIndices.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1455,6 +1458,7 @@
 				CEA2E2C51D37C2590095BC57 /* ComposeLocationController.swift in Sources */,
 				CE45CA861D85416C0004CC1C /* Status.swift in Sources */,
 				CE7A57441D917E1C0027BECE /* UserTimelineStatusesListControllerDataSource.swift in Sources */,
+				CE65B1E81D9F546700A38A61 /* ItemIndices.swift in Sources */,
 				CE5993101D83901B00653220 /* MediaItem.swift in Sources */,
 				CE497FB31D698B1B000F16D2 /* UsersListController.swift in Sources */,
 				CE45CA871D85416C0004CC1C /* User.swift in Sources */,

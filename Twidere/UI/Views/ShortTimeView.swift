@@ -25,7 +25,7 @@ class ShortTimeView: AttributedLabel {
             self.text = "just now"
         }
         if (!AppDelegate.performingScroll) {
-            setNeedsLayout()
+            superview?.setNeedsLayout()
         }
         perform(#selector(self.updateTime), with: time, afterDelay: 10.0)
     }

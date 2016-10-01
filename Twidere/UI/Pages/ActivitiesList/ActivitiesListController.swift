@@ -14,6 +14,7 @@ class ActivitiesListController: UITableViewController {
     
     var activities: [Activity]! {
         didSet {
+            self.rebuildItemCounts()
             self.tableView.reloadData()
         }
     }
@@ -32,6 +33,7 @@ class ActivitiesListController: UITableViewController {
     
     private var firstRefreshShowed: Bool = false
     private var refreshTaskRunning: Bool = false
+    private var itemCounts: ItemIndices = ItemIndices(2)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,34 +59,56 @@ class ActivitiesListController: UITableViewController {
         self.loadActivities(opts)
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
 
+    
+    func willEnterForeground() {
+        let opts = LoadOptions()
+        
+        opts.initLoad = true
+        opts.params = SimpleRefreshTaskParam(accounts: dataSource.getAccounts())
+        
+        loadActivities(opts)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activities?.count ?? 0
+        return itemCounts.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch self.activities[indexPath.item].action! {
-        case .mention, .reply, .quote:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Status", for: indexPath) as! StatusCell
-            cell.displayOption = cellDisplayOption
+        switch itemCounts.getItemCountIndex(position: indexPath.item) {
+        case 0:
+            let activity = self.activities[indexPath.item]
+            if (activities!.endIndex != indexPath.item && activity.isGap ?? false) {
+                return tableView.dequeueReusableCell(withIdentifier: "Gap", for: indexPath)
+            } else {
+                switch activity.action! {
+                case .mention, .reply, .quote:
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "Status", for: indexPath) as! StatusCell
+                    cell.displayOption = cellDisplayOption
+                    return cell
+                default:
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "Activity", for: indexPath) as! ActivityTitleSummaryCell
+                    cell.displayOption = cellDisplayOption
+                    return cell
+                }
+            }
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadMore", for: indexPath)
+            cell.selectionStyle = .none
             return cell
-        default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Activity", for: indexPath) as! ActivityTitleSummaryCell
-            cell.displayOption = cellDisplayOption
-            return cell
+        default: abort()
         }
     }
     
@@ -100,20 +124,56 @@ class ActivitiesListController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch self.activities[indexPath.item].action! {
-        case .mention, .reply, .quote:
-            return tableView.fd_heightForCell(withIdentifier: "Status", cacheBy: indexPath) { cell in
-                let cell = (cell as! StatusCell)
-                cell.displayOption = self.cellDisplayOption
-                cell.status = self.activities[indexPath.item].activityStatus
+        switch itemCounts.getItemCountIndex(position: indexPath.item) {
+        case 0:
+            let activity = self.activities[indexPath.item]
+            if (activities!.endIndex != indexPath.item && activity.isGap ?? false) {
+                return super.tableView(tableView, heightForRowAt: indexPath)
+            } else {
+                switch activity.action! {
+                case .mention, .reply, .quote:
+                    return tableView.fd_heightForCell(withIdentifier: "Status", cacheBy: indexPath) { cell in
+                        let cell = (cell as! StatusCell)
+                        cell.displayOption = self.cellDisplayOption
+                        cell.status = self.activities[indexPath.item].activityStatus
+                    }
+                default:
+                    return tableView.fd_heightForCell(withIdentifier: "Activity", cacheBy: indexPath) { cell in
+                        let cell = (cell as! ActivityTitleSummaryCell)
+                        cell.displayOption = self.cellDisplayOption
+                        cell.displayActivity(self.activities[indexPath.item])
+                    }
+                }
             }
+        case 1:
+            return super.tableView(tableView, heightForRowAt: indexPath)
         default:
-            return tableView.fd_heightForCell(withIdentifier: "Activity", cacheBy: indexPath) { cell in
-                let cell = (cell as! ActivityTitleSummaryCell)
-                cell.displayOption = self.cellDisplayOption
-                cell.displayActivity(self.activities[indexPath.item])
-            }
+            abort()
         }
+    }
+    
+    // MARK: ScrollView delegate
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        AppDelegate.performingScroll = true
+//        self.scrollDelegate?.scrollViewDidScroll?(scrollView)
+    }
+    
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        AppDelegate.performingScroll = true
+//        self.scrollDelegate?.scrollViewWillBeginDragging?(scrollView)
+    }
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        AppDelegate.performingScroll = false
+//        self.scrollDelegate?.scrollViewDidEndDecelerating?(scrollView)
+    }
+    
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if (!decelerate) {
+            AppDelegate.performingScroll = false
+        }
+//        self.scrollDelegate?.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
     }
     
     func refreshFromStart() {
@@ -139,6 +199,17 @@ class ActivitiesListController: UITableViewController {
             }
         }
     }
+    
+    fileprivate func rebuildItemCounts() {
+        if let activities = self.activities, !activities.isEmpty {
+            itemCounts[0] = activities.count
+            itemCounts[1] = self.loadMoreEnabled ? 1 : 0
+        } else {
+            itemCounts[0] = 0
+            itemCounts[1] = 0
+        }
+    }
+    
     
     class LoadOptions {
         
