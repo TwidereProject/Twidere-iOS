@@ -15,7 +15,12 @@ class MicroBlogService: RestClient {
     var accountKey: UserKey!
     
     let statusQueries: [String: String] = [
-        "tweet_mode": "extended"
+        "include_entities": "true",
+        "include_ext_alt_text": "true",
+        "tweet_mode": "extended",
+        "model_version": "7",
+        "include_cards": "true",
+        "cards_platform": "iPhone-8"
     ]
     
     func verifyCredentials() -> Promise<JSON> {
