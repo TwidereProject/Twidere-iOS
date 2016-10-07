@@ -45,7 +45,7 @@
                                                             <frame key="frameInset" minX="64" minY="8" width="288" height="48"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
-                                                                <view opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="q87-qX-Xgv" customClass="AttributedLabel" customModule="AttributedLabel">
+                                                                <view opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="q87-qX-Xgv" customClass="YYLabel">
                                                                     <frame key="frameInset" minX="8" minY="8" width="272" height="15"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <userDefinedRuntimeAttributes>
@@ -54,7 +54,7 @@
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="text" value="Name"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
-                                                                <view opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="IEs-zh-rjw" customClass="AttributedLabel" customModule="AttributedLabel">
+                                                                <view opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="IEs-zh-rjw" customClass="YYLabel">
                                                                     <frame key="frameInset" minX="8" minY="27" width="272" height="13"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <userDefinedRuntimeAttributes>
@@ -95,7 +95,7 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <view contentMode="scaleToFill" misplaced="YES" id="mrg-gu-BJS" customClass="AttributedLabel" customModule="AttributedLabel">
+                                                <view contentMode="scaleToFill" misplaced="YES" id="mrg-gu-BJS" customClass="YYLabel">
                                                     <frame key="frameInset" minY="72" width="360" height="46"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -125,7 +125,7 @@
                                                     <frame key="frameInset" minY="266" width="360" height="221"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <view opaque="NO" userInteractionEnabled="NO" contentMode="left" misplaced="YES" id="va0-Wh-dKL" userLabel="Quoted Name View" customClass="AttributedLabel" customModule="AttributedLabel">
+                                                        <view opaque="NO" userInteractionEnabled="NO" contentMode="left" misplaced="YES" id="va0-Wh-dKL" userLabel="Quoted Name View" customClass="YYLabel">
                                                             <frame key="frameInset" minX="8" minY="8" width="344" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <userDefinedRuntimeAttributes>
@@ -133,7 +133,7 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" id="abF-bh-zDN" userLabel="Quoted Text View" customClass="AttributedLabel" customModule="AttributedLabel">
+                                                        <view opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" id="abF-bh-zDN" userLabel="Quoted Text View" customClass="YYLabel">
                                                             <frame key="frameInset" minX="8" minY="31" width="344" height="46"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <userDefinedRuntimeAttributes>
@@ -333,7 +333,7 @@
                                     <frame key="frameInset" width="199" height="48"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" misplaced="YES" id="UOu-Se-rd8" customClass="AttributedLabel" customModule="AttributedLabel">
+                                        <view contentMode="scaleToFill" misplaced="YES" id="UOu-Se-rd8" customClass="YYLabel">
                                             <frame key="frameInset" minY="7" width="199" height="19"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <userDefinedRuntimeAttributes>
@@ -342,7 +342,7 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="nameView"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <view contentMode="scaleToFill" misplaced="YES" id="Yjc-JK-LNJ" customClass="AttributedLabel" customModule="AttributedLabel">
+                                        <view contentMode="scaleToFill" misplaced="YES" id="Yjc-JK-LNJ" customClass="YYLabel">
                                             <frame key="frameInset" minY="21" width="199" height="19"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <userDefinedRuntimeAttributes>
@@ -399,7 +399,7 @@
                             <frame key="frameInset" minY="175" width="375" height="61"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" id="30c-If-g24" customClass="AttributedLabel" customModule="AttributedLabel">
+                                <view contentMode="scaleToFill" id="30c-If-g24" customClass="YYLabel">
                                     <frame key="frameInset" minX="8" minY="8" width="359" height="45"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

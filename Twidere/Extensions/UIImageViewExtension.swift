@@ -21,4 +21,9 @@ extension UIImageView {
             image = placeholder
         }
     }
+    
+    func makeCircular() {
+        self.layer.cornerRadius = self.frame.size.width / 2
+        self.clipsToBounds = true
+    }
 }

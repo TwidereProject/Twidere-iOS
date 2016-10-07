@@ -6,9 +6,9 @@
 //  Copyright © 2016年 Mariotaku Dev. All rights reserved.
 //
 
-import AttributedLabel
+import YYText
 
-class ShortTimeView: AttributedLabel {
+class ShortTimeView: YYLabel {
     var time: Date! {
         didSet {
             self.updateTime(time)

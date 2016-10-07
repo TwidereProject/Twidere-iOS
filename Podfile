@@ -23,14 +23,14 @@ target 'Twidere' do
   pod 'JDStatusBarNotification', '1.5.4' # Obj-C
   pod 'UITableView+FDTemplateLayoutCell', '~> 1.5.beta' # Obj-C
   pod 'DateTools', '~> 1.7.0' # Obj-C
-  pod 'ALSLayouts', '~> 2.0.3' # Swift 3
+  pod 'ALSLayouts', '~> 2.0.4' # Swift 3
   pod 'ThumborURL', '0.0.4' # Obj-C
-  pod 'AttributedLabel', '~> 0.5.0' # Swift 3
   pod 'ObjectMapper', '~> 2.0' # Swift 3
   pod 'MXPagerView', '~> 0.1.3'
   pod 'MXParallaxHeader', '~> 0.5.2'
   pod 'FXBlurView', '~> 1.6'
   pod 'FXImageView', '~> 1.3.5'
+  pod 'YYText', '~> 1.0.7'
 end
 
 target 'TwidereTests' do

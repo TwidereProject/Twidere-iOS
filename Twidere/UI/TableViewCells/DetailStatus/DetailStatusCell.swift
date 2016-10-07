@@ -7,20 +7,20 @@
 //
 
 import UIKit
-import AttributedLabel
+import YYText
 import DateTools
 import ALSLayouts
 
 class DetailStatusCell: ALSTableViewCell {
 
     @IBOutlet weak var userProfileImageView: UIImageView!
-    @IBOutlet weak var userNameView: AttributedLabel!
-    @IBOutlet weak var timeSourceView: AttributedLabel!
-    @IBOutlet weak var textView: AttributedLabel!
+    @IBOutlet weak var userNameView: YYLabel!
+    @IBOutlet weak var timeSourceView: YYLabel!
+    @IBOutlet weak var textView: YYLabel!
     @IBOutlet weak var mediaPreview: MediaPreviewContainer!
     @IBOutlet weak var quotedView: ALSLinearLayout!
-    @IBOutlet weak var quotedNameView: AttributedLabel!
-    @IBOutlet weak var quotedTextView: AttributedLabel!
+    @IBOutlet weak var quotedNameView: YYLabel!
+    @IBOutlet weak var quotedTextView: YYLabel!
     @IBOutlet weak var quotedMediaPreview: MediaPreviewContainer!
     @IBOutlet weak var statusToolbar: UIToolbar!
 
@@ -51,19 +51,24 @@ class DetailStatusCell: ALSTableViewCell {
         
         self.contentView.layoutMargins = UIEdgeInsets.zero
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.separatorInset = UIEdgeInsets.zero
+    }
 
     func display(_ status: Status) {
         userNameView.attributedText = StatusCell.createNameText(16, name: status.userName, screenName: status.userScreenName, separator: " ")
         timeSourceView.attributedText = createTimeSourceText(status.createdAt)
         userProfileImageView.displayImage(status.userProfileImageForSize(.reasonablySmall))
 
-        textView.attributedText = StatusCell.createStatusText(status.textDisplay, linkColor: textView.tintColor, metadata: status.metadata, displayRange: status.metadata?.displayRange)
+        textView.attributedText = StatusCell.createStatusText(status.textDisplay, displayOption: self.displayOption, metadata: status.metadata, displayRange: status.metadata?.displayRange)
         mediaPreview.displayMedia(status.metadata?.media)
         
         if (status.quotedId != nil) {
             quotedNameView.attributedText = StatusCell.createNameText(quotedNameView.font.pointSize, name: status.quotedUserName!, screenName: status.quotedUserScreenName!, separator: " ")
             if (displayOption.linkHighlight) {
-                quotedTextView.attributedText = StatusCell.createStatusText(status.quotedTextDisplay!, linkColor: textView.tintColor, metadata: status.quotedMetadata, displayRange: status.quotedMetadata?.displayRange)
+                quotedTextView.attributedText = StatusCell.createStatusText(status.quotedTextDisplay!, displayOption: self.displayOption, metadata: status.quotedMetadata, displayRange: status.quotedMetadata?.displayRange)
             } else {
                 quotedTextView.text = status.quotedTextDisplay
             }

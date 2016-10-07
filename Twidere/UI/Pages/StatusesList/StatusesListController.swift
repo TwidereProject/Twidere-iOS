@@ -11,7 +11,7 @@ import SwiftyJSON
 import PromiseKit
 import UITableView_FDTemplateLayoutCell
 
-class StatusesListController: UITableViewController, StatusCellDelegate, PullToRefreshProtocol {
+class StatusesListController: UITableViewController, StatusCellDelegate, PullToRefreshProtocol, UIViewControllerPreviewingDelegate {
     
     var statuses: [Status]? = nil {
         didSet {
@@ -61,6 +61,8 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         self.loadStatuses(opts)
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        registerForPreviewing(with: self, sourceView: tableView)
         
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
@@ -199,7 +201,33 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    @available(iOS 9.0, *)
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: location), let cell = tableView.cellForRow(at: indexPath) else {
+            return nil
+        }
+        switch itemCounts.getItemCountIndex(position: indexPath.item) {
+        case 0:
+            let status = statuses![(indexPath as NSIndexPath).item]
+            if (status.isGap != true) {
+                let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
+                previewingContext.sourceRect = cell.frame
+                vc.displayStatus(status)
+                return vc
+            }
+        default:
+            break
+        }
+        return nil
+    }
     
+    @available(iOS 9.0, *)
+    public func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        // Reuse the "Peek" view controller for presentation.
+        self.show(viewControllerToCommit, sender: self)
+    }
+
     
     // MARK: ScrollView delegate
     

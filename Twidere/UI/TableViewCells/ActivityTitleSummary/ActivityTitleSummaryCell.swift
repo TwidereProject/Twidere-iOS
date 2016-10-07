@@ -7,15 +7,14 @@
 //
 
 import ALSLayouts
-import AttributedLabel
+import YYText
 
 class ActivityTitleSummaryCell: ALSTableViewCell {
 
     @IBOutlet weak var timeView: ShortTimeView!
-    @IBOutlet weak var titleView: AttributedLabel!
-    @IBOutlet weak var summaryView: AttributedLabel!
+    @IBOutlet weak var titleView: YYLabel!
+    @IBOutlet weak var summaryView: YYLabel!
     @IBOutlet weak var profileImagesContainer: UIStackView!
-    
     
     var displayOption: StatusCell.DisplayOption! {
         didSet {
@@ -31,6 +30,7 @@ class ActivityTitleSummaryCell: ALSTableViewCell {
         // Initialization code
         for view in profileImagesContainer.subviews {
             let view = view as! UIImageView
+            view.contentMode = .scaleAspectFill
             view.makeCircular()
         }
     }

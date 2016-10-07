@@ -9,7 +9,7 @@
 import UIKit
 import IQKeyboardManagerSwift
 import SQLite
-import AttributedLabel
+import YYText
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UITabBar.appearance().tintColor = materialLightBlue300
         UINavigationBar.appearance().tintColor = materialLightBlue300
-        AttributedLabel.appearance().tintColor = materialLightBlue300
+        YYLabel.appearance().tintColor = materialLightBlue300
         
         return true
     }

@@ -64,6 +64,14 @@ class StatusViewerController: UITableViewController {
         }
     }
     
+    override var previewActionItems: [UIPreviewActionItem] {
+        return [
+            UIPreviewAction(title: "Reply", style: .default, handler: {_,_ in }),
+            UIPreviewAction(title: "Retweet", style: .default, handler: {_,_ in }),
+            UIPreviewAction(title: "Favorite", style: .default, handler: {_,_ in })
+        ]
+    }
+    
     func displayStatus(_ status: Status) {
         self.status = status
     }

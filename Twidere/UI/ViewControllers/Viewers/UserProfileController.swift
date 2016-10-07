@@ -8,7 +8,7 @@
 
 import UIKit
 import ALSLayouts
-import AttributedLabel
+import YYText
 import MXParallaxHeader
 import FXBlurView
 import PromiseKit
@@ -28,9 +28,9 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     @IBOutlet weak var profileRefreshIndicator: ActivityIndicator!
     
     @IBOutlet weak var userActionButton: UIButton!
-    @IBOutlet weak var nameView: AttributedLabel!
-    @IBOutlet weak var screenNameView: AttributedLabel!
-    @IBOutlet weak var descriptionView: AttributedLabel!
+    @IBOutlet weak var nameView: YYLabel!
+    @IBOutlet weak var screenNameView: YYLabel!
+    @IBOutlet weak var descriptionView: YYLabel!
     @IBOutlet weak var segmentedContainerView: SegmentedContainerView!
     
     fileprivate var userInfoTags: [[UserInfoTag]]? = nil

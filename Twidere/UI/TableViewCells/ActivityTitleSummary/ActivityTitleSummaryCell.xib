@@ -12,11 +12,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="164"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="163.5"/>
+                <frame key="frameInset" width="320" height="163"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view opaque="NO" contentMode="scaleToFill" misplaced="YES" id="VSv-ZM-UCg" customClass="ALSRelativeLayout" customModule="ALSLayouts">
-                        <frame key="frameInset" minX="8" minY="8" maxX="8" maxY="8"/>
+                        <frame key="frameInset" minX="8" minY="8" maxX="8" maxY="7.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" id="Rj8-FA-BA2" userLabel="Profile Image Space">
@@ -89,7 +89,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="orientationString" value="Horizontal"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view opaque="NO" userInteractionEnabled="NO" contentMode="left" misplaced="YES" id="p4X-ZW-xoK" userLabel="Name View" customClass="AttributedLabel" customModule="AttributedLabel">
+                            <view opaque="NO" userInteractionEnabled="NO" contentMode="left" misplaced="YES" id="p4X-ZW-xoK" userLabel="Name View" customClass="YYLabel">
                                 <frame key="frameInset" minX="56" minY="38" width="219" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
@@ -111,9 +111,10 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="numberOfLines">
                                         <integer key="value" value="0"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="Activity title"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" id="N6i-kk-ka4" userLabel="Text View" customClass="AttributedLabel" customModule="AttributedLabel">
+                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" id="N6i-kk-ka4" userLabel="Text View" customClass="YYLabel">
                                 <frame key="frameInset" minX="56" minY="63" width="248" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
@@ -132,6 +133,7 @@
                                         <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="Activity message"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" misplaced="YES" id="3Ue-2k-AZI" userLabel="Time View" customClass="ShortTimeView" customModule="Twidere" customModuleProvider="target">
