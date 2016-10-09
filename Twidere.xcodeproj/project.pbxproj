@@ -488,11 +488,11 @@
 			children = (
 				CE29039D1D4CEF2A0056D0E2 /* AccountExtensions.swift */,
 				CE65B1DA1D9D525C00A38A61 /* ActivityExtension.swift */,
+				CEBECFBD1DAA175500350383 /* MediaItem+MWPhoto.swift */,
+				CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */,
 				CE4B1AA11D7175B10017CB85 /* StatusExtension.swift */,
 				CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */,
 				CE45CAF61D855EFA0004CC1C /* UserKeyExtensions.swift */,
-				CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */,
-				CEBECFBD1DAA175500350383 /* MediaItem+MWPhoto.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -513,8 +513,8 @@
 		CE497F921D69590B000F16D2 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				CEBECFBA1DAA153B00350383 /* MediaViewer */,
 				CE65B1D11D9CDFEE00A38A61 /* ActivitiesList */,
+				CEBECFBA1DAA153B00350383 /* MediaViewer */,
 				CE497FA11D69622F000F16D2 /* StatusesList */,
 				CE497FB01D698A26000F16D2 /* UsersList */,
 			);
@@ -673,9 +673,9 @@
 		CE5993141D83C94D00653220 /* Viewers */ = {
 			isa = PBXGroup;
 			children = (
+				CEBECFB21DA8C0C200350383 /* SafariBrowserController.swift */,
 				CE5993151D83C95800653220 /* StatusViewerController.swift */,
 				CEF2CF441D83F11200131EAE /* UserProfileController.swift */,
-				CEBECFB21DA8C0C200350383 /* SafariBrowserController.swift */,
 			);
 			path = Viewers;
 			sourceTree = "<group>";
@@ -731,6 +731,7 @@
 				CE45CA851D85416C0004CC1C /* Account.swift */,
 				CE65B1BD1D9CC01500A38A61 /* Activity.swift */,
 				CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */,
+				CE65B1E71D9F546700A38A61 /* ItemIndices.swift */,
 				CE59930F1D83901B00653220 /* MediaItem.swift */,
 				CE0311891D87D946009475E8 /* MediaUploadResponse.swift */,
 				CEDC3B291D7DB04F0082A8BA /* Paging.swift */,
@@ -742,7 +743,6 @@
 				CE45CA841D85416C0004CC1C /* User.swift */,
 				CEA2E2AB1D3549480095BC57 /* UserKey.swift */,
 				CE65B1C91D9CC11600A38A61 /* UserList.swift */,
-				CE65B1E71D9F546700A38A61 /* ItemIndices.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -851,19 +851,19 @@
 				CE29039C1D4CEF0B0056D0E2 /* Model */,
 				CE4F6D8F1D878B9E0064DA14 /* ObjectMapper */,
 				CE497FBF1D6B08B4000F16D2 /* SQLite */,
+				CEBECFB61DA9EBD300350383 /* CALayerExtension.swift */,
 				CEA2E2C01D379CD90095BC57 /* CoreLocationExtensions.swift */,
 				CE497FBD1D6B01D1000F16D2 /* DateExtensions.swift */,
-				CEA2E2CE1D3A779B0095BC57 /* UIImageViewExtension.swift */,
 				CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */,
 				CEDC3B201D7D87F80082A8BA /* SQLite+UserVersion.swift */,
 				CE4B1AA41D719E160017CB85 /* StringExtensions.swift */,
 				CED73F6D1D953C6E0066F554 /* UIBarButtonItemExtension.swift */,
 				CED73F6B1D9519B80066F554 /* UIImageExtensions.swift */,
+				CEA2E2CE1D3A779B0095BC57 /* UIImageViewExtension.swift */,
 				CEDEE3F41D9270BA00001BE8 /* UIRefreshControlExtension.swift */,
-				CE79C83E1DA77777007C05F2 /* YYTextExtensions.swift */,
-				CE79C8401DA7ACE3007C05F2 /* UIViewExtension.swift */,
-				CEBECFB61DA9EBD300350383 /* CALayerExtension.swift */,
 				CEBECFC11DAA2F4500350383 /* UIViewControllerPreviewingExtension.swift */,
+				CE79C8401DA7ACE3007C05F2 /* UIViewExtension.swift */,
+				CE79C83E1DA77777007C05F2 /* YYTextExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -887,7 +887,7 @@
 			children = (
 				CEBECFC31DAA36B600350383 /* MediaViewerController.swift */,
 			);
-			name = MediaViewer;
+			path = MediaViewer;
 			sourceTree = "<group>";
 		};
 		CED41F281D2FEE9C0089E0B6 /* ViewControllers */ = {
