@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 import PromiseKit
 import UITableView_FDTemplateLayoutCell
+import YYText
 
 class StatusesListController: UITableViewController, StatusCellDelegate, PullToRefreshProtocol, UIViewControllerPreviewingDelegate {
     
@@ -206,16 +207,12 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         guard let indexPath = tableView.indexPathForRow(at: location), let cell = tableView.cellForRow(at: indexPath) else {
             return nil
         }
-        switch itemCounts.getItemCountIndex(position: indexPath.item) {
-        case 0:
-            let status = statuses![(indexPath as NSIndexPath).item]
-            if (status.isGap != true) {
-                let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
-                previewingContext.sourceRect = cell.frame
-                vc.displayStatus(status)
-                return vc
-            }
+        switch cell {
+        case let cell as StatusCell:
+            let (vc, rect, present) = cell.previewViewController(for: tableView.convert(location, to: cell))
+            previewingContext.sourceRect = cell.convert(rect, to: tableView)
+            previewingContext.shouldPresentViewController = present
+            return vc
         default:
             break
         }
@@ -225,7 +222,11 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
     @available(iOS 9.0, *)
     public func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         // Reuse the "Peek" view controller for presentation.
-        self.show(viewControllerToCommit, sender: self)
+        if (previewingContext.shouldPresentViewController) {
+            present(viewControllerToCommit, animated: true, completion: nil)
+        } else {
+            navigationController?.show(viewControllerToCommit, sender: self)
+        }
     }
 
     
@@ -268,19 +269,41 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         navigationController?.show(vc, sender: self)
     }
     
+    func spanItemTapped(status: Status, span: SpanItem) {
+        guard let (vc, present) = span.createViewController(accountKey: status.accountKey) else {
+            return
+        }
+        if (present) {
+            self.present(vc, animated: true, completion: nil)
+        } else {
+            navigationController?.show(vc, sender: self)
+        }
+    }
+    
+    func quotedViewTapped(status: Status) {
+        let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
+        vc.displayStatus(status.quotedStatus!, reload: true)
+        navigationController?.show(vc, sender: self)
+    }
+    
+    func mediaPreviewTapped(status: Status) {
+        let vc = MediaViewerController(media: status.metadata!.media!)
+        navigationController?.show(vc, sender: self)
+    }
+    
     fileprivate func loadStatuses(_ opts: LoadOptions) {
         self.refreshTaskRunning = true
-        if let promise = dataSource?.loadStatuses(opts) {
-            promise.then { statuses in
-                self.statuses = statuses
-                }.always {
-                    self.refreshControl?.endRefreshing()
-                    self.delegate?.refreshEnded()
-                    self.refreshTaskRunning = false
-                }.catch { error in
-                    // TODO show error
-                    debugPrint(error)
-            }
+        dataSource?.loadStatuses(opts).then { statuses -> Void in
+            self.statuses = statuses
+            self.dataSource?.statuses = statuses
+        }.always {
+            self.refreshControl?.endRefreshing()
+            self.delegate?.refreshEnded()
+            self.refreshTaskRunning = false
+        }.catch { error in
+            // TODO show error
+            debugPrint(error)
         }
     }
     
@@ -297,6 +320,8 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
     class LoadOptions {
         
         var initLoad: Bool = false
+        
+        var loadItemLimit: Int = 20
         
         var params: RefreshTaskParam? = nil
     }
@@ -323,6 +348,8 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
 }
 
 protocol StatusesListControllerDataSource {
+    
+    var statuses: [Status]? { get set }
     
     func getAccounts() -> [Account]
     

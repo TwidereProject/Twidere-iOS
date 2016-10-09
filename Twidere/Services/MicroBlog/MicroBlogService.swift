@@ -54,6 +54,11 @@ class MicroBlogService: RestClient {
         return makeTypedRequest(.get, path: "/favorites/list.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
     }
     
+    func showStatus(id: String) -> Promise<Status> {
+        let queries = makeQueries(statusQueries, ["id": id])
+        return makeTypedRequest(.get, path: "/statuses/show.json", queries: queries, serializer: MicroBlogService.convertStatus(accountKey))
+    }
+    
     func lookupStatuses(ids: [String]) -> Promise<[Status]> {
         let queries = makeQueries(statusQueries, ["id": ids.joined(separator: ",")])
         return makeTypedRequest(.get, path: "/statuses/lookup.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))

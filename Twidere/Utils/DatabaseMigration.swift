@@ -36,6 +36,11 @@ class DatabaseMigration {
         case 2:
             _ = try db.run(Activity.createTable(table: interactionsTable))
             return true
+        case 3:
+            _ = try db.run(homeStatusesTable.delete())
+            _ = try db.run(homeStatusesTable.addColumn(Status.RowIndices.quotedCreatedAt))
+            _ = try db.run(homeStatusesTable.addColumn(Status.RowIndices.retweetCreatedAt))
+            return true
         default:
             return false
         }

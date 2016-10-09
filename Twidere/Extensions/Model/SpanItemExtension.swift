@@ -30,7 +30,30 @@ extension HashtagSpanItem: CustomDebugStringConvertible {
 extension Array where Element: SpanItem {
     func applyToAttributedText(_ string: NSMutableAttributedString, displayOption: StatusCell.DisplayOption) {
         for span in self {
-            string.yy_setTextHighlight(NSMakeRange(span.start, span.end - span.start), color: displayOption.linkColor, backgroundColor: nil, userInfo: ["twidere.span": span])
+            string.yy_setTextHighlight(NSMakeRange(span.start, span.end - span.start), color: displayOption.linkColor, backgroundColor: nil, userInfo: [SpanItem.highlightUserInfoKey: span])
         }
+    }
+}
+
+extension SpanItem {
+    
+    static let highlightUserInfoKey: String = "twidere.span"
+    
+    func createViewController(accountKey: UserKey) -> (UIViewController, Bool)? {
+        switch self {
+        case let span as LinkSpanItem:
+            let vc = SafariBrowserController(url: URL(string: span.link)!)
+            return (vc, true)
+        case let span as HashtagSpanItem:
+            break
+        case let span as MentionSpanItem:
+            let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "UserProfile") as! UserProfileController
+            vc.loadUser(userInfo: (accountKey, span.key, span.screenName))
+            return (vc, false)
+        default:
+            break
+        }
+        return nil
     }
 }

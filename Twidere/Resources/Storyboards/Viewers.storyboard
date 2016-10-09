@@ -244,6 +244,16 @@
             </objects>
             <point key="canvasLocation" x="894" y="-35"/>
         </scene>
+        <!--Preferences-->
+        <scene sceneID="ZvB-be-u0K">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Preferences" referencedIdentifier="Preferences" id="mTc-Ii-p6S" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="efb-9V-Eu9"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eTL-Nh-K2M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="940" y="56"/>
+        </scene>
         <!--User Profile-->
         <scene sceneID="xM8-j4-Z2i">
             <objects>
@@ -263,14 +273,17 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <navigationItem title="User" id="3m5-3O-dRV">
-                                        <barButtonItem key="rightBarButtonItem" image="Toolbar Settings" id="sA8-3V-aRo"/>
+                                        <barButtonItem key="rightBarButtonItem" image="Toolbar Settings" id="sA8-3V-aRo">
+                                            <connections>
+                                                <segue destination="mTc-Ii-p6S" kind="push" id="ymQ-CF-foO"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="blurredBannerView" destination="rnc-ao-He1" id="4bC-qP-bX7"/>
@@ -340,6 +353,9 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="nameView"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="numberOfLines">
+                                                    <integer key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" misplaced="YES" id="Yjc-JK-LNJ" customClass="YYLabel">
@@ -349,6 +365,9 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="nameView"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="numberOfLines">
+                                                    <integer key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
@@ -407,6 +426,9 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
                                         <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="descriptionView"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="numberOfLines">
+                                            <integer key="value" value="0"/>
+                                        </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
                             </subviews>

@@ -13,6 +13,7 @@ import SQLite
 class HomeTimelineStatusesListControllerDataSource: StatusesListControllerDataSource {
     
     let table = homeStatusesTable
+    var statuses: [Status]? = nil
     
     func getAccounts() -> [Account] {
         return [try! defaultAccount()!]

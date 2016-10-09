@@ -22,6 +22,7 @@ extension Status {
         self.textDisplay = row.get(RowIndices.textDisplay)
         self.metadata = row.get(RowIndices.metadata)
         self.quotedId = row.get(RowIndices.quotedId)
+        self.quotedCreatedAt = row.get(RowIndices.quotedCreatedAt)
         self.quotedUserKey = row.get(RowIndices.quotedUserKey)
         self.quotedUserName = row.get(RowIndices.quotedUserName)
         self.quotedUserScreenName = row.get(RowIndices.quotedUserScreenName)
@@ -34,6 +35,7 @@ extension Status {
         self.retweetedByUserScreenName = row.get(RowIndices.retweetedByUserScreenName)
         self.retweetedByUserProfileImage = row.get(RowIndices.retweetedByUserProfileImage)
         self.retweetId = row.get(RowIndices.retweetId)
+        self.retweetCreatedAt = row.get(RowIndices.retweetCreatedAt)
     }
 
     static func createTable(table: Table, temporary: Bool = false, ifNotExists: Bool = false) -> String {
@@ -53,6 +55,7 @@ extension Status {
             t.column(RowIndices.textDisplay)
             t.column(RowIndices.metadata)
             t.column(RowIndices.quotedId)
+            t.column(RowIndices.quotedCreatedAt)
             t.column(RowIndices.quotedUserKey)
             t.column(RowIndices.quotedUserName)
             t.column(RowIndices.quotedUserScreenName)
@@ -65,6 +68,7 @@ extension Status {
             t.column(RowIndices.retweetedByUserScreenName)
             t.column(RowIndices.retweetedByUserProfileImage)
             t.column(RowIndices.retweetId)
+            t.column(RowIndices.retweetCreatedAt)
         }
     }
 
@@ -84,6 +88,7 @@ extension Status {
                 RowIndices.textDisplay <- model.textDisplay,
                 RowIndices.metadata <- model.metadata,
                 RowIndices.quotedId <- model.quotedId,
+                RowIndices.quotedCreatedAt <- model.quotedCreatedAt,
                 RowIndices.quotedUserKey <- model.quotedUserKey,
                 RowIndices.quotedUserName <- model.quotedUserName,
                 RowIndices.quotedUserScreenName <- model.quotedUserScreenName,
@@ -96,6 +101,7 @@ extension Status {
                 RowIndices.retweetedByUserScreenName <- model.retweetedByUserScreenName,
                 RowIndices.retweetedByUserProfileImage <- model.retweetedByUserProfileImage,
                 RowIndices.retweetId <- model.retweetId,
+                RowIndices.retweetCreatedAt <- model.retweetCreatedAt,
         ])
     }
 
@@ -116,6 +122,7 @@ extension Status {
         static let textDisplay = Expression<String?>("text_display")
         static let metadata = Expression<Metadata?>("metadata")
         static let quotedId = Expression<String?>("quoted_status_id")
+        static let quotedCreatedAt = Expression<Date?>("quoted_created_at")
         static let quotedUserKey = Expression<UserKey?>("quoted_user_key")
         static let quotedUserName = Expression<String?>("quoted_user_name")
         static let quotedUserScreenName = Expression<String?>("quoted_user_screen_name")
@@ -128,6 +135,7 @@ extension Status {
         static let retweetedByUserScreenName = Expression<String?>("retweeted_by_user_screen_name")
         static let retweetedByUserProfileImage = Expression<String?>("retweeted_by_user_profile_image")
         static let retweetId = Expression<String?>("retweet_id")
+        static let retweetCreatedAt = Expression<Date?>("retweet_created_at")
 
         static let columns: [Expressible] = [
             _id,
@@ -145,6 +153,7 @@ extension Status {
             textDisplay,
             metadata,
             quotedId,
+            quotedCreatedAt,
             quotedUserKey,
             quotedUserName,
             quotedUserScreenName,
@@ -157,6 +166,7 @@ extension Status {
             retweetedByUserScreenName,
             retweetedByUserProfileImage,
             retweetId,
+            retweetCreatedAt,
         ]
     }
 

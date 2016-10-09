@@ -8,8 +8,18 @@
 
 import UIKit
 
+private var originalImageKey: UInt8 = 0
+
 extension UIBarButtonItem {
+    
     func makeShadowed(_ shadow: NSShadow) {
-        self.image = self.image?.withShadow(shadow).withRenderingMode(.alwaysOriginal)
+        let origImage: UIImage?
+        if let obj = objc_getAssociatedObject(self, &originalImageKey) as? UIImage {
+            origImage = obj
+        } else {
+            origImage = self.image
+            objc_setAssociatedObject(self, &originalImageKey, origImage, .OBJC_ASSOCIATION_RETAIN)
+        }
+        self.image = origImage?.withShadow(shadow).withRenderingMode(.alwaysOriginal)
     }
 }

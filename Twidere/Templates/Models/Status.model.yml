@@ -65,6 +65,11 @@ submodels:
         type: String?
         column: quoted_status_id
         json_field: quoted_status_id
+      quotedCreatedAt: # Added in database version 3
+        type: Date
+        column: quoted_created_at
+        json_field: quoted_created_at
+        added_in: 3
       quotedUserKey:
         type: UserKey?
         column: quoted_user_key
@@ -115,6 +120,11 @@ submodels:
         type: String?
         column: retweet_id
         json_field: retweet_id
+      retweetCreatedAt: # Added in database version 3
+        type: Date
+        column: retweet_created_at
+        json_field: retweet_created_at
+        added_in: 3
     submodels:
       Metadata:
         fields:

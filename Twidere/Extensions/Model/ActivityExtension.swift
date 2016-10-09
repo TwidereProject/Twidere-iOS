@@ -71,10 +71,6 @@ extension Activity {
     }
     
     private func getTextOnlySummary(_ statuses: [Status]) -> String {
-        var result = ""
-        for status in statuses {
-            result += status.textDisplay.replacingOccurrences(of: "\n", with: " ")
-        }
-        return result
+        return statuses.map { $0.textDisplay.replacingOccurrences(of: "\n", with: " ") }.joined(separator: "\n")
     }
 }

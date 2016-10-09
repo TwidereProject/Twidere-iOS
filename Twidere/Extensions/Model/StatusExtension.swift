@@ -12,6 +12,10 @@ func < (lhs: Status, rhs: Status) -> Bool {
     return lhs.sortId < rhs.sortId
 }
 
+func > (lhs: Status, rhs: Status) -> Bool {
+    return lhs.sortId > rhs.sortId
+}
+
 func == (lhs: Status, rhs: Status) -> Bool {
     return lhs.accountKey == rhs.accountKey && lhs.sortId == rhs.sortId
 }
@@ -32,4 +36,22 @@ extension Status {
         return getProfileImageUrlForSize(url, size: size)
     }
     
+    var quotedStatus: Status? {
+        guard let quotedId = self.quotedId else {
+            return nil
+        }
+        let quoted = Status()
+        quoted.id = quotedId
+        quoted.createdAt = self.quotedCreatedAt
+        quoted.sortId = self.generateSortId(rawId: -1)
+        quoted.accountKey = self.accountKey
+        quoted.userKey = self.quotedUserKey
+        quoted.userName = self.quotedUserName
+        quoted.userScreenName = self.quotedUserScreenName
+        quoted.userProfileImage = self.quotedUserProfileImage
+        quoted.textPlain = self.quotedTextPlain
+        quoted.textDisplay = self.quotedTextDisplay
+        quoted.metadata = self.quotedMetadata
+        return quoted
+    }
 }

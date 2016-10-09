@@ -19,6 +19,7 @@ extension Status: StaticMappable {
         textDisplay <- map["text_display"]
         metadata <- map["metadata"]
         quotedId <- map["quoted_status_id"]
+        quotedCreatedAt <- map["quoted_created_at"]
         quotedUserKey <- (map["quoted_user_key"], UserKeyTransform())
         quotedUserName <- map["quoted_user_name"]
         quotedUserScreenName <- map["quoted_user_screen_name"]
@@ -31,6 +32,7 @@ extension Status: StaticMappable {
         retweetedByUserScreenName <- map["retweeted_by_user_screen_name"]
         retweetedByUserProfileImage <- map["retweeted_by_user_profile_image"]
         retweetId <- map["retweet_id"]
+        retweetCreatedAt <- map["retweet_created_at"]
     }
 
     static func objectForMapping(map: Map) -> BaseMappable? {

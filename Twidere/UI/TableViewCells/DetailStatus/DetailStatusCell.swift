@@ -33,6 +33,10 @@ class DetailStatusCell: ALSTableViewCell {
     }
 
     override func awakeFromNib() {
+        textView.numberOfLines = 0
+        quotedTextView.numberOfLines = 0
+        
+        
         userProfileImageView.makeCircular()
         
         // border radius

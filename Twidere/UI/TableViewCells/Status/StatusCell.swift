@@ -11,19 +11,21 @@ import SwiftyJSON
 import DateTools
 import ALSLayouts
 import YYText
+import MWPhotoBrowser
 
 class StatusCell: ALSTableViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameView: YYLabel!
-    @IBOutlet weak var textView: YYLabel!
+    @IBOutlet weak var textView: TimelineContentTextView!
     @IBOutlet weak var timeView: ShortTimeView!
     @IBOutlet weak var quotedView: UIView!
     @IBOutlet weak var quotedNameView: YYLabel!
-    @IBOutlet weak var quotedTextView: YYLabel!
+    @IBOutlet weak var quotedTextView: TimelineContentTextView!
     @IBOutlet weak var statusTypeLabelView: YYLabel!
     @IBOutlet weak var mediaPreview: MediaPreviewContainer!
     @IBOutlet weak var quotedMediaPreview: MediaPreviewContainer!
+    @IBOutlet weak var actionsContainer: UIStackView!
     
     var delegate: StatusCellDelegate!
     
@@ -43,31 +45,50 @@ class StatusCell: ALSTableViewCell {
 
             quotedTextView.font = UIFont.systemFont(ofSize: displayOption.fontSize)
             textView.font = UIFont.systemFont(ofSize: displayOption.fontSize)
+            
+            self.actionsContainer.layoutParams.hidden = displayOption.hideActions
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        let profileImageViewTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.profileImageTapped(_:)))
-        self.profileImageView.isUserInteractionEnabled = true
-        self.profileImageView.addGestureRecognizer(profileImageViewTapRecognizer)
+        nameView.displaysAsynchronously = true
+        quotedNameView.displaysAsynchronously = true
         
+        textView.displaysAsynchronously = true
+        quotedTextView.displaysAsynchronously = true
+        
+        statusTypeLabelView.displaysAsynchronously = true
+        
+        self.profileImageView.isUserInteractionEnabled = true
+        self.profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.profileImageTapped(_:))))
+        
+        self.quotedView.isUserInteractionEnabled = true
+        self.quotedView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.quotedViewTapped(_:))))
+        
+        self.mediaPreview.isUserInteractionEnabled = true
+        self.mediaPreview.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.mediaPreviewTapped(_:))))
+        
+        // Make profile image circular
         profileImageView.makeCircular()
         
-        // border radius
-        quotedView.layer.cornerRadius = 4.0
+        // Add borders to previews
+        quotedView.layer.makeRoundedCorner(radius: 4.0)
+        mediaPreview.layer.makeRoundedCorner(radius: 4.0)
+        quotedMediaPreview.layer.makeRoundedCorner(radius: 4.0)
         
-        // border
-        quotedView.layer.borderColor = UIColor.lightGray.cgColor
-        quotedView.layer.borderWidth = 0.5
-        // Initialization code
-        
+        // Name views has single line
         nameView.numberOfLines = 1
         quotedNameView.numberOfLines = 1
         
+        // Text views has multiple lines
+        textView.numberOfLines = 0
+        quotedTextView.numberOfLines = 0
+        
         textView.highlightTapAction = self.highlightTapped
         quotedTextView.highlightTapAction = self.highlightTapped
+        
     }
     
     override func layoutSubviews() {
@@ -80,8 +101,8 @@ class StatusCell: ALSTableViewCell {
         guard let status = self.status else {
             return
         }
-        
         nameView.attributedText = StatusCell.createNameText(nameView.font.pointSize, name: status.userName, screenName: status.userScreenName, separator: " ")
+        
         if (displayOption.linkHighlight) {
             textView.attributedText = StatusCell.createStatusText(status.textDisplay, displayOption: self.displayOption, metadata: status.metadata, displayRange: status.metadata?.displayRange)
         } else {
@@ -117,33 +138,88 @@ class StatusCell: ALSTableViewCell {
             quotedView.layoutParams.hidden = true
         }
         profileImageView.displayImage(getProfileImageUrlForSize(status.userProfileImage, size: .reasonablySmall))
-        timeView.time = status.createdAt
-        
-        let layout = contentView.subviews.first as! ALSRelativeLayout
-        layout.setNeedsLayout()
+        if (status.retweetCreatedAt != nil) {
+            timeView.time = status.retweetCreatedAt
+        } else {
+            timeView.time = status.createdAt
+        }
     }
     
-    @IBAction func profileImageTapped(_ sender: UITapGestureRecognizer) {
+    @objc private func profileImageTapped(_ sender: UITapGestureRecognizer) {
         delegate?.profileImageTapped(status: self.status)
     }
     
-    func highlightTapped(view: UIView, string: NSAttributedString, range: NSRange, rect: CGRect) {
+    @objc private func mediaPreviewTapped(_ sender: UITapGestureRecognizer) {
+        delegate?.mediaPreviewTapped(status: self.status)
+    }
+    
+    @objc private func quotedViewTapped(_ sender: UITapGestureRecognizer) {
+        delegate?.quotedViewTapped(status: self.status)
+    }
+    
+    @objc private func highlightTapped(view: UIView, string: NSAttributedString, range: NSRange, rect: CGRect) {
         guard let highlight = string.yy_attribute(YYTextHighlightAttributeName, at: UInt(range.location)) as? YYTextHighlight else {
             return
         }
-        guard let span = highlight.userInfo?["twidere.span"] as? SpanItem else {
+        guard let span = highlight.userInfo?[SpanItem.highlightUserInfoKey] as? SpanItem else {
             return
         }
-        switch span {
-        case let span as LinkSpanItem:
-            break
-        case let span as HashtagSpanItem:
-            break
-        case let span as MentionSpanItem:
-            break
-        default:
-            break
+        delegate?.spanItemTapped(status: self.status, span: span)
+    }
+    
+    func previewViewController(for location: CGPoint) -> (vc: UIViewController, sourceRect: CGRect, shouldPresentViewController: Bool) {
+        let views: [UIView] = [self.quotedView, self.mediaPreview, self.profileImageView, self.textView]
+        for v in views {
+            if (!v.convert(v.bounds, to: self).contains(location)) {
+                continue
+            }
+            switch v {
+            case self.profileImageView:
+                let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "UserProfile") as! UserProfileController
+                vc.loadUser(userInfo: (status.accountKey, status.userKey, status.userScreenName))
+                return (vc, v.convert(v.bounds, to: self), false)
+            case self.textView:
+                let tv = v as! YYLabel
+                guard let layout = tv.textLayout, let text = tv.attributedText else {
+                    break
+                }
+                let textPoint = self.convert(location, to: tv)
+                let pos = Int(layout.textPosition(for: textPoint, lineIndex: layout.lineIndex(for: textPoint)))
+                if (pos == NSNotFound) {
+                    break
+                }
+                var highlightRange = NSMakeRange(0, 0)
+                guard let highlight = text.attribute(YYTextHighlightAttributeName, at: pos, effectiveRange: &highlightRange) as? YYTextHighlight else {
+                    break
+                }
+                let highlightRect = layout.rect(for: YYTextRange(range: highlightRange))
+                guard let span = highlight.userInfo?[SpanItem.highlightUserInfoKey] as? SpanItem else {
+                    break
+                }
+                guard let (vc, present) = span.createViewController(accountKey: status.accountKey) else {
+                    break
+                }
+                return (vc, tv.convert(highlightRect, to: self), present)
+            case self.quotedView:
+                let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
+                vc.displayStatus(status.quotedStatus!, reload: true)
+                return (vc, v.convert(v.bounds, to: self), false)
+            case self.mediaPreview:
+                let vc = MediaViewerController(media: status.metadata!.media!)
+                if let item = status.metadata?.media?.first {
+                    vc.preferredContentSize = CGSize(width: item.width, height: item.height)
+                }
+                return (vc, v.convert(v.bounds, to: self), false)
+            default:
+                break
+            }
         }
+        let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
+        vc.displayStatus(status)
+        return (vc, self.bounds, false)
     }
     
     static func createNameText(_ size: CGFloat, name: String, screenName: String, separator: String) -> NSAttributedString {
@@ -180,6 +256,7 @@ class StatusCell: ALSTableViewCell {
         var fontSize: CGFloat = 15
         var linkHighlight: Bool = true
         var linkColor: UIColor = UIColor.darkText
+        var hideActions: Bool = false
         
         func loadUserDefaults() {
             self.fontSize = 15
@@ -190,4 +267,8 @@ class StatusCell: ALSTableViewCell {
 
 protocol StatusCellDelegate {
     func profileImageTapped(status: Status)
+    func mediaPreviewTapped(status: Status)
+    func quotedViewTapped(status: Status)
+    
+    func spanItemTapped(status: Status, span: SpanItem)
 }

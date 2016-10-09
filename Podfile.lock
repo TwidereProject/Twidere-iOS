@@ -3,6 +3,7 @@ PODS:
   - Alamofire (4.0.1)
   - ALSLayouts (2.0.4)
   - CryptoSwift (0.6.0)
+  - DACircularProgress (2.3.1)
   - DateTools (1.7.0)
   - FXBlurView (1.6.4)
   - FXImageView (1.3.5)
@@ -10,6 +11,11 @@ PODS:
   - JDStatusBarNotification (1.5.4)
   - JVFloatLabeledTextField (1.1.1)
   - Kanna (2.0.0)
+  - MBProgressHUD (0.9.2)
+  - MWPhotoBrowser (2.1.2):
+    - DACircularProgress (~> 2.3)
+    - MBProgressHUD (~> 0.9)
+    - SDWebImage (!= 3.7.2, ~> 3.7)
   - MXPagerView (0.1.3)
   - MXParallaxHeader (0.5.2)
   - ObjectMapper (2.0.0)
@@ -32,7 +38,7 @@ PODS:
   - SQLite.swift/standard (0.10.1)
   - StaticDataTableViewController (2.0.5)
   - STPopup (1.8.0)
-  - SwiftyJSON (3.1.0)
+  - SwiftyJSON (3.1.1)
   - SwiftyUserDefaults (3.0.0)
   - ThumborURL (0.0.4)
   - twitter-text (1.14.0)
@@ -53,6 +59,7 @@ DEPENDENCIES:
   - JDStatusBarNotification (= 1.5.4)
   - JVFloatLabeledTextField (= 1.1.1)
   - Kanna (~> 2.0.0)
+  - MWPhotoBrowser (~> 2.1.2)
   - MXPagerView (~> 0.1.3)
   - MXParallaxHeader (~> 0.5.2)
   - ObjectMapper (~> 2.0)
@@ -77,7 +84,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SQLite.swift:
-    :commit: 1ae7acbcb1b59877cf2e034f72f3d411287a4119
+    :commit: b6941cda744c6cb163180eb5c8dead1fa76d6c77
     :git: https://github.com/stephencelis/SQLite.swift.git
 
 SPEC CHECKSUMS:
@@ -85,6 +92,7 @@ SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   ALSLayouts: 73bf82f8475a0533c4513570ba13e442d1d1cd5a
   CryptoSwift: 4a599b7241b8d3b857d6e2c28867d0bd5d1aae24
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   FXImageView: 7d84722b37f0afea9a64f12fdd4a6c7f9ecc4b16
@@ -92,6 +100,8 @@ SPEC CHECKSUMS:
   JDStatusBarNotification: d47dded0594a50a39c84a2cc5aa356fcf6750d0e
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   Kanna: 9a6637f72f5c77fe9c045b1efb2a5bb074754af8
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
   MXPagerView: db0c020aeada6a0c704f18f8053468560e346982
   MXParallaxHeader: 5070ba8e8af27ec793c0d32ae82cfd2318e59635
   ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
@@ -100,7 +110,7 @@ SPEC CHECKSUMS:
   SQLite.swift: c54b2cb32c2ec77cd52bc7442d05dd51b0623861
   StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a
   STPopup: af630a85628e4226ffcbda5caaead0d99aed13a8
-  SwiftyJSON: 29b9f2a64f118c07e691667c2ba1efe536acfe0b
+  SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   ThumborURL: 0e1f058fb79c37660aa7d302fe77c48366902325
   twitter-text: 703e84901722b7e6e2e22b7ac12afabfb40be1e5
@@ -109,6 +119,6 @@ SPEC CHECKSUMS:
   UIView+TouchHighlighting: e05a338801522cbdc4a1e236bd189f2a928a781f
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: f0fcfe8b2d260406f902b61fac9410f601a9889b
+PODFILE CHECKSUM: 3ea3b3ce05a45198a35549d3e13383d43248de02
 
 COCOAPODS: 1.1.0.rc.2

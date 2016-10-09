@@ -46,11 +46,12 @@ extension Status {
         self.accountKey = accountKey
         self.id = getTwitterEntityId(status)
         self.createdAt = parseTwitterDate(status["created_at"].stringValue)
-        self.sortId = generateSortId(self, rawId: status["raw_id"].int64 ?? -1)
+        self.sortId = generateSortId(rawId: status["raw_id"].int64 ?? -1)
         
         var primary = status["retweeted_status"]
         if (primary.exists()) {
             self.retweetId = getTwitterEntityId(primary)
+            self.retweetCreatedAt = parseTwitterDate(primary["created_at"].stringValue)
             
             let retweetedBy = status["user"]
             let userId = getTwitterEntityId(retweetedBy)
@@ -77,6 +78,7 @@ extension Status {
         let quoted = primary["quoted_status"]
         if (quoted.exists()) {
             self.quotedId = getTwitterEntityId(quoted)
+            self.quotedCreatedAt = parseTwitterDate(quoted["created_at"].stringValue)
             
             let quotedUser = quoted["user"]
             let quotedUserId = getTwitterEntityId(quotedUser)
@@ -284,8 +286,8 @@ extension Status {
         media.altText = entity["alt_text"].string
         let size = entity["sizes"]["large"]
         if (size.exists()) {
-            media.width = size["width"].intValue
-            media.height = size["height"].intValue
+            media.width = size["w"].intValue
+            media.height = size["h"].intValue
         } else {
             media.width = 0
             media.height = 0
@@ -381,15 +383,15 @@ extension Status {
         return true
     }
     
-    fileprivate func generateSortId(_ status: Status, rawId: Int64) -> Int64 {
+    internal func generateSortId(rawId: Int64) -> Int64 {
         var sortId = rawId
         if (sortId == -1) {
             // Try use long id
-            sortId = Int64(status.id) ?? -1
+            sortId = Int64(self.id) ?? -1
         }
-        if (sortId == -1 && status.createdAt != nil) {
+        if (sortId == -1 && self.createdAt != nil) {
             // Try use timestamp
-            sortId = createdAt!.timeIntervalSince1970Millis
+            sortId = self.createdAt!.timeIntervalSince1970Millis
         }
         return sortId
     }

@@ -13,9 +13,10 @@ import YYText
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    static var performingScroll: Bool = false
+    
     var window: UIWindow?
+    
+    static var performingScroll: Bool = false
     
     fileprivate(set) lazy var sqliteDatabase: Connection = self.openSQLiteDatabase()
     
@@ -50,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = materialLightBlue300
         UINavigationBar.appearance().tintColor = materialLightBlue300
         YYLabel.appearance().tintColor = materialLightBlue300
-        
+        self.window?.backgroundColor = UIColor.white
         return true
     }
 

@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" id="Rj8-FA-BA2" userLabel="Profile Image Space">
-                                <frame key="frameInset" width="40" height="40"/>
+                                <frame key="frameInset" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
@@ -34,46 +34,46 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view opaque="NO" contentMode="scaleToFill" misplaced="YES" id="Y7l-GJ-pSZ" customClass="ALSLinearLayout" customModule="ALSLayouts">
-                                <frame key="frameInset" minX="56" width="248" height="32"/>
+                                <frame key="frameInset" minX="56" width="248" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="Onk-Tx-Sur">
-                                        <frame key="frameInset" width="32" height="32"/>
+                                        <frame key="frameInset" width="36" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="DVd-u3-AaM">
-                                        <frame key="frameInset" minX="40" width="32" height="32"/>
+                                        <frame key="frameInset" minX="42" width="36" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginLeading">
-                                                <real key="value" value="4"/>
+                                                <real key="value" value="6"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="QOK-eZ-dEa">
-                                        <frame key="frameInset" minX="80" width="32" height="32"/>
+                                        <frame key="frameInset" minX="84" width="36" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginLeading">
-                                                <real key="value" value="4"/>
+                                                <real key="value" value="6"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="gmv-LD-riT">
-                                        <frame key="frameInset" minX="120" width="32" height="32"/>
+                                        <frame key="frameInset" minX="126" width="36" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginLeading">
-                                                <real key="value" value="4"/>
+                                                <real key="value" value="6"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="gkQ-10-o9j">
-                                        <frame key="frameInset" minX="160" width="32" height="32"/>
+                                        <frame key="frameInset" minX="168" width="36" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginLeading">
-                                                <real key="value" value="4"/>
+                                                <real key="value" value="6"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
@@ -90,7 +90,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view opaque="NO" userInteractionEnabled="NO" contentMode="left" misplaced="YES" id="p4X-ZW-xoK" userLabel="Name View" customClass="YYLabel">
-                                <frame key="frameInset" minX="56" minY="38" width="219" height="17"/>
+                                <frame key="frameInset" minX="56" minY="44" width="219" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="nameLabel"/>
@@ -114,8 +114,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="text" value="Activity title"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" id="N6i-kk-ka4" userLabel="Text View" customClass="YYLabel">
-                                <frame key="frameInset" minX="56" minY="63" width="248" height="84"/>
+                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" id="N6i-kk-ka4" userLabel="Text View" customClass="TimelineContentTextView" customModule="Twidere" customModuleProvider="target">
+                                <frame key="frameInset" minX="56" minY="69" width="248" height="78"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="textLabel"/>
@@ -133,11 +133,10 @@
                                         <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="Activity message"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" misplaced="YES" id="3Ue-2k-AZI" userLabel="Time View" customClass="ShortTimeView" customModule="Twidere" customModuleProvider="target">
-                                <frame key="frameInset" minX="283" minY="39" width="21" height="16"/>
+                                <frame key="frameInset" minX="283" minY="44" width="21" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignBaseline" value="nameLabel"/>

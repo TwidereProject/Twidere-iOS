@@ -19,6 +19,7 @@ class Status {
     var textDisplay: String!
     var metadata: Metadata?
     var quotedId: String?
+    var quotedCreatedAt: Date!
     var quotedUserKey: UserKey?
     var quotedUserName: String?
     var quotedUserScreenName: String?
@@ -31,6 +32,7 @@ class Status {
     var retweetedByUserScreenName: String?
     var retweetedByUserProfileImage: String?
     var retweetId: String?
+    var retweetCreatedAt: Date!
     // Append body content
 
     // Sub models

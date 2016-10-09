@@ -81,33 +81,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         nameView.font = UIFont.systemFont(ofSize: 15)
         screenNameView.font = UIFont.systemFont(ofSize: 12)
         descriptionView.font = UIFont.systemFont(ofSize: 15)
-        
-        navBar.tintColor = UIColor.white
-        let shadow = NSShadow()
-        shadow.shadowOffset = CGSize(width: 0, height: 1)
-        shadow.shadowBlurRadius = 3
-        shadow.shadowColor = UIColor(white: 0, alpha: 0.5)
-        navBar.titleTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSShadowAttributeName: shadow
-        ]
-        let backImageOriginal = UIImage(named: "NavBar Button Back")!
-        let backImageShadowed = backImageOriginal.withShadow(shadow).withRenderingMode(.alwaysOriginal).withAlignmentRectInsets(shadow.shadowedImageInset(size: backImageOriginal.size))
-        
-        navBar.backIndicatorImage = backImageShadowed
-        navBar.backIndicatorTransitionMaskImage = backImageShadowed
-        
-        if let viewControllers = self.navigationController?.viewControllers {
-            if (viewControllers.count > 1) {
-                var items = navBar.items!
-                items.insert(UINavigationItem(title: ""), at: 0)
-                navBar.setItems(items, animated: false)
-            }
-        }
-        
-        navBar.topItem?.rightBarButtonItems?.forEach { item in
-            item.makeShadowed(shadow)
-        }
+
         
         if (self.user != nil) {
             displayUser()
@@ -130,6 +104,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
                 }
             }
         }
+        setupNavBar()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -141,14 +116,19 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     }
     
     override func viewWillLayoutSubviews() {
-        let navBarHeight = self.navigationController!.navigationBar.frame.height
         let topLayoutGuideLength = topLayoutGuide.length
-        let topBarsHeight = topLayoutGuideLength + navBarHeight
         
         let containerSize = self.segmentedContainerView.frame.size
         
         navBar.frame.origin.y = topLayoutGuideLength
-        navBar.frame.size.height = navBarHeight
+        if let navigationController = self.navigationController {
+            navBar.frame.size.height = navigationController.navigationBar.frame.height
+            navBar.isHidden = false
+        } else {
+            navBar.isHidden = true
+        }
+        
+        let topBarsHeight = topLayoutGuideLength + navBar.frame.size.height
         
         self.segmentedContainerView.parallaxHeader.minimumHeight = topBarsHeight
         
@@ -192,6 +172,36 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         }
     }
     
+    private func setupNavBar() {
+        
+        navBar.tintColor = UIColor.white
+        let shadow = NSShadow()
+        shadow.shadowOffset = CGSize(width: 0, height: 1)
+        shadow.shadowBlurRadius = 3
+        shadow.shadowColor = UIColor(white: 0, alpha: 0.5)
+        navBar.titleTextAttributes = [
+            NSForegroundColorAttributeName: UIColor.white,
+            NSShadowAttributeName: shadow
+        ]
+        let backImageOriginal = UIImage(named: "NavBar Button Back")!
+        let backImageShadowed = backImageOriginal.withShadow(shadow).withRenderingMode(.alwaysOriginal).withAlignmentRectInsets(shadow.shadowedImageInset(size: backImageOriginal.size))
+        
+        navBar.backIndicatorImage = backImageShadowed
+        navBar.backIndicatorTransitionMaskImage = backImageShadowed
+        
+        if let viewControllers = self.navigationController?.viewControllers {
+            if (viewControllers.count > 1) {
+                var items = navBar.items!
+                items.insert(UINavigationItem(title: ""), at: 0)
+                navBar.setItems(items, animated: false)
+            }
+        }
+        
+        navBar.topItem?.rightBarButtonItems?.forEach { item in
+            item.makeShadowed(shadow)
+        }
+    }
+    
     fileprivate func loadUser() {
         guard let userInfo = self.userInfo else {
             return
@@ -218,7 +228,6 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
                     }
                 }
         }
-        
     }
     
     fileprivate func displayUser() {
