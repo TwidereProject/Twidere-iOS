@@ -143,6 +143,7 @@
 		CEBECFC01DAA2BE300350383 /* TintedImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBECFBF1DAA2BE300350383 /* TintedImageButton.swift */; };
 		CEBECFC21DAA2F4500350383 /* UIViewControllerPreviewingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBECFC11DAA2F4500350383 /* UIViewControllerPreviewingExtension.swift */; };
 		CEBECFC41DAA36B600350383 /* MediaViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBECFC31DAA36B600350383 /* MediaViewerController.swift */; };
+		CEBECFCA1DAB8AD900350383 /* CollectionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBECFC91DAB8AD900350383 /* CollectionUtils.swift */; };
 		CEBED5FB1D4C86C700619D1C /* BackgroundOperationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBED5FA1D4C86C700619D1C /* BackgroundOperationService.swift */; };
 		CED41F2F1D2FF7C80089E0B6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F2E1D2FF7C80089E0B6 /* HomeController.swift */; };
 		CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F331D2FF88D0089E0B6 /* SignInController.swift */; };
@@ -333,6 +334,7 @@
 		CEBECFBF1DAA2BE300350383 /* TintedImageButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TintedImageButton.swift; sourceTree = "<group>"; };
 		CEBECFC11DAA2F4500350383 /* UIViewControllerPreviewingExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerPreviewingExtension.swift; sourceTree = "<group>"; };
 		CEBECFC31DAA36B600350383 /* MediaViewerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerController.swift; sourceTree = "<group>"; };
+		CEBECFC91DAB8AD900350383 /* CollectionUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionUtils.swift; sourceTree = "<group>"; };
 		CEBED5FA1D4C86C700619D1C /* BackgroundOperationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BackgroundOperationService.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CED41F2E1D2FF7C80089E0B6 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomeController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CED41F331D2FF88D0089E0B6 /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
@@ -777,6 +779,7 @@
 				CEDC3B221D7D8BE90082A8BA /* DatabaseMigration.swift */,
 				CE9574951D33B71B00504D52 /* DefaultsKeys.swift */,
 				CE95748A1D322CC700504D52 /* ModelConverter.swift */,
+				CEBECFC91DAB8AD900350383 /* CollectionUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1487,6 +1490,7 @@
 				CE5993191D83CAAA00653220 /* DetailStatusCell.swift in Sources */,
 				CEF2CF451D83F11200131EAE /* UserProfileController.swift in Sources */,
 				CE779F291D8563B60053B5C7 /* Account+SQLite.swift in Sources */,
+				CEBECFCA1DAB8AD900350383 /* CollectionUtils.swift in Sources */,
 				CE9574981D33D87200504D52 /* NetworkPreferencesController.swift in Sources */,
 				CEA2E2C51D37C2590095BC57 /* ComposeLocationController.swift in Sources */,
 				CE45CA861D85416C0004CC1C /* Status.swift in Sources */,

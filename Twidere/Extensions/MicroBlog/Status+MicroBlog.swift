@@ -265,6 +265,7 @@ extension Status {
         metadata.mentions = mentions
         metadata.hashtags = hashtags
         metadata.media = mediaItems
+        metadata.externalUrl = status["external_url"].string
         
         if let inReplyTo = Status.Metadata.InReplyTo(status: status, accountKey: accountKey) {
             inReplyTo.userName = mentions.filter { $0.key.id == inReplyTo.userKey.id }.first?.name

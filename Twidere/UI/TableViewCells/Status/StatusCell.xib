@@ -191,37 +191,49 @@
                                         <frame key="frameInset" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <inset key="imageEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
+                                        <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="templateImage" value="Button Action Reply"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="replyTapped:" destination="KGk-i7-Jjw" eventType="primaryActionTriggered" id="kYu-oI-QeY"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HJG-IT-oD1" userLabel="Retweet Button" customClass="TintedImageButton" customModule="Twidere" customModuleProvider="target">
                                         <frame key="frameInset" minX="60" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <inset key="imageEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
+                                        <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="templateImage" value="Button Action Retweet"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="retweetTapped:" destination="KGk-i7-Jjw" eventType="primaryActionTriggered" id="veL-zv-yGt"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KAq-eT-D0a" userLabel="Favorite Button" customClass="TintedImageButton" customModule="Twidere" customModuleProvider="target">
                                         <frame key="frameInset" minX="120" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <inset key="imageEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
+                                        <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="templateImage" value="Button Action Star"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="favoriteTapped:" destination="KGk-i7-Jjw" eventType="primaryActionTriggered" id="sAA-Am-rgT"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="92h-2Q-2no" userLabel="More Button" customClass="TintedImageButton" customModule="Twidere" customModuleProvider="target">
                                         <frame key="frameInset" minX="180" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <inset key="imageEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
+                                        <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="templateImage" value="Button Action More"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="moreTapped:" destination="KGk-i7-Jjw" eventType="primaryActionTriggered" id="Tcs-0q-MCJ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>

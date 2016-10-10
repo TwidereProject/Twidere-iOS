@@ -29,7 +29,7 @@ class ComposeLocationController: UIViewController, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        preciseLocationLabel.text = String(format: "%.2f,%.2f",userLocation.coordinate.latitude, userLocation.coordinate.longitude)
+        preciseLocationLabel.text = String(format: "%.2f,%.2f", userLocation.coordinate.latitude, userLocation.coordinate.longitude)
     }
     
     @IBAction func doneAttachLocation(_ sender: UIBarButtonItem) {

@@ -45,6 +45,7 @@ class Status {
         var media: [MediaItem]?
         var displayRange: [Int]?
         var inReplyTo: InReplyTo?
+        var externalUrl: String!
         // Append body content
     
         // Sub models

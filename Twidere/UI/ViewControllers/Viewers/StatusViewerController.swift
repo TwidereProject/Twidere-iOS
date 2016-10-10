@@ -11,8 +11,12 @@ import UITableView_FDTemplateLayoutCell
 import PromiseKit
 
 typealias StatusInfo = (accountKey: UserKey, id: String)
+typealias StatusPreviewCallback = (_ status: Status, _ action: StatusViewerController.PreviewAction) -> Void
 
 class StatusViewerController: UITableViewController {
+    
+    var cellDisplayOption: StatusCell.DisplayOption! = StatusCell.DisplayOption()
+    var previewCallback: StatusPreviewCallback!
     
     private var status: Status! {
         didSet {
@@ -27,7 +31,6 @@ class StatusViewerController: UITableViewController {
     private var reloadNeeded: Bool = false
     
     private var conversation: [Status]!
-    var cellDisplayOption: StatusCell.DisplayOption! = StatusCell.DisplayOption()
     private var itemIndices: ItemIndices = ItemIndices(1)
     
     override func viewDidLoad() {
@@ -99,9 +102,15 @@ class StatusViewerController: UITableViewController {
     override var previewActionItems: [UIPreviewActionItem] {
         var items: [UIPreviewActionItem] = []
         if (cellDisplayOption.hideActions) {
-            items.append(UIPreviewAction(title: "Reply", style: .default, handler: {_,_ in }))
-            items.append(UIPreviewAction(title: "Retweet", style: .default, handler: {_,_ in }))
-            items.append(UIPreviewAction(title: "Favorite", style: .default, handler: {_,_ in }))
+            items.append(UIPreviewAction(title: "Reply", style: .default, handler: {_,_ in self.invokePreviewCallback(.reply) }))
+            items.append(UIPreviewAction(title: "Retweet", style: .default, handler: {_,_ in self.invokePreviewCallback(.retweet) }))
+            items.append(UIPreviewAction(title: "Favorite", style: .default, handler: {_,_ in self.invokePreviewCallback(.favorite) }))
+        }
+        items.append(UIPreviewAction(title: "Share…", style: .default, handler: {_,_ in self.invokePreviewCallback(.share) }))
+        if let status = self.status {
+            if (status.accountKey == status.userKey) {
+                items.append(UIPreviewAction(title: "Delete", style: .destructive, handler: {_,_ in self.invokePreviewCallback(.destroy) }))
+            }
         }
         return items
     }
@@ -124,6 +133,24 @@ class StatusViewerController: UITableViewController {
         if (self.isViewLoaded) {
             self.loadStatus()
         }
+    }
+    
+    fileprivate func invokePreviewCallback(_ action: PreviewAction) {
+        guard let status = self.status else {
+            return
+        }
+        previewCallback?(status, action)
+    }
+    
+    fileprivate func shareStatus() {
+        guard let status = self.status else {
+            return
+        }
+        let activityItems: [Any] = [
+            status.textPlain
+        ]
+        let avc = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        navigationController?.present(avc, animated: true, completion: nil)
     }
     
     
@@ -150,5 +177,8 @@ class StatusViewerController: UITableViewController {
             itemIndices[0] = 0
         }
     }
-    
+ 
+    enum PreviewAction {
+        case reply, retweet, favorite, share, destroy
+    }
 }

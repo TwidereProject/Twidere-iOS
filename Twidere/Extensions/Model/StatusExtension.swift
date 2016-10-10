@@ -54,4 +54,14 @@ extension Status {
         quoted.metadata = self.quotedMetadata
         return quoted
     }
+    
+    var statusUrl: String {
+        if let externalUrl = self.metadata?.externalUrl {
+            return externalUrl
+        }
+        if self.accountKey.host == "fanfou.com" {
+            return "http://fanfou.com/statuses/\(self.id!)"
+        }
+        return "https://twitter.com/\(self.userScreenName!)/status/\(self.id!)"
+    }
 }

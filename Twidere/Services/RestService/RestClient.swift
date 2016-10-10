@@ -37,7 +37,7 @@ class RestClient {
             let url = constructUrl(path, queries: queries)
             let finalAuth: Authorization? = authOverride ?? auth
             let isMultipart: Bool = params != nil && params!.contains(where: { $0.1 is Data })
-            let finalHeaders = constructHeaders(method, path: path, headers: headers, queries: queries, forms: params, auth: finalAuth, isMultipart: isMultipart)
+            let finalHeaders = constructHeaders(method, path: path, headers: headers, queries: queries, params: params, auth: finalAuth, isMultipart: isMultipart)
             let completionHandler: (DataResponse<T>) -> Void = { response in
                 switch response.result {
                 case .success(let value):
@@ -87,7 +87,7 @@ class RestClient {
                                       path: String,
                                       headers: [String: String]? = nil,
                                       queries: [String: String]? = nil,
-                                      forms: [String: Any]? = nil,
+                                      params: [String: Any]? = nil,
                                       auth: Authorization?,
                                       isMultipart: Bool) -> [String: String] {
         var mergedHeaders = [String: String]()
@@ -97,7 +97,17 @@ class RestClient {
             }
         }
         if (auth != nil && auth!.hasAuthorization) {
-            mergedHeaders["Authorization"] = auth!.getHeader(method.rawValue, endpoint: endpoint, path: path, queries: queries, forms: isMultipart ? nil : forms)!
+            let forms: [String: String]?
+            if (isMultipart) {
+                forms = nil
+            } else {
+                var newForms: [String: String] = [:]
+                params?.forEach { (k, v) in
+                    newForms[k] = String(describing: v)
+                }
+                forms = newForms
+            }
+            mergedHeaders["Authorization"] = auth!.getHeader(method.rawValue, endpoint: endpoint, path: path, queries: queries, forms: forms)!
         }
         if (userAgent != nil) {
             mergedHeaders["User-Agent"] = userAgent!

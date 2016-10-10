@@ -49,6 +49,7 @@ extension Status.Metadata: StaticMappable {
         media <- map["media"]
         displayRange <- map["display_range"]
         inReplyTo <- map["in_reply_to"]
+        externalUrl <- map["extenral_url"]
     }
 
     static func objectForMapping(map: Map) -> BaseMappable? {

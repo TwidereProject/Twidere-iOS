@@ -72,7 +72,7 @@ class HomeController: UITabBarController {
     }
     
     @IBAction func composeClicked(_ sender: UIBarButtonItem) {
-        ComposeController.show(self.parent ?? self, identifier: "Compose")
+        ComposeController.create().show(parent: self.parent ?? self)
     }
     
     @IBAction func accountIconClicked(_ sender: UITapGestureRecognizer) {

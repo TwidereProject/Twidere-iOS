@@ -171,7 +171,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="62" y="277"/>
+            <point key="canvasLocation" x="60.799999999999997" y="276.1619190404798"/>
         </scene>
         <!--Location-->
         <scene sceneID="ZDO-NQ-A5E">
@@ -265,7 +265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qyZ-oU-bG2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="62" y="669"/>
+            <point key="canvasLocation" x="60.799999999999997" y="668.36581709145435"/>
         </scene>
     </scenes>
     <resources>

@@ -12,7 +12,7 @@ import Security
 
 protocol Authorization {
     var hasAuthorization: Bool { get }
-    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: Any]?) -> String?
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: String]?) -> String?
 }
 class EmptyAuthorization: Authorization {
     
@@ -22,7 +22,7 @@ class EmptyAuthorization: Authorization {
         }
     }
     
-    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : Any]?) -> String? {
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : String]?) -> String? {
         return nil
     }
 }
@@ -46,7 +46,7 @@ class BasicAuthorization: Authorization {
         }
     }
     
-    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : Any]?) -> String? {
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : String]?) -> String? {
         return "\(username):\(password)".utf8.map({$0}).toBase64()
     }
     
@@ -83,7 +83,7 @@ class OAuthAuthorization: Authorization {
         }
     }
     
-    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: Any]?) -> String? {
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: String]?) -> String? {
         let oauthEndpoint = endpoint as! OAuthEndpoint
         let signingUrl = oauthEndpoint.constructSigningUrl(path, queries: queries)
         let oauthParams = generateOAuthParams(method, url: signingUrl, oauthToken: oauthToken, queries: queries, forms: forms)
@@ -92,7 +92,7 @@ class OAuthAuthorization: Authorization {
         }).joined(separator: ", ")
     }
     
-    fileprivate func generateOAuthParams(_ method: String, url: String, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: Any]?) -> [(String, String)] {
+    fileprivate func generateOAuthParams(_ method: String, url: String, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: String]?) -> [(String, String)] {
         let oauthNonce = generateOAuthNonce()
         let timestamp =  UInt64(Date().timeIntervalSince1970)
         let oauthSignature = generateOAuthSignature(method, url: url, oauthNonce: oauthNonce, timestamp: timestamp, oauthToken: oauthToken, queries: queries, forms: forms)
@@ -113,7 +113,7 @@ class OAuthAuthorization: Authorization {
         return encodeParams
     }
     
-    fileprivate func generateOAuthSignature(_ method: String, url: String, oauthNonce: String, timestamp: UInt64, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: Any]?) -> String {
+    fileprivate func generateOAuthSignature(_ method: String, url: String, oauthNonce: String, timestamp: UInt64, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: String]?) -> String {
         var oauthParams: [String] = [
             encodeOAuthKeyValue("oauth_consumer_key", value: consumerKey),
             encodeOAuthKeyValue("oauth_nonce", value: oauthNonce),
@@ -131,7 +131,7 @@ class OAuthAuthorization: Authorization {
         }
         if (forms != nil) {
             for (k, v) in forms! {
-                oauthParams.append(encodeOAuthKeyValue(k, value: String(describing: v)))
+                oauthParams.append(encodeOAuthKeyValue(k, value: v))
             }
         }
         // Sort params
@@ -147,8 +147,12 @@ class OAuthAuthorization: Authorization {
         }
         let signingKeyBytes = signingKey.utf8.map{$0}
         
-
-        let urlNoQuery = url.range(of: "?") != nil ? url.substring(to: url.range(of: "?")!.lowerBound) : url
+        let urlNoQuery: String
+        if let lowerBound = url.range(of: "?")?.lowerBound {
+            urlNoQuery = url.substring(to: lowerBound)
+        } else {
+            urlNoQuery = url
+        }
         let baseString = encodeOAuth(method) + "&" + encodeOAuth(urlNoQuery) + "&" + encodeOAuth(paramsString)
         let baseBytes = baseString.utf8.map{$0}
         let hmac: [UInt8] = try! HMAC(key: signingKeyBytes, variant: .sha1).authenticate(baseBytes)
@@ -156,7 +160,7 @@ class OAuthAuthorization: Authorization {
     }
     
     fileprivate func generateOAuthNonce() -> String {
-        let bytesCount = 8 // number of bytes
+        let bytesCount = 16 // number of bytes
         var randomBytes = [UInt8](repeating: 0, count: bytesCount) // array to hold randoms bytes
         
         // Gen random bytes

@@ -32,6 +32,7 @@ target 'Twidere' do
   pod 'FXImageView', '~> 1.3.5'
   pod 'YYText', '~> 1.0.7'
   pod 'MWPhotoBrowser', '~> 2.1.2'
+  pod 'DeviceKit', '~> 1.0'
 end
 
 target 'TwidereTests' do

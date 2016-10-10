@@ -146,6 +146,9 @@ submodels:
           inReplyTo:
             type: 'InReplyTo?'
             json_field: 'in_reply_to'
+          externalUrl:
+            type: String
+            json_field: 'extenral_url'
         submodels:
           InReplyTo:
             fields:

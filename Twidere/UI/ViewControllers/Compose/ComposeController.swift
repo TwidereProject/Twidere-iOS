@@ -75,6 +75,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     
     var recentLocation: CLLocationCoordinate2D? = nil
     var attachedMedia: [MediaUpdate]? = nil
+    var inReplyToStatus: Status? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,7 +103,28 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
             self.recentLocation = locationManager.location?.coordinate
         }
         
+        if let inReplyToStatus = self.inReplyToStatus {
+            var text = "@\(inReplyToStatus.userScreenName!) "
+            var range = NSMakeRange(text.utf16.count, 0)
+            if let screenNames = inReplyToStatus.metadata?.mentions?.filter({ $0.screenName != nil }).map({ $0.screenName! }) {
+                for screenName in uniq(source: screenNames) {
+                    if (inReplyToStatus.userScreenName != screenName) {
+                        text += "@\(screenName) "
+                    }
+                }
+            }
+            range.length = text.utf16.count - range.location
+            editText.text = text
+            editText.selectedRange = range
+        }
+        
         updateMediaPreview()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        editText.becomeFirstResponder()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -165,6 +187,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
             update.displayCoordinates = Defaults[.attachPreciseLocation]
         }
         update.media = self.attachedMedia
+        update.inReplyToStatus = self.inReplyToStatus
         bos.updateStatus(update)
         popupController.dismiss()
     }
@@ -261,11 +284,14 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     }
     */
     
-    static func show(_ parent: UIViewController, identifier: String) {
-        let root = parent.storyboard?.instantiateViewController(withIdentifier: identifier)
-        let controller = STPopupController(rootViewController: root)
+    static func create() -> ComposeController {
+        let storyboard = UIStoryboard(name: "Compose", bundle: nil)
+        return storyboard.instantiateInitialViewController() as! ComposeController
+    }
+    
+    func show(parent: UIViewController) {
+        let controller = STPopupController(rootViewController: self)
         controller?.containerView.layer.cornerRadius = 4
-
         controller?.present(in: parent)
     }
 

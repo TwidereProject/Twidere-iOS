@@ -25,4 +25,8 @@ class MediaViewerController: MWPhotoBrowser {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
+    override var previewActionItems: [UIPreviewActionItem] {
+        return []
+    }
+    
 }

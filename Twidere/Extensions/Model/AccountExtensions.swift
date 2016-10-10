@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DeviceKit
 
 extension Account {
     func createAPIConfig() -> CustomAPIConfig {
@@ -32,11 +33,29 @@ extension Account {
         }
     }
     
+    func createClientUserAgent() -> String? {
+        switch CustomAPIConfig.AuthType(rawValue: authType!) ?? defaultAuthType {
+        case .OAuth, .xAuth:
+            switch consumerKey!.sha1() {
+            case "ec7250f480e5dedff7688c78188886c282a3d968":
+                // Twitter for iPhone
+                let device = Device()
+                return "Twitter-iPhone/7.0.0 iOS/\(device.systemVersion) (Apple;\(Device.identifier);;;;;1)"
+            default:
+                break
+            }
+        default:
+            break
+        }
+        return nil
+    }
+    
     func newMicroBlogService(_ domain: String? = "api") -> MicroBlogService {
         let apiConfig = createAPIConfig()
         let endpoint = apiConfig.createEndpoint(domain)
         let auth = createAuthorization()
-        let microBlog = MicroBlogService(endpoint: endpoint, auth: auth)
+        let userAgent = createClientUserAgent()
+        let microBlog = MicroBlogService(endpoint: endpoint, auth: auth, userAgent: userAgent)
         microBlog.accountKey = self.key
         return microBlog
     }

@@ -11,6 +11,7 @@ import SwiftyJSON
 import PromiseKit
 import UITableView_FDTemplateLayoutCell
 import YYText
+import ActionSheetPicker_3_0
 
 class StatusesListController: UITableViewController, StatusCellDelegate, PullToRefreshProtocol, UIViewControllerPreviewingDelegate {
     
@@ -212,6 +213,17 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
             let (vc, rect, present) = cell.previewViewController(for: tableView.convert(location, to: cell))
             previewingContext.sourceRect = cell.convert(rect, to: tableView)
             previewingContext.shouldPresentViewController = present
+            
+            if let svc = vc as? StatusViewerController {
+                svc.previewCallback = { status, action in
+                    switch action {
+                    case .share:
+                        self.shareStatus(status: cell.status)
+                    default:
+                        break
+                    }
+                }
+            }
             return vc
         default:
             break
@@ -290,6 +302,53 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
     func mediaPreviewTapped(status: Status) {
         let vc = MediaViewerController(media: status.metadata!.media!)
         navigationController?.show(vc, sender: self)
+    }
+    
+    func actionSelected(status: Status, action: StatusCell.StatusAction) {
+        switch action {
+        case .reply:
+            replyStatus(status: status)
+        case .more:
+            openStatusMenu(status: status)
+        default:
+            break
+        }
+    }
+    
+    func shareStatus(status: Status) {
+        let activityItems: [Any] = [
+            URL(string: status.statusUrl)!,
+            status.textPlain
+        ]
+        let avc = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        navigationController?.present(avc, animated: true, completion: nil)
+    }
+    
+    func replyStatus(status: Status) {
+        guard let nvc = self.navigationController else {
+            return
+        }
+        let cvc = ComposeController.create()
+        cvc.inReplyToStatus = status
+        cvc.show(parent: nvc.parent ?? nvc)
+    }
+    
+    func confirmAndDestroyStatus(status: Status) {
+        
+    }
+    
+    func openStatusMenu(status: Status) {
+        let ac = UIAlertController(title: "Tweet", message: nil, preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "Share", style: .default) { _ in
+            self.shareStatus(status: status)
+        })
+        if (status.accountKey == status.userKey) {
+            ac.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in
+                self.confirmAndDestroyStatus(status: status)
+            })
+        }
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(ac, animated: true, completion: nil)
     }
     
     fileprivate func loadStatuses(_ opts: LoadOptions) {

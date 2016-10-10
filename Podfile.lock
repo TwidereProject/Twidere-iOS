@@ -5,6 +5,7 @@ PODS:
   - CryptoSwift (0.6.0)
   - DACircularProgress (2.3.1)
   - DateTools (1.7.0)
+  - DeviceKit (1.0.0)
   - FXBlurView (1.6.4)
   - FXImageView (1.3.5)
   - IQKeyboardManagerSwift (4.0.6)
@@ -53,6 +54,7 @@ DEPENDENCIES:
   - ALSLayouts (~> 2.0.4)
   - CryptoSwift (~> 0.6.0)
   - DateTools (~> 1.7.0)
+  - DeviceKit (~> 1.0)
   - FXBlurView (~> 1.6)
   - FXImageView (~> 1.3.5)
   - IQKeyboardManagerSwift (~> 4.0.6)
@@ -94,6 +96,7 @@ SPEC CHECKSUMS:
   CryptoSwift: 4a599b7241b8d3b857d6e2c28867d0bd5d1aae24
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  DeviceKit: ddead7f3a7c9603ba3a63cb748566428c38dd11f
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   FXImageView: 7d84722b37f0afea9a64f12fdd4a6c7f9ecc4b16
   IQKeyboardManagerSwift: b3015e819559ca76381f87a0833f44d178564603
@@ -119,6 +122,6 @@ SPEC CHECKSUMS:
   UIView+TouchHighlighting: e05a338801522cbdc4a1e236bd189f2a928a781f
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 3ea3b3ce05a45198a35549d3e13383d43248de02
+PODFILE CHECKSUM: e2beac0b9f9876b17058073488d3093472a033cc
 
 COCOAPODS: 1.1.0.rc.2

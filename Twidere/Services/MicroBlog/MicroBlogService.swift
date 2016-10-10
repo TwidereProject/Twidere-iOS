@@ -44,6 +44,28 @@ class MicroBlogService: RestClient {
         return makeTypedRequest(.get, path: "/statuses/user_timeline.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
     }
     
+    // MARKER: Tweet functions
+    
+    func showStatus(id: String) -> Promise<Status> {
+        let queries = makeQueries(statusQueries, ["id": id])
+        return makeTypedRequest(.get, path: "/statuses/show.json", queries: queries, serializer: MicroBlogService.convertStatus(accountKey))
+    }
+    
+    func lookupStatuses(ids: [String]) -> Promise<[Status]> {
+        let queries = makeQueries(statusQueries, ["id": ids.joined(separator: ",")])
+        return makeTypedRequest(.get, path: "/statuses/lookup.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
+    }
+    
+    func retweetStatus(id: String) -> Promise<Status> {
+        return makeTypedRequest(.post, path: "/statuses/retweet/\(id).json", serializer: MicroBlogService.convertStatus(accountKey))
+    }
+    
+    func unretweetStatus(id: String) -> Promise<Status> {
+        return makeTypedRequest(.post, path: "/statuses/unretweet/\(id).json", serializer: MicroBlogService.convertStatus(accountKey))
+    }
+    
+    // MARKER: Favorite functions
+    
     func getFavorites(screenName: String, paging: Paging) -> Promise<[Status]> {
         let queries = makeQueries(statusQueries, ["screen_name": screenName], paging.queries)
         return makeTypedRequest(.get, path: "/favorites/list.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
@@ -54,14 +76,14 @@ class MicroBlogService: RestClient {
         return makeTypedRequest(.get, path: "/favorites/list.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
     }
     
-    func showStatus(id: String) -> Promise<Status> {
+    func createFavorite(id: String) -> Promise<Status> {
         let queries = makeQueries(statusQueries, ["id": id])
-        return makeTypedRequest(.get, path: "/statuses/show.json", queries: queries, serializer: MicroBlogService.convertStatus(accountKey))
+        return makeTypedRequest(.post, path: "/favorites/create.json", queries: queries, serializer: MicroBlogService.convertStatus(accountKey))
     }
     
-    func lookupStatuses(ids: [String]) -> Promise<[Status]> {
-        let queries = makeQueries(statusQueries, ["id": ids.joined(separator: ",")])
-        return makeTypedRequest(.get, path: "/statuses/lookup.json", queries: queries, serializer: MicroBlogService.convertStatuses(accountKey))
+    func destroyFavorite(id: String) -> Promise<Status> {
+        let queries = makeQueries(statusQueries, ["id": id])
+        return makeTypedRequest(.post, path: "/favorites/destroy.json", queries: queries, serializer: MicroBlogService.convertStatus(accountKey))
     }
     
     // MARK: Activity functions
@@ -88,11 +110,11 @@ class MicroBlogService: RestClient {
         if (request.mediaIds != nil) {
             forms["media_ids"] = request.mediaIds?.joined(separator: ",")
         }
-        if (request.location != nil) {
-            forms["lat"] = request.location!.latitude
-            forms["long"] = request.location!.longitude
+        if let location = request.location {
+            forms["lat"] = String(format: "%f", location.latitude)
+            forms["long"] = String(format: "%f", location.longitude)
+            forms["display_coordinates"] = request.displayCoordinates ? "true" : "false"
         }
-        forms["display_coordinates"] = request.displayCoordinates ? "true" : "false"
         if (request.inReplyToStatusId != nil) {
             forms["in_reply_to_status_id"] = request.inReplyToStatusId!
         }

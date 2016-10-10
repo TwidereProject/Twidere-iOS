@@ -167,6 +167,22 @@ class StatusCell: ALSTableViewCell {
         delegate?.spanItemTapped(status: self.status, span: span)
     }
     
+    @IBAction func replyTapped(_ sender: TintedImageButton) {
+        delegate.actionSelected(status: status, action: .reply)
+    }
+    
+    @IBAction func retweetTapped(_ sender: TintedImageButton) {
+        delegate.actionSelected(status: status, action: .retweet)
+    }
+    
+    @IBAction func favoriteTapped(_ sender: TintedImageButton) {
+        delegate.actionSelected(status: status, action: .favorite)
+    }
+    
+    @IBAction func moreTapped(_ sender: TintedImageButton) {
+        delegate.actionSelected(status: status, action: .more)
+    }
+    
     func previewViewController(for location: CGPoint) -> (vc: UIViewController, sourceRect: CGRect, shouldPresentViewController: Bool) {
         let views: [UIView] = [self.quotedView, self.mediaPreview, self.profileImageView, self.textView]
         for v in views {
@@ -263,12 +279,16 @@ class StatusCell: ALSTableViewCell {
             self.linkColor = UITextView.appearance().tintColor ?? materialLightBlue300
         }
     }
+    
+    enum StatusAction {
+        case reply, retweet, favorite, more
+    }
 }
 
 protocol StatusCellDelegate {
     func profileImageTapped(status: Status)
     func mediaPreviewTapped(status: Status)
     func quotedViewTapped(status: Status)
-    
     func spanItemTapped(status: Status, span: SpanItem)
+    func actionSelected(status: Status, action: StatusCell.StatusAction)
 }
