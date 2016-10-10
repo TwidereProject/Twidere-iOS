@@ -205,15 +205,49 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     }
     
     @IBAction func attachMediaClicked(_ sender: UIBarButtonItem) {
-        let picker = UIImagePickerController()
-        picker.sourceType = .photoLibrary
-        _ = firstly { () -> Promise<[String: AnyObject]> in
-            return promise(picker, animate: [.appear, .disappear], completion: nil)
-        }.then { (info) -> Promise<Data> in
+        switch PHPhotoLibrary.authorizationStatus() {
+        case .authorized:
+            self.pickMedia()
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization { status in
+                if (status == .authorized) {
+                    self.pickMedia()
+                }
+            }
+        default:
+            return
+        }
+    }
+    
+    private func pickMedia() {
+        _ = firstly { () -> Promise<[String: Any]> in
+            return Promise { fulfill, reject in
+                class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+                    let fulfill: ([String: Any]) -> Void
+                    let reject: (Error) -> Void
+                    init(_ fulfill: @escaping ([String: Any]) -> Void, _ reject: @escaping (Error) -> Void) {
+                        self.fulfill = fulfill
+                        self.reject = reject
+                    }
+                    
+                     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+                        fulfill(info)
+                    }
+                    
+                    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+                        reject(PMKError.noImageFound)
+                    }
+                }
+                let picker = UIImagePickerController()
+                picker.sourceType = .photoLibrary
+                picker.delegate = ImagePickerDelegate(fulfill, reject)
+                present(picker, animated: true, completion: nil)
+            }
+        }.then { info -> Promise<Data> in
             return Promise { fullfill, reject in
                 let imageUrl = info[UIImagePickerControllerReferenceURL] as! URL
-                
-                let asset = PHAsset.fetchAssets(withALAssetURLs: [imageUrl], options: nil).firstObject! 
+                    
+                let asset = PHAsset.fetchAssets(withALAssetURLs: [imageUrl], options: nil).firstObject!
                 self.imageManager.requestImageData(for: asset, options: nil, resultHandler: { (data, dataUTI, orientation, info) in
                     if (data != nil) {
                         fullfill(data!)
@@ -224,7 +258,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
             guard let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else {
                 return nil
             }
-            
+                
             let timestamp = Date().timeIntervalSince1970
             var writePath = URL(fileURLWithPath: path).appendingPathComponent("\(timestamp)").path
             let fm = FileManager.default
@@ -240,8 +274,9 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
             if (media != nil) {
                 self.addMedia(media!)
             }
+        }.catch { error in
+            debugPrint(error)
         }
-        
     }
     
     func textViewDidChange(_ textView: UITextView) {
