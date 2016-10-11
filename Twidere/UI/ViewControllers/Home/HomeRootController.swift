@@ -9,5 +9,7 @@
 import UIKit
 
 class HomeRootController: UINavigationController, UIGestureRecognizerDelegate {
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }

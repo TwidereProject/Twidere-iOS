@@ -193,10 +193,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     }
     
     @IBAction func attachLocationClicked(_ sender: UIBarButtonItem) {
-        if (self.attachLocation) {
-            // Remove location
-            self.attachLocation = false
-        } else if (CLLocationManager.authorizationStatus().hasAuthorization) {
+        if (CLLocationManager.authorizationStatus().hasAuthorization) {
             showLocationViewController()
         } else {
             locationAuthorizationGrantedSelector = #selector(self.showLocationViewController)
@@ -298,7 +295,11 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
             self.attachLocation = true
             self.recentLocation = location
         }
-        popupController.push(vc, animated: true)
+        vc.modalPresentationStyle = .formSheet
+        vc.modalTransitionStyle = .coverVertical
+        present(vc, animated: true) { 
+            
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

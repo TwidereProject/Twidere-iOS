@@ -148,7 +148,7 @@
                     <size key="freeformSize" width="300" height="240"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="size" keyPath="contentSizeInPopup">
-                            <size key="value" width="300" height="240"/>
+                            <size key="value" width="312" height="240"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="size" keyPath="landscapeContentSizeInPopup">
                             <size key="value" width="400" height="200"/>
@@ -182,7 +182,7 @@
                         <viewControllerLayoutGuide type="bottom" id="nAB-8c-9Jb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NXC-wb-olJ">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="240"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZF-l9-0g4"/>
@@ -219,36 +219,39 @@
                                     <barButtonItem systemItem="flexibleSpace" id="sea-F5-KQZ"/>
                                     <barButtonItem id="AGA-sY-vAV">
                                         <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Ccc-rX-4hu">
-                                            <rect key="frame" x="235" y="7" width="51" height="31"/>
+                                            <rect key="frame" x="310" y="7" width="51" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </switch>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBZ-4r-6gb">
+                                <items>
+                                    <navigationItem title="Location" id="mpr-Rx-6mo">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="XI8-z2-KLO">
+                                            <connections>
+                                                <action selector="doneAttachLocation:" destination="9ly-CJ-nOg" id="VZf-1D-9MU"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="eBZ-4r-6gb" firstAttribute="top" secondItem="Z5q-9g-lpG" secondAttribute="bottom" id="0kN-2H-8J6"/>
                             <constraint firstAttribute="trailing" secondItem="FZF-l9-0g4" secondAttribute="trailing" id="1GT-88-za6"/>
                             <constraint firstItem="FZF-l9-0g4" firstAttribute="top" secondItem="Z5q-9g-lpG" secondAttribute="bottom" id="6o8-eM-YWV"/>
                             <constraint firstItem="FZF-l9-0g4" firstAttribute="leading" secondItem="NXC-wb-olJ" secondAttribute="leading" id="8QY-f3-pJf"/>
                             <constraint firstItem="QfF-jh-sik" firstAttribute="leading" secondItem="NXC-wb-olJ" secondAttribute="leading" id="Tno-E2-HEH"/>
                             <constraint firstItem="nAB-8c-9Jb" firstAttribute="top" secondItem="QfF-jh-sik" secondAttribute="bottom" id="gB1-lf-Hl6"/>
                             <constraint firstAttribute="trailing" secondItem="FZF-l9-0g4" secondAttribute="trailing" id="hPQ-E4-K6F"/>
+                            <constraint firstAttribute="trailing" secondItem="eBZ-4r-6gb" secondAttribute="trailing" id="n6d-9m-ZFM"/>
                             <constraint firstItem="QfF-jh-sik" firstAttribute="top" secondItem="FZF-l9-0g4" secondAttribute="bottom" id="nlL-gh-uW2"/>
+                            <constraint firstItem="eBZ-4r-6gb" firstAttribute="leading" secondItem="NXC-wb-olJ" secondAttribute="leading" id="o1c-Fn-Nqt"/>
                             <constraint firstAttribute="trailing" secondItem="QfF-jh-sik" secondAttribute="trailing" id="vdy-CE-Y1Y"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Location" id="mpr-Rx-6mo">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="XI8-z2-KLO">
-                            <connections>
-                                <action selector="doneAttachLocation:" destination="9ly-CJ-nOg" id="VZf-1D-9MU"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="300" height="240"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="size" keyPath="contentSizeInPopup">
                             <size key="value" width="300" height="240"/>
@@ -265,7 +268,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qyZ-oU-bG2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="60.799999999999997" y="668.36581709145435"/>
+            <point key="canvasLocation" x="777" y="468"/>
         </scene>
     </scenes>
     <resources>

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import STPopup
 import MapKit
 import SwiftyUserDefaults
 
@@ -34,6 +33,6 @@ class ComposeLocationController: UIViewController, MKMapViewDelegate {
     
     @IBAction func doneAttachLocation(_ sender: UIBarButtonItem) {
         callback?(mapView.userLocation.coordinate, preciseLocationSwitch.isOn)
-        popupController.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
 }

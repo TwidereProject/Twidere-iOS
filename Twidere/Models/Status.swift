@@ -46,6 +46,9 @@ class Status {
         var displayRange: [Int]?
         var inReplyTo: InReplyTo?
         var externalUrl: String!
+        var replyCount: Int64!
+        var retweetCount: Int64!
+        var favoriteCount: Int64!
         // Append body content
     
         // Sub models

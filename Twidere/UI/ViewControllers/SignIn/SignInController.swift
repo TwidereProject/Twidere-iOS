@@ -252,11 +252,11 @@ class SignInController: UIViewController {
     fileprivate func doSignIn(_ action: (_ config: CustomAPIConfig) -> Promise<SignInResult>) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         action(self.customAPIConfig).then { result throws -> Account in
-            let json = result.user
+            let user = result.user
             let config = self.customAPIConfig
             let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
             let account = Account()
-            let user = User(accountJson: json)
+            
             account.key = user.key
             account.type = String(describing: AccountType.Twitter)
             account.apiUrlFormat = config.apiUrlFormat
@@ -316,21 +316,21 @@ class SignInController: UIViewController {
 
 
 class SignInResult {
-    var user: JSON
+    var user: User
     var accessToken: OAuthToken? = nil
     var username: String? = nil
     var password: String? = nil
     
-    init(user: JSON) {
+    init(user: User) {
         self.user = user
     }
     
-    init(user: JSON, accessToken: OAuthToken) {
+    init(user: User, accessToken: OAuthToken) {
         self.user = user
         self.accessToken = accessToken
     }
     
-    init(user: JSON, username: String, password: String) {
+    init(user: User, username: String, password: String) {
         self.user = user
         self.username = username
         self.password = password

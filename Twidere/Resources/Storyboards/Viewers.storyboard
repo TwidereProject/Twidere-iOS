@@ -96,7 +96,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view contentMode="scaleToFill" misplaced="YES" id="mrg-gu-BJS" customClass="YYLabel">
-                                                    <frame key="frameInset" minY="72" width="360" height="46"/>
+                                                    <frame key="frameInset" minX="7" minY="72" width="360" height="46"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <userDefinedRuntimeAttributes>
@@ -109,7 +109,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" id="c1F-5p-6XE" customClass="MediaPreviewContainer" customModule="Twidere" customModuleProvider="target">
-                                                    <frame key="frameInset" minY="126" width="360" height="132"/>
+                                                    <frame key="frameInset" minX="7" minY="126" width="360" height="132"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <userDefinedRuntimeAttributes>
@@ -119,10 +119,39 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="textView"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
+                                                            <real key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
+                                                <toolbar opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="4o6-cx-kYl">
+                                                    <frame key="frameInset" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                    <items>
+                                                        <barButtonItem image="Button Action Reply" id="Gfa-bD-8gM"/>
+                                                        <barButtonItem style="plain" systemItem="flexibleSpace" id="baS-Zc-pan"/>
+                                                        <barButtonItem image="Button Action Retweet" id="z8P-ji-h6u"/>
+                                                        <barButtonItem style="plain" systemItem="flexibleSpace" id="gG0-Ug-0sL"/>
+                                                        <barButtonItem image="Button Action Star" id="Dh8-D7-e3N"/>
+                                                        <barButtonItem style="plain" systemItem="flexibleSpace" id="aEc-Hd-rF4"/>
+                                                        <barButtonItem image="Button Action Share" id="iW2-WX-Gnm"/>
+                                                        <barButtonItem style="plain" systemItem="flexibleSpace" id="SDq-bX-MCx"/>
+                                                        <barButtonItem image="Button Action More" id="aQd-dP-Ivt"/>
+                                                    </items>
+                                                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="quotedView"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
+                                                            <real key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </toolbar>
                                                 <view autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" id="e0V-Sh-l3w" userLabel="Quoted View" customClass="ALSLinearLayout" customModule="ALSLayouts">
-                                                    <frame key="frameInset" minY="266" width="360" height="221"/>
+                                                    <frame key="frameInset" minX="8" minY="266" width="360" height="221"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <view opaque="NO" userInteractionEnabled="NO" contentMode="left" misplaced="YES" id="va0-Wh-dKL" userLabel="Quoted Name View" customClass="YYLabel">
@@ -173,32 +202,6 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <toolbar opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="4o6-cx-kYl">
-                                                    <frame key="frameInset" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                    <items>
-                                                        <barButtonItem image="Button Action Reply" id="Gfa-bD-8gM"/>
-                                                        <barButtonItem style="plain" systemItem="flexibleSpace" id="baS-Zc-pan"/>
-                                                        <barButtonItem image="Button Action Retweet" id="z8P-ji-h6u"/>
-                                                        <barButtonItem style="plain" systemItem="flexibleSpace" id="gG0-Ug-0sL"/>
-                                                        <barButtonItem image="Button Action Star" id="Dh8-D7-e3N"/>
-                                                        <barButtonItem style="plain" systemItem="flexibleSpace" id="aEc-Hd-rF4"/>
-                                                        <barButtonItem image="Button Action Share" id="iW2-WX-Gnm"/>
-                                                        <barButtonItem style="plain" systemItem="flexibleSpace" id="SDq-bX-MCx"/>
-                                                        <barButtonItem image="Button Action More" id="aQd-dP-Ivt"/>
-                                                    </items>
-                                                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="quotedView"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
-                                                            <real key="value" value="8"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </toolbar>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <userDefinedRuntimeAttributes>
@@ -342,11 +345,11 @@
                             <frame key="frameInset" minX="108" minY="125" width="268" height="48"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" misplaced="YES" id="0fK-zG-7HD" customClass="ALSRelativeLayout" customModule="ALSLayouts">
+                                <view opaque="NO" contentMode="scaleToFill" misplaced="YES" id="0fK-zG-7HD" customClass="ALSRelativeLayout" customModule="ALSLayouts">
                                     <frame key="frameInset" width="199" height="48"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" misplaced="YES" id="UOu-Se-rd8" customClass="YYLabel">
+                                        <view opaque="NO" contentMode="scaleToFill" misplaced="YES" id="UOu-Se-rd8" customClass="YYLabel">
                                             <frame key="frameInset" minY="7" width="199" height="19"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <userDefinedRuntimeAttributes>
@@ -358,7 +361,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <view contentMode="scaleToFill" misplaced="YES" id="Yjc-JK-LNJ" customClass="YYLabel">
+                                        <view opaque="NO" contentMode="scaleToFill" misplaced="YES" id="Yjc-JK-LNJ" customClass="YYLabel">
                                             <frame key="frameInset" minY="21" width="199" height="19"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <userDefinedRuntimeAttributes>
@@ -367,6 +370,9 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="nameView"/>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="numberOfLines">
                                                     <integer key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
+                                                    <real key="value" value="4"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
@@ -407,7 +413,7 @@
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="StaticSize"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="userButtonsBackground"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="profileBannerContainer"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutToTrailingOf" value="profileImageView"/>

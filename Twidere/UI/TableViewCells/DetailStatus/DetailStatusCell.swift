@@ -39,12 +39,9 @@ class DetailStatusCell: ALSTableViewCell {
         
         userProfileImageView.makeCircular()
         
-        // border radius
-        quotedView.layer.cornerRadius = 4.0
-        
-        // border
-        quotedView.layer.borderColor = UIColor.lightGray.cgColor
-        quotedView.layer.borderWidth = 0.5
+        // Make views rounded corner
+        quotedView.layer.makeRoundedCorner(radius: 4.0)
+        mediaPreview.layer.makeRoundedCorner(radius: 4.0)
         
         userNameView.numberOfLines = 1
         timeSourceView.numberOfLines = 1
@@ -66,13 +63,13 @@ class DetailStatusCell: ALSTableViewCell {
         timeSourceView.attributedText = createTimeSourceText(status.createdAt)
         userProfileImageView.displayImage(status.userProfileImageForSize(.reasonablySmall))
 
-        textView.attributedText = StatusCell.createStatusText(status.textDisplay, displayOption: self.displayOption, metadata: status.metadata, displayRange: status.metadata?.displayRange)
+        textView.attributedText = StatusCell.createStatusText(status.textDisplay, metadata: status.metadata, displayRange: status.metadata?.displayRange, displayOption: self.displayOption)
         mediaPreview.displayMedia(status.metadata?.media)
         
         if (status.quotedId != nil) {
             quotedNameView.attributedText = StatusCell.createNameText(quotedNameView.font.pointSize, name: status.quotedUserName!, screenName: status.quotedUserScreenName!, separator: " ")
             if (displayOption.linkHighlight) {
-                quotedTextView.attributedText = StatusCell.createStatusText(status.quotedTextDisplay!, displayOption: self.displayOption, metadata: status.quotedMetadata, displayRange: status.quotedMetadata?.displayRange)
+                quotedTextView.attributedText = StatusCell.createStatusText(status.quotedTextDisplay!, metadata: status.quotedMetadata, displayRange: status.quotedMetadata?.displayRange, displayOption: self.displayOption)
             } else {
                 quotedTextView.text = status.quotedTextDisplay
             }

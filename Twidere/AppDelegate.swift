@@ -46,7 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        IQKeyboardManager.sharedManager().enable = true
+        let keyboardManager = IQKeyboardManager.sharedManager()
+//        keyboardManager.enable = true
+        keyboardManager.disabledToolbarClasses.append(ComposeController.self)
         
         UITabBar.appearance().tintColor = materialLightBlue300
         UINavigationBar.appearance().tintColor = materialLightBlue300

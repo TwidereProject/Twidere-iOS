@@ -37,6 +37,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     fileprivate var viewControllers: [UIViewController?] = [UIViewController?](repeating: nil, count: 3)
     fileprivate var profileImageExceddedHeight: CGFloat = CGFloat.nan
     fileprivate var profileImageHeight: CGFloat = CGFloat.nan
+    fileprivate var cellDisplayOption: StatusCell.DisplayOption! = StatusCell.DisplayOption()
     
     private var user: User!
     private var userInfo: UserInfo!
@@ -51,6 +52,8 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        cellDisplayOption.loadUserDefaults()
+        
         navBar.setBackgroundImage(UIImage(), for: .default)
         navBar.shadowImage = UIImage()
         navBar.delegate = self
@@ -78,9 +81,9 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         
         self.blurredBannerView.alpha = 0
         
-        nameView.font = UIFont.systemFont(ofSize: 15)
-        screenNameView.font = UIFont.systemFont(ofSize: 12)
-        descriptionView.font = UIFont.systemFont(ofSize: 15)
+        descriptionView.displaysAsynchronously = true
+        nameView.displaysAsynchronously = true
+        screenNameView.displaysAsynchronously = true
 
         
         if (self.user != nil) {
@@ -105,6 +108,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
             }
         }
         setupNavBar()
+        updateBannerScaleTransfom(false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -180,7 +184,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         shadow.shadowBlurRadius = 3
         shadow.shadowColor = UIColor(white: 0, alpha: 0.5)
         navBar.titleTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.white,
+            NSForegroundColorAttributeName: UIColor.clear,
             NSShadowAttributeName: shadow
         ]
         let backImageOriginal = UIImage(named: "NavBar Button Back")!
@@ -233,7 +237,6 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     fileprivate func displayUser() {
         guard let user = self.user else {
             return
-            
         }
         self.title = user.name
         navBar.topItem?.title = user.name
@@ -245,9 +248,19 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
             }
         })
         profileImageView.displayImage(user.profileImageUrlForSize(.original), placeholder: UIImage.withColor(UIColor.white))
-        nameView.text = user.name
-        screenNameView.text = user.screenName
-        descriptionView.text = user.descriptionDisplay
+        
+        nameView.attributedText = NSAttributedString(string: user.name, attributes: [
+            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15)
+            ])
+        screenNameView.attributedText = NSAttributedString(string: "@\(user.screenName!)", attributes: [
+            NSFontAttributeName: UIFont.systemFont(ofSize: 12)
+            ])
+        
+        if let descriptionDisplay = user.descriptionDisplay {
+            descriptionView.attributedText = NSAttributedString(string: descriptionDisplay, attributes: [:])
+        } else {
+            descriptionView.attributedText = nil
+        }
         
         var infoTags = [UserInfoTag]()
         
@@ -298,6 +311,10 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         let topOffset = segmentedContainerView.contentOffset.y
         let bannerHeight = profileBannerContainer.bounds.height
         
+        if (bannerHeight <= 0) {
+            return
+        }
+        
         let topLayoutGuideLength = topLayoutGuide.length
         let navBarHeight = navigationController.navigationBar.frame.height
         
@@ -324,6 +341,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
             titleTextColor = titleTextColor.withAlphaComponent(0)
         } else if (topOffset > (bannerHeight - topLayoutGuideLength - navBarHeight)) {
             bannerTransform = CATransform3DTranslate(bannerTransform, 0, topOffset - (bannerHeight - topLayoutGuideLength - navBarHeight), 1)
+            
             let diff = profileImageExceddedHeight
             let scaleFactor = diff / profileImageHeight
             profileImageTransform = CATransform3DScale(profileImageTransform, 1.0 - scaleFactor, 1.0 - scaleFactor, 0)

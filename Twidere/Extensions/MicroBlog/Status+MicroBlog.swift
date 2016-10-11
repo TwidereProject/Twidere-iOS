@@ -71,6 +71,10 @@ extension Status {
         
         let (textPlain, textDisplay, metadata) = getMetadata(primary)
         
+        metadata.replyCount = status["reply_count"].int64
+        metadata.retweetCount = status["retweet_count"].int64
+        metadata.favoriteCount = status["favorite_count"].int64
+        
         self.textPlain = textPlain
         self.textDisplay = textDisplay
         self.metadata = metadata
@@ -122,18 +126,9 @@ extension Status {
             textDisplay = textPlain
         } else if let fullText = status["full_text"].string ?? status["text"].string {
             var spans = [SpanItem]()
-            for entity in status["entities"]["urls"].arrayValue {
-                spans.append(spanFromUrlEntity(entity))
-            }
-            if let extendedMedia = status["extended_entities"]["media"].array {
-                for entity in extendedMedia {
+            if let urls = status["entities"]["urls"].array {
+                for entity in urls {
                     spans.append(spanFromUrlEntity(entity))
-                    mediaItems.append(mediaItemFromEntity(entity))
-                }
-            } else if let media = status["entities"]["media"].array {
-                for entity in media {
-                    spans.append(spanFromUrlEntity(entity))
-                    mediaItems.append(mediaItemFromEntity(entity))
                 }
             }
             
@@ -146,6 +141,18 @@ extension Status {
             if let hashtags = status["entities"]["hashtags"].array {
                 for entity in hashtags {
                     spans.append(spanFromHashtagEntity(entity))
+                }
+            }
+            
+            if let extendedMedia = status["extended_entities"]["media"].array {
+                for entity in extendedMedia {
+                    spans.append(spanFromUrlEntity(entity))
+                    mediaItems.append(mediaItemFromEntity(entity))
+                }
+            } else if let media = status["entities"]["media"].array {
+                for entity in media {
+                    spans.append(spanFromUrlEntity(entity))
+                    mediaItems.append(mediaItemFromEntity(entity))
                 }
             }
             
@@ -265,7 +272,6 @@ extension Status {
         metadata.mentions = mentions
         metadata.hashtags = hashtags
         metadata.media = mediaItems
-        metadata.externalUrl = status["external_url"].string
         
         if let inReplyTo = Status.Metadata.InReplyTo(status: status, accountKey: accountKey) {
             inReplyTo.userName = mentions.filter { $0.key.id == inReplyTo.userKey.id }.first?.name
@@ -273,6 +279,8 @@ extension Status {
         } else {
             metadata.inReplyTo = nil
         }
+        
+        metadata.externalUrl = status["external_url"].string
         
         return (textPlain, textDisplay, metadata)
     }
@@ -399,6 +407,13 @@ extension Status {
     
     fileprivate enum EntityType {
         case mention, url, hashtag
+    }
+    
+    class Spans {
+        
+        var links: [LinkSpanItem]?
+        var mentions: [MentionSpanItem]?
+        var hashtags: [HashtagSpanItem]?
     }
 }
 

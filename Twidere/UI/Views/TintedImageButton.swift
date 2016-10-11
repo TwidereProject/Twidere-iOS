@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class TintedImageButton: UIButton {
+class ActionIconButton: UIButton {
     
     @IBInspectable
     var templateImage: UIImage! {
@@ -17,6 +17,11 @@ class TintedImageButton: UIButton {
             let template = templateImage.withRenderingMode(.alwaysTemplate)
             self.setImage(template, for: .normal)
         }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        imageView?.contentMode = .scaleAspectFit
     }
     
 }

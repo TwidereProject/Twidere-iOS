@@ -42,6 +42,7 @@ extension Status {
         }
         let quoted = Status()
         quoted.id = quotedId
+        quoted.accountKey = self.accountKey
         quoted.createdAt = self.quotedCreatedAt
         quoted.sortId = self.generateSortId(rawId: -1)
         quoted.accountKey = self.accountKey
@@ -53,6 +54,16 @@ extension Status {
         quoted.textDisplay = self.quotedTextDisplay
         quoted.metadata = self.quotedMetadata
         return quoted
+    }
+    
+    var user: User {
+        let user = User()
+        user.accountKey = self.accountKey
+        user.key = self.userKey
+        user.screenName = self.userScreenName
+        user.name = self.userName
+        user.profileImageUrl = self.userProfileImage
+        return user
     }
     
     var statusUrl: String {

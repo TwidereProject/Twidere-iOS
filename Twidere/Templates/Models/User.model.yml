@@ -96,6 +96,15 @@ submodels:
           followRequestSent:
             type: Bool
             json_field: follow_request_sent
+          descriptionLinks:
+            type: '[LinkSpanItem]?'
+            json_field: 'description_links'
+          descriptionMentions:
+            type: '[MentionSpanItem]?'
+            json_field: 'description_mentions'
+          descriptionHashtags:
+            type: '[HashtagSpanItem]?'
+            json_field: 'description_hashtags'
           # Counts
           statusesCount:
             type: Int64

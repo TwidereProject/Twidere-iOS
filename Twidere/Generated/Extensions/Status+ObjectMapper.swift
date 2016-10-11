@@ -50,6 +50,9 @@ extension Status.Metadata: StaticMappable {
         displayRange <- map["display_range"]
         inReplyTo <- map["in_reply_to"]
         externalUrl <- map["extenral_url"]
+        replyCount <- map["reply_count"]
+        retweetCount <- map["retweet_count"]
+        favoriteCount <- map["favorite_count"]
     }
 
     static func objectForMapping(map: Map) -> BaseMappable? {

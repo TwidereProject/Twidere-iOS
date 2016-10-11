@@ -27,8 +27,8 @@ class MainViewController: UIViewController {
             
             // Create content and menu controllers
             //
-            let homeController = storyboard!.instantiateViewController(withIdentifier: "HomeRoot") as! HomeRootController
-            present(homeController, animated: true, completion: nil)
+            let homeController = storyboard!.instantiateViewController(withIdentifier: "HomeRoot")
+            present(homeController, animated: false, completion: nil)
         } else {
             
             performSegue(withIdentifier: "ShowSignIn", sender: self)

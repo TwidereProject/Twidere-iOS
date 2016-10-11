@@ -177,11 +177,11 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         switch itemCounts.getItemCountIndex(position: indexPath.item) {
         case 0:
             let status = statuses![(indexPath as NSIndexPath).item]
-            let accounts = dataSource.getAccounts()
             if (status.isGap ?? false) {
-                if let accountKey = accounts.filter({$0.key == status.accountKey}).first {
+                let accounts = dataSource.getAccounts()
+                if let account = accounts.filter({$0.key == status.accountKey}).first {
                     let opts = LoadOptions()
-                    let params = SimpleRefreshTaskParam(accounts: [accountKey])
+                    let params = SimpleRefreshTaskParam(accounts: [account])
                     params.maxIds = [status.id]
                     params.maxSortIds = [status.sortId ?? -1]
                     params.isLoadingMore = true
@@ -277,7 +277,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
     func profileImageTapped(status: Status) {
         let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "UserProfile") as! UserProfileController
-        vc.loadUser(userInfo: (status.accountKey, status.userKey, status.userScreenName))
+        vc.displayUser(user: status.user, reload: true)
         navigationController?.show(vc, sender: self)
     }
     

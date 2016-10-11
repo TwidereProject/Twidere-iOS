@@ -38,7 +38,34 @@
         <!--Twidere-->
         <scene sceneID="0Oy-e8-DWL">
             <objects>
-                <tabBarController id="FoP-na-KSh" customClass="HomeController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeTabs" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FoP-na-KSh" customClass="HomeController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="C1E-38-qKa"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ebt-dK-XXI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KEi-PB-oNg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xlE-r1-F8d">
+                                <items>
+                                    <barButtonItem image="Tab Icon Home" id="f2e-yv-vOA"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="rsv-16-l4I"/>
+                                    <barButtonItem image="Tab Icon Notification" id="z1N-yl-yGf"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="L4D-z1-nX4"/>
+                                    <barButtonItem image="Tab Icon Message" id="Z8p-1I-pRL"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="FD4-Ul-AXg"/>
+                                    <barButtonItem image="Tab Icon User" id="oqK-Qk-Hbg"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xlE-r1-F8d" firstAttribute="leading" secondItem="KEi-PB-oNg" secondAttribute="leading" id="L1G-NO-38z"/>
+                            <constraint firstAttribute="trailing" secondItem="xlE-r1-F8d" secondAttribute="trailing" id="pCP-jb-GB6"/>
+                            <constraint firstItem="Ebt-dK-XXI" firstAttribute="top" secondItem="xlE-r1-F8d" secondAttribute="bottom" id="xvv-zZ-4fY"/>
+                        </constraints>
+                    </view>
                     <navigationItem key="navigationItem" title="Twidere" id="r5m-0b-NVD">
                         <barButtonItem key="leftBarButtonItem" id="kK6-0x-XAl">
                             <view key="customView" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="Jx2-wh-WQW">
@@ -65,16 +92,11 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="zk2-Bw-ROi">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                    </tabBar>
                     <connections>
                         <outlet property="accountProfileImageView" destination="B8K-zC-a4m" id="VrY-MV-nt3"/>
                         <outlet property="menuToggleItem" destination="kK6-0x-XAl" id="9Do-0a-5WX"/>
                     </connections>
-                </tabBarController>
+                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zbH-ua-W4v" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="lFZ-cu-Jdq">
                     <connections>
@@ -127,7 +149,7 @@
         <!--Home Root-->
         <scene sceneID="ywf-E1-9cT">
             <objects>
-                <navigationController storyboardIdentifier="HomeRoot" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="currentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="y6G-7y-M1v" userLabel="Home Root" customClass="HomeRootController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeRoot" useStoryboardIdentifierAsRestorationIdentifier="YES" id="y6G-7y-M1v" userLabel="Home Root" customClass="HomeRootController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pvw-rH-LYc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -145,6 +167,10 @@
     </scenes>
     <resources>
         <image name="Profile Image Default" width="24" height="24"/>
+        <image name="Tab Icon Home" width="25" height="25"/>
+        <image name="Tab Icon Message" width="25" height="25"/>
+        <image name="Tab Icon Notification" width="25" height="25"/>
+        <image name="Tab Icon User" width="25" height="25"/>
         <image name="Toolbar Status Compose" width="22" height="22"/>
     </resources>
 </document>

@@ -26,6 +26,10 @@ class StatusCell: ALSTableViewCell {
     @IBOutlet weak var mediaPreview: MediaPreviewContainer!
     @IBOutlet weak var quotedMediaPreview: MediaPreviewContainer!
     @IBOutlet weak var actionsContainer: UIStackView!
+    @IBOutlet weak var replyButton: UIButton!
+    @IBOutlet weak var retwetButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
+    
     
     var delegate: StatusCellDelegate!
     
@@ -37,6 +41,7 @@ class StatusCell: ALSTableViewCell {
     
     var displayOption: DisplayOption! {
         didSet {
+            
             quotedNameView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.95)
             nameView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.95)
             
@@ -88,7 +93,6 @@ class StatusCell: ALSTableViewCell {
         
         textView.highlightTapAction = self.highlightTapped
         quotedTextView.highlightTapAction = self.highlightTapped
-        
     }
     
     override func layoutSubviews() {
@@ -104,7 +108,7 @@ class StatusCell: ALSTableViewCell {
         nameView.attributedText = StatusCell.createNameText(nameView.font.pointSize, name: status.userName, screenName: status.userScreenName, separator: " ")
         
         if (displayOption.linkHighlight) {
-            textView.attributedText = StatusCell.createStatusText(status.textDisplay, displayOption: self.displayOption, metadata: status.metadata, displayRange: status.metadata?.displayRange)
+            textView.attributedText = StatusCell.createStatusText(status.textDisplay, metadata: status.metadata, displayRange: status.metadata?.displayRange, displayOption: self.displayOption)
         } else {
             textView.text = status.textDisplay
         }
@@ -128,7 +132,7 @@ class StatusCell: ALSTableViewCell {
         if (status.quotedId != nil) {
             quotedNameView.attributedText = StatusCell.createNameText(quotedNameView.font.pointSize, name: status.quotedUserName!, screenName: status.quotedUserScreenName!, separator: " ")
             if (displayOption.linkHighlight) {
-                quotedTextView.attributedText = StatusCell.createStatusText(status.quotedTextDisplay!, displayOption: self.displayOption, metadata: status.quotedMetadata, displayRange: status.quotedMetadata?.displayRange)
+                quotedTextView.attributedText = StatusCell.createStatusText(status.quotedTextDisplay!, metadata: status.quotedMetadata, displayRange: status.quotedMetadata?.displayRange, displayOption: self.displayOption)
             } else {
                 quotedTextView.text = status.quotedTextDisplay
             }
@@ -142,6 +146,26 @@ class StatusCell: ALSTableViewCell {
             timeView.time = status.retweetCreatedAt
         } else {
             timeView.time = status.createdAt
+        }
+        
+        if let replyCount = status.metadata?.replyCount, replyCount > 0 {
+            replyButton.setTitle(" \(replyCount.shortLocalizedString)", for: .normal)
+        } else {
+            replyButton.setTitle(nil, for: .normal)
+        }
+        
+        
+        if let retweetCount = status.metadata?.retweetCount, retweetCount > 0 {
+            retwetButton.setTitle(" \(retweetCount.shortLocalizedString)", for: .normal)
+        } else {
+            retwetButton.setTitle(nil, for: .normal)
+        }
+        
+        
+        if let favoriteCount = status.metadata?.favoriteCount, favoriteCount > 0 {
+            favoriteButton.setTitle(" \(favoriteCount.shortLocalizedString)", for: .normal)
+        } else {
+            favoriteButton.setTitle(nil, for: .normal)
         }
     }
     
@@ -167,19 +191,19 @@ class StatusCell: ALSTableViewCell {
         delegate?.spanItemTapped(status: self.status, span: span)
     }
     
-    @IBAction func replyTapped(_ sender: TintedImageButton) {
+    @IBAction func replyTapped(_ sender: ActionIconButton) {
         delegate.actionSelected(status: status, action: .reply)
     }
     
-    @IBAction func retweetTapped(_ sender: TintedImageButton) {
+    @IBAction func retweetTapped(_ sender: ActionIconButton) {
         delegate.actionSelected(status: status, action: .retweet)
     }
     
-    @IBAction func favoriteTapped(_ sender: TintedImageButton) {
+    @IBAction func favoriteTapped(_ sender: ActionIconButton) {
         delegate.actionSelected(status: status, action: .favorite)
     }
     
-    @IBAction func moreTapped(_ sender: TintedImageButton) {
+    @IBAction func moreTapped(_ sender: ActionIconButton) {
         delegate.actionSelected(status: status, action: .more)
     }
     
@@ -193,7 +217,7 @@ class StatusCell: ALSTableViewCell {
             case self.profileImageView:
                 let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "UserProfile") as! UserProfileController
-                vc.loadUser(userInfo: (status.accountKey, status.userKey, status.userScreenName))
+                vc.displayUser(user: status.user, reload: true)
                 return (vc, v.convert(v.bounds, to: self), false)
             case self.textView:
                 let tv = v as! YYLabel
@@ -250,14 +274,14 @@ class StatusCell: ALSTableViewCell {
         return nameString
     }
     
-    static func createStatusText(_ text: String, displayOption: DisplayOption, metadata: Status.Metadata?, displayRange: [Int]?) -> NSAttributedString {
+    static func createStatusText(_ text: String, metadata: Status.Metadata?, displayRange: [Int]?, displayOption: DisplayOption) -> NSAttributedString {
         let attributed = NSMutableAttributedString(string: text)
 
         attributed.yy_font = UIFont.systemFont(ofSize: displayOption.fontSize)
         
-        metadata?.links?.applyToAttributedText(attributed, displayOption: displayOption)
-        metadata?.mentions?.applyToAttributedText(attributed, displayOption: displayOption)
-        metadata?.hashtags?.applyToAttributedText(attributed, displayOption: displayOption)
+        metadata?.links?.applyToAttributedText(attributed, linkColor: displayOption.linkColor)
+        metadata?.mentions?.applyToAttributedText(attributed, linkColor: displayOption.linkColor)
+        metadata?.hashtags?.applyToAttributedText(attributed, linkColor: displayOption.linkColor)
         if let range = displayRange {
             let len = range[1]
             if (len <= attributed.length) {

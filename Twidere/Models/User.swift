@@ -34,6 +34,9 @@ class User {
         var blockedBy: Bool!
         var muting: Bool!
         var followRequestSent: Bool!
+        var descriptionLinks: [LinkSpanItem]?
+        var descriptionMentions: [MentionSpanItem]?
+        var descriptionHashtags: [HashtagSpanItem]?
         var statusesCount: Int64!
         var followersCount: Int64!
         var friendsCount: Int64!

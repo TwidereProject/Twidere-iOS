@@ -149,6 +149,15 @@ submodels:
           externalUrl:
             type: String
             json_field: 'extenral_url'
+          replyCount:
+            type: Int64
+            json_field: 'reply_count'
+          retweetCount:
+            type: Int64
+            json_field: 'retweet_count'
+          favoriteCount:
+            type: Int64
+            json_field: 'favorite_count'
         submodels:
           InReplyTo:
             fields:

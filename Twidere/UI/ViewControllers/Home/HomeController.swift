@@ -11,12 +11,13 @@ import SDWebImage
 import UIView_TouchHighlighting
 import PromiseKit
 import SQLite
-import SwiftyJSON
+import MXPagerView
 
-class HomeController: UITabBarController {
+class HomeController: MXPagerViewController {
     
     @IBOutlet weak var accountProfileImageView: UIImageView!
     @IBOutlet weak var menuToggleItem: UIBarButtonItem!
+    var viewControllers: [UIViewController]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,18 +41,20 @@ class HomeController: UITabBarController {
         messageConversationsController.tabBarItem = UITabBarItem(title: "Messages", image: UIImage(named: "Tab Icon Message"), tag: 3)
         let testController = pages.instantiateViewController(withIdentifier: "StubTab")
         testController.tabBarItem = UITabBarItem(title: "User", image: UIImage(named: "Tab Icon User"), tag: 4)
-        setViewControllers([homeTimelineController, notificationsTimelineController, messageConversationsController, testController], animated: false)
+        
+        pagerView.isScrollEnabled = false
+        self.viewControllers = [homeTimelineController, notificationsTimelineController, messageConversationsController, testController]
         
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        let bottomOffset = tabBar.frame.height
+        let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, 0, 0)
         for vc in viewControllers! {
             if let tv = (vc as? UITableViewController)?.tableView {
                 var contentInset = tv.contentInset, scrollIndicatorInsets = tv.scrollIndicatorInsets
-                contentInset.bottom = bottomOffset
-                scrollIndicatorInsets.bottom = bottomOffset
+                contentInset.top = insets.top
+                scrollIndicatorInsets.top = insets.top
                 tv.contentInset = contentInset
                 tv.scrollIndicatorInsets = scrollIndicatorInsets
             }
@@ -88,6 +91,13 @@ class HomeController: UITabBarController {
         }
     }
     
+    override func numberOfPages(in pagerView: MXPagerView) -> Int {
+        return self.viewControllers.count
+    }
+    
+    override func pagerView(_ pagerView: MXPagerView, viewControllerForPageAt index: Int) -> UIViewController {
+        return viewControllers[index]
+    }
  
     
 }

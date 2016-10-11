@@ -17,14 +17,15 @@ class MicroBlogService: RestClient {
     let statusQueries: [String: String] = [
         "include_entities": "true",
         "include_ext_alt_text": "true",
+        "include_reply_count": "true",
         "tweet_mode": "extended",
         "model_version": "7",
         "include_cards": "true",
         "cards_platform": "iPhone-8"
     ]
     
-    func verifyCredentials() -> Promise<JSON> {
-        return makeTypedRequest(.get, path: "/account/verify_credentials.json", serializer: MicroBlogService.convertJSON)
+    func verifyCredentials() -> Promise<User> {
+        return makeTypedRequest(.get, path: "/account/verify_credentials.json", serializer: MicroBlogService.convertUser(self.accountKey))
     }
     
     // MARK: Timeline functions

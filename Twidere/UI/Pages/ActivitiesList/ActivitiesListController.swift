@@ -176,6 +176,65 @@ class ActivitiesListController: UITableViewController {
 //        self.scrollDelegate?.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch itemCounts.getItemCountIndex(position: indexPath.item) {
+        case 0:
+            let activity = activities![(indexPath as NSIndexPath).item]
+            if (activity.isGap ?? false) {
+//                let accounts = dataSource.getAccounts()
+            } else if let status = activity.activityStatus {
+                let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
+                vc.displayStatus(status)
+                navigationController?.show(vc, sender: self)
+            }
+        case 1:
+            break
+        default:
+            abort()
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
+    @available(iOS 9.0, *)
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: location), let cell = tableView.cellForRow(at: indexPath) else {
+            return nil
+        }
+        switch cell {
+        case let cell as StatusCell:
+            let (vc, rect, present) = cell.previewViewController(for: tableView.convert(location, to: cell))
+            previewingContext.sourceRect = cell.convert(rect, to: tableView)
+            previewingContext.shouldPresentViewController = present
+            
+            if let svc = vc as? StatusViewerController {
+                svc.previewCallback = { status, action in
+                    switch action {
+                    case .share:
+                        break
+                    default:
+                        break
+                    }
+                }
+            }
+            return vc
+        default:
+            break
+        }
+        return nil
+    }
+    
+    @available(iOS 9.0, *)
+    public func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        // Reuse the "Peek" view controller for presentation.
+        if (previewingContext.shouldPresentViewController) {
+            present(viewControllerToCommit, animated: true, completion: nil)
+        } else {
+            navigationController?.show(viewControllerToCommit, sender: self)
+        }
+    }
+    
     func refreshFromStart() {
         let opts = LoadOptions()
         opts.initLoad = false

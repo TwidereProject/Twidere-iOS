@@ -37,7 +37,7 @@ class StatusViewerController: UITableViewController {
         super.viewDidLoad()
         
         self.cellDisplayOption = StatusCell.DisplayOption()
-        self.cellDisplayOption.fontSize = 15
+        self.cellDisplayOption.loadUserDefaults()
         
         tableView.register(UINib(nibName: "StatusCell", bundle: nil), forCellReuseIdentifier: "Status")
         tableView.register(UINib(nibName: "GapCell", bundle: nil), forCellReuseIdentifier: "Gap")

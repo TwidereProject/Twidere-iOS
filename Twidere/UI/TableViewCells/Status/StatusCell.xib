@@ -187,11 +187,15 @@
                                 <frame key="frameInset" minX="56" minY="465" width="248" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GO1-Vo-jkq" userLabel="Reply Button" customClass="TintedImageButton" customModule="Twidere" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="GO1-Vo-jkq" userLabel="Reply Button" customClass="ActionIconButton" customModule="Twidere" customModuleProvider="target">
                                         <frame key="frameInset" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                        <state key="normal" title="255">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="templateImage" value="Button Action Reply"/>
                                         </userDefinedRuntimeAttributes>
@@ -199,11 +203,15 @@
                                             <action selector="replyTapped:" destination="KGk-i7-Jjw" eventType="primaryActionTriggered" id="kYu-oI-QeY"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HJG-IT-oD1" userLabel="Retweet Button" customClass="TintedImageButton" customModule="Twidere" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="HJG-IT-oD1" userLabel="Retweet Button" customClass="ActionIconButton" customModule="Twidere" customModuleProvider="target">
                                         <frame key="frameInset" minX="60" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                        <state key="normal" title="255">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="templateImage" value="Button Action Retweet"/>
                                         </userDefinedRuntimeAttributes>
@@ -211,11 +219,15 @@
                                             <action selector="retweetTapped:" destination="KGk-i7-Jjw" eventType="primaryActionTriggered" id="veL-zv-yGt"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KAq-eT-D0a" userLabel="Favorite Button" customClass="TintedImageButton" customModule="Twidere" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="KAq-eT-D0a" userLabel="Favorite Button" customClass="ActionIconButton" customModule="Twidere" customModuleProvider="target">
                                         <frame key="frameInset" minX="120" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                        <state key="normal" title="255">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="templateImage" value="Button Action Star"/>
                                         </userDefinedRuntimeAttributes>
@@ -223,11 +235,15 @@
                                             <action selector="favoriteTapped:" destination="KGk-i7-Jjw" eventType="primaryActionTriggered" id="sAA-Am-rgT"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="92h-2Q-2no" userLabel="More Button" customClass="TintedImageButton" customModule="Twidere" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="92h-2Q-2no" userLabel="More Button" customClass="ActionIconButton" customModule="Twidere" customModuleProvider="target">
                                         <frame key="frameInset" minX="180" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="templateImage" value="Button Action More"/>
                                         </userDefinedRuntimeAttributes>
@@ -265,6 +281,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="actionsContainer" destination="bhT-iI-NX0" id="L4N-hi-78c"/>
+                <outlet property="favoriteButton" destination="KAq-eT-D0a" id="3Ou-MX-cZV"/>
                 <outlet property="mediaPreview" destination="FZt-su-LuA" id="lps-gh-k3e"/>
                 <outlet property="nameView" destination="LKp-da-MGc" id="Y7M-bk-KSO"/>
                 <outlet property="profileImageView" destination="5KQ-xb-nha" id="0lC-II-AG0"/>
@@ -272,6 +289,8 @@
                 <outlet property="quotedNameView" destination="QgV-ep-mVC" id="2Ee-xu-Y0i"/>
                 <outlet property="quotedTextView" destination="vsy-OI-1yT" id="jBJ-1m-cd3"/>
                 <outlet property="quotedView" destination="xFN-8A-eFZ" id="zk9-9v-fKG"/>
+                <outlet property="replyButton" destination="GO1-Vo-jkq" id="wi7-hf-YwX"/>
+                <outlet property="retwetButton" destination="HJG-IT-oD1" id="rUB-15-zpa"/>
                 <outlet property="statusTypeLabelView" destination="V07-d6-6R9" id="2mK-Gg-1jW"/>
                 <outlet property="textView" destination="2U2-1i-w3g" id="U4a-cK-g0L"/>
                 <outlet property="timeView" destination="Ciw-NL-y95" id="XT0-5G-5Ym"/>
