@@ -105,6 +105,12 @@ submodels:
           descriptionHashtags:
             type: '[HashtagSpanItem]?'
             json_field: 'description_hashtags'
+          linkColor:
+            type: 'String'
+            json_field: 'link_color'
+          backgroundColor:
+            type: 'String'
+            json_field: 'background_color'
           # Counts
           statusesCount:
             type: Int64

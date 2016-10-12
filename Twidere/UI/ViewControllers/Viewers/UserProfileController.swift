@@ -13,6 +13,7 @@ import MXParallaxHeader
 import FXBlurView
 import PromiseKit
 import SQLite
+import SwiftHEXColors
 
 typealias UserInfo = (accountKey: UserKey, userKey: UserKey?, screenName: String?)
 
@@ -161,7 +162,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         self.user = user
         self.userInfo = (user.accountKey, user.key, user.screenName)
         if (self.isViewLoaded) {
-            self.displayUser()
+            performSelector(onMainThread: #selector(self.displayUserSelector), with: nil, waitUntilDone: true)
         }
         self.reloadNeeded = reload
         if (reload) {
@@ -240,7 +241,8 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         }
         self.title = user.name
         navBar.topItem?.title = user.name
-        profileBannerView.displayImage(user.profileBannerUrlForSize(Int(self.view.frame.width)), completed: { image, error, cacheType, url in
+        let placeholder = UIImage.withColor(user.metadata?.backgroundUIColor ?? UIColor.white)
+        profileBannerView.displayImage(user.profileBannerUrlForSize(Int(self.view.frame.width)), placeholder: placeholder, completed: { image, error, cacheType, url in
             if let image = image {
                 self.blurredBannerView.image = image.blurredImage(withRadius: 10, iterations: 20, tintColor: UIColor.clear)
             } else {
@@ -261,6 +263,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         } else {
             descriptionView.attributedText = nil
         }
+        
         
         var infoTags = [UserInfoTag]()
         
@@ -286,6 +289,14 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         }
         
         self.userInfoTags = userInfoTags
+        
+        self.view.setNeedsLayout()
+        
+        updateBannerScaleTransfom(false)
+    }
+    
+    @objc private func displayUserSelector() {
+        displayUser()
     }
     
     func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {

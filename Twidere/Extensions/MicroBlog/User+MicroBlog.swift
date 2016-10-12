@@ -68,7 +68,9 @@ extension User.Metadata {
     
     convenience init(json: JSON) {
         self.init()
-        
+        self.backgroundColor = json["background_color"].string
+        self.linkColor = json["profile_link_color"].string ?? json["linkcolor"].string
+        self.backgroundColor = json["profile_background_color"].string ?? json["backgroundcolor"].string
         
         self.statusesCount = json["statuses_count"].int64 ?? -1
         self.followersCount = json["followers_count"].int64 ?? -1

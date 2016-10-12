@@ -27,3 +27,12 @@ extension User {
     }
     
 }
+
+extension User.Metadata {
+    var backgroundUIColor: UIColor? {
+        if let hex = backgroundColor, let color = UIColor(hexString: hex){
+            return color
+        }
+        return nil
+    }
+}

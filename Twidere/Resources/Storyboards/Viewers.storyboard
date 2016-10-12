@@ -19,11 +19,11 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="547"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uo2-VL-hN1" id="r0x-Xu-RSH">
-                                    <frame key="frameInset" width="375" height="546"/>
+                                    <frame key="frameInset" width="375" height="546.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" misplaced="YES" id="yvD-GY-np3" customClass="ALSRelativeLayout" customModule="ALSLayouts">
-                                            <frame key="frameInset" maxY="-0.5"/>
+                                            <frame key="frameInset"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" misplaced="YES" id="9Nr-aP-WwP" userLabel="User Profile Container" customClass="ALSRelativeLayout" customModule="ALSLayouts">
@@ -95,7 +95,7 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <view contentMode="scaleToFill" misplaced="YES" id="mrg-gu-BJS" customClass="YYLabel">
+                                                <view contentMode="scaleToFill" misplaced="YES" id="mrg-gu-BJS" customClass="TimelineContentTextView" customModule="Twidere" customModuleProvider="target">
                                                     <frame key="frameInset" minX="7" minY="72" width="360" height="46"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -424,7 +424,7 @@
                             <frame key="frameInset" minY="175" width="375" height="61"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" id="30c-If-g24" customClass="YYLabel">
+                                <view contentMode="scaleToFill" id="30c-If-g24" customClass="TimelineContentTextView" customModule="Twidere" customModuleProvider="target">
                                     <frame key="frameInset" minX="8" minY="8" width="359" height="45"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

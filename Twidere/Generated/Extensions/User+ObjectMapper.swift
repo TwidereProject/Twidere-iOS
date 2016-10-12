@@ -40,6 +40,8 @@ extension User.Metadata: StaticMappable {
         descriptionLinks <- map["description_links"]
         descriptionMentions <- map["description_mentions"]
         descriptionHashtags <- map["description_hashtags"]
+        linkColor <- map["link_color"]
+        backgroundColor <- map["background_color"]
         statusesCount <- map["statuses_count"]
         followersCount <- map["followers_count"]
         friendsCount <- map["friends_count"]

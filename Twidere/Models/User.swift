@@ -37,6 +37,8 @@ class User {
         var descriptionLinks: [LinkSpanItem]?
         var descriptionMentions: [MentionSpanItem]?
         var descriptionHashtags: [HashtagSpanItem]?
+        var linkColor: String!
+        var backgroundColor: String!
         var statusesCount: Int64!
         var followersCount: Int64!
         var friendsCount: Int64!

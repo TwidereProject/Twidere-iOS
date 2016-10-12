@@ -5,7 +5,7 @@ use_frameworks!
 
 target 'Twidere' do
   pod 'SwiftyJSON', '~> 3.1.0' # Swift 3
-  pod 'SQLite.swift', :git => 'https://github.com/stephencelis/SQLite.swift.git', :branch => 'swift3-mariotaku' # Swift 3
+  pod 'SQLite.swift', :git => 'https://github.com/stephencelis/SQLite.swift.git' # Swift 3
   pod 'CryptoSwift', '~> 0.6.0'  # Swift 3
   pod 'Alamofire', '~> 4.0' # Swift 3
   pod 'JVFloatLabeledTextField', '1.1.1' # Obj-C
@@ -25,7 +25,7 @@ target 'Twidere' do
   pod 'DateTools', '~> 1.7.0' # Obj-C
   pod 'ALSLayouts', '~> 2.0.4' # Swift 3
   pod 'ThumborURL', '0.0.4' # Obj-C
-  pod 'ObjectMapper', '~> 2.0' # Swift 3
+  pod 'ObjectMapper', '~> 2.1.0' # Swift 3
   pod 'MXPagerView', '~> 0.1.3'
   pod 'MXParallaxHeader', '~> 0.5.2'
   pod 'FXBlurView', '~> 1.6'
@@ -33,6 +33,7 @@ target 'Twidere' do
   pod 'YYText', '~> 1.0.7'
   pod 'MWPhotoBrowser', '~> 2.1.2'
   pod 'DeviceKit', '~> 1.0'
+  pod 'SwiftHEXColors', :git=> 'https://github.com/thii/SwiftHEXColors.git', :branch=> 'swift-3.0'
 end
 
 target 'TwidereTests' do
