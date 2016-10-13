@@ -5,7 +5,7 @@ struct Status {
 
     // Fields
     var _id: Int64 = -1 
-    var accountKey: UserKey 
+    var accountKey: UserKey! 
     var sortId: Int64 
     var positionKey: Int64 
     var isGap: Bool 

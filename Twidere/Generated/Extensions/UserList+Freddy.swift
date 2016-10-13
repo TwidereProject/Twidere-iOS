@@ -5,12 +5,13 @@ import Foundation
 extension UserList: JSONEncodable, JSONDecodable {
 
     init(json value: JSON) throws {
-        self.accountKey = try value.decode(at: "account_key")
+//{initContent}
+        throw JSON.Error.stringSerializationError
     }
 
     public func toJSON() -> JSON {
         var dict: [String: JSON] = [:]
-        dict["account_key"] = self.accountKey.toJSON()
+//{toJsonContent}
         return .dictionary(dict)
     }
 }

@@ -13,7 +13,7 @@ extension Account {
     func createAPIConfig() -> CustomAPIConfig {
         let config = CustomAPIConfig()
         config.apiUrlFormat = apiUrlFormat
-        config.authType = CustomAPIConfig.AuthType(rawValue: authType) ?? defaultAuthType
+        config.authType = authType
         config.consumerKey = consumerKey!
         config.consumerSecret = consumerSecret!
         config.sameOAuthSigningUrl = self.sameOAuthSigningUrl
@@ -22,20 +22,20 @@ extension Account {
     }
     
     func createAuthorization() -> Authorization {
-        switch CustomAPIConfig.AuthType(rawValue: authType!) ?? defaultAuthType {
-        case .OAuth, .xAuth:
+        switch authType {
+        case .oauth, .xAuth:
             let token = OAuthToken(oauthToken!, oauthTokenSecret!)
             return OAuthAuthorization(consumerKey!, consumerSecret!, oauthToken: token)
-        case .Basic:
+        case .basic:
             return BasicAuthorization(username: basicUsername!, password: basicPassword!)
-        case .TwipO:
+        case .twipO:
             return EmptyAuthorization()
         }
     }
     
     func createClientUserAgent() -> String? {
-        switch CustomAPIConfig.AuthType(rawValue: authType!) ?? defaultAuthType {
-        case .OAuth, .xAuth:
+        switch authType {
+        case .oauth, .xAuth:
             switch consumerKey!.sha1() {
             case "ec7250f480e5dedff7688c78188886c282a3d968":
                 // Twitter for iPhone
@@ -58,17 +58,6 @@ extension Account {
         let microBlog = MicroBlogService(endpoint: endpoint, auth: auth, userAgent: userAgent)
         microBlog.accountKey = self.key
         return microBlog
-    }
-    
-    var typeInferred: AccountType {
-        get {
-            switch type {
-            case "fanfou"?:
-                return .fanfou
-            default:
-                return .twitter
-            }
-        }
     }
     
 }

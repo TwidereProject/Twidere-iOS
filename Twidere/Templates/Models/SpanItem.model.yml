@@ -37,7 +37,7 @@ submodels:
         type: String
         json_field: link
       display:
-        type: String
+        type: String!
         json_field: display
   MentionSpanItem:
     inheritance: SpanItem
@@ -55,11 +55,11 @@ submodels:
         type: Int
         json_field: end
       key:
-        type: UserKey
+        type: UserKey?
         json_field: key
         json_transform: UserKeyTransform
       name:
-        type: String
+        type: String?
         json_field: name
       screenName:
         type: String

@@ -8,7 +8,7 @@ struct Account {
     var key: UserKey 
     var type: AccountType 
     var apiUrlFormat: String 
-    var authType: String 
+    var authType: CustomAPIConfig.AuthType = .oauth 
     var basicPassword: String? 
     var basicUsername: String? 
     var consumerKey: String? 

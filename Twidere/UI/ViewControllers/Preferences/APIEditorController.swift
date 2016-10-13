@@ -13,7 +13,7 @@ import StaticDataTableViewController
 class APIEditorController: StaticDataTableViewController {
     
     let authTypeEntries: [String] = ["OAuth", "xAuth", "Basic", "TWIP O mode"]
-    let authTypeValues: [CustomAPIConfig.AuthType] = [.OAuth, .xAuth, .Basic, .TwipO]
+    let authTypeValues: [CustomAPIConfig.AuthType] = [.oauth, .xAuth, .basic, .twipO]
     
     @IBOutlet weak var editApiUrlFormat: UITextField!
     @IBOutlet weak var editSameOauthSigningUrl: UISwitch!
@@ -33,7 +33,7 @@ class APIEditorController: StaticDataTableViewController {
     var callback: ((CustomAPIConfig) -> Void)? = nil
     var disappearCallback: ((CustomAPIConfig) -> Void)? = nil
     
-    fileprivate var authType: CustomAPIConfig.AuthType = .OAuth
+    fileprivate var authType: CustomAPIConfig.AuthType = .oauth
     
     override func viewDidLoad() {
         super.viewDidLoad()

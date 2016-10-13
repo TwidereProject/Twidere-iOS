@@ -64,13 +64,13 @@ class SignInController: UIViewController {
     
     @IBAction func signInClicked(_ sender: UIButton) {
         switch customAPIConfig.authType {
-        case .OAuth:
+        case .oauth:
             doBrowserSignIn()
         case .xAuth:
             doXAuthSignIn()
-        case .TwipO:
+        case .twipO:
             doTwipOSignIn()
-        case .Basic:
+        case .basic:
             doBasicSignIn()
         }
         
@@ -99,7 +99,7 @@ class SignInController: UIViewController {
     }
     
     fileprivate func updateSignInUi() {
-        if (customAPIConfig.authType == .OAuth) {
+        if (customAPIConfig.authType == .oauth) {
             passwordSignInButton.layoutParams.hidden = false
         } else {
             passwordSignInButton.layoutParams.hidden = true
@@ -255,7 +255,7 @@ class SignInController: UIViewController {
             let user = result.user
             let config = self.customAPIConfig
             let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
-            let account = Account(_id: -1, key: user.key, type: .twitter, apiUrlFormat: config.apiUrlFormat, authType: config.authType.rawValue, basicPassword: result.username, basicUsername: result.password, consumerKey: config.consumerKey, consumerSecret: config.consumerSecret, noVersionSuffix: config.noVersionSuffix, oauthToken: result.accessToken?.oauthToken, oauthTokenSecret: result.accessToken?.oauthTokenSecret, sameOAuthSigningUrl: config.sameOAuthSigningUrl, config: nil, user: user)
+            let account = Account(_id: -1, key: user.key, type: .twitter, apiUrlFormat: config.apiUrlFormat, authType: config.authType, basicPassword: result.username, basicUsername: result.password, consumerKey: config.consumerKey, consumerSecret: config.consumerSecret, noVersionSuffix: config.noVersionSuffix, oauthToken: result.accessToken?.oauthToken, oauthTokenSecret: result.accessToken?.oauthTokenSecret, sameOAuthSigningUrl: config.sameOAuthSigningUrl, config: nil, user: user)
             try db.transaction {
                 try _ = db.run(Account.insertData(table: accountsTable, model: account))
             }

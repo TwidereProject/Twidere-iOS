@@ -37,3 +37,18 @@ extension Account.Config: Value {
         return (try? toJSON().serializeString()) ?? ""
     }
 }
+
+extension CustomAPIConfig.AuthType: Value {
+    static var declaredDatatype: String {
+        return String.declaredDatatype
+    }
+    
+    
+    static func fromDatatypeValue(_ datatypeValue: String) -> CustomAPIConfig.AuthType? {
+        return CustomAPIConfig.AuthType(rawValue: datatypeValue)
+    }
+    
+    var datatypeValue: String {
+        return self.rawValue
+    }
+}

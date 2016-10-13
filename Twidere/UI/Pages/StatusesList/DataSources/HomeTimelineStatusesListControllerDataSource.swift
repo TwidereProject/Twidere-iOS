@@ -51,8 +51,7 @@ class HomeTimelineStatusesListControllerDataSource: StatusesListControllerDataSo
         for row in try! db.prepare(table.select(Status.RowIndices.accountKey, Status.RowIndices.id)
             .group(Status.RowIndices.accountKey, having: accountKeys.contains(Status.RowIndices.accountKey))
             .order(Status.RowIndices.positionKey.max)) {
-                let key = row.get(Status.RowIndices.accountKey)
-                if let idx = accountKeys.index(where: {$0 == key}) {
+                if let key = row.get(Status.RowIndices.accountKey), let idx = accountKeys.index(where: { $0 == key }) {
                     result[idx] = row.get(Status.RowIndices.id)
                 }
         }
@@ -67,8 +66,7 @@ class HomeTimelineStatusesListControllerDataSource: StatusesListControllerDataSo
         for row in try! db.prepare(table.select(Status.RowIndices.accountKey, Status.RowIndices.sortId)
             .group(Status.RowIndices.accountKey, having: accountKeys.contains(Status.RowIndices.accountKey))
             .order(Status.RowIndices.positionKey.max)) {
-                let key = row.get(Status.RowIndices.accountKey)
-                if let idx = accountKeys.index(where: {$0 == key}) {
+                if let key = row.get(Status.RowIndices.accountKey), let idx = accountKeys.index(where: {$0 == key}) {
                     result[idx] = row.get(Status.RowIndices.sortId)
                 }
         }

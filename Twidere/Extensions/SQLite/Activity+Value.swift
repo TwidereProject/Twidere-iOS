@@ -20,6 +20,20 @@ extension Activity.ObjectList: Value {
     }
     
     var datatypeValue: String {
-        return (try? toJSON().serializeString()) ?? ""
+        return (try? self.toJSON().serializeString()) ?? ""
+    }
+}
+
+extension Activity.Action: Value {
+    static var declaredDatatype: String {
+        return String.declaredDatatype
+    }
+    
+    static func fromDatatypeValue(_ datatypeValue: String) -> Activity.Action? {
+        return Activity.Action(rawValue: datatypeValue)
+    }
+    
+    var datatypeValue: String {
+        return self.rawValue
     }
 }

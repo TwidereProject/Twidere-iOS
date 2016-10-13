@@ -58,9 +58,9 @@ def generateModelContent(name, outerName, model):
         elif jsonNull == 'omit':
             pass
         elif jsonNull == 'force':
-            toJsonLines.append("            \"{jsonField}\": self.{propertyName}!.toJSON(),".format(jsonField=jsonField, propertyName=propertyName))
+            toJsonLines.append("        dict[\"{jsonField}\"] = self.{propertyName}!.toJSON()".format(jsonField=jsonField, propertyName=propertyName))
         else:
-            toJsonLines.append("            \"{jsonField}\": self.{propertyName}?.toJSON(),".format(jsonField=jsonField, propertyName=propertyName))
+            toJsonLines.append("        dict[\"{jsonField}\"] = self.{propertyName}?.toJSON()".format(jsonField=jsonField, propertyName=propertyName))
     subModelsLines = []
     submodels = model.get('submodels', [])
     for subModelName in submodels:
@@ -73,12 +73,13 @@ def generateModelContent(name, outerName, model):
     classTemplate ="""extension {modelName}: JSONEncodable, JSONDecodable {{
 
     init(json value: JSON) throws {{
-{initContent}
+//{{initContent}}
+        throw JSON.Error.stringSerializationError
     }}
 
     public func toJSON() -> JSON {{
         var dict: [String: JSON] = [:]
-{toJsonContent}
+//{{toJsonContent}}
         return .dictionary(dict)
     }}
 }}

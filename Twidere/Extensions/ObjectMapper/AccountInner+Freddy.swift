@@ -26,3 +26,22 @@ extension Account.AccountType: JSONEncodable {
         return .string(rawValue)
     }
 }
+
+extension CustomAPIConfig.AuthType: JSONDecodable {
+    
+    public init(json: JSON) throws {
+        guard case let .string(string) = json else {
+            throw JSON.Error.valueNotConvertible(value: json, to: CustomAPIConfig.AuthType.self)
+        }
+        guard let type = CustomAPIConfig.AuthType(rawValue: string) else {
+            throw JSON.Error.valueNotConvertible(value: json, to: CustomAPIConfig.AuthType.self)
+        }
+        self = type
+    }
+}
+
+extension CustomAPIConfig.AuthType: JSONEncodable {
+    func toJSON() -> JSON {
+        return .string(rawValue)
+    }
+}

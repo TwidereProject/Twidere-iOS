@@ -27,9 +27,10 @@ submodels:
         column: api_url_format
         json_field: api_url_format
       authType:
-        type: String
+        type: CustomAPIConfig.AuthType
         column: auth_type
         json_field: auth_type
+        init: .oauth
       basicPassword:
         type: String?
         column: basic_password

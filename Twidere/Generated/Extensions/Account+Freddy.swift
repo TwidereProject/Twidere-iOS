@@ -5,32 +5,13 @@ import Foundation
 extension Account: JSONEncodable, JSONDecodable {
 
     init(json value: JSON) throws {
-        self._id = -1
-        self.key = try value.decode(at: "account_key")
-        self.type = try value.decode(at: "account_type")
-        self.apiUrlFormat = try value.decode(at: "api_url_format")
-        self.authType = try value.decode(at: "auth_type")
-        self.basicPassword = try? value.decode(at: "basic_password")
-        self.basicUsername = try? value.decode(at: "basic_username")
-        self.consumerKey = try? value.decode(at: "consumer_key")
-        self.consumerSecret = try? value.decode(at: "consumer_secret")
-        self.noVersionSuffix = try value.decode(at: "no_version_suffix")
-        self.oauthToken = try? value.decode(at: "oauth_token")
-        self.oauthTokenSecret = try? value.decode(at: "oauth_token_secret")
-        self.sameOAuthSigningUrl = try value.decode(at: "same_oauth_signing_url")
-        self.config = try? value.decode(at: "config")
-        self.user = try value.decode(at: "user")
+//{initContent}
+        throw JSON.Error.stringSerializationError
     }
 
     public func toJSON() -> JSON {
         var dict: [String: JSON] = [:]
-        dict["account_key"] = self.key.toJSON()
-        dict["account_type"] = self.type.toJSON()
-        dict["api_url_format"] = self.apiUrlFormat.toJSON()
-        dict["auth_type"] = self.authType.toJSON()
-        dict["no_version_suffix"] = self.noVersionSuffix.toJSON()
-        dict["same_oauth_signing_url"] = self.sameOAuthSigningUrl.toJSON()
-        dict["user"] = self.user.toJSON()
+//{toJsonContent}
         return .dictionary(dict)
     }
 }
@@ -38,14 +19,13 @@ extension Account: JSONEncodable, JSONDecodable {
 extension Account.Config: JSONEncodable, JSONDecodable {
 
     init(json value: JSON) throws {
-        self.characterLimit = try value.decode(at: "character_limit")
-        self.officialCredentials = try value.decode(at: "official_credentials")
+//{initContent}
+        throw JSON.Error.stringSerializationError
     }
 
     public func toJSON() -> JSON {
         var dict: [String: JSON] = [:]
-        dict["character_limit"] = self.characterLimit.toJSON()
-        dict["official_credentials"] = self.officialCredentials.toJSON()
+//{toJsonContent}
         return .dictionary(dict)
     }
 }

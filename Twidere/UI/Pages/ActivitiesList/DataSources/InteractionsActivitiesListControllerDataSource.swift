@@ -65,7 +65,7 @@ class InteractionsActivitiesListControllerDataSource: ActivitiesListControllerDa
             .group(Activity.RowIndices.accountKey, having: accountKeys.contains(Activity.RowIndices.accountKey))
             .order(Activity.RowIndices.positionKey.max)) {
                 if let key = row.get(Activity.RowIndices.accountKey), let idx = accountKeys.index(where: {$0 == key}) {
-                    result[idx] = row.get(Activity.RowIndices.maxSortPosition) ?? -1
+                    result[idx] = row.get(Activity.RowIndices.maxSortPosition) 
                 }
         }
         return result

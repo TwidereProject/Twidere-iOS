@@ -9,7 +9,7 @@ submodels:
         primary_key: autoincrement
         init: -1
       accountKey:
-        type: UserKey
+        type: UserKey!
         column: account_key
         json_field: account_key
         json_transform: UserKeyTransform

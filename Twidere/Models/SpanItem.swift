@@ -22,7 +22,7 @@ struct LinkSpanItem : SpanItem {
     var origStart: Int 
     var origEnd: Int 
     var link: String 
-    var display: String 
+    var display: String! 
     // Append body content
 
     // Sub models
@@ -36,8 +36,8 @@ struct MentionSpanItem : SpanItem {
     var end: Int 
     var origStart: Int 
     var origEnd: Int 
-    var key: UserKey 
-    var name: String 
+    var key: UserKey? 
+    var name: String? 
     var screenName: String 
     // Append body content
 

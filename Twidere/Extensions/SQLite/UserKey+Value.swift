@@ -22,23 +22,3 @@ extension UserKey: Value {
         return self.string
     }
 }
-
-struct UserKeyArray: Value {
-    let array: [UserKey]
-    
-    init(_ array: [UserKey]) {
-        self.array = array
-    }
-    
-    static var declaredDatatype: String {
-        return String.declaredDatatype
-    }
-    
-    static func fromDatatypeValue(_ datatypeValue: String) -> UserKeyArray {
-        return UserKeyArray(datatypeValue.components(separatedBy: ",").map { UserKey(rawValue: $0) })
-    }
-    
-    var datatypeValue: String {
-        return self.array.map{ $0.string }.joined(separator: ",")
-    }
-}
