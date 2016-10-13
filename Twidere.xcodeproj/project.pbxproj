@@ -591,10 +591,10 @@
 			children = (
 				CE5C4FF51DAE817E0039A7FA /* Account+Value.swift */,
 				CE5C4FF61DAE817E0039A7FA /* Activity+Value.swift */,
+				CE265FE31DAF599D007FF7CF /* SQLite+Array.swift */,
 				CE5C4FF71DAE817E0039A7FA /* Status+Value.swift */,
 				CE45CAF41D855AE10004CC1C /* User+Value.swift */,
 				CE497FB91D6A8A65000F16D2 /* UserKey+Value.swift */,
-				CE265FE31DAF599D007FF7CF /* SQLite+Array.swift */,
 			);
 			path = SQLite;
 			sourceTree = "<group>";
@@ -644,11 +644,11 @@
 				CE5C4FDF1DAE66430039A7FA /* MediaItem+Freddy.swift */,
 				CE5C4FE01DAE66430039A7FA /* SpanItem+Freddy.swift */,
 				CE5C4FE11DAE66430039A7FA /* Status+Freddy.swift */,
+				CE5C4FD91DAE663C0039A7FA /* Status+SQLite.swift */,
 				CE5C4FE21DAE66430039A7FA /* User+Freddy.swift */,
 				CE5C4FE31DAE66430039A7FA /* User+SQLite.swift */,
 				CE5C4FE41DAE66430039A7FA /* UserList+Freddy.swift */,
 				CE5C4FE51DAE66430039A7FA /* UserList+SQLite.swift */,
-				CE5C4FD91DAE663C0039A7FA /* Status+SQLite.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -656,15 +656,14 @@
 		CE4F6D8F1D878B9E0064DA14 /* Freddy */ = {
 			isa = PBXGroup;
 			children = (
-				CE5C4FFB1DAF18FC0039A7FA /* UserKey+Freddy.swift */,
-				CE5C4FFD1DAF19A50039A7FA /* Double+Freddy.swift */,
-				CE5C4FFF1DAF1BA60039A7FA /* Date+Freddy.swift */,
-				CE5C50011DAF38860039A7FA /* MediaType+Freddy.swift */,
 				CE265FE51DAF6932007FF7CF /* AccountInner+Freddy.swift */,
 				CE265FE71DAF6A7B007FF7CF /* ActivityInner+Freddy.swift */,
+				CE5C4FFF1DAF1BA60039A7FA /* Date+Freddy.swift */,
+				CE5C4FFD1DAF19A50039A7FA /* Double+Freddy.swift */,
+				CE5C50011DAF38860039A7FA /* MediaType+Freddy.swift */,
+				CE5C4FFB1DAF18FC0039A7FA /* UserKey+Freddy.swift */,
 			);
-			name = Freddy;
-			path = ObjectMapper;
+			path = Freddy;
 			sourceTree = "<group>";
 		};
 		CE5993071D82E4CF00653220 /* Account */ = {
@@ -786,11 +785,11 @@
 			children = (
 				CEDC3B241D7D9FDA0082A8BA /* Tasks */,
 				CEA2E2CC1D3A732C0095BC57 /* AccountUtils.swift */,
+				CEBECFC91DAB8AD900350383 /* CollectionUtils.swift */,
 				CE497FA81D697CEA000F16D2 /* ConvertUtils.swift */,
 				CEDC3B221D7D8BE90082A8BA /* DatabaseMigration.swift */,
 				CE9574951D33B71B00504D52 /* DefaultsKeys.swift */,
 				CE95748A1D322CC700504D52 /* ModelConverter.swift */,
-				CEBECFC91DAB8AD900350383 /* CollectionUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -861,14 +860,15 @@
 		CEA2E2BF1D379CB10095BC57 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CE4F6D8F1D878B9E0064DA14 /* Freddy */,
 				CE4B1AA31D7175D80017CB85 /* MicroBlog */,
 				CE29039C1D4CEF0B0056D0E2 /* Model */,
-				CE4F6D8F1D878B9E0064DA14 /* Freddy */,
 				CE497FBF1D6B08B4000F16D2 /* SQLite */,
 				CEBECFB61DA9EBD300350383 /* CALayerExtension.swift */,
 				CEA2E2C01D379CD90095BC57 /* CoreLocationExtensions.swift */,
 				CE497FBD1D6B01D1000F16D2 /* DateExtensions.swift */,
 				CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */,
+				CE9DB0481DACA34B000C150F /* Number+LocalizedString.swift */,
 				CEDC3B201D7D87F80082A8BA /* SQLite+UserVersion.swift */,
 				CE4B1AA41D719E160017CB85 /* StringExtensions.swift */,
 				CED73F6D1D953C6E0066F554 /* UIBarButtonItemExtension.swift */,
@@ -877,7 +877,6 @@
 				CEDEE3F41D9270BA00001BE8 /* UIRefreshControlExtension.swift */,
 				CEBECFC11DAA2F4500350383 /* UIViewControllerPreviewingExtension.swift */,
 				CE79C83E1DA77777007C05F2 /* YYTextExtensions.swift */,
-				CE9DB0481DACA34B000C150F /* Number+LocalizedString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
