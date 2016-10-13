@@ -71,7 +71,7 @@ class GetActivitiesTask {
     }
     
     fileprivate static func storeActivities(_ account: Account, activities: inout [Activity], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
-        let accountKey = account.key!
+        let accountKey = account.key
         let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
         
         let noItemsBefore = try db.scalar(table.filter(accountKey == Activity.RowIndices.accountKey).count) <= 0
@@ -121,9 +121,10 @@ class GetActivitiesTask {
             }
         }
         // Insert previously fetched items.
+        let insertStatements = activities.map { Activity.insertData(table: table, model: $0) }
         try db.transaction {
-            try activities.forEach { activity in
-                _ = try db.run(Activity.insertData(table: table, model: activity))
+            for insert in insertStatements {
+                _ = try db.run(insert)
             }
         }
         

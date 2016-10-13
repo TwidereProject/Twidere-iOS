@@ -64,7 +64,7 @@ class HomeController: UITabBarController {
         _ = DispatchQueue.global().promise { () -> Account in
             return try defaultAccount()!
         }.then { account -> Void in
-            self.accountProfileImageView.displayImage(account.user!.profileImageUrlForSize(.reasonablySmall), placeholder: UIImage(named: "Profile Image Default"))
+            self.accountProfileImageView.displayImage(account.user.profileImageUrlForSize(.reasonablySmall), placeholder: UIImage(named: "Profile Image Default"))
         }
     }
     

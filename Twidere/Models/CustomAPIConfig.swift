@@ -113,7 +113,3 @@ class CustomAPIConfig {
         }
     }
 }
-
-enum AccountType: String {
-    case Twitter, Fanfou, StatusNet
-}

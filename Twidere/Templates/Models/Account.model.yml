@@ -2,18 +2,24 @@ imports:
   - Foundation
 submodels:
   Account:
+    append_body: "
+    enum AccountType: String {
+        case twitter, fanfou, statusNet
+    }
+    "
     fields:
       _id:
         type: Int64
         column: _id
         primary_key: autoincrement
+        init: -1
       key:
         type: UserKey
         column: account_key
         json_field: account_key
         json_transform: UserKeyTransform
       type:
-        type: String
+        type: AccountType
         column: account_type
         json_field: account_type
       apiUrlFormat:
@@ -57,7 +63,7 @@ submodels:
         column: same_oauth_signing_url
         json_field: same_oauth_signing_url
       config:
-        type: Config
+        type: Config?
         column: config
         json_field: config
       user:

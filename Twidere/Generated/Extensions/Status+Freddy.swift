@@ -5,19 +5,19 @@ import Foundation
 extension Status: JSONEncodable, JSONDecodable {
 
     init(json value: JSON) throws {
-        self._id = nil
-        self.accountKey = try? value.decode(at: "account_key")
-        self.sortId = try? value.decode(at: "sort_id")
-        self.positionKey = try? value.decode(at: "position_key")
-        self.isGap = try? value.decode(at: "is_gap")
-        self.createdAt = try? value.decode(at: "created_at")
-        self.id = try? value.decode(at: "status_id")
-        self.userKey = try? value.decode(at: "user_key")
-        self.userName = try? value.decode(at: "user_name")
-        self.userScreenName = try? value.decode(at: "user_screen_name")
-        self.userProfileImage = try? value.decode(at: "user_profile_image")
-        self.textPlain = try? value.decode(at: "text_plain")
-        self.textDisplay = try? value.decode(at: "text_display")
+        self._id = -1
+        self.accountKey = try value.decode(at: "account_key")
+        self.sortId = try value.decode(at: "sort_id")
+        self.positionKey = try value.decode(at: "position_key")
+        self.isGap = try value.decode(at: "is_gap")
+        self.createdAt = try value.decode(at: "created_at")
+        self.id = try value.decode(at: "status_id")
+        self.userKey = try value.decode(at: "user_key")
+        self.userName = try value.decode(at: "user_name")
+        self.userScreenName = try value.decode(at: "user_screen_name")
+        self.userProfileImage = try value.decode(at: "user_profile_image")
+        self.textPlain = try value.decode(at: "text_plain")
+        self.textDisplay = try value.decode(at: "text_display")
         self.metadata = try? value.decode(at: "metadata")
         self.quotedId = try? value.decode(at: "quoted_status_id")
         self.quotedCreatedAt = try? value.decode(at: "quoted_created_at")
@@ -37,9 +37,19 @@ extension Status: JSONEncodable, JSONDecodable {
     }
 
     public func toJSON() -> JSON {
-        var dict: [String: JSON] = [
-
-        ]
+        var dict: [String: JSON] = [:]
+        dict["account_key"] = self.accountKey.toJSON()
+        dict["sort_id"] = self.sortId.toJSON()
+        dict["position_key"] = self.positionKey.toJSON()
+        dict["is_gap"] = self.isGap.toJSON()
+        dict["created_at"] = self.createdAt.toJSON()
+        dict["status_id"] = self.id.toJSON()
+        dict["user_key"] = self.userKey.toJSON()
+        dict["user_name"] = self.userName.toJSON()
+        dict["user_screen_name"] = self.userScreenName.toJSON()
+        dict["user_profile_image"] = self.userProfileImage.toJSON()
+        dict["text_plain"] = self.textPlain.toJSON()
+        dict["text_display"] = self.textDisplay.toJSON()
         return .dictionary(dict)
     }
 }
@@ -60,9 +70,8 @@ extension Status.Metadata: JSONEncodable, JSONDecodable {
     }
 
     public func toJSON() -> JSON {
-        var dict: [String: JSON] = [
+        var dict: [String: JSON] = [:]
 
-        ]
         return .dictionary(dict)
     }
 }
@@ -70,16 +79,17 @@ extension Status.Metadata: JSONEncodable, JSONDecodable {
 extension Status.Metadata.InReplyTo: JSONEncodable, JSONDecodable {
 
     init(json value: JSON) throws {
-        self.statusId = try? value.decode(at: "status_id")
-        self.userKey = try? value.decode(at: "user_key")
+        self.statusId = try value.decode(at: "status_id")
+        self.userKey = try value.decode(at: "user_key")
         self.userName = try? value.decode(at: "user_name")
-        self.userScreenName = try? value.decode(at: "user_screen_name")
+        self.userScreenName = try value.decode(at: "user_screen_name")
     }
 
     public func toJSON() -> JSON {
-        var dict: [String: JSON] = [
-
-        ]
+        var dict: [String: JSON] = [:]
+        dict["status_id"] = self.statusId.toJSON()
+        dict["user_key"] = self.userKey.toJSON()
+        dict["user_screen_name"] = self.userScreenName.toJSON()
         return .dictionary(dict)
     }
 }

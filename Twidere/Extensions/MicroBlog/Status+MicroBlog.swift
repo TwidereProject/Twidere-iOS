@@ -68,7 +68,7 @@ extension Status {
         self.userScreenName = user["screen_name"].string
         self.userProfileImage = getProfileImage(user)
         
-        let (textPlain, textDisplay, metadata) = getMetadata(primary)
+        var (textPlain, textDisplay, metadata) = getMetadata(primary)
         
         metadata.replyCount = status["reply_count"].int64
         metadata.retweetCount = status["retweet_count"].int64
@@ -113,7 +113,7 @@ extension Status {
     fileprivate static let carets = CharacterSet(charactersIn: "<>")
     
     fileprivate func getMetadata(_ status: JSON) -> (plain: String, display: String, metadata: Status.Metadata) {
-        let metadata = Status.Metadata()
+        var metadata = Status.Metadata()
         var links = [LinkSpanItem]()
         var mentions = [MentionSpanItem]()
         var hashtags = [HashtagSpanItem]()
@@ -204,7 +204,7 @@ extension Status {
                 var startIndex = codePoints.startIndex
                 
                 switch span {
-                case let typed as LinkSpanItem:
+                case var typed as LinkSpanItem:
                     let displayUrlCodePoints = typed.display!.unicodeScalars
                     let displayCodePointsLength = displayUrlCodePoints.count
                     let displayUtf16Length = typed.display!.utf16.count
@@ -230,11 +230,11 @@ extension Status {
                     if (typed.origEnd <= displayTextRangeCodePoint?[1]) {
                         displayTextRangeUtf16?[1] += utf16Diff
                     }
-                case let typed as MentionSpanItem:
+                case var typed as MentionSpanItem:
                     typed.start = codePoints.utf16Count(startIndex..<codePoints.index(codePoints.startIndex, offsetBy: offsetedStart))
                     typed.end = typed.start + origEnd - origStart
                     mentions.append(typed)
-                case let typed as HashtagSpanItem:
+                case var typed as HashtagSpanItem:
                     typed.start = codePoints.utf16Count(startIndex..<codePoints.index(codePoints.startIndex, offsetBy: offsetedStart))
                     typed.end = typed.start + origEnd - origStart
                     hashtags.append(typed)
@@ -318,16 +318,15 @@ extension Status {
     }
     
     fileprivate func getVideoInfo(_ json: JSON) -> MediaItem.VideoInfo {
-        let info = MediaItem.VideoInfo()
-        info.duration = json["duration"].int64Value
-        info.variants = json["variants"].map { (k, v) -> MediaItem.VideoInfo.Variant in
-            let variant = MediaItem.VideoInfo.Variant()
-            variant.bitrate = v["bitrate"].int64Value
-            variant.contentType = v["content_type"].string
-            variant.url = v["url"].string
-            return variant
+        let duration = json["duration"].int64Value
+        let variants = json["variants"].flatMap { (k, v) -> MediaItem.VideoInfo.Variant? in
+            guard let url = v["url"].string, let contentType = v["content_type"].string else {
+                return nil
+            }
+            let bitrate = v["bitrate"].int64Value
+            return MediaItem.VideoInfo.Variant(bitrate: bitrate, contentType: contentType, url: url)
         }
-        return info
+        return MediaItem.VideoInfo(duration: duration, variants: variants)
     }
     
     fileprivate func spanFromUrlEntity(_ entity: JSON) -> LinkSpanItem {

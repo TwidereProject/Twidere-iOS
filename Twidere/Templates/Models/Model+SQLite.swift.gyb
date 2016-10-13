@@ -56,14 +56,14 @@ extension ${modelName} {
     }
 
     static func insertData(table: Table, model: ${modelName}) -> Insert {
-        return table.insert( [
-            % for idx, propertyName in enumerate(fields):
-            % field = fields[propertyName]
-                % if field.get('primary_key', None) != 'autoincrement' and field.get('column', None) is not None:
-                RowIndices.${propertyName} <- model.${propertyName},
-                %end
+        var setters: [Setter] = []
+        % for idx, propertyName in enumerate(fields):
+        % field = fields[propertyName]
+            % if field.get('primary_key', None) != 'autoincrement' and field.get('column', None) is not None:
+        setters.append(RowIndices.${propertyName} <- model.${propertyName})
             %end
-        ])
+        %end
+        return table.insert(setters)
     }
 
     struct RowIndices {
@@ -74,12 +74,12 @@ extension ${modelName} {
         % columnName = field.get('column', None)
         % if columnName is None:
         %   pass
-        % elif propertyType.endswith('?'):
+        % if field.get('primary_key', None):
         static let ${propertyName} = Expression<${propertyType}>("${columnName}")
-        % elif field.get('primary_key', None):
-        static let ${propertyName} = Expression<${propertyType}>("${columnName}")
+        % elif propertyType.endswith('?') or propertyType.endswith('!'):
+        static let ${propertyName} = Expression<${propertyType[0:-1]}?>("${columnName}")
         % else:
-        static let ${propertyName} = Expression<${propertyType}?>("${columnName}")
+        static let ${propertyName} = Expression<${propertyType}>("${columnName}")
         %end
     %end
 

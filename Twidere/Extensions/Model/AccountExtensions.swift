@@ -12,12 +12,12 @@ import DeviceKit
 extension Account {
     func createAPIConfig() -> CustomAPIConfig {
         let config = CustomAPIConfig()
-        config.apiUrlFormat = apiUrlFormat!
-        config.authType = CustomAPIConfig.AuthType(rawValue: authType!) ?? defaultAuthType
+        config.apiUrlFormat = apiUrlFormat
+        config.authType = CustomAPIConfig.AuthType(rawValue: authType) ?? defaultAuthType
         config.consumerKey = consumerKey!
         config.consumerSecret = consumerSecret!
-        config.sameOAuthSigningUrl = Bool(sameOAuthSigningUrl!)
-        config.noVersionSuffix = Bool(noVersionSuffix!)
+        config.sameOAuthSigningUrl = self.sameOAuthSigningUrl
+        config.noVersionSuffix = self.noVersionSuffix
         return config
     }
     
@@ -71,7 +71,4 @@ extension Account {
         }
     }
     
-    enum AccountType {
-        case twitter, fanfou, statusNet
-    }
 }

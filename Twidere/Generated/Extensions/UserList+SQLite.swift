@@ -16,14 +16,14 @@ extension UserList {
     }
 
     static func insertData(table: Table, model: UserList) -> Insert {
-        return table.insert( [
-                RowIndices.accountKey <- model.accountKey,
-        ])
+        var setters: [Setter] = []
+        setters.append(RowIndices.accountKey <- model.accountKey)
+        return table.insert(setters)
     }
 
     struct RowIndices {
 
-        static let accountKey = Expression<UserKey?>("account_key")
+        static let accountKey = Expression<UserKey>("account_key")
 
         static let columns: [Expressible] = [
             accountKey,

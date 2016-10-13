@@ -42,37 +42,37 @@ extension Activity {
     }
 
     static func insertData(table: Table, model: Activity) -> Insert {
-        return table.insert( [
-                RowIndices.accountKey <- model.accountKey,
-                RowIndices.isGap <- model.isGap,
-                RowIndices.positionKey <- model.positionKey,
-                RowIndices.createdAt <- model.createdAt,
-                RowIndices.maxSortPosition <- model.maxSortPosition,
-                RowIndices.minSortPosition <- model.minSortPosition,
-                RowIndices.maxPosition <- model.maxPosition,
-                RowIndices.minPosition <- model.minPosition,
-                RowIndices.action <- model.action,
-                RowIndices.sources <- model.sources,
-                RowIndices.sourceKeys <- model.sourceKeys,
-                RowIndices.targets <- model.targets,
-                RowIndices.targetObjects <- model.targetObjects,
-        ])
+        var setters: [Setter] = []
+        setters.append(RowIndices.accountKey <- model.accountKey)
+        setters.append(RowIndices.isGap <- model.isGap)
+        setters.append(RowIndices.positionKey <- model.positionKey)
+        setters.append(RowIndices.createdAt <- model.createdAt)
+        setters.append(RowIndices.maxSortPosition <- model.maxSortPosition)
+        setters.append(RowIndices.minSortPosition <- model.minSortPosition)
+        setters.append(RowIndices.maxPosition <- model.maxPosition)
+        setters.append(RowIndices.minPosition <- model.minPosition)
+        setters.append(RowIndices.action <- model.action)
+        setters.append(RowIndices.sources <- model.sources)
+        setters.append(RowIndices.sourceKeys <- model.sourceKeys)
+        setters.append(RowIndices.targets <- model.targets)
+        setters.append(RowIndices.targetObjects <- model.targetObjects)
+        return table.insert(setters)
     }
 
     struct RowIndices {
 
         static let _id = Expression<Int64>("_id")
         static let accountKey = Expression<UserKey?>("account_key")
-        static let isGap = Expression<Bool?>("is_gap")
-        static let positionKey = Expression<Int64?>("position_key")
-        static let createdAt = Expression<Date?>("created_at")
-        static let maxSortPosition = Expression<Int64?>("max_sort_position")
-        static let minSortPosition = Expression<Int64?>("min_sort_position")
+        static let isGap = Expression<Bool>("is_gap")
+        static let positionKey = Expression<Int64>("position_key")
+        static let createdAt = Expression<Date>("created_at")
+        static let maxSortPosition = Expression<Int64>("max_sort_position")
+        static let minSortPosition = Expression<Int64>("min_sort_position")
         static let maxPosition = Expression<String?>("max_position")
         static let minPosition = Expression<String?>("min_position")
-        static let action = Expression<Action?>("action")
-        static let sources = Expression<UserArray?>("sources")
-        static let sourceKeys = Expression<UserKeyArray?>("source_keys")
+        static let action = Expression<Action>("action")
+        static let sources = Expression<[User]?>("sources")
+        static let sourceKeys = Expression<[UserKey]?>("source_keys")
         static let targets = Expression<ObjectList?>("targets")
         static let targetObjects = Expression<ObjectList?>("target_objects")
 

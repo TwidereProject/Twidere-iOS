@@ -4,9 +4,9 @@ import Foundation
 struct Account {
 
     // Fields
-    var _id: Int64 
+    var _id: Int64 = -1 
     var key: UserKey 
-    var type: String 
+    var type: AccountType 
     var apiUrlFormat: String 
     var authType: String 
     var basicPassword: String? 
@@ -17,10 +17,10 @@ struct Account {
     var oauthToken: String? 
     var oauthTokenSecret: String? 
     var sameOAuthSigningUrl: Bool 
-    var config: Config 
+    var config: Config? 
     var user: User 
     // Append body content
-
+ enum AccountType: String { case twitter, fanfou, statusNet } 
     // Sub models
     struct Config {
     

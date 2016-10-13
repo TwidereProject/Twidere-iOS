@@ -20,8 +20,8 @@ struct MediaItem {
     struct VideoInfo {
     
         // Fields
-        var variants: [Variant] 
         var duration: Int64 = -1 
+        var variants: [Variant] 
         // Append body content
     
         // Sub models

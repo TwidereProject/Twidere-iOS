@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return table.filter(Status.RowIndices.positionKey < Expression<Int64?>(literal: "(\(minId.asSQL()))") && accountWhere).delete()
             }
             
-            let accountKey = account.key!
+            let accountKey = account.key
             
             try! db.transaction {
                 _ = try db.run(clearByItemLimit(accountKey, limit: 30, table: homeStatusesTable))

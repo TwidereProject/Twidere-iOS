@@ -52,7 +52,8 @@ class GetStatusesTask {
             }
             return Promise<StatusListResponse> { fullfill, reject in
                 fetchAction(account, twitter, paging).then(on: .global()) { statuses -> [Status] in
-                    try storeStatuses(account, statuses: statuses, sinceId: sinceId, maxId: maxId, sinceSortId: sinceSortId, maxSortId: maxSortId, loadItemLimit: loadItemLimit, table: table, notify: false)
+                    var statuses = statuses
+                    try storeStatuses(account, statuses: &statuses, sinceId: sinceId, maxId: maxId, sinceSortId: sinceSortId, maxSortId: maxSortId, loadItemLimit: loadItemLimit, table: table, notify: false)
                     
                     // TODO cache related data and preload
                     return statuses
@@ -67,18 +68,18 @@ class GetStatusesTask {
     }
     
     fileprivate static func storeStatuses(_ account: Account, statuses: inout [Status], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
-        let accountKey = account.key!
+        let accountKey = account.key
         let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
         
         let noItemsBefore = try db.scalar(table.filter(accountKey == Status.RowIndices.accountKey).count) <= 0
         
-        let statusIds = statuses.map({ $0.id! })
+        let statusIds = statuses.map({ $0.id })
         var minIdx = -1
         var minPositionKey: Int64 = -1
         var hasIntersection = false
         if (!statuses.isEmpty) {
-            let firstSortId = statuses.first!.sortId!
-            let lastSortId = statuses.last!.sortId!
+            let firstSortId = statuses.first!.sortId
+            let lastSortId = statuses.last!.sortId
             // Get id diff of first and last item
             let sortDiff = firstSortId - lastSortId
             
@@ -120,7 +121,7 @@ class GetStatusesTask {
         }
         
         // Remove gap flag
-        if (maxId != nil && sinceId == nil) {
+        if let maxId = maxId, sinceId == nil {
             _ = try db.run(table.filter(Status.RowIndices.accountKey == accountKey && Status.RowIndices.id == maxId).update(Status.RowIndices.isGap <- false))
         }
     }

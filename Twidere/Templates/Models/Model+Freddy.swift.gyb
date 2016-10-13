@@ -28,6 +28,7 @@ def generateModelContent(name, outerName, model):
 
         fieldType = field['type']
         jsonTransform = field.get('json_transform', None)
+        jsonNull = field.get('json_null', 'omit')
         isArray = False
         isOptional = False
         if fieldType.endswith('?') or fieldType.endswith('!') :
@@ -41,15 +42,19 @@ def generateModelContent(name, outerName, model):
             initLines.append("        self.{propertyName} = {fieldInit}"
                 .format(propertyName=propertyName, fieldInit=fieldInit))
             continue
-        if isArray:
-            initLines.append("        self.{propertyName} = try? value.getArray(at: \"{jsonField}\").map({fieldType}.init)"
-                .format(propertyName=propertyName, jsonField=jsonField, fieldType=fieldType))
+        if isOptional:
+            tryClause = 'try?'
         else:
-            initLines.append("        self.{propertyName} = try? value.decode(at: \"{jsonField}\")"
-                .format(propertyName=propertyName, jsonField=jsonField, fieldType=fieldType))
-        jsonNull = field.get('json_null', 'omit')
+            tryClause = 'try'
+        if isArray:
+            initLines.append("        self.{propertyName} = {tryClause} value.getArray(at: \"{jsonField}\").map({fieldType}.init)"
+                .format(propertyName=propertyName, jsonField=jsonField, fieldType=fieldType, tryClause=tryClause))
+        else:
+            initLines.append("        self.{propertyName} = {tryClause} value.decode(at: \"{jsonField}\")"
+                .format(propertyName=propertyName, jsonField=jsonField, fieldType=fieldType, tryClause=tryClause))
+
         if not isOptional:
-            pass
+            toJsonLines.append("        dict[\"{jsonField}\"] = self.{propertyName}.toJSON()".format(jsonField=jsonField, propertyName=propertyName))
         elif jsonNull == 'omit':
             pass
         elif jsonNull == 'force':
@@ -72,9 +77,8 @@ def generateModelContent(name, outerName, model):
     }}
 
     public func toJSON() -> JSON {{
-        var dict: [String: JSON] = [
+        var dict: [String: JSON] = [:]
 {toJsonContent}
-        ]
         return .dictionary(dict)
     }}
 }}

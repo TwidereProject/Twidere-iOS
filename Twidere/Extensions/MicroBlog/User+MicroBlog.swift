@@ -19,12 +19,15 @@ extension User {
         guard let key = User.getUserKey(json, accountHost: accountKey?.host) else {
             return nil
         }
+        guard let createdAt = parseTwitterDate(json["created_at"].stringValue) else {
+            return nil
+        }
         self.key = key
-        self.createdAt = parseTwitterDate(json["created_at"].stringValue)
+        self.createdAt = createdAt
         self.isProtected = json["protected"].boolValue
         self.isVerified = json["verified"].boolValue
-        self.name = json["name"].string
-        self.screenName = json["screen_name"].string
+        self.name = json["name"].stringValue
+        self.screenName = json["screen_name"].stringValue
         self.profileImageUrl = json["profile_image_url_https"].string ?? json["profile_image_url"].string
         self.profileBannerUrl = json["profile_banner_url"].string ?? json["cover_photo"].string
         self.profileBackgroundUrl = json["profile_background_image_url_https"].string ?? json["profile_background_image_url"].string

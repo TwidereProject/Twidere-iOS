@@ -234,7 +234,7 @@ class StatusCell: ALSTableViewCell {
                     break
                 }
                 let highlightRect = layout.rect(for: YYTextRange(range: highlightRange))
-                guard let span = highlight.userInfo?[SpanItem.highlightUserInfoKey] as? SpanItem else {
+                guard let span = highlight.userInfo?[highlightUserInfoKey] as? SpanItem else {
                     break
                 }
                 guard let (vc, present) = span.createViewController(accountKey: status.accountKey) else {

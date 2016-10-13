@@ -44,41 +44,41 @@ extension Account {
     }
 
     static func insertData(table: Table, model: Account) -> Insert {
-        return table.insert( [
-                RowIndices.key <- model.key,
-                RowIndices.type <- model.type,
-                RowIndices.apiUrlFormat <- model.apiUrlFormat,
-                RowIndices.authType <- model.authType,
-                RowIndices.basicPassword <- model.basicPassword,
-                RowIndices.basicUsername <- model.basicUsername,
-                RowIndices.consumerKey <- model.consumerKey,
-                RowIndices.consumerSecret <- model.consumerSecret,
-                RowIndices.noVersionSuffix <- model.noVersionSuffix,
-                RowIndices.oauthToken <- model.oauthToken,
-                RowIndices.oauthTokenSecret <- model.oauthTokenSecret,
-                RowIndices.sameOAuthSigningUrl <- model.sameOAuthSigningUrl,
-                RowIndices.config <- model.config,
-                RowIndices.user <- model.user,
-        ])
+        var setters: [Setter] = []
+        setters.append(RowIndices.key <- model.key)
+        setters.append(RowIndices.type <- model.type)
+        setters.append(RowIndices.apiUrlFormat <- model.apiUrlFormat)
+        setters.append(RowIndices.authType <- model.authType)
+        setters.append(RowIndices.basicPassword <- model.basicPassword)
+        setters.append(RowIndices.basicUsername <- model.basicUsername)
+        setters.append(RowIndices.consumerKey <- model.consumerKey)
+        setters.append(RowIndices.consumerSecret <- model.consumerSecret)
+        setters.append(RowIndices.noVersionSuffix <- model.noVersionSuffix)
+        setters.append(RowIndices.oauthToken <- model.oauthToken)
+        setters.append(RowIndices.oauthTokenSecret <- model.oauthTokenSecret)
+        setters.append(RowIndices.sameOAuthSigningUrl <- model.sameOAuthSigningUrl)
+        setters.append(RowIndices.config <- model.config)
+        setters.append(RowIndices.user <- model.user)
+        return table.insert(setters)
     }
 
     struct RowIndices {
 
         static let _id = Expression<Int64>("_id")
-        static let key = Expression<UserKey?>("account_key")
-        static let type = Expression<String?>("account_type")
-        static let apiUrlFormat = Expression<String?>("api_url_format")
-        static let authType = Expression<String?>("auth_type")
+        static let key = Expression<UserKey>("account_key")
+        static let type = Expression<AccountType>("account_type")
+        static let apiUrlFormat = Expression<String>("api_url_format")
+        static let authType = Expression<String>("auth_type")
         static let basicPassword = Expression<String?>("basic_password")
         static let basicUsername = Expression<String?>("basic_username")
         static let consumerKey = Expression<String?>("consumer_key")
         static let consumerSecret = Expression<String?>("consumer_secret")
-        static let noVersionSuffix = Expression<Bool?>("no_version_suffix")
+        static let noVersionSuffix = Expression<Bool>("no_version_suffix")
         static let oauthToken = Expression<String?>("oauth_token")
         static let oauthTokenSecret = Expression<String?>("oauth_token_secret")
-        static let sameOAuthSigningUrl = Expression<Bool?>("same_oauth_signing_url")
+        static let sameOAuthSigningUrl = Expression<Bool>("same_oauth_signing_url")
         static let config = Expression<Config?>("config")
-        static let user = Expression<User?>("user")
+        static let user = Expression<User>("user")
 
         static let columns: [Expressible] = [
             _id,

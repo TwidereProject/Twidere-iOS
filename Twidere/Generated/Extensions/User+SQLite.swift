@@ -48,36 +48,37 @@ extension User {
     }
 
     static func insertData(table: Table, model: User) -> Insert {
-        return table.insert( [
-                RowIndices.accountKey <- model.accountKey,
-                RowIndices.key <- model.key,
-                RowIndices.createdAt <- model.createdAt,
-                RowIndices.isProtected <- model.isProtected,
-                RowIndices.isVerified <- model.isVerified,
-                RowIndices.name <- model.name,
-                RowIndices.screenName <- model.screenName,
-                RowIndices.profileImageUrl <- model.profileImageUrl,
-                RowIndices.profileBannerUrl <- model.profileBannerUrl,
-                RowIndices.profileBackgroundUrl <- model.profileBackgroundUrl,
-                RowIndices.descriptionPlain <- model.descriptionPlain,
-                RowIndices.descriptionDisplay <- model.descriptionDisplay,
-                RowIndices.url <- model.url,
-                RowIndices.urlExpanded <- model.urlExpanded,
-                RowIndices.location <- model.location,
-                RowIndices.metadata <- model.metadata,
-        ])
+        var setters: [Setter] = []
+        setters.append(RowIndices.accountKey <- model.accountKey)
+        setters.append(RowIndices.key <- model.key)
+        setters.append(RowIndices.createdAt <- model.createdAt)
+        setters.append(RowIndices.isProtected <- model.isProtected)
+        setters.append(RowIndices.isVerified <- model.isVerified)
+        setters.append(RowIndices.name <- model.name)
+        setters.append(RowIndices.screenName <- model.screenName)
+        setters.append(RowIndices.profileImageUrl <- model.profileImageUrl)
+        setters.append(RowIndices.profileBannerUrl <- model.profileBannerUrl)
+        setters.append(RowIndices.profileBackgroundUrl <- model.profileBackgroundUrl)
+        setters.append(RowIndices.descriptionPlain <- model.descriptionPlain)
+        setters.append(RowIndices.descriptionDisplay <- model.descriptionDisplay)
+        setters.append(RowIndices.url <- model.url)
+        setters.append(RowIndices.urlExpanded <- model.urlExpanded)
+        setters.append(RowIndices.location <- model.location)
+        setters.append(RowIndices.metadata <- model.metadata)
+        return table.insert(setters)
     }
 
     struct RowIndices {
 
         static let _id = Expression<Int64>("_id")
         static let accountKey = Expression<UserKey?>("account_key")
-        static let key = Expression<UserKey?>("user_key")
+        static let key = Expression<UserKey>("user_key")
         static let createdAt = Expression<Date?>("created_at")
-        static let isProtected = Expression<Bool?>("is_protected")
-        static let isVerified = Expression<Bool?>("is_verified")
-        static let name = Expression<String?>("name")
-        static let screenName = Expression<String?>("screen_name")
+        static let position = Expression<Int64>("")
+        static let isProtected = Expression<Bool>("is_protected")
+        static let isVerified = Expression<Bool>("is_verified")
+        static let name = Expression<String>("name")
+        static let screenName = Expression<String>("screen_name")
         static let profileImageUrl = Expression<String?>("profile_image_url")
         static let profileBannerUrl = Expression<String?>("profile_banner_url")
         static let profileBackgroundUrl = Expression<String?>("profile_background_url")

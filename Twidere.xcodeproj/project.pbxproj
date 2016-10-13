@@ -25,6 +25,9 @@
 		CE0529F41CF7F35300E06364 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0529F21CF7F35300E06364 /* LaunchScreen.storyboard */; };
 		CE0529FF1CF7F35300E06364 /* TwidereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529FE1CF7F35300E06364 /* TwidereTests.swift */; };
 		CE052A0A1CF7F35300E06364 /* TwidereUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE052A091CF7F35300E06364 /* TwidereUITests.swift */; };
+		CE265FE41DAF599D007FF7CF /* SQLite+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE265FE31DAF599D007FF7CF /* SQLite+Array.swift */; };
+		CE265FE61DAF6932007FF7CF /* AccountInner+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE265FE51DAF6932007FF7CF /* AccountInner+Freddy.swift */; };
+		CE265FE81DAF6A7B007FF7CF /* ActivityInner+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE265FE71DAF6A7B007FF7CF /* ActivityInner+Freddy.swift */; };
 		CE29039E1D4CEF2A0056D0E2 /* AccountExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE29039D1D4CEF2A0056D0E2 /* AccountExtensions.swift */; };
 		CE2903EC1D4F200A0056D0E2 /* UserExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */; };
 		CE358B711D811C84002A33B3 /* SpanItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE358B701D811C84002A33B3 /* SpanItem.swift */; };
@@ -78,12 +81,13 @@
 		CE5C4FEE1DAE66430039A7FA /* User+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C4FE31DAE66430039A7FA /* User+SQLite.swift */; };
 		CE5C4FEF1DAE66430039A7FA /* UserList+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C4FE41DAE66430039A7FA /* UserList+Freddy.swift */; };
 		CE5C4FF01DAE66430039A7FA /* UserList+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C4FE51DAE66430039A7FA /* UserList+SQLite.swift */; };
-		CE5C4FF81DAE817E0039A7FA /* AccountConfig+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C4FF51DAE817E0039A7FA /* AccountConfig+Value.swift */; };
+		CE5C4FF81DAE817E0039A7FA /* Account+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C4FF51DAE817E0039A7FA /* Account+Value.swift */; };
 		CE5C4FF91DAE817E0039A7FA /* Activity+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C4FF61DAE817E0039A7FA /* Activity+Value.swift */; };
 		CE5C4FFA1DAE817E0039A7FA /* Status+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C4FF71DAE817E0039A7FA /* Status+Value.swift */; };
 		CE5C4FFC1DAF18FC0039A7FA /* UserKey+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C4FFB1DAF18FC0039A7FA /* UserKey+Freddy.swift */; };
 		CE5C4FFE1DAF19A50039A7FA /* Double+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C4FFD1DAF19A50039A7FA /* Double+Freddy.swift */; };
 		CE5C50001DAF1BA60039A7FA /* Date+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C4FFF1DAF1BA60039A7FA /* Date+Freddy.swift */; };
+		CE5C50021DAF38860039A7FA /* MediaType+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C50011DAF38860039A7FA /* MediaType+Freddy.swift */; };
 		CE65B1B41D9BA35A00A38A61 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1B31D9BA35A00A38A61 /* ActivityIndicator.swift */; };
 		CE65B1B61D9C20AE00A38A61 /* PullToRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1B51D9C20AE00A38A61 /* PullToRefreshProtocol.swift */; };
 		CE65B1BB1D9CB2B100A38A61 /* ActivityTitleSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1B91D9CB2B100A38A61 /* ActivityTitleSummaryCell.swift */; };
@@ -217,6 +221,9 @@
 		CE052A051CF7F35300E06364 /* TwidereUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwidereUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE052A091CF7F35300E06364 /* TwidereUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwidereUITests.swift; sourceTree = "<group>"; };
 		CE052A0B1CF7F35300E06364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE265FE31DAF599D007FF7CF /* SQLite+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SQLite+Array.swift"; sourceTree = "<group>"; };
+		CE265FE51DAF6932007FF7CF /* AccountInner+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountInner+Freddy.swift"; sourceTree = "<group>"; };
+		CE265FE71DAF6A7B007FF7CF /* ActivityInner+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ActivityInner+Freddy.swift"; sourceTree = "<group>"; };
 		CE29039D1D4CEF2A0056D0E2 /* AccountExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountExtensions.swift; sourceTree = "<group>"; };
 		CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserExtensions.swift; sourceTree = "<group>"; };
 		CE358B701D811C84002A33B3 /* SpanItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItem.swift; sourceTree = "<group>"; };
@@ -270,12 +277,13 @@
 		CE5C4FE31DAE66430039A7FA /* User+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+SQLite.swift"; sourceTree = "<group>"; };
 		CE5C4FE41DAE66430039A7FA /* UserList+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserList+Freddy.swift"; sourceTree = "<group>"; };
 		CE5C4FE51DAE66430039A7FA /* UserList+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserList+SQLite.swift"; sourceTree = "<group>"; };
-		CE5C4FF51DAE817E0039A7FA /* AccountConfig+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountConfig+Value.swift"; sourceTree = "<group>"; };
+		CE5C4FF51DAE817E0039A7FA /* Account+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+Value.swift"; sourceTree = "<group>"; };
 		CE5C4FF61DAE817E0039A7FA /* Activity+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Activity+Value.swift"; sourceTree = "<group>"; };
 		CE5C4FF71DAE817E0039A7FA /* Status+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Status+Value.swift"; sourceTree = "<group>"; };
 		CE5C4FFB1DAF18FC0039A7FA /* UserKey+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserKey+Freddy.swift"; sourceTree = "<group>"; };
 		CE5C4FFD1DAF19A50039A7FA /* Double+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Freddy.swift"; sourceTree = "<group>"; };
 		CE5C4FFF1DAF1BA60039A7FA /* Date+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Freddy.swift"; sourceTree = "<group>"; };
+		CE5C50011DAF38860039A7FA /* MediaType+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaType+Freddy.swift"; sourceTree = "<group>"; };
 		CE65B1B31D9BA35A00A38A61 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		CE65B1B51D9C20AE00A38A61 /* PullToRefreshProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefreshProtocol.swift; sourceTree = "<group>"; };
 		CE65B1B91D9CB2B100A38A61 /* ActivityTitleSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTitleSummaryCell.swift; sourceTree = "<group>"; };
@@ -585,12 +593,13 @@
 		CE497FBF1D6B08B4000F16D2 /* SQLite */ = {
 			isa = PBXGroup;
 			children = (
-				CE5C4FF51DAE817E0039A7FA /* AccountConfig+Value.swift */,
+				CE5C4FF51DAE817E0039A7FA /* Account+Value.swift */,
 				CE5C4FF61DAE817E0039A7FA /* Activity+Value.swift */,
 				CE5C4FF71DAE817E0039A7FA /* Status+Value.swift */,
 				CE65B1D61D9D173C00A38A61 /* Enum+Value.swift */,
 				CE45CAF41D855AE10004CC1C /* User+Value.swift */,
 				CE497FB91D6A8A65000F16D2 /* UserKey+Value.swift */,
+				CE265FE31DAF599D007FF7CF /* SQLite+Array.swift */,
 			);
 			path = SQLite;
 			sourceTree = "<group>";
@@ -655,6 +664,9 @@
 				CE5C4FFB1DAF18FC0039A7FA /* UserKey+Freddy.swift */,
 				CE5C4FFD1DAF19A50039A7FA /* Double+Freddy.swift */,
 				CE5C4FFF1DAF1BA60039A7FA /* Date+Freddy.swift */,
+				CE5C50011DAF38860039A7FA /* MediaType+Freddy.swift */,
+				CE265FE51DAF6932007FF7CF /* AccountInner+Freddy.swift */,
+				CE265FE71DAF6A7B007FF7CF /* ActivityInner+Freddy.swift */,
 			);
 			name = Freddy;
 			path = ObjectMapper;
@@ -1486,7 +1498,7 @@
 				CEDC3B2A1D7DB04F0082A8BA /* Paging.swift in Sources */,
 				CED73F6C1D9519B80066F554 /* UIImageExtensions.swift in Sources */,
 				CE95748F1D33871E00504D52 /* PasswordSignInController.swift in Sources */,
-				CE5C4FF81DAE817E0039A7FA /* AccountConfig+Value.swift in Sources */,
+				CE5C4FF81DAE817E0039A7FA /* Account+Value.swift in Sources */,
 				CEDEE3F51D9270BA00001BE8 /* UIRefreshControlExtension.swift in Sources */,
 				CE45CAF51D855AE10004CC1C /* User+Value.swift in Sources */,
 				CE5C4FE91DAE66430039A7FA /* Activity+SQLite.swift in Sources */,
@@ -1509,6 +1521,7 @@
 				CE5C4FEF1DAE66430039A7FA /* UserList+Freddy.swift in Sources */,
 				CE79C83F1DA77777007C05F2 /* YYTextExtensions.swift in Sources */,
 				CEBECFB71DA9EBD300350383 /* CALayerExtension.swift in Sources */,
+				CE265FE61DAF6932007FF7CF /* AccountInner+Freddy.swift in Sources */,
 				CE7A57421D917BDB0027BECE /* SingleAccountStatusesListControllerDataSource.swift in Sources */,
 				CE2903EC1D4F200A0056D0E2 /* UserExtensions.swift in Sources */,
 				CEA2E2D31D3B42180095BC57 /* AccountsManagerController.swift in Sources */,
@@ -1522,6 +1535,7 @@
 				CE5C4FEA1DAE66430039A7FA /* MediaItem+Freddy.swift in Sources */,
 				CE7A57491D918A5C0027BECE /* ReselectUISegmentedControl.swift in Sources */,
 				CEBECFC01DAA2BE300350383 /* TintedImageButton.swift in Sources */,
+				CE5C50021DAF38860039A7FA /* MediaType+Freddy.swift in Sources */,
 				CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */,
 				CEDC3B211D7D87F80082A8BA /* SQLite+UserVersion.swift in Sources */,
 				CE65B1B61D9C20AE00A38A61 /* PullToRefreshProtocol.swift in Sources */,
@@ -1578,8 +1592,10 @@
 				CE03118A1D87D946009475E8 /* MediaUploadResponse.swift in Sources */,
 				CEA2E2CF1D3A779B0095BC57 /* UIImageViewExtension.swift in Sources */,
 				CEDC3B1F1D7D82370082A8BA /* CoreConstants.swift in Sources */,
+				CE265FE81DAF6A7B007FF7CF /* ActivityInner+Freddy.swift in Sources */,
 				CEA2E2A71D34C1610095BC57 /* DefaultAPISettingsController.swift in Sources */,
 				CEDFEA6D1D4F4BF600E1F8B8 /* Status+MicroBlog.swift in Sources */,
+				CE265FE41DAF599D007FF7CF /* SQLite+Array.swift in Sources */,
 				CEBECFC41DAA36B600350383 /* MediaViewerController.swift in Sources */,
 				CEDC3B231D7D8BE90082A8BA /* DatabaseMigration.swift in Sources */,
 				CE95747D1D3210A300504D52 /* CustomAPIConfig.swift in Sources */,

@@ -104,7 +104,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         }
         
         if let inReplyToStatus = self.inReplyToStatus {
-            var text = "@\(inReplyToStatus.userScreenName!) "
+            var text = "@\(inReplyToStatus.userScreenName) "
             var range = NSMakeRange(text.utf16.count, 0)
             if let screenNames = inReplyToStatus.metadata?.mentions?.flatMap({ $0.screenName }) {
                 for screenName in uniq(source: screenNames) {
@@ -132,7 +132,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         _ = DispatchQueue.global().promise { () -> Account in
             return try defaultAccount()!
         }.then { account -> Void in
-                self.accountProfileImageView.displayImage(account.user!.profileImageUrlForSize(.reasonablySmall), placeholder: UIImage(named: "Profile Image Default"))
+                self.accountProfileImageView.displayImage(account.user.profileImageUrlForSize(.reasonablySmall), placeholder: UIImage(named: "Profile Image Default"))
         }
     }
     
@@ -278,9 +278,9 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     
     func textViewDidChange(_ textView: UITextView) {
         let accounts = try! allAccounts()
-        let textLimit = accounts.map { $0.config?.characterLimit }.reduce(140) { (result, limit) -> Int in
+        let textLimit = accounts.flatMap { $0.config?.characterLimit }.reduce(140) { (result, limit) -> Int in
             if (limit > 0 && limit < result) {
-                return limit!
+                return limit
             }
             return result
         }

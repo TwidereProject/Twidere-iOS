@@ -10,6 +10,20 @@ import Foundation
 import SQLite
 import Freddy
 
+extension Account.AccountType: Value {
+    static var declaredDatatype: String {
+        return String.declaredDatatype
+    }
+    
+    static func fromDatatypeValue(_ datatypeValue: String) -> Account.AccountType? {
+        return Account.AccountType(rawValue: datatypeValue)
+    }
+    
+    var datatypeValue: String {
+        return self.rawValue
+    }
+}
+
 extension Account.Config: Value {
     static var declaredDatatype: String {
         return String.declaredDatatype

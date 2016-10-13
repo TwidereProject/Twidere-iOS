@@ -7,6 +7,7 @@ submodels:
         type: Int64
         column: _id
         primary_key: autoincrement
+        init: -1
       accountKey:
         type: UserKey
         column: account_key
@@ -66,66 +67,81 @@ submodels:
         type: String?
         column: quoted_status_id
         json_field: quoted_status_id
+        init: nil
       quotedCreatedAt: # Added in database version 3
         type: Date?
         column: quoted_created_at
         json_field: quoted_created_at
         added_in: 3
+        init: nil
       quotedUserKey:
         type: UserKey?
         column: quoted_user_key
         json_field: quoted_user_key
         json_transform: UserKeyTransform
+        init: nil
       quotedUserName:
         type: String?
         column: quoted_user_name
         json_field: quoted_user_name
+        init: nil
       quotedUserScreenName:
         type: String?
         column: quoted_user_screen_name
         json_field: quoted_user_screen_name
+        init: nil
       quotedUserProfileImage:
         type: String?
         column: quoted_user_profile_image
         json_field: quoted_user_profile_image
+        init: nil
       quotedTextPlain:
         type: String?
         column: quoted_text_plain
         json_field: quoted_text_plain
+        init: nil
       quotedTextDisplay:
         type: String?
         column: quoted_text_display
         json_field: quoted_text_display
+        init: nil
       quotedMetadata:
         type: Status.Metadata?
         column: quoted_metadata
         json_field: quoted_metadata
+        init: nil
       retweetedByUserKey:
         type: UserKey?
         column: retweeted_by_user_key
         json_field: retweeted_by_user_key
         json_transform: UserKeyTransform
+        init: nil
       retweetedByUserName:
         type: String?
         column: retweeted_by_user_name
         json_field: retweeted_by_user_name
+        init: nil
       retweetedByUserScreenName:
         type: String?
         column: retweeted_by_user_screen_name
         json_field: retweeted_by_user_screen_name
+        init: nil
       retweetedByUserProfileImage:
         type: String?
         column: retweeted_by_user_profile_image
         json_field: retweeted_by_user_profile_image
+        init: nil
       retweetId:
         type: String?
         column: retweet_id
         json_field: retweet_id
+        init: nil
       retweetCreatedAt: # Added in database version 3
         type: Date?
         column: retweet_created_at
         json_field: retweet_created_at
         added_in: 3
+        init: nil
     submodels:
       Metadata:
         fields:
@@ -148,16 +164,16 @@ submodels:
             type: 'Status.Metadata.InReplyTo?'
             json_field: 'in_reply_to'
           externalUrl:
-            type: String
+            type: String?
             json_field: 'extenral_url'
           replyCount:
-            type: Int64
+            type: Int64?
             json_field: 'reply_count'
           retweetCount:
-            type: Int64
+            type: Int64?
             json_field: 'retweet_count'
           favoriteCount:
-            type: Int64
+            type: Int64?
             json_field: 'favorite_count'
         submodels:
           InReplyTo:

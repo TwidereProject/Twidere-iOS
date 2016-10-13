@@ -21,7 +21,7 @@ class HomeTimelineStatusesListControllerDataSource: StatusesListControllerDataSo
     
     func loadStatuses(_ opts: StatusesListController.LoadOptions) -> Promise<[Status]> {
         return DispatchQueue.global().promise { () -> [UserKey] in
-            return self.getAccounts().map({ $0.key! })
+            return self.getAccounts().map({ $0.key })
             }.then{ accountKeys -> Promise<[UserKey]> in
                 return Promise { fullfill, reject in
                     if let params = opts.params , !opts.initLoad {
@@ -44,14 +44,15 @@ class HomeTimelineStatusesListControllerDataSource: StatusesListControllerDataSo
     }
     
     func getNewestStatusIds(_ accounts: [Account]) -> [String?]? {
-        let accountKeys = accounts.map({ $0.key! })
+        let accountKeys = accounts.map({ $0.key })
         let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
         
         var result = [String?](repeating: nil, count: accounts.count)
         for row in try! db.prepare(table.select(Status.RowIndices.accountKey, Status.RowIndices.id)
             .group(Status.RowIndices.accountKey, having: accountKeys.contains(Status.RowIndices.accountKey))
             .order(Status.RowIndices.positionKey.max)) {
-                if let key = row.get(Status.RowIndices.accountKey), let idx = accountKeys.index(where: {$0 == key}) {
+                let key = row.get(Status.RowIndices.accountKey)
+                if let idx = accountKeys.index(where: {$0 == key}) {
                     result[idx] = row.get(Status.RowIndices.id)
                 }
         }
@@ -59,15 +60,16 @@ class HomeTimelineStatusesListControllerDataSource: StatusesListControllerDataSo
     }
     
     func getNewestStatusSortIds(_ accounts: [Account]) -> [Int64]? {
-        let accountKeys = accounts.map({ $0.key! })
+        let accountKeys = accounts.map({ $0.key })
         let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
         
         var result = [Int64](repeating: -1, count: accounts.count)
         for row in try! db.prepare(table.select(Status.RowIndices.accountKey, Status.RowIndices.sortId)
             .group(Status.RowIndices.accountKey, having: accountKeys.contains(Status.RowIndices.accountKey))
             .order(Status.RowIndices.positionKey.max)) {
-                if let key = row.get(Status.RowIndices.accountKey), let idx = accountKeys.index(where: {$0 == key}) {
-                    result[idx] = row.get(Status.RowIndices.sortId) ?? -1
+                let key = row.get(Status.RowIndices.accountKey)
+                if let idx = accountKeys.index(where: {$0 == key}) {
+                    result[idx] = row.get(Status.RowIndices.sortId)
                 }
         }
         return result

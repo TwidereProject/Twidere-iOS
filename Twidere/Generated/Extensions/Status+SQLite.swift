@@ -72,53 +72,53 @@ extension Status {
     }
 
     static func insertData(table: Table, model: Status) -> Insert {
-        return table.insert( [
-                RowIndices.accountKey <- model.accountKey,
-                RowIndices.sortId <- model.sortId,
-                RowIndices.positionKey <- model.positionKey,
-                RowIndices.isGap <- model.isGap,
-                RowIndices.createdAt <- model.createdAt,
-                RowIndices.id <- model.id,
-                RowIndices.userKey <- model.userKey,
-                RowIndices.userName <- model.userName,
-                RowIndices.userScreenName <- model.userScreenName,
-                RowIndices.userProfileImage <- model.userProfileImage,
-                RowIndices.textPlain <- model.textPlain,
-                RowIndices.textDisplay <- model.textDisplay,
-                RowIndices.metadata <- model.metadata,
-                RowIndices.quotedId <- model.quotedId,
-                RowIndices.quotedCreatedAt <- model.quotedCreatedAt,
-                RowIndices.quotedUserKey <- model.quotedUserKey,
-                RowIndices.quotedUserName <- model.quotedUserName,
-                RowIndices.quotedUserScreenName <- model.quotedUserScreenName,
-                RowIndices.quotedUserProfileImage <- model.quotedUserProfileImage,
-                RowIndices.quotedTextPlain <- model.quotedTextPlain,
-                RowIndices.quotedTextDisplay <- model.quotedTextDisplay,
-                RowIndices.quotedMetadata <- model.quotedMetadata,
-                RowIndices.retweetedByUserKey <- model.retweetedByUserKey,
-                RowIndices.retweetedByUserName <- model.retweetedByUserName,
-                RowIndices.retweetedByUserScreenName <- model.retweetedByUserScreenName,
-                RowIndices.retweetedByUserProfileImage <- model.retweetedByUserProfileImage,
-                RowIndices.retweetId <- model.retweetId,
-                RowIndices.retweetCreatedAt <- model.retweetCreatedAt,
-        ])
+        var setters: [Setter] = []
+        setters.append(RowIndices.accountKey <- model.accountKey)
+        setters.append(RowIndices.sortId <- model.sortId)
+        setters.append(RowIndices.positionKey <- model.positionKey)
+        setters.append(RowIndices.isGap <- model.isGap)
+        setters.append(RowIndices.createdAt <- model.createdAt)
+        setters.append(RowIndices.id <- model.id)
+        setters.append(RowIndices.userKey <- model.userKey)
+        setters.append(RowIndices.userName <- model.userName)
+        setters.append(RowIndices.userScreenName <- model.userScreenName)
+        setters.append(RowIndices.userProfileImage <- model.userProfileImage)
+        setters.append(RowIndices.textPlain <- model.textPlain)
+        setters.append(RowIndices.textDisplay <- model.textDisplay)
+        setters.append(RowIndices.metadata <- model.metadata)
+        setters.append(RowIndices.quotedId <- model.quotedId)
+        setters.append(RowIndices.quotedCreatedAt <- model.quotedCreatedAt)
+        setters.append(RowIndices.quotedUserKey <- model.quotedUserKey)
+        setters.append(RowIndices.quotedUserName <- model.quotedUserName)
+        setters.append(RowIndices.quotedUserScreenName <- model.quotedUserScreenName)
+        setters.append(RowIndices.quotedUserProfileImage <- model.quotedUserProfileImage)
+        setters.append(RowIndices.quotedTextPlain <- model.quotedTextPlain)
+        setters.append(RowIndices.quotedTextDisplay <- model.quotedTextDisplay)
+        setters.append(RowIndices.quotedMetadata <- model.quotedMetadata)
+        setters.append(RowIndices.retweetedByUserKey <- model.retweetedByUserKey)
+        setters.append(RowIndices.retweetedByUserName <- model.retweetedByUserName)
+        setters.append(RowIndices.retweetedByUserScreenName <- model.retweetedByUserScreenName)
+        setters.append(RowIndices.retweetedByUserProfileImage <- model.retweetedByUserProfileImage)
+        setters.append(RowIndices.retweetId <- model.retweetId)
+        setters.append(RowIndices.retweetCreatedAt <- model.retweetCreatedAt)
+        return table.insert(setters)
     }
 
     struct RowIndices {
 
         static let _id = Expression<Int64>("_id")
-        static let accountKey = Expression<UserKey?>("account_key")
-        static let sortId = Expression<Int64?>("sort_id")
-        static let positionKey = Expression<Int64?>("position_key")
-        static let isGap = Expression<Bool?>("is_gap")
-        static let createdAt = Expression<Date?>("created_at")
-        static let id = Expression<String?>("status_id")
-        static let userKey = Expression<UserKey?>("user_key")
-        static let userName = Expression<String?>("user_name")
-        static let userScreenName = Expression<String?>("user_screen_name")
-        static let userProfileImage = Expression<String?>("user_profile_image")
-        static let textPlain = Expression<String?>("text_plain")
-        static let textDisplay = Expression<String?>("text_display")
+        static let accountKey = Expression<UserKey>("account_key")
+        static let sortId = Expression<Int64>("sort_id")
+        static let positionKey = Expression<Int64>("position_key")
+        static let isGap = Expression<Bool>("is_gap")
+        static let createdAt = Expression<Date>("created_at")
+        static let id = Expression<String>("status_id")
+        static let userKey = Expression<UserKey>("user_key")
+        static let userName = Expression<String>("user_name")
+        static let userScreenName = Expression<String>("user_screen_name")
+        static let userProfileImage = Expression<String>("user_profile_image")
+        static let textPlain = Expression<String>("text_plain")
+        static let textDisplay = Expression<String>("text_display")
         static let metadata = Expression<Status.Metadata?>("metadata")
         static let quotedId = Expression<String?>("quoted_status_id")
         static let quotedCreatedAt = Expression<Date?>("quoted_created_at")

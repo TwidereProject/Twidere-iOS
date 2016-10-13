@@ -37,6 +37,7 @@ class SingleAccountStatusesListControllerDataSource: StatusesListControllerDataS
         return getStatusesRequest(microBlog: microBlog, paging: paging).then(on: DispatchQueue.global()) { fetched -> [Status] in
             var rowsDeleted: Int = 0
             
+            var fetched = fetched
             let noItemsBefore = self.statuses?.isEmpty ?? true
             // Filter out statuses found in fetched list
             var result: [Status] = self.statuses?.filter { status -> Bool in
@@ -48,7 +49,9 @@ class SingleAccountStatusesListControllerDataSource: StatusesListControllerDataS
             } ?? []
             let deletedOldGap = rowsDeleted > 0 && fetched.contains(where: { $0.id == paging.maxId })
             let noRowsDeleted = rowsDeleted == 0
-            fetched.min(by: >)?.isGap = (noRowsDeleted || deletedOldGap) && !noItemsBefore && fetched.count >= loadItemLimit && !loadingMore
+            if let min = fetched.min(by: >), let idx = fetched.index(where: {$0 == min}) {
+                fetched[idx].isGap = (noRowsDeleted || deletedOldGap) && !noItemsBefore && fetched.count >= loadItemLimit && !loadingMore
+            }
             result.append(contentsOf: fetched)
             result.sort(by: >)
             return result
