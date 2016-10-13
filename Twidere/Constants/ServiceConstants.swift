@@ -10,7 +10,7 @@ import Foundation
 
 
 let defaultApiUrlFormat = "https://[DOMAIN.]twitter.com/"
-let defaultAuthType: CustomAPIConfig.AuthType = .oauth
+let defaultAuthType: CustomAPIConfig.AuthType = .OAuth
 let defaultTwitterConsumerKey = "DNvvSlrMIIyvxjmY37NBwA"
 let defaultTwitterConsumerSecret = "UXZHBtDpWOEKYOE67KjpkeIcw93uvaz5KE4cwULVrsk"
 

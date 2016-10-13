@@ -45,8 +45,8 @@ class ActivityTitleSummaryCell: ALSTableViewCell {
         let profileImageViews = profileImagesContainer.subviews
         for profileImageIdx in 0..<profileImageViews.count {
             let view = profileImageViews[profileImageIdx] as! UIImageView
-            if (profileImageIdx < activity.sources.count) {
-                view.displayImage(activity.sources[profileImageIdx].profileImageUrlForSize(.reasonablySmall))
+            if (profileImageIdx < activity.sources.array.count) {
+                view.displayImage(activity.sources.array[profileImageIdx].profileImageUrlForSize(.reasonablySmall))
             } else {
                 view.displayImage(nil)
             }

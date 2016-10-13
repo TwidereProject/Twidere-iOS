@@ -50,13 +50,13 @@ submodels:
     submodels:
       VideoInfo:
         fields:
+          variants:
+            type: '[Variant]'
+            json_field: variants
           duration:
             type: Int64
             init: -1
             json_field: duration
-          variants:
-            type: '[Variant]'
-            json_field: variants
         submodels:
           Variant:
             fields:

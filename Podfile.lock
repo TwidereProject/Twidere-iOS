@@ -6,37 +6,6 @@ PODS:
   - DACircularProgress (2.3.1)
   - DateTools (1.7.0)
   - DeviceKit (1.0.0)
-  - FormatterKit (1.8.1):
-    - FormatterKit/AddressFormatter (= 1.8.1)
-    - FormatterKit/ArrayFormatter (= 1.8.1)
-    - FormatterKit/ColorFormatter (= 1.8.1)
-    - FormatterKit/LocationFormatter (= 1.8.1)
-    - FormatterKit/NameFormatter (= 1.8.1)
-    - FormatterKit/OrdinalNumberFormatter (= 1.8.1)
-    - FormatterKit/Resources (= 1.8.1)
-    - FormatterKit/TimeIntervalFormatter (= 1.8.1)
-    - FormatterKit/UnitOfInformationFormatter (= 1.8.1)
-    - FormatterKit/URLRequestFormatter (= 1.8.1)
-  - FormatterKit/AddressFormatter (1.8.1):
-    - FormatterKit/Resources
-  - FormatterKit/ArrayFormatter (1.8.1):
-    - FormatterKit/Resources
-  - FormatterKit/ColorFormatter (1.8.1):
-    - FormatterKit/Resources
-  - FormatterKit/LocationFormatter (1.8.1):
-    - FormatterKit/Resources
-  - FormatterKit/NameFormatter (1.8.1):
-    - FormatterKit/Resources
-  - FormatterKit/OrdinalNumberFormatter (1.8.1):
-    - FormatterKit/Resources
-  - FormatterKit/Resources (1.8.1)
-  - FormatterKit/TimeIntervalFormatter (1.8.1):
-    - FormatterKit/Resources
-  - FormatterKit/UnitOfInformationFormatter (1.8.1):
-    - FormatterKit/Resources
-  - FormatterKit/URLRequestFormatter (1.8.1):
-    - FormatterKit/Resources
-  - Freddy (3.0.0)
   - FXBlurView (1.6.4)
   - FXImageView (1.3.5)
   - IQKeyboardManagerSwift (4.0.6)
@@ -50,6 +19,7 @@ PODS:
     - SDWebImage (!= 3.7.2, ~> 3.7)
   - MXPagerView (0.1.3)
   - MXParallaxHeader (0.5.2)
+  - ObjectMapper (2.1.0)
   - PromiseKit (4.0.3):
     - PromiseKit/Foundation (= 4.0.3)
     - PromiseKit/QuartzCore (= 4.0.3)
@@ -86,8 +56,6 @@ DEPENDENCIES:
   - CryptoSwift (~> 0.6.0)
   - DateTools (~> 1.7.0)
   - DeviceKit (~> 1.0)
-  - FormatterKit (~> 1.8.1)
-  - Freddy (~> 3.0)
   - FXBlurView (~> 1.6)
   - FXImageView (~> 1.3.5)
   - IQKeyboardManagerSwift (~> 4.0.6)
@@ -97,6 +65,7 @@ DEPENDENCIES:
   - MWPhotoBrowser (~> 2.1.2)
   - MXPagerView (~> 0.1.3)
   - MXParallaxHeader (~> 0.5.2)
+  - ObjectMapper (~> 2.1.0)
   - PromiseKit (~> 4.0)
   - SDWebImage (~> 3.8.2)
   - SQLite.swift (from `https://github.com/stephencelis/SQLite.swift.git`)
@@ -135,8 +104,6 @@ SPEC CHECKSUMS:
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   DeviceKit: ddead7f3a7c9603ba3a63cb748566428c38dd11f
-  FormatterKit: 11ad17b983200629246a5a466f6f1bfa2df823cb
-  Freddy: 367f994c88a90dd3987293b4b1bec94a4530745a
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   FXImageView: 7d84722b37f0afea9a64f12fdd4a6c7f9ecc4b16
   IQKeyboardManagerSwift: b3015e819559ca76381f87a0833f44d178564603
@@ -147,6 +114,7 @@ SPEC CHECKSUMS:
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
   MXPagerView: db0c020aeada6a0c704f18f8053468560e346982
   MXParallaxHeader: 5070ba8e8af27ec793c0d32ae82cfd2318e59635
+  ObjectMapper: e5e0f8aef8590fc2ddcde7f27eddb255863ee6e9
   PromiseKit: dfe8fcc6445674fb23378d89990838c1cbdbf05a
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SQLite.swift: c54b2cb32c2ec77cd52bc7442d05dd51b0623861
@@ -162,6 +130,6 @@ SPEC CHECKSUMS:
   UIView+TouchHighlighting: e05a338801522cbdc4a1e236bd189f2a928a781f
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: a47ad527e58944d880eadabb41c72d0077184cb1
+PODFILE CHECKSUM: 34e34d987d28aa2b2b855ede611a8a562b3face2
 
 COCOAPODS: 1.1.0.rc.2

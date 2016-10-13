@@ -23,7 +23,10 @@ func == (lhs: Status, rhs: Status) -> Bool {
 extension Status {
     
     func userProfileImageForSize(_ size: ProfileImageSize) -> String? {
-        return getProfileImageUrlForSize(userProfileImage, size: size)
+        guard let url = userProfileImage else {
+            return nil
+        }
+        return getProfileImageUrlForSize(url, size: size)
     }
     
     func quotedUserProfileImageForSize(_ size: ProfileImageSize) -> String? {
@@ -37,11 +40,30 @@ extension Status {
         guard let quotedId = self.quotedId else {
             return nil
         }
-        return Status(_id: -1, accountKey: self.accountKey, sortId: -1, positionKey: -1, isGap: false, createdAt: self.quotedCreatedAt!, id: quotedId, userKey: self.quotedUserKey!, userName: self.quotedUserName!, userScreenName: self.quotedUserScreenName!, userProfileImage: self.quotedUserProfileImage!, textPlain: self.quotedTextPlain!, textDisplay: self.quotedTextDisplay!, metadata: self.quotedMetadata!, quotedId: nil, quotedCreatedAt: nil, quotedUserKey: nil, quotedUserName: nil, quotedUserScreenName: nil, quotedUserProfileImage: nil, quotedTextPlain: nil, quotedTextDisplay: nil, quotedMetadata: nil, retweetedByUserKey: nil, retweetedByUserName: nil, retweetedByUserScreenName: nil, retweetedByUserProfileImage: nil, retweetId: nil, retweetCreatedAt: nil)
+        let quoted = Status()
+        quoted.id = quotedId
+        quoted.accountKey = self.accountKey
+        quoted.createdAt = self.quotedCreatedAt
+        quoted.sortId = self.generateSortId(rawId: -1)
+        quoted.accountKey = self.accountKey
+        quoted.userKey = self.quotedUserKey
+        quoted.userName = self.quotedUserName
+        quoted.userScreenName = self.quotedUserScreenName
+        quoted.userProfileImage = self.quotedUserProfileImage
+        quoted.textPlain = self.quotedTextPlain
+        quoted.textDisplay = self.quotedTextDisplay
+        quoted.metadata = self.quotedMetadata
+        return quoted
     }
     
     var user: User {
-        return User(_id: -1, accountKey: self.accountKey, key: self.userKey, createdAt: nil, position: -1, isProtected: false, isVerified: false, name: self.userName, screenName: self.userScreenName, profileImageUrl: self.userProfileImage, profileBannerUrl: nil, profileBackgroundUrl: nil, descriptionPlain: nil, descriptionDisplay: nil, url: nil, urlExpanded: nil, location: nil, metadata: nil)
+        let user = User()
+        user.accountKey = self.accountKey
+        user.key = self.userKey
+        user.screenName = self.userScreenName
+        user.name = self.userName
+        user.profileImageUrl = self.userProfileImage
+        return user
     }
     
     var statusUrl: String {
@@ -49,8 +71,8 @@ extension Status {
             return externalUrl
         }
         if self.accountKey.host == "fanfou.com" {
-            return "http://fanfou.com/statuses/\(self.id)"
+            return "http://fanfou.com/statuses/\(self.id!)"
         }
-        return "https://twitter.com/\(self.userScreenName)/status/\(self.id)"
+        return "https://twitter.com/\(self.userScreenName!)/status/\(self.id!)"
     }
 }

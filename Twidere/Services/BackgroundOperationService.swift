@@ -36,9 +36,9 @@ class BackgroundOperationService {
                 }
             }
             let owners = update.accounts.filter{ (account: Account) -> Bool in
-                return account.type == .twitter
-            }.map { account -> UserKey in
-                return account.key
+                return account.typeInferred == .twitter
+                }.map { account -> UserKey in
+                    return account.key!
             }
             let ownerIds = owners.map { key -> String in
                 return key.id
@@ -46,7 +46,7 @@ class BackgroundOperationService {
             pendingUpdate.sharedMediaOwners = owners
             return when(resolved: (0..<pendingUpdate.length).map { i -> Promise<Bool> in
                 let account = update.accounts[i]
-                switch (account.type) {
+                switch (account.typeInferred) {
                 case .twitter:
                     let upload = account.newMicroBlogService("upload")
                     if (pendingUpdate.sharedMediaIds != nil) {
@@ -156,14 +156,14 @@ class BackgroundOperationService {
                     let microBlog = account.newMicroBlogService("api")
                     return Promise { fullfill, reject in
                         let statusPromise: Promise<Status>
-                        switch (account.type) {
+                        switch (account.typeInferred) {
                         default:
                             statusPromise = twitterUpdateStatus(microBlog, statusUpdate: statusUpdate, pendingUpdate: pendingUpdate, overrideText: pendingUpdate.overrideTexts[i], index: i)
                         }
                         statusPromise.then { status -> Void in
                             fullfill((status, nil))
-                        }.catch { error in
-                            fullfill((nil, (account.key, error)))
+                            }.catch { error in
+                                fullfill((nil, (account.key!, error)))
                         }
                     }
             }).then { results -> [Status] in

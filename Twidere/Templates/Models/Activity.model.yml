@@ -14,9 +14,8 @@ submodels:
         type: Int64
         column: _id
         primary_key: autoincrement
-        init: -1
       accountKey:
-        type: UserKey!
+        type: UserKey
         column: account_key
         json_field: account_key
         json_transform: UserKeyTransform
@@ -41,11 +40,11 @@ submodels:
         column: min_sort_position
         json_field: min_sort_position
       maxPosition:
-        type: String?
+        type: String
         column: max_position
         json_field: max_position
       minPosition:
-        type: String?
+        type: String
         column: min_position
         json_field: min_position
       action:
@@ -53,33 +52,30 @@ submodels:
         column: action
         json_field: action
       sources:
-        type: '[User]!'
+        type: UserArray
         column: sources
         json_field: sources
       sourceKeys:
-        type: '[UserKey]!'
+        type: UserKeyArray
         column: source_keys
         json_field: source_keys
       targets:
-        type: ObjectList?
+        type: ObjectList
         column: targets
         json_field: targets
       targetObjects:
-        type: ObjectList?
+        type: ObjectList
         column: target_objects
         json_field: target_objects
     submodels:
       ObjectList:
         fields:
           statuses:
-            type: '[Status]!'
+            type: '[Status]'
             json_field: statuses
-            init: nil
           users:
-            type: '[User]!'
+            type: '[User]'
             json_field: users
-            init: nil
           userLists:
-            type: '[UserList]!'
+            type: '[UserList]'
             json_field: user_lists
-            init: nil

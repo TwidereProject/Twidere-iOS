@@ -15,13 +15,17 @@ import SQLite
 class HomeController: UITabBarController {
     
     @IBOutlet weak var accountProfileImageView: UIImageView!
+    @IBOutlet weak var menuToggleItem: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.accountProfileImageView.makeCircular()
+        self.accountProfileImageView.layer.cornerRadius = self.accountProfileImageView.frame.size.width / 2
+        self.accountProfileImageView.clipsToBounds = true
+        
+        menuToggleItem.customView?.touchHighlightingStyle = .transparentMask
         
         let pages = UIStoryboard(name: "Pages", bundle: nil)
         
@@ -36,35 +40,19 @@ class HomeController: UITabBarController {
         let testController = pages.instantiateViewController(withIdentifier: "StubTab")
         testController.tabBarItem = UITabBarItem(title: "User", image: UIImage(named: "Tab Icon User"), tag: 4)
         
-        let tabControllers = [homeTimelineController, notificationsTimelineController, messageConversationsController, testController].map { vc -> UIViewController in
-            let nvc = UINavigationController(rootViewController: vc)
-            nvc.hidesBottomBarWhenPushed = true
-            return nvc
-        }
-        self.setViewControllers(tabControllers, animated: false)
+        let pageControllers = [homeTimelineController, notificationsTimelineController, messageConversationsController, testController]
         
-//        self.tabLocation = .bottom
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-//        let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, tabBar.frame.height, 0)
-//        for vc in viewControllers! {
-//            if let tv = (vc as? UITableViewController)?.tableView {
-//                var contentInset = tv.contentInset, scrollIndicatorInsets = tv.scrollIndicatorInsets
-//                contentInset.bottom = insets.bottom
-//                scrollIndicatorInsets.bottom = insets.bottom
-//                tv.contentInset = contentInset
-//                tv.scrollIndicatorInsets = scrollIndicatorInsets
-//            }
-//        }
+        setViewControllers(pageControllers.map({ vc -> UINavigationController in
+            return UINavigationController(rootViewController: vc)
+        }), animated: false)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         _ = DispatchQueue.global().promise { () -> Account in
             return try defaultAccount()!
         }.then { account -> Void in
-            self.accountProfileImageView.displayImage(account.user.profileImageUrlForSize(.reasonablySmall), placeholder: UIImage(named: "Profile Image Default"))
+            self.accountProfileImageView.displayImage(account.user!.profileImageUrlForSize(.reasonablySmall), placeholder: UIImage(named: "Profile Image Default"))
         }
     }
     

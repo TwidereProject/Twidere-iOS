@@ -254,7 +254,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         nameView.attributedText = NSAttributedString(string: user.name, attributes: [
             NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15)
             ])
-        screenNameView.attributedText = NSAttributedString(string: "@\(user.screenName)", attributes: [
+        screenNameView.attributedText = NSAttributedString(string: "@\(user.screenName!)", attributes: [
             NSFontAttributeName: UIFont.systemFont(ofSize: 12)
             ])
         

@@ -64,13 +64,13 @@ class SignInController: UIViewController {
     
     @IBAction func signInClicked(_ sender: UIButton) {
         switch customAPIConfig.authType {
-        case .oauth:
+        case .OAuth:
             doBrowserSignIn()
         case .xAuth:
             doXAuthSignIn()
-        case .twipO:
+        case .TwipO:
             doTwipOSignIn()
-        case .basic:
+        case .Basic:
             doBasicSignIn()
         }
         
@@ -99,7 +99,7 @@ class SignInController: UIViewController {
     }
     
     fileprivate func updateSignInUi() {
-        if (customAPIConfig.authType == .oauth) {
+        if (customAPIConfig.authType == .OAuth) {
             passwordSignInButton.layoutParams.hidden = false
         } else {
             passwordSignInButton.layoutParams.hidden = true
@@ -251,39 +251,53 @@ class SignInController: UIViewController {
     
     fileprivate func doSignIn(_ action: (_ config: CustomAPIConfig) -> Promise<SignInResult>) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        action(self.customAPIConfig).then(on: DispatchQueue.global()) { result throws -> Account in
+        action(self.customAPIConfig).then { result throws -> Account in
             let user = result.user
             let config = self.customAPIConfig
             let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
-            let account = Account(_id: -1, key: user.key, type: .twitter, apiUrlFormat: config.apiUrlFormat, authType: config.authType, basicPassword: result.username, basicUsername: result.password, consumerKey: config.consumerKey, consumerSecret: config.consumerSecret, noVersionSuffix: config.noVersionSuffix, oauthToken: result.accessToken?.oauthToken, oauthTokenSecret: result.accessToken?.oauthTokenSecret, sameOAuthSigningUrl: config.sameOAuthSigningUrl, config: nil, user: user)
+            let account = Account()
+            
+            account.key = user.key
+            account.type = String(describing: AccountType.Twitter)
+            account.apiUrlFormat = config.apiUrlFormat
+            account.authType = String(describing: config.authType)
+            account.basicUsername = result.username
+            account.basicPassword = result.password
+            account.consumerKey = config.consumerKey
+            account.consumerSecret = config.consumerSecret
+            account.noVersionSuffix = config.noVersionSuffix
+            account.oauthToken = result.accessToken?.oauthToken
+            account.oauthTokenSecret = result.accessToken?.oauthTokenSecret
+            account.sameOAuthSigningUrl = config.sameOAuthSigningUrl
+            account.user = user
             try db.transaction {
                 try _ = db.run(Account.insertData(table: accountsTable, model: account))
             }
             return account
-        }.then { result -> Void in
-            let home = self.storyboard!.instantiateViewController(withIdentifier: "Main")
-            self.present(home, animated: true, completion: nil)
-        }.always {
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        }.catch { error in
-            if (error is AuthenticationError) {
-                switch (error) {
-                case AuthenticationError.accessTokenFailed:
-                    let vc = UIAlertController(title: nil, message: "Unable to get access token", preferredStyle: .alert)
-                    self.present(vc, animated: true, completion: nil)
-                case AuthenticationError.requestTokenFailed:
-                    let vc = UIAlertController(title: nil, message: "Unable to get request token", preferredStyle: .alert)
-                    self.present(vc, animated: true, completion: nil)
-                case AuthenticationError.wrongUsernamePassword:
-                    let vc = UIAlertController(title: nil, message: "Wrong username or password", preferredStyle: .alert)
-                    self.present(vc, animated: true, completion: nil)
-                case AuthenticationError.verificationFailed:
-                    let vc = UIAlertController(title: nil, message: "Verification failed", preferredStyle: .alert)
-                    self.present(vc, animated: true, completion: nil)
-                default: break
+            }.then { result -> Void in
+                let home = self.storyboard!.instantiateViewController(withIdentifier: "Main")
+                self.present(home, animated: true, completion: nil)
+            }.always {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }.catch { error in
+                if (error is AuthenticationError) {
+                    switch (error) {
+                    case AuthenticationError.accessTokenFailed:
+                        let vc = UIAlertController(title: nil, message: "Unable to get access token", preferredStyle: .alert)
+                        self.present(vc, animated: true, completion: nil)
+                    case AuthenticationError.requestTokenFailed:
+                        let vc = UIAlertController(title: nil, message: "Unable to get request token", preferredStyle: .alert)
+                        self.present(vc, animated: true, completion: nil)
+                    case AuthenticationError.wrongUsernamePassword:
+                        let vc = UIAlertController(title: nil, message: "Wrong username or password", preferredStyle: .alert)
+                        self.present(vc, animated: true, completion: nil)
+                    case AuthenticationError.verificationFailed:
+                        let vc = UIAlertController(title: nil, message: "Verification failed", preferredStyle: .alert)
+                        self.present(vc, animated: true, completion: nil)
+                    default: break
+                    }
                 }
-            }
-            debugPrint(error)
+                debugPrint(error)
         }
     }
     

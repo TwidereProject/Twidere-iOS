@@ -55,8 +55,7 @@ class GetActivitiesTask {
             }
             return Promise<ActivityListResponse> { fullfill, reject in
                 fetchAction(account, twitter, paging).then(on: .global()) { activities -> [Activity] in
-                    var activities = activities
-                    try storeActivities(account, activities: &activities, sinceId: sinceId, maxId: maxId, sinceSortId: sinceSortId, maxSortId: maxSortId, loadItemLimit: loadItemLimit, table: table, notify: false)
+                    try storeActivities(account, activities: activities, sinceId: sinceId, maxId: maxId, sinceSortId: sinceSortId, maxSortId: maxSortId, loadItemLimit: loadItemLimit, table: table, notify: false)
                     
                     // TODO cache related data and preload
                     return activities
@@ -70,8 +69,8 @@ class GetActivitiesTask {
         })
     }
     
-    fileprivate static func storeActivities(_ account: Account, activities: inout [Activity], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
-        let accountKey = account.key
+    fileprivate static func storeActivities(_ account: Account, activities: [Activity], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
+        let accountKey = account.key!
         let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
         
         let noItemsBefore = try db.scalar(table.filter(accountKey == Activity.RowIndices.accountKey).count) <= 0
@@ -86,7 +85,7 @@ class GetActivitiesTask {
             let sortDiff = firstSortId - lastSortId
             
             for i in 0..<activities.count {
-                var activity = activities[i]
+                let activity = activities[i]
                 activity.positionKey = getPositionKey(activity.createdAt as Date, sortId: activity.createdAt.timeIntervalSince1970Millis, lastSortId: lastSortId, sortDiff: sortDiff, position: i, count: activities.count)
                 
                 if (deleteBound[0] < 0) {
@@ -121,10 +120,9 @@ class GetActivitiesTask {
             }
         }
         // Insert previously fetched items.
-        let insertStatements = activities.map { Activity.insertData(table: table, model: $0) }
         try db.transaction {
-            for insert in insertStatements {
-                _ = try db.run(insert)
+            for activity in activities {
+                _ = try db.run(Activity.insertData(table: table, model: activity))
             }
         }
         

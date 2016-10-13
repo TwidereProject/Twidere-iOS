@@ -19,30 +19,27 @@ def generateModelContent(name, model, indent=0):
     fieldsLines = []
     fields = model['fields']
     for propertyName in fields:
-        field = fields[propertyName]
-        if field.get('override', False):
+        propertyType = fields[propertyName].get('type', None)
+        propertyInit = fields[propertyName].get('init', None)
+        if propertyType is None:
             continue
-
-        propertyType = field['type']
-        propertyInit = field.get('init', None)
+        if propertyType.endswith('?'):
+            pass
+        elif propertyInit is not None:
+            propertyType = propertyType
+        else:
+            propertyType = propertyType + '!'
         if propertyInit is not None:
             propertyInitContent = " = {init}".format(init=propertyInit)
         else:
             propertyInitContent = ''
-        getterSetter = field.get('getter_setter', None)
-        if getterSetter is not None:
-            getterSetterContent = '{ %s }' % getterSetter
-        else:
-            getterSetterContent = ''
-        fieldsLines.append("    var {propertyName}: {propertyType}{propertyInit} {getterSetterContent}".format(
+        fieldsLines.append("    var {propertyName}: {propertyType}{propertyInit}".format(
             propertyName=propertyName,
             propertyType=propertyType,
-            propertyInit=propertyInitContent,
-            getterSetterContent=getterSetterContent
+            propertyInit=propertyInitContent
             ))
     subModelsLines = []
     submodels = model.get('submodels', [])
-    modelType = model.get('type', 'struct')
     inheritance = model.get('inheritance', None)
     inheritanceContent = ''
     appendBodyContent = model.get('append_body', '')
@@ -51,7 +48,7 @@ def generateModelContent(name, model, indent=0):
     for subModelName in submodels:
         submodel = submodels[subModelName]
         subModelsLines.append(generateModelContent(subModelName, submodel, indent + 1))
-    classTemplate ="""{modelType} {modelName}{inheritanceContent} {{
+    classTemplate ="""class {modelName}{inheritanceContent} {{
 
     // Fields
 {fieldsContent}
@@ -62,7 +59,6 @@ def generateModelContent(name, model, indent=0):
 
 }}""".format(
         modelName=name,
-        modelType=modelType,
         fieldsContent='\n'.join(fieldsLines),
         subModelsContent='\n'.join(subModelsLines),
         inheritanceContent=inheritanceContent,

@@ -1,58 +1,46 @@
 // Automatically generated, DO NOT MODIFY
 import Foundation
 
-protocol SpanItem {
+class SpanItem {
 
     // Fields
-    var start: Int { get set }
-    var end: Int { get set }
-    var origStart: Int { get set }
-    var origEnd: Int { get set }
+    var start: Int = -1
+    var end: Int = -1
+    var origStart: Int = -1
+    var origEnd: Int = -1
     // Append body content
 
     // Sub models
 
 
 }
-struct LinkSpanItem : SpanItem {
+class LinkSpanItem : SpanItem {
 
     // Fields
-    var start: Int 
-    var end: Int 
-    var origStart: Int 
-    var origEnd: Int 
-    var link: String 
-    var display: String! 
+    var link: String!
+    var display: String!
     // Append body content
 
     // Sub models
 
 
 }
-struct MentionSpanItem : SpanItem {
+class MentionSpanItem : SpanItem {
 
     // Fields
-    var start: Int 
-    var end: Int 
-    var origStart: Int 
-    var origEnd: Int 
-    var key: UserKey? 
-    var name: String? 
-    var screenName: String 
+    var key: UserKey!
+    var name: String!
+    var screenName: String!
     // Append body content
 
     // Sub models
 
 
 }
-struct HashtagSpanItem : SpanItem {
+class HashtagSpanItem : SpanItem {
 
     // Fields
-    var start: Int 
-    var end: Int 
-    var origStart: Int 
-    var origEnd: Int 
-    var hashtag: String 
+    var hashtag: String!
     // Append body content
 
     // Sub models

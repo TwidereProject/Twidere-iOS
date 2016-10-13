@@ -111,7 +111,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         switch itemCounts.getItemCountIndex(position: indexPath.item) {
         case 0:
             let status = statuses![(indexPath as NSIndexPath).item]
-            if (statuses!.endIndex != indexPath.item && status.isGap) {
+            if (statuses!.endIndex != indexPath.item && status.isGap ?? false) {
                 return tableView.dequeueReusableCell(withIdentifier: "Gap", for: indexPath)
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Status", for: indexPath) as! StatusCell
@@ -142,7 +142,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
                     let opts = LoadOptions()
                     let params = SimpleRefreshTaskParam(accounts: [accountKey])
                     params.maxIds = [lastStatus.id]
-                    params.maxSortIds = [lastStatus.sortId]
+                    params.maxSortIds = [lastStatus.sortId ?? -1]
                     params.isLoadingMore = true
                     opts.initLoad = false
                     opts.params = params
@@ -157,7 +157,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         switch itemCounts.getItemCountIndex(position: indexPath.item) {
         case 0:
             let status = statuses![(indexPath as NSIndexPath).item]
-            if (statuses!.endIndex != indexPath.item && status.isGap) {
+            if (statuses!.endIndex != indexPath.item && status.isGap ?? false) {
                 return super.tableView(tableView, heightForRowAt: indexPath)
             } else {
                 return tableView.fd_heightForCell(withIdentifier: "Status", cacheBy: indexPath) { cell in
@@ -177,13 +177,13 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         switch itemCounts.getItemCountIndex(position: indexPath.item) {
         case 0:
             let status = statuses![(indexPath as NSIndexPath).item]
-            if (status.isGap) {
+            if (status.isGap ?? false) {
                 let accounts = dataSource.getAccounts()
                 if let account = accounts.filter({$0.key == status.accountKey}).first {
                     let opts = LoadOptions()
                     let params = SimpleRefreshTaskParam(accounts: [account])
                     params.maxIds = [status.id]
-                    params.maxSortIds = [status.sortId]
+                    params.maxSortIds = [status.sortId ?? -1]
                     params.isLoadingMore = true
                     opts.initLoad = false
                     opts.params = params

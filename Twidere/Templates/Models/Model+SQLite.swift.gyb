@@ -29,13 +29,13 @@ import SQLite
 %   fields = rootModels[modelName]['fields']
 extension ${modelName} {
 
-    init(row: Row) {
+    convenience init(row: Row) {
+        self.init()
     % for propertyName in fields:
       % if fields[propertyName].get('column', None) is not None:
-        // self.${propertyName} = row.get(RowIndices.${propertyName})
+        self.${propertyName} = row.get(RowIndices.${propertyName})
       %end
     %end
-        abort()
     }
 
     static func createTable(table: Table, temporary: Bool = false, ifNotExists: Bool = false) -> String {
@@ -50,22 +50,21 @@ extension ${modelName} {
               if primaryKey is not None:
                   columnArguments += ', primaryKey: .%s' % primaryKey
               }%
-            // t.column(RowIndices.${propertyName}${columnArguments})
+            t.column(RowIndices.${propertyName}${columnArguments})
             %end
         %end
         }
     }
 
     static func insertData(table: Table, model: ${modelName}) -> Insert {
-        //var setters: [Setter] = []
-        % for idx, propertyName in enumerate(fields):
-        % field = fields[propertyName]
-            % if field.get('primary_key', None) != 'autoincrement' and field.get('column', None) is not None:
-        // setters.append(RowIndices.${propertyName} <- model.${propertyName})
+        return table.insert( [
+            % for idx, propertyName in enumerate(fields):
+            % field = fields[propertyName]
+                % if field.get('primary_key', None) != 'autoincrement' and field.get('column', None) is not None:
+                RowIndices.${propertyName} <- model.${propertyName},
+                %end
             %end
-        %end
-        //return table.insert(setters)
-        return table.insert([])
+        ])
     }
 
     struct RowIndices {
@@ -76,12 +75,12 @@ extension ${modelName} {
         % columnName = field.get('column', None)
         % if columnName is None:
         %   pass
-        % if field.get('primary_key', None):
+        % elif propertyType.endswith('?'):
         static let ${propertyName} = Expression<${propertyType}>("${columnName}")
-        % elif propertyType.endswith('?') or propertyType.endswith('!'):
-        static let ${propertyName} = Expression<${propertyType[0:-1]}?>("${columnName}")
+        % elif field.get('primary_key', None):
+        static let ${propertyName} = Expression<${propertyType}>("${columnName}")
         % else:
-        static let ${propertyName} = Expression<${propertyType}>("${columnName}")
+        static let ${propertyName} = Expression<${propertyType}?>("${columnName}")
         %end
     %end
 

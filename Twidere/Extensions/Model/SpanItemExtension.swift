@@ -9,8 +9,6 @@
 import Foundation
 import YYText
 
-let highlightUserInfoKey: String = "twidere.span"
-
 extension LinkSpanItem: CustomDebugStringConvertible {
     var debugDescription: String {
         return "LinkSpanItem(link=\(self.link), display=\(self.display))"
@@ -32,14 +30,14 @@ extension HashtagSpanItem: CustomDebugStringConvertible {
 extension Array where Element: SpanItem {
     func applyToAttributedText(_ string: NSMutableAttributedString, linkColor: UIColor) {
         for span in self {
-            string.yy_setTextHighlight(NSMakeRange(span.start, span.end - span.start), color: linkColor, backgroundColor: nil, userInfo: [highlightUserInfoKey: span])
+            string.yy_setTextHighlight(NSMakeRange(span.start, span.end - span.start), color: linkColor, backgroundColor: nil, userInfo: [SpanItem.highlightUserInfoKey: span])
         }
     }
 }
 
 extension SpanItem {
     
-    
+    static let highlightUserInfoKey: String = "twidere.span"
     
     func createViewController(accountKey: UserKey) -> (UIViewController, Bool)? {
         switch self {

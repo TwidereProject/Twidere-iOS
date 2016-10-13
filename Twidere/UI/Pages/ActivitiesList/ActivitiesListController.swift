@@ -90,10 +90,10 @@ class ActivitiesListController: UITableViewController {
         switch itemCounts.getItemCountIndex(position: indexPath.item) {
         case 0:
             let activity = self.activities[indexPath.item]
-            if (activities!.endIndex != indexPath.item && activity.isGap) {
+            if (activities!.endIndex != indexPath.item && activity.isGap ?? false) {
                 return tableView.dequeueReusableCell(withIdentifier: "Gap", for: indexPath)
             } else {
-                switch activity.action {
+                switch activity.action! {
                 case .mention, .reply, .quote:
                     let cell = tableView.dequeueReusableCell(withIdentifier: "Status", for: indexPath) as! StatusCell
                     cell.displayOption = cellDisplayOption
@@ -127,10 +127,10 @@ class ActivitiesListController: UITableViewController {
         switch itemCounts.getItemCountIndex(position: indexPath.item) {
         case 0:
             let activity = self.activities[indexPath.item]
-            if (activities!.endIndex != indexPath.item && activity.isGap) {
+            if (activities!.endIndex != indexPath.item && activity.isGap ?? false) {
                 return super.tableView(tableView, heightForRowAt: indexPath)
             } else {
-                switch activity.action {
+                switch activity.action! {
                 case .mention, .reply, .quote:
                     return tableView.fd_heightForCell(withIdentifier: "Status", cacheBy: indexPath) { cell in
                         let cell = (cell as! StatusCell)
@@ -180,7 +180,7 @@ class ActivitiesListController: UITableViewController {
         switch itemCounts.getItemCountIndex(position: indexPath.item) {
         case 0:
             let activity = activities![(indexPath as NSIndexPath).item]
-            if (activity.isGap) {
+            if (activity.isGap ?? false) {
 //                let accounts = dataSource.getAccounts()
             } else if let status = activity.activityStatus {
                 let storyboard = UIStoryboard(name: "Viewers", bundle: nil)

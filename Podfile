@@ -25,6 +25,7 @@ target 'Twidere' do
   pod 'DateTools', '~> 1.7.0' # Obj-C
   pod 'ALSLayouts', '~> 2.0.4' # Swift 3
   pod 'ThumborURL', '0.0.4' # Obj-C
+  pod 'ObjectMapper', '~> 2.1.0' # Swift 3
   pod 'MXPagerView', '~> 0.1.3'
   pod 'MXParallaxHeader', '~> 0.5.2'
   pod 'FXBlurView', '~> 1.6'
@@ -33,8 +34,6 @@ target 'Twidere' do
   pod 'MWPhotoBrowser', '~> 2.1.2'
   pod 'DeviceKit', '~> 1.0'
   pod 'SwiftHEXColors', :git=> 'https://github.com/thii/SwiftHEXColors.git', :branch=> 'swift-3.0'
-  pod 'Freddy', '~> 3.0'
-  pod 'FormatterKit', '~> 1.8.1'
 end
 
 target 'TwidereTests' do

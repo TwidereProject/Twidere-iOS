@@ -10,23 +10,21 @@ import Foundation
 import SwiftyJSON
 
 extension Activity {
-    init(_ json: JSON, accountKey: UserKey?) {
-        self._id = -1
-        self.isGap = false
-        self.positionKey = -1
+    convenience init(_ json: JSON, accountKey: UserKey?) {
+        self.init()
         self.accountKey = accountKey
-        self.createdAt = parseTwitterDate(json["created_at"].stringValue)!
-        self.action = Activity.Action.parse(json["action"].stringValue)!
-        self.sources = User.arrayFromJson(json["sources"], accountKey: accountKey)
-        self.sourceKeys = self.sources.map { $0.key }
+        self.createdAt = parseTwitterDate(json["created_at"].stringValue)
+        self.action = Activity.Action.parse(json["action"].stringValue)
+        self.sources = UserArray(User.arrayFromJson(json["sources"], accountKey: accountKey))
+        self.sourceKeys = UserKeyArray(self.sources.array.map { $0.key })
         self.targets = Activity.getTargets(action, json: json["targets"], accountKey: accountKey)
         self.targetObjects = Activity.getTargetObjects(action, json: json["target_objects"], accountKey: accountKey)
         
         self.minPosition = json["min_position"].stringValue
         self.maxPosition = json["max_position"].stringValue
         
-        self.minSortPosition = json["min_position"].int64 ?? self.createdAt.timeIntervalSince1970Millis
-        self.maxSortPosition = json["max_position"].int64 ?? self.createdAt.timeIntervalSince1970Millis
+        self.minSortPosition = Int64(minPosition) ?? self.createdAt?.timeIntervalSince1970Millis
+        self.maxSortPosition = Int64(maxPosition) ?? self.createdAt?.timeIntervalSince1970Millis
     }
     
     static func arrayFromJson(_ json: JSON, accountKey: UserKey?) -> [Activity] {
@@ -38,7 +36,7 @@ extension Activity {
     }
     
     static func getTargets(_ action: Action, json: JSON, accountKey: UserKey?) -> Activity.ObjectList {
-        var list = ObjectList()
+        let list = ObjectList()
         switch (action) {
         case .favorite, .reply, .retweet, .quote, .favoritedRetweet, .retweetedRetweet, .retweetedMention, .favoritedMention, .mediaTagged, .favoritedMediaTagged, .retweetedMediaTagged:
             list.statuses = Status.arrayFromJson(json, accountKey: accountKey)
@@ -53,7 +51,7 @@ extension Activity {
     }
     
     static func getTargetObjects(_ action: Action, json: JSON, accountKey: UserKey?) -> Activity.ObjectList {
-        var list = ObjectList()
+        let list = ObjectList()
         switch (action) {
         case .favorite, .follow, .mention, .reply, .retweet, .listCreated, .quote:
             list.statuses = Status.arrayFromJson(json, accountKey: accountKey)

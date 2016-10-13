@@ -10,24 +10,22 @@ import SwiftyJSON
 
 extension User {
     
-    init?(accountJson: JSON) {
+    convenience init?(accountJson: JSON) {
         self.init(json: accountJson, accountKey: User.getUserKey(accountJson))
     }
     
-    init?(json: JSON, accountKey: UserKey?) {
+    convenience init?(json: JSON, accountKey: UserKey?) {
+        self.init()
         self.accountKey = accountKey
         guard let key = User.getUserKey(json, accountHost: accountKey?.host) else {
             return nil
         }
-        guard let createdAt = parseTwitterDate(json["created_at"].stringValue) else {
-            return nil
-        }
         self.key = key
-        self.createdAt = createdAt
+        self.createdAt = parseTwitterDate(json["created_at"].stringValue)
         self.isProtected = json["protected"].boolValue
         self.isVerified = json["verified"].boolValue
-        self.name = json["name"].stringValue
-        self.screenName = json["screen_name"].stringValue
+        self.name = json["name"].string
+        self.screenName = json["screen_name"].string
         self.profileImageUrl = json["profile_image_url_https"].string ?? json["profile_image_url"].string
         self.profileBannerUrl = json["profile_banner_url"].string ?? json["cover_photo"].string
         self.profileBackgroundUrl = json["profile_background_image_url_https"].string ?? json["profile_background_image_url"].string
@@ -68,7 +66,8 @@ extension User {
 
 extension User.Metadata {
     
-    init(json: JSON) {
+    convenience init(json: JSON) {
+        self.init()
         self.backgroundColor = json["background_color"].string
         self.linkColor = json["profile_link_color"].string ?? json["linkcolor"].string
         self.backgroundColor = json["profile_background_color"].string ?? json["backgroundcolor"].string

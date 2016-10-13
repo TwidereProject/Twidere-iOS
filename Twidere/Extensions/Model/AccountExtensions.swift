@@ -12,30 +12,30 @@ import DeviceKit
 extension Account {
     func createAPIConfig() -> CustomAPIConfig {
         let config = CustomAPIConfig()
-        config.apiUrlFormat = apiUrlFormat
-        config.authType = authType
+        config.apiUrlFormat = apiUrlFormat!
+        config.authType = CustomAPIConfig.AuthType(rawValue: authType!) ?? defaultAuthType
         config.consumerKey = consumerKey!
         config.consumerSecret = consumerSecret!
-        config.sameOAuthSigningUrl = self.sameOAuthSigningUrl
-        config.noVersionSuffix = self.noVersionSuffix
+        config.sameOAuthSigningUrl = Bool(sameOAuthSigningUrl!)
+        config.noVersionSuffix = Bool(noVersionSuffix!)
         return config
     }
     
     func createAuthorization() -> Authorization {
-        switch authType {
-        case .oauth, .xAuth:
+        switch CustomAPIConfig.AuthType(rawValue: authType!) ?? defaultAuthType {
+        case .OAuth, .xAuth:
             let token = OAuthToken(oauthToken!, oauthTokenSecret!)
             return OAuthAuthorization(consumerKey!, consumerSecret!, oauthToken: token)
-        case .basic:
+        case .Basic:
             return BasicAuthorization(username: basicUsername!, password: basicPassword!)
-        case .twipO:
+        case .TwipO:
             return EmptyAuthorization()
         }
     }
     
     func createClientUserAgent() -> String? {
-        switch authType {
-        case .oauth, .xAuth:
+        switch CustomAPIConfig.AuthType(rawValue: authType!) ?? defaultAuthType {
+        case .OAuth, .xAuth:
             switch consumerKey!.sha1() {
             case "ec7250f480e5dedff7688c78188886c282a3d968":
                 // Twitter for iPhone
@@ -60,4 +60,18 @@ extension Account {
         return microBlog
     }
     
+    var typeInferred: AccountType {
+        get {
+            switch type {
+            case "fanfou"?:
+                return .fanfou
+            default:
+                return .twitter
+            }
+        }
+    }
+    
+    enum AccountType {
+        case twitter, fanfou, statusNet
+    }
 }

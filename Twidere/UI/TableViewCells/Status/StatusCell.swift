@@ -118,7 +118,7 @@ class StatusCell: ALSTableViewCell {
             
             statusTypeLabelView.layoutParams.hidden = false
         } else if let inReplyTo = status.metadata?.inReplyTo {
-            statusTypeLabelView.text = "In reply to \((inReplyTo.userName ?? inReplyTo.userScreenName))"
+            statusTypeLabelView.text = "In reply to \((inReplyTo.userName ?? inReplyTo.userScreenName!))"
             
             statusTypeLabelView.layoutParams.hidden = false
         } else {
@@ -185,7 +185,7 @@ class StatusCell: ALSTableViewCell {
         guard let highlight = string.yy_attribute(YYTextHighlightAttributeName, at: UInt(range.location)) as? YYTextHighlight else {
             return
         }
-        guard let span = highlight.userInfo?[highlightUserInfoKey] as? SpanItem else {
+        guard let span = highlight.userInfo?[SpanItem.highlightUserInfoKey] as? SpanItem else {
             return
         }
         delegate?.spanItemTapped(status: self.status, span: span)
@@ -234,7 +234,7 @@ class StatusCell: ALSTableViewCell {
                     break
                 }
                 let highlightRect = layout.rect(for: YYTextRange(range: highlightRange))
-                guard let span = highlight.userInfo?[highlightUserInfoKey] as? SpanItem else {
+                guard let span = highlight.userInfo?[SpanItem.highlightUserInfoKey] as? SpanItem else {
                     break
                 }
                 guard let (vc, present) = span.createViewController(accountKey: status.accountKey) else {

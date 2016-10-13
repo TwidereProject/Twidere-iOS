@@ -27,7 +27,7 @@ class CustomAPIConfig {
                 return false
             }
             switch authType {
-            case .oauth, .xAuth:
+            case .OAuth, .xAuth:
                 return !(consumerKey?.isEmpty ?? true) && !(consumerSecret?.isEmpty ?? true)
             default:
                 return true
@@ -47,7 +47,7 @@ class CustomAPIConfig {
             base = Endpoint.construct(getApiBaseUrl(apiUrlFormat, domain: domain), path: "/1.1/")
         }
         switch authType {
-        case .oauth, .xAuth:
+        case .OAuth, .xAuth:
             let signingBase: String
             if (sameOAuthSigningUrl) {
                 signingBase = base
@@ -90,7 +90,7 @@ class CustomAPIConfig {
     
     func loadDefaults()  {
         apiUrlFormat = Defaults[.apiUrlFormat] ?? defaultApiUrlFormat
-        authType = Defaults[.authType] ?? .oauth
+        authType = Defaults[.authType] ?? .OAuth
         sameOAuthSigningUrl = Defaults[.sameOAuthSigningUrl] ?? true
         noVersionSuffix = Defaults[.noVersionSuffix] ?? false
         consumerKey = Defaults[.consumerKey] ?? defaultTwitterConsumerKey
@@ -98,18 +98,22 @@ class CustomAPIConfig {
     }
     
     enum AuthType: String {
-        case oauth, xAuth, basic, twipO
+        case OAuth, xAuth, Basic, TwipO
         
         var isOAuthType: Bool {
             get {
-                return self == .oauth || self == .xAuth
+                return self == .OAuth || self == .xAuth
             }
         }
         
         var usePassword: Bool {
             get {
-                return self == .xAuth || self == .basic
+                return self == .xAuth || self == .Basic
             }
         }
     }
+}
+
+enum AccountType: String {
+    case Twitter, Fanfou, StatusNet
 }
