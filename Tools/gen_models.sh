@@ -13,5 +13,5 @@ for f in ../Twidere/Templates/Models/*.model.yml; do
 	do_gyb $f ../Twidere/Models/$class_file_name.swift ../Twidere/Templates/Models/Model.swift.gyb
 	do_gyb $f ../Twidere/Generated/Extensions/$class_file_name+SQLite.swift ../Twidere/Templates/Models/Model+SQLite.swift.gyb
 #	do_gyb $f ../Twidere/Generated/Extensions/$class_file_name+ObjectMapper.swift ../Twidere/Templates/Models/Model+ObjectMapper.swift.gyb
-	do_gyb $f ../Twidere/Generated/Extensions/$class_file_name+Freddy.swift ../Twidere/Templates/Models/Model+Freddy.swift.gyb
+#	do_gyb $f ../Twidere/Generated/Extensions/$class_file_name+Freddy.swift ../Twidere/Templates/Models/Model+Freddy.swift.gyb
 done

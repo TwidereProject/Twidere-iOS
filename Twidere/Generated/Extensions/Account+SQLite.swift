@@ -45,7 +45,7 @@ extension Account {
     }
 
     static func insertData(table: Table, model: Account) -> Insert {
-        var setters: [Setter] = []
+        //var setters: [Setter] = []
         // setters.append(RowIndices.key <- model.key)
         // setters.append(RowIndices.type <- model.type)
         // setters.append(RowIndices.apiUrlFormat <- model.apiUrlFormat)
@@ -60,7 +60,8 @@ extension Account {
         // setters.append(RowIndices.sameOAuthSigningUrl <- model.sameOAuthSigningUrl)
         // setters.append(RowIndices.config <- model.config)
         // setters.append(RowIndices.user <- model.user)
-        return table.insert(setters)
+        //return table.insert(setters)
+        return table.insert([])
     }
 
     struct RowIndices {

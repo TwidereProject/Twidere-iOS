@@ -17,9 +17,10 @@ extension UserList {
     }
 
     static func insertData(table: Table, model: UserList) -> Insert {
-        var setters: [Setter] = []
+        //var setters: [Setter] = []
         // setters.append(RowIndices.accountKey <- model.accountKey)
-        return table.insert(setters)
+        //return table.insert(setters)
+        return table.insert([])
     }
 
     struct RowIndices {

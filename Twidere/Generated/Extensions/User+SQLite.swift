@@ -49,7 +49,7 @@ extension User {
     }
 
     static func insertData(table: Table, model: User) -> Insert {
-        var setters: [Setter] = []
+        //var setters: [Setter] = []
         // setters.append(RowIndices.accountKey <- model.accountKey)
         // setters.append(RowIndices.key <- model.key)
         // setters.append(RowIndices.createdAt <- model.createdAt)
@@ -66,7 +66,8 @@ extension User {
         // setters.append(RowIndices.urlExpanded <- model.urlExpanded)
         // setters.append(RowIndices.location <- model.location)
         // setters.append(RowIndices.metadata <- model.metadata)
-        return table.insert(setters)
+        //return table.insert(setters)
+        return table.insert([])
     }
 
     struct RowIndices {

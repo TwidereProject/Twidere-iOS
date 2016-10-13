@@ -43,7 +43,7 @@ extension Activity {
     }
 
     static func insertData(table: Table, model: Activity) -> Insert {
-        var setters: [Setter] = []
+        //var setters: [Setter] = []
         // setters.append(RowIndices.accountKey <- model.accountKey)
         // setters.append(RowIndices.isGap <- model.isGap)
         // setters.append(RowIndices.positionKey <- model.positionKey)
@@ -57,7 +57,8 @@ extension Activity {
         // setters.append(RowIndices.sourceKeys <- model.sourceKeys)
         // setters.append(RowIndices.targets <- model.targets)
         // setters.append(RowIndices.targetObjects <- model.targetObjects)
-        return table.insert(setters)
+        //return table.insert(setters)
+        return table.insert([])
     }
 
     struct RowIndices {

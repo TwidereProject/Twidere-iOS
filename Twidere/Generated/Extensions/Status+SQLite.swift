@@ -73,7 +73,7 @@ extension Status {
     }
 
     static func insertData(table: Table, model: Status) -> Insert {
-        var setters: [Setter] = []
+        //var setters: [Setter] = []
         // setters.append(RowIndices.accountKey <- model.accountKey)
         // setters.append(RowIndices.sortId <- model.sortId)
         // setters.append(RowIndices.positionKey <- model.positionKey)
@@ -102,7 +102,8 @@ extension Status {
         // setters.append(RowIndices.retweetedByUserProfileImage <- model.retweetedByUserProfileImage)
         // setters.append(RowIndices.retweetId <- model.retweetId)
         // setters.append(RowIndices.retweetCreatedAt <- model.retweetCreatedAt)
-        return table.insert(setters)
+        //return table.insert(setters)
+        return table.insert([])
     }
 
     struct RowIndices {
