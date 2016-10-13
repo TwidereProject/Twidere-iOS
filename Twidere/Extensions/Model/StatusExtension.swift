@@ -40,7 +40,7 @@ extension Status {
         guard let quotedId = self.quotedId else {
             return nil
         }
-        let quoted = Status()
+        var quoted = Status()
         quoted.id = quotedId
         quoted.accountKey = self.accountKey
         quoted.createdAt = self.quotedCreatedAt
@@ -57,7 +57,7 @@ extension Status {
     }
     
     var user: User {
-        let user = User()
+        var user = User()
         user.accountKey = self.accountKey
         user.key = self.userKey
         user.screenName = self.userScreenName

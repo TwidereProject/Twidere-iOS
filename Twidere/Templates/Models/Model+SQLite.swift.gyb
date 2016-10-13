@@ -29,8 +29,7 @@ import SQLite
 %   fields = rootModels[modelName]['fields']
 extension ${modelName} {
 
-    convenience init(row: Row) {
-        self.init()
+    init(row: Row) {
     % for propertyName in fields:
       % if fields[propertyName].get('column', None) is not None:
         self.${propertyName} = row.get(RowIndices.${propertyName})

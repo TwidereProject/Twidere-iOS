@@ -5,8 +5,7 @@ import SQLite
 
 extension UserList {
 
-    convenience init(row: Row) {
-        self.init()
+    init(row: Row) {
         self.accountKey = row.get(RowIndices.accountKey)
     }
 

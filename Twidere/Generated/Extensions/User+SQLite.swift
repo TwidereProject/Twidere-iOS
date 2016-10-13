@@ -5,8 +5,7 @@ import SQLite
 
 extension User {
 
-    convenience init(row: Row) {
-        self.init()
+    init(row: Row) {
         self._id = row.get(RowIndices._id)
         self.accountKey = row.get(RowIndices.accountKey)
         self.key = row.get(RowIndices.key)
@@ -87,7 +86,7 @@ extension User {
         static let url = Expression<String?>("url")
         static let urlExpanded = Expression<String?>("url_expanded")
         static let location = Expression<String?>("location")
-        static let metadata = Expression<Metadata?>("metadata")
+        static let metadata = Expression<User.Metadata?>("metadata")
 
         static let columns: [Expressible] = [
             _id,

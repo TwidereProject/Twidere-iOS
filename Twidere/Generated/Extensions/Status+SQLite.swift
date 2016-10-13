@@ -5,8 +5,7 @@ import SQLite
 
 extension Status {
 
-    convenience init(row: Row) {
-        self.init()
+    init(row: Row) {
         self._id = row.get(RowIndices._id)
         self.accountKey = row.get(RowIndices.accountKey)
         self.sortId = row.get(RowIndices.sortId)
@@ -120,7 +119,7 @@ extension Status {
         static let userProfileImage = Expression<String?>("user_profile_image")
         static let textPlain = Expression<String?>("text_plain")
         static let textDisplay = Expression<String?>("text_display")
-        static let metadata = Expression<Metadata?>("metadata")
+        static let metadata = Expression<Status.Metadata?>("metadata")
         static let quotedId = Expression<String?>("quoted_status_id")
         static let quotedCreatedAt = Expression<Date?>("quoted_created_at")
         static let quotedUserKey = Expression<UserKey?>("quoted_user_key")
@@ -129,7 +128,7 @@ extension Status {
         static let quotedUserProfileImage = Expression<String?>("quoted_user_profile_image")
         static let quotedTextPlain = Expression<String?>("quoted_text_plain")
         static let quotedTextDisplay = Expression<String?>("quoted_text_display")
-        static let quotedMetadata = Expression<Metadata?>("quoted_metadata")
+        static let quotedMetadata = Expression<Status.Metadata?>("quoted_metadata")
         static let retweetedByUserKey = Expression<UserKey?>("retweeted_by_user_key")
         static let retweetedByUserName = Expression<String?>("retweeted_by_user_name")
         static let retweetedByUserScreenName = Expression<String?>("retweeted_by_user_screen_name")

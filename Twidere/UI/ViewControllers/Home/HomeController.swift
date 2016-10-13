@@ -11,23 +11,17 @@ import SDWebImage
 import UIView_TouchHighlighting
 import PromiseKit
 import SQLite
-import MXPagerView
 
-class HomeController: MXPagerViewController {
+class HomeController: UITabBarController {
     
     @IBOutlet weak var accountProfileImageView: UIImageView!
-    @IBOutlet weak var menuToggleItem: UIBarButtonItem!
-    var viewControllers: [UIViewController]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.accountProfileImageView.layer.cornerRadius = self.accountProfileImageView.frame.size.width / 2
-        self.accountProfileImageView.clipsToBounds = true
-        
-        menuToggleItem.customView?.touchHighlightingStyle = .transparentMask
+        self.accountProfileImageView.makeCircular()
         
         let pages = UIStoryboard(name: "Pages", bundle: nil)
         
@@ -42,23 +36,28 @@ class HomeController: MXPagerViewController {
         let testController = pages.instantiateViewController(withIdentifier: "StubTab")
         testController.tabBarItem = UITabBarItem(title: "User", image: UIImage(named: "Tab Icon User"), tag: 4)
         
-        pagerView.isScrollEnabled = false
-        self.viewControllers = [homeTimelineController, notificationsTimelineController, messageConversationsController, testController]
+        let tabControllers = [homeTimelineController, notificationsTimelineController, messageConversationsController, testController].map { vc -> UIViewController in
+            let nvc = UINavigationController(rootViewController: vc)
+            nvc.hidesBottomBarWhenPushed = true
+            return nvc
+        }
+        self.setViewControllers(tabControllers, animated: false)
         
+//        self.tabLocation = .bottom
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, 0, 0)
-        for vc in viewControllers! {
-            if let tv = (vc as? UITableViewController)?.tableView {
-                var contentInset = tv.contentInset, scrollIndicatorInsets = tv.scrollIndicatorInsets
-                contentInset.top = insets.top
-                scrollIndicatorInsets.top = insets.top
-                tv.contentInset = contentInset
-                tv.scrollIndicatorInsets = scrollIndicatorInsets
-            }
-        }
+//        let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, tabBar.frame.height, 0)
+//        for vc in viewControllers! {
+//            if let tv = (vc as? UITableViewController)?.tableView {
+//                var contentInset = tv.contentInset, scrollIndicatorInsets = tv.scrollIndicatorInsets
+//                contentInset.bottom = insets.bottom
+//                scrollIndicatorInsets.bottom = insets.bottom
+//                tv.contentInset = contentInset
+//                tv.scrollIndicatorInsets = scrollIndicatorInsets
+//            }
+//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -90,14 +89,5 @@ class HomeController: MXPagerViewController {
             sender.isEnabled = true
         }
     }
-    
-    override func numberOfPages(in pagerView: MXPagerView) -> Int {
-        return self.viewControllers.count
-    }
-    
-    override func pagerView(_ pagerView: MXPagerView, viewControllerForPageAt index: Int) -> UIViewController {
-        return viewControllers[index]
-    }
- 
     
 }

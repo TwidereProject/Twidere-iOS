@@ -169,8 +169,8 @@ class BackgroundOperationService {
             }).then { results -> [Status] in
                 if (results.contains { $0.0 == nil }) {
                     // Throw errors
-                    let errors = results.filter{ $0.1 != nil }.map { $0.1!.1 }
-                    let failedKeys = results.filter{ $0.1 != nil }.map { $0.1!.0 }
+                    let errors = results.flatMap { $0.1?.1 }
+                    let failedKeys = results.flatMap { $0.1?.0 }
                     throw StatusUpdateError.updateFailed(errors: errors, failedKeys: failedKeys)
                 }
                 return results.map { $0.0! }

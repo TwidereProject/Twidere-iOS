@@ -7,10 +7,10 @@
 //
 
 import Foundation
-import ObjectMapper
 import Alamofire
+import Freddy
 
-class MediaUploadResponse: StaticMappable {
+struct MediaUploadResponse: JSONDecodable {
     
     var mediaId: String!
     var size: Int64!
@@ -18,80 +18,67 @@ class MediaUploadResponse: StaticMappable {
     var video: Video!
     var processingInfo: ProcessingInfo!
     
-    func mapping(map: Map) {
-        mediaId <- map["media_id"]
-        size <- map["size"]
-        image <- map["image"]
-        video <- map["video"]
-        processingInfo <- map["processing_info"]
+    init(json value: JSON) throws {
+        mediaId = try? value.decode(at: "media_id")
+        size = try? value.decode(at: "size")
+        if let imageJson = value["image"] {
+            image = try? Image(json: imageJson)
+        }
         
-        if (map.mappingType == .fromJSON) {
-            if (mediaId == nil) {
-                mediaId = map["media_id_string"].value()
-            }
-            if (mediaId == nil) {
-                let idInt: Int64? = map["media_id"].value()
-                mediaId = String(describing: idInt)
-            }
+        if let videoJson = value["video"] {
+            video = try? Video(json: videoJson)
+        }
+        
+        if let processingInfoJson = value["processing_info"] {
+            processingInfo = try? ProcessingInfo(json: processingInfoJson)
+        }
+        
+        if (mediaId == nil) {
+            mediaId = try? value.getString(at: "media_id_string")
         }
     }
     
-    static func objectForMapping(map: Map) -> BaseMappable? {
-        return MediaUploadResponse()
-    }
-    
-    class Image: StaticMappable {
+    struct Image: JSONDecodable {
         
         var width: Int!
         var height: Int!
         var imageType: String!
         
-        func mapping(map: Map) {
-            width <- map["w"]
-            height <- map["h"]
-            imageType <- map["image_type"]
+        init(json value: JSON) throws {
+            width = try value.getInt(at: "w")
+            height = try value.getInt(at: "h")
+            imageType = try? value.getString(at: "image_type")
         }
-        
-        static func objectForMapping(map: Map) -> BaseMappable? {
-            return Image()
-        }
+    
     }
     
-    class Video: StaticMappable {
+    struct Video: JSONDecodable {
         
         var videoType: String!
         
-        func mapping(map: Map) {
-            videoType <- map["video_type"]
-        }
-        
-        static func objectForMapping(map: Map) -> BaseMappable? {
-            return Video()
+        init(json value: JSON) throws {
+            videoType = try? value.getString(at: "video_type")
         }
     }
     
-    class ProcessingInfo: StaticMappable {
+    struct ProcessingInfo: JSONDecodable {
         
         var state: String!
         var checkAfterSecs: Int64!
         var progressPercent: Int!
 //        var error: ErrorInfo!
         
-        func mapping(map: Map) {
-            state <- map["state"]
-            checkAfterSecs <- map["check_after_secs"]
-            progressPercent <- map["progress_percent"]
+        init(json value: JSON) throws {
+            state = try? value.getString(at: "state")
+            checkAfterSecs = try? value.decode(at: "check_after_secs")
+            progressPercent = try? value.getInt(at: "progress_percent")
 //            error <- map["error"]
-        }
-        
-        static func objectForMapping(map: Map) -> BaseMappable? {
-            return ProcessingInfo()
         }
     }
     
     static let serialization = DataResponseSerializer<MediaUploadResponse> { (req, resp, data, err) -> Result<MediaUploadResponse> in
-        if let data = data, let json = String(data: data, encoding: String.Encoding.utf8) {
-            if let response = Mapper<MediaUploadResponse>().map(JSONString: json) , response.mediaId != nil {
+        if let data = data, let json = try? JSON(data: data) {
+            if let response = try? MediaUploadResponse(json: json) , response.mediaId != nil {
                 return .success(response)
             }
         }

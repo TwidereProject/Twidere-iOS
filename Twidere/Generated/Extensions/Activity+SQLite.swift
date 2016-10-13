@@ -5,8 +5,7 @@ import SQLite
 
 extension Activity {
 
-    convenience init(row: Row) {
-        self.init()
+    init(row: Row) {
         self._id = row.get(RowIndices._id)
         self.accountKey = row.get(RowIndices.accountKey)
         self.isGap = row.get(RowIndices.isGap)

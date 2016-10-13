@@ -106,7 +106,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         if let inReplyToStatus = self.inReplyToStatus {
             var text = "@\(inReplyToStatus.userScreenName!) "
             var range = NSMakeRange(text.utf16.count, 0)
-            if let screenNames = inReplyToStatus.metadata?.mentions?.filter({ $0.screenName != nil }).map({ $0.screenName! }) {
+            if let screenNames = inReplyToStatus.metadata?.mentions?.flatMap({ $0.screenName }) {
                 for screenName in uniq(source: screenNames) {
                     if (inReplyToStatus.userScreenName != screenName) {
                         text += "@\(screenName) "

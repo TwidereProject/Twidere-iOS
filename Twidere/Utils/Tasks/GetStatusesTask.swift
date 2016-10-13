@@ -66,7 +66,7 @@ class GetStatusesTask {
             })
     }
     
-    fileprivate static func storeStatuses(_ account: Account, statuses: [Status], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
+    fileprivate static func storeStatuses(_ account: Account, statuses: inout [Status], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
         let accountKey = account.key!
         let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
         
@@ -82,16 +82,17 @@ class GetStatusesTask {
             // Get id diff of first and last item
             let sortDiff = firstSortId - lastSortId
             
-            for (i, status) in statuses.enumerated() {
-                status.positionKey = getPositionKey(status.createdAt as Date, sortId: status.sortId, lastSortId: lastSortId, sortDiff: sortDiff, position: i, count: statuses.count)
-                //                status.inserted_date = System.currentTimeMillis()
+            for i in 0..<statuses.count {
+                let status = statuses[i]
+                let positionKey = getPositionKey(status.createdAt as Date, sortId: status.sortId, lastSortId: lastSortId, sortDiff: sortDiff, position: i, count: statuses.count)
                 if (minIdx == -1 || status < statuses[minIdx]) {
                     minIdx = i
-                    minPositionKey = status.positionKey
+                    minPositionKey = positionKey
                 }
                 if (sinceId != nil && status.sortId <= sinceSortId) {
                     hasIntersection = true
                 }
+                statuses[i].positionKey = positionKey
             }
         }
         // Delete all rows conflicting before new data inserted.
@@ -111,9 +112,10 @@ class GetStatusesTask {
             statuses[minIdx].isGap = true
         }
         // Insert previously fetched items.
+        let insertStatements = statuses.map { Status.insertData(table: table, model: $0) }
         try db.transaction {
-            for status in statuses {
-                _ = try db.run(Status.insertData(table: table, model: status))
+            for insert in insertStatements {
+                _ = try db.run(insert)
             }
         }
         

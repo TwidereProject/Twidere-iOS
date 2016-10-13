@@ -10,12 +10,11 @@ import SwiftyJSON
 
 extension User {
     
-    convenience init?(accountJson: JSON) {
+    init?(accountJson: JSON) {
         self.init(json: accountJson, accountKey: User.getUserKey(accountJson))
     }
     
-    convenience init?(json: JSON, accountKey: UserKey?) {
-        self.init()
+    init?(json: JSON, accountKey: UserKey?) {
         self.accountKey = accountKey
         guard let key = User.getUserKey(json, accountHost: accountKey?.host) else {
             return nil
@@ -66,8 +65,7 @@ extension User {
 
 extension User.Metadata {
     
-    convenience init(json: JSON) {
-        self.init()
+    init(json: JSON) {
         self.backgroundColor = json["background_color"].string
         self.linkColor = json["profile_link_color"].string ?? json["linkcolor"].string
         self.backgroundColor = json["profile_background_color"].string ?? json["backgroundcolor"].string

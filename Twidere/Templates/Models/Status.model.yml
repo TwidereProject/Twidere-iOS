@@ -12,6 +12,7 @@ submodels:
         column: account_key
         json_field: account_key
         json_transform: UserKeyTransform
+        json_null: force
       sortId:
         type: Int64
         column: sort_id
@@ -58,7 +59,7 @@ submodels:
         column: text_display
         json_field: text_display
       metadata:
-        type: Metadata?
+        type: Status.Metadata?
         column: metadata
         json_field: metadata
       quotedId:
@@ -66,7 +67,7 @@ submodels:
         column: quoted_status_id
         json_field: quoted_status_id
       quotedCreatedAt: # Added in database version 3
-        type: Date
+        type: Date?
         column: quoted_created_at
         json_field: quoted_created_at
         added_in: 3
@@ -96,7 +97,7 @@ submodels:
         column: quoted_text_display
         json_field: quoted_text_display
       quotedMetadata:
-        type: Metadata?
+        type: Status.Metadata?
         column: quoted_metadata
         json_field: quoted_metadata
       retweetedByUserKey:
@@ -121,7 +122,7 @@ submodels:
         column: retweet_id
         json_field: retweet_id
       retweetCreatedAt: # Added in database version 3
-        type: Date
+        type: Date?
         column: retweet_created_at
         json_field: retweet_created_at
         added_in: 3
@@ -144,7 +145,7 @@ submodels:
             type: '[Int]?'
             json_field: 'display_range'
           inReplyTo:
-            type: 'InReplyTo?'
+            type: 'Status.Metadata.InReplyTo?'
             json_field: 'in_reply_to'
           externalUrl:
             type: String

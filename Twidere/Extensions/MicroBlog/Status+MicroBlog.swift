@@ -41,8 +41,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 extension Status {
     
-    convenience init(status: JSON, accountKey: UserKey?) {
-        self.init()
+    init(status: JSON, accountKey: UserKey?) {
         self.accountKey = accountKey
         self.id = getTwitterEntityId(status)
         self.createdAt = parseTwitterDate(status["created_at"].stringValue)
@@ -418,7 +417,7 @@ extension Status {
 }
 
 extension Status.Metadata.InReplyTo {
-    convenience init?(status: JSON, accountKey: UserKey?) {
+    init?(status: JSON, accountKey: UserKey?) {
         let statusId = status["in_reply_to_status_id"].stringValue
         let userId = status["in_reply_to_user_id"].stringValue
         if statusId.isEmpty || userId.isEmpty {

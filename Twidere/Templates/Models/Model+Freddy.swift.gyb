@@ -1,0 +1,104 @@
+%{
+import yaml
+from collections import OrderedDict
+
+def ordered_load(stream, Loader=yaml.Loader, object_pairs_hook=OrderedDict):
+    class OrderedLoader(Loader):
+        pass
+    def construct_mapping(loader, node):
+        loader.flatten_mapping(node)
+        return object_pairs_hook(loader.construct_pairs(node))
+    OrderedLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, construct_mapping)
+    return yaml.load(stream, OrderedLoader)
+
+with open(modelPath, 'r') as f:
+    modelDef = ordered_load(f, yaml.SafeLoader)
+    importNames = modelDef.get('imports', [])
+
+def generateModelContent(name, outerName, model):
+    className = name
+    if outerName is not None:
+        className = '{outer}.{inner}'.format(outer=outerName, inner=name)
+    initLines = []
+    toJsonLines = []
+    fields = model['fields']
+    for propertyName in fields:
+        field = fields[propertyName]
+        jsonField = field.get('json_field', None)
+
+        fieldType = field['type']
+        jsonTransform = field.get('json_transform', None)
+        isArray = False
+        isOptional = False
+        if fieldType.endswith('?') or fieldType.endswith('!') :
+            fieldType = fieldType[:-1]
+            isOptional = True
+        if fieldType.startswith('['):
+            fieldType = fieldType[1:-1]
+            isArray = True
+        if (jsonField is None):
+            fieldInit = field.get('init', 'nil')
+            initLines.append("        self.{propertyName} = {fieldInit}"
+                .format(propertyName=propertyName, fieldInit=fieldInit))
+            continue
+        if isArray:
+            initLines.append("        self.{propertyName} = try? value.getArray(at: \"{jsonField}\").map({fieldType}.init)"
+                .format(propertyName=propertyName, jsonField=jsonField, fieldType=fieldType))
+        else:
+            initLines.append("        self.{propertyName} = try? value.decode(at: \"{jsonField}\")"
+                .format(propertyName=propertyName, jsonField=jsonField, fieldType=fieldType))
+        jsonNull = field.get('json_null', 'omit')
+        if not isOptional:
+            pass
+        elif jsonNull == 'omit':
+            pass
+        elif jsonNull == 'force':
+            toJsonLines.append("            \"{jsonField}\": self.{propertyName}!.toJSON(),".format(jsonField=jsonField, propertyName=propertyName))
+        else:
+            toJsonLines.append("            \"{jsonField}\": self.{propertyName}?.toJSON(),".format(jsonField=jsonField, propertyName=propertyName))
+    subModelsLines = []
+    submodels = model.get('submodels', [])
+    for subModelName in submodels:
+        submodel = submodels[subModelName]
+        subModelsLines.append(generateModelContent(
+        name = subModelName,
+        outerName = className,
+        model = submodel
+        ))
+    classTemplate ="""extension {modelName}: JSONEncodable, JSONDecodable {{
+
+    init(json value: JSON) throws {{
+{initContent}
+    }}
+
+    public func toJSON() -> JSON {{
+        var dict: [String: JSON] = [
+{toJsonContent}
+        ]
+        return .dictionary(dict)
+    }}
+}}
+
+{subModelsContent}
+""".format(
+        modelName=className,
+        initContent='\n'.join(initLines),
+        toJsonContent='\n'.join(toJsonLines),
+        subModelsContent='\n'.join(subModelsLines)
+    )
+    classLines = classTemplate.splitlines()
+    return '\n'.join(classLines)
+}%
+// Automatically generated, DO NOT MODIFY
+import Freddy
+% for importName in importNames:
+import ${importName}
+%end
+
+% rootModels = modelDef['submodels']
+% for modelName in rootModels:
+% model = rootModels[modelName]
+    % if model.get('mapable', True):
+${generateModelContent(name = modelName, outerName = None, model = model)}
+    %end
+%end

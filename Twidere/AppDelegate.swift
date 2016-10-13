@@ -53,7 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = materialLightBlue300
         UINavigationBar.appearance().tintColor = materialLightBlue300
         YYLabel.appearance().tintColor = materialLightBlue300
-        self.window?.backgroundColor = UIColor.white
         return true
     }
 

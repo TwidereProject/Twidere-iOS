@@ -1,10 +1,10 @@
 // Automatically generated, DO NOT MODIFY
 import Foundation
 
-class UserList {
+struct UserList {
 
     // Fields
-    var accountKey: UserKey!
+    var accountKey: UserKey 
     // Append body content
 
     // Sub models

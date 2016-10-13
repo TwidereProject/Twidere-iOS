@@ -5,8 +5,7 @@ import SQLite
 
 extension Account {
 
-    convenience init(row: Row) {
-        self.init()
+    init(row: Row) {
         self._id = row.get(RowIndices._id)
         self.key = row.get(RowIndices.key)
         self.type = row.get(RowIndices.type)

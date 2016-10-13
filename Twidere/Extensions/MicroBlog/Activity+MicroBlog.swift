@@ -10,8 +10,10 @@ import Foundation
 import SwiftyJSON
 
 extension Activity {
-    convenience init(_ json: JSON, accountKey: UserKey?) {
-        self.init()
+    init(_ json: JSON, accountKey: UserKey?) {
+        self._id = -1
+        self.isGap = false
+        self.positionKey = -1
         self.accountKey = accountKey
         self.createdAt = parseTwitterDate(json["created_at"].stringValue)
         self.action = Activity.Action.parse(json["action"].stringValue)
@@ -36,7 +38,7 @@ extension Activity {
     }
     
     static func getTargets(_ action: Action, json: JSON, accountKey: UserKey?) -> Activity.ObjectList {
-        let list = ObjectList()
+        var list = ObjectList()
         switch (action) {
         case .favorite, .reply, .retweet, .quote, .favoritedRetweet, .retweetedRetweet, .retweetedMention, .favoritedMention, .mediaTagged, .favoritedMediaTagged, .retweetedMediaTagged:
             list.statuses = Status.arrayFromJson(json, accountKey: accountKey)
@@ -51,7 +53,7 @@ extension Activity {
     }
     
     static func getTargetObjects(_ action: Action, json: JSON, accountKey: UserKey?) -> Activity.ObjectList {
-        let list = ObjectList()
+        var list = ObjectList()
         switch (action) {
         case .favorite, .follow, .mention, .reply, .retweet, .listCreated, .quote:
             list.statuses = Status.arrayFromJson(json, accountKey: accountKey)

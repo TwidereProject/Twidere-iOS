@@ -8,7 +8,7 @@
 
 import Foundation
 import SQLite
-import ObjectMapper
+import Freddy
 
 extension Account.Config: Value {
     static var declaredDatatype: String {
@@ -16,10 +16,10 @@ extension Account.Config: Value {
     }
     
     static func fromDatatypeValue(_ datatypeValue: String) -> Account.Config? {
-        return Mapper<Account.Config>().map(JSONString: datatypeValue)
+        return try? Account.Config(json: JSON(jsonString: datatypeValue))
     }
     
     var datatypeValue: String {
-        return Mapper().toJSONString(self, prettyPrint: false) ?? ""
+        return (try? toJSON().serializeString()) ?? ""
     }
 }

@@ -72,7 +72,7 @@ submodels:
         column: location
         json_field: location
       metadata:
-        type: Metadata
+        type: User.Metadata
         column: metadata
         json_field: metadata
     submodels:

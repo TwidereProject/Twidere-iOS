@@ -55,7 +55,8 @@ class GetActivitiesTask {
             }
             return Promise<ActivityListResponse> { fullfill, reject in
                 fetchAction(account, twitter, paging).then(on: .global()) { activities -> [Activity] in
-                    try storeActivities(account, activities: activities, sinceId: sinceId, maxId: maxId, sinceSortId: sinceSortId, maxSortId: maxSortId, loadItemLimit: loadItemLimit, table: table, notify: false)
+                    var activities = activities
+                    try storeActivities(account, activities: &activities, sinceId: sinceId, maxId: maxId, sinceSortId: sinceSortId, maxSortId: maxSortId, loadItemLimit: loadItemLimit, table: table, notify: false)
                     
                     // TODO cache related data and preload
                     return activities
@@ -69,7 +70,7 @@ class GetActivitiesTask {
         })
     }
     
-    fileprivate static func storeActivities(_ account: Account, activities: [Activity], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
+    fileprivate static func storeActivities(_ account: Account, activities: inout [Activity], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
         let accountKey = account.key!
         let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
         
@@ -85,7 +86,7 @@ class GetActivitiesTask {
             let sortDiff = firstSortId - lastSortId
             
             for i in 0..<activities.count {
-                let activity = activities[i]
+                var activity = activities[i]
                 activity.positionKey = getPositionKey(activity.createdAt as Date, sortId: activity.createdAt.timeIntervalSince1970Millis, lastSortId: lastSortId, sortDiff: sortDiff, position: i, count: activities.count)
                 
                 if (deleteBound[0] < 0) {
@@ -121,7 +122,7 @@ class GetActivitiesTask {
         }
         // Insert previously fetched items.
         try db.transaction {
-            for activity in activities {
+            try activities.forEach { activity in
                 _ = try db.run(Activity.insertData(table: table, model: activity))
             }
         }
