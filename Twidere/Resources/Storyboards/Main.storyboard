@@ -122,7 +122,6 @@
         <!--Home Root-->
         <scene sceneID="ywf-E1-9cT">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="L6R-WO-8k5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="HomeRoot" useStoryboardIdentifierAsRestorationIdentifier="YES" id="y6G-7y-M1v" userLabel="Home Root" customClass="HomeRootController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pvw-rH-LYc">
@@ -134,6 +133,7 @@
                         <segue destination="FoP-na-KSh" kind="relationship" relationship="rootViewController" id="1Us-ic-BTf"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L6R-WO-8k5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2185" y="425"/>
         </scene>

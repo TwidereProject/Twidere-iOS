@@ -186,7 +186,7 @@ class ActivitiesListController: UITableViewController {
                 let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
                 vc.displayStatus(status)
-                navigationController?.show(vc, sender: self)
+                self.show(vc, sender: self)
             }
         case 1:
             break
@@ -229,9 +229,9 @@ class ActivitiesListController: UITableViewController {
     public func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         // Reuse the "Peek" view controller for presentation.
         if (previewingContext.shouldPresentViewController) {
-            present(viewControllerToCommit, animated: true, completion: nil)
+            self.present(viewControllerToCommit, animated: true, completion: nil)
         } else {
-            navigationController?.show(viewControllerToCommit, sender: self)
+            self.show(viewControllerToCommit, sender: self)
         }
     }
     

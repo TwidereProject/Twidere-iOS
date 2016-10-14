@@ -8,7 +8,7 @@
 
 import Foundation
 import SQLite
-import ObjectMapper
+import Freddy
 
 extension Status.Metadata: Value {
     static var declaredDatatype: String {
@@ -16,10 +16,10 @@ extension Status.Metadata: Value {
     }
     
     static func fromDatatypeValue(_ datatypeValue: String) -> Status.Metadata? {
-        return Mapper<Status.Metadata>().map(JSONString:  datatypeValue)
+        return try? fromJSON(json: JSON(jsonString: datatypeValue))
     }
     
     var datatypeValue: String {
-        return Mapper().toJSONString(self, prettyPrint: false) ?? ""
+        return try! self.toJSON().serializeString()
     }
 }

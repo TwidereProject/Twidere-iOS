@@ -23,8 +23,12 @@ submodels:
     inheritance: SpanItem
     fields:
       start:
+        type: Int
+        override: true
         json_field: start
       end:
+        type: Int
+        override: true
         json_field: end
       link:
         type: String
@@ -36,8 +40,12 @@ submodels:
     inheritance: SpanItem
     fields:
       start:
+        type: Int
+        override: true
         json_field: start
       end:
+        type: Int
+        override: true
         json_field: end
       key:
         type: UserKey
@@ -52,8 +60,12 @@ submodels:
     inheritance: SpanItem
     fields:
       start:
+        type: Int
+        override: true
         json_field: start
       end:
+        type: Int
+        override: true
         json_field: end
       hashtag:
         type: String

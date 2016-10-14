@@ -19,9 +19,10 @@ def generateModelContent(name, model, indent=0):
     fieldsLines = []
     fields = model['fields']
     for propertyName in fields:
-        propertyType = fields[propertyName].get('type', None)
-        propertyInit = fields[propertyName].get('init', None)
-        if propertyType is None:
+        field = fields[propertyName]
+        propertyType = field['type']
+        propertyInit = field.get('init', None)
+        if field.get('override', False):
             continue
         if propertyType.endswith('?'):
             pass

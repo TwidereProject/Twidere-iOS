@@ -57,7 +57,7 @@ DEPENDENCIES:
   - CryptoSwift (~> 0.6.0)
   - DateTools (~> 1.7.0)
   - DeviceKit (~> 1.0)
-  - Freddy (from `https://github.com/mariotaku/Freddy.git`)
+  - Freddy (~> 3.0.0)
   - FXBlurView (~> 1.6)
   - FXImageView (~> 1.3.5)
   - IQKeyboardManagerSwift (~> 4.0.6)
@@ -84,8 +84,6 @@ DEPENDENCIES:
   - YYText (~> 1.0.7)
 
 EXTERNAL SOURCES:
-  Freddy:
-    :git: https://github.com/mariotaku/Freddy.git
   SQLite.swift:
     :git: https://github.com/stephencelis/SQLite.swift.git
   SwiftHEXColors:
@@ -93,9 +91,6 @@ EXTERNAL SOURCES:
     :git: https://github.com/thii/SwiftHEXColors.git
 
 CHECKOUT OPTIONS:
-  Freddy:
-    :commit: da3b6e5edc044ced5e109fd8992b7602dbb846f5
-    :git: https://github.com/mariotaku/Freddy.git
   SQLite.swift:
     :commit: 38d9b8508f77b51f7fe0bed9f360248bd32f4baf
     :git: https://github.com/stephencelis/SQLite.swift.git
@@ -138,6 +133,6 @@ SPEC CHECKSUMS:
   UIView+TouchHighlighting: e05a338801522cbdc4a1e236bd189f2a928a781f
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: bd0ac3e1268de7d7cedb1bd24bdb8127177290fc
+PODFILE CHECKSUM: 1b482642e5a28f7b7d23ce21941dfd890092ff0c
 
 COCOAPODS: 1.1.0.rc.2

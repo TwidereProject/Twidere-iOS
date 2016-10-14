@@ -30,7 +30,6 @@ class MainViewController: UIViewController {
             let homeController = storyboard!.instantiateViewController(withIdentifier: "HomeRoot")
             present(homeController, animated: false, completion: nil)
         } else {
-            
             performSegue(withIdentifier: "ShowSignIn", sender: self)
         }
     }

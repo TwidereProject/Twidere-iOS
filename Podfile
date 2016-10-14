@@ -34,7 +34,7 @@ target 'Twidere' do
   pod 'MWPhotoBrowser', '~> 2.1.2'
   pod 'DeviceKit', '~> 1.0'
   pod 'SwiftHEXColors', :git=> 'https://github.com/thii/SwiftHEXColors.git', :branch=> 'swift-3.0'
-  pod 'Freddy', :git=> 'https://github.com/mariotaku/Freddy.git'
+  pod 'Freddy', '~> 3.0.0'
 end
 
 target 'TwidereTests' do

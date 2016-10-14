@@ -26,9 +26,7 @@ class DetailStatusCell: ALSTableViewCell {
 
     var displayOption: StatusCell.DisplayOption! {
         didSet {
-            userNameView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 1.1)
-            timeSourceView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.9)
-            textView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 1.1)
+            updateDisplayOption()
         }
     }
 
@@ -51,6 +49,7 @@ class DetailStatusCell: ALSTableViewCell {
         statusToolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
         
         self.contentView.layoutMargins = UIEdgeInsets.zero
+        updateDisplayOption()
     }
     
     override func layoutSubviews() {
@@ -59,7 +58,7 @@ class DetailStatusCell: ALSTableViewCell {
     }
 
     func display(_ status: Status) {
-        userNameView.attributedText = StatusCell.createNameText(16, name: status.userName, screenName: status.userScreenName, separator: " ")
+        userNameView.attributedText = StatusCell.createNameText(userNameView.font.pointSize, name: status.userName, screenName: status.userScreenName, separator: " ")
         timeSourceView.attributedText = createTimeSourceText(status.createdAt)
         userProfileImageView.displayImage(status.userProfileImageForSize(.reasonablySmall))
 
@@ -86,5 +85,14 @@ class DetailStatusCell: ALSTableViewCell {
     func createTimeSourceText(_ createdAt: Date) -> NSAttributedString {
         let string = NSAttributedString(string: (createdAt as NSDate).formattedDate(with: .long))
         return string
+    }
+    
+    private func updateDisplayOption() {
+        guard let displayOption = self.displayOption else {
+            return
+        }
+        userNameView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 1.1)
+        timeSourceView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.9)
+        textView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 1.25)
     }
 }

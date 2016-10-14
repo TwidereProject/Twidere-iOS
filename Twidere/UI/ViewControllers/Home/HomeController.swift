@@ -42,11 +42,7 @@ class HomeController: UITabBarController {
         
         let pageControllers = [homeTimelineController, notificationsTimelineController, messageConversationsController, testController]
         
-        setViewControllers(pageControllers.map({ vc -> UINavigationController in
-            let nvc = UINavigationController(rootViewController: vc)
-            nvc.title = self.navigationItem.title
-            return nvc
-        }), animated: false)
+        setViewControllers(pageControllers, animated: false)
         
     }
     
@@ -74,7 +70,7 @@ class HomeController: UITabBarController {
         }.then { account -> Void in
             let vc = self.storyboard!.instantiateViewController(withIdentifier: "AccountProfile") as! UserProfileController
             vc.displayUser(user: account.user, reload: true)
-            self.navigationController?.show(vc, sender: self)
+            self.show(vc, sender: self)
         }.always {
             sender.isEnabled = true
         }

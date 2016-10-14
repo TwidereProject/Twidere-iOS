@@ -8,7 +8,7 @@
 
 import Foundation
 import SQLite
-import ObjectMapper
+import Freddy
 
 extension User: Value {
     static var declaredDatatype: String {
@@ -16,21 +16,29 @@ extension User: Value {
     }
     
     static func fromDatatypeValue(_ datatypeValue: String) -> User? {
-        return Mapper<User>().map(JSONString: datatypeValue)
+        return try? fromJSON(json: JSON(jsonString: datatypeValue))
     }
     
     var datatypeValue: String {
-        return Mapper().toJSONString(self, prettyPrint: false) ?? ""
+        return try! self.toJSON().serializeString()
     }
 }
 
 extension User: ArrayValue {
     static func arrayFromDatatypeValue(_ datatypeValue: String) -> [User]? {
-        return Mapper<User>().mapArray(JSONString: datatypeValue)
+        guard let json = try? JSON(jsonString: datatypeValue), case let .array(array) = json else {
+            return nil
+        }
+        return try? array.map({ item -> User in
+            return try fromJSON(json: item)
+        })
     }
     
     static func arrayToDatatypeValue(array: [User]) -> String {
-        return Mapper().toJSONString(array, prettyPrint: false) ?? ""
+        let json = array.map { user -> JSON in
+            return user.toJSON()
+        }
+        return try! JSON(json).serializeString()
     }
 }
 
@@ -40,11 +48,11 @@ extension User.Metadata: Value {
     }
     
     static func fromDatatypeValue(_ datatypeValue: String) -> User.Metadata? {
-        return Mapper<User.Metadata>().map(JSONString: datatypeValue)
+        return try? fromJSON(json: JSON(jsonString: datatypeValue))
     }
     
     var datatypeValue: String {
-        return Mapper().toJSONString(self, prettyPrint: false) ?? ""
+        return try! self.toJSON().serializeString()
     }
 }
 

@@ -193,7 +193,8 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
                 let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
                 vc.displayStatus(status)
-                navigationController?.show(vc, sender: self)
+//                navigationController?.show(vc, sender: self)
+                self.show(vc, sender: self)
             }
         case 1:
             break
@@ -237,7 +238,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         if (previewingContext.shouldPresentViewController) {
             present(viewControllerToCommit, animated: true, completion: nil)
         } else {
-            navigationController?.show(viewControllerToCommit, sender: self)
+            self.show(viewControllerToCommit, sender: self)
         }
     }
 
@@ -278,7 +279,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "UserProfile") as! UserProfileController
         vc.displayUser(user: status.user, reload: true)
-        navigationController?.show(vc, sender: self)
+        self.show(vc, sender: self)
     }
     
     func spanItemTapped(status: Status, span: SpanItem) {
@@ -288,7 +289,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         if (present) {
             self.present(vc, animated: true, completion: nil)
         } else {
-            navigationController?.show(vc, sender: self)
+            self.show(vc, sender: self)
         }
     }
     
@@ -296,12 +297,12 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
         vc.displayStatus(status.quotedStatus!, reload: true)
-        navigationController?.show(vc, sender: self)
+        self.show(vc, sender: self)
     }
     
     func mediaPreviewTapped(status: Status) {
         let vc = MediaViewerController(media: status.metadata!.media!)
-        navigationController?.show(vc, sender: self)
+        self.show(vc, sender: self)
     }
     
     func actionSelected(status: Status, action: StatusCell.StatusAction) {

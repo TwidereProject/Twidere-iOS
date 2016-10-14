@@ -70,7 +70,7 @@ extension Account {
             }
         }
     }
-    
+ 
     enum AccountType {
         case twitter, fanfou, statusNet
     }

@@ -39,7 +39,7 @@ def generateModelContent(name, outerName, model):
             isArray = True
         if (jsonField is None):
             fieldInit = field.get('init', 'nil')
-            initLines.append("        self.{propertyName} = {fieldInit}"
+            initLines.append("        obj.{propertyName} = {fieldInit}"
                 .format(propertyName=propertyName, fieldInit=fieldInit))
             continue
         if isOptional:
@@ -47,10 +47,10 @@ def generateModelContent(name, outerName, model):
         else:
             tryClause = 'try'
         if isArray:
-            initLines.append("        self.{propertyName} = {tryClause} value.getArray(at: \"{jsonField}\").map({fieldType}.init)"
+            initLines.append("        obj.{propertyName} = {tryClause} value.getArray(at: \"{jsonField}\").map({fieldType}.init)"
                 .format(propertyName=propertyName, jsonField=jsonField, fieldType=fieldType, tryClause=tryClause))
         else:
-            initLines.append("        self.{propertyName} = {tryClause} value.decode(at: \"{jsonField}\")"
+            initLines.append("        obj.{propertyName} = {tryClause} value.decode(at: \"{jsonField}\")"
                 .format(propertyName=propertyName, jsonField=jsonField, fieldType=fieldType, tryClause=tryClause))
 
         if not isOptional:
@@ -70,11 +70,12 @@ def generateModelContent(name, outerName, model):
         outerName = className,
         model = submodel
         ))
-    classTemplate ="""extension {modelName}: JSONEncodable, JSONDecodable {{
+    classTemplate ="""extension {modelName}: JSONEncodable, JSONStaticDecodable {{
 
-    init(json value: JSON) throws {{
+    static func fromJSON(json value: JSON) throws -> {modelName} {{
+        var obj = {modelName}()
 //{{initContent}}
-        throw JSON.Error.stringSerializationError
+        return obj
     }}
 
     public func toJSON() -> JSON {{
