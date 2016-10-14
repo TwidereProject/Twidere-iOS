@@ -14,8 +14,8 @@ class Activity {
     var maxPosition: String!
     var minPosition: String!
     var action: Action!
-    var sources: UserArray!
-    var sourceKeys: UserKeyArray!
+    var sources: [User]!
+    var sourceKeys: [UserKey]!
     var targets: ObjectList!
     var targetObjects: ObjectList!
     // Append body content

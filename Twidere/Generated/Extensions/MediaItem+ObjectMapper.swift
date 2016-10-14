@@ -8,7 +8,7 @@ extension MediaItem: StaticMappable {
         url <- map["url"]
         mediaUrl <- map["media_url"]
         previewUrl <- map["preview_url"]
-        type <- (map["type"], MediaTypeTransform())
+        type <- map["type"]
         width <- map["width"]
         height <- map["height"]
         videoInfo <- map["video_info"]

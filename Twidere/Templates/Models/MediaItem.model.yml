@@ -23,7 +23,6 @@ submodels:
         type: MediaType
         init: .unknown
         json_field: type
-        json_transform: MediaTypeTransform
       width:
         type: Int
         init: '0'

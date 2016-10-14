@@ -18,7 +18,6 @@ submodels:
         type: UserKey
         column: account_key
         json_field: account_key
-        json_transform: UserKeyTransform
       isGap:
         type: Bool
         column: is_gap
@@ -52,11 +51,11 @@ submodels:
         column: action
         json_field: action
       sources:
-        type: UserArray
+        type: '[User]'
         column: sources
         json_field: sources
       sourceKeys:
-        type: UserKeyArray
+        type: '[UserKey]'
         column: source_keys
         json_field: source_keys
       targets:

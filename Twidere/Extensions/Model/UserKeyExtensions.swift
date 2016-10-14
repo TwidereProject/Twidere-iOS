@@ -12,7 +12,9 @@ func ==(lhs: UserKey, rhs: UserKey) -> Bool {
     return lhs.id == rhs.id && lhs.host == rhs.host
 }
 
-extension UserKey {
+extension UserKey: ExpressibleByStringLiteral {
+
+    typealias StringLiteralType = String
     
     var string: String  {
         var chars = [Character]()
@@ -24,7 +26,7 @@ extension UserKey {
         return String(chars)
     }
     
-    init(rawValue: String) {
+    init(stringLiteral rawValue: String) {
         var escaping = false, idFinished = false
         var idBuilder = [Character](), hostBuilder = [Character]()
         

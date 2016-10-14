@@ -6,6 +6,7 @@ PODS:
   - DACircularProgress (2.3.1)
   - DateTools (1.7.0)
   - DeviceKit (1.0.0)
+  - Freddy (3.0.0)
   - FXBlurView (1.6.4)
   - FXImageView (1.3.5)
   - IQKeyboardManagerSwift (4.0.6)
@@ -56,6 +57,7 @@ DEPENDENCIES:
   - CryptoSwift (~> 0.6.0)
   - DateTools (~> 1.7.0)
   - DeviceKit (~> 1.0)
+  - Freddy (from `https://github.com/mariotaku/Freddy.git`)
   - FXBlurView (~> 1.6)
   - FXImageView (~> 1.3.5)
   - IQKeyboardManagerSwift (~> 4.0.6)
@@ -82,6 +84,8 @@ DEPENDENCIES:
   - YYText (~> 1.0.7)
 
 EXTERNAL SOURCES:
+  Freddy:
+    :git: https://github.com/mariotaku/Freddy.git
   SQLite.swift:
     :git: https://github.com/stephencelis/SQLite.swift.git
   SwiftHEXColors:
@@ -89,6 +93,9 @@ EXTERNAL SOURCES:
     :git: https://github.com/thii/SwiftHEXColors.git
 
 CHECKOUT OPTIONS:
+  Freddy:
+    :commit: da3b6e5edc044ced5e109fd8992b7602dbb846f5
+    :git: https://github.com/mariotaku/Freddy.git
   SQLite.swift:
     :commit: 38d9b8508f77b51f7fe0bed9f360248bd32f4baf
     :git: https://github.com/stephencelis/SQLite.swift.git
@@ -104,6 +111,7 @@ SPEC CHECKSUMS:
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   DeviceKit: ddead7f3a7c9603ba3a63cb748566428c38dd11f
+  Freddy: 367f994c88a90dd3987293b4b1bec94a4530745a
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   FXImageView: 7d84722b37f0afea9a64f12fdd4a6c7f9ecc4b16
   IQKeyboardManagerSwift: b3015e819559ca76381f87a0833f44d178564603
@@ -130,6 +138,6 @@ SPEC CHECKSUMS:
   UIView+TouchHighlighting: e05a338801522cbdc4a1e236bd189f2a928a781f
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 34e34d987d28aa2b2b855ede611a8a562b3face2
+PODFILE CHECKSUM: bd0ac3e1268de7d7cedb1bd24bdb8127177290fc
 
 COCOAPODS: 1.1.0.rc.2

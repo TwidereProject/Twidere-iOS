@@ -42,7 +42,6 @@ submodels:
       key:
         type: UserKey
         json_field: key
-        json_transform: UserKeyTransform
       name:
         type: String
         json_field: name

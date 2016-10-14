@@ -15,7 +15,7 @@ extension UserKey: Value {
     }
     
     static func fromDatatypeValue(_ datatypeValue: String) -> UserKey {
-        return UserKey(rawValue: datatypeValue)
+        return UserKey(stringLiteral: datatypeValue)
     }
     
     var datatypeValue: String {
@@ -35,7 +35,7 @@ struct UserKeyArray: Value {
     }
     
     static func fromDatatypeValue(_ datatypeValue: String) -> UserKeyArray {
-        return UserKeyArray(datatypeValue.components(separatedBy: ",").map { UserKey(rawValue: $0) })
+        return UserKeyArray(datatypeValue.components(separatedBy: ",").map { UserKey(stringLiteral: $0) })
     }
     
     var datatypeValue: String {

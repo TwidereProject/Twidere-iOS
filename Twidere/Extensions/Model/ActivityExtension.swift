@@ -32,29 +32,29 @@ extension Activity {
     func getTitleSummary() -> (String, String?) {
         switch self.action! {
         case .follow:
-            return ("\(getSourcesName(self.sources.array)) followed you", nil)
+            return ("\(getSourcesName(self.sources)) followed you", nil)
         case .favorite:
-            return ("\(getSourcesName(self.sources.array)) favorited your tweet", getTextOnlySummary(self.targets.statuses))
+            return ("\(getSourcesName(self.sources)) favorited your tweet", getTextOnlySummary(self.targets.statuses))
         case .retweet:
-            return ("\(getSourcesName(self.sources.array)) retweeted your tweet", getTextOnlySummary(self.targetObjects.statuses))
+            return ("\(getSourcesName(self.sources)) retweeted your tweet", getTextOnlySummary(self.targetObjects.statuses))
         case .favoritedRetweet:
-            return ("\(getSourcesName(self.sources.array)) favorited your retweet", getTextOnlySummary(self.targets.statuses))
+            return ("\(getSourcesName(self.sources)) favorited your retweet", getTextOnlySummary(self.targets.statuses))
         case .retweetedRetweet:
-            return ("\(getSourcesName(self.sources.array)) retweeted your retweet", getTextOnlySummary(self.targets.statuses))
+            return ("\(getSourcesName(self.sources)) retweeted your retweet", getTextOnlySummary(self.targets.statuses))
         case .favoritedMention:
-            return ("\(getSourcesName(self.sources.array)) favorited a tweet you were mentioned in", getTextOnlySummary(self.targets.statuses))
+            return ("\(getSourcesName(self.sources)) favorited a tweet you were mentioned in", getTextOnlySummary(self.targets.statuses))
         case .retweetedMention:
-            return ("\(getSourcesName(self.sources.array)) retweeted a tweet you were mentioned in", getTextOnlySummary(self.targets.statuses))
+            return ("\(getSourcesName(self.sources)) retweeted a tweet you were mentioned in", getTextOnlySummary(self.targets.statuses))
         case .listMemberAdded:
-            return ("\(getSourcesName(self.sources.array)) added you to their lists", nil)
+            return ("\(getSourcesName(self.sources)) added you to their lists", nil)
         case .joinedTwitter:
-            return ("\(getSourcesName(self.sources.array)) joined Twitter", nil)
+            return ("\(getSourcesName(self.sources)) joined Twitter", nil)
         case .mediaTagged:
-            return ("\(getSourcesName(self.sources.array)) tagged you", getTextOnlySummary(self.targets.statuses))
+            return ("\(getSourcesName(self.sources)) tagged you", getTextOnlySummary(self.targets.statuses))
         case .favoritedMediaTagged:
-            return ("\(getSourcesName(self.sources.array)) favorited a tweet you were tagged in", getTextOnlySummary(self.targets.statuses))
+            return ("\(getSourcesName(self.sources)) favorited a tweet you were tagged in", getTextOnlySummary(self.targets.statuses))
         case .retweetedMediaTagged:
-            return ("\(getSourcesName(self.sources.array)) retweeted a tweet you were tagged in", getTextOnlySummary(self.targets.statuses))
+            return ("\(getSourcesName(self.sources)) retweeted a tweet you were tagged in", getTextOnlySummary(self.targets.statuses))
         default:
             return (action.rawValue, "Message")
         }

@@ -11,12 +11,10 @@ submodels:
         type: UserKey
         column: account_key
         json_field: account_key
-        json_transform: UserKeyTransform
       key:
         type: UserKey
         column: user_key
         json_field: user_key
-        json_transform: UserKeyTransform
       createdAt:
         type: Date
         column: created_at

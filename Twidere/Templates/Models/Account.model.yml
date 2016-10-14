@@ -11,7 +11,6 @@ submodels:
         type: UserKey
         column: account_key
         json_field: account_key
-        json_transform: UserKeyTransform
       type:
         type: String
         column: account_type

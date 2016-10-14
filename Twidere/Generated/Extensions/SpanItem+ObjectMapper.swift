@@ -22,7 +22,7 @@ extension MentionSpanItem: StaticMappable {
     func mapping(map: Map) {
         start <- map["start"]
         end <- map["end"]
-        key <- (map["key"], UserKeyTransform())
+        key <- map["key"]
         name <- map["name"]
         screenName <- map["screen_name"]
     }

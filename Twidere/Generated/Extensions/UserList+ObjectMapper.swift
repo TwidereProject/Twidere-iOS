@@ -5,7 +5,7 @@ import Foundation
 extension UserList: StaticMappable {
 
     func mapping(map: Map) {
-        accountKey <- (map["account_key"], UserKeyTransform())
+        accountKey <- map["account_key"]
     }
 
     static func objectForMapping(map: Map) -> BaseMappable? {

@@ -15,8 +15,8 @@ extension Activity {
         self.accountKey = accountKey
         self.createdAt = parseTwitterDate(json["created_at"].stringValue)
         self.action = Activity.Action.parse(json["action"].stringValue)
-        self.sources = UserArray(User.arrayFromJson(json["sources"], accountKey: accountKey))
-        self.sourceKeys = UserKeyArray(self.sources.array.map { $0.key })
+        self.sources = User.arrayFromJson(json["sources"], accountKey: accountKey)
+        self.sourceKeys = self.sources.map { $0.key }
         self.targets = Activity.getTargets(action, json: json["targets"], accountKey: accountKey)
         self.targetObjects = Activity.getTargetObjects(action, json: json["target_objects"], accountKey: accountKey)
         

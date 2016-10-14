@@ -72,8 +72,8 @@ extension Activity {
         static let maxPosition = Expression<String?>("max_position")
         static let minPosition = Expression<String?>("min_position")
         static let action = Expression<Action?>("action")
-        static let sources = Expression<UserArray?>("sources")
-        static let sourceKeys = Expression<UserKeyArray?>("source_keys")
+        static let sources = Expression<[User]?>("sources")
+        static let sourceKeys = Expression<[UserKey]?>("source_keys")
         static let targets = Expression<ObjectList?>("targets")
         static let targetObjects = Expression<ObjectList?>("target_objects")
 

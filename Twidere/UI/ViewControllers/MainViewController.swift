@@ -27,7 +27,7 @@ class MainViewController: UIViewController {
             
             // Create content and menu controllers
             //
-            let homeController = storyboard!.instantiateViewController(withIdentifier: "HomeTabs")
+            let homeController = storyboard!.instantiateViewController(withIdentifier: "HomeRoot")
             present(homeController, animated: false, completion: nil)
         } else {
             

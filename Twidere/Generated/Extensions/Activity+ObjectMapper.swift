@@ -5,7 +5,7 @@ import Foundation
 extension Activity: StaticMappable {
 
     func mapping(map: Map) {
-        accountKey <- (map["account_key"], UserKeyTransform())
+        accountKey <- map["account_key"]
         isGap <- map["is_gap"]
         positionKey <- map["position_key"]
         createdAt <- map["created_at"]

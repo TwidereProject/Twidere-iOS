@@ -119,6 +119,24 @@
             </objects>
             <point key="canvasLocation" x="2786" y="892"/>
         </scene>
+        <!--Home Root-->
+        <scene sceneID="ywf-E1-9cT">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L6R-WO-8k5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="HomeRoot" useStoryboardIdentifierAsRestorationIdentifier="YES" id="y6G-7y-M1v" userLabel="Home Root" customClass="HomeRootController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pvw-rH-LYc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="FoP-na-KSh" kind="relationship" relationship="rootViewController" id="1Us-ic-BTf"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="2185" y="425"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Profile Image Default" width="24" height="24"/>

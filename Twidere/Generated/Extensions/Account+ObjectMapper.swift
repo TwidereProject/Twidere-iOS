@@ -5,7 +5,7 @@ import Foundation
 extension Account: StaticMappable {
 
     func mapping(map: Map) {
-        key <- (map["account_key"], UserKeyTransform())
+        key <- map["account_key"]
         type <- map["account_type"]
         apiUrlFormat <- map["api_url_format"]
         authType <- map["auth_type"]

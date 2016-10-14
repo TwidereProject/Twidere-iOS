@@ -43,7 +43,9 @@ class HomeController: UITabBarController {
         let pageControllers = [homeTimelineController, notificationsTimelineController, messageConversationsController, testController]
         
         setViewControllers(pageControllers.map({ vc -> UINavigationController in
-            return UINavigationController(rootViewController: vc)
+            let nvc = UINavigationController(rootViewController: vc)
+            nvc.title = self.navigationItem.title
+            return nvc
         }), animated: false)
         
     }

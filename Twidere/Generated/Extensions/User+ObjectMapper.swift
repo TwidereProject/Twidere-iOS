@@ -5,8 +5,8 @@ import Foundation
 extension User: StaticMappable {
 
     func mapping(map: Map) {
-        accountKey <- (map["account_key"], UserKeyTransform())
-        key <- (map["user_key"], UserKeyTransform())
+        accountKey <- map["account_key"]
+        key <- map["user_key"]
         createdAt <- map["created_at"]
         isProtected <- map["is_protected"]
         isVerified <- map["is_verified"]
