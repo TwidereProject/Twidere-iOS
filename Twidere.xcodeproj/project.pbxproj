@@ -39,6 +39,7 @@
 		CE2660371DAFDD79007FF7CF /* User+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26602B1DAFDD79007FF7CF /* User+SQLite.swift */; };
 		CE2660381DAFDD79007FF7CF /* UserList+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26602C1DAFDD79007FF7CF /* UserList+ObjectMapper.swift */; };
 		CE2660391DAFDD79007FF7CF /* UserList+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26602D1DAFDD79007FF7CF /* UserList+SQLite.swift */; };
+		CE26603F1DB0638D007FF7CF /* SQLite+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26603E1DB0638D007FF7CF /* SQLite+Array.swift */; };
 		CE29039E1D4CEF2A0056D0E2 /* AccountExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE29039D1D4CEF2A0056D0E2 /* AccountExtensions.swift */; };
 		CE2903EC1D4F200A0056D0E2 /* UserExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */; };
 		CE358B711D811C84002A33B3 /* SpanItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE358B701D811C84002A33B3 /* SpanItem.swift */; };
@@ -231,6 +232,7 @@
 		CE26602B1DAFDD79007FF7CF /* User+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+SQLite.swift"; sourceTree = "<group>"; };
 		CE26602C1DAFDD79007FF7CF /* UserList+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserList+ObjectMapper.swift"; sourceTree = "<group>"; };
 		CE26602D1DAFDD79007FF7CF /* UserList+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserList+SQLite.swift"; sourceTree = "<group>"; };
+		CE26603E1DB0638D007FF7CF /* SQLite+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SQLite+Array.swift"; sourceTree = "<group>"; };
 		CE29039D1D4CEF2A0056D0E2 /* AccountExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountExtensions.swift; sourceTree = "<group>"; };
 		CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserExtensions.swift; sourceTree = "<group>"; };
 		CE358B701D811C84002A33B3 /* SpanItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItem.swift; sourceTree = "<group>"; };
@@ -861,6 +863,7 @@
 				CE79C83E1DA77777007C05F2 /* YYTextExtensions.swift */,
 				CE9DB0481DACA34B000C150F /* Number+LocalizedString.swift */,
 				CE2660181DAFD1BF007FF7CF /* StringLiteral.swift */,
+				CE26603E1DB0638D007FF7CF /* SQLite+Array.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1578,6 +1581,7 @@
 				CEBECFB51DA9E18100350383 /* TimelineContentTextView.swift in Sources */,
 				CE65B1DD1D9E0D4900A38A61 /* ShortTimeView.swift in Sources */,
 				CE9574821D32186A00504D52 /* UIConstants.swift in Sources */,
+				CE26603F1DB0638D007FF7CF /* SQLite+Array.swift in Sources */,
 				CE2660311DAFDD79007FF7CF /* Activity+SQLite.swift in Sources */,
 				CE358B711D811C84002A33B3 /* SpanItem.swift in Sources */,
 				CE29039E1D4CEF2A0056D0E2 /* AccountExtensions.swift in Sources */,

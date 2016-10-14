@@ -73,4 +73,15 @@ extension UserKey: ExpressibleByStringLiteral {
     fileprivate func isSpecialChar(_ ch: Character) -> Bool {
         return ch == "\\" || ch == "@" || ch == ","
     }
+    
+    static func arrayFrom(string: String) -> [UserKey] {
+        return string.components(separatedBy: ",").map{ UserKey(stringLiteral: $0) }
+    }
+}
+
+extension Sequence where Iterator.Element == UserKey {
+    var string: String {
+        return self.map({ $0.string }).joined(separator: ",")
+    }
+    
 }

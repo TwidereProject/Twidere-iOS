@@ -24,6 +24,16 @@ extension User: Value {
     }
 }
 
+extension User: ArrayValue {
+    static func arrayFromDatatypeValue(_ datatypeValue: String) -> [User]? {
+        return Mapper<User>().mapArray(JSONString: datatypeValue)
+    }
+    
+    static func arrayToDatatypeValue(array: [User]) -> String {
+        return Mapper().toJSONString(array, prettyPrint: false) ?? ""
+    }
+}
+
 extension User.Metadata: Value {
     static var declaredDatatype: String {
         return String.declaredDatatype
@@ -38,22 +48,3 @@ extension User.Metadata: Value {
     }
 }
 
-struct UserArray: Value {
-    let array: [User]
-    
-    init(_ array: [User]) {
-        self.array = array
-    }
-    
-    static var declaredDatatype: String {
-        return String.declaredDatatype
-    }
-    
-    static func fromDatatypeValue(_ datatypeValue: String) -> UserArray {
-        return UserArray(Mapper<User>().mapArray(JSONString: datatypeValue) ?? [])
-    }
-    
-    var datatypeValue: String {
-        return Mapper().toJSONString(self.array, prettyPrint: false) ?? ""
-    }
-}

@@ -23,6 +23,16 @@ extension UserKey: Value {
     }
 }
 
+extension UserKey: ArrayValue {
+    static func arrayFromDatatypeValue(_ datatypeValue: String) -> [UserKey]? {
+        return UserKey.arrayFrom(string: datatypeValue)
+    }
+    
+    static func arrayToDatatypeValue(array: [UserKey]) -> String {
+        return array.string
+    }
+}
+
 struct UserKeyArray: Value {
     let array: [UserKey]
     
