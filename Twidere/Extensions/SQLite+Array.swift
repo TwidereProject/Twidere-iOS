@@ -10,7 +10,8 @@ import SQLite
 
 extension Row {
     func get<V: ArrayValue>(_ column: Expression<[V]?>) -> [V]? {
-        guard let datatypeValue = self.get(Expression<String?>(column.template)) else {
+        let wrapped: Expression<String?> = column.wrapped()
+        guard let datatypeValue = self.get(wrapped) else {
             return nil
         }
         guard let array = V.arrayFromDatatypeValue(datatypeValue) else {
@@ -47,7 +48,7 @@ func <-<V : ArrayValue>(column: Expression<[V]?>, value: [V]?) -> Setter {
 
 extension Expression {
     func wrapped<T>() -> Expression<T> {
-        return Expression<T>(template, bindings)
+        return Expression<T>(self)
     }
 }
 
