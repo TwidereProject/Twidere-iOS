@@ -6,7 +6,10 @@ extension LinkSpanItem: JSONEncodable, JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> LinkSpanItem {
         var obj = LinkSpanItem()
-//{initContent}
+        let start: Int = try value.decode(at: "start")
+        let end: Int = try value.decode(at: "end")
+        let link: String = try value.decode(at: "link")
+        let display: String = try value.decode(at: "display")
         return obj
     }
 
@@ -22,7 +25,11 @@ extension MentionSpanItem: JSONEncodable, JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> MentionSpanItem {
         var obj = MentionSpanItem()
-//{initContent}
+        let start: Int = try value.decode(at: "start")
+        let end: Int = try value.decode(at: "end")
+        let key: UserKey = try value.decode(at: "key")
+        let name: String = try value.decode(at: "name")
+        let screenName: String = try value.decode(at: "screen_name")
         return obj
     }
 
@@ -38,7 +45,9 @@ extension HashtagSpanItem: JSONEncodable, JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> HashtagSpanItem {
         var obj = HashtagSpanItem()
-//{initContent}
+        let start: Int = try value.decode(at: "start")
+        let end: Int = try value.decode(at: "end")
+        let hashtag: String = try value.decode(at: "hashtag")
         return obj
     }
 

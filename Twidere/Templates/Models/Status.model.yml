@@ -45,7 +45,7 @@ submodels:
         column: user_screen_name
         json_field: user_screen_name
       userProfileImage:
-        type: String
+        type: String!
         column: user_profile_image
         json_field: user_profile_image
       textPlain:

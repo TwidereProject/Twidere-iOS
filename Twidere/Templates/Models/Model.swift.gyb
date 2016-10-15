@@ -71,7 +71,7 @@ def generateModelContent(name, modelType, model, indent=0):
                 propertyType=propertyType,
                 propertyInit=propertyInitContent
                 ))
-            initLines.append("self.{propertyName} = {propertyName}".format(
+            initLines.append("        self.{propertyName} = {propertyName}".format(
                 propertyName=propertyName
                 ))
     subModelsLines = []
@@ -80,7 +80,7 @@ def generateModelContent(name, modelType, model, indent=0):
     inheritanceContent = ''
     appendBodyContent = model.get('append_body', '')
     if modelType == 'class':
-        initializersContent = " init({initParameters}) {{\n{initLines}\n}}".format(
+        initializersContent = "    init({initParameters}) {{\n{initLines}\n    }}".format(
             initParameters = ', '.join(initParameters),
             initLines = '\n'.join(initLines)
         )

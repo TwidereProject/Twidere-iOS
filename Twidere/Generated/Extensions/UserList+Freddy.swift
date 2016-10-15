@@ -6,7 +6,7 @@ extension UserList: JSONEncodable, JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> UserList {
         var obj = UserList()
-//{initContent}
+        let accountKey: UserKey = try value.decode(at: "account_key")
         return obj
     }
 

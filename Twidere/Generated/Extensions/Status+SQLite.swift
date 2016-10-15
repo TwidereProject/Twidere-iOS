@@ -117,7 +117,7 @@ extension Status {
         static let userKey = Expression<UserKey>("user_key")
         static let userName = Expression<String>("user_name")
         static let userScreenName = Expression<String>("user_screen_name")
-        static let userProfileImage = Expression<String>("user_profile_image")
+        static let userProfileImage = Expression<String?>("user_profile_image")
         static let textPlain = Expression<String>("text_plain")
         static let textDisplay = Expression<String>("text_display")
         static let metadata = Expression<Metadata?>("metadata")

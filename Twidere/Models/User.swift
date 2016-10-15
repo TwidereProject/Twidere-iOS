@@ -23,26 +23,26 @@ class User {
     var location: String!
     var metadata: Metadata?
     // Initializers
- init(_id: Int64 = -1, accountKey: UserKey!, key: UserKey, createdAt: Date, position: Int64, isProtected: Bool, isVerified: Bool, name: String, screenName: String, profileImageUrl: String!, profileBannerUrl: String!, profileBackgroundUrl: String!, descriptionPlain: String!, descriptionDisplay: String!, url: String!, urlExpanded: String!, location: String!, metadata: Metadata?) {
-self._id = _id
-self.accountKey = accountKey
-self.key = key
-self.createdAt = createdAt
-self.position = position
-self.isProtected = isProtected
-self.isVerified = isVerified
-self.name = name
-self.screenName = screenName
-self.profileImageUrl = profileImageUrl
-self.profileBannerUrl = profileBannerUrl
-self.profileBackgroundUrl = profileBackgroundUrl
-self.descriptionPlain = descriptionPlain
-self.descriptionDisplay = descriptionDisplay
-self.url = url
-self.urlExpanded = urlExpanded
-self.location = location
-self.metadata = metadata
-}
+    init(_id: Int64 = -1, accountKey: UserKey!, key: UserKey, createdAt: Date, position: Int64, isProtected: Bool, isVerified: Bool, name: String, screenName: String, profileImageUrl: String!, profileBannerUrl: String!, profileBackgroundUrl: String!, descriptionPlain: String!, descriptionDisplay: String!, url: String!, urlExpanded: String!, location: String!, metadata: Metadata?) {
+        self._id = _id
+        self.accountKey = accountKey
+        self.key = key
+        self.createdAt = createdAt
+        self.position = position
+        self.isProtected = isProtected
+        self.isVerified = isVerified
+        self.name = name
+        self.screenName = screenName
+        self.profileImageUrl = profileImageUrl
+        self.profileBannerUrl = profileBannerUrl
+        self.profileBackgroundUrl = profileBackgroundUrl
+        self.descriptionPlain = descriptionPlain
+        self.descriptionDisplay = descriptionDisplay
+        self.url = url
+        self.urlExpanded = urlExpanded
+        self.location = location
+        self.metadata = metadata
+    }
     // Append body content
 
     // Sub models
@@ -69,27 +69,27 @@ self.metadata = metadata
         var listedCount: Int64
         var groupsCount: Int64
         // Initializers
-     init(following: Bool, followedBy: Bool, blocking: Bool, blockedBy: Bool, muting: Bool, followRequestSent: Bool, descriptionLinks: [LinkSpanItem]?, descriptionMentions: [MentionSpanItem]?, descriptionHashtags: [HashtagSpanItem]?, linkColor: String? = nil, backgroundColor: String? = nil, statusesCount: Int64, followersCount: Int64, friendsCount: Int64, favoritesCount: Int64, mediaCount: Int64, listsCount: Int64, listedCount: Int64, groupsCount: Int64) {
-    self.following = following
-    self.followedBy = followedBy
-    self.blocking = blocking
-    self.blockedBy = blockedBy
-    self.muting = muting
-    self.followRequestSent = followRequestSent
-    self.descriptionLinks = descriptionLinks
-    self.descriptionMentions = descriptionMentions
-    self.descriptionHashtags = descriptionHashtags
-    self.linkColor = linkColor
-    self.backgroundColor = backgroundColor
-    self.statusesCount = statusesCount
-    self.followersCount = followersCount
-    self.friendsCount = friendsCount
-    self.favoritesCount = favoritesCount
-    self.mediaCount = mediaCount
-    self.listsCount = listsCount
-    self.listedCount = listedCount
-    self.groupsCount = groupsCount
-    }
+        init(following: Bool, followedBy: Bool, blocking: Bool, blockedBy: Bool, muting: Bool, followRequestSent: Bool, descriptionLinks: [LinkSpanItem]?, descriptionMentions: [MentionSpanItem]?, descriptionHashtags: [HashtagSpanItem]?, linkColor: String? = nil, backgroundColor: String? = nil, statusesCount: Int64, followersCount: Int64, friendsCount: Int64, favoritesCount: Int64, mediaCount: Int64, listsCount: Int64, listedCount: Int64, groupsCount: Int64) {
+            self.following = following
+            self.followedBy = followedBy
+            self.blocking = blocking
+            self.blockedBy = blockedBy
+            self.muting = muting
+            self.followRequestSent = followRequestSent
+            self.descriptionLinks = descriptionLinks
+            self.descriptionMentions = descriptionMentions
+            self.descriptionHashtags = descriptionHashtags
+            self.linkColor = linkColor
+            self.backgroundColor = backgroundColor
+            self.statusesCount = statusesCount
+            self.followersCount = followersCount
+            self.friendsCount = friendsCount
+            self.favoritesCount = favoritesCount
+            self.mediaCount = mediaCount
+            self.listsCount = listsCount
+            self.listedCount = listedCount
+            self.groupsCount = groupsCount
+        }
         // Append body content
     
         // Sub models

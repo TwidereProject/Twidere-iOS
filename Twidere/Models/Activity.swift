@@ -19,22 +19,22 @@ class Activity {
     var targets: ObjectList!
     var targetObjects: ObjectList!
     // Initializers
- init(_id: Int64 = -1, accountKey: UserKey!, isGap: Bool, positionKey: Int64, createdAt: Date, maxSortPosition: Int64, minSortPosition: Int64, maxPosition: String, minPosition: String, action: Action, sources: [User], sourceKeys: [UserKey], targets: ObjectList!, targetObjects: ObjectList!) {
-self._id = _id
-self.accountKey = accountKey
-self.isGap = isGap
-self.positionKey = positionKey
-self.createdAt = createdAt
-self.maxSortPosition = maxSortPosition
-self.minSortPosition = minSortPosition
-self.maxPosition = maxPosition
-self.minPosition = minPosition
-self.action = action
-self.sources = sources
-self.sourceKeys = sourceKeys
-self.targets = targets
-self.targetObjects = targetObjects
-}
+    init(_id: Int64 = -1, accountKey: UserKey!, isGap: Bool, positionKey: Int64, createdAt: Date, maxSortPosition: Int64, minSortPosition: Int64, maxPosition: String, minPosition: String, action: Action, sources: [User], sourceKeys: [UserKey], targets: ObjectList!, targetObjects: ObjectList!) {
+        self._id = _id
+        self.accountKey = accountKey
+        self.isGap = isGap
+        self.positionKey = positionKey
+        self.createdAt = createdAt
+        self.maxSortPosition = maxSortPosition
+        self.minSortPosition = minSortPosition
+        self.maxPosition = maxPosition
+        self.minPosition = minPosition
+        self.action = action
+        self.sources = sources
+        self.sourceKeys = sourceKeys
+        self.targets = targets
+        self.targetObjects = targetObjects
+    }
     // Append body content
 
     // Sub models
@@ -68,11 +68,11 @@ self.targetObjects = targetObjects
         var users: [User]? = nil
         var userLists: [UserList]? = nil
         // Initializers
-     init(statuses: [Status]? = nil, users: [User]? = nil, userLists: [UserList]? = nil) {
-    self.statuses = statuses
-    self.users = users
-    self.userLists = userLists
-    }
+        init(statuses: [Status]? = nil, users: [User]? = nil, userLists: [UserList]? = nil) {
+            self.statuses = statuses
+            self.users = users
+            self.userLists = userLists
+        }
         // Append body content
     
         // Sub models

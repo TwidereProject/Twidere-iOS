@@ -26,16 +26,16 @@ def generateModelContent(name, outerName, model):
         field = fields[propertyName]
         jsonField = field.get('json_field', None)
 
-        fieldType = field['type']
+        propertyType = field['type']
         jsonTransform = field.get('json_transform', None)
         jsonNull = field.get('json_null', 'omit')
         isArray = False
         isOptional = False
-        if fieldType.endswith('?') or fieldType.endswith('!') :
-            fieldType = fieldType[:-1]
-            isOptional = True
-        if fieldType.startswith('['):
-            fieldType = fieldType[1:-1]
+        if propertyType.endswith('?') or propertyType.endswith('!') :
+            propertyType = propertyType[:-1]
+            # isOptional = True
+        if propertyType.startswith('['):
+            # propertyType = propertyType[1:-1]
             isArray = True
         if (jsonField is None):
             fieldInit = field.get('init', 'nil')
@@ -47,11 +47,11 @@ def generateModelContent(name, outerName, model):
         else:
             tryClause = 'try'
         if isArray:
-            initLines.append("        obj.{propertyName} = {tryClause} value.decodeArray(at: \"{jsonField}\")"
-                .format(propertyName=propertyName, jsonField=jsonField, fieldType=fieldType, tryClause=tryClause))
+            initLines.append("        let {propertyName}: {propertyType} = {tryClause} value.decodeArray(at: \"{jsonField}\")"
+                .format(propertyName=propertyName, jsonField=jsonField, propertyType=propertyType, tryClause=tryClause))
         else:
-            initLines.append("        obj.{propertyName} = {tryClause} value.decode(at: \"{jsonField}\")"
-                .format(propertyName=propertyName, jsonField=jsonField, fieldType=fieldType, tryClause=tryClause))
+            initLines.append("        let {propertyName}: {propertyType} = {tryClause} value.decode(at: \"{jsonField}\")"
+                .format(propertyName=propertyName, jsonField=jsonField, propertyType=propertyType, tryClause=tryClause))
 
         if not isOptional:
             toJsonLines.append("        dict[\"{jsonField}\"] = self.{propertyName}.toJSON()".format(jsonField=jsonField, propertyName=propertyName))
@@ -72,7 +72,7 @@ def generateModelContent(name, outerName, model):
 
     static func fromJSON(json value: JSON) throws -> {modelName} {{
         var obj = {modelName}()
-//{{initContent}}
+{initContent}
         return obj
     }}
 

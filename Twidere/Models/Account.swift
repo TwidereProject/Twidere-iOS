@@ -20,23 +20,23 @@ class Account {
     var config: Config? = nil
     var user: User
     // Initializers
- init(_id: Int64 = -1, key: UserKey, type: String, apiUrlFormat: String, authType: String, basicPassword: String?, basicUsername: String?, consumerKey: String?, consumerSecret: String?, noVersionSuffix: Bool, oauthToken: String?, oauthTokenSecret: String?, sameOAuthSigningUrl: Bool, config: Config? = nil, user: User) {
-self._id = _id
-self.key = key
-self.type = type
-self.apiUrlFormat = apiUrlFormat
-self.authType = authType
-self.basicPassword = basicPassword
-self.basicUsername = basicUsername
-self.consumerKey = consumerKey
-self.consumerSecret = consumerSecret
-self.noVersionSuffix = noVersionSuffix
-self.oauthToken = oauthToken
-self.oauthTokenSecret = oauthTokenSecret
-self.sameOAuthSigningUrl = sameOAuthSigningUrl
-self.config = config
-self.user = user
-}
+    init(_id: Int64 = -1, key: UserKey, type: String, apiUrlFormat: String, authType: String, basicPassword: String?, basicUsername: String?, consumerKey: String?, consumerSecret: String?, noVersionSuffix: Bool, oauthToken: String?, oauthTokenSecret: String?, sameOAuthSigningUrl: Bool, config: Config? = nil, user: User) {
+        self._id = _id
+        self.key = key
+        self.type = type
+        self.apiUrlFormat = apiUrlFormat
+        self.authType = authType
+        self.basicPassword = basicPassword
+        self.basicUsername = basicUsername
+        self.consumerKey = consumerKey
+        self.consumerSecret = consumerSecret
+        self.noVersionSuffix = noVersionSuffix
+        self.oauthToken = oauthToken
+        self.oauthTokenSecret = oauthTokenSecret
+        self.sameOAuthSigningUrl = sameOAuthSigningUrl
+        self.config = config
+        self.user = user
+    }
     // Append body content
 
     // Sub models
@@ -56,10 +56,10 @@ self.user = user
         var characterLimit: Int
         var officialCredentials: Bool
         // Initializers
-     init(characterLimit: Int, officialCredentials: Bool) {
-    self.characterLimit = characterLimit
-    self.officialCredentials = officialCredentials
-    }
+        init(characterLimit: Int, officialCredentials: Bool) {
+            self.characterLimit = characterLimit
+            self.officialCredentials = officialCredentials
+        }
         // Append body content
     
         // Sub models

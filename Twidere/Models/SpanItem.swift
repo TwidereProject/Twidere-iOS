@@ -9,12 +9,12 @@ class SpanItem {
     var origStart: Int = -1
     var origEnd: Int = -1
     // Initializers
- init(start: Int = -1, end: Int = -1, origStart: Int = -1, origEnd: Int = -1) {
-self.start = start
-self.end = end
-self.origStart = origStart
-self.origEnd = origEnd
-}
+    init(start: Int = -1, end: Int = -1, origStart: Int = -1, origEnd: Int = -1) {
+        self.start = start
+        self.end = end
+        self.origStart = origStart
+        self.origEnd = origEnd
+    }
     // Append body content
 
     // Sub models
@@ -27,10 +27,10 @@ class LinkSpanItem : SpanItem {
     var link: String
     var display: String!
     // Initializers
- init(link: String, display: String!) {
-self.link = link
-self.display = display
-}
+    init(link: String, display: String!) {
+        self.link = link
+        self.display = display
+    }
     // Append body content
 
     // Sub models
@@ -44,11 +44,11 @@ class MentionSpanItem : SpanItem {
     var name: String?
     var screenName: String
     // Initializers
- init(key: UserKey, name: String?, screenName: String) {
-self.key = key
-self.name = name
-self.screenName = screenName
-}
+    init(key: UserKey, name: String?, screenName: String) {
+        self.key = key
+        self.name = name
+        self.screenName = screenName
+    }
     // Append body content
 
     // Sub models
@@ -60,9 +60,9 @@ class HashtagSpanItem : SpanItem {
     // Fields
     var hashtag: String
     // Initializers
- init(hashtag: String) {
-self.hashtag = hashtag
-}
+    init(hashtag: String) {
+        self.hashtag = hashtag
+    }
     // Append body content
 
     // Sub models
