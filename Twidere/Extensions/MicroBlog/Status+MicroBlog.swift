@@ -51,7 +51,7 @@ extension Status {
         var primary = status["retweeted_status"]
         if (primary.exists()) {
             self.retweetId = getTwitterEntityId(primary)
-            self.retweetCreatedAt = parseTwitterDate(primary["created_at"].stringValue)
+            self.retweetCreatedAt = parseTwitterDate(primary["created_at"].stringValue)!
             
             let retweetedBy = status["user"]
             let userId = getTwitterEntityId(retweetedBy)
@@ -65,15 +65,15 @@ extension Status {
         
         let user = primary["user"]
         self.userKey = User.getUserKey(user, accountHost: accountKey?.host)
-        self.userName = user["name"].string
-        self.userScreenName = user["screen_name"].string
+        self.userName = user["name"].stringValue
+        self.userScreenName = user["screen_name"].stringValue
         self.userProfileImage = getProfileImage(user)
         
         let (textPlain, textDisplay, metadata) = getMetadata(primary)
         
-        metadata.replyCount = status["reply_count"].int64
-        metadata.retweetCount = status["retweet_count"].int64
-        metadata.favoriteCount = status["favorite_count"].int64
+        metadata.replyCount = status["reply_count"].int64 ?? -1
+        metadata.retweetCount = status["retweet_count"].int64 ?? -1
+        metadata.favoriteCount = status["favorite_count"].int64 ?? -1
         
         self.textPlain = textPlain
         self.textDisplay = textDisplay
@@ -82,7 +82,7 @@ extension Status {
         let quoted = primary["quoted_status"]
         if (quoted.exists()) {
             self.quotedId = getTwitterEntityId(quoted)
-            self.quotedCreatedAt = parseTwitterDate(quoted["created_at"].stringValue)
+            self.quotedCreatedAt = parseTwitterDate(quoted["created_at"].stringValue)!
             
             let quotedUser = quoted["user"]
             let quotedUserId = getTwitterEntityId(quotedUser)
@@ -286,23 +286,14 @@ extension Status {
     }
     
     fileprivate func mediaItemFromEntity(_ entity: JSON) -> MediaItem {
-        let media = MediaItem()
-        media.url = entity["media_url_https"].string ?? entity["media_url"].string
-        media.mediaUrl = media.url
-        media.previewUrl = media.url
-        media.pageUrl = entity["expanded_url"].string
-        media.type = getMediaType(entity["type"].string)
-        media.altText = entity["alt_text"].string
-        let size = entity["sizes"]["large"]
-        if (size.exists()) {
-            media.width = size["w"].intValue
-            media.height = size["h"].intValue
-        } else {
-            media.width = 0
-            media.height = 0
-        }
-        media.videoInfo = getVideoInfo(entity["video_info"])
-        return media
+        let url = entity["media_url_https"].string ?? entity["media_url"].string
+        let pageUrl = entity["expanded_url"].string
+        let type = getMediaType(entity["type"].string)
+        let altText = entity["alt_text"].string
+        let width = entity["sizes"]["large"]["w"].intValue
+        let height = entity["sizes"]["large"]["h"].intValue
+        let videoInfo = getVideoInfo(entity["video_info"])
+        return MediaItem(url: url, mediaUrl: url, previewUrl: url, type: type, width: width, height: height, videoInfo: videoInfo, pageUrl: pageUrl, altText: altText)
     }
     
     fileprivate func getMediaType(_ type: String?) -> MediaItem.MediaType {
@@ -319,22 +310,25 @@ extension Status {
     }
     
     fileprivate func getVideoInfo(_ json: JSON) -> MediaItem.VideoInfo {
-        let info = MediaItem.VideoInfo()
-        info.duration = json["duration"].int64Value
-        info.variants = json["variants"].map { (k, v) -> MediaItem.VideoInfo.Variant in
-            let variant = MediaItem.VideoInfo.Variant()
-            variant.bitrate = v["bitrate"].int64Value
-            variant.contentType = v["content_type"].string
-            variant.url = v["url"].string
-            return variant
+        
+        let duration = json["duration"].int64Value
+        let variants = json["variants"].flatMap { (k, v) -> MediaItem.VideoInfo.Variant? in
+            guard let url = v["url"].string else {
+                return nil
+            }
+            let contentType = v["content_type"].string
+            let bitrate = v["bitrate"].int64Value
+            
+            return MediaItem.VideoInfo.Variant(url: url, contentType: contentType, bitrate: bitrate)
         }
-        return info
+        return MediaItem.VideoInfo(variants: variants, duration: duration)
     }
     
     fileprivate func spanFromUrlEntity(_ entity: JSON) -> LinkSpanItem {
-        let span = LinkSpanItem()
-        span.display = entity["display_url"].stringValue
-        span.link = entity["expanded_url"].stringValue
+        let link = entity["expanded_url"].stringValue
+        let display = entity["display_url"].string
+        
+        let span = LinkSpanItem(link: link, display: display)
         span.origStart = entity["indices"][0].int ?? -1
         span.origEnd = entity["indices"][1].int ?? -1
         
@@ -343,11 +337,12 @@ extension Status {
     
     fileprivate func spanFromMentionEntity(_ entity: JSON, accountKey: UserKey?) -> MentionSpanItem {
         let id = entity["id_str"].string ?? entity["id"].stringValue
-        let span = MentionSpanItem()
-        span.key = UserKey(id: id, host: accountKey?.host)
-        span.name = entity["name"].string
-        span.screenName = entity["screen_name"].string
         
+        let key = UserKey(id: id, host: accountKey?.host)
+        let name = entity["name"].string
+        let screenName = entity["screen_name"].stringValue
+        
+        let span = MentionSpanItem(key: key, name: name, screenName: screenName)
         span.origStart = entity["indices"][0].int ?? -1
         span.origEnd = entity["indices"][1].int ?? -1
         
@@ -355,8 +350,7 @@ extension Status {
     }
     
     fileprivate func spanFromHashtagEntity(_ entity: JSON) -> HashtagSpanItem {
-        let span = HashtagSpanItem()
-        span.hashtag = entity["text"].stringValue
+        let span = HashtagSpanItem(hashtag: entity["text"].stringValue)
         span.origStart = entity["indices"][0].int ?? -1
         span.origEnd = entity["indices"][1].int ?? -1
         
@@ -425,10 +419,8 @@ extension Status.Metadata.InReplyTo {
             return nil
         }
         
-        self.init()
-        self.statusId = statusId
-        self.userKey = UserKey(id: userId, host: accountKey?.host)
-        self.userScreenName = status["in_reply_to_screen_name"].string
-        
+        let userKey = UserKey(id: userId, host: accountKey?.host)
+        let userScreenName = status["in_reply_to_screen_name"].stringValue
+        self.init(statusId: statusId, userKey: userKey, userName: nil, userScreenName: userScreenName)
     }
 }

@@ -26,7 +26,8 @@ import SQLite
 
 % rootModels = modelDef['submodels']
 % for modelName in rootModels:
-%   fields = rootModels[modelName]['fields']
+%   fields = rootModels[modelName].get('fields', None)
+    % if fields:
 extension ${modelName} {
 
     convenience init(row: Row) {
@@ -75,12 +76,10 @@ extension ${modelName} {
         % columnName = field.get('column', None)
         % if columnName is None:
         %   pass
-        % elif propertyType.endswith('?'):
-        static let ${propertyName} = Expression<${propertyType}>("${columnName}")
-        % elif field.get('primary_key', None):
-        static let ${propertyName} = Expression<${propertyType}>("${columnName}")
+        % elif propertyType.endswith('!'):
+        static let ${propertyName} = Expression<${propertyType[0:-1]}?>("${columnName}")
         % else:
-        static let ${propertyName} = Expression<${propertyType}?>("${columnName}")
+        static let ${propertyName} = Expression<${propertyType}>("${columnName}")
         %end
     %end
 
@@ -95,4 +94,5 @@ extension ${modelName} {
     }
 
 }
+    %end
 %end

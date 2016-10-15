@@ -101,6 +101,7 @@
 		CE6C6C1F1DB09A9800DF4892 /* UserList+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C131DB09A9800DF4892 /* UserList+Freddy.swift */; };
 		CE6C6C201DB09A9800DF4892 /* UserList+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C141DB09A9800DF4892 /* UserList+SQLite.swift */; };
 		CE6C6C231DB09B0200DF4892 /* JSONStaticDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C221DB09B0200DF4892 /* JSONStaticDecodable.swift */; };
+		CE6C6C271DB0AC5800DF4892 /* Foundation+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C261DB0AC5800DF4892 /* Foundation+Freddy.swift */; };
 		CE779F361D858B210053B5C7 /* User+MicroBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F351D858B210053B5C7 /* User+MicroBlog.swift */; };
 		CE79C83D1DA62E56007C05F2 /* SpanItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */; };
 		CE79C83F1DA77777007C05F2 /* YYTextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C83E1DA77777007C05F2 /* YYTextExtensions.swift */; };
@@ -295,6 +296,7 @@
 		CE6C6C131DB09A9800DF4892 /* UserList+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserList+Freddy.swift"; sourceTree = "<group>"; };
 		CE6C6C141DB09A9800DF4892 /* UserList+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserList+SQLite.swift"; sourceTree = "<group>"; };
 		CE6C6C221DB09B0200DF4892 /* JSONStaticDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONStaticDecodable.swift; sourceTree = "<group>"; };
+		CE6C6C261DB0AC5800DF4892 /* Foundation+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Foundation+Freddy.swift"; sourceTree = "<group>"; };
 		CE779F351D858B210053B5C7 /* User+MicroBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+MicroBlog.swift"; sourceTree = "<group>"; };
 		CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItemExtension.swift; sourceTree = "<group>"; };
 		CE79C83E1DA77777007C05F2 /* YYTextExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYTextExtensions.swift; sourceTree = "<group>"; };
@@ -515,6 +517,7 @@
 				CE4B1AA11D7175B10017CB85 /* StatusExtension.swift */,
 				CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */,
 				CE45CAF61D855EFA0004CC1C /* UserKeyExtensions.swift */,
+				CE6C6C261DB0AC5800DF4892 /* Foundation+Freddy.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1518,6 +1521,7 @@
 				CE497FB31D698B1B000F16D2 /* UsersListController.swift in Sources */,
 				CE45CA871D85416C0004CC1C /* User.swift in Sources */,
 				CE497FA41D69625A000F16D2 /* StatusesListController.swift in Sources */,
+				CE6C6C271DB0AC5800DF4892 /* Foundation+Freddy.swift in Sources */,
 				CE65B1D31D9CE3C800A38A61 /* Activity+MicroBlog.swift in Sources */,
 				CEDC3B261D7D9FE70082A8BA /* GetStatusesTask.swift in Sources */,
 				CE79C83F1DA77777007C05F2 /* YYTextExtensions.swift in Sources */,

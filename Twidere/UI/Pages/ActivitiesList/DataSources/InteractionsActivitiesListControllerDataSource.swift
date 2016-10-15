@@ -20,8 +20,8 @@ class InteractionsActivitiesListControllerDataSource: ActivitiesListControllerDa
     
     func loadActivities(_ opts: ActivitiesListController.LoadOptions) -> Promise<[Activity]> {
         return DispatchQueue.global().promise { () -> [UserKey] in
-            return self.getAccounts().map({ $0.key! })
-            }.then{ accountKeys -> Promise<[UserKey]> in
+            return self.getAccounts().map { $0.key }
+        }.then{ accountKeys -> Promise<[UserKey]> in
                 return Promise { fullfill, reject in
                     if let params = opts.params , !opts.initLoad {
                         _ = GetActivitiesTask.execute(params, table: self.table, fetchAction: { account, microblog, paging -> Promise<[Activity]> in
@@ -42,7 +42,7 @@ class InteractionsActivitiesListControllerDataSource: ActivitiesListControllerDa
     }
     
     func getNewestActivityMaxPositions(_ accounts: [Account]) -> [String?]? {
-        let accountKeys = accounts.map({ $0.key! })
+        let accountKeys = accounts.map { $0.key }
         let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
         
         var result = [String?](repeating: nil, count: accounts.count)
@@ -57,7 +57,7 @@ class InteractionsActivitiesListControllerDataSource: ActivitiesListControllerDa
     }
     
     func getNewestActivityMaxSortPositions(_ accounts: [Account]) -> [Int64]? {
-        let accountKeys = accounts.map({ $0.key! })
+        let accountKeys = accounts.map { $0.key }
         let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
         
         var result = [Int64](repeating: -1, count: accounts.count)

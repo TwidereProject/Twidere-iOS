@@ -5,10 +5,11 @@ submodels:
     fields:
       _id:
         type: Int64
+        init: -1
         column: _id
         primary_key: autoincrement
       accountKey:
-        type: UserKey
+        type: UserKey!
         column: account_key
         json_field: account_key
       sortId:

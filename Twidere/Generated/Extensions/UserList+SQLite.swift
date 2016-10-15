@@ -24,7 +24,7 @@ extension UserList {
 
     struct RowIndices {
 
-        static let accountKey = Expression<UserKey?>("account_key")
+        static let accountKey = Expression<UserKey>("account_key")
 
         static let columns: [Expressible] = [
             accountKey,

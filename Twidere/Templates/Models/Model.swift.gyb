@@ -15,8 +15,40 @@ with open(modelPath, 'r') as f:
     modelDef = ordered_load(f, yaml.SafeLoader)
     importNames = modelDef.get('imports', [])
 
-def generateModelContent(name, model, indent=0):
+def generateEnumContent(name, model, indent=0):
     fieldsLines = []
+    values = model['values']
+    for value in values:
+        fieldsLines.append("    case {value}".format(
+            value=value
+            ))
+    inheritance = model.get('inheritance', None)
+    inheritanceContent = ''
+    appendBodyContent = model.get('append_body', '')
+    if inheritance is not None:
+        inheritanceContent = ' : ' + inheritance
+    classTemplate ="""enum {modelName}{inheritanceContent} {{
+
+    // Fields
+{fieldsContent}
+    // Append body content
+{appendBodyContent}
+
+}}""".format(
+        modelName=name,
+        modelType=modelType,
+        fieldsContent='\n'.join(fieldsLines),
+        inheritanceContent=inheritanceContent,
+        appendBodyContent=appendBodyContent
+    )
+    classLines = classTemplate.splitlines()
+    indentedLines = [(' ' * 4 * indent) + l for l in classLines]
+    return '\n'.join(indentedLines)
+
+def generateModelContent(name, modelType, model, indent=0):
+    fieldsLines = []
+    initParameters = []
+    initLines = []
     fields = model['fields']
     for propertyName in fields:
         field = fields[propertyName]
@@ -24,12 +56,6 @@ def generateModelContent(name, model, indent=0):
         propertyInit = field.get('init', None)
         if field.get('override', False):
             continue
-        if propertyType.endswith('?'):
-            pass
-        elif propertyInit is not None:
-            propertyType = propertyType
-        else:
-            propertyType = propertyType + '!'
         if propertyInit is not None:
             propertyInitContent = " = {init}".format(init=propertyInit)
         else:
@@ -39,20 +65,42 @@ def generateModelContent(name, model, indent=0):
             propertyType=propertyType,
             propertyInit=propertyInitContent
             ))
+        if (modelType == 'class'):
+            initParameters.append("{propertyName}: {propertyType}{propertyInit}".format(
+                propertyName=propertyName,
+                propertyType=propertyType,
+                propertyInit=propertyInitContent
+                ))
+            initLines.append("self.{propertyName} = {propertyName}".format(
+                propertyName=propertyName
+                ))
     subModelsLines = []
     submodels = model.get('submodels', [])
     inheritance = model.get('inheritance', None)
     inheritanceContent = ''
     appendBodyContent = model.get('append_body', '')
+    if modelType == 'class':
+        initializersContent = " init({initParameters}) {{\n{initLines}\n}}".format(
+            initParameters = ', '.join(initParameters),
+            initLines = '\n'.join(initLines)
+        )
+    else:
+        initializersContent = ''
     if inheritance is not None:
         inheritanceContent = ' : ' + inheritance
     for subModelName in submodels:
         submodel = submodels[subModelName]
-        subModelsLines.append(generateModelContent(subModelName, submodel, indent + 1))
-    classTemplate ="""class {modelName}{inheritanceContent} {{
+        submodelType = submodel.get('type', 'class')
+        if submodelType == 'enum':
+            subModelsLines.append(generateEnumContent(subModelName, submodel, indent + 1))
+        else:
+            subModelsLines.append(generateModelContent(subModelName, submodelType, submodel, indent + 1))
+    classTemplate ="""{modelType} {modelName}{inheritanceContent} {{
 
     // Fields
 {fieldsContent}
+    // Initializers
+{initializersContent}
     // Append body content
 {appendBodyContent}
     // Sub models
@@ -60,7 +108,9 @@ def generateModelContent(name, model, indent=0):
 
 }}""".format(
         modelName=name,
+        modelType=modelType,
         fieldsContent='\n'.join(fieldsLines),
+        initializersContent=initializersContent,
         subModelsContent='\n'.join(subModelsLines),
         inheritanceContent=inheritanceContent,
         appendBodyContent=appendBodyContent
@@ -76,5 +126,10 @@ import ${importName}
 
 % rootModels = modelDef['submodels']
 % for modelName in rootModels:
-${generateModelContent(modelName, rootModels[modelName])}
+    % modelType = rootModels.get('type', 'class')
+    % if modelType == 'enum':
+${generateEnumContent(modelName, rootModels[modelName])}
+    % else:
+${generateModelContent(modelName, modelType, rootModels[modelName])}
+    %end
 %end

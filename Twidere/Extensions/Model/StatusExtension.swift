@@ -71,8 +71,8 @@ extension Status {
             return externalUrl
         }
         if self.accountKey.host == "fanfou.com" {
-            return "http://fanfou.com/statuses/\(self.id!)"
+            return "http://fanfou.com/statuses/\(self.id)"
         }
-        return "https://twitter.com/\(self.userScreenName!)/status/\(self.id!)"
+        return "https://twitter.com/\(self.userScreenName)/status/\(self.id)"
     }
 }

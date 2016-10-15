@@ -9,6 +9,13 @@
 import SQLite
 
 extension Row {
+    func get<V: ArrayValue>(_ column: Expression<[V]>) -> [V] {
+        let wrapped: Expression<String?> = column.wrapped()
+        let datatypeValue = self.get(wrapped)!
+        let array = V.arrayFromDatatypeValue(datatypeValue)!
+        return array.map {item in return item as! V}
+    }
+    
     func get<V: ArrayValue>(_ column: Expression<[V]?>) -> [V]? {
         let wrapped: Expression<String?> = column.wrapped()
         guard let datatypeValue = self.get(wrapped) else {
@@ -37,6 +44,10 @@ extension TableBuilder {
     
 }
 
+func <-<V : ArrayValue>(column: Expression<[V]>, value: [V]) -> Setter {
+    let column: Expression<String> = column.wrapped()
+    return column <- V.arrayToDatatypeValue(array: value.map{ $0 as! V.ArrayValueType })
+}
 
 func <-<V : ArrayValue>(column: Expression<[V]?>, value: [V]?) -> Setter {
     let column: Expression<String?> = column.wrapped()

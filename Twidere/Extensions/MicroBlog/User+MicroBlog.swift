@@ -15,33 +15,27 @@ extension User {
     }
     
     convenience init?(json: JSON, accountKey: UserKey?) {
-        self.init()
-        self.accountKey = accountKey
-        guard let key = User.getUserKey(json, accountHost: accountKey?.host) else {
-            return nil
-        }
-        self.key = key
-        self.createdAt = parseTwitterDate(json["created_at"].stringValue)
-        self.isProtected = json["protected"].boolValue
-        self.isVerified = json["verified"].boolValue
-        self.name = json["name"].string
-        self.screenName = json["screen_name"].string
-        self.profileImageUrl = json["profile_image_url_https"].string ?? json["profile_image_url"].string
-        self.profileBannerUrl = json["profile_banner_url"].string ?? json["cover_photo"].string
-        self.profileBackgroundUrl = json["profile_background_image_url_https"].string ?? json["profile_background_image_url"].string
-        self.descriptionPlain = json["description"].string
-        self.descriptionDisplay = self.descriptionPlain
-        self.url = json["url"].string
-        self.urlExpanded = json["entities"]["url"]["urls"][0]["expanded_url"].string
-        self.location = json["location"].string
-        self.metadata = User.Metadata(json: json)
+        let accountKey = accountKey
+        let key = User.getUserKey(json, accountHost: accountKey?.host)
+        let createdAt = parseTwitterDate(json["created_at"].stringValue)
+        let isProtected = json["protected"].boolValue
+        let isVerified = json["verified"].boolValue
+        let name = json["name"].string
+        let screenName = json["screen_name"].string
+        let profileImageUrl = json["profile_image_url_https"].string ?? json["profile_image_url"].string
+        let profileBannerUrl = json["profile_banner_url"].string ?? json["cover_photo"].string
+        let profileBackgroundUrl = json["profile_background_image_url_https"].string ?? json["profile_background_image_url"].string
+        let descriptionPlain = json["description"].string
+        let descriptionDisplay = descriptionPlain
+        let url = json["url"].string
+        let urlExpanded = json["entities"]["url"]["urls"][0]["expanded_url"].string
+        let location = json["location"].string
+        let metadata = User.Metadata(json: json)
+        
     }
     
-    static func getUserKey(_ user: JSON, accountHost: String? = nil) -> UserKey? {
+    static func getUserKey(_ user: JSON, accountHost: String? = nil) -> UserKey {
         let id = user["id_str"].string ?? user["id"].stringValue
-        if (id.isEmpty) {
-            return nil
-        }
         return UserKey(id: id, host: User.getUserHost(user, accountHost: accountHost))
     }
     
@@ -67,16 +61,14 @@ extension User {
 extension User.Metadata {
     
     convenience init(json: JSON) {
-        self.init()
-        self.backgroundColor = json["background_color"].string
-        self.linkColor = json["profile_link_color"].string ?? json["linkcolor"].string
-        self.backgroundColor = json["profile_background_color"].string ?? json["backgroundcolor"].string
+        let linkColor = json["profile_link_color"].string ?? json["linkcolor"].string
+        let backgroundColor = json["profile_background_color"].string ?? json["backgroundcolor"].string
         
-        self.statusesCount = json["statuses_count"].int64 ?? -1
-        self.followersCount = json["followers_count"].int64 ?? -1
-        self.friendsCount = json["friends_count"].int64 ?? -1
-        self.listedCount = json["listed_count"].int64 ?? -1
-        self.groupsCount = json["groups_count"].int64 ?? -1
+        let statusesCount = json["statuses_count"].int64 ?? -1
+        let followersCount = json["followers_count"].int64 ?? -1
+        let friendsCount = json["friends_count"].int64 ?? -1
+        let listedCount = json["listed_count"].int64 ?? -1
+        let groupsCount = json["groups_count"].int64 ?? -1
     }
     
 }

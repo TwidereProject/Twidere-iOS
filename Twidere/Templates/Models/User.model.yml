@@ -5,10 +5,11 @@ submodels:
     fields:
       _id:
         type: Int64
+        init: -1
         column: _id
         primary_key: autoincrement
       accountKey:
-        type: UserKey
+        type: UserKey!
         column: account_key
         json_field: account_key
       key:
@@ -38,39 +39,39 @@ submodels:
         column: screen_name
         json_field: screen_name
       profileImageUrl:
-        type: String
+        type: String!
         column: profile_image_url
         json_field: profile_image_url
       profileBannerUrl:
-        type: String
+        type: String!
         column: profile_banner_url
         json_field: profile_banner_url
       profileBackgroundUrl:
-        type: String
+        type: String!
         column: profile_background_url
         json_field: profile_background_url
       descriptionPlain:
-        type: String
+        type: String!
         column: description_plain
         json_field: description_plain
       descriptionDisplay:
-        type: String
+        type: String!
         column: description_display
         json_field: description_display
       url:
-        type: String
+        type: String!
         column: url
         json_field: url
       urlExpanded:
-        type: String
+        type: String!
         column: url_expanded
         json_field: url_expanded
       location:
-        type: String
+        type: String!
         column: location
         json_field: location
       metadata:
-        type: Metadata
+        type: Metadata?
         column: metadata
         json_field: metadata
     submodels:
@@ -104,10 +105,12 @@ submodels:
             type: '[HashtagSpanItem]?'
             json_field: 'description_hashtags'
           linkColor:
-            type: 'String'
+            type: 'String?'
+            init: nil
             json_field: 'link_color'
           backgroundColor:
-            type: 'String'
+            type: 'String?'
+            init: nil
             json_field: 'background_color'
           # Counts
           statusesCount:

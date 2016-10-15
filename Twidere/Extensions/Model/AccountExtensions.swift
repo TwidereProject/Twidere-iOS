@@ -12,17 +12,17 @@ import DeviceKit
 extension Account {
     func createAPIConfig() -> CustomAPIConfig {
         let config = CustomAPIConfig()
-        config.apiUrlFormat = apiUrlFormat!
-        config.authType = CustomAPIConfig.AuthType(rawValue: authType!) ?? defaultAuthType
+        config.apiUrlFormat = apiUrlFormat
+        config.authType = CustomAPIConfig.AuthType(rawValue: authType) ?? defaultAuthType
         config.consumerKey = consumerKey!
         config.consumerSecret = consumerSecret!
-        config.sameOAuthSigningUrl = Bool(sameOAuthSigningUrl!)
-        config.noVersionSuffix = Bool(noVersionSuffix!)
+        config.sameOAuthSigningUrl = sameOAuthSigningUrl
+        config.noVersionSuffix = noVersionSuffix
         return config
     }
     
     func createAuthorization() -> Authorization {
-        switch CustomAPIConfig.AuthType(rawValue: authType!) ?? defaultAuthType {
+        switch CustomAPIConfig.AuthType(rawValue: authType) ?? defaultAuthType {
         case .OAuth, .xAuth:
             let token = OAuthToken(oauthToken!, oauthTokenSecret!)
             return OAuthAuthorization(consumerKey!, consumerSecret!, oauthToken: token)
@@ -34,7 +34,7 @@ extension Account {
     }
     
     func createClientUserAgent() -> String? {
-        switch CustomAPIConfig.AuthType(rawValue: authType!) ?? defaultAuthType {
+        switch CustomAPIConfig.AuthType(rawValue: authType) ?? defaultAuthType {
         case .OAuth, .xAuth:
             switch consumerKey!.sha1() {
             case "ec7250f480e5dedff7688c78188886c282a3d968":
@@ -63,7 +63,7 @@ extension Account {
     var typeInferred: AccountType {
         get {
             switch type {
-            case "fanfou"?:
+            case "fanfou":
                 return .fanfou
             default:
                 return .twitter
@@ -71,7 +71,4 @@ extension Account {
         }
     }
  
-    enum AccountType {
-        case twitter, fanfou, statusNet
-    }
 }

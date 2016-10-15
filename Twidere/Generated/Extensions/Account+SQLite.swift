@@ -66,20 +66,20 @@ extension Account {
     struct RowIndices {
 
         static let _id = Expression<Int64>("_id")
-        static let key = Expression<UserKey?>("account_key")
-        static let type = Expression<String?>("account_type")
-        static let apiUrlFormat = Expression<String?>("api_url_format")
-        static let authType = Expression<String?>("auth_type")
+        static let key = Expression<UserKey>("account_key")
+        static let type = Expression<String>("account_type")
+        static let apiUrlFormat = Expression<String>("api_url_format")
+        static let authType = Expression<String>("auth_type")
         static let basicPassword = Expression<String?>("basic_password")
         static let basicUsername = Expression<String?>("basic_username")
         static let consumerKey = Expression<String?>("consumer_key")
         static let consumerSecret = Expression<String?>("consumer_secret")
-        static let noVersionSuffix = Expression<Bool?>("no_version_suffix")
+        static let noVersionSuffix = Expression<Bool>("no_version_suffix")
         static let oauthToken = Expression<String?>("oauth_token")
         static let oauthTokenSecret = Expression<String?>("oauth_token_secret")
-        static let sameOAuthSigningUrl = Expression<Bool?>("same_oauth_signing_url")
+        static let sameOAuthSigningUrl = Expression<Bool>("same_oauth_signing_url")
         static let config = Expression<Config?>("config")
-        static let user = Expression<User?>("user")
+        static let user = Expression<User>("user")
 
         static let columns: [Expressible] = [
             _id,

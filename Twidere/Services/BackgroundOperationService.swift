@@ -37,8 +37,8 @@ class BackgroundOperationService {
             }
             let owners = update.accounts.filter{ (account: Account) -> Bool in
                 return account.typeInferred == .twitter
-                }.map { account -> UserKey in
-                    return account.key!
+            }.map { account -> UserKey in
+                return account.key
             }
             let ownerIds = owners.map { key -> String in
                 return key.id

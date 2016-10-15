@@ -4,18 +4,14 @@ imports:
   - Foundation
 submodels:
   Activity:
-    append_body: "
-    enum Action: String {
-        case favorite, follow, mention, reply, retweet, listMemberAdded, listCreated, favoritedRetweet, retweetedRetweet, quote, retweetedMention, favoritedMention, joinedTwitter, mediaTagged, favoritedMediaTagged, retweetedMediaTagged
-    }
-    "
     fields:
       _id:
         type: Int64
+        init: -1
         column: _id
         primary_key: autoincrement
       accountKey:
-        type: UserKey
+        type: UserKey!
         column: account_key
         json_field: account_key
       isGap:
@@ -59,22 +55,29 @@ submodels:
         column: source_keys
         json_field: source_keys
       targets:
-        type: ObjectList
+        type: ObjectList!
         column: targets
         json_field: targets
       targetObjects:
-        type: ObjectList
+        type: ObjectList!
         column: target_objects
         json_field: target_objects
     submodels:
+      Action:
+        type: enum
+        inheritance: String
+        values: [favorite, follow, mention, reply, retweet, listMemberAdded, listCreated, favoritedRetweet, retweetedRetweet, quote, retweetedMention, favoritedMention, joinedTwitter, mediaTagged, favoritedMediaTagged, retweetedMediaTagged]
       ObjectList:
         fields:
           statuses:
-            type: '[Status]'
+            type: '[Status]?'
+            init: nil
             json_field: statuses
           users:
-            type: '[User]'
+            type: '[User]?'
+            init: nil
             json_field: users
           userLists:
-            type: '[UserList]'
+            type: '[UserList]?'
+            init: nil
             json_field: user_lists

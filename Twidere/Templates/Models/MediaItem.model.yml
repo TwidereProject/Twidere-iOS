@@ -63,7 +63,8 @@ submodels:
                 type: String
                 json_field: url
               contentType:
-                type: String
+                type: String?
+                init: nil
                 json_field: content_type
               bitrate:
                 type: Int64

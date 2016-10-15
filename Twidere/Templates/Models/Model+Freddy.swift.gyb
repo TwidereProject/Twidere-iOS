@@ -47,7 +47,7 @@ def generateModelContent(name, outerName, model):
         else:
             tryClause = 'try'
         if isArray:
-            initLines.append("        obj.{propertyName} = {tryClause} value.getArray(at: \"{jsonField}\").map({fieldType}.init)"
+            initLines.append("        obj.{propertyName} = {tryClause} value.decodeArray(at: \"{jsonField}\")"
                 .format(propertyName=propertyName, jsonField=jsonField, fieldType=fieldType, tryClause=tryClause))
         else:
             initLines.append("        obj.{propertyName} = {tryClause} value.decode(at: \"{jsonField}\")"
@@ -65,11 +65,9 @@ def generateModelContent(name, outerName, model):
     submodels = model.get('submodels', [])
     for subModelName in submodels:
         submodel = submodels[subModelName]
-        subModelsLines.append(generateModelContent(
-        name = subModelName,
-        outerName = className,
-        model = submodel
-        ))
+        subModelType = submodel.get('type', 'class')
+        if subModelType != 'enum' and model.get('mapable', True):
+            subModelsLines.append(generateModelContent(name = subModelName, outerName = className, model = submodel))
     classTemplate ="""extension {modelName}: JSONEncodable, JSONStaticDecodable {{
 
     static func fromJSON(json value: JSON) throws -> {modelName} {{
@@ -103,8 +101,9 @@ import ${importName}
 
 % rootModels = modelDef['submodels']
 % for modelName in rootModels:
-% model = rootModels[modelName]
-    % if model.get('mapable', True):
+    % model = rootModels[modelName]
+    % modelType = model.get('type', 'class')
+    % if modelType != 'enum' and model.get('mapable', True):
 ${generateModelContent(name = modelName, outerName = None, model = model)}
     %end
 %end

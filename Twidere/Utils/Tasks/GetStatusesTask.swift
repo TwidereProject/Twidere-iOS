@@ -67,12 +67,12 @@ class GetStatusesTask {
     }
     
     fileprivate static func storeStatuses(_ account: Account, statuses: [Status], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
-        let accountKey = account.key!
+        let accountKey = account.key
         let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
         
         let noItemsBefore = try db.scalar(table.filter(accountKey == Status.RowIndices.accountKey).count) <= 0
         
-        let statusIds = statuses.map({ $0.id! })
+        let statusIds = statuses.map({ $0.id })
         var minIdx = -1
         var minPositionKey: Int64 = -1
         var hasIntersection = false
@@ -118,7 +118,7 @@ class GetStatusesTask {
         }
         
         // Remove gap flag
-        if (maxId != nil && sinceId == nil) {
+        if let maxId = maxId, sinceId == nil {
             _ = try db.run(table.filter(Status.RowIndices.accountKey == accountKey && Status.RowIndices.id == maxId).update(Status.RowIndices.isGap <- false))
         }
     }

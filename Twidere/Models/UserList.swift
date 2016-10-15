@@ -4,7 +4,11 @@ import Foundation
 class UserList {
 
     // Fields
-    var accountKey: UserKey!
+    var accountKey: UserKey
+    // Initializers
+ init(accountKey: UserKey) {
+self.accountKey = accountKey
+}
     // Append body content
 
     // Sub models

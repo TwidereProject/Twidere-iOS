@@ -13,8 +13,8 @@ extension Activity {
     convenience init(_ json: JSON, accountKey: UserKey?) {
         self.init()
         self.accountKey = accountKey
-        self.createdAt = parseTwitterDate(json["created_at"].stringValue)
-        self.action = Activity.Action.parse(json["action"].stringValue)
+        self.createdAt = parseTwitterDate(json["created_at"].stringValue)!
+        self.action = Activity.Action(rawValue: json["action"].stringValue)!
         self.sources = User.arrayFromJson(json["sources"], accountKey: accountKey)
         self.sourceKeys = self.sources.map { $0.key }
         self.targets = Activity.getTargets(action, json: json["targets"], accountKey: accountKey)
@@ -23,8 +23,8 @@ extension Activity {
         self.minPosition = json["min_position"].stringValue
         self.maxPosition = json["max_position"].stringValue
         
-        self.minSortPosition = Int64(minPosition) ?? self.createdAt?.timeIntervalSince1970Millis
-        self.maxSortPosition = Int64(maxPosition) ?? self.createdAt?.timeIntervalSince1970Millis
+        self.minSortPosition = Int64(minPosition) ?? self.createdAt.timeIntervalSince1970Millis
+        self.maxSortPosition = Int64(maxPosition) ?? self.createdAt.timeIntervalSince1970Millis
     }
     
     static func arrayFromJson(_ json: JSON, accountKey: UserKey?) -> [Activity] {

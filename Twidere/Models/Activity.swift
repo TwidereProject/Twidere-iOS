@@ -4,29 +4,75 @@ import Foundation
 class Activity {
 
     // Fields
-    var _id: Int64!
+    var _id: Int64 = -1
     var accountKey: UserKey!
-    var isGap: Bool!
-    var positionKey: Int64!
-    var createdAt: Date!
-    var maxSortPosition: Int64!
-    var minSortPosition: Int64!
-    var maxPosition: String!
-    var minPosition: String!
-    var action: Action!
-    var sources: [User]!
-    var sourceKeys: [UserKey]!
+    var isGap: Bool
+    var positionKey: Int64
+    var createdAt: Date
+    var maxSortPosition: Int64
+    var minSortPosition: Int64
+    var maxPosition: String
+    var minPosition: String
+    var action: Action
+    var sources: [User]
+    var sourceKeys: [UserKey]
     var targets: ObjectList!
     var targetObjects: ObjectList!
+    // Initializers
+ init(_id: Int64 = -1, accountKey: UserKey!, isGap: Bool, positionKey: Int64, createdAt: Date, maxSortPosition: Int64, minSortPosition: Int64, maxPosition: String, minPosition: String, action: Action, sources: [User], sourceKeys: [UserKey], targets: ObjectList!, targetObjects: ObjectList!) {
+self._id = _id
+self.accountKey = accountKey
+self.isGap = isGap
+self.positionKey = positionKey
+self.createdAt = createdAt
+self.maxSortPosition = maxSortPosition
+self.minSortPosition = minSortPosition
+self.maxPosition = maxPosition
+self.minPosition = minPosition
+self.action = action
+self.sources = sources
+self.sourceKeys = sourceKeys
+self.targets = targets
+self.targetObjects = targetObjects
+}
     // Append body content
- enum Action: String { case favorite, follow, mention, reply, retweet, listMemberAdded, listCreated, favoritedRetweet, retweetedRetweet, quote, retweetedMention, favoritedMention, joinedTwitter, mediaTagged, favoritedMediaTagged, retweetedMediaTagged } 
+
     // Sub models
+    enum Action : String {
+    
+        // Fields
+        case favorite
+        case follow
+        case mention
+        case reply
+        case retweet
+        case listMemberAdded
+        case listCreated
+        case favoritedRetweet
+        case retweetedRetweet
+        case quote
+        case retweetedMention
+        case favoritedMention
+        case joinedTwitter
+        case mediaTagged
+        case favoritedMediaTagged
+        case retweetedMediaTagged
+        // Append body content
+    
+    
+    }
     class ObjectList {
     
         // Fields
-        var statuses: [Status]!
-        var users: [User]!
-        var userLists: [UserList]!
+        var statuses: [Status]? = nil
+        var users: [User]? = nil
+        var userLists: [UserList]? = nil
+        // Initializers
+     init(statuses: [Status]? = nil, users: [User]? = nil, userLists: [UserList]? = nil) {
+    self.statuses = statuses
+    self.users = users
+    self.userLists = userLists
+    }
         // Append body content
     
         // Sub models

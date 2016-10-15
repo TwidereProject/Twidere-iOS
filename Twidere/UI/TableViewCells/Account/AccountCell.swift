@@ -20,9 +20,9 @@ class AccountCell: UITableViewCell {
     }
     
     func display(_ account: Account) {
-        self.nameView.text = account.user!.name
-        self.screenNameView.text = account.user!.screenName
-        self.profileImageView.displayImage(account.user?.profileImageUrlForSize(.reasonablySmall))
+        self.nameView.text = account.user.name
+        self.screenNameView.text = account.user.screenName
+        self.profileImageView.displayImage(account.user.profileImageUrlForSize(.reasonablySmall))
         
         let layout = contentView.subviews.first as! ALSBaseLayout
         layout.setNeedsLayout()
