@@ -13,8 +13,8 @@ extension UserList: JSONStaticDecodable {
 
 extension UserList: JSONEncodable {
     public func toJSON() -> JSON {
-        let dict: [String: JSON] = [:]
-//{toJsonContent}
+        var dict: [String: JSON] = [:]
+        dict["account_key"] = self.accountKey.toJSON()
         return .dictionary(dict)
     }
 }

@@ -57,16 +57,19 @@ class GetStatusesTask {
                     // TODO cache related data and preload
                     return statuses
                 }.then { statuses -> Void in
-                        fullfill(StatusListResponse(accountKey: account.key, statuses: statuses))
+                    fullfill(StatusListResponse(accountKey: account.key, statuses: statuses))
                 }.catch { error in
-                        debugPrint(error)
-                        fullfill(StatusListResponse(accountKey: account.key, error: error))
+                    debugPrint(error)
+                    fullfill(StatusListResponse(accountKey: account.key, error: error))
                 }
             }
-            })
+        })
     }
     
     fileprivate static func storeStatuses(_ account: Account, statuses: [Status], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
+        if (true) {
+            return
+        }
         let accountKey = account.key
         let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
         

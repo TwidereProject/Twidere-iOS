@@ -12,7 +12,7 @@ import Alamofire
 
 class MicroBlogService: RestClient {
     
-    var accountKey: UserKey!
+    var accountKey: UserKey?
     
     let statusQueries: [String: String] = [
         "include_entities": "true",
@@ -25,7 +25,7 @@ class MicroBlogService: RestClient {
     ]
     
     func verifyCredentials() -> Promise<User> {
-        return makeTypedRequest(.get, path: "/account/verify_credentials.json", serializer: MicroBlogService.convertUser(self.accountKey))
+        return makeTypedRequest(.get, path: "/account/verify_credentials.json", serializer: MicroBlogService.convertAccountUser(self.accountKey))
     }
     
     // MARK: Timeline functions
@@ -188,20 +188,23 @@ class MicroBlogService: RestClient {
         return .failure(MicroBlogError.requestError(code: resp?.statusCode ?? -1, message: nil))
     }
     
-    static func convertUser(_ accountKey: UserKey) -> DataResponseSerializer<User> {
+    static func convertAccountUser(_ accountKey: UserKey?) -> DataResponseSerializer<User> {
+        return convertMicroBlogResponse { User(from: JSON(data: $0)) }
+    }
+    
+    static func convertUser(_ accountKey: UserKey?) -> DataResponseSerializer<User> {
         return convertMicroBlogResponse { User(json: JSON(data: $0), accountKey: accountKey) }
     }
     
-    static func convertStatus(_ accountKey: UserKey) -> DataResponseSerializer<Status> {
+    static func convertStatus(_ accountKey: UserKey?) -> DataResponseSerializer<Status> {
         return convertMicroBlogResponse { Status(status: JSON(data: $0), accountKey: accountKey) }
     }
     
-    static func convertStatuses(_ accountKey: UserKey) -> DataResponseSerializer<[Status]> {
+    static func convertStatuses(_ accountKey: UserKey?) -> DataResponseSerializer<[Status]> {
         return convertMicroBlogResponse { Status.arrayFromJson(JSON(data: $0), accountKey: accountKey) }
     }
     
-    
-    static func convertActivities(_ accountKey: UserKey) -> DataResponseSerializer<[Activity]> {
+    static func convertActivities(_ accountKey: UserKey?) -> DataResponseSerializer<[Activity]> {
         return convertMicroBlogResponse { Activity.arrayFromJson(JSON(data: $0), accountKey: accountKey) }
     }
     

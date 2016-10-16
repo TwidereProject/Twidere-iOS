@@ -36,6 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             try! migration.upgrade(db, oldVersion: oldVersion, newVersion: databaseVersion)
             db.userVersion = databaseVersion
         }
+        _ = try! db.run(interactionsTable.delete())
+        _ = try! db.run(homeStatusesTable.delete())
         return db
     }
     

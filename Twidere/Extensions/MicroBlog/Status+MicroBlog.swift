@@ -42,24 +42,17 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 extension Status {
     
     convenience init?(status: JSON, accountKey: UserKey?) {
-        let accountKey = accountKey
         let id = getTwitterEntityId(status)
         let createdAt = parseTwitterDate(status["created_at"].stringValue)!
         let sortId = Status.generateSortId(rawId: status["raw_id"].int64 ?? -1, id: id, createdAt: createdAt)
         
         var primary = status["retweeted_status"]
+        let retweet: JSON?
         if (primary.exists()) {
-            let retweetId = getTwitterEntityId(primary)
-            let retweetCreatedAt = parseTwitterDate(primary["created_at"].stringValue)!
-            
-            let retweetedBy = status["user"]
-            let userId = getTwitterEntityId(retweetedBy)
-            let retweetedByUserKey = UserKey(id: userId, host: accountKey?.host)
-            let retweetedByUserName = retweetedBy["name"].string
-            let retweetedByUserScreenName = retweetedBy["screen_name"].string
-            let retweetedByUserProfileImage = Status.getProfileImage(retweetedBy)
+            retweet = status
         } else {
             primary = status
+            retweet = nil
         }
         
         let user = primary["user"]
@@ -74,28 +67,38 @@ extension Status {
         metadata.retweetCount = status["retweet_count"].int64 ?? -1
         metadata.favoriteCount = status["favorite_count"].int64 ?? -1
         
-//        let textPlain = textPlain
-//        let textDisplay = textDisplay
-//        let metadata = metadata
+        self.init(accountKey: accountKey, sortId: sortId, createdAt: createdAt, id: id, userKey: userKey, userName: userName, userScreenName: userScreenName, userProfileImage: userProfileImage, textPlain: textPlain, textDisplay: textDisplay, metadata: metadata)
+        
+        if let retweet = retweet {
+            self.retweetId = getTwitterEntityId(retweet)
+            self.retweetCreatedAt = parseTwitterDate(retweet["created_at"].stringValue)!
+            
+            let retweetedBy = status["user"]
+            let userId = getTwitterEntityId(retweetedBy)
+            self.retweetedByUserKey = UserKey(id: userId, host: accountKey?.host)
+            self.retweetedByUserName = retweetedBy["name"].string
+            self.retweetedByUserScreenName = retweetedBy["screen_name"].string
+            self.retweetedByUserProfileImage = Status.getProfileImage(retweetedBy)
+        }
         
         let quoted = primary["quoted_status"]
         if (quoted.exists()) {
-            let quotedId = getTwitterEntityId(quoted)
-            let quotedCreatedAt = parseTwitterDate(quoted["created_at"].stringValue)!
+            self.quotedId = getTwitterEntityId(quoted)
+            self.quotedCreatedAt = parseTwitterDate(quoted["created_at"].stringValue)!
             
             let quotedUser = quoted["user"]
             let quotedUserId = getTwitterEntityId(quotedUser)
-            let quotedUserKey = UserKey(id: quotedUserId, host: accountKey?.host)
-            let quotedUserName = quotedUser["name"].string
-            let quotedUserScreenName = quotedUser["screen_name"].string
-            let quotedUserProfileImage = Status.getProfileImage(quotedUser)
+            self.quotedUserKey = UserKey(id: quotedUserId, host: accountKey?.host)
+            self.quotedUserName = quotedUser["name"].string
+            self.quotedUserScreenName = quotedUser["screen_name"].string
+            self.quotedUserProfileImage = Status.getProfileImage(quotedUser)
             
             let (quotedTextPlain, quotedTextDisplay, quotedMetadata) = Status.getMetadata(quoted, accountKey: accountKey)
-//            let quotedTextPlain = quotedTextPlain
-//            let quotedTextDisplay = quotedTextDisplay
-//            let quotedMetadata = quotedMetadata
+            self.quotedTextPlain = quotedTextPlain
+            self.quotedTextDisplay = quotedTextDisplay
+            self.quotedMetadata = quotedMetadata
         }
-        return nil
+        
     }
     
     static func arrayFromJson(_ json: JSON, accountKey: UserKey?) -> [Status] {
@@ -120,7 +123,7 @@ extension Status {
         } else if let fullText = status["full_text"].string ?? status["text"].string {
             return getTwitterStatusMetadata(status, fullText: fullText, accountKey: accountKey)
         } else {
-            var text = status["text"].stringValue
+            let text = status["text"].stringValue
             return (text, text, Status.Metadata())
         }
         
@@ -161,8 +164,7 @@ extension Status {
             var startIndex = codePoints.startIndex
             
             switch span {
-            case is LinkSpanItem:
-                var typed = span as! LinkSpanItem
+            case let typed as LinkSpanItem:
                 let displayUrlCodePoints = typed.display!.unicodeScalars
                 let displayCodePointsLength = displayUrlCodePoints.count
                 let displayUtf16Length = typed.display!.utf16.count
@@ -188,13 +190,11 @@ extension Status {
                 if (typed.origEnd <= displayTextRangeCodePoint?[1]) {
                     displayTextRangeUtf16?[1] += utf16Diff
                 }
-            case is MentionSpanItem:
-                var typed = span as! MentionSpanItem
+            case let typed as MentionSpanItem:
                 typed.start = codePoints.utf16Count(startIndex..<codePoints.index(codePoints.startIndex, offsetBy: offsetedStart))
                 typed.end = typed.start + origEnd - origStart
                 mentions.append(typed)
-            case is HashtagSpanItem:
-                var typed = span as! HashtagSpanItem
+            case let typed as HashtagSpanItem:
                 typed.start = codePoints.utf16Count(startIndex..<codePoints.index(codePoints.startIndex, offsetBy: offsetedStart))
                 typed.end = typed.start + origEnd - origStart
                 hashtags.append(typed)
@@ -207,15 +207,16 @@ extension Status {
         textDisplay = str.decodeHTMLEntitiesWithOffset { (index, utf16Offset) in
             let intIndex = str.distance(from: str.startIndex, to: index)
             
-            for i in 0..<spans.count {
-                var span = spans[i]
+            for spanIdx in 0..<spans.count {
+                var span = spans[spanIdx]
                 if (span.origStart < intIndex) {
                     continue
                 }
                 span.start += utf16Offset
                 span.end += utf16Offset
+                spans[spanIdx] = span
             }
-            if (displayTextRangeUtf16 != nil ) {
+            if (displayTextRangeUtf16 != nil) {
                 if (displayTextRangeUtf16![0] >= intIndex) {
                     displayTextRangeUtf16![0] += utf16Offset
                 }
@@ -228,12 +229,22 @@ extension Status {
         
         displayRange = displayTextRangeUtf16
         
-        var inReplyTo = Status.Metadata.InReplyTo(status: status, accountKey: accountKey)
+        let inReplyTo = Status.Metadata.InReplyTo(status: status, accountKey: accountKey)
         
         inReplyTo?.completeUserName(mentions)
         
         let externalUrl = status["external_url"].string
         let metadata = Status.Metadata(links: links, mentions: mentions, hashtags: hashtags, media: mediaItems, displayRange: displayRange, inReplyTo: inReplyTo, externalUrl: externalUrl, replyCount: -1, retweetCount: -1, favoriteCount: -1)
+        
+        for span in links {
+            print(textDisplay[span.start..<span.end])
+        }
+        for span in mentions {
+            print(textDisplay[span.start..<span.end])
+        }
+        for span in hashtags {
+            print(textDisplay[span.start..<span.end])
+        }
         return (textPlain, textDisplay, metadata)
     }
     

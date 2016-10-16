@@ -14,6 +14,7 @@ class DatabaseMigration {
         try db.transaction {
             _ = try db.run(Account.createTable(table: accountsTable))
             _ = try db.run(Status.createTable(table: homeStatusesTable))
+            _ = try db.run(Activity.createTable(table: interactionsTable))
         }
     }
     

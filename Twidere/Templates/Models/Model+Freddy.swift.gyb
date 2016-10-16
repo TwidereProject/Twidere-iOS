@@ -43,8 +43,8 @@ def generateModelContent(name, modelType, outerName, model):
         isArray = False
         isOptional = False
         if propertyType.endswith('?') or propertyType.endswith('!') :
-            propertyType = propertyType[:-1]
-            # isOptional = True
+            propertyType = propertyType[:-1] + '?'
+            isOptional = True
         if propertyType.startswith('['):
             # propertyType = propertyType[1:-1]
             isArray = True
@@ -69,7 +69,9 @@ def generateModelContent(name, modelType, outerName, model):
         if not isOptional:
             toJsonLines.append("        dict[\"{jsonField}\"] = self.{propertyName}.toJSON()".format(jsonField=jsonField, propertyName=propertyName))
         elif jsonNull == 'omit':
-            pass
+            toJsonLines.append("""        if ({propertyName} != nil) {{
+            dict[\"{jsonField}\"] = self.{propertyName}!.toJSON()
+        }}""".format(jsonField=jsonField, propertyName=propertyName))
         elif jsonNull == 'force':
             toJsonLines.append("        dict[\"{jsonField}\"] = self.{propertyName}!.toJSON()".format(jsonField=jsonField, propertyName=propertyName))
         else:
@@ -116,8 +118,8 @@ def generateModelContent(name, modelType, outerName, model):
 
 extension {modelName}: JSONEncodable {{
     public func toJSON() -> JSON {{
-        let dict: [String: JSON] = [:]
-//{{toJsonContent}}
+        var dict: [String: JSON] = [:]
+{toJsonContent}
         return .dictionary(dict)
     }}
 }}
