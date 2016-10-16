@@ -48,10 +48,10 @@ class MentionSpanItem : SpanItem {
     var origStart: Int = -1
     var origEnd: Int = -1
     var key: UserKey
-    var name: String?
+    var name: String!
     var screenName: String
     // Initializers
-    init(start: Int = -1, end: Int = -1, origStart: Int = -1, origEnd: Int = -1, key: UserKey, name: String?, screenName: String) {
+    init(start: Int = -1, end: Int = -1, origStart: Int = -1, origEnd: Int = -1, key: UserKey, name: String! = nil, screenName: String) {
         self.start = start
         self.end = end
         self.origStart = origStart

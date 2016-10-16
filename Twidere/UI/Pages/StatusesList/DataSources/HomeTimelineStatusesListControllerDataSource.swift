@@ -67,7 +67,7 @@ class HomeTimelineStatusesListControllerDataSource: StatusesListControllerDataSo
             .group(Status.RowIndices.accountKey, having: accountKeys.contains(Status.RowIndices.accountKey))
             .order(Status.RowIndices.positionKey.max)) {
                 if let key = row.get(Status.RowIndices.accountKey), let idx = accountKeys.index(where: {$0 == key}) {
-                    result[idx] = row.get(Status.RowIndices.sortId) ?? -1
+                    result[idx] = row.get(Status.RowIndices.sortId) 
                 }
         }
         return result

@@ -16,7 +16,7 @@ extension Account.Config: Value {
     }
     
     static func fromDatatypeValue(_ datatypeValue: String) -> Account.Config? {
-        return try? Account.Config(json: JSON(jsonString: datatypeValue))
+        return try? Account.Config.fromJSON(json: JSON(jsonString: datatypeValue))
     }
     
     var datatypeValue: String {

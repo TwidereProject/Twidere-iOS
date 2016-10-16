@@ -145,38 +145,41 @@ submodels:
       Metadata:
         fields:
           links:
-            type: '[LinkSpanItem]?'
+            type: '[LinkSpanItem]!'
             json_field: 'links'
           mentions:
-            type: '[MentionSpanItem]?'
+            type: '[MentionSpanItem]!'
             json_field: 'mentions'
           hashtags:
-            type: '[HashtagSpanItem]?'
+            type: '[HashtagSpanItem]!'
             json_field: 'hashtags'
           media:
-            type: '[MediaItem]?'
+            type: '[MediaItem]!'
             json_field: 'media'
           displayRange:
-            type: '[Int]?'
+            type: '[Int]!'
             json_field: 'display_range'
           inReplyTo:
-            type: 'InReplyTo?'
+            type: InReplyTo!
             json_field: 'in_reply_to'
           externalUrl:
-            type: String?
+            type: String!
             json_field: 'extenral_url'
           replyCount:
             type: Int64
+            init: -1
             json_field: 'reply_count'
           retweetCount:
             type: Int64
+            init: -1
             json_field: 'retweet_count'
           favoriteCount:
             type: Int64
+            init: -1
             json_field: 'favorite_count'
         submodels:
           InReplyTo:
-            type: struct
+            type: class
             fields:
               statusId:
                 type: String
@@ -185,7 +188,7 @@ submodels:
                 type: UserKey
                 json_field: 'user_key'
               userName:
-                type: String?
+                type: String!
                 json_field: 'user_name'
               userScreenName:
                 type: String

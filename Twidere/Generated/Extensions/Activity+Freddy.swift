@@ -4,7 +4,7 @@ import Foundation
 
 extension Activity: JSONStaticDecodable {
 
-    static func fromJSON(json value: JSON) throws -> Activity {
+    static func fromJSON(json value: Freddy.JSON) throws -> Activity {
         let accountKey: UserKey = try value.decode(at: "account_key")
         let isGap: Bool = try value.decode(at: "is_gap")
         let positionKey: Int64 = try value.decode(at: "position_key")
@@ -35,7 +35,7 @@ extension Activity.Action: JSONDecodable, JSONEncodable {}
     
 extension Activity.ObjectList: JSONStaticDecodable {
 
-    static func fromJSON(json value: JSON) throws -> Activity.ObjectList {
+    static func fromJSON(json value: Freddy.JSON) throws -> Activity.ObjectList {
         let statuses: [Status] = try value.decodedArray(at: "statuses")
         let users: [User] = try value.decodedArray(at: "users")
         let userLists: [UserList] = try value.decodedArray(at: "user_lists")

@@ -56,7 +56,9 @@ class GetActivitiesTask {
             return Promise<ActivityListResponse> { fullfill, reject in
                 fetchAction(account, twitter, paging).then(on: .global()) { activities -> [Activity] in
                     try storeActivities(account, activities: activities, sinceId: sinceId, maxId: maxId, sinceSortId: sinceSortId, maxSortId: maxSortId, loadItemLimit: loadItemLimit, table: table, notify: false)
-                    
+                    if (saveReadPosition) {
+                        
+                    }
                     // TODO cache related data and preload
                     return activities
                 }.then { activities -> Void in

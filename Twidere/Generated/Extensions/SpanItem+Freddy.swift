@@ -4,7 +4,7 @@ import Foundation
 
 extension LinkSpanItem: JSONStaticDecodable {
 
-    static func fromJSON(json value: JSON) throws -> LinkSpanItem {
+    static func fromJSON(json value: Freddy.JSON) throws -> LinkSpanItem {
         let start: Int = try value.decode(at: "start")
         let end: Int = try value.decode(at: "end")
         let origStart: Int = try value.decode(at: "start")
@@ -26,7 +26,7 @@ extension LinkSpanItem: JSONEncodable {
 
 extension MentionSpanItem: JSONStaticDecodable {
 
-    static func fromJSON(json value: JSON) throws -> MentionSpanItem {
+    static func fromJSON(json value: Freddy.JSON) throws -> MentionSpanItem {
         let start: Int = try value.decode(at: "start")
         let end: Int = try value.decode(at: "end")
         let origStart: Int = try value.decode(at: "start")
@@ -49,7 +49,7 @@ extension MentionSpanItem: JSONEncodable {
 
 extension HashtagSpanItem: JSONStaticDecodable {
 
-    static func fromJSON(json value: JSON) throws -> HashtagSpanItem {
+    static func fromJSON(json value: Freddy.JSON) throws -> HashtagSpanItem {
         let start: Int = try value.decode(at: "start")
         let end: Int = try value.decode(at: "end")
         let origStart: Int = try value.decode(at: "start")

@@ -2,7 +2,7 @@ imports:
   - Foundation
 submodels:
   Account:
-    type: struct
+    type: class
     fields:
       _id:
         type: Int64
@@ -22,7 +22,7 @@ submodels:
         column: api_url_format
         json_field: api_url_format
       authType:
-        type: String
+        type: AuthType
         column: auth_type
         json_field: auth_type
       basicPassword:
@@ -71,8 +71,12 @@ submodels:
         type: enum
         inheritance: String
         values: [twitter, fanfou, statusNet]
+      AuthType:
+        type: enum
+        inheritance: String
+        values: [oauth, xAuth, basic, twipO]
       Config:
-        type: struct
+        type: class
         fields:
           characterLimit:
             type: Int

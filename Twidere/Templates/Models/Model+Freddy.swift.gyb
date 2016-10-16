@@ -78,14 +78,14 @@ def generateModelContent(name, modelType, outerName, model):
     if modelType == 'struct':
         decodeProtocol = 'JSONDecodable'
         decodeContent = """
-    init(json value: JSON) throws {{
+    init(json value: Freddy.JSON) throws {{
 {initContent}
     }}
 """.format(initContent='\n'.join(initLines))
     else:
         decodeProtocol = 'JSONStaticDecodable'
         decodeContent = """
-    static func fromJSON(json value: JSON) throws -> {modelName} {{
+    static func fromJSON(json value: Freddy.JSON) throws -> {modelName} {{
 {initContent}
         return {modelName}({initParametersContent})
     }}

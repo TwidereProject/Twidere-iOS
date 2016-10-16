@@ -4,7 +4,7 @@ import Foundation
 
 extension UserList: JSONStaticDecodable {
 
-    static func fromJSON(json value: JSON) throws -> UserList {
+    static func fromJSON(json value: Freddy.JSON) throws -> UserList {
         let accountKey: UserKey = try value.decode(at: "account_key")
         return UserList(accountKey: accountKey)
     }

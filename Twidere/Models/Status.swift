@@ -71,18 +71,18 @@ class Status {
     class Metadata {
     
         // Fields
-        var links: [LinkSpanItem]?
-        var mentions: [MentionSpanItem]?
-        var hashtags: [HashtagSpanItem]?
-        var media: [MediaItem]?
-        var displayRange: [Int]?
-        var inReplyTo: InReplyTo?
-        var externalUrl: String?
-        var replyCount: Int64
-        var retweetCount: Int64
-        var favoriteCount: Int64
+        var links: [LinkSpanItem]!
+        var mentions: [MentionSpanItem]!
+        var hashtags: [HashtagSpanItem]!
+        var media: [MediaItem]!
+        var displayRange: [Int]!
+        var inReplyTo: InReplyTo!
+        var externalUrl: String!
+        var replyCount: Int64 = -1
+        var retweetCount: Int64 = -1
+        var favoriteCount: Int64 = -1
         // Initializers
-        init(links: [LinkSpanItem]?, mentions: [MentionSpanItem]?, hashtags: [HashtagSpanItem]?, media: [MediaItem]?, displayRange: [Int]?, inReplyTo: InReplyTo?, externalUrl: String?, replyCount: Int64, retweetCount: Int64, favoriteCount: Int64) {
+        init(links: [LinkSpanItem]! = nil, mentions: [MentionSpanItem]! = nil, hashtags: [HashtagSpanItem]! = nil, media: [MediaItem]! = nil, displayRange: [Int]! = nil, inReplyTo: InReplyTo! = nil, externalUrl: String! = nil, replyCount: Int64 = -1, retweetCount: Int64 = -1, favoriteCount: Int64 = -1) {
             self.links = links
             self.mentions = mentions
             self.hashtags = hashtags
@@ -97,15 +97,20 @@ class Status {
         // Append body content
     
         // Sub models
-            struct InReplyTo {
+            class InReplyTo {
             
                 // Fields
                 var statusId: String
                 var userKey: UserKey
-                var userName: String?
+                var userName: String!
                 var userScreenName: String
                 // Initializers
-            
+                init(statusId: String, userKey: UserKey, userName: String! = nil, userScreenName: String) {
+                    self.statusId = statusId
+                    self.userKey = userKey
+                    self.userName = userName
+                    self.userScreenName = userScreenName
+                }
                 // Append body content
             
                 // Sub models

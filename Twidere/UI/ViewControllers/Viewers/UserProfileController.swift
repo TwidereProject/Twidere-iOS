@@ -228,7 +228,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
                 if (user.accountKey == user.key) {
                     _ = DispatchQueue.global().promise { () -> Void in
                         let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
-                        let update = accountsTable.filter(Account.RowIndices.key == user.accountKey).update(Account.RowIndices.user <- user)
+                        let update = accountsTable.filter(Account.RowIndices.key == user.accountKey!).update(Account.RowIndices.user <- user)
                         _ = try db.run(update)
                     }
                 }

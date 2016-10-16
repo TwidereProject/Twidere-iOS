@@ -222,6 +222,7 @@ class BackgroundOperationService {
                     case .uploadFailed:
                         errorMessage = "Upload error"
                     case let .updateFailed(errors, failedKeys):
+                        print(failedKeys)
                         switch errors.first! {
                         case let e as MicroBlogError:
                             errorMessage = e.errorMessage

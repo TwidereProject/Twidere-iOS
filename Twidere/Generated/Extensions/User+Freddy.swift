@@ -4,7 +4,7 @@ import Foundation
 
 extension User: JSONStaticDecodable {
 
-    static func fromJSON(json value: JSON) throws -> User {
+    static func fromJSON(json value: Freddy.JSON) throws -> User {
         let accountKey: UserKey = try value.decode(at: "account_key")
         let key: UserKey = try value.decode(at: "user_key")
         let createdAt: Date = try value.decode(at: "created_at")
@@ -35,7 +35,7 @@ extension User: JSONEncodable {
 }
 extension User.Metadata: JSONStaticDecodable {
 
-    static func fromJSON(json value: JSON) throws -> User.Metadata {
+    static func fromJSON(json value: Freddy.JSON) throws -> User.Metadata {
         let following: Bool = try value.decode(at: "following")
         let followedBy: Bool = try value.decode(at: "followed_by")
         let blocking: Bool = try value.decode(at: "blocking")

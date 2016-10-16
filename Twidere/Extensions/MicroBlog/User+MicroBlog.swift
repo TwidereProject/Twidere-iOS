@@ -10,18 +10,17 @@ import SwiftyJSON
 
 extension User {
     
-    convenience init?(accountJson: JSON) {
-        self.init(json: accountJson, accountKey: User.getUserKey(accountJson))
+    convenience init?(from account: JSON) {
+        self.init(json: account, accountKey: User.getUserKey(account))
     }
     
     convenience init?(json: JSON, accountKey: UserKey?) {
-        let accountKey = accountKey
         let key = User.getUserKey(json, accountHost: accountKey?.host)
         let createdAt = parseTwitterDate(json["created_at"].stringValue)
         let isProtected = json["protected"].boolValue
         let isVerified = json["verified"].boolValue
-        let name = json["name"].string
-        let screenName = json["screen_name"].string
+        let name = json["name"].stringValue
+        let screenName = json["screen_name"].stringValue
         let profileImageUrl = json["profile_image_url_https"].string ?? json["profile_image_url"].string
         let profileBannerUrl = json["profile_banner_url"].string ?? json["cover_photo"].string
         let profileBackgroundUrl = json["profile_background_image_url_https"].string ?? json["profile_background_image_url"].string
@@ -31,7 +30,7 @@ extension User {
         let urlExpanded = json["entities"]["url"]["urls"][0]["expanded_url"].string
         let location = json["location"].string
         let metadata = User.Metadata(json: json)
-        return nil
+        self.init(accountKey: accountKey, key: key, createdAt: createdAt, isProtected: isProtected, isVerified: isVerified, name: name, screenName: screenName, profileImageUrl: profileImageUrl, profileBannerUrl: profileBannerUrl, profileBackgroundUrl: profileBackgroundUrl, descriptionPlain: descriptionPlain, descriptionDisplay: descriptionDisplay, url: url, urlExpanded: urlExpanded, location: location, metadata: metadata)
     }
     
     static func getUserKey(_ user: JSON, accountHost: String? = nil) -> UserKey {

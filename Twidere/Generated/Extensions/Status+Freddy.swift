@@ -4,7 +4,7 @@ import Foundation
 
 extension Status: JSONStaticDecodable {
 
-    static func fromJSON(json value: JSON) throws -> Status {
+    static func fromJSON(json value: Freddy.JSON) throws -> Status {
         let accountKey: UserKey = try value.decode(at: "account_key")
         let sortId: Int64 = try value.decode(at: "sort_id")
         let positionKey: Int64 = try value.decode(at: "position_key")
@@ -47,7 +47,7 @@ extension Status: JSONEncodable {
 }
 extension Status.Metadata: JSONStaticDecodable {
 
-    static func fromJSON(json value: JSON) throws -> Status.Metadata {
+    static func fromJSON(json value: Freddy.JSON) throws -> Status.Metadata {
         let links: [LinkSpanItem] = try value.decodedArray(at: "links")
         let mentions: [MentionSpanItem] = try value.decodedArray(at: "mentions")
         let hashtags: [HashtagSpanItem] = try value.decodedArray(at: "hashtags")
@@ -70,13 +70,14 @@ extension Status.Metadata: JSONEncodable {
         return .dictionary(dict)
     }
 }
-extension Status.Metadata.InReplyTo: JSONDecodable {
+extension Status.Metadata.InReplyTo: JSONStaticDecodable {
 
-    init(json value: JSON) throws {
-        self.statusId = try value.decode(at: "status_id")
-        self.userKey = try value.decode(at: "user_key")
-        self.userName = try value.decode(at: "user_name")
-        self.userScreenName = try value.decode(at: "user_screen_name")
+    static func fromJSON(json value: Freddy.JSON) throws -> Status.Metadata.InReplyTo {
+        let statusId: String = try value.decode(at: "status_id")
+        let userKey: UserKey = try value.decode(at: "user_key")
+        let userName: String = try value.decode(at: "user_name")
+        let userScreenName: String = try value.decode(at: "user_screen_name")
+        return Status.Metadata.InReplyTo(statusId: statusId, userKey: userKey, userName: userName, userScreenName: userScreenName)
     }
 
 }

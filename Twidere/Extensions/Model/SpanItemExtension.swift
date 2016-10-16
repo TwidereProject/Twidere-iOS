@@ -45,7 +45,8 @@ extension SpanItem {
             let vc = SafariBrowserController(url: URL(string: span.link)!)
             return (vc, true)
         case let span as HashtagSpanItem:
-            break
+            let vc = SafariBrowserController(url: URL(string: "https://twitter.com/search?q=\(span.hashtag)")!)
+            return (vc, true)
         case let span as MentionSpanItem:
             let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "UserProfile") as! UserProfileController

@@ -19,6 +19,7 @@ submodels:
         type: Int
         body: "{ get set }"
   LinkSpanItem:
+    type: class
     inheritance: SpanItem
     fields:
       start:
@@ -44,6 +45,7 @@ submodels:
         type: String!
         json_field: display
   MentionSpanItem:
+    type: class
     inheritance: SpanItem
     fields:
       start:
@@ -66,12 +68,13 @@ submodels:
         type: UserKey
         json_field: key
       name:
-        type: String?
+        type: String!
         json_field: name
       screenName:
         type: String
         json_field: screen_name
   HashtagSpanItem:
+    type: class
     inheritance: SpanItem
     fields:
       start:

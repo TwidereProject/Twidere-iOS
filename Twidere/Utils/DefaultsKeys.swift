@@ -10,7 +10,7 @@ import SwiftyUserDefaults
 
 extension DefaultsKeys {
     static let apiUrlFormat = DefaultsKey<String?>("apiUrlFormat")
-    static let authType = DefaultsKey<CustomAPIConfig.AuthType?>("authType")
+    static let authType = DefaultsKey<Account.AuthType?>("authType")
     static let sameOAuthSigningUrl = DefaultsKey<Bool?>("sameOAuthSigningUrl")
     static let noVersionSuffix = DefaultsKey<Bool?>("noVersionSuffix")
     static let consumerKey = DefaultsKey<String?>("consumerKey")
@@ -26,7 +26,7 @@ extension DefaultsKeys {
 
 
 extension UserDefaults {
-    subscript(key: DefaultsKey<CustomAPIConfig.AuthType?>) -> CustomAPIConfig.AuthType? {
+    subscript(key: DefaultsKey<Account.AuthType?>) -> Account.AuthType? {
         get { return self.unarchive(key) }
         set { self.archive(key, newValue) }
     }

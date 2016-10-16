@@ -64,13 +64,13 @@ class SignInController: UIViewController {
     
     @IBAction func signInClicked(_ sender: UIButton) {
         switch customAPIConfig.authType {
-        case .OAuth:
+        case .oauth:
             doBrowserSignIn()
         case .xAuth:
             doXAuthSignIn()
-        case .TwipO:
+        case .twipO:
             doTwipOSignIn()
-        case .Basic:
+        case .basic:
             doBasicSignIn()
         }
         
@@ -99,7 +99,7 @@ class SignInController: UIViewController {
     }
     
     fileprivate func updateSignInUi() {
-        if (customAPIConfig.authType == .OAuth) {
+        if (customAPIConfig.authType == .oauth) {
             passwordSignInButton.layoutParams.hidden = false
         } else {
             passwordSignInButton.layoutParams.hidden = true
@@ -326,19 +326,19 @@ class SignInResult {
 }
 
 fileprivate extension Account {
-    init(config: CustomAPIConfig, result: SignInResult, user: User) {
-        self.key = user.key
-        self.type = .twitter
-        self.apiUrlFormat = config.apiUrlFormat
-        self.authType = String(describing: config.authType)
-        self.basicUsername = result.username
-        self.basicPassword = result.password
-        self.consumerKey = config.consumerKey
-        self.consumerSecret = config.consumerSecret
-        self.noVersionSuffix = config.noVersionSuffix
-        self.oauthToken = result.accessToken?.oauthToken
-        self.oauthTokenSecret = result.accessToken?.oauthTokenSecret
-        self.sameOAuthSigningUrl = config.sameOAuthSigningUrl
-        self.user = user
+    convenience init(config: CustomAPIConfig, result: SignInResult, user: User) {
+        let key = user.key
+        let type: Account.AccountType = .twitter
+        let apiUrlFormat = config.apiUrlFormat
+        let authType = config.authType
+        let basicUsername = result.username
+        let basicPassword = result.password
+        let consumerKey = config.consumerKey
+        let consumerSecret = config.consumerSecret
+        let noVersionSuffix = config.noVersionSuffix
+        let oauthToken = result.accessToken?.oauthToken
+        let oauthTokenSecret = result.accessToken?.oauthTokenSecret
+        let sameOAuthSigningUrl = config.sameOAuthSigningUrl
+        self.init(key: key, type: type, apiUrlFormat: apiUrlFormat, authType: authType, basicPassword: basicPassword, basicUsername: basicUsername, consumerKey: consumerKey, consumerSecret: consumerSecret, noVersionSuffix: noVersionSuffix, oauthToken: oauthToken, oauthTokenSecret: oauthTokenSecret, sameOAuthSigningUrl: sameOAuthSigningUrl, user: user)
     }
 }

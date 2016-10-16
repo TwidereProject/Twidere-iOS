@@ -14,7 +14,7 @@ class CustomAPIConfig {
     static let apiVersion = "1.1"
     
     var apiUrlFormat: String = defaultApiUrlFormat
-    var authType: AuthType = defaultAuthType
+    var authType: Account.AuthType = defaultAuthType
     var sameOAuthSigningUrl: Bool = true
     var noVersionSuffix: Bool = false
     var consumerKey: String? = defaultTwitterConsumerKey
@@ -27,7 +27,7 @@ class CustomAPIConfig {
                 return false
             }
             switch authType {
-            case .OAuth, .xAuth:
+            case .oauth, .xAuth:
                 return !(consumerKey?.isEmpty ?? true) && !(consumerSecret?.isEmpty ?? true)
             default:
                 return true
@@ -47,7 +47,7 @@ class CustomAPIConfig {
             base = Endpoint.construct(getApiBaseUrl(apiUrlFormat, domain: domain), path: "/1.1/")
         }
         switch authType {
-        case .OAuth, .xAuth:
+        case .oauth, .xAuth:
             let signingBase: String
             if (sameOAuthSigningUrl) {
                 signingBase = base
@@ -90,30 +90,26 @@ class CustomAPIConfig {
     
     func loadDefaults()  {
         apiUrlFormat = Defaults[.apiUrlFormat] ?? defaultApiUrlFormat
-        authType = Defaults[.authType] ?? .OAuth
+        authType = Defaults[.authType] ?? .oauth
         sameOAuthSigningUrl = Defaults[.sameOAuthSigningUrl] ?? true
         noVersionSuffix = Defaults[.noVersionSuffix] ?? false
         consumerKey = Defaults[.consumerKey] ?? defaultTwitterConsumerKey
         consumerSecret = Defaults[.consumerSecret] ?? defaultTwitterConsumerSecret
     }
-    
-    enum AuthType: String {
-        case OAuth, xAuth, Basic, TwipO
-        
-        var isOAuthType: Bool {
-            get {
-                return self == .OAuth || self == .xAuth
-            }
-        }
-        
-        var usePassword: Bool {
-            get {
-                return self == .xAuth || self == .Basic
-            }
-        }
-    }
+
 }
 
-enum AccountType: String {
-    case Twitter, Fanfou, StatusNet
+extension Account.AuthType {
+    
+    var isOAuthType: Bool {
+        get {
+            return self == .oauth || self == .xAuth
+        }
+    }
+    
+    var usePassword: Bool {
+        get {
+            return self == .xAuth || self == .basic
+        }
+    }
 }

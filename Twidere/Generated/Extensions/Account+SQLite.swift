@@ -5,22 +5,23 @@ import SQLite
 
 extension Account {
 
-    init(row: Row) {
-        self._id = row.get(RowIndices._id)
-        self.key = row.get(RowIndices.key)
-        self.type = row.get(RowIndices.type)
-        self.apiUrlFormat = row.get(RowIndices.apiUrlFormat)
-        self.authType = row.get(RowIndices.authType)
-        self.basicPassword = row.get(RowIndices.basicPassword)
-        self.basicUsername = row.get(RowIndices.basicUsername)
-        self.consumerKey = row.get(RowIndices.consumerKey)
-        self.consumerSecret = row.get(RowIndices.consumerSecret)
-        self.noVersionSuffix = row.get(RowIndices.noVersionSuffix)
-        self.oauthToken = row.get(RowIndices.oauthToken)
-        self.oauthTokenSecret = row.get(RowIndices.oauthTokenSecret)
-        self.sameOAuthSigningUrl = row.get(RowIndices.sameOAuthSigningUrl)
-        self.config = row.get(RowIndices.config)
-        self.user = row.get(RowIndices.user)
+    convenience init(row: Row) {
+        let _id = row.get(RowIndices._id)
+        let key = row.get(RowIndices.key)
+        let type = row.get(RowIndices.type)
+        let apiUrlFormat = row.get(RowIndices.apiUrlFormat)
+        let authType = row.get(RowIndices.authType)
+        let basicPassword = row.get(RowIndices.basicPassword)
+        let basicUsername = row.get(RowIndices.basicUsername)
+        let consumerKey = row.get(RowIndices.consumerKey)
+        let consumerSecret = row.get(RowIndices.consumerSecret)
+        let noVersionSuffix = row.get(RowIndices.noVersionSuffix)
+        let oauthToken = row.get(RowIndices.oauthToken)
+        let oauthTokenSecret = row.get(RowIndices.oauthTokenSecret)
+        let sameOAuthSigningUrl = row.get(RowIndices.sameOAuthSigningUrl)
+        let config = row.get(RowIndices.config)
+        let user = row.get(RowIndices.user)
+        self.init(_id: _id, key: key, type: type, apiUrlFormat: apiUrlFormat, authType: authType, basicPassword: basicPassword, basicUsername: basicUsername, consumerKey: consumerKey, consumerSecret: consumerSecret, noVersionSuffix: noVersionSuffix, oauthToken: oauthToken, oauthTokenSecret: oauthTokenSecret, sameOAuthSigningUrl: sameOAuthSigningUrl, config: config, user: user)
     }
 
     static func createTable(table: Table, temporary: Bool = false, ifNotExists: Bool = false) -> String {
@@ -68,7 +69,7 @@ extension Account {
         static let key = Expression<UserKey>("account_key")
         static let type = Expression<AccountType>("account_type")
         static let apiUrlFormat = Expression<String>("api_url_format")
-        static let authType = Expression<String>("auth_type")
+        static let authType = Expression<AuthType>("auth_type")
         static let basicPassword = Expression<String?>("basic_password")
         static let basicUsername = Expression<String?>("basic_username")
         static let consumerKey = Expression<String?>("consumer_key")
@@ -106,6 +107,19 @@ extension Account.AccountType: Value {
 
     static func fromDatatypeValue(_ datatypeValue: String) -> Account.AccountType? {
         return Account.AccountType(rawValue: datatypeValue)
+    }
+
+    var datatypeValue: String {
+        return self.rawValue
+    }
+}
+extension Account.AuthType: Value {
+    static var declaredDatatype: String {
+        return String.declaredDatatype
+    }
+
+    static func fromDatatypeValue(_ datatypeValue: String) -> Account.AuthType? {
+        return Account.AuthType(rawValue: datatypeValue)
     }
 
     var datatypeValue: String {
