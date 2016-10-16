@@ -68,7 +68,7 @@ class SignInController: UIViewController {
             doBrowserSignIn()
         case .xAuth:
             doXAuthSignIn()
-        case .twipO:
+        case .empty:
             doTwipOSignIn()
         case .basic:
             doBasicSignIn()

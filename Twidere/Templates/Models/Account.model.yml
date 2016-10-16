@@ -70,11 +70,13 @@ submodels:
       AccountType:
         type: enum
         inheritance: String
-        values: [twitter, fanfou, statusNet]
+        cases: [twitter, fanfou, statusNet]
+        values: ['"twitter"', '"fanfou"', '"statusnet"']
       AuthType:
         type: enum
         inheritance: String
-        values: [oauth, xAuth, basic, twipO]
+        cases: [oauth, xAuth, basic, empty]
+        values: ['"oauth"', '"xauth"', '"basic"', '"empty"']
       Config:
         type: class
         fields:

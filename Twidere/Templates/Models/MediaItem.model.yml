@@ -46,7 +46,8 @@ submodels:
       MediaType:
         type: enum
         inheritance: String
-        values: [unknown, image, video, animatedGif, externalPlayer, variableType]
+        cases: [unknown, image, video, animatedGif, externalPlayer, variableType]
+        values: ['"unknown"', '"image"', '"video"', '"animated_gif"', '"external_player"', '"variable_type"']
       VideoInfo:
         type: class
         fields:

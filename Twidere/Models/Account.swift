@@ -1,6 +1,6 @@
 // Automatically generated, DO NOT MODIFY
 import Foundation
-    
+
 class Account {
 
     // Fields
@@ -40,23 +40,63 @@ class Account {
     // Append body content
 
     // Sub models
+    
     enum AccountType : String {
     
         // Fields
         case twitter
         case fanfou
         case statusNet
+    
+        var rawValue: String {
+            switch self {
+            case .twitter: return "twitter"
+            case .fanfou: return "fanfou"
+            case .statusNet: return "statusnet"
+            }
+        }
+    
+        init?(rawValue: String) {
+            switch rawValue {
+            case "twitter": self = .twitter
+            case "fanfou": self = .fanfou
+            case "statusnet": self = .statusNet
+            default: return nil
+            }
+        }
+            
         // Append body content
     
     
     }
+    
     enum AuthType : String {
     
         // Fields
         case oauth
         case xAuth
         case basic
-        case twipO
+        case empty
+    
+        var rawValue: String {
+            switch self {
+            case .oauth: return "oauth"
+            case .xAuth: return "xauth"
+            case .basic: return "basic"
+            case .empty: return "empty"
+            }
+        }
+    
+        init?(rawValue: String) {
+            switch rawValue {
+            case "oauth": self = .oauth
+            case "xauth": self = .xAuth
+            case "basic": self = .basic
+            case "empty": self = .empty
+            default: return nil
+            }
+        }
+            
         // Append body content
     
     

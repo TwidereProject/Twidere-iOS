@@ -12,8 +12,8 @@ import StaticDataTableViewController
 
 class APIEditorController: StaticDataTableViewController {
     
-    let authTypeEntries: [String] = ["OAuth", "xAuth", "Basic", "TWIP O mode"]
-    let authTypeValues: [Account.AuthType] = [.oauth, .xAuth, .basic, .twipO]
+    let authTypeEntries: [String] = ["OAuth", "xAuth", "Basic", "Empty"]
+    let authTypeValues: [Account.AuthType] = [.oauth, .xAuth, .basic, .empty]
     
     @IBOutlet weak var editApiUrlFormat: UITextField!
     @IBOutlet weak var editSameOauthSigningUrl: UISwitch!

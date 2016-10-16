@@ -10,9 +10,11 @@ import Foundation
 import SwiftyJSON
 
 extension Activity {
-    convenience init(_ json: JSON, accountKey: UserKey?) {
+    convenience init?(_ json: JSON, accountKey: UserKey?) {
+        guard let action = Activity.Action.parse(str: json["action"].stringValue) else {
+            return nil
+        }
         let createdAt = parseTwitterDate(json["created_at"].stringValue)!
-        let action = Activity.Action(rawValue: json["action"].stringValue)!
         let sources = User.arrayFromJson(json["sources"], accountKey: accountKey)
         let sourceKeys = sources.map { $0.key }
         let targets = Activity.getTargets(action, json: json["targets"], accountKey: accountKey)
@@ -29,9 +31,9 @@ extension Activity {
     
     static func arrayFromJson(_ json: JSON, accountKey: UserKey?) -> [Activity] {
         if let array = json.array {
-            return array.map { Activity($0, accountKey: accountKey) }
+            return array.flatMap { Activity($0, accountKey: accountKey) }
         } else {
-            return json["statuses"].map { Activity($1, accountKey: accountKey) }
+            return json["activities"].flatMap { Activity($1, accountKey: accountKey) }
         }
     }
     

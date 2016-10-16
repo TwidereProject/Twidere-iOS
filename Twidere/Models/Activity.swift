@@ -1,6 +1,6 @@
 // Automatically generated, DO NOT MODIFY
 import Foundation
-    
+
 class Activity {
 
     // Fields
@@ -38,6 +38,7 @@ class Activity {
     // Append body content
 
     // Sub models
+    
     enum Action : String {
     
         // Fields
@@ -57,6 +58,50 @@ class Activity {
         case mediaTagged
         case favoritedMediaTagged
         case retweetedMediaTagged
+    
+        var rawValue: String {
+            switch self {
+            case .favorite: return "favorite"
+            case .follow: return "follow"
+            case .mention: return "mention"
+            case .reply: return "reply"
+            case .retweet: return "retweet"
+            case .listMemberAdded: return "list_member_added"
+            case .listCreated: return "list_created"
+            case .favoritedRetweet: return "favorited_retweet"
+            case .retweetedRetweet: return "retweeted_retweet"
+            case .quote: return "quote"
+            case .retweetedMention: return "retweeted_mention"
+            case .favoritedMention: return "favorited_mention"
+            case .joinedTwitter: return "joined_twitter"
+            case .mediaTagged: return "media_tagged"
+            case .favoritedMediaTagged: return "favorited_media_tagged"
+            case .retweetedMediaTagged: return "retweeted_media_tagged"
+            }
+        }
+    
+        init?(rawValue: String) {
+            switch rawValue {
+            case "favorite": self = .favorite
+            case "follow": self = .follow
+            case "mention": self = .mention
+            case "reply": self = .reply
+            case "retweet": self = .retweet
+            case "list_member_added": self = .listMemberAdded
+            case "list_created": self = .listCreated
+            case "favorited_retweet": self = .favoritedRetweet
+            case "retweeted_retweet": self = .retweetedRetweet
+            case "quote": self = .quote
+            case "retweeted_mention": self = .retweetedMention
+            case "favorited_mention": self = .favoritedMention
+            case "joined_twitter": self = .joinedTwitter
+            case "media_tagged": self = .mediaTagged
+            case "favorited_media_tagged": self = .favoritedMediaTagged
+            case "retweeted_media_tagged": self = .retweetedMediaTagged
+            default: return nil
+            }
+        }
+            
         // Append body content
     
     

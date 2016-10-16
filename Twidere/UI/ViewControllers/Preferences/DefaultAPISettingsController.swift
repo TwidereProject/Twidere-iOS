@@ -69,7 +69,7 @@ class DefaultAPISettingsController: UITableViewController {
         case 1:
             let dict = defaultApiConfigs[(indexPath as NSIndexPath).item] as! NSDictionary
             config.apiUrlFormat = dict["apiUrlFormat"] as? String ?? defaultApiUrlFormat
-            config.authType = Account.AuthType(rawValue: dict["authType"] as? String ?? "OAuth") ?? .oauth
+            config.authType = Account.AuthType(rawValue: dict["authType"] as? String ?? "oauth") ?? .oauth
             config.consumerKey = dict["consumerKey"] as? String ?? defaultApiUrlFormat
             config.consumerSecret = dict["consumerSecret"] as? String ?? defaultTwitterConsumerSecret
             config.noVersionSuffix = dict["noVersionSuffix"] as? Bool ?? false

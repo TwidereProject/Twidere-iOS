@@ -28,7 +28,7 @@ extension Account {
             return OAuthAuthorization(consumerKey!, consumerSecret!, oauthToken: token)
         case .basic:
             return BasicAuthorization(username: basicUsername!, password: basicPassword!)
-        case .twipO:
+        case .empty:
             return EmptyAuthorization()
         }
     }

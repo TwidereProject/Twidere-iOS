@@ -10,11 +10,11 @@ import SwiftyJSON
 
 extension User {
     
-    convenience init?(from account: JSON) {
+    convenience init?(from account: SwiftyJSON.JSON) {
         self.init(json: account, accountKey: User.getUserKey(account))
     }
     
-    convenience init?(json: JSON, accountKey: UserKey?) {
+    convenience init?(json: SwiftyJSON.JSON, accountKey: UserKey?) {
         let key = User.getUserKey(json, accountHost: accountKey?.host)
         let createdAt = parseTwitterDate(json["created_at"].stringValue)
         let isProtected = json["protected"].boolValue
@@ -33,12 +33,12 @@ extension User {
         self.init(accountKey: accountKey, key: key, createdAt: createdAt, isProtected: isProtected, isVerified: isVerified, name: name, screenName: screenName, profileImageUrl: profileImageUrl, profileBannerUrl: profileBannerUrl, profileBackgroundUrl: profileBackgroundUrl, descriptionPlain: descriptionPlain, descriptionDisplay: descriptionDisplay, url: url, urlExpanded: urlExpanded, location: location, metadata: metadata)
     }
     
-    static func getUserKey(_ user: JSON, accountHost: String? = nil) -> UserKey {
+    static func getUserKey(_ user: SwiftyJSON.JSON, accountHost: String? = nil) -> UserKey {
         let id = user["id_str"].string ?? user["id"].stringValue
         return UserKey(id: id, host: User.getUserHost(user, accountHost: accountHost))
     }
     
-    static func getUserHost(_ json: JSON, accountHost: String?) -> String? {
+    static func getUserHost(_ json: SwiftyJSON.JSON, accountHost: String?) -> String? {
         if (json["unique_id"].exists() && json["profile_image_url_large"].exists()) {
             return "fanfou.com"
         }
@@ -48,7 +48,7 @@ extension User {
         return NSURLComponents(string: profileUrl)!.host ?? accountHost
     }
     
-    static func arrayFromJson(_ json: JSON, accountKey: UserKey?) -> [User] {
+    static func arrayFromJson(_ json: SwiftyJSON.JSON, accountKey: UserKey?) -> [User] {
         if let array = json.array {
             return array.map { User(json: $0, accountKey: accountKey)! }
         } else {
@@ -59,7 +59,7 @@ extension User {
 
 extension User.Metadata {
     
-    convenience init(json: JSON) {
+    convenience init(json: SwiftyJSON.JSON) {
         let following = json["following"].boolValue
         let followedBy = json["followed_by"].bool ?? json["follows_you"].boolValue
         let blocking = json["blocking"].bool ?? json["statusnet_blocking"].boolValue

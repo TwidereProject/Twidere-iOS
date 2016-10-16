@@ -1,6 +1,6 @@
 // Automatically generated, DO NOT MODIFY
 import Foundation
-    
+
 class MediaItem {
 
     // Fields
@@ -30,6 +30,7 @@ class MediaItem {
     // Append body content
 
     // Sub models
+    
     enum MediaType : String {
     
         // Fields
@@ -39,6 +40,30 @@ class MediaItem {
         case animatedGif
         case externalPlayer
         case variableType
+    
+        var rawValue: String {
+            switch self {
+            case .unknown: return "unknown"
+            case .image: return "image"
+            case .video: return "video"
+            case .animatedGif: return "animated_gif"
+            case .externalPlayer: return "external_player"
+            case .variableType: return "variable_type"
+            }
+        }
+    
+        init?(rawValue: String) {
+            switch rawValue {
+            case "unknown": self = .unknown
+            case "image": self = .image
+            case "video": self = .video
+            case "animated_gif": self = .animatedGif
+            case "external_player": self = .externalPlayer
+            case "variable_type": self = .variableType
+            default: return nil
+            }
+        }
+            
         // Append body content
     
     

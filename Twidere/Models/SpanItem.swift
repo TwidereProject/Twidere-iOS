@@ -1,6 +1,6 @@
 // Automatically generated, DO NOT MODIFY
 import Foundation
-    
+
 protocol SpanItem {
 
     // Fields
@@ -15,7 +15,7 @@ protocol SpanItem {
     // Sub models
 
 }
-    
+
 class LinkSpanItem : SpanItem {
 
     // Fields
@@ -39,7 +39,7 @@ class LinkSpanItem : SpanItem {
     // Sub models
 
 }
-    
+
 class MentionSpanItem : SpanItem {
 
     // Fields
@@ -65,7 +65,7 @@ class MentionSpanItem : SpanItem {
     // Sub models
 
 }
-    
+
 class HashtagSpanItem : SpanItem {
 
     // Fields

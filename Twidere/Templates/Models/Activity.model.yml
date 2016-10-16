@@ -68,7 +68,8 @@ submodels:
       Action:
         type: enum
         inheritance: String
-        values: [favorite, follow, mention, reply, retweet, listMemberAdded, listCreated, favoritedRetweet, retweetedRetweet, quote, retweetedMention, favoritedMention, joinedTwitter, mediaTagged, favoritedMediaTagged, retweetedMediaTagged]
+        cases: [favorite, follow, mention, reply, retweet, listMemberAdded, listCreated, favoritedRetweet, retweetedRetweet, quote, retweetedMention, favoritedMention, joinedTwitter, mediaTagged, favoritedMediaTagged, retweetedMediaTagged]
+        values: ['"favorite"', '"follow"', '"mention"', '"reply"', '"retweet"', '"list_member_added"', '"list_created"', '"favorited_retweet"', '"retweeted_retweet"', '"quote"', '"retweeted_mention"', '"favorited_mention"', '"joined_twitter"', '"media_tagged"', '"favorited_media_tagged"', '"retweeted_media_tagged"']
       ObjectList:
         fields:
           statuses:

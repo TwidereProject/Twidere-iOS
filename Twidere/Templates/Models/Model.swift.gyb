@@ -17,20 +17,52 @@ with open(modelPath, 'r') as f:
 
 def generateEnumContent(name, model, indent=0):
     fieldsLines = []
-    values = model['values']
-    for value in values:
-        fieldsLines.append("    case {value}".format(
-            value=value
-            ))
+    cases = model['cases']
+    values = model.get('values', None)
     inheritance = model.get('inheritance', None)
-    inheritanceContent = ''
     appendBodyContent = model.get('append_body', '')
-    if inheritance is not None:
+
+    rawValueContent = ''
+    inheritanceContent = ''
+
+    for caseItem in cases:
+        fieldsLines.append("    case {caseItem}".format(
+            caseItem=caseItem
+            ))
+    if values:
+        rawValueCaseLines = []
+        initCaseLines = []
+        for idx, value in enumerate(values):
+            caseItem = cases[idx]
+            initCaseLines.append("        case {value}: self = .{caseItem}".format(value = value, caseItem=caseItem))
+            rawValueCaseLines.append("        case .{caseItem}: return {value}".format(value = value, caseItem=caseItem))
+        rawValueContent = """
+    var rawValue: {inheritance} {{
+        switch self {{
+{rawValueCase}
+        }}
+    }}
+
+    init?(rawValue: {inheritance}) {{
+        switch rawValue {{
+{initCase}
+        default: return nil
+        }}
+    }}
+        """.format(
+            inheritance = inheritance,
+            rawValueCase = '\n'.join(rawValueCaseLines),
+            initCase = '\n'.join(initCaseLines)
+        )
+
+    if inheritance:
         inheritanceContent = ' : ' + inheritance
-    classTemplate ="""enum {modelName}{inheritanceContent} {{
+    classTemplate ="""
+enum {modelName}{inheritanceContent} {{
 
     // Fields
 {fieldsContent}
+{rawValueContent}
     // Append body content
 {appendBodyContent}
 
@@ -38,6 +70,7 @@ def generateEnumContent(name, model, indent=0):
         modelName=name,
         modelType=modelType,
         fieldsContent='\n'.join(fieldsLines),
+        rawValueContent=rawValueContent,
         inheritanceContent=inheritanceContent,
         appendBodyContent=appendBodyContent
     )
@@ -137,7 +170,7 @@ import ${importName}
 % for modelName in rootModels:
     % rootModel = rootModels[modelName]
     % modelType = rootModel.get('type', 'class')
-    
+
     % if modelType == 'enum':
 ${generateEnumContent(modelName, rootModel)}
     % else:
