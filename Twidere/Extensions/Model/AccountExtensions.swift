@@ -59,16 +59,5 @@ extension Account {
         microBlog.accountKey = self.key
         return microBlog
     }
-    
-    var typeInferred: AccountType {
-        get {
-            switch type {
-            case "fanfou":
-                return .fanfou
-            default:
-                return .twitter
-            }
-        }
-    }
  
 }
