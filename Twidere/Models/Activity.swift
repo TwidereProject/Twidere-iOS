@@ -1,13 +1,13 @@
 // Automatically generated, DO NOT MODIFY
 import Foundation
-
+    
 class Activity {
 
     // Fields
     var _id: Int64 = -1
     var accountKey: UserKey!
-    var isGap: Bool
-    var positionKey: Int64
+    var isGap: Bool = false
+    var positionKey: Int64 = -1
     var createdAt: Date
     var maxSortPosition: Int64
     var minSortPosition: Int64
@@ -19,7 +19,7 @@ class Activity {
     var targets: ObjectList!
     var targetObjects: ObjectList!
     // Initializers
-    init(_id: Int64 = -1, accountKey: UserKey! = nil, isGap: Bool, positionKey: Int64, createdAt: Date, maxSortPosition: Int64, minSortPosition: Int64, maxPosition: String, minPosition: String, action: Action, sources: [User], sourceKeys: [UserKey], targets: ObjectList! = nil, targetObjects: ObjectList! = nil) {
+    init(_id: Int64 = -1, accountKey: UserKey! = nil, isGap: Bool = false, positionKey: Int64 = -1, createdAt: Date, maxSortPosition: Int64, minSortPosition: Int64, maxPosition: String, minPosition: String, action: Action, sources: [User], sourceKeys: [UserKey], targets: ObjectList! = nil, targetObjects: ObjectList! = nil) {
         self._id = _id
         self.accountKey = accountKey
         self.isGap = isGap
@@ -77,7 +77,5 @@ class Activity {
     
         // Sub models
     
-    
     }
-
 }

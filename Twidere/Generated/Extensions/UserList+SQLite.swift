@@ -6,8 +6,8 @@ import SQLite
 extension UserList {
 
     convenience init(row: Row) {
-        self.init()
-        self.accountKey = row.get(RowIndices.accountKey)
+        let accountKey = row.get(RowIndices.accountKey)
+        self.init(accountKey: accountKey)
     }
 
     static func createTable(table: Table, temporary: Bool = false, ifNotExists: Bool = false) -> String {
@@ -30,5 +30,4 @@ extension UserList {
             accountKey,
         ]
     }
-
 }

@@ -31,6 +31,7 @@ def generateModelContent(name, modelType, outerName, model):
         className = '{outer}.{inner}'.format(outer=outerName, inner=name)
     initLines = []
     toJsonLines = []
+    initParameters = []
     fields = model['fields']
     for propertyName in fields:
         field = fields[propertyName]
@@ -48,9 +49,6 @@ def generateModelContent(name, modelType, outerName, model):
             # propertyType = propertyType[1:-1]
             isArray = True
         if (jsonField is None):
-            fieldInit = field.get('init', 'nil')
-            initLines.append("        obj.{propertyName} = {fieldInit}"
-                .format(propertyName=propertyName, fieldInit=fieldInit))
             continue
         if isOptional:
             tryClause = 'try?'
@@ -66,6 +64,7 @@ def generateModelContent(name, modelType, outerName, model):
         else:
             initLines.append("        let {propertyName}: {propertyType} = {tryClause} {getMethod}"
                 .format(propertyName=propertyName, propertyType=propertyType, tryClause=tryClause, getMethod=getMethod))
+            initParameters.append("{propertyName}: {propertyName}".format(propertyName=propertyName))
 
         if not isOptional:
             toJsonLines.append("        dict[\"{jsonField}\"] = self.{propertyName}.toJSON()".format(jsonField=jsonField, propertyName=propertyName))
@@ -87,11 +86,10 @@ def generateModelContent(name, modelType, outerName, model):
         decodeProtocol = 'JSONStaticDecodable'
         decodeContent = """
     static func fromJSON(json value: JSON) throws -> {modelName} {{
-        var obj = {modelName}()
 {initContent}
-        return obj
+        return {modelName}({initParametersContent})
     }}
-""".format(modelName=className, initContent='\n'.join(initLines))
+""".format(modelName=className, initContent='\n'.join(initLines), initParametersContent=', '.join(initParameters))
     subModelsLines = []
     submodels = model.get('submodels', [])
     for subModelName in submodels:
@@ -118,7 +116,7 @@ def generateModelContent(name, modelType, outerName, model):
 
 extension {modelName}: JSONEncodable {{
     public func toJSON() -> JSON {{
-        var dict: [String: JSON] = [:]
+        let dict: [String: JSON] = [:]
 //{{toJsonContent}}
         return .dictionary(dict)
     }}

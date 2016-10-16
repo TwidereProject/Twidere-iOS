@@ -16,10 +16,12 @@ submodels:
         json_field: account_key
       isGap:
         type: Bool
+        init: 'false'
         column: is_gap
         json_field: is_gap
       positionKey:
         type: Int64
+        init: -1
         column: position_key
         json_field: position_key
       createdAt:

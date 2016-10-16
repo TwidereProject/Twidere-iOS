@@ -5,16 +5,15 @@ import Foundation
 extension UserList: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> UserList {
-        var obj = UserList()
         let accountKey: UserKey = try value.decode(at: "account_key")
-        return obj
+        return UserList(accountKey: accountKey)
     }
 
 }
 
 extension UserList: JSONEncodable {
     public func toJSON() -> JSON {
-        var dict: [String: JSON] = [:]
+        let dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }

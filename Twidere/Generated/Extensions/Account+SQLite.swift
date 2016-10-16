@@ -5,8 +5,7 @@ import SQLite
 
 extension Account {
 
-    convenience init(row: Row) {
-        self.init()
+    init(row: Row) {
         self._id = row.get(RowIndices._id)
         self.key = row.get(RowIndices.key)
         self.type = row.get(RowIndices.type)
@@ -67,7 +66,7 @@ extension Account {
 
         static let _id = Expression<Int64>("_id")
         static let key = Expression<UserKey>("account_key")
-        static let type = Expression<String>("account_type")
+        static let type = Expression<AccountType>("account_type")
         static let apiUrlFormat = Expression<String>("api_url_format")
         static let authType = Expression<String>("auth_type")
         static let basicPassword = Expression<String?>("basic_password")
@@ -99,5 +98,17 @@ extension Account {
             user,
         ]
     }
+}
+extension Account.AccountType: Value {
+    static var declaredDatatype: String {
+        return String.declaredDatatype
+    }
 
+    static func fromDatatypeValue(_ datatypeValue: String) -> Account.AccountType? {
+        return Account.AccountType(rawValue: datatypeValue)
+    }
+
+    var datatypeValue: String {
+        return self.rawValue
+    }
 }

@@ -5,12 +5,9 @@ import Foundation
 extension User: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> User {
-        var obj = User()
-        obj._id = -1
         let accountKey: UserKey = try value.decode(at: "account_key")
         let key: UserKey = try value.decode(at: "user_key")
         let createdAt: Date = try value.decode(at: "created_at")
-        obj.position = -1
         let isProtected: Bool = try value.decode(at: "is_protected")
         let isVerified: Bool = try value.decode(at: "is_verified")
         let name: String = try value.decode(at: "name")
@@ -24,14 +21,14 @@ extension User: JSONStaticDecodable {
         let urlExpanded: String = try value.decode(at: "url_expanded")
         let location: String = try value.decode(at: "location")
         let metadata: Metadata = try value.decode(at: "metadata")
-        return obj
+        return User(accountKey: accountKey, key: key, createdAt: createdAt, isProtected: isProtected, isVerified: isVerified, name: name, screenName: screenName, profileImageUrl: profileImageUrl, profileBannerUrl: profileBannerUrl, profileBackgroundUrl: profileBackgroundUrl, descriptionPlain: descriptionPlain, descriptionDisplay: descriptionDisplay, url: url, urlExpanded: urlExpanded, location: location, metadata: metadata)
     }
 
 }
 
 extension User: JSONEncodable {
     public func toJSON() -> JSON {
-        var dict: [String: JSON] = [:]
+        let dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }
@@ -39,7 +36,6 @@ extension User: JSONEncodable {
 extension User.Metadata: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> User.Metadata {
-        var obj = User.Metadata()
         let following: Bool = try value.decode(at: "following")
         let followedBy: Bool = try value.decode(at: "followed_by")
         let blocking: Bool = try value.decode(at: "blocking")
@@ -59,14 +55,14 @@ extension User.Metadata: JSONStaticDecodable {
         let listsCount: Int64 = try value.decode(at: "lists_count")
         let listedCount: Int64 = try value.decode(at: "listed_count")
         let groupsCount: Int64 = try value.decode(at: "groups_count")
-        return obj
+        return User.Metadata(following: following, followedBy: followedBy, blocking: blocking, blockedBy: blockedBy, muting: muting, followRequestSent: followRequestSent, descriptionLinks: descriptionLinks, descriptionMentions: descriptionMentions, descriptionHashtags: descriptionHashtags, linkColor: linkColor, backgroundColor: backgroundColor, statusesCount: statusesCount, followersCount: followersCount, friendsCount: friendsCount, favoritesCount: favoritesCount, mediaCount: mediaCount, listsCount: listsCount, listedCount: listedCount, groupsCount: groupsCount)
     }
 
 }
 
 extension User.Metadata: JSONEncodable {
     public func toJSON() -> JSON {
-        var dict: [String: JSON] = [:]
+        let dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }

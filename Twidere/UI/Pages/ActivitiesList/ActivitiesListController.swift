@@ -180,7 +180,7 @@ class ActivitiesListController: UITableViewController {
         switch itemCounts.getItemCountIndex(position: indexPath.item) {
         case 0:
             let activity = activities![(indexPath as NSIndexPath).item]
-            if (activity.isGap ?? false) {
+            if (activity.isGap) {
 //                let accounts = dataSource.getAccounts()
             } else if let status = activity.activityStatus {
                 let storyboard = UIStoryboard(name: "Viewers", bundle: nil)

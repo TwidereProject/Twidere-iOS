@@ -26,16 +26,31 @@ import SQLite
 
 % rootModels = modelDef['submodels']
 % for modelName in rootModels:
-%   fields = rootModels[modelName].get('fields', None)
+    % model = rootModels[modelName]
+    % modelType = model.get('type', 'class')
+    % if modelType == 'struct':
+        % initModifier = ''
+    % else:
+        % initModifier = 'convenience '
+    %end
+    % fields = rootModels[modelName].get('fields', None)
     % if fields:
 extension ${modelName} {
 
-    convenience init(row: Row) {
-        self.init()
+    ${initModifier}init(row: Row) {
+    % initParameters = []
     % for propertyName in fields:
-      % if fields[propertyName].get('column', None) is not None:
+        % if fields[propertyName].get('column', None) is not None:
+            % initParameters.append("{propertyName}: {propertyName}".format(propertyName=propertyName))
+            % if modelType == 'struct':
         self.${propertyName} = row.get(RowIndices.${propertyName})
+            % else:
+        let ${propertyName} = row.get(RowIndices.${propertyName})
+            %end
       %end
+    %end
+    % if modelType == 'class':
+        self.init(${', '.join(initParameters)})
     %end
     }
 
@@ -92,7 +107,26 @@ extension ${modelName} {
     %end
         ]
     }
+        %end
+    %end
+}
+% submodels = model.get('submodels', [])
+% for submodelName in submodels:
+    % submodel = submodels[submodelName]
+    % inheritance = submodel.get('inheritance', None)
+    % if submodel.get('type') == 'enum' and inheritance:
+extension ${modelName}.${submodelName}: Value {
+    static var declaredDatatype: String {
+        return ${inheritance}.declaredDatatype
+    }
 
+    static func fromDatatypeValue(_ datatypeValue: ${inheritance}) -> ${modelName}.${submodelName}? {
+        return ${modelName}.${submodelName}(rawValue: datatypeValue)
+    }
+
+    var datatypeValue: ${inheritance} {
+        return self.rawValue
+    }
 }
     %end
 %end

@@ -5,8 +5,6 @@ import Foundation
 extension Status: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> Status {
-        var obj = Status()
-        obj._id = -1
         let accountKey: UserKey = try value.decode(at: "account_key")
         let sortId: Int64 = try value.decode(at: "sort_id")
         let positionKey: Int64 = try value.decode(at: "position_key")
@@ -35,14 +33,14 @@ extension Status: JSONStaticDecodable {
         let retweetedByUserProfileImage: String = try value.decode(at: "retweeted_by_user_profile_image")
         let retweetId: String = try value.decode(at: "retweet_id")
         let retweetCreatedAt: Date = try value.decode(at: "retweet_created_at")
-        return obj
+        return Status(accountKey: accountKey, sortId: sortId, positionKey: positionKey, isGap: isGap, createdAt: createdAt, id: id, userKey: userKey, userName: userName, userScreenName: userScreenName, userProfileImage: userProfileImage, textPlain: textPlain, textDisplay: textDisplay, metadata: metadata, quotedId: quotedId, quotedCreatedAt: quotedCreatedAt, quotedUserKey: quotedUserKey, quotedUserName: quotedUserName, quotedUserScreenName: quotedUserScreenName, quotedUserProfileImage: quotedUserProfileImage, quotedTextPlain: quotedTextPlain, quotedTextDisplay: quotedTextDisplay, quotedMetadata: quotedMetadata, retweetedByUserKey: retweetedByUserKey, retweetedByUserName: retweetedByUserName, retweetedByUserScreenName: retweetedByUserScreenName, retweetedByUserProfileImage: retweetedByUserProfileImage, retweetId: retweetId, retweetCreatedAt: retweetCreatedAt)
     }
 
 }
 
 extension Status: JSONEncodable {
     public func toJSON() -> JSON {
-        var dict: [String: JSON] = [:]
+        let dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }
@@ -50,7 +48,6 @@ extension Status: JSONEncodable {
 extension Status.Metadata: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> Status.Metadata {
-        var obj = Status.Metadata()
         let links: [LinkSpanItem] = try value.decodedArray(at: "links")
         let mentions: [MentionSpanItem] = try value.decodedArray(at: "mentions")
         let hashtags: [HashtagSpanItem] = try value.decodedArray(at: "hashtags")
@@ -61,14 +58,14 @@ extension Status.Metadata: JSONStaticDecodable {
         let replyCount: Int64 = try value.decode(at: "reply_count")
         let retweetCount: Int64 = try value.decode(at: "retweet_count")
         let favoriteCount: Int64 = try value.decode(at: "favorite_count")
-        return obj
+        return Status.Metadata(links: links, mentions: mentions, hashtags: hashtags, media: media, displayRange: displayRange, inReplyTo: inReplyTo, externalUrl: externalUrl, replyCount: replyCount, retweetCount: retweetCount, favoriteCount: favoriteCount)
     }
 
 }
 
 extension Status.Metadata: JSONEncodable {
     public func toJSON() -> JSON {
-        var dict: [String: JSON] = [:]
+        let dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }
@@ -86,7 +83,7 @@ extension Status.Metadata.InReplyTo: JSONDecodable {
 
 extension Status.Metadata.InReplyTo: JSONEncodable {
     public func toJSON() -> JSON {
-        var dict: [String: JSON] = [:]
+        let dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }

@@ -242,7 +242,11 @@ extension Status {
             textDisplay = str.decodeHTMLEntitiesWithOffset { (index, utf16Offset) in
                 let intIndex = str.distance(from: str.startIndex, to: index)
                 
-                for span in spans where span.origStart >= intIndex {
+                for i in 0..<spans.count {
+                    var span = spans[i]
+                    if (span.origStart < intIndex) {
+                        continue
+                    }
                     span.start += utf16Offset
                     span.end += utf16Offset
                 }

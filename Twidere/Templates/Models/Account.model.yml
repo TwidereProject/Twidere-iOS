@@ -2,6 +2,7 @@ imports:
   - Foundation
 submodels:
   Account:
+    type: struct
     fields:
       _id:
         type: Int64
@@ -13,7 +14,7 @@ submodels:
         column: account_key
         json_field: account_key
       type:
-        type: String
+        type: AccountType
         column: account_type
         json_field: account_type
       apiUrlFormat:

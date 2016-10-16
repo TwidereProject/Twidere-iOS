@@ -1,6 +1,6 @@
 // Automatically generated, DO NOT MODIFY
 import Foundation
-
+    
 class UserList {
 
     // Fields
@@ -12,6 +12,5 @@ class UserList {
     // Append body content
 
     // Sub models
-
 
 }

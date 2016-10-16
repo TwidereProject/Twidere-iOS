@@ -6,21 +6,21 @@ import SQLite
 extension Activity {
 
     convenience init(row: Row) {
-        self.init()
-        self._id = row.get(RowIndices._id)
-        self.accountKey = row.get(RowIndices.accountKey)
-        self.isGap = row.get(RowIndices.isGap)
-        self.positionKey = row.get(RowIndices.positionKey)
-        self.createdAt = row.get(RowIndices.createdAt)
-        self.maxSortPosition = row.get(RowIndices.maxSortPosition)
-        self.minSortPosition = row.get(RowIndices.minSortPosition)
-        self.maxPosition = row.get(RowIndices.maxPosition)
-        self.minPosition = row.get(RowIndices.minPosition)
-        self.action = row.get(RowIndices.action)
-        self.sources = row.get(RowIndices.sources)
-        self.sourceKeys = row.get(RowIndices.sourceKeys)
-        self.targets = row.get(RowIndices.targets)
-        self.targetObjects = row.get(RowIndices.targetObjects)
+        let _id = row.get(RowIndices._id)
+        let accountKey = row.get(RowIndices.accountKey)
+        let isGap = row.get(RowIndices.isGap)
+        let positionKey = row.get(RowIndices.positionKey)
+        let createdAt = row.get(RowIndices.createdAt)
+        let maxSortPosition = row.get(RowIndices.maxSortPosition)
+        let minSortPosition = row.get(RowIndices.minSortPosition)
+        let maxPosition = row.get(RowIndices.maxPosition)
+        let minPosition = row.get(RowIndices.minPosition)
+        let action = row.get(RowIndices.action)
+        let sources = row.get(RowIndices.sources)
+        let sourceKeys = row.get(RowIndices.sourceKeys)
+        let targets = row.get(RowIndices.targets)
+        let targetObjects = row.get(RowIndices.targetObjects)
+        self.init(_id: _id, accountKey: accountKey, isGap: isGap, positionKey: positionKey, createdAt: createdAt, maxSortPosition: maxSortPosition, minSortPosition: minSortPosition, maxPosition: maxPosition, minPosition: minPosition, action: action, sources: sources, sourceKeys: sourceKeys, targets: targets, targetObjects: targetObjects)
     }
 
     static func createTable(table: Table, temporary: Bool = false, ifNotExists: Bool = false) -> String {
@@ -94,5 +94,17 @@ extension Activity {
             targetObjects,
         ]
     }
+}
+extension Activity.Action: Value {
+    static var declaredDatatype: String {
+        return String.declaredDatatype
+    }
 
+    static func fromDatatypeValue(_ datatypeValue: String) -> Activity.Action? {
+        return Activity.Action(rawValue: datatypeValue)
+    }
+
+    var datatypeValue: String {
+        return self.rawValue
+    }
 }

@@ -1,6 +1,6 @@
 // Automatically generated, DO NOT MODIFY
 import Foundation
-
+    
 class User {
 
     // Fields
@@ -94,7 +94,5 @@ class User {
     
         // Sub models
     
-    
     }
-
 }

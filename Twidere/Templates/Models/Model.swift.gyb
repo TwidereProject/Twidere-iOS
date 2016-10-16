@@ -54,8 +54,13 @@ def generateModelContent(name, modelType, model, indent=0):
         field = fields[propertyName]
         propertyType = field['type']
         propertyInit = field.get('init', None)
+        propertyBody = field.get('body', None)
         if field.get('override', False):
             continue
+        if propertyBody is not None:
+            propertyBody = " " + propertyBody
+        else:
+            propertyBody = ""
         if propertyInit is not None:
             propertyInitContent = " = {init}".format(init=propertyInit)
             paramInitContent = propertyInitContent
@@ -65,10 +70,11 @@ def generateModelContent(name, modelType, model, indent=0):
                 paramInitContent = " = nil"
             else:
                 paramInitContent = ""
-        fieldsLines.append("    var {propertyName}: {propertyType}{propertyInit}".format(
+        fieldsLines.append("    var {propertyName}: {propertyType}{propertyInit}{propertyBody}".format(
             propertyName=propertyName,
             propertyType=propertyType,
-            propertyInit=propertyInitContent
+            propertyInit=propertyInitContent,
+            propertyBody=propertyBody
             ))
         if (modelType == 'class'):
             initParameters.append("{propertyName}: {propertyType}{paramInit}".format(
@@ -110,7 +116,6 @@ def generateModelContent(name, modelType, model, indent=0):
 {appendBodyContent}
     // Sub models
 {subModelsContent}
-
 }}""".format(
         modelName=name,
         modelType=modelType,
@@ -128,11 +133,11 @@ def generateModelContent(name, modelType, model, indent=0):
 % for importName in importNames:
 import ${importName}
 %end
-
 % rootModels = modelDef['submodels']
 % for modelName in rootModels:
     % rootModel = rootModels[modelName]
     % modelType = rootModel.get('type', 'class')
+    
     % if modelType == 'enum':
 ${generateEnumContent(modelName, rootModel)}
     % else:

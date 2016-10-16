@@ -21,7 +21,7 @@ extension MediaItem: JSONDecodable {
 
 extension MediaItem: JSONEncodable {
     public func toJSON() -> JSON {
-        var dict: [String: JSON] = [:]
+        let dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }
@@ -40,7 +40,7 @@ extension MediaItem.VideoInfo: JSONDecodable {
 
 extension MediaItem.VideoInfo: JSONEncodable {
     public func toJSON() -> JSON {
-        var dict: [String: JSON] = [:]
+        let dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }
@@ -57,7 +57,7 @@ extension MediaItem.VideoInfo.Variant: JSONDecodable {
 
 extension MediaItem.VideoInfo.Variant: JSONEncodable {
     public func toJSON() -> JSON {
-        var dict: [String: JSON] = [:]
+        let dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }

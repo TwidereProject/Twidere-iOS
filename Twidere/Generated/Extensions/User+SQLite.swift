@@ -6,24 +6,24 @@ import SQLite
 extension User {
 
     convenience init(row: Row) {
-        self.init()
-        self._id = row.get(RowIndices._id)
-        self.accountKey = row.get(RowIndices.accountKey)
-        self.key = row.get(RowIndices.key)
-        self.createdAt = row.get(RowIndices.createdAt)
-        self.isProtected = row.get(RowIndices.isProtected)
-        self.isVerified = row.get(RowIndices.isVerified)
-        self.name = row.get(RowIndices.name)
-        self.screenName = row.get(RowIndices.screenName)
-        self.profileImageUrl = row.get(RowIndices.profileImageUrl)
-        self.profileBannerUrl = row.get(RowIndices.profileBannerUrl)
-        self.profileBackgroundUrl = row.get(RowIndices.profileBackgroundUrl)
-        self.descriptionPlain = row.get(RowIndices.descriptionPlain)
-        self.descriptionDisplay = row.get(RowIndices.descriptionDisplay)
-        self.url = row.get(RowIndices.url)
-        self.urlExpanded = row.get(RowIndices.urlExpanded)
-        self.location = row.get(RowIndices.location)
-        self.metadata = row.get(RowIndices.metadata)
+        let _id = row.get(RowIndices._id)
+        let accountKey = row.get(RowIndices.accountKey)
+        let key = row.get(RowIndices.key)
+        let createdAt = row.get(RowIndices.createdAt)
+        let isProtected = row.get(RowIndices.isProtected)
+        let isVerified = row.get(RowIndices.isVerified)
+        let name = row.get(RowIndices.name)
+        let screenName = row.get(RowIndices.screenName)
+        let profileImageUrl = row.get(RowIndices.profileImageUrl)
+        let profileBannerUrl = row.get(RowIndices.profileBannerUrl)
+        let profileBackgroundUrl = row.get(RowIndices.profileBackgroundUrl)
+        let descriptionPlain = row.get(RowIndices.descriptionPlain)
+        let descriptionDisplay = row.get(RowIndices.descriptionDisplay)
+        let url = row.get(RowIndices.url)
+        let urlExpanded = row.get(RowIndices.urlExpanded)
+        let location = row.get(RowIndices.location)
+        let metadata = row.get(RowIndices.metadata)
+        self.init(_id: _id, accountKey: accountKey, key: key, createdAt: createdAt, isProtected: isProtected, isVerified: isVerified, name: name, screenName: screenName, profileImageUrl: profileImageUrl, profileBannerUrl: profileBannerUrl, profileBackgroundUrl: profileBackgroundUrl, descriptionPlain: descriptionPlain, descriptionDisplay: descriptionDisplay, url: url, urlExpanded: urlExpanded, location: location, metadata: metadata)
     }
 
     static func createTable(table: Table, temporary: Bool = false, ifNotExists: Bool = false) -> String {
@@ -109,5 +109,4 @@ extension User {
             metadata,
         ]
     }
-
 }

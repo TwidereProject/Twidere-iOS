@@ -255,21 +255,9 @@ class SignInController: UIViewController {
             let user = result.user
             let config = self.customAPIConfig
             let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
-            let account = Account()
+            let account = Account(config: config, result: result, user: user)
             
-            account.key = user.key
-            account.type = String(describing: AccountType.Twitter)
-            account.apiUrlFormat = config.apiUrlFormat
-            account.authType = String(describing: config.authType)
-            account.basicUsername = result.username
-            account.basicPassword = result.password
-            account.consumerKey = config.consumerKey
-            account.consumerSecret = config.consumerSecret
-            account.noVersionSuffix = config.noVersionSuffix
-            account.oauthToken = result.accessToken?.oauthToken
-            account.oauthTokenSecret = result.accessToken?.oauthTokenSecret
-            account.sameOAuthSigningUrl = config.sameOAuthSigningUrl
-            account.user = user
+
             try db.transaction {
                 try _ = db.run(Account.insertData(table: accountsTable, model: account))
             }
@@ -334,5 +322,23 @@ class SignInResult {
         self.user = user
         self.username = username
         self.password = password
+    }
+}
+
+fileprivate extension Account {
+    init(config: CustomAPIConfig, result: SignInResult, user: User) {
+        self.key = user.key
+        self.type = .twitter
+        self.apiUrlFormat = config.apiUrlFormat
+        self.authType = String(describing: config.authType)
+        self.basicUsername = result.username
+        self.basicPassword = result.password
+        self.consumerKey = config.consumerKey
+        self.consumerSecret = config.consumerSecret
+        self.noVersionSuffix = config.noVersionSuffix
+        self.oauthToken = result.accessToken?.oauthToken
+        self.oauthTokenSecret = result.accessToken?.oauthTokenSecret
+        self.sameOAuthSigningUrl = config.sameOAuthSigningUrl
+        self.user = user
     }
 }

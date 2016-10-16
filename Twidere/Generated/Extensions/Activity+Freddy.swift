@@ -5,8 +5,6 @@ import Foundation
 extension Activity: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> Activity {
-        var obj = Activity()
-        obj._id = -1
         let accountKey: UserKey = try value.decode(at: "account_key")
         let isGap: Bool = try value.decode(at: "is_gap")
         let positionKey: Int64 = try value.decode(at: "position_key")
@@ -20,14 +18,14 @@ extension Activity: JSONStaticDecodable {
         let sourceKeys: [UserKey] = try value.decodedArray(at: "source_keys")
         let targets: ObjectList = try value.decode(at: "targets")
         let targetObjects: ObjectList = try value.decode(at: "target_objects")
-        return obj
+        return Activity(accountKey: accountKey, isGap: isGap, positionKey: positionKey, createdAt: createdAt, maxSortPosition: maxSortPosition, minSortPosition: minSortPosition, maxPosition: maxPosition, minPosition: minPosition, action: action, sources: sources, sourceKeys: sourceKeys, targets: targets, targetObjects: targetObjects)
     }
 
 }
 
 extension Activity: JSONEncodable {
     public func toJSON() -> JSON {
-        var dict: [String: JSON] = [:]
+        let dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }
@@ -38,18 +36,17 @@ extension Activity.Action: JSONDecodable, JSONEncodable {}
 extension Activity.ObjectList: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> Activity.ObjectList {
-        var obj = Activity.ObjectList()
         let statuses: [Status] = try value.decodedArray(at: "statuses")
         let users: [User] = try value.decodedArray(at: "users")
         let userLists: [UserList] = try value.decodedArray(at: "user_lists")
-        return obj
+        return Activity.ObjectList(statuses: statuses, users: users, userLists: userLists)
     }
 
 }
 
 extension Activity.ObjectList: JSONEncodable {
     public func toJSON() -> JSON {
-        var dict: [String: JSON] = [:]
+        let dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }

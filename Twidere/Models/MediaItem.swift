@@ -1,6 +1,6 @@
 // Automatically generated, DO NOT MODIFY
 import Foundation
-
+    
 struct MediaItem {
 
     // Fields
@@ -54,9 +54,6 @@ struct MediaItem {
             
                 // Sub models
             
-            
             }
-    
     }
-
 }

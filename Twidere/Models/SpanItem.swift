@@ -1,33 +1,36 @@
 // Automatically generated, DO NOT MODIFY
 import Foundation
+    
+protocol SpanItem {
 
-class SpanItem {
+    // Fields
+    var start: Int { get set }
+    var end: Int { get set }
+    var origStart: Int { get set }
+    var origEnd: Int { get set }
+    // Initializers
+
+    // Append body content
+
+    // Sub models
+
+}
+    
+class LinkSpanItem : SpanItem {
 
     // Fields
     var start: Int = -1
     var end: Int = -1
     var origStart: Int = -1
     var origEnd: Int = -1
+    var link: String
+    var display: String!
     // Initializers
-    init(start: Int = -1, end: Int = -1, origStart: Int = -1, origEnd: Int = -1) {
+    init(start: Int = -1, end: Int = -1, origStart: Int = -1, origEnd: Int = -1, link: String, display: String! = nil) {
         self.start = start
         self.end = end
         self.origStart = origStart
         self.origEnd = origEnd
-    }
-    // Append body content
-
-    // Sub models
-
-
-}
-class LinkSpanItem : SpanItem {
-
-    // Fields
-    var link: String
-    var display: String!
-    // Initializers
-    init(link: String, display: String! = nil) {
         self.link = link
         self.display = display
     }
@@ -35,16 +38,24 @@ class LinkSpanItem : SpanItem {
 
     // Sub models
 
-
 }
+    
 class MentionSpanItem : SpanItem {
 
     // Fields
+    var start: Int = -1
+    var end: Int = -1
+    var origStart: Int = -1
+    var origEnd: Int = -1
     var key: UserKey
     var name: String?
     var screenName: String
     // Initializers
-    init(key: UserKey, name: String?, screenName: String) {
+    init(start: Int = -1, end: Int = -1, origStart: Int = -1, origEnd: Int = -1, key: UserKey, name: String?, screenName: String) {
+        self.start = start
+        self.end = end
+        self.origStart = origStart
+        self.origEnd = origEnd
         self.key = key
         self.name = name
         self.screenName = screenName
@@ -53,19 +64,26 @@ class MentionSpanItem : SpanItem {
 
     // Sub models
 
-
 }
+    
 class HashtagSpanItem : SpanItem {
 
     // Fields
+    var start: Int = -1
+    var end: Int = -1
+    var origStart: Int = -1
+    var origEnd: Int = -1
     var hashtag: String
     // Initializers
-    init(hashtag: String) {
+    init(start: Int = -1, end: Int = -1, origStart: Int = -1, origEnd: Int = -1, hashtag: String) {
+        self.start = start
+        self.end = end
+        self.origStart = origStart
+        self.origEnd = origEnd
         self.hashtag = hashtag
     }
     // Append body content
 
     // Sub models
-
 
 }

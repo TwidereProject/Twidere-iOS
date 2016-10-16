@@ -5,19 +5,20 @@ import Foundation
 extension LinkSpanItem: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> LinkSpanItem {
-        var obj = LinkSpanItem()
         let start: Int = try value.decode(at: "start")
         let end: Int = try value.decode(at: "end")
+        let origStart: Int = try value.decode(at: "start")
+        let origEnd: Int = try value.decode(at: "end")
         let link: String = try value.decode(at: "link")
         let display: String = try value.decode(at: "display")
-        return obj
+        return LinkSpanItem(start: start, end: end, origStart: origStart, origEnd: origEnd, link: link, display: display)
     }
 
 }
 
 extension LinkSpanItem: JSONEncodable {
     public func toJSON() -> JSON {
-        var dict: [String: JSON] = [:]
+        let dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }
@@ -26,20 +27,21 @@ extension LinkSpanItem: JSONEncodable {
 extension MentionSpanItem: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> MentionSpanItem {
-        var obj = MentionSpanItem()
         let start: Int = try value.decode(at: "start")
         let end: Int = try value.decode(at: "end")
+        let origStart: Int = try value.decode(at: "start")
+        let origEnd: Int = try value.decode(at: "end")
         let key: UserKey = try value.decode(at: "key")
         let name: String = try value.decode(at: "name")
         let screenName: String = try value.decode(at: "screen_name")
-        return obj
+        return MentionSpanItem(start: start, end: end, origStart: origStart, origEnd: origEnd, key: key, name: name, screenName: screenName)
     }
 
 }
 
 extension MentionSpanItem: JSONEncodable {
     public func toJSON() -> JSON {
-        var dict: [String: JSON] = [:]
+        let dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }
@@ -48,18 +50,19 @@ extension MentionSpanItem: JSONEncodable {
 extension HashtagSpanItem: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> HashtagSpanItem {
-        var obj = HashtagSpanItem()
         let start: Int = try value.decode(at: "start")
         let end: Int = try value.decode(at: "end")
+        let origStart: Int = try value.decode(at: "start")
+        let origEnd: Int = try value.decode(at: "end")
         let hashtag: String = try value.decode(at: "hashtag")
-        return obj
+        return HashtagSpanItem(start: start, end: end, origStart: origStart, origEnd: origEnd, hashtag: hashtag)
     }
 
 }
 
 extension HashtagSpanItem: JSONEncodable {
     public func toJSON() -> JSON {
-        var dict: [String: JSON] = [:]
+        let dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }

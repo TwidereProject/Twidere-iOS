@@ -11,20 +11,20 @@ import SwiftyJSON
 
 extension Activity {
     convenience init(_ json: JSON, accountKey: UserKey?) {
-        self.init()
-        self.accountKey = accountKey
-        self.createdAt = parseTwitterDate(json["created_at"].stringValue)!
-        self.action = Activity.Action(rawValue: json["action"].stringValue)!
-        self.sources = User.arrayFromJson(json["sources"], accountKey: accountKey)
-        self.sourceKeys = self.sources.map { $0.key }
-        self.targets = Activity.getTargets(action, json: json["targets"], accountKey: accountKey)
-        self.targetObjects = Activity.getTargetObjects(action, json: json["target_objects"], accountKey: accountKey)
+        let createdAt = parseTwitterDate(json["created_at"].stringValue)!
+        let action = Activity.Action(rawValue: json["action"].stringValue)!
+        let sources = User.arrayFromJson(json["sources"], accountKey: accountKey)
+        let sourceKeys = sources.map { $0.key }
+        let targets = Activity.getTargets(action, json: json["targets"], accountKey: accountKey)
+        let targetObjects = Activity.getTargetObjects(action, json: json["target_objects"], accountKey: accountKey)
         
-        self.minPosition = json["min_position"].stringValue
-        self.maxPosition = json["max_position"].stringValue
+        let minPosition = json["min_position"].stringValue
+        let maxPosition = json["max_position"].stringValue
         
-        self.minSortPosition = Int64(minPosition) ?? self.createdAt.timeIntervalSince1970Millis
-        self.maxSortPosition = Int64(maxPosition) ?? self.createdAt.timeIntervalSince1970Millis
+        let minSortPosition = Int64(minPosition) ?? createdAt.timeIntervalSince1970Millis
+        let maxSortPosition = Int64(maxPosition) ?? createdAt.timeIntervalSince1970Millis
+        
+        self.init(accountKey: accountKey, createdAt: createdAt, maxSortPosition: maxSortPosition, minSortPosition: minSortPosition, maxPosition: maxPosition, minPosition: minPosition, action: action, sources: sources, sourceKeys: sourceKeys, targets: targets, targetObjects: targetObjects)
     }
     
     static func arrayFromJson(_ json: JSON, accountKey: UserKey?) -> [Activity] {

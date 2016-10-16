@@ -3,7 +3,23 @@ imports:
 sqlite: false
 submodels:
   SpanItem:
+    type: protocol
     mapable: false
+    fields:
+      start:
+        type: Int
+        body: "{ get set }"
+      end:
+        type: Int
+        body: "{ get set }"
+      origStart:
+        type: Int
+        body: "{ get set }"
+      origEnd:
+        type: Int
+        body: "{ get set }"
+  LinkSpanItem:
+    inheritance: SpanItem
     fields:
       start:
         type: Int
@@ -16,19 +32,10 @@ submodels:
       origStart:
         type: Int
         init: -1
+        json_field: start
       origEnd:
         type: Int
         init: -1
-  LinkSpanItem:
-    inheritance: SpanItem
-    fields:
-      start:
-        type: Int
-        override: true
-        json_field: start
-      end:
-        type: Int
-        override: true
         json_field: end
       link:
         type: String
@@ -41,11 +48,19 @@ submodels:
     fields:
       start:
         type: Int
-        override: true
+        init: -1
         json_field: start
       end:
         type: Int
-        override: true
+        init: -1
+        json_field: end
+      origStart:
+        type: Int
+        init: -1
+        json_field: start
+      origEnd:
+        type: Int
+        init: -1
         json_field: end
       key:
         type: UserKey
@@ -61,11 +76,19 @@ submodels:
     fields:
       start:
         type: Int
-        override: true
+        init: -1
         json_field: start
       end:
         type: Int
-        override: true
+        init: -1
+        json_field: end
+      origStart:
+        type: Int
+        init: -1
+        json_field: start
+      origEnd:
+        type: Int
+        init: -1
         json_field: end
       hashtag:
         type: String

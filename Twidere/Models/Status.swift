@@ -1,6 +1,6 @@
 // Automatically generated, DO NOT MODIFY
 import Foundation
-
+    
 class Status {
 
     // Fields
@@ -110,9 +110,6 @@ class Status {
             
                 // Sub models
             
-            
             }
-    
     }
-
 }
