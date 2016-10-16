@@ -280,7 +280,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         let accounts = try! allAccounts()
         let textLimit = accounts.flatMap { $0.config?.characterLimit }.reduce(140) { (result, limit) -> Int in
             if (limit > 0 && limit < result) {
-                return limit!
+                return limit
             }
             return result
         }

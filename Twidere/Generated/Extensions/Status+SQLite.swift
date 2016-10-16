@@ -122,7 +122,7 @@ extension Status {
         static let textDisplay = Expression<String>("text_display")
         static let metadata = Expression<Metadata?>("metadata")
         static let quotedId = Expression<String?>("quoted_status_id")
-        static let quotedCreatedAt = Expression<Date>("quoted_created_at")
+        static let quotedCreatedAt = Expression<Date?>("quoted_created_at")
         static let quotedUserKey = Expression<UserKey?>("quoted_user_key")
         static let quotedUserName = Expression<String?>("quoted_user_name")
         static let quotedUserScreenName = Expression<String?>("quoted_user_screen_name")
@@ -135,7 +135,7 @@ extension Status {
         static let retweetedByUserScreenName = Expression<String?>("retweeted_by_user_screen_name")
         static let retweetedByUserProfileImage = Expression<String?>("retweeted_by_user_profile_image")
         static let retweetId = Expression<String?>("retweet_id")
-        static let retweetCreatedAt = Expression<Date>("retweet_created_at")
+        static let retweetCreatedAt = Expression<Date?>("retweet_created_at")
 
         static let columns: [Expressible] = [
             _id,

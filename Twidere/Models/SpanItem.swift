@@ -27,7 +27,7 @@ class LinkSpanItem : SpanItem {
     var link: String
     var display: String!
     // Initializers
-    init(link: String, display: String!) {
+    init(link: String, display: String! = nil) {
         self.link = link
         self.display = display
     }

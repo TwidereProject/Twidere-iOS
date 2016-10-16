@@ -40,7 +40,7 @@ class Account {
     // Append body content
 
     // Sub models
-    enum AccountType {
+    enum AccountType : String {
     
         // Fields
         case twitter
@@ -50,16 +50,13 @@ class Account {
     
     
     }
-    class Config {
+    struct Config {
     
         // Fields
         var characterLimit: Int
         var officialCredentials: Bool
         // Initializers
-        init(characterLimit: Int, officialCredentials: Bool) {
-            self.characterLimit = characterLimit
-            self.officialCredentials = officialCredentials
-        }
+    
         // Append body content
     
         // Sub models

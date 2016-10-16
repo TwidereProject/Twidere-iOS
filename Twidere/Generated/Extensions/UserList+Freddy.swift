@@ -2,7 +2,7 @@
 import Freddy
 import Foundation
 
-extension UserList: JSONEncodable, JSONStaticDecodable {
+extension UserList: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> UserList {
         var obj = UserList()
@@ -10,11 +10,13 @@ extension UserList: JSONEncodable, JSONStaticDecodable {
         return obj
     }
 
+}
+
+extension UserList: JSONEncodable {
     public func toJSON() -> JSON {
         var dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }
 }
-
 

@@ -77,8 +77,8 @@ class GetStatusesTask {
         var minPositionKey: Int64 = -1
         var hasIntersection = false
         if (!statuses.isEmpty) {
-            let firstSortId = statuses.first!.sortId!
-            let lastSortId = statuses.last!.sortId!
+            let firstSortId = statuses.first!.sortId
+            let lastSortId = statuses.last!.sortId
             // Get id diff of first and last item
             let sortDiff = firstSortId - lastSortId
             

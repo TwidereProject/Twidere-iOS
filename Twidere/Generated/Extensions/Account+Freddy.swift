@@ -2,7 +2,7 @@
 import Freddy
 import Foundation
 
-extension Account: JSONEncodable, JSONStaticDecodable {
+extension Account: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> Account {
         var obj = Account()
@@ -24,6 +24,9 @@ extension Account: JSONEncodable, JSONStaticDecodable {
         return obj
     }
 
+}
+
+extension Account: JSONEncodable {
     public func toJSON() -> JSON {
         var dict: [String: JSON] = [:]
 //{toJsonContent}
@@ -31,20 +34,22 @@ extension Account: JSONEncodable, JSONStaticDecodable {
     }
 }
 
-extension Account.Config: JSONEncodable, JSONStaticDecodable {
+extension Account.AccountType: JSONDecodable, JSONEncodable {}
+    
+extension Account.Config: JSONDecodable {
 
-    static func fromJSON(json value: JSON) throws -> Account.Config {
-        var obj = Account.Config()
-        let characterLimit: Int = try value.decode(at: "character_limit")
-        let officialCredentials: Bool = try value.decode(at: "official_credentials")
-        return obj
+    init(json value: JSON) throws {
+        self.characterLimit = try value.decode(at: "character_limit")
+        self.officialCredentials = try value.decode(at: "official_credentials")
     }
 
+}
+
+extension Account.Config: JSONEncodable {
     public func toJSON() -> JSON {
         var dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }
 }
-
 

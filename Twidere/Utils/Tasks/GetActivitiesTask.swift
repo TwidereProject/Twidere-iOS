@@ -70,7 +70,7 @@ class GetActivitiesTask {
     }
     
     fileprivate static func storeActivities(_ account: Account, activities: [Activity], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
-        let accountKey = account.key!
+        let accountKey = account.key
         let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
         
         let noItemsBefore = try db.scalar(table.filter(accountKey == Activity.RowIndices.accountKey).count) <= 0
@@ -127,7 +127,7 @@ class GetActivitiesTask {
         }
         
         // Remove gap flag
-        if (maxId != nil && sinceId == nil) {
+        if let maxId = maxId, sinceId == nil {
             _ = try db.run(table.filter(Activity.RowIndices.accountKey == accountKey && Activity.RowIndices.minPosition == maxId && Activity.RowIndices.maxPosition == maxId).update(Activity.RowIndices.isGap <- false))
         }
     }

@@ -31,7 +31,7 @@ extension User {
         let urlExpanded = json["entities"]["url"]["urls"][0]["expanded_url"].string
         let location = json["location"].string
         let metadata = User.Metadata(json: json)
-        
+        return nil
     }
     
     static func getUserKey(_ user: JSON, accountHost: String? = nil) -> UserKey {
@@ -61,14 +61,26 @@ extension User {
 extension User.Metadata {
     
     convenience init(json: JSON) {
+        let following = json["following"].boolValue
+        let followedBy = json["followed_by"].bool ?? json["follows_you"].boolValue
+        let blocking = json["blocking"].bool ?? json["statusnet_blocking"].boolValue
+        let blockedBy = json["blocked_by"].bool ?? json["blocks_you"].boolValue
+        let muting = json["muting"].boolValue
+        let followRequestSent = json["follow_request_sent"].boolValue
+        
         let linkColor = json["profile_link_color"].string ?? json["linkcolor"].string
         let backgroundColor = json["profile_background_color"].string ?? json["backgroundcolor"].string
         
         let statusesCount = json["statuses_count"].int64 ?? -1
+        let favoritesCount = json["favourites_count"].int64 ?? -1
         let followersCount = json["followers_count"].int64 ?? -1
         let friendsCount = json["friends_count"].int64 ?? -1
+        let mediaCount = json["media_count"].int64 ?? json["photo_count"].int64 ?? -1
+        let listsCount = json["lists_count"].int64 ?? -1
         let listedCount = json["listed_count"].int64 ?? -1
         let groupsCount = json["groups_count"].int64 ?? -1
+        
+        self.init(following: following, followedBy: followedBy, blocking: blocking, blockedBy: blockedBy, muting: muting, followRequestSent: followRequestSent, descriptionLinks: nil, descriptionMentions: nil, descriptionHashtags: nil, linkColor: linkColor, backgroundColor: backgroundColor, statusesCount: statusesCount, followersCount: followersCount, friendsCount: friendsCount, favoritesCount: favoritesCount, mediaCount: mediaCount, listsCount: listsCount, listedCount: listedCount, groupsCount: groupsCount)
     }
     
 }

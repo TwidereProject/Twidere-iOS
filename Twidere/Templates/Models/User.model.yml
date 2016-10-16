@@ -17,17 +17,20 @@ submodels:
         column: user_key
         json_field: user_key
       createdAt:
-        type: Date
+        type: Date!
         column: created_at
         json_field: created_at
       position:
         type: Int64
+        init: '-1'
       isProtected:
         type: Bool
+        init: 'false'
         column: is_protected
         json_field: is_protected
       isVerified:
         type: Bool
+        init: 'false'
         column: is_verified
         json_field: is_verified
       name:
@@ -72,6 +75,7 @@ submodels:
         json_field: location
       metadata:
         type: Metadata?
+        init: nil
         column: metadata
         json_field: metadata
     submodels:

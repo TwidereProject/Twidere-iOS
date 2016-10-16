@@ -2,7 +2,7 @@
 import Freddy
 import Foundation
 
-extension Status: JSONEncodable, JSONStaticDecodable {
+extension Status: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> Status {
         var obj = Status()
@@ -38,22 +38,24 @@ extension Status: JSONEncodable, JSONStaticDecodable {
         return obj
     }
 
+}
+
+extension Status: JSONEncodable {
     public func toJSON() -> JSON {
         var dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }
 }
-
-extension Status.Metadata: JSONEncodable, JSONStaticDecodable {
+extension Status.Metadata: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> Status.Metadata {
         var obj = Status.Metadata()
-        let links: [LinkSpanItem] = try value.decodeArray(at: "links")
-        let mentions: [MentionSpanItem] = try value.decodeArray(at: "mentions")
-        let hashtags: [HashtagSpanItem] = try value.decodeArray(at: "hashtags")
-        let media: [MediaItem] = try value.decodeArray(at: "media")
-        let displayRange: [Int] = try value.decodeArray(at: "display_range")
+        let links: [LinkSpanItem] = try value.decodedArray(at: "links")
+        let mentions: [MentionSpanItem] = try value.decodedArray(at: "mentions")
+        let hashtags: [HashtagSpanItem] = try value.decodedArray(at: "hashtags")
+        let media: [MediaItem] = try value.decodedArray(at: "media")
+        let displayRange: [Int] = try value.decodedArray(at: "display_range")
         let inReplyTo: InReplyTo = try value.decode(at: "in_reply_to")
         let externalUrl: String = try value.decode(at: "extenral_url")
         let replyCount: Int64 = try value.decode(at: "reply_count")
@@ -62,29 +64,31 @@ extension Status.Metadata: JSONEncodable, JSONStaticDecodable {
         return obj
     }
 
+}
+
+extension Status.Metadata: JSONEncodable {
     public func toJSON() -> JSON {
         var dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }
 }
+extension Status.Metadata.InReplyTo: JSONDecodable {
 
-extension Status.Metadata.InReplyTo: JSONEncodable, JSONStaticDecodable {
-
-    static func fromJSON(json value: JSON) throws -> Status.Metadata.InReplyTo {
-        var obj = Status.Metadata.InReplyTo()
-        let statusId: String = try value.decode(at: "status_id")
-        let userKey: UserKey = try value.decode(at: "user_key")
-        let userName: String = try value.decode(at: "user_name")
-        let userScreenName: String = try value.decode(at: "user_screen_name")
-        return obj
+    init(json value: JSON) throws {
+        self.statusId = try value.decode(at: "status_id")
+        self.userKey = try value.decode(at: "user_key")
+        self.userName = try value.decode(at: "user_name")
+        self.userScreenName = try value.decode(at: "user_screen_name")
     }
 
+}
+
+extension Status.Metadata.InReplyTo: JSONEncodable {
     public func toJSON() -> JSON {
         var dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }
 }
-
 

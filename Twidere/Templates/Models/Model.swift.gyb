@@ -58,18 +58,23 @@ def generateModelContent(name, modelType, model, indent=0):
             continue
         if propertyInit is not None:
             propertyInitContent = " = {init}".format(init=propertyInit)
+            paramInitContent = propertyInitContent
         else:
             propertyInitContent = ''
+            if propertyType.endswith('!'):
+                paramInitContent = " = nil"
+            else:
+                paramInitContent = ""
         fieldsLines.append("    var {propertyName}: {propertyType}{propertyInit}".format(
             propertyName=propertyName,
             propertyType=propertyType,
             propertyInit=propertyInitContent
             ))
         if (modelType == 'class'):
-            initParameters.append("{propertyName}: {propertyType}{propertyInit}".format(
+            initParameters.append("{propertyName}: {propertyType}{paramInit}".format(
                 propertyName=propertyName,
                 propertyType=propertyType,
-                propertyInit=propertyInitContent
+                paramInit=paramInitContent
                 ))
             initLines.append("        self.{propertyName} = {propertyName}".format(
                 propertyName=propertyName
@@ -126,10 +131,11 @@ import ${importName}
 
 % rootModels = modelDef['submodels']
 % for modelName in rootModels:
-    % modelType = rootModels.get('type', 'class')
+    % rootModel = rootModels[modelName]
+    % modelType = rootModel.get('type', 'class')
     % if modelType == 'enum':
-${generateEnumContent(modelName, rootModels[modelName])}
+${generateEnumContent(modelName, rootModel)}
     % else:
-${generateModelContent(modelName, modelType, rootModels[modelName])}
+${generateModelContent(modelName, modelType, rootModel)}
     %end
 %end

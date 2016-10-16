@@ -2,7 +2,7 @@
 import Freddy
 import Foundation
 
-extension User: JSONEncodable, JSONStaticDecodable {
+extension User: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> User {
         var obj = User()
@@ -10,7 +10,7 @@ extension User: JSONEncodable, JSONStaticDecodable {
         let accountKey: UserKey = try value.decode(at: "account_key")
         let key: UserKey = try value.decode(at: "user_key")
         let createdAt: Date = try value.decode(at: "created_at")
-        obj.position = nil
+        obj.position = -1
         let isProtected: Bool = try value.decode(at: "is_protected")
         let isVerified: Bool = try value.decode(at: "is_verified")
         let name: String = try value.decode(at: "name")
@@ -27,14 +27,16 @@ extension User: JSONEncodable, JSONStaticDecodable {
         return obj
     }
 
+}
+
+extension User: JSONEncodable {
     public func toJSON() -> JSON {
         var dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }
 }
-
-extension User.Metadata: JSONEncodable, JSONStaticDecodable {
+extension User.Metadata: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> User.Metadata {
         var obj = User.Metadata()
@@ -44,9 +46,9 @@ extension User.Metadata: JSONEncodable, JSONStaticDecodable {
         let blockedBy: Bool = try value.decode(at: "blocked_by")
         let muting: Bool = try value.decode(at: "muting")
         let followRequestSent: Bool = try value.decode(at: "follow_request_sent")
-        let descriptionLinks: [LinkSpanItem] = try value.decodeArray(at: "description_links")
-        let descriptionMentions: [MentionSpanItem] = try value.decodeArray(at: "description_mentions")
-        let descriptionHashtags: [HashtagSpanItem] = try value.decodeArray(at: "description_hashtags")
+        let descriptionLinks: [LinkSpanItem] = try value.decodedArray(at: "description_links")
+        let descriptionMentions: [MentionSpanItem] = try value.decodedArray(at: "description_mentions")
+        let descriptionHashtags: [HashtagSpanItem] = try value.decodedArray(at: "description_hashtags")
         let linkColor: String = try value.decode(at: "link_color")
         let backgroundColor: String = try value.decode(at: "background_color")
         let statusesCount: Int64 = try value.decode(at: "statuses_count")
@@ -60,11 +62,13 @@ extension User.Metadata: JSONEncodable, JSONStaticDecodable {
         return obj
     }
 
+}
+
+extension User.Metadata: JSONEncodable {
     public func toJSON() -> JSON {
         var dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }
 }
-
 

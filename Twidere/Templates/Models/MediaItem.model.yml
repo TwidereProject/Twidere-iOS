@@ -3,11 +3,7 @@ imports:
 sqlite: false
 submodels:
   MediaItem:
-    append_body: "
-    enum MediaType: String {
-        case unknown, image, video, animatedGif, externalPlayer, variableType
-    }
-    "
+    type: struct
     fields:
       url:
         type: String
@@ -47,7 +43,12 @@ submodels:
         init: nil
         json_field: alt_text
     submodels:
+      MediaType:
+        type: enum
+        inheritance: String
+        values: [unknown, image, video, animatedGif, externalPlayer, variableType]
       VideoInfo:
+        type: struct
         fields:
           variants:
             type: '[Variant]'
@@ -58,6 +59,7 @@ submodels:
             json_field: duration
         submodels:
           Variant:
+            type: struct
             fields:
               url:
                 type: String

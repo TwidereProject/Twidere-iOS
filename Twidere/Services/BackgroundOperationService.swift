@@ -162,8 +162,8 @@ class BackgroundOperationService {
                         }
                         statusPromise.then { status -> Void in
                             fullfill((status, nil))
-                            }.catch { error in
-                                fullfill((nil, (account.key!, error)))
+                        }.catch { error in
+                            fullfill((nil, (account.key, error)))
                         }
                     }
             }).then { results -> [Status] in

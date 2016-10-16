@@ -2,7 +2,7 @@
 import Freddy
 import Foundation
 
-extension Activity: JSONEncodable, JSONStaticDecodable {
+extension Activity: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> Activity {
         var obj = Activity()
@@ -16,13 +16,16 @@ extension Activity: JSONEncodable, JSONStaticDecodable {
         let maxPosition: String = try value.decode(at: "max_position")
         let minPosition: String = try value.decode(at: "min_position")
         let action: Action = try value.decode(at: "action")
-        let sources: [User] = try value.decodeArray(at: "sources")
-        let sourceKeys: [UserKey] = try value.decodeArray(at: "source_keys")
+        let sources: [User] = try value.decodedArray(at: "sources")
+        let sourceKeys: [UserKey] = try value.decodedArray(at: "source_keys")
         let targets: ObjectList = try value.decode(at: "targets")
         let targetObjects: ObjectList = try value.decode(at: "target_objects")
         return obj
     }
 
+}
+
+extension Activity: JSONEncodable {
     public func toJSON() -> JSON {
         var dict: [String: JSON] = [:]
 //{toJsonContent}
@@ -30,21 +33,25 @@ extension Activity: JSONEncodable, JSONStaticDecodable {
     }
 }
 
-extension Activity.ObjectList: JSONEncodable, JSONStaticDecodable {
+extension Activity.Action: JSONDecodable, JSONEncodable {}
+    
+extension Activity.ObjectList: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> Activity.ObjectList {
         var obj = Activity.ObjectList()
-        let statuses: [Status] = try value.decodeArray(at: "statuses")
-        let users: [User] = try value.decodeArray(at: "users")
-        let userLists: [UserList] = try value.decodeArray(at: "user_lists")
+        let statuses: [Status] = try value.decodedArray(at: "statuses")
+        let users: [User] = try value.decodedArray(at: "users")
+        let userLists: [UserList] = try value.decodedArray(at: "user_lists")
         return obj
     }
 
+}
+
+extension Activity.ObjectList: JSONEncodable {
     public func toJSON() -> JSON {
         var dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }
 }
-
 

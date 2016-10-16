@@ -2,7 +2,7 @@
 import Freddy
 import Foundation
 
-extension LinkSpanItem: JSONEncodable, JSONStaticDecodable {
+extension LinkSpanItem: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> LinkSpanItem {
         var obj = LinkSpanItem()
@@ -13,6 +13,9 @@ extension LinkSpanItem: JSONEncodable, JSONStaticDecodable {
         return obj
     }
 
+}
+
+extension LinkSpanItem: JSONEncodable {
     public func toJSON() -> JSON {
         var dict: [String: JSON] = [:]
 //{toJsonContent}
@@ -20,8 +23,7 @@ extension LinkSpanItem: JSONEncodable, JSONStaticDecodable {
     }
 }
 
-
-extension MentionSpanItem: JSONEncodable, JSONStaticDecodable {
+extension MentionSpanItem: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> MentionSpanItem {
         var obj = MentionSpanItem()
@@ -33,6 +35,9 @@ extension MentionSpanItem: JSONEncodable, JSONStaticDecodable {
         return obj
     }
 
+}
+
+extension MentionSpanItem: JSONEncodable {
     public func toJSON() -> JSON {
         var dict: [String: JSON] = [:]
 //{toJsonContent}
@@ -40,8 +45,7 @@ extension MentionSpanItem: JSONEncodable, JSONStaticDecodable {
     }
 }
 
-
-extension HashtagSpanItem: JSONEncodable, JSONStaticDecodable {
+extension HashtagSpanItem: JSONStaticDecodable {
 
     static func fromJSON(json value: JSON) throws -> HashtagSpanItem {
         var obj = HashtagSpanItem()
@@ -51,11 +55,13 @@ extension HashtagSpanItem: JSONEncodable, JSONStaticDecodable {
         return obj
     }
 
+}
+
+extension HashtagSpanItem: JSONEncodable {
     public func toJSON() -> JSON {
         var dict: [String: JSON] = [:]
 //{toJsonContent}
         return .dictionary(dict)
     }
 }
-
 

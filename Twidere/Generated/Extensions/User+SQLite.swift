@@ -74,7 +74,7 @@ extension User {
         static let _id = Expression<Int64>("_id")
         static let accountKey = Expression<UserKey?>("account_key")
         static let key = Expression<UserKey>("user_key")
-        static let createdAt = Expression<Date>("created_at")
+        static let createdAt = Expression<Date?>("created_at")
         static let isProtected = Expression<Bool>("is_protected")
         static let isVerified = Expression<Bool>("is_verified")
         static let name = Expression<String>("name")

@@ -41,118 +41,112 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 extension Status {
     
-    convenience init(status: JSON, accountKey: UserKey?) {
-        self.init()
-        self.accountKey = accountKey
-        self.id = getTwitterEntityId(status)
-        self.createdAt = parseTwitterDate(status["created_at"].stringValue)
-        self.sortId = generateSortId(rawId: status["raw_id"].int64 ?? -1)
+    convenience init?(status: JSON, accountKey: UserKey?) {
+        let accountKey = accountKey
+        let id = getTwitterEntityId(status)
+        let createdAt = parseTwitterDate(status["created_at"].stringValue)!
+        let sortId = Status.generateSortId(rawId: status["raw_id"].int64 ?? -1, id: id, createdAt: createdAt)
         
         var primary = status["retweeted_status"]
         if (primary.exists()) {
-            self.retweetId = getTwitterEntityId(primary)
-            self.retweetCreatedAt = parseTwitterDate(primary["created_at"].stringValue)!
+            let retweetId = getTwitterEntityId(primary)
+            let retweetCreatedAt = parseTwitterDate(primary["created_at"].stringValue)!
             
             let retweetedBy = status["user"]
             let userId = getTwitterEntityId(retweetedBy)
-            self.retweetedByUserKey = UserKey(id: userId, host: self.accountKey.host)
-            self.retweetedByUserName = retweetedBy["name"].string
-            self.retweetedByUserScreenName = retweetedBy["screen_name"].string
-            self.retweetedByUserProfileImage = getProfileImage(retweetedBy)
+            let retweetedByUserKey = UserKey(id: userId, host: accountKey?.host)
+            let retweetedByUserName = retweetedBy["name"].string
+            let retweetedByUserScreenName = retweetedBy["screen_name"].string
+            let retweetedByUserProfileImage = Status.getProfileImage(retweetedBy)
         } else {
             primary = status
         }
         
         let user = primary["user"]
-        self.userKey = User.getUserKey(user, accountHost: accountKey?.host)
-        self.userName = user["name"].stringValue
-        self.userScreenName = user["screen_name"].stringValue
-        self.userProfileImage = getProfileImage(user)
+        let userKey = User.getUserKey(user, accountHost: accountKey?.host)
+        let userName = user["name"].stringValue
+        let userScreenName = user["screen_name"].stringValue
+        let userProfileImage = Status.getProfileImage(user)
         
-        let (textPlain, textDisplay, metadata) = getMetadata(primary)
+        let (textPlain, textDisplay, metadata) = Status.getMetadata(primary, accountKey: accountKey)
         
         metadata.replyCount = status["reply_count"].int64 ?? -1
         metadata.retweetCount = status["retweet_count"].int64 ?? -1
         metadata.favoriteCount = status["favorite_count"].int64 ?? -1
         
-        self.textPlain = textPlain
-        self.textDisplay = textDisplay
-        self.metadata = metadata
+//        let textPlain = textPlain
+//        let textDisplay = textDisplay
+//        let metadata = metadata
         
         let quoted = primary["quoted_status"]
         if (quoted.exists()) {
-            self.quotedId = getTwitterEntityId(quoted)
-            self.quotedCreatedAt = parseTwitterDate(quoted["created_at"].stringValue)!
+            let quotedId = getTwitterEntityId(quoted)
+            let quotedCreatedAt = parseTwitterDate(quoted["created_at"].stringValue)!
             
             let quotedUser = quoted["user"]
             let quotedUserId = getTwitterEntityId(quotedUser)
-            self.quotedUserKey = UserKey(id: quotedUserId, host: self.accountKey.host)
-            self.quotedUserName = quotedUser["name"].string
-            self.quotedUserScreenName = quotedUser["screen_name"].string
-            self.quotedUserProfileImage = getProfileImage(quotedUser)
+            let quotedUserKey = UserKey(id: quotedUserId, host: accountKey?.host)
+            let quotedUserName = quotedUser["name"].string
+            let quotedUserScreenName = quotedUser["screen_name"].string
+            let quotedUserProfileImage = Status.getProfileImage(quotedUser)
             
-            let (quotedTextPlain, quotedTextDisplay, quotedMetadata) = getMetadata(quoted)
-            self.quotedTextPlain = quotedTextPlain
-            self.quotedTextDisplay = quotedTextDisplay
-            self.quotedMetadata = quotedMetadata
+            let (quotedTextPlain, quotedTextDisplay, quotedMetadata) = Status.getMetadata(quoted, accountKey: accountKey)
+//            let quotedTextPlain = quotedTextPlain
+//            let quotedTextDisplay = quotedTextDisplay
+//            let quotedMetadata = quotedMetadata
         }
-        
+        return nil
     }
     
     static func arrayFromJson(_ json: JSON, accountKey: UserKey?) -> [Status] {
         if let array = json.array {
-            return array.map { item in return Status(status: item, accountKey: accountKey) }
+            return array.flatMap { item in return Status(status: item, accountKey: accountKey) }
         } else {
-            return json["statuses"].map { (key, item) in return Status(status: item, accountKey: accountKey) }
+            return json["statuses"].flatMap { (key, item) in return Status(status: item, accountKey: accountKey) }
         }
     }
     
-    fileprivate func getProfileImage(_ user: JSON) -> String {
+    fileprivate static func getProfileImage(_ user: JSON) -> String {
         return user["profile_image_url_https"].string ?? user["profile_image_url"].stringValue
     }
     
     fileprivate static let carets = CharacterSet(charactersIn: "<>")
     
-    fileprivate func getMetadata(_ status: JSON) -> (plain: String, display: String, metadata: Status.Metadata) {
-        let metadata = Status.Metadata()
+    fileprivate static func getMetadata(_ status: JSON, accountKey: UserKey?) -> (plain: String, display: String, metadata: Status.Metadata) {
+
         var links = [LinkSpanItem]()
         var mentions = [MentionSpanItem]()
         var hashtags = [HashtagSpanItem]()
         var mediaItems = [MediaItem]()
         let textPlain: String
         let textDisplay: String
+        var displayRange: [Int]? = nil
         if let statusNetHtml = status["statusnet_html"].string {
             textPlain = statusNetHtml.decodeHTMLEntitiesWithOffset()
             textDisplay = textPlain
         } else if let fullText = status["full_text"].string ?? status["text"].string {
             var spans = [SpanItem]()
-            if let urls = status["entities"]["urls"].array {
-                for entity in urls {
-                    spans.append(spanFromUrlEntity(entity))
-                }
+            for (_, entity) in status["entities"]["urls"] {
+                spans.append(spanFromUrlEntity(entity))
             }
             
-            if let userMentions = status["entities"]["user_mentions"].array {
-                for entity in userMentions {
-                    spans.append(spanFromMentionEntity(entity, accountKey: accountKey))
-                }
+            for (_, entity) in status["entities"]["user_mentions"] {
+                spans.append(spanFromMentionEntity(entity, accountKey: accountKey))
             }
             
-            if let hashtags = status["entities"]["hashtags"].array {
-                for entity in hashtags {
-                    spans.append(spanFromHashtagEntity(entity))
-                }
+            for (_, entity) in status["entities"]["hashtags"] {
+                spans.append(spanFromHashtagEntity(entity))
             }
             
             if let extendedMedia = status["extended_entities"]["media"].array {
                 for entity in extendedMedia {
                     spans.append(spanFromUrlEntity(entity))
-                    mediaItems.append(mediaItemFromEntity(entity))
+                    mediaItems.append(MediaItem(from: entity))
                 }
             } else if let media = status["entities"]["media"].array {
                 for entity in media {
                     spans.append(spanFromUrlEntity(entity))
-                    mediaItems.append(mediaItemFromEntity(entity))
+                    mediaItems.append(MediaItem(from: entity))
                 }
             }
             
@@ -263,68 +257,22 @@ extension Status {
             }
             textPlain = fullText.decodeHTMLEntitiesWithOffset()
             
-            metadata.displayRange = displayTextRangeUtf16
+            displayRange = displayTextRangeUtf16
         } else {
             textPlain = status["text"].stringValue
             textDisplay = textPlain
         }
-        metadata.links = links
-        metadata.mentions = mentions
-        metadata.hashtags = hashtags
-        metadata.media = mediaItems
         
-        if let inReplyTo = Status.Metadata.InReplyTo(status: status, accountKey: accountKey) {
-            inReplyTo.userName = mentions.filter { $0.key.id == inReplyTo.userKey.id }.first?.name
-            metadata.inReplyTo = inReplyTo
-        } else {
-            metadata.inReplyTo = nil
-        }
+        var inReplyTo = Status.Metadata.InReplyTo(status: status, accountKey: accountKey)
         
-        metadata.externalUrl = status["external_url"].string
-        
+        inReplyTo?.completeUserName(mentions)
+
+        let externalUrl = status["external_url"].string
+        let metadata = Status.Metadata(links: links, mentions: mentions, hashtags: hashtags, media: mediaItems, displayRange: displayRange, inReplyTo: inReplyTo, externalUrl: externalUrl, replyCount: -1, retweetCount: -1, favoriteCount: -1)
         return (textPlain, textDisplay, metadata)
     }
     
-    fileprivate func mediaItemFromEntity(_ entity: JSON) -> MediaItem {
-        let url = entity["media_url_https"].string ?? entity["media_url"].string
-        let pageUrl = entity["expanded_url"].string
-        let type = getMediaType(entity["type"].string)
-        let altText = entity["alt_text"].string
-        let width = entity["sizes"]["large"]["w"].intValue
-        let height = entity["sizes"]["large"]["h"].intValue
-        let videoInfo = getVideoInfo(entity["video_info"])
-        return MediaItem(url: url, mediaUrl: url, previewUrl: url, type: type, width: width, height: height, videoInfo: videoInfo, pageUrl: pageUrl, altText: altText)
-    }
-    
-    fileprivate func getMediaType(_ type: String?) -> MediaItem.MediaType {
-        switch type {
-        case "photo"?:
-            return .image
-        case "video"?:
-            return .video
-        case "animated_gif"?:
-            return .animatedGif
-        default: break
-        }
-        return .unknown
-    }
-    
-    fileprivate func getVideoInfo(_ json: JSON) -> MediaItem.VideoInfo {
-        
-        let duration = json["duration"].int64Value
-        let variants = json["variants"].flatMap { (k, v) -> MediaItem.VideoInfo.Variant? in
-            guard let url = v["url"].string else {
-                return nil
-            }
-            let contentType = v["content_type"].string
-            let bitrate = v["bitrate"].int64Value
-            
-            return MediaItem.VideoInfo.Variant(url: url, contentType: contentType, bitrate: bitrate)
-        }
-        return MediaItem.VideoInfo(variants: variants, duration: duration)
-    }
-    
-    fileprivate func spanFromUrlEntity(_ entity: JSON) -> LinkSpanItem {
+    fileprivate static func spanFromUrlEntity(_ entity: JSON) -> LinkSpanItem {
         let link = entity["expanded_url"].stringValue
         let display = entity["display_url"].string
         
@@ -335,7 +283,7 @@ extension Status {
         return span
     }
     
-    fileprivate func spanFromMentionEntity(_ entity: JSON, accountKey: UserKey?) -> MentionSpanItem {
+    fileprivate static func spanFromMentionEntity(_ entity: JSON, accountKey: UserKey?) -> MentionSpanItem {
         let id = entity["id_str"].string ?? entity["id"].stringValue
         
         let key = UserKey(id: id, host: accountKey?.host)
@@ -349,7 +297,7 @@ extension Status {
         return span
     }
     
-    fileprivate func spanFromHashtagEntity(_ entity: JSON) -> HashtagSpanItem {
+    fileprivate static func spanFromHashtagEntity(_ entity: JSON) -> HashtagSpanItem {
         let span = HashtagSpanItem(hashtag: entity["text"].stringValue)
         span.origStart = entity["indices"][0].int ?? -1
         span.origEnd = entity["indices"][1].int ?? -1
@@ -357,7 +305,7 @@ extension Status {
         return span
     }
     
-    fileprivate func findByOrigRange(_ spans: [SpanItem], start: Int, end:Int)-> [SpanItem] {
+    fileprivate static func findByOrigRange(_ spans: [SpanItem], start: Int, end:Int)-> [SpanItem] {
         var result = [SpanItem]()
         for span in spans {
             if (span.origStart >= start && span.origEnd <= end) {
@@ -367,7 +315,7 @@ extension Status {
         return result
     }
     
-    fileprivate func hasClash(_ sortedIndices: [CountableRange<Int>], range: CountableRange<Int>) -> Bool {
+    fileprivate static func hasClash(_ sortedIndices: [CountableRange<Int>], range: CountableRange<Int>) -> Bool {
         if (range.upperBound < sortedIndices.first?.lowerBound) {
             return false
         }
@@ -386,15 +334,15 @@ extension Status {
         return true
     }
     
-    internal func generateSortId(rawId: Int64) -> Int64 {
+    internal static func generateSortId(rawId: Int64, id: String, createdAt: Date) -> Int64 {
         var sortId = rawId
         if (sortId == -1) {
             // Try use long id
-            sortId = Int64(self.id) ?? -1
+            sortId = Int64(id) ?? -1
         }
-        if (sortId == -1 && self.createdAt != nil) {
+        if (sortId == -1) {
             // Try use timestamp
-            sortId = self.createdAt!.timeIntervalSince1970Millis
+            sortId = createdAt.timeIntervalSince1970Millis
         }
         return sortId
     }
@@ -411,16 +359,59 @@ extension Status {
     }
 }
 
+extension MediaItem {
+    
+    init(from entity: JSON) {
+        self.url = entity["media_url_https"].string ?? entity["media_url"].stringValue
+        self.pageUrl = entity["expanded_url"].string
+        self.type = MediaItem.getMediaType(entity["type"].string)
+        self.altText = entity["alt_text"].string
+        self.width = entity["sizes"]["large"]["w"].intValue
+        self.height = entity["sizes"]["large"]["h"].intValue
+        self.videoInfo = MediaItem.VideoInfo(from: entity["video_info"])
+    }
+    
+    fileprivate static func getMediaType(_ type: String?) -> MediaItem.MediaType {
+        switch type {
+        case "photo"?:
+            return .image
+        case "video"?:
+            return .video
+        case "animated_gif"?:
+            return .animatedGif
+        default: break
+        }
+        return .unknown
+    }
+}
+
+extension MediaItem.VideoInfo {
+    
+    init(from videoInfo: JSON) {
+        self.duration = videoInfo["duration"].int64Value
+        self.variants = videoInfo["variants"].flatMap { (k, v) -> MediaItem.VideoInfo.Variant? in
+            guard let url = v["url"].string else {
+                return nil
+            }
+            let contentType = v["content_type"].string
+            let bitrate = v["bitrate"].int64Value
+            
+            return MediaItem.VideoInfo.Variant(url: url, contentType: contentType, bitrate: bitrate)
+        }
+    }
+}
+
 extension Status.Metadata.InReplyTo {
-    convenience init?(status: JSON, accountKey: UserKey?) {
-        let statusId = status["in_reply_to_status_id"].stringValue
-        let userId = status["in_reply_to_user_id"].stringValue
-        if statusId.isEmpty || userId.isEmpty {
+    init?(status: JSON, accountKey: UserKey?) {
+        guard let statusId = status["in_reply_to_status_id"].string, let userId = status["in_reply_to_user_id"].string, !statusId.isEmpty && !userId.isEmpty else {
             return nil
         }
-        
-        let userKey = UserKey(id: userId, host: accountKey?.host)
-        let userScreenName = status["in_reply_to_screen_name"].stringValue
-        self.init(statusId: statusId, userKey: userKey, userName: nil, userScreenName: userScreenName)
+        self.statusId = statusId
+        self.userKey = UserKey(id: userId, host: accountKey?.host)
+        self.userScreenName = status["in_reply_to_screen_name"].stringValue
+    }
+    
+    mutating func completeUserName(_ mentions: [MentionSpanItem]) {
+        self.userName = mentions.filter { $0.key.id == self.userKey.id }.first?.name
     }
 }

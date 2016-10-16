@@ -68,8 +68,10 @@ submodels:
     submodels:
       AccountType:
         type: enum
+        inheritance: String
         values: [twitter, fanfou, statusNet]
       Config:
+        type: struct
         fields:
           characterLimit:
             type: Int

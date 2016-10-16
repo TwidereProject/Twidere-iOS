@@ -7,10 +7,10 @@ class User {
     var _id: Int64 = -1
     var accountKey: UserKey!
     var key: UserKey
-    var createdAt: Date
-    var position: Int64
-    var isProtected: Bool
-    var isVerified: Bool
+    var createdAt: Date!
+    var position: Int64 = -1
+    var isProtected: Bool = false
+    var isVerified: Bool = false
     var name: String
     var screenName: String
     var profileImageUrl: String!
@@ -21,9 +21,9 @@ class User {
     var url: String!
     var urlExpanded: String!
     var location: String!
-    var metadata: Metadata?
+    var metadata: Metadata? = nil
     // Initializers
-    init(_id: Int64 = -1, accountKey: UserKey!, key: UserKey, createdAt: Date, position: Int64, isProtected: Bool, isVerified: Bool, name: String, screenName: String, profileImageUrl: String!, profileBannerUrl: String!, profileBackgroundUrl: String!, descriptionPlain: String!, descriptionDisplay: String!, url: String!, urlExpanded: String!, location: String!, metadata: Metadata?) {
+    init(_id: Int64 = -1, accountKey: UserKey! = nil, key: UserKey, createdAt: Date! = nil, position: Int64 = -1, isProtected: Bool = false, isVerified: Bool = false, name: String, screenName: String, profileImageUrl: String! = nil, profileBannerUrl: String! = nil, profileBackgroundUrl: String! = nil, descriptionPlain: String! = nil, descriptionDisplay: String! = nil, url: String! = nil, urlExpanded: String! = nil, location: String! = nil, metadata: Metadata? = nil) {
         self._id = _id
         self.accountKey = accountKey
         self.key = key

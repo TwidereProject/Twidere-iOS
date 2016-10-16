@@ -40,30 +40,11 @@ extension Status {
         guard let quotedId = self.quotedId else {
             return nil
         }
-        let quoted = Status()
-        quoted.id = quotedId
-        quoted.accountKey = self.accountKey
-        quoted.createdAt = self.quotedCreatedAt
-        quoted.sortId = self.generateSortId(rawId: -1)
-        quoted.accountKey = self.accountKey
-        quoted.userKey = self.quotedUserKey
-        quoted.userName = self.quotedUserName
-        quoted.userScreenName = self.quotedUserScreenName
-        quoted.userProfileImage = self.quotedUserProfileImage
-        quoted.textPlain = self.quotedTextPlain
-        quoted.textDisplay = self.quotedTextDisplay
-        quoted.metadata = self.quotedMetadata
-        return quoted
+        return Status(accountKey: self.accountKey, createdAt: self.quotedCreatedAt!, id: quotedId, userKey: self.quotedUserKey!, userName: self.quotedUserName!, userScreenName: self.quotedUserScreenName!, textPlain: self.quotedTextPlain!, textDisplay: self.quotedTextDisplay!, metadata: self.quotedMetadata)
     }
     
     var user: User {
-        let user = User()
-        user.accountKey = self.accountKey
-        user.key = self.userKey
-        user.screenName = self.userScreenName
-        user.name = self.userName
-        user.profileImageUrl = self.userProfileImage
-        return user
+        return User(accountKey: self.accountKey, key: self.userKey, name: self.userName, screenName: self.userScreenName, profileImageUrl: self.userProfileImage)
     }
     
     var statusUrl: String {

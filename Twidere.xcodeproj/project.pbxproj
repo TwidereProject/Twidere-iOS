@@ -100,8 +100,10 @@
 		CE6C6C1E1DB09A9800DF4892 /* User+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C121DB09A9800DF4892 /* User+SQLite.swift */; };
 		CE6C6C1F1DB09A9800DF4892 /* UserList+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C131DB09A9800DF4892 /* UserList+Freddy.swift */; };
 		CE6C6C201DB09A9800DF4892 /* UserList+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C141DB09A9800DF4892 /* UserList+SQLite.swift */; };
-		CE6C6C231DB09B0200DF4892 /* JSONStaticDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C221DB09B0200DF4892 /* JSONStaticDecodable.swift */; };
+		CE6C6C231DB09B0200DF4892 /* Freddy+StaticDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C221DB09B0200DF4892 /* Freddy+StaticDecodable.swift */; };
 		CE6C6C271DB0AC5800DF4892 /* Foundation+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C261DB0AC5800DF4892 /* Foundation+Freddy.swift */; };
+		CE6C6C2D1DB322EC00DF4892 /* UserKey+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C2C1DB322EC00DF4892 /* UserKey+Freddy.swift */; };
+		CE6C6C2F1DB3378B00DF4892 /* Freddy+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C2E1DB3378B00DF4892 /* Freddy+Optional.swift */; };
 		CE779F361D858B210053B5C7 /* User+MicroBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F351D858B210053B5C7 /* User+MicroBlog.swift */; };
 		CE79C83D1DA62E56007C05F2 /* SpanItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */; };
 		CE79C83F1DA77777007C05F2 /* YYTextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C83E1DA77777007C05F2 /* YYTextExtensions.swift */; };
@@ -295,8 +297,10 @@
 		CE6C6C121DB09A9800DF4892 /* User+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+SQLite.swift"; sourceTree = "<group>"; };
 		CE6C6C131DB09A9800DF4892 /* UserList+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserList+Freddy.swift"; sourceTree = "<group>"; };
 		CE6C6C141DB09A9800DF4892 /* UserList+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserList+SQLite.swift"; sourceTree = "<group>"; };
-		CE6C6C221DB09B0200DF4892 /* JSONStaticDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONStaticDecodable.swift; sourceTree = "<group>"; };
+		CE6C6C221DB09B0200DF4892 /* Freddy+StaticDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Freddy+StaticDecodable.swift"; sourceTree = "<group>"; };
 		CE6C6C261DB0AC5800DF4892 /* Foundation+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Foundation+Freddy.swift"; sourceTree = "<group>"; };
+		CE6C6C2C1DB322EC00DF4892 /* UserKey+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserKey+Freddy.swift"; sourceTree = "<group>"; };
+		CE6C6C2E1DB3378B00DF4892 /* Freddy+Optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Freddy+Optional.swift"; sourceTree = "<group>"; };
 		CE779F351D858B210053B5C7 /* User+MicroBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+MicroBlog.swift"; sourceTree = "<group>"; };
 		CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItemExtension.swift; sourceTree = "<group>"; };
 		CE79C83E1DA77777007C05F2 /* YYTextExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYTextExtensions.swift; sourceTree = "<group>"; };
@@ -518,6 +522,7 @@
 				CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */,
 				CE45CAF61D855EFA0004CC1C /* UserKeyExtensions.swift */,
 				CE6C6C261DB0AC5800DF4892 /* Foundation+Freddy.swift */,
+				CE6C6C2C1DB322EC00DF4892 /* UserKey+Freddy.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -728,7 +733,8 @@
 		CE6C6C211DB09AF200DF4892 /* Freddy */ = {
 			isa = PBXGroup;
 			children = (
-				CE6C6C221DB09B0200DF4892 /* JSONStaticDecodable.swift */,
+				CE6C6C221DB09B0200DF4892 /* Freddy+StaticDecodable.swift */,
+				CE6C6C2E1DB3378B00DF4892 /* Freddy+Optional.swift */,
 			);
 			name = Freddy;
 			sourceTree = "<group>";
@@ -1555,6 +1561,7 @@
 				CE45CA881D85416C0004CC1C /* Account.swift in Sources */,
 				CE9574871D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift in Sources */,
 				CEA2E2C11D379CD90095BC57 /* CoreLocationExtensions.swift in Sources */,
+				CE6C6C2F1DB3378B00DF4892 /* Freddy+Optional.swift in Sources */,
 				CE497FCD1D6BE643000F16D2 /* QuotedStatusView.swift in Sources */,
 				CEF2CF4A1D84F98200131EAE /* ProfileBannerContainer.swift in Sources */,
 				CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */,
@@ -1584,8 +1591,9 @@
 				CEF2CF481D840D7B00131EAE /* MediaPreviewContainer.swift in Sources */,
 				CE6C6C1E1DB09A9800DF4892 /* User+SQLite.swift in Sources */,
 				CE9574891D32232600504D52 /* OAuthService.swift in Sources */,
-				CE6C6C231DB09B0200DF4892 /* JSONStaticDecodable.swift in Sources */,
+				CE6C6C231DB09B0200DF4892 /* Freddy+StaticDecodable.swift in Sources */,
 				CE6C6C1C1DB09A9800DF4892 /* Status+SQLite.swift in Sources */,
+				CE6C6C2D1DB322EC00DF4892 /* UserKey+Freddy.swift in Sources */,
 				CE497FAC1D6988BA000F16D2 /* UserCell.swift in Sources */,
 				CE59930E1D82F17F00653220 /* FiltersTabsController.swift in Sources */,
 				CE90A55B1D7EDC9D007050E5 /* SimpleRefreshTaskParam.swift in Sources */,

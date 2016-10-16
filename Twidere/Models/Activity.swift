@@ -19,7 +19,7 @@ class Activity {
     var targets: ObjectList!
     var targetObjects: ObjectList!
     // Initializers
-    init(_id: Int64 = -1, accountKey: UserKey!, isGap: Bool, positionKey: Int64, createdAt: Date, maxSortPosition: Int64, minSortPosition: Int64, maxPosition: String, minPosition: String, action: Action, sources: [User], sourceKeys: [UserKey], targets: ObjectList!, targetObjects: ObjectList!) {
+    init(_id: Int64 = -1, accountKey: UserKey! = nil, isGap: Bool, positionKey: Int64, createdAt: Date, maxSortPosition: Int64, minSortPosition: Int64, maxPosition: String, minPosition: String, action: Action, sources: [User], sourceKeys: [UserKey], targets: ObjectList! = nil, targetObjects: ObjectList! = nil) {
         self._id = _id
         self.accountKey = accountKey
         self.isGap = isGap

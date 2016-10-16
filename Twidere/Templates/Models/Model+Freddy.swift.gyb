@@ -15,7 +15,17 @@ with open(modelPath, 'r') as f:
     modelDef = ordered_load(f, yaml.SafeLoader)
     importNames = modelDef.get('imports', [])
 
-def generateModelContent(name, outerName, model):
+def generateEnumContent(name, outerName, model):
+    className = name
+    if outerName is not None:
+        className = '{outer}.{inner}'.format(outer=outerName, inner=name)
+    return """
+extension {className}: JSONDecodable, JSONEncodable {{}}
+    """.format(
+        className = className
+    )
+
+def generateModelContent(name, modelType, outerName, model):
     className = name
     if outerName is not None:
         className = '{outer}.{inner}'.format(outer=outerName, inner=name)
@@ -47,11 +57,15 @@ def generateModelContent(name, outerName, model):
         else:
             tryClause = 'try'
         if isArray:
-            initLines.append("        let {propertyName}: {propertyType} = {tryClause} value.decodeArray(at: \"{jsonField}\")"
-                .format(propertyName=propertyName, jsonField=jsonField, propertyType=propertyType, tryClause=tryClause))
+            getMethod = "value.decodedArray(at: \"{jsonField}\")".format(jsonField=jsonField)
         else:
-            initLines.append("        let {propertyName}: {propertyType} = {tryClause} value.decode(at: \"{jsonField}\")"
-                .format(propertyName=propertyName, jsonField=jsonField, propertyType=propertyType, tryClause=tryClause))
+            getMethod = "value.decode(at: \"{jsonField}\")".format(jsonField=jsonField)
+        if modelType == 'struct':
+            initLines.append("        self.{propertyName} = {tryClause} {getMethod}"
+                .format(propertyName=propertyName, propertyType=propertyType, tryClause=tryClause, getMethod=getMethod))
+        else:
+            initLines.append("        let {propertyName}: {propertyType} = {tryClause} {getMethod}"
+                .format(propertyName=propertyName, propertyType=propertyType, tryClause=tryClause, getMethod=getMethod))
 
         if not isOptional:
             toJsonLines.append("        dict[\"{jsonField}\"] = self.{propertyName}.toJSON()".format(jsonField=jsonField, propertyName=propertyName))
@@ -61,32 +75,59 @@ def generateModelContent(name, outerName, model):
             toJsonLines.append("        dict[\"{jsonField}\"] = self.{propertyName}!.toJSON()".format(jsonField=jsonField, propertyName=propertyName))
         else:
             toJsonLines.append("        dict[\"{jsonField}\"] = self.{propertyName}?.toJSON()".format(jsonField=jsonField, propertyName=propertyName))
-    subModelsLines = []
-    submodels = model.get('submodels', [])
-    for subModelName in submodels:
-        submodel = submodels[subModelName]
-        subModelType = submodel.get('type', 'class')
-        if subModelType != 'enum' and model.get('mapable', True):
-            subModelsLines.append(generateModelContent(name = subModelName, outerName = className, model = submodel))
-    classTemplate ="""extension {modelName}: JSONEncodable, JSONStaticDecodable {{
 
+    if modelType == 'struct':
+        decodeProtocol = 'JSONDecodable'
+        decodeContent = """
+    init(json value: JSON) throws {{
+{initContent}
+    }}
+""".format(initContent='\n'.join(initLines))
+    else:
+        decodeProtocol = 'JSONStaticDecodable'
+        decodeContent = """
     static func fromJSON(json value: JSON) throws -> {modelName} {{
         var obj = {modelName}()
 {initContent}
         return obj
     }}
+""".format(modelName=className, initContent='\n'.join(initLines))
+    subModelsLines = []
+    submodels = model.get('submodels', [])
+    for subModelName in submodels:
+        submodel = submodels[subModelName]
+        subModelType = submodel.get('type', 'class')
+        if not model.get('mapable', True):
+            continue
+        if subModelType == 'enum':
+            subModelsLines.append(generateEnumContent(
+                name = subModelName,
+                outerName = className,
+                model = submodel
+            ))
+        else:
+            subModelsLines.append(generateModelContent(
+                name = subModelName,
+                modelType = subModelType,
+                outerName = className,
+                model = submodel
+            ))
+    classTemplate = """extension {modelName}: {decodeProtocol} {{
+{decodeContent}
+}}
 
+extension {modelName}: JSONEncodable {{
     public func toJSON() -> JSON {{
         var dict: [String: JSON] = [:]
 //{{toJsonContent}}
         return .dictionary(dict)
     }}
 }}
-
 {subModelsContent}
 """.format(
         modelName=className,
-        initContent='\n'.join(initLines),
+        decodeContent=decodeContent,
+        decodeProtocol=decodeProtocol,
         toJsonContent='\n'.join(toJsonLines),
         subModelsContent='\n'.join(subModelsLines)
     )
@@ -103,7 +144,11 @@ import ${importName}
 % for modelName in rootModels:
     % model = rootModels[modelName]
     % modelType = model.get('type', 'class')
-    % if modelType != 'enum' and model.get('mapable', True):
+    % if model.get('mapable', True):
+        % if modelType == 'enum':
 ${generateModelContent(name = modelName, outerName = None, model = model)}
+        %else:
+${generateModelContent(name = modelName, modelType = modelType, outerName = None, model = model)}
+        %end
     %end
 %end

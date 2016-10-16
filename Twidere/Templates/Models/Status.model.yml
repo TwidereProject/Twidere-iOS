@@ -14,14 +14,17 @@ submodels:
         json_field: account_key
       sortId:
         type: Int64
+        init: -1
         column: sort_id
         json_field: sort_id
       positionKey:
         type: Int64
+        init: -1
         column: position_key
         json_field: position_key
       isGap:
         type: Bool
+        init: 'false'
         column: is_gap
         json_field: is_gap
       createdAt:
@@ -58,67 +61,83 @@ submodels:
         json_field: text_display
       metadata:
         type: Metadata?
+        init: nil
         column: metadata
         json_field: metadata
       quotedId:
         type: String?
+        init: nil
         column: quoted_status_id
         json_field: quoted_status_id
       quotedCreatedAt: # Added in database version 3
-        type: Date
+        type: Date?
+        init: nil
         column: quoted_created_at
         json_field: quoted_created_at
         added_in: 3
       quotedUserKey:
         type: UserKey?
+        init: nil
         column: quoted_user_key
         json_field: quoted_user_key
       quotedUserName:
         type: String?
+        init: nil
         column: quoted_user_name
         json_field: quoted_user_name
       quotedUserScreenName:
         type: String?
+        init: nil
         column: quoted_user_screen_name
         json_field: quoted_user_screen_name
       quotedUserProfileImage:
         type: String?
+        init: nil
         column: quoted_user_profile_image
         json_field: quoted_user_profile_image
       quotedTextPlain:
         type: String?
+        init: nil
         column: quoted_text_plain
         json_field: quoted_text_plain
       quotedTextDisplay:
         type: String?
+        init: nil
         column: quoted_text_display
         json_field: quoted_text_display
       quotedMetadata:
         type: Metadata?
+        init: nil
         column: quoted_metadata
         json_field: quoted_metadata
       retweetedByUserKey:
         type: UserKey?
+        init: nil
         column: retweeted_by_user_key
         json_field: retweeted_by_user_key
       retweetedByUserName:
         type: String?
+        init: nil
         column: retweeted_by_user_name
         json_field: retweeted_by_user_name
       retweetedByUserScreenName:
         type: String?
+        init: nil
         column: retweeted_by_user_screen_name
         json_field: retweeted_by_user_screen_name
       retweetedByUserProfileImage:
         type: String?
+        init: nil
         column: retweeted_by_user_profile_image
         json_field: retweeted_by_user_profile_image
       retweetId:
         type: String?
+        init: nil
         column: retweet_id
         json_field: retweet_id
       retweetCreatedAt: # Added in database version 3
-        type: Date
+        type: Date?
+        init: nil
         column: retweet_created_at
         json_field: retweet_created_at
         added_in: 3
@@ -144,7 +163,7 @@ submodels:
             type: 'InReplyTo?'
             json_field: 'in_reply_to'
           externalUrl:
-            type: String
+            type: String?
             json_field: 'extenral_url'
           replyCount:
             type: Int64
@@ -157,6 +176,7 @@ submodels:
             json_field: 'favorite_count'
         submodels:
           InReplyTo:
+            type: struct
             fields:
               statusId:
                 type: String
