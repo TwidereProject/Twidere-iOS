@@ -7,10 +7,10 @@
 //
 
 import Foundation
-import ObjectMapper
+import Freddy
 import Alamofire
 
-class MediaUploadResponse: StaticMappable {
+class MediaUploadResponse: JSONDecodable {
     
     var mediaId: String!
     var size: Int64!
@@ -18,81 +18,69 @@ class MediaUploadResponse: StaticMappable {
     var video: Video!
     var processingInfo: ProcessingInfo!
     
-    func mapping(map: Map) {
-        mediaId <- map["media_id"]
-        size <- map["size"]
-        image <- map["image"]
-        video <- map["video"]
-        processingInfo <- map["processing_info"]
+    required init(json: JSON) throws {
+        mediaId = try? json.getString(at: "media_id")
+        size = try? json.getInt64(at: "size")
+        image = try? json.decode(at: "image")
+        video = try? json.decode(at: "video")
+        processingInfo = try? json.decode(at: "processing_info")
         
-        if (map.mappingType == .fromJSON) {
-            if (mediaId == nil) {
-                mediaId = map["media_id_string"].value()
-            }
-            if (mediaId == nil) {
-                let idInt: Int64? = map["media_id"].value()
-                mediaId = String(describing: idInt)
-            }
+        if (mediaId == nil) {
+            mediaId = try? json.getString(at: "media_id_string")
+        }
+        if (mediaId == nil) {
+            let idInt = try json.getInt64(at: "media_id")
+            mediaId = String(describing: idInt)
         }
     }
     
-    static func objectForMapping(map: Map) -> BaseMappable? {
-        return MediaUploadResponse()
-    }
-    
-    class Image: StaticMappable {
+    class Image: JSONDecodable {
         
         var width: Int!
         var height: Int!
         var imageType: String!
         
-        func mapping(map: Map) {
-            width <- map["w"]
-            height <- map["h"]
-            imageType <- map["image_type"]
+        required init(json: JSON) throws {
+            width = try json.decode(at: "w")
+            height = try json.decode(at: "h")
+            imageType = try json.decode(at: "image_type")
         }
         
-        static func objectForMapping(map: Map) -> BaseMappable? {
-            return Image()
-        }
     }
     
-    class Video: StaticMappable {
+    class Video: JSONDecodable {
         
         var videoType: String!
         
-        func mapping(map: Map) {
-            videoType <- map["video_type"]
+        required init(json: JSON) throws {
+            videoType = try json.decode(at: "video_type")
         }
         
-        static func objectForMapping(map: Map) -> BaseMappable? {
-            return Video()
-        }
     }
     
-    class ProcessingInfo: StaticMappable {
+    class ProcessingInfo: JSONDecodable {
         
         var state: String!
         var checkAfterSecs: Int64!
         var progressPercent: Int!
 //        var error: ErrorInfo!
         
-        func mapping(map: Map) {
-            state <- map["state"]
-            checkAfterSecs <- map["check_after_secs"]
-            progressPercent <- map["progress_percent"]
-//            error <- map["error"]
+        required init(json: JSON) throws {
+            state = try json.decode(at: "state")
+            checkAfterSecs = try? json.decode(at: "check_after_secs")
+            progressPercent = try? json.decode(at: "progress_percent")
+//            error = try json.decode("error")
         }
         
-        static func objectForMapping(map: Map) -> BaseMappable? {
-            return ProcessingInfo()
-        }
     }
     
     static let serialization = DataResponseSerializer<MediaUploadResponse> { (req, resp, data, err) -> Result<MediaUploadResponse> in
         if let data = data, let json = String(data: data, encoding: String.Encoding.utf8) {
-            if let response = Mapper<MediaUploadResponse>().map(JSONString: json) , response.mediaId != nil {
+            do {
+                let response = try MediaUploadResponse(json: JSON(jsonString: json))
                 return .success(response)
+            } catch let err {
+                return .failure(err)
             }
         }
         return .failure(MicroBlogError.decodeError)

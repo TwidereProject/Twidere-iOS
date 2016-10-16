@@ -26,6 +26,12 @@ extension Date: JSONEncodable {
     
 }
 
+extension JSON {
+    public func getDate(at path: JSONPathType) throws -> Date {
+        let json: JSON = try decode(at: path)
+        return try Date(json: json)
+    }
+}
 
 extension Int64: JSONDecodable {
     
@@ -49,5 +55,12 @@ extension Int64: JSONEncodable {
             return .double(Double(self))
         }
         return .int(Int(self))
+    }
+}
+
+extension JSON {
+    public func getInt64(at path: JSONPathType) throws -> Int64 {
+        let json: JSON = try decode(at: path)
+        return try Int64(json: json)
     }
 }

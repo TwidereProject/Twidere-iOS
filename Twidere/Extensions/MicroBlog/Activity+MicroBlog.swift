@@ -11,7 +11,7 @@ import SwiftyJSON
 
 extension Activity {
     convenience init?(_ json: JSON, accountKey: UserKey?) {
-        guard let action = Activity.Action.parse(str: json["action"].stringValue) else {
+        guard let action = Activity.Action.parse(json["action"].stringValue) else {
             return nil
         }
         let createdAt = parseTwitterDate(json["created_at"].stringValue)!
