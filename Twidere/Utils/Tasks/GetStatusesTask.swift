@@ -10,6 +10,7 @@ import Foundation
 import SwiftyUserDefaults
 import SQLite
 import PromiseKit
+import Freddy
 
 class GetStatusesTask {
     
@@ -67,9 +68,6 @@ class GetStatusesTask {
     }
     
     fileprivate static func storeStatuses(_ account: Account, statuses: [Status], sinceId: String?, maxId: String?, sinceSortId: Int64, maxSortId: Int64, loadItemLimit: Int, table: Table, notify: Bool) throws {
-        if (true) {
-            return
-        }
         let accountKey = account.key
         let db = (UIApplication.shared.delegate as! AppDelegate).sqliteDatabase
         
@@ -85,7 +83,8 @@ class GetStatusesTask {
             // Get id diff of first and last item
             let sortDiff = firstSortId - lastSortId
             
-            for (i, status) in statuses.enumerated() {
+            for i in 0..<statuses.count {
+                let status = statuses[i]
                 status.positionKey = getPositionKey(status.createdAt as Date, sortId: status.sortId, lastSortId: lastSortId, sortDiff: sortDiff, position: i, count: statuses.count)
                 //                status.inserted_date = System.currentTimeMillis()
                 if (minIdx == -1 || status < statuses[minIdx]) {

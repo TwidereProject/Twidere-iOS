@@ -11,7 +11,7 @@ import Foundation
 extension String {
     
     subscript(range: Range<Int>) -> String {
-        return self[characters.index(startIndex, offsetBy: range.lowerBound)...characters.index(startIndex, offsetBy: range.upperBound)]
+        return self[characters.index(startIndex, offsetBy: range.lowerBound)..<characters.index(startIndex, offsetBy: range.upperBound)]
     }
     
     func uppercasingFirstLetter() -> String {
@@ -354,23 +354,22 @@ extension String {
 }
 
 extension String.UnicodeScalarView {
+    
     func utf16Count(_ range: Range<String.UnicodeScalarView.Index>) -> Int {
         var count = 0
         for scalar in self[range] {
-            UTF16.encode(scalar, into: { unit in
-                count+=1
-            })
+            UTF16.encode(scalar, into: { _ in count += 1 })
         }
         return count
     }
     
     func utf16Count() -> Int {
-        var count = 0
-        for scalar in self {
-            UTF16.encode(scalar, into: { unit in
-                count+=1
-            })
-        }
-        return count
+        return utf16Count(startIndex..<endIndex)
+    }
+}
+
+extension String.UnicodeScalarView {
+    func characterCount(_ range: Range<String.UnicodeScalarView.Index>) -> Int {
+        return String(self[range]).characters.count
     }
 }

@@ -11,26 +11,26 @@ import YYText
 
 extension LinkSpanItem: CustomDebugStringConvertible {
     var debugDescription: String {
-        return "LinkSpanItem(link=\(self.link), display=\(self.display))"
+        return "LinkSpanItem(start=\(start), end=\(end), link=\(self.link), display=\(self.display))"
     }
 }
 
 extension MentionSpanItem: CustomDebugStringConvertible {
     var debugDescription: String {
-        return "MentionSpanItem(key=\(self.key), name=\(self.name), screenName=\(self.screenName))"
+        return "MentionSpanItem(start=\(start), end=\(end), key=\(self.key), name=\(self.name), screenName=\(self.screenName))"
     }
 }
 
 extension HashtagSpanItem: CustomDebugStringConvertible {
     var debugDescription: String {
-        return "HashtagSpanItem(hashtag=\(self.hashtag))"
+        return "HashtagSpanItem(start=\(start), end=\(end), hashtag=\(self.hashtag))"
     }
 }
 
 extension Array where Element: SpanItem {
     func applyToAttributedText(_ string: NSMutableAttributedString, linkColor: UIColor) {
         for span in self {
-            string.yy_setTextHighlight(NSMakeRange(span.start, span.end - span.start), color: linkColor, backgroundColor: nil, userInfo: [highlightUserInfoKey: span])
+            string.yy_setTextHighlight(NSMakeRange(span.start, span.length), color: linkColor, backgroundColor: nil, userInfo: [highlightUserInfoKey: span])
         }
     }
 }
@@ -38,6 +38,10 @@ extension Array where Element: SpanItem {
 let highlightUserInfoKey: String = "twidere.span"
 
 extension SpanItem {
+    
+    var length: Int {
+        return end - start
+    }
     
     func createViewController(accountKey: UserKey) -> (UIViewController, Bool)? {
         switch self {

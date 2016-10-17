@@ -33,11 +33,9 @@ submodels:
       origStart:
         type: Int
         init: -1
-        json_field: start
       origEnd:
         type: Int
         init: -1
-        json_field: end
       link:
         type: String
         json_field: link
@@ -59,11 +57,9 @@ submodels:
       origStart:
         type: Int
         init: -1
-        json_field: start
       origEnd:
         type: Int
         init: -1
-        json_field: end
       key:
         type: UserKey
         json_field: key
@@ -88,11 +84,9 @@ submodels:
       origStart:
         type: Int
         init: -1
-        json_field: start
       origEnd:
         type: Int
         init: -1
-        json_field: end
       hashtag:
         type: String
         json_field: hashtag

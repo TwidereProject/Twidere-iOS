@@ -134,12 +134,8 @@ extension Status {
         var links = [LinkSpanItem]()
         var mentions = [MentionSpanItem]()
         var hashtags = [HashtagSpanItem]()
-
-        let textPlain: String
-        let textDisplay: String
-        var displayRange: [Int]? = nil
         
-        var (spans, mediaItems) = getMediaSpans(status: status, accountKey: accountKey)
+        let (spans, mediaItems) = getMediaSpans(status: status, accountKey: accountKey)
         var codePointOffset = 0
         var codePoints = fullText.unicodeScalars
         
@@ -204,17 +200,12 @@ extension Status {
         }
         
         let str = String(codePoints)
-        textDisplay = str.decodeHTMLEntitiesWithOffset { (index, utf16Offset) in
+        let textDisplay = str.decodeHTMLEntitiesWithOffset { (index, utf16Offset) in
             let intIndex = str.distance(from: str.startIndex, to: index)
             
-            for spanIdx in 0..<spans.count {
-                var span = spans[spanIdx]
-                if (span.origStart < intIndex) {
-                    continue
-                }
+            for var span in spans where span.origStart >= intIndex {
                 span.start += utf16Offset
                 span.end += utf16Offset
-                spans[spanIdx] = span
             }
             if (displayTextRangeUtf16 != nil) {
                 if (displayTextRangeUtf16![0] >= intIndex) {
@@ -225,26 +216,14 @@ extension Status {
                 }
             }
         }
-        textPlain = fullText.decodeHTMLEntitiesWithOffset()
-        
-        displayRange = displayTextRangeUtf16
+        let textPlain = fullText.decodeHTMLEntitiesWithOffset()
         
         let inReplyTo = Status.Metadata.InReplyTo(status: status, accountKey: accountKey)
-        
         inReplyTo?.completeUserName(mentions)
         
         let externalUrl = status["external_url"].string
-        let metadata = Status.Metadata(links: links, mentions: mentions, hashtags: hashtags, media: mediaItems, displayRange: displayRange, inReplyTo: inReplyTo, externalUrl: externalUrl, replyCount: -1, retweetCount: -1, favoriteCount: -1)
+        let metadata = Status.Metadata(links: links, mentions: mentions, hashtags: hashtags, media: mediaItems, displayRange: displayTextRangeUtf16, inReplyTo: inReplyTo, externalUrl: externalUrl, replyCount: -1, retweetCount: -1, favoriteCount: -1)
         
-        for span in links {
-            print(textDisplay[span.start..<span.end])
-        }
-        for span in mentions {
-            print(textDisplay[span.start..<span.end])
-        }
-        for span in hashtags {
-            print(textDisplay[span.start..<span.end])
-        }
         return (textPlain, textDisplay, metadata)
     }
     
@@ -285,15 +264,15 @@ extension Status {
             }
         }
         
-        var indices = [CountableRange<Int>]()
+        var indices = [Range<Int>]()
         
         // Remove duplicate entities
         spans = spans.filter { entity -> Bool in
             if (entity.origStart < 0 || entity.origEnd < 0) {
                 return false
             }
-            let range = entity.origStart..<entity.origEnd
-            if (hasClash(indices, range: range)) {
+            let range: Range<Int> = entity.origStart..<entity.origEnd
+            if (hasClash(sortedIndices: indices, range: range)) {
                 return false
             }
             //
@@ -312,7 +291,7 @@ extension Status {
         return (spans, mediaItems)
     }
     
-    fileprivate static func hasClash(_ sortedIndices: [CountableRange<Int>], range: CountableRange<Int>) -> Bool {
+    fileprivate static func hasClash(sortedIndices: [Range<Int>], range: Range<Int>) -> Bool {
         if (range.upperBound < sortedIndices.first?.lowerBound) {
             return false
         }

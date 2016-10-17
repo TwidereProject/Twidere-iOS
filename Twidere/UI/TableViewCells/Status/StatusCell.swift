@@ -282,12 +282,12 @@ class StatusCell: ALSTableViewCell {
         metadata?.links?.applyToAttributedText(attributed, linkColor: displayOption.linkColor)
         metadata?.mentions?.applyToAttributedText(attributed, linkColor: displayOption.linkColor)
         metadata?.hashtags?.applyToAttributedText(attributed, linkColor: displayOption.linkColor)
-        if let range = displayRange {
-            let len = range[1]
-            if (len <= attributed.length) {
-                return attributed.attributedSubstring(from: NSMakeRange(0, len))
-            }
-        }
+//        if let range = displayRange {
+//            let len = range[1]
+//            if (len <= attributed.length) {
+//                return attributed.attributedSubstring(from: NSMakeRange(0, len))
+//            }
+//        }
         return attributed
     }
     
