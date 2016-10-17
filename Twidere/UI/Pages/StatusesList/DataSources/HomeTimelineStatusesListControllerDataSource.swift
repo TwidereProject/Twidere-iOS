@@ -26,7 +26,7 @@ class HomeTimelineStatusesListControllerDataSource: StatusesListControllerDataSo
                 return Promise { fullfill, reject in
                     if let params = opts.params , !opts.initLoad {
                         _ = GetStatusesTask.execute(params, table: self.table, fetchAction: { account, microblog, paging -> Promise<[Status]> in
-                            return microblog.lookupStatuses(ids: ["787648730707038208"])
+                            return microblog.getHomeTimeline(paging)
                         }).always {
                             fullfill(accountKeys)
                         }
