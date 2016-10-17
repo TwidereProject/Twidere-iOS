@@ -42,6 +42,10 @@ class DatabaseMigration {
             _ = try db.run(homeStatusesTable.addColumn(Status.RowIndices.quotedCreatedAt))
             _ = try db.run(homeStatusesTable.addColumn(Status.RowIndices.retweetCreatedAt))
             return true
+        case 4:
+            _ = try db.run(homeStatusesTable.addColumn(Status.RowIndices.source))
+            _ = try db.run(homeStatusesTable.addColumn(Status.RowIndices.quotedSource))
+            return true
         default:
             return false
         }

@@ -51,9 +51,6 @@ class ActivityTitleSummaryCell: ALSTableViewCell {
                 view.displayImage(nil)
             }
         }
-        
-        let layout = contentView.subviews.first as! ALSRelativeLayout
-        layout.setNeedsLayout()
     }
     
 }

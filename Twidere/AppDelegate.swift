@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             try! migration.upgrade(db, oldVersion: oldVersion, newVersion: databaseVersion)
             db.userVersion = databaseVersion
         }
+        _ = try! db.run(homeStatusesTable.delete())
         return db
     }
     
@@ -47,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let keyboardManager = IQKeyboardManager.sharedManager()
-//        keyboardManager.enable = true
+        keyboardManager.enable = true
         keyboardManager.disabledToolbarClasses.append(ComposeController.self)
         
         UITabBar.appearance().tintColor = materialLightBlue300

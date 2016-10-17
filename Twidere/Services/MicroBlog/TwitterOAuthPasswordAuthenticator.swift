@@ -152,7 +152,7 @@ internal class AuthorizeRequestData {
     
     static func parseFromHttpResult(_ data: Data) -> AuthorizeRequestData {
         let result = AuthorizeRequestData()
-        if let doc = Kanna.HTML(html: data, encoding: String.Encoding.utf8) {
+        if let doc = Kanna.HTML(html: data, encoding: .utf8) {
             
             let oauthForm = doc.at_css("form#oauth_form")
             if (oauthForm != nil) {
@@ -186,7 +186,7 @@ internal class AuthorizeResponseData {
     static func parseFromHttpResult(_ data: Data) -> AuthorizeResponseData {
         let result = AuthorizeResponseData()
         
-        if let doc = Kanna.HTML(html: data, encoding: String.Encoding.utf8) {
+        if let doc = Kanna.HTML(html: data, encoding: .utf8) {
             
             // Find OAuth pin
             if let oauthPin = doc.at_css("div#oauth_pin") {

@@ -64,6 +64,12 @@ submodels:
         init: nil
         column: metadata
         json_field: metadata
+      source:
+        type: String?
+        init: nil
+        column: source
+        json_field: source
+        added_in: 4
       quotedId:
         type: String?
         init: nil
@@ -110,6 +116,12 @@ submodels:
         init: nil
         column: quoted_metadata
         json_field: quoted_metadata
+      quotedSource:
+        type: String?
+        init: nil
+        column: quoted_source
+        json_field: quoted_source
+        added_in: 4
       retweetedByUserKey:
         type: UserKey?
         init: nil

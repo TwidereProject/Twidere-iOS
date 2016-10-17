@@ -18,6 +18,7 @@ class Status {
     var textPlain: String
     var textDisplay: String
     var metadata: Metadata? = nil
+    var source: String? = nil
     var quotedId: String? = nil
     var quotedCreatedAt: Date? = nil
     var quotedUserKey: UserKey? = nil
@@ -27,6 +28,7 @@ class Status {
     var quotedTextPlain: String? = nil
     var quotedTextDisplay: String? = nil
     var quotedMetadata: Metadata? = nil
+    var quotedSource: String? = nil
     var retweetedByUserKey: UserKey? = nil
     var retweetedByUserName: String? = nil
     var retweetedByUserScreenName: String? = nil
@@ -34,7 +36,7 @@ class Status {
     var retweetId: String? = nil
     var retweetCreatedAt: Date? = nil
     // Initializers
-    init(_id: Int64 = -1, accountKey: UserKey! = nil, sortId: Int64 = -1, positionKey: Int64 = -1, isGap: Bool = false, createdAt: Date, id: String, userKey: UserKey, userName: String, userScreenName: String, userProfileImage: String! = nil, textPlain: String, textDisplay: String, metadata: Metadata? = nil, quotedId: String? = nil, quotedCreatedAt: Date? = nil, quotedUserKey: UserKey? = nil, quotedUserName: String? = nil, quotedUserScreenName: String? = nil, quotedUserProfileImage: String? = nil, quotedTextPlain: String? = nil, quotedTextDisplay: String? = nil, quotedMetadata: Metadata? = nil, retweetedByUserKey: UserKey? = nil, retweetedByUserName: String? = nil, retweetedByUserScreenName: String? = nil, retweetedByUserProfileImage: String? = nil, retweetId: String? = nil, retweetCreatedAt: Date? = nil) {
+    init(_id: Int64 = -1, accountKey: UserKey! = nil, sortId: Int64 = -1, positionKey: Int64 = -1, isGap: Bool = false, createdAt: Date, id: String, userKey: UserKey, userName: String, userScreenName: String, userProfileImage: String! = nil, textPlain: String, textDisplay: String, metadata: Metadata? = nil, source: String? = nil, quotedId: String? = nil, quotedCreatedAt: Date? = nil, quotedUserKey: UserKey? = nil, quotedUserName: String? = nil, quotedUserScreenName: String? = nil, quotedUserProfileImage: String? = nil, quotedTextPlain: String? = nil, quotedTextDisplay: String? = nil, quotedMetadata: Metadata? = nil, quotedSource: String? = nil, retweetedByUserKey: UserKey? = nil, retweetedByUserName: String? = nil, retweetedByUserScreenName: String? = nil, retweetedByUserProfileImage: String? = nil, retweetId: String? = nil, retweetCreatedAt: Date? = nil) {
         self._id = _id
         self.accountKey = accountKey
         self.sortId = sortId
@@ -49,6 +51,7 @@ class Status {
         self.textPlain = textPlain
         self.textDisplay = textDisplay
         self.metadata = metadata
+        self.source = source
         self.quotedId = quotedId
         self.quotedCreatedAt = quotedCreatedAt
         self.quotedUserKey = quotedUserKey
@@ -58,6 +61,7 @@ class Status {
         self.quotedTextPlain = quotedTextPlain
         self.quotedTextDisplay = quotedTextDisplay
         self.quotedMetadata = quotedMetadata
+        self.quotedSource = quotedSource
         self.retweetedByUserKey = retweetedByUserKey
         self.retweetedByUserName = retweetedByUserName
         self.retweetedByUserScreenName = retweetedByUserScreenName

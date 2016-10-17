@@ -62,12 +62,13 @@ extension Status {
         let userProfileImage = Status.getProfileImage(user)
         
         let (textPlain, textDisplay, metadata) = Status.getMetadata(primary, accountKey: accountKey)
+        let source: String? = primary["source"].string
         
         metadata.replyCount = status["reply_count"].int64 ?? -1
         metadata.retweetCount = status["retweet_count"].int64 ?? -1
         metadata.favoriteCount = status["favorite_count"].int64 ?? -1
         
-        self.init(accountKey: accountKey, sortId: sortId, createdAt: createdAt, id: id, userKey: userKey, userName: userName, userScreenName: userScreenName, userProfileImage: userProfileImage, textPlain: textPlain, textDisplay: textDisplay, metadata: metadata)
+        self.init(accountKey: accountKey, sortId: sortId, createdAt: createdAt, id: id, userKey: userKey, userName: userName, userScreenName: userScreenName, userProfileImage: userProfileImage, textPlain: textPlain, textDisplay: textDisplay, metadata: metadata, source: source)
         
         if let retweet = retweet {
             self.retweetId = getTwitterEntityId(retweet)
@@ -97,6 +98,7 @@ extension Status {
             self.quotedTextPlain = quotedTextPlain
             self.quotedTextDisplay = quotedTextDisplay
             self.quotedMetadata = quotedMetadata
+            self.quotedSource = quoted["source"].string
         }
         
     }
@@ -180,11 +182,14 @@ extension Status {
                 let codePointDiff = displayCodePointsLength - (origEnd - origStart)
                 let utf16Diff = displayUtf16Length - subRangeUtf16Length
                 codePointOffset += codePointDiff
-                if (typed.origEnd < displayTextRangeCodePoint?[0]) {
-                    displayTextRangeUtf16?[0] += utf16Diff
-                }
-                if (typed.origEnd <= displayTextRangeCodePoint?[1]) {
-                    displayTextRangeUtf16?[1] += utf16Diff
+                if var range = displayTextRangeUtf16 {
+                    if (typed.origEnd < range[0]) {
+                        range[0] += utf16Diff
+                    }
+                    if (typed.origEnd <= range[1]) {
+                        range[1] += utf16Diff
+                    }
+                    displayTextRangeUtf16 = range
                 }
             case let typed as MentionSpanItem:
                 typed.start = codePoints.utf16Count(startIndex..<codePoints.index(codePoints.startIndex, offsetBy: offsetedStart))
@@ -200,21 +205,24 @@ extension Status {
         }
         
         let str = String(codePoints)
+        var htmlOffset: Int = 0
         let textDisplay = str.decodeHTMLEntitiesWithOffset { (index, utf16Offset) in
-            let intIndex = str.distance(from: str.startIndex, to: index)
+            let intIndex = str.distance(from: str.startIndex, to: index) + htmlOffset
             
             for var span in spans where span.origStart >= intIndex {
                 span.start += utf16Offset
                 span.end += utf16Offset
             }
-            if (displayTextRangeUtf16 != nil) {
-                if (displayTextRangeUtf16![0] >= intIndex) {
-                    displayTextRangeUtf16![0] += utf16Offset
+            if var range = displayTextRangeUtf16 {
+                if (range[0] >= intIndex) {
+                    range[0] += utf16Offset
                 }
-                if (displayTextRangeUtf16![1] >= intIndex) {
-                    displayTextRangeUtf16![1] += utf16Offset
+                if (range[1] >= intIndex) {
+                    range[1] += utf16Offset
                 }
+                displayTextRangeUtf16 = range
             }
+            htmlOffset += utf16Offset
         }
         let textPlain = fullText.decodeHTMLEntitiesWithOffset()
         

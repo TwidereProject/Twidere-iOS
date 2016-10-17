@@ -10,6 +10,7 @@ import UIKit
 import YYText
 import DateTools
 import ALSLayouts
+import Kanna
 
 class DetailStatusCell: ALSTableViewCell {
 
@@ -24,11 +25,7 @@ class DetailStatusCell: ALSTableViewCell {
     @IBOutlet weak var quotedMediaPreview: MediaPreviewContainer!
     @IBOutlet weak var statusToolbar: UIToolbar!
 
-    var displayOption: StatusCell.DisplayOption! {
-        didSet {
-            updateDisplayOption()
-        }
-    }
+    var displayOption: StatusCell.DisplayOption!
 
     override func awakeFromNib() {
         textView.numberOfLines = 0
@@ -49,7 +46,6 @@ class DetailStatusCell: ALSTableViewCell {
         statusToolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
         
         self.contentView.layoutMargins = UIEdgeInsets.zero
-        updateDisplayOption()
     }
     
     override func layoutSubviews() {
@@ -58,17 +54,20 @@ class DetailStatusCell: ALSTableViewCell {
     }
 
     func display(_ status: Status) {
-        userNameView.attributedText = StatusCell.createNameText(userNameView.font.pointSize, name: status.userName, screenName: status.userScreenName, separator: " ")
-        timeSourceView.attributedText = createTimeSourceText(status.createdAt)
+        let nameFontSize: CGFloat = displayOption.fontSize * 1.05
+        let textFont: UIFont = UIFont.systemFont(ofSize: displayOption.fontSize * 1.2)
+        let timeSourceFont: UIFont = UIFont.systemFont(ofSize: displayOption.fontSize * 0.9)
+        userNameView.attributedText = StatusCell.createNameText(nameFontSize, name: status.userName, screenName: status.userScreenName, separator: " ")
+        timeSourceView.attributedText = createTimeSourceText(createdAt: status.createdAt, source: status.source, font: timeSourceFont)
         userProfileImageView.displayImage(status.userProfileImageForSize(.reasonablySmall))
 
-        textView.attributedText = StatusCell.createStatusText(status.textDisplay, metadata: status.metadata, displayRange: status.metadata?.displayRange, displayOption: self.displayOption)
+        textView.attributedText = StatusCell.createStatusText(status.textDisplay, metadata: status.metadata, displayRange: status.metadata?.displayRange, font: textFont, displayOption: self.displayOption)
         mediaPreview.displayMedia(status.metadata?.media)
         
         if (status.quotedId != nil) {
-            quotedNameView.attributedText = StatusCell.createNameText(quotedNameView.font.pointSize, name: status.quotedUserName!, screenName: status.quotedUserScreenName!, separator: " ")
+            quotedNameView.attributedText = StatusCell.createNameText(nameFontSize, name: status.quotedUserName!, screenName: status.quotedUserScreenName!, separator: " ")
             if (displayOption.linkHighlight) {
-                quotedTextView.attributedText = StatusCell.createStatusText(status.quotedTextDisplay!, metadata: status.quotedMetadata, displayRange: status.quotedMetadata?.displayRange, displayOption: self.displayOption)
+                quotedTextView.attributedText = StatusCell.createStatusText(status.quotedTextDisplay!, metadata: status.quotedMetadata, displayRange: status.quotedMetadata?.displayRange, font: textFont, displayOption: self.displayOption)
             } else {
                 quotedTextView.text = status.quotedTextDisplay
             }
@@ -77,22 +76,22 @@ class DetailStatusCell: ALSTableViewCell {
         } else {
             quotedView.layoutParams.hidden = true
         }
-        
-        let layout = contentView.subviews.first as! ALSRelativeLayout
-        layout.setNeedsLayout()
     }
 
-    func createTimeSourceText(_ createdAt: Date) -> NSAttributedString {
-        let string = NSAttributedString(string: (createdAt as NSDate).formattedDate(with: .long))
-        return string
-    }
-    
-    private func updateDisplayOption() {
-        guard let displayOption = self.displayOption else {
-            return
+    func createTimeSourceText(createdAt: Date, source: String?, font: UIFont) -> NSAttributedString {
+        let string = NSMutableAttributedString(string: (createdAt as NSDate).formattedDate(with: .long))
+        string.yy_font = font
+        if let source = source {
+            string.yy_appendString(" \u{00B7} ")
+            if let html = Kanna.HTML(html: source, encoding: .utf8), let anchor = html.at_css("a"), let href = anchor["href"], let content = anchor.text {
+                let attributedSource = NSMutableAttributedString(string: content)
+                attributedSource.yy_font = font
+                attributedSource.yy_setTextHighlight(attributedSource.yy_rangeOfAll(), color: displayOption.linkColor, backgroundColor: nil, userInfo: [highlightUserInfoKey: LinkSpanItem(link: href, display: content)])
+                string.append(attributedSource)
+            } else {
+                string.yy_appendString(source)
+            }
         }
-        userNameView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 1.1)
-        timeSourceView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.9)
-        textView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 1.25)
+        return string
     }
 }

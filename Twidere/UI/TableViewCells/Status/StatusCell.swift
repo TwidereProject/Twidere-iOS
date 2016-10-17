@@ -108,7 +108,7 @@ class StatusCell: ALSTableViewCell {
         nameView.attributedText = StatusCell.createNameText(nameView.font.pointSize, name: status.userName, screenName: status.userScreenName, separator: " ")
         
         if (displayOption.linkHighlight) {
-            textView.attributedText = StatusCell.createStatusText(status.textDisplay, metadata: status.metadata, displayRange: status.metadata?.displayRange, displayOption: self.displayOption)
+            textView.attributedText = StatusCell.createStatusText(status.textDisplay, metadata: status.metadata, displayRange: status.metadata?.displayRange, font: textView.font, displayOption: self.displayOption)
         } else {
             textView.text = status.textDisplay
         }
@@ -132,7 +132,7 @@ class StatusCell: ALSTableViewCell {
         if (status.quotedId != nil) {
             quotedNameView.attributedText = StatusCell.createNameText(quotedNameView.font.pointSize, name: status.quotedUserName!, screenName: status.quotedUserScreenName!, separator: " ")
             if (displayOption.linkHighlight) {
-                quotedTextView.attributedText = StatusCell.createStatusText(status.quotedTextDisplay!, metadata: status.quotedMetadata, displayRange: status.quotedMetadata?.displayRange, displayOption: self.displayOption)
+                quotedTextView.attributedText = StatusCell.createStatusText(status.quotedTextDisplay!, metadata: status.quotedMetadata, displayRange: status.quotedMetadata?.displayRange, font: textView.font, displayOption: self.displayOption)
             } else {
                 quotedTextView.text = status.quotedTextDisplay
             }
@@ -274,20 +274,20 @@ class StatusCell: ALSTableViewCell {
         return nameString
     }
     
-    static func createStatusText(_ text: String, metadata: Status.Metadata?, displayRange: [Int]?, displayOption: DisplayOption) -> NSAttributedString {
+    static func createStatusText(_ text: String, metadata: Status.Metadata?, displayRange: [Int]?, font: UIFont, displayOption: DisplayOption) -> NSAttributedString {
         let attributed = NSMutableAttributedString(string: text)
 
-        attributed.yy_font = UIFont.systemFont(ofSize: displayOption.fontSize)
+        attributed.yy_font = font
         
         metadata?.links?.applyToAttributedText(attributed, linkColor: displayOption.linkColor)
         metadata?.mentions?.applyToAttributedText(attributed, linkColor: displayOption.linkColor)
         metadata?.hashtags?.applyToAttributedText(attributed, linkColor: displayOption.linkColor)
-//        if let range = displayRange {
-//            let len = range[1]
-//            if (len <= attributed.length) {
-//                return attributed.attributedSubstring(from: NSMakeRange(0, len))
-//            }
-//        }
+        if let range = displayRange {
+            let len = range[1]
+            if (len <= attributed.length) {
+                return attributed.attributedSubstring(from: NSMakeRange(0, len))
+            }
+        }
         return attributed
     }
     

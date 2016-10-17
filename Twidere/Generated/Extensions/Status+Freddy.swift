@@ -18,6 +18,7 @@ extension Status: JSONStaticDecodable {
         let textPlain: String = try value.decode(at: "text_plain")
         let textDisplay: String = try value.decode(at: "text_display")
         let metadata: Metadata? = try? value.decode(at: "metadata")
+        let source: String? = try? value.decode(at: "source")
         let quotedId: String? = try? value.decode(at: "quoted_status_id")
         let quotedCreatedAt: Date? = try? value.decode(at: "quoted_created_at")
         let quotedUserKey: UserKey? = try? value.decode(at: "quoted_user_key")
@@ -27,13 +28,14 @@ extension Status: JSONStaticDecodable {
         let quotedTextPlain: String? = try? value.decode(at: "quoted_text_plain")
         let quotedTextDisplay: String? = try? value.decode(at: "quoted_text_display")
         let quotedMetadata: Metadata? = try? value.decode(at: "quoted_metadata")
+        let quotedSource: String? = try? value.decode(at: "quoted_source")
         let retweetedByUserKey: UserKey? = try? value.decode(at: "retweeted_by_user_key")
         let retweetedByUserName: String? = try? value.decode(at: "retweeted_by_user_name")
         let retweetedByUserScreenName: String? = try? value.decode(at: "retweeted_by_user_screen_name")
         let retweetedByUserProfileImage: String? = try? value.decode(at: "retweeted_by_user_profile_image")
         let retweetId: String? = try? value.decode(at: "retweet_id")
         let retweetCreatedAt: Date? = try? value.decode(at: "retweet_created_at")
-        return Status(accountKey: accountKey, sortId: sortId, positionKey: positionKey, isGap: isGap, createdAt: createdAt, id: id, userKey: userKey, userName: userName, userScreenName: userScreenName, userProfileImage: userProfileImage, textPlain: textPlain, textDisplay: textDisplay, metadata: metadata, quotedId: quotedId, quotedCreatedAt: quotedCreatedAt, quotedUserKey: quotedUserKey, quotedUserName: quotedUserName, quotedUserScreenName: quotedUserScreenName, quotedUserProfileImage: quotedUserProfileImage, quotedTextPlain: quotedTextPlain, quotedTextDisplay: quotedTextDisplay, quotedMetadata: quotedMetadata, retweetedByUserKey: retweetedByUserKey, retweetedByUserName: retweetedByUserName, retweetedByUserScreenName: retweetedByUserScreenName, retweetedByUserProfileImage: retweetedByUserProfileImage, retweetId: retweetId, retweetCreatedAt: retweetCreatedAt)
+        return Status(accountKey: accountKey, sortId: sortId, positionKey: positionKey, isGap: isGap, createdAt: createdAt, id: id, userKey: userKey, userName: userName, userScreenName: userScreenName, userProfileImage: userProfileImage, textPlain: textPlain, textDisplay: textDisplay, metadata: metadata, source: source, quotedId: quotedId, quotedCreatedAt: quotedCreatedAt, quotedUserKey: quotedUserKey, quotedUserName: quotedUserName, quotedUserScreenName: quotedUserScreenName, quotedUserProfileImage: quotedUserProfileImage, quotedTextPlain: quotedTextPlain, quotedTextDisplay: quotedTextDisplay, quotedMetadata: quotedMetadata, quotedSource: quotedSource, retweetedByUserKey: retweetedByUserKey, retweetedByUserName: retweetedByUserName, retweetedByUserScreenName: retweetedByUserScreenName, retweetedByUserProfileImage: retweetedByUserProfileImage, retweetId: retweetId, retweetCreatedAt: retweetCreatedAt)
     }
 
 }
@@ -59,6 +61,9 @@ extension Status: JSONEncodable {
         dict["text_display"] = self.textDisplay.toJSON()
         if (metadata != nil) {
             dict["metadata"] = self.metadata!.toJSON()
+        }
+        if (source != nil) {
+            dict["source"] = self.source!.toJSON()
         }
         if (quotedId != nil) {
             dict["quoted_status_id"] = self.quotedId!.toJSON()
@@ -86,6 +91,9 @@ extension Status: JSONEncodable {
         }
         if (quotedMetadata != nil) {
             dict["quoted_metadata"] = self.quotedMetadata!.toJSON()
+        }
+        if (quotedSource != nil) {
+            dict["quoted_source"] = self.quotedSource!.toJSON()
         }
         if (retweetedByUserKey != nil) {
             dict["retweeted_by_user_key"] = self.retweetedByUserKey!.toJSON()

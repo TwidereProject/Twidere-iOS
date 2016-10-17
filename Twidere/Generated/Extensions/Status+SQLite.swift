@@ -20,6 +20,7 @@ extension Status {
         let textPlain = row.get(RowIndices.textPlain)
         let textDisplay = row.get(RowIndices.textDisplay)
         let metadata = row.get(RowIndices.metadata)
+        let source = row.get(RowIndices.source)
         let quotedId = row.get(RowIndices.quotedId)
         let quotedCreatedAt = row.get(RowIndices.quotedCreatedAt)
         let quotedUserKey = row.get(RowIndices.quotedUserKey)
@@ -29,13 +30,14 @@ extension Status {
         let quotedTextPlain = row.get(RowIndices.quotedTextPlain)
         let quotedTextDisplay = row.get(RowIndices.quotedTextDisplay)
         let quotedMetadata = row.get(RowIndices.quotedMetadata)
+        let quotedSource = row.get(RowIndices.quotedSource)
         let retweetedByUserKey = row.get(RowIndices.retweetedByUserKey)
         let retweetedByUserName = row.get(RowIndices.retweetedByUserName)
         let retweetedByUserScreenName = row.get(RowIndices.retweetedByUserScreenName)
         let retweetedByUserProfileImage = row.get(RowIndices.retweetedByUserProfileImage)
         let retweetId = row.get(RowIndices.retweetId)
         let retweetCreatedAt = row.get(RowIndices.retweetCreatedAt)
-        self.init(_id: _id, accountKey: accountKey, sortId: sortId, positionKey: positionKey, isGap: isGap, createdAt: createdAt, id: id, userKey: userKey, userName: userName, userScreenName: userScreenName, userProfileImage: userProfileImage, textPlain: textPlain, textDisplay: textDisplay, metadata: metadata, quotedId: quotedId, quotedCreatedAt: quotedCreatedAt, quotedUserKey: quotedUserKey, quotedUserName: quotedUserName, quotedUserScreenName: quotedUserScreenName, quotedUserProfileImage: quotedUserProfileImage, quotedTextPlain: quotedTextPlain, quotedTextDisplay: quotedTextDisplay, quotedMetadata: quotedMetadata, retweetedByUserKey: retweetedByUserKey, retweetedByUserName: retweetedByUserName, retweetedByUserScreenName: retweetedByUserScreenName, retweetedByUserProfileImage: retweetedByUserProfileImage, retweetId: retweetId, retweetCreatedAt: retweetCreatedAt)
+        self.init(_id: _id, accountKey: accountKey, sortId: sortId, positionKey: positionKey, isGap: isGap, createdAt: createdAt, id: id, userKey: userKey, userName: userName, userScreenName: userScreenName, userProfileImage: userProfileImage, textPlain: textPlain, textDisplay: textDisplay, metadata: metadata, source: source, quotedId: quotedId, quotedCreatedAt: quotedCreatedAt, quotedUserKey: quotedUserKey, quotedUserName: quotedUserName, quotedUserScreenName: quotedUserScreenName, quotedUserProfileImage: quotedUserProfileImage, quotedTextPlain: quotedTextPlain, quotedTextDisplay: quotedTextDisplay, quotedMetadata: quotedMetadata, quotedSource: quotedSource, retweetedByUserKey: retweetedByUserKey, retweetedByUserName: retweetedByUserName, retweetedByUserScreenName: retweetedByUserScreenName, retweetedByUserProfileImage: retweetedByUserProfileImage, retweetId: retweetId, retweetCreatedAt: retweetCreatedAt)
     }
 
     static func createTable(table: Table, temporary: Bool = false, ifNotExists: Bool = false) -> String {
@@ -54,6 +56,7 @@ extension Status {
             t.column(RowIndices.textPlain)
             t.column(RowIndices.textDisplay)
             t.column(RowIndices.metadata)
+            t.column(RowIndices.source)
             t.column(RowIndices.quotedId)
             t.column(RowIndices.quotedCreatedAt)
             t.column(RowIndices.quotedUserKey)
@@ -63,6 +66,7 @@ extension Status {
             t.column(RowIndices.quotedTextPlain)
             t.column(RowIndices.quotedTextDisplay)
             t.column(RowIndices.quotedMetadata)
+            t.column(RowIndices.quotedSource)
             t.column(RowIndices.retweetedByUserKey)
             t.column(RowIndices.retweetedByUserName)
             t.column(RowIndices.retweetedByUserScreenName)
@@ -87,6 +91,7 @@ extension Status {
                 RowIndices.textPlain <- model.textPlain,
                 RowIndices.textDisplay <- model.textDisplay,
                 RowIndices.metadata <- model.metadata,
+                RowIndices.source <- model.source,
                 RowIndices.quotedId <- model.quotedId,
                 RowIndices.quotedCreatedAt <- model.quotedCreatedAt,
                 RowIndices.quotedUserKey <- model.quotedUserKey,
@@ -96,6 +101,7 @@ extension Status {
                 RowIndices.quotedTextPlain <- model.quotedTextPlain,
                 RowIndices.quotedTextDisplay <- model.quotedTextDisplay,
                 RowIndices.quotedMetadata <- model.quotedMetadata,
+                RowIndices.quotedSource <- model.quotedSource,
                 RowIndices.retweetedByUserKey <- model.retweetedByUserKey,
                 RowIndices.retweetedByUserName <- model.retweetedByUserName,
                 RowIndices.retweetedByUserScreenName <- model.retweetedByUserScreenName,
@@ -121,6 +127,7 @@ extension Status {
         static let textPlain = Expression<String>("text_plain")
         static let textDisplay = Expression<String>("text_display")
         static let metadata = Expression<Metadata?>("metadata")
+        static let source = Expression<String?>("source")
         static let quotedId = Expression<String?>("quoted_status_id")
         static let quotedCreatedAt = Expression<Date?>("quoted_created_at")
         static let quotedUserKey = Expression<UserKey?>("quoted_user_key")
@@ -130,6 +137,7 @@ extension Status {
         static let quotedTextPlain = Expression<String?>("quoted_text_plain")
         static let quotedTextDisplay = Expression<String?>("quoted_text_display")
         static let quotedMetadata = Expression<Metadata?>("quoted_metadata")
+        static let quotedSource = Expression<String?>("quoted_source")
         static let retweetedByUserKey = Expression<UserKey?>("retweeted_by_user_key")
         static let retweetedByUserName = Expression<String?>("retweeted_by_user_name")
         static let retweetedByUserScreenName = Expression<String?>("retweeted_by_user_screen_name")
@@ -152,6 +160,7 @@ extension Status {
             textPlain,
             textDisplay,
             metadata,
+            source,
             quotedId,
             quotedCreatedAt,
             quotedUserKey,
@@ -161,6 +170,7 @@ extension Status {
             quotedTextPlain,
             quotedTextDisplay,
             quotedMetadata,
+            quotedSource,
             retweetedByUserKey,
             retweetedByUserName,
             retweetedByUserScreenName,

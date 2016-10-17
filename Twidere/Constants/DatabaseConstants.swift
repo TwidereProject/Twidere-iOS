@@ -8,7 +8,7 @@
 
 import SQLite
 
-let databaseVersion: Int = 3
+let databaseVersion: Int = 4
 
 let accountsTable: Table = Table("accounts")
 let homeStatusesTable: Table = Table("home_statuses")
