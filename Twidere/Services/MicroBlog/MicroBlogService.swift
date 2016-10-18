@@ -126,7 +126,8 @@ class MicroBlogService: RestClient {
             forms["attachment_url"] = request.attachmentUrl
         }
         forms["possibly_sensitive"] = request.possiblySensitive ? "true" : "false"
-        return makeTypedRequest(.post, path: "/statuses/update.json", params: forms, serializer: MicroBlogService.convertStatus(accountKey))
+        let params = makeParams(statusQueries, forms)
+        return makeTypedRequest(.post, path: "/statuses/update.json", params: params, serializer: MicroBlogService.convertStatus(accountKey))
     }
     
     func uploadMedia(_ media: Data, additionalOwners: [String]? = nil) -> Promise<MediaUploadResponse> {
@@ -161,12 +162,25 @@ class MicroBlogService: RestClient {
         return makeTypedRequest(.post, path: "/media/upload.json", queries: queries, serializer: MediaUploadResponse.serialization)
     }
     
-    func makeQueries(_ def: [String: String], _ queries: [String: String]...) -> [String: String] {
+    private func makeQueries(_ def: [String: String], _ queries: [String: String]...) -> [String: String] {
         var result = [String: String]()
         for (k, v) in def {
             result[k] = v
         }
         for dict in queries {
+            for (k,v) in dict {
+                result[k] = v
+            }
+        }
+        return result
+    }
+    
+    private func makeParams(_ def: [String: Any], _ params: [String: Any]...) -> [String: Any] {
+        var result = [String: Any]()
+        for (k, v) in def {
+            result[k] = v
+        }
+        for dict in params {
             for (k,v) in dict {
                 result[k] = v
             }

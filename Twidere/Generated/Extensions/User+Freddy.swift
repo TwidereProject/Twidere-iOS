@@ -19,9 +19,10 @@ extension User: JSONStaticDecodable {
         let descriptionDisplay: String? = try? value.decode(at: "description_display")
         let url: String? = try? value.decode(at: "url")
         let urlExpanded: String? = try? value.decode(at: "url_expanded")
+        let urlDisplay: String? = try? value.decode(at: "url_display")
         let location: String? = try? value.decode(at: "location")
         let metadata: Metadata? = try? value.decode(at: "metadata")
-        return User(accountKey: accountKey, key: key, createdAt: createdAt, isProtected: isProtected, isVerified: isVerified, name: name, screenName: screenName, profileImageUrl: profileImageUrl, profileBannerUrl: profileBannerUrl, profileBackgroundUrl: profileBackgroundUrl, descriptionPlain: descriptionPlain, descriptionDisplay: descriptionDisplay, url: url, urlExpanded: urlExpanded, location: location, metadata: metadata)
+        return User(accountKey: accountKey, key: key, createdAt: createdAt, isProtected: isProtected, isVerified: isVerified, name: name, screenName: screenName, profileImageUrl: profileImageUrl, profileBannerUrl: profileBannerUrl, profileBackgroundUrl: profileBackgroundUrl, descriptionPlain: descriptionPlain, descriptionDisplay: descriptionDisplay, url: url, urlExpanded: urlExpanded, urlDisplay: urlDisplay, location: location, metadata: metadata)
     }
 
 }
@@ -60,6 +61,9 @@ extension User: JSONEncodable {
         }
         if (urlExpanded != nil) {
             dict["url_expanded"] = self.urlExpanded!.toJSON()
+        }
+        if (urlDisplay != nil) {
+            dict["url_display"] = self.urlDisplay!.toJSON()
         }
         if (location != nil) {
             dict["location"] = self.location!.toJSON()

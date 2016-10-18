@@ -21,9 +21,10 @@ extension User {
         let descriptionDisplay = row.get(RowIndices.descriptionDisplay)
         let url = row.get(RowIndices.url)
         let urlExpanded = row.get(RowIndices.urlExpanded)
+        let urlDisplay = row.get(RowIndices.urlDisplay)
         let location = row.get(RowIndices.location)
         let metadata = row.get(RowIndices.metadata)
-        self.init(_id: _id, accountKey: accountKey, key: key, createdAt: createdAt, isProtected: isProtected, isVerified: isVerified, name: name, screenName: screenName, profileImageUrl: profileImageUrl, profileBannerUrl: profileBannerUrl, profileBackgroundUrl: profileBackgroundUrl, descriptionPlain: descriptionPlain, descriptionDisplay: descriptionDisplay, url: url, urlExpanded: urlExpanded, location: location, metadata: metadata)
+        self.init(_id: _id, accountKey: accountKey, key: key, createdAt: createdAt, isProtected: isProtected, isVerified: isVerified, name: name, screenName: screenName, profileImageUrl: profileImageUrl, profileBannerUrl: profileBannerUrl, profileBackgroundUrl: profileBackgroundUrl, descriptionPlain: descriptionPlain, descriptionDisplay: descriptionDisplay, url: url, urlExpanded: urlExpanded, urlDisplay: urlDisplay, location: location, metadata: metadata)
     }
 
     static func createTable(table: Table, temporary: Bool = false, ifNotExists: Bool = false) -> String {
@@ -43,6 +44,7 @@ extension User {
             t.column(RowIndices.descriptionDisplay)
             t.column(RowIndices.url)
             t.column(RowIndices.urlExpanded)
+            t.column(RowIndices.urlDisplay)
             t.column(RowIndices.location)
             t.column(RowIndices.metadata)
         }
@@ -64,6 +66,7 @@ extension User {
                 RowIndices.descriptionDisplay <- model.descriptionDisplay,
                 RowIndices.url <- model.url,
                 RowIndices.urlExpanded <- model.urlExpanded,
+                RowIndices.urlDisplay <- model.urlDisplay,
                 RowIndices.location <- model.location,
                 RowIndices.metadata <- model.metadata,
         ])
@@ -86,6 +89,7 @@ extension User {
         static let descriptionDisplay = Expression<String?>("description_display")
         static let url = Expression<String?>("url")
         static let urlExpanded = Expression<String?>("url_expanded")
+        static let urlDisplay = Expression<String?>("url_display")
         static let location = Expression<String?>("location")
         static let metadata = Expression<Metadata?>("metadata")
 
@@ -105,6 +109,7 @@ extension User {
             descriptionDisplay,
             url,
             urlExpanded,
+            urlDisplay,
             location,
             metadata,
         ]

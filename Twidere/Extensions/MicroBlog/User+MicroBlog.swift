@@ -26,9 +26,10 @@ extension User {
         let profileBackgroundUrl = json["profile_background_image_url_https"].string ?? json["profile_background_image_url"].string
         let url = json["url"].string
         let urlExpanded = json["entities"]["url"]["urls"][0]["expanded_url"].string
+        let urlDisplay = json["entities"]["url"]["urls"][0]["display_url"].string
         let location = json["location"].string
         let (descriptionPlain, descriptionDisplay, metadata) = User.getMetadata(user: json, accountKey: accountKey)
-        self.init(accountKey: accountKey, key: key, createdAt: createdAt, isProtected: isProtected, isVerified: isVerified, name: name, screenName: screenName, profileImageUrl: profileImageUrl, profileBannerUrl: profileBannerUrl, profileBackgroundUrl: profileBackgroundUrl, descriptionPlain: descriptionPlain, descriptionDisplay: descriptionDisplay, url: url, urlExpanded: urlExpanded, location: location, metadata: metadata)
+        self.init(accountKey: accountKey, key: key, createdAt: createdAt, isProtected: isProtected, isVerified: isVerified, name: name, screenName: screenName, profileImageUrl: profileImageUrl, profileBannerUrl: profileBannerUrl, profileBackgroundUrl: profileBackgroundUrl, descriptionPlain: descriptionPlain, descriptionDisplay: descriptionDisplay, url: url, urlExpanded: urlExpanded, urlDisplay: urlDisplay, location: location, metadata: metadata)
     }
     
     static func getUserKey(_ user: SwiftyJSON.JSON, accountHost: String? = nil) -> UserKey {

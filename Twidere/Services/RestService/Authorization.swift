@@ -9,11 +9,13 @@
 import Foundation
 import CryptoSwift
 import Security
+import Alamofire
 
 protocol Authorization {
     var hasAuthorization: Bool { get }
-    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: String]?) -> String?
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: Any]?, encoding: URLEncoding) -> String!
 }
+
 class EmptyAuthorization: Authorization {
     
     var hasAuthorization: Bool {
@@ -22,7 +24,7 @@ class EmptyAuthorization: Authorization {
         }
     }
     
-    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : String]?) -> String? {
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : Any]?, encoding: URLEncoding) -> String! {
         return nil
     }
 }
@@ -46,7 +48,7 @@ class BasicAuthorization: Authorization {
         }
     }
     
-    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : String]?) -> String? {
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : Any]?, encoding: URLEncoding) -> String! {
         return "\(username):\(password)".utf8.map({$0}).toBase64()
     }
     
@@ -83,23 +85,23 @@ class OAuthAuthorization: Authorization {
         }
     }
     
-    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: String]?) -> String? {
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: Any]?, encoding: URLEncoding) -> String! {
         let oauthEndpoint = endpoint as! OAuthEndpoint
         let signingUrl = oauthEndpoint.constructSigningUrl(path, queries: queries)
-        let oauthParams = generateOAuthParams(method, url: signingUrl, oauthToken: oauthToken, queries: queries, forms: forms)
+        let oauthParams = generateOAuthParams(method, url: signingUrl, oauthToken: oauthToken, queries: queries, forms: forms, encoding: encoding)
         return "OAuth " + oauthParams.map({ (k, v) -> String in
             return "\(k)=\"\(v)\""
         }).joined(separator: ", ")
     }
     
-    fileprivate func generateOAuthParams(_ method: String, url: String, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: String]?) -> [(String, String)] {
+    fileprivate func generateOAuthParams(_ method: String, url: String, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: Any]?, encoding: URLEncoding) -> [(String, String)] {
         let oauthNonce = generateOAuthNonce()
         let timestamp =  UInt64(Date().timeIntervalSince1970)
-        let oauthSignature = generateOAuthSignature(method, url: url, oauthNonce: oauthNonce, timestamp: timestamp, oauthToken: oauthToken, queries: queries, forms: forms)
+        let oauthSignature = generateOAuthSignature(method, url: url, oauthNonce: oauthNonce, timestamp: timestamp, oauthToken: oauthToken, queries: queries, forms: forms, encoding: encoding)
         var encodeParams: [(String, String)] = [
             ("oauth_consumer_key", consumerKey),
             ("oauth_nonce", oauthNonce),
-            ("oauth_signature", encodeOAuth(oauthSignature)),
+            ("oauth_signature", escape(oauthSignature)),
             ("oauth_signature_method", oauthSignatureMethod),
             ("oauth_timestamp", String(timestamp)),
             ("oauth_version", oauthVersion)
@@ -113,25 +115,25 @@ class OAuthAuthorization: Authorization {
         return encodeParams
     }
     
-    fileprivate func generateOAuthSignature(_ method: String, url: String, oauthNonce: String, timestamp: UInt64, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: String]?) -> String {
+    fileprivate func generateOAuthSignature(_ method: String, url: String, oauthNonce: String, timestamp: UInt64, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: Any]?, encoding: URLEncoding) -> String {
         var oauthParams: [String] = [
-            encodeOAuthKeyValue("oauth_consumer_key", value: consumerKey),
-            encodeOAuthKeyValue("oauth_nonce", value: oauthNonce),
-            encodeOAuthKeyValue("oauth_signature_method", value: oauthSignatureMethod),
-            encodeOAuthKeyValue("oauth_timestamp", value: String(timestamp)),
-            encodeOAuthKeyValue("oauth_version", value: oauthVersion)
+            escape("oauth_consumer_key", consumerKey),
+            escape("oauth_nonce", oauthNonce),
+            escape("oauth_signature_method", oauthSignatureMethod),
+            escape("oauth_timestamp", String(timestamp)),
+            escape("oauth_version", oauthVersion)
         ]
-        if (oauthToken != nil) {
-            oauthParams.append(encodeOAuthKeyValue("oauth_token", value: oauthToken!.oauthToken))
+        if let token = oauthToken {
+            oauthParams.append(escape("oauth_token", token.oauthToken))
         }
-        if (queries != nil) {
-            for (k, v) in queries! {
-                oauthParams.append(encodeOAuthKeyValue(k, value: v))
+        queries?.forEach { (k, v) in
+            for (ek, ev) in encoding.queryComponents(fromKey: k, value: v) {
+                oauthParams.append("\(ek)=\(ev)")
             }
         }
-        if (forms != nil) {
-            for (k, v) in forms! {
-                oauthParams.append(encodeOAuthKeyValue(k, value: v))
+        forms?.forEach { (k, v) in
+            for (ek, ev) in encoding.queryComponents(fromKey: k, value: v) {
+                oauthParams.append("\(ek)=\(ev)")
             }
         }
         // Sort params
@@ -139,11 +141,9 @@ class OAuthAuthorization: Authorization {
             return l < r
         }
         let paramsString = oauthParams.joined(separator: "&")
-        let signingKey: String
-        if (oauthToken != nil) {
-            signingKey = encodeOAuth(consumerSecret) + "&" + encodeOAuth(oauthToken!.oauthTokenSecret)
-        } else {
-            signingKey = encodeOAuth(consumerSecret) + "&"
+        var signingKey: String = escape(consumerSecret) + "&"
+        if let oauthToken = oauthToken {
+            signingKey += escape(oauthToken.oauthTokenSecret)
         }
         let signingKeyBytes = signingKey.utf8.map{$0}
         
@@ -153,7 +153,7 @@ class OAuthAuthorization: Authorization {
         } else {
             urlNoQuery = url
         }
-        let baseString = encodeOAuth(method) + "&" + encodeOAuth(urlNoQuery) + "&" + encodeOAuth(paramsString)
+        let baseString = escape(method) + "&" + escape(urlNoQuery) + "&" + escape(paramsString)
         let baseBytes = baseString.utf8.map{$0}
         let hmac: [UInt8] = try! HMAC(key: signingKeyBytes, variant: .sha1).authenticate(baseBytes)
         return hmac.toBase64()!
@@ -169,12 +169,12 @@ class OAuthAuthorization: Authorization {
         return randomBytes.toHexString()
     }
     
-    fileprivate func encodeOAuth(_ str: String) -> String {
+    fileprivate func escape(_ str: String) -> String {
         return str.addingPercentEncoding(withAllowedCharacters: oauthUrlEncodeAllowedSet)!
     }
     
-    fileprivate func encodeOAuthKeyValue(_ key: String, value: String) -> String {
-        return encodeOAuth(key) + "=" + encodeOAuth(value)
+    fileprivate func escape(_ key: String, _ value: String) -> String {
+        return escape(key) + "=" + escape(value)
     }
     
 }

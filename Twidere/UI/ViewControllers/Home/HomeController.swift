@@ -25,7 +25,8 @@ class HomeController: UITabBarController {
         self.accountProfileImageView.layer.cornerRadius = self.accountProfileImageView.frame.size.width / 2
         self.accountProfileImageView.clipsToBounds = true
         
-        menuToggleItem.customView?.touchHighlightingStyle = .transparentMask
+        self.menuToggleItem.customView?.touchHighlightingStyle = .transparentMask
+        self.tabBar.isTranslucent = false
         
         let pages = UIStoryboard(name: "Pages", bundle: nil)
         
@@ -43,6 +44,7 @@ class HomeController: UITabBarController {
         let pageControllers = [homeTimelineController, notificationsTimelineController, messageConversationsController, testController]
         
         setViewControllers(pageControllers, animated: false)
+        
         
     }
     

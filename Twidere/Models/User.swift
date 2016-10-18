@@ -20,10 +20,11 @@ class User {
     var descriptionDisplay: String!
     var url: String!
     var urlExpanded: String!
+    var urlDisplay: String!
     var location: String!
     var metadata: Metadata? = nil
     // Initializers
-    init(_id: Int64 = -1, accountKey: UserKey! = nil, key: UserKey, createdAt: Date! = nil, position: Int64 = -1, isProtected: Bool = false, isVerified: Bool = false, name: String, screenName: String, profileImageUrl: String! = nil, profileBannerUrl: String! = nil, profileBackgroundUrl: String! = nil, descriptionPlain: String! = nil, descriptionDisplay: String! = nil, url: String! = nil, urlExpanded: String! = nil, location: String! = nil, metadata: Metadata? = nil) {
+    init(_id: Int64 = -1, accountKey: UserKey! = nil, key: UserKey, createdAt: Date! = nil, position: Int64 = -1, isProtected: Bool = false, isVerified: Bool = false, name: String, screenName: String, profileImageUrl: String! = nil, profileBannerUrl: String! = nil, profileBackgroundUrl: String! = nil, descriptionPlain: String! = nil, descriptionDisplay: String! = nil, url: String! = nil, urlExpanded: String! = nil, urlDisplay: String! = nil, location: String! = nil, metadata: Metadata? = nil) {
         self._id = _id
         self.accountKey = accountKey
         self.key = key
@@ -40,6 +41,7 @@ class User {
         self.descriptionDisplay = descriptionDisplay
         self.url = url
         self.urlExpanded = urlExpanded
+        self.urlDisplay = urlDisplay
         self.location = location
         self.metadata = metadata
     }

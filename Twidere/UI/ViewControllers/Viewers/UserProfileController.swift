@@ -270,7 +270,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
             descriptionText.yy_appendString("\u{1f4cd}")
             descriptionText.yy_appendString(location)
         }
-        if let url = user.url {
+        if let url = user.urlDisplay ?? user.url {
             descriptionText.yy_appendString("\u{1f517}")
             descriptionText.yy_appendString(url)
         }

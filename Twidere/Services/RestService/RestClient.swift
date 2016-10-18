@@ -36,8 +36,6 @@ class RestClient {
         return Promise { fullfill, reject in
             let url = constructUrl(path, queries: queries)
             let finalAuth: Authorization? = authOverride ?? auth
-            let isMultipart: Bool = params != nil && params!.contains(where: { $0.1 is Data })
-            let finalHeaders = constructHeaders(method, path: path, headers: headers, queries: queries, params: params, auth: finalAuth, isMultipart: isMultipart)
             let completionHandler: (DataResponse<T>) -> Void = { response in
                 switch response.result {
                 case .success(let value):
@@ -46,11 +44,12 @@ class RestClient {
                     reject(error)
                 }
             }
-            if (isMultipart) {
+            if let params = params, params.contains(where: { $0.1 is Data }) {
                 //finalHeaders["Content-Type"] = multipart.contentType
+                let finalHeaders = constructHeaders(method, path: path, headers: headers, queries: queries, auth: finalAuth)
                 Alamofire.upload(
                     multipartFormData: { multipart in
-                        for (k, v) in params! {
+                        for (k, v) in params {
                             switch v {
                             case let d as Data:
                                 multipart.append(d, withName: k, mimeType: "application/octet-stream")
@@ -68,7 +67,9 @@ class RestClient {
                         }
                 })
             } else {
-                let request = Alamofire.request(url, method: method, parameters: params, headers: finalHeaders)
+                let encoding = URLEncoding.methodDependent
+                let finalHeaders = constructHeaders(method, path: path, headers: headers, queries: queries, forms: params, auth: finalAuth, encoding: encoding)
+                let request = Alamofire.request(url, method: method, parameters: params, encoding: encoding, headers: finalHeaders)
                 if (validation != nil) {
                     request.validate(validation!)
                 } else {
@@ -83,67 +84,20 @@ class RestClient {
         return endpoint.constructUrl(path, queries: queries)
     }
     
-    fileprivate func constructHeaders(_ method: HTTPMethod,
-                                      path: String,
-                                      headers: [String: String]? = nil,
-                                      queries: [String: String]? = nil,
-                                      params: [String: Any]? = nil,
-                                      auth: Authorization?,
-                                      isMultipart: Bool) -> [String: String] {
+    fileprivate func constructHeaders(_ method: HTTPMethod, path: String, headers: [String: String]? = nil, queries: [String: String]? = nil, forms: [String: Any]? = nil, auth: Authorization?, encoding: URLEncoding? = nil) -> [String: String] {
         var mergedHeaders = [String: String]()
-        if (headers != nil) {
-            for (k, v) in headers! {
+        if let headers = headers {
+            for (k, v) in headers {
                 mergedHeaders[k] = v
             }
         }
-        if (auth != nil && auth!.hasAuthorization) {
-            let forms: [String: String]?
-            if (isMultipart) {
-                forms = nil
-            } else {
-                var newForms: [String: String] = [:]
-                params?.forEach { (k, v) in
-                    newForms[k] = String(describing: v)
-                }
-                forms = newForms
-            }
-            mergedHeaders["Authorization"] = auth!.getHeader(method.rawValue, endpoint: endpoint, path: path, queries: queries, forms: forms)!
+        if let auth = auth, let encoding = encoding, auth.hasAuthorization {
+            mergedHeaders["Authorization"] = auth.getHeader(method.rawValue, endpoint: endpoint, path: path, queries: queries, forms: forms, encoding: encoding)
         }
-        if (userAgent != nil) {
-            mergedHeaders["User-Agent"] = userAgent!
+        if let userAgent = userAgent {
+            mergedHeaders["User-Agent"] = userAgent
         }
         return mergedHeaders
-    }
-    
-    fileprivate func restEncoding(_ urlRequest: URLRequestConvertible, params: [String: AnyObject]?) -> (URLRequest, NSError?) {
-        
-        let queryUrlEncodeAllowedSet: CharacterSet = {
-            return CharacterSet.alphanumerics.union(CharacterSet(charactersIn: "-._ "))
-        }()
-        
-        func escape(_ str: String) -> String {
-            return str.addingPercentEncoding(withAllowedCharacters: queryUrlEncodeAllowedSet)!.replacingOccurrences(of: " ", with: "+")
-        }
-        
-        var request = urlRequest.urlRequest!
-        if (params == nil) {
-            return (request, nil)
-        }
-        
-        let method = request.httpMethod
-        let paramInUrl = method == HTTPMethod.get.rawValue || method == HTTPMethod.head.rawValue || method == HTTPMethod.delete.rawValue
-        if (paramInUrl) {
-            var url = URLComponents(url: request.url!, resolvingAgainstBaseURL: false)!
-            url.queryItems = params!.map { k, v -> URLQueryItem in
-                return URLQueryItem(name: k, value: "\(v)")
-            }
-        } else {
-            request.addValue("application/x-www-form-urlencoded; encoding=utf-8", forHTTPHeaderField: "Content-Type")
-            request.httpBody = params!.map { k, v -> String in
-                return escape(k) + "=" + escape(String(describing: v))
-                }.joined(separator: "&").data(using: String.Encoding.utf8, allowLossyConversion: false)
-        }
-        return (request, nil)
     }
     
     internal class StatelessCookieStorage: HTTPCookieStorage {
@@ -164,6 +118,181 @@ class RestClient {
         }
     }
     
+    // MARK: -
+    
+    /// Creates a url-encoded query string to be set as or appended to any existing URL query string or set as the HTTP
+    /// body of the URL request. Whether the query string is set or appended to any existing URL query string or set as
+    /// the HTTP body depends on the destination of the encoding.
+    ///
+    /// The `Content-Type` HTTP header field of an encoded request with HTTP body is set to
+    /// `application/x-www-form-urlencoded; charset=utf-8`. Since there is no published specification for how to encode
+    /// collection types, the convention of appending `[]` to the key for array values (`foo[]=1&foo[]=2`), and appending
+    /// the key surrounded by square brackets for nested dictionary values (`foo[bar]=baz`).
+    struct TwidereURLEncoding: ParameterEncoding {
+        
+        // MARK: Helper Types
+        
+        /// Defines whether the url-encoded query string is applied to the existing query string or HTTP body of the
+        /// resulting URL request.
+        ///
+        /// - methodDependent: Applies encoded query string result to existing query string for `GET`, `HEAD` and `DELETE`
+        ///                    requests and sets as the HTTP body for requests with any other HTTP method.
+        /// - queryString:     Sets or appends encoded query string result to existing query string.
+        /// - httpBody:        Sets encoded query string result as the HTTP body of the URL request.
+        public enum Destination {
+            case methodDependent, queryString, httpBody
+        }
+        
+        // MARK: Properties
+        
+        /// Returns a default `URLEncoding` instance.
+        public static var `default`: URLEncoding { return URLEncoding() }
+        
+        /// Returns a `URLEncoding` instance with a `.methodDependent` destination.
+        public static var methodDependent: URLEncoding { return URLEncoding() }
+        
+        /// Returns a `URLEncoding` instance with a `.queryString` destination.
+        public static var queryString: URLEncoding { return URLEncoding(destination: .queryString) }
+        
+        /// Returns a `URLEncoding` instance with an `.httpBody` destination.
+        public static var httpBody: URLEncoding { return URLEncoding(destination: .httpBody) }
+        
+        /// The destination defining where the encoded query string is to be applied to the URL request.
+        public let destination: Destination
+        
+        // MARK: Initialization
+        
+        /// Creates a `URLEncoding` instance using the specified destination.
+        ///
+        /// - parameter destination: The destination defining where the encoded query string is to be applied.
+        ///
+        /// - returns: The new `URLEncoding` instance.
+        public init(destination: Destination = .methodDependent) {
+            self.destination = destination
+        }
+        
+        // MARK: Encoding
+        
+        /// Creates a URL request by encoding parameters and applying them onto an existing request.
+        ///
+        /// - parameter urlRequest: The request to have parameters applied.
+        /// - parameter parameters: The parameters to apply.
+        ///
+        /// - throws: An `Error` if the encoding process encounters an error.
+        ///
+        /// - returns: The encoded request.
+        public func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
+            var urlRequest = try urlRequest.asURLRequest()
+            
+            guard let parameters = parameters else { return urlRequest }
+            
+            if let method = HTTPMethod(rawValue: urlRequest.httpMethod ?? "GET"), encodesParametersInURL(with: method) {
+                guard let url = urlRequest.url else {
+                    throw AFError.parameterEncodingFailed(reason: .missingURL)
+                }
+                
+                if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false), !parameters.isEmpty {
+                    let percentEncodedQuery = (urlComponents.percentEncodedQuery.map { $0 + "&" } ?? "") + query(parameters)
+                    urlComponents.percentEncodedQuery = percentEncodedQuery
+                    urlRequest.url = urlComponents.url
+                }
+            } else {
+                if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
+                    urlRequest.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
+                }
+                
+                urlRequest.httpBody = query(parameters).data(using: .utf8, allowLossyConversion: false)
+            }
+            
+            return urlRequest
+        }
+        
+        /// Creates percent-escaped, URL encoded query string components from the given key-value pair using recursion.
+        ///
+        /// - parameter key:   The key of the query component.
+        /// - parameter value: The value of the query component.
+        ///
+        /// - returns: The percent-escaped, URL encoded query string components.
+        public func queryComponents(fromKey key: String, value: Any) -> [(String, String)] {
+            var components: [(String, String)] = []
+            
+            if let dictionary = value as? [String: Any] {
+                for (nestedKey, value) in dictionary {
+                    components += queryComponents(fromKey: "\(key)[\(nestedKey)]", value: value)
+                }
+            } else if let array = value as? [Any] {
+                for value in array {
+                    components += queryComponents(fromKey: "\(key)[]", value: value)
+                }
+            } else if let value = value as? NSNumber {
+                if value.isBool {
+                    components.append((escape(key), escape((value.boolValue ? "1" : "0"))))
+                } else {
+                    components.append((escape(key), escape("\(value)")))
+                }
+            } else if let bool = value as? Bool {
+                components.append((escape(key), escape((bool ? "1" : "0"))))
+            } else {
+                components.append((escape(key), escape("\(value)")))
+            }
+            
+            return components
+        }
+        
+        /// Returns a percent-escaped string following RFC 3986 for a query string key or value.
+        ///
+        /// RFC 3986 states that the following characters are "reserved" characters.
+        ///
+        /// - General Delimiters: ":", "#", "[", "]", "@", "?", "/"
+        /// - Sub-Delimiters: "!", "$", "&", "'", "(", ")", "*", "+", ",", ";", "="
+        ///
+        /// In RFC 3986 - Section 3.4, it states that the "?" and "/" characters should not be escaped to allow
+        /// query strings to include a URL. Therefore, all "reserved" characters with the exception of "?" and "/"
+        /// should be percent-escaped in the query string.
+        ///
+        /// - parameter string: The string to be percent-escaped.
+        ///
+        /// - returns: The percent-escaped string.
+        public func escape(_ string: String) -> String {
+            let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
+            let subDelimitersToEncode = "!$&'()*+,;="
+            
+            var allowedCharacterSet = CharacterSet.urlQueryAllowed
+            allowedCharacterSet.remove(charactersIn: "\(generalDelimitersToEncode)\(subDelimitersToEncode)")
+            
+            return string.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet) ?? string
+        }
+        
+        private func query(_ parameters: [String: Any]) -> String {
+            var components: [(String, String)] = []
+            
+            for key in parameters.keys.sorted(by: <) {
+                let value = parameters[key]!
+                components += queryComponents(fromKey: key, value: value)
+            }
+            
+            return components.map { "\($0)=\($1)" }.joined(separator: "&")
+        }
+        
+        private func encodesParametersInURL(with method: HTTPMethod) -> Bool {
+            switch destination {
+            case .queryString:
+                return true
+            case .httpBody:
+                return false
+            default:
+                break
+            }
+            
+            switch method {
+            case .get, .head, .delete:
+                return true
+            default:
+                return false
+            }
+        }
+    }
+
 }
 
 enum RestError: Error {
@@ -177,4 +306,8 @@ extension HTTPURLResponse {
             return statusCode >= 200 && statusCode < 300
         }
     }
+}
+
+extension NSNumber {
+    fileprivate var isBool: Bool { return CFBooleanGetTypeID() == CFGetTypeID(self) }
 }

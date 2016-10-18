@@ -69,6 +69,10 @@ submodels:
         type: String!
         column: url_expanded
         json_field: url_expanded
+      urlDisplay:
+        type: String!
+        column: url_display
+        json_field: url_display
       location:
         type: String!
         column: location
