@@ -33,6 +33,7 @@ extension Array where Element: SpanItem {
             string.yy_setTextHighlight(NSMakeRange(span.start, span.length), color: linkColor, backgroundColor: nil, userInfo: [highlightUserInfoKey: span])
         }
     }
+    
 }
 
 let highlightUserInfoKey: String = "twidere.span"

@@ -40,7 +40,7 @@ extension Status {
         guard let quotedId = self.quotedId else {
             return nil
         }
-        return Status(accountKey: self.accountKey, createdAt: self.quotedCreatedAt!, id: quotedId, userKey: self.quotedUserKey!, userName: self.quotedUserName!, userScreenName: self.quotedUserScreenName!, textPlain: self.quotedTextPlain!, textDisplay: self.quotedTextDisplay!, metadata: self.quotedMetadata)
+        return Status(accountKey: self.accountKey, createdAt: self.quotedCreatedAt!, id: quotedId, userKey: self.quotedUserKey!, userName: self.quotedUserName!, userScreenName: self.quotedUserScreenName!, userProfileImage: self.quotedUserProfileImage, textPlain: self.quotedTextPlain!, textDisplay: self.quotedTextDisplay!, metadata: self.quotedMetadata)
     }
     
     var user: User {

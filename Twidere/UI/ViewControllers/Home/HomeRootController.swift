@@ -10,9 +10,5 @@ import UIKit
 import Freddy
 
 class HomeRootController: UINavigationController, UIGestureRecognizerDelegate {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationBar.isTranslucent = false
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-    }
+    
 }

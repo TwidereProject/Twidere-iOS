@@ -24,12 +24,10 @@ extension User {
         let profileImageUrl = json["profile_image_url_https"].string ?? json["profile_image_url"].string
         let profileBannerUrl = json["profile_banner_url"].string ?? json["cover_photo"].string
         let profileBackgroundUrl = json["profile_background_image_url_https"].string ?? json["profile_background_image_url"].string
-        let descriptionPlain = json["description"].string
-        let descriptionDisplay = descriptionPlain
         let url = json["url"].string
         let urlExpanded = json["entities"]["url"]["urls"][0]["expanded_url"].string
         let location = json["location"].string
-        let metadata = User.Metadata(json: json)
+        let (descriptionPlain, descriptionDisplay, metadata) = User.getMetadata(user: json, accountKey: accountKey)
         self.init(accountKey: accountKey, key: key, createdAt: createdAt, isProtected: isProtected, isVerified: isVerified, name: name, screenName: screenName, profileImageUrl: profileImageUrl, profileBannerUrl: profileBannerUrl, profileBackgroundUrl: profileBackgroundUrl, descriptionPlain: descriptionPlain, descriptionDisplay: descriptionDisplay, url: url, urlExpanded: urlExpanded, location: location, metadata: metadata)
     }
     
@@ -54,6 +52,47 @@ extension User {
         } else {
             return json["users"].map { User(json: $1, accountKey: accountKey)! }
         }
+    }
+    
+    fileprivate static func getMetadata(user: JSON, accountKey: UserKey?) -> (descriptionPlain: String, descriptionDisplay: String, metadata: User.Metadata) {
+        if let description = user["description"].string {
+            let spans = getUserSpans(user: user, accountKey: accountKey)
+            let (plain, display, metadata) = Status.getSpanMetadata(fullText: description, spans: spans)
+            
+            let userMetadata = User.Metadata(json: user)
+            userMetadata.descriptionLinks = metadata.links
+            userMetadata.descriptionHashtags = metadata.hashtags
+            userMetadata.descriptionMentions = metadata.mentions
+            return (plain, display, userMetadata)
+        } else {
+            let descriptionPlain = user["description"].stringValue
+            let descriptionDisplay = descriptionPlain
+            return (descriptionPlain, descriptionDisplay, User.Metadata(json: user))
+        }
+        
+    }
+    
+    
+    fileprivate static func getUserSpans(user: JSON, accountKey: UserKey?) -> [SpanItem] {
+        var spans: [SpanItem] = []
+        for (_, entity) in user["entities"]["description"]["urls"] {
+            spans.append(LinkSpanItem(from: entity))
+        }
+        
+        for (_, entity) in user["entities"]["description"]["user_mentions"] {
+            spans.append(MentionSpanItem(from: entity, accountKey: accountKey))
+        }
+        
+        for (_, entity) in user["entities"]["description"]["hashtags"] {
+            spans.append(HashtagSpanItem(from: entity))
+        }
+        
+        // Remove duplicate entities
+        spans = Status.trimDuplicate(array: spans)
+        
+        // Order entities
+        spans.sort { $0.origStart < $1.origEnd }
+        return spans
     }
 }
 

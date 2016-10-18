@@ -252,18 +252,30 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         profileImageView.displayImage(user.profileImageUrlForSize(.original), placeholder: UIImage.withColor(UIColor.white))
         
         nameView.attributedText = NSAttributedString(string: user.name, attributes: [
-            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15)
+            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15.5)
             ])
         screenNameView.attributedText = NSAttributedString(string: "@\(user.screenName)", attributes: [
-            NSFontAttributeName: UIFont.systemFont(ofSize: 12)
+            NSFontAttributeName: UIFont.systemFont(ofSize: 13)
             ])
         
+        let descriptionFont = UIFont.systemFont(ofSize: 15)
+        
+        let descriptionText = NSMutableAttributedString()
+        
         if let descriptionDisplay = user.descriptionDisplay {
-            descriptionView.attributedText = NSAttributedString(string: descriptionDisplay, attributes: [:])
-        } else {
-            descriptionView.attributedText = nil
+            descriptionText.append(UserProfileController.createDescriptionText(descriptionDisplay, metadata: user.metadata, font: descriptionFont, displayOption: self.cellDisplayOption))
+            descriptionText.yy_appendString("\n")
+        }
+        if let location = user.location {
+            descriptionText.yy_appendString("\u{1f4cd}")
+            descriptionText.yy_appendString(location)
+        }
+        if let url = user.url {
+            descriptionText.yy_appendString("\u{1f517}")
+            descriptionText.yy_appendString(url)
         }
         
+        descriptionView.attributedText = descriptionText
         
         var infoTags = [UserInfoTag]()
         
@@ -465,6 +477,18 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     
     func refreshEnded() {
         self.profileRefreshIndicator.stopAnimation()
+    }
+    
+    
+    static func createDescriptionText(_ text: String, metadata: User.Metadata?, font: UIFont, displayOption: StatusCell.DisplayOption) -> NSAttributedString {
+        let attributed = NSMutableAttributedString(string: text)
+        
+        attributed.yy_font = font
+        
+        metadata?.descriptionLinks?.applyToAttributedText(attributed, linkColor: displayOption.linkColor)
+        metadata?.descriptionMentions?.applyToAttributedText(attributed, linkColor: displayOption.linkColor)
+        metadata?.descriptionHashtags?.applyToAttributedText(attributed, linkColor: displayOption.linkColor)
+        return attributed
     }
     
     struct UserInfoTag {
