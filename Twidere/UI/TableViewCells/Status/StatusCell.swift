@@ -300,7 +300,7 @@ class StatusCell: ALSTableViewCell {
         
         func loadUserDefaults() {
             self.fontSize = 15
-            self.linkColor = UITextView.appearance().tintColor ?? materialLightBlue300
+            self.linkColor = UIApplication.shared.delegate!.window??.tintColor ?? UIColor.darkText
         }
     }
     

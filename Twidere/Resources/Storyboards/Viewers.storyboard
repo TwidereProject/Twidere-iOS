@@ -19,11 +19,11 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="547"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uo2-VL-hN1" id="r0x-Xu-RSH">
-                                    <frame key="frameInset" width="375" height="546"/>
+                                    <frame key="frameInset" width="375" height="546.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" misplaced="YES" id="yvD-GY-np3" customClass="ALSRelativeLayout" customModule="ALSLayouts">
-                                            <frame key="frameInset" maxY="-0.5"/>
+                                            <frame key="frameInset"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" misplaced="YES" id="9Nr-aP-WwP" userLabel="User Profile Container" customClass="ALSRelativeLayout" customModule="ALSLayouts">
@@ -304,6 +304,7 @@
                         <outlet property="screenNameView" destination="Yjc-JK-LNJ" id="9Tz-Nh-Zdk"/>
                         <outlet property="segmentedContainerView" destination="JrR-Ok-vNf" id="fuO-bT-fVk"/>
                         <outlet property="userActionButton" destination="AHI-Yt-Hps" id="6o5-2p-GM8"/>
+                        <outlet property="userActionContainer" destination="KqJ-Iq-OqH" id="poK-hg-3th"/>
                         <outlet property="userButtonsBackground" destination="zIU-On-WWQ" id="dAj-rB-kTU"/>
                     </connections>
                 </viewController>
@@ -388,19 +389,23 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="nameContainer"/>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutToLeadingOf" value="userActionContainer"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginLeading">
+                                            <real key="value" value="8"/>
+                                        </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <view contentMode="scaleToFill" misplaced="YES" id="KqJ-Iq-OqH" customClass="ALSFrameLayout" customModule="ALSLayouts">
                                     <frame key="frameInset" minX="207" width="53" height="48"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AHI-Yt-Hps">
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AHI-Yt-Hps" customClass="ActionIconButton" customModule="Twidere" customModuleProvider="target">
                                             <frame key="frameInset" minX="3" minY="9" width="46" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Button"/>
+                                            <state key="normal" title="Follow"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="templateImage" value="Button Follow"/>
                                             </userDefinedRuntimeAttributes>
                                         </button>
                                     </subviews>
@@ -485,6 +490,7 @@
         <image name="Button Action Retweet" width="30" height="30"/>
         <image name="Button Action Share" width="30" height="30"/>
         <image name="Button Action Star" width="30" height="30"/>
+        <image name="Button Follow" width="26" height="26"/>
         <image name="Toolbar Settings" width="22" height="22"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

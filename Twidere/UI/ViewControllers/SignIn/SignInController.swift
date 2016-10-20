@@ -30,9 +30,9 @@ class SignInController: UIViewController {
         super.viewDidLoad()
         
         // Setup button colors
-        signUpButton.layer.borderColor = signUpButton.tintColor.cgColor
+        signUpButton.layer.makeRoundedCorner(radius: 4, borderColor: signUpButton.tintColor.cgColor)
         loginButton.tintColor = materialLightGreen
-        loginButton.layer.borderColor = materialLightGreen.cgColor
+        loginButton.layer.makeRoundedCorner(radius: 4, borderColor: signUpButton.tintColor.cgColor)
         
         customAPIConfig.loadDefaults()
         

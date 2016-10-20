@@ -14,6 +14,7 @@ import FXBlurView
 import PromiseKit
 import SQLite
 import SwiftHEXColors
+import DateTools
 
 typealias UserInfo = (accountKey: UserKey, userKey: UserKey?, screenName: String?)
 
@@ -28,13 +29,13 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     @IBOutlet weak var userButtonsBackground: UIView!
     @IBOutlet weak var profileRefreshIndicator: ActivityIndicator!
     
-    @IBOutlet weak var userActionButton: UIButton!
+    @IBOutlet weak var userActionButton: ActionIconButton!
     @IBOutlet weak var nameView: YYLabel!
     @IBOutlet weak var screenNameView: YYLabel!
     @IBOutlet weak var descriptionView: YYLabel!
     @IBOutlet weak var segmentedContainerView: SegmentedContainerView!
+    @IBOutlet weak var userActionContainer: ALSFrameLayout!
     
-    fileprivate var userInfoTags: [[UserInfoTag]]? = nil
     fileprivate var viewControllers: [UIViewController?] = [UIViewController?](repeating: nil, count: 3)
     fileprivate var profileImageExceddedHeight: CGFloat = CGFloat.nan
     fileprivate var profileImageHeight: CGFloat = CGFloat.nan
@@ -86,6 +87,8 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         nameView.displaysAsynchronously = true
         screenNameView.displaysAsynchronously = true
 
+        userActionButton.contentEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 12)
+        userActionButton.titleEdgeInsets = UIEdgeInsetsMake(0, 4, 0, -4)
         
         if (self.user != nil) {
             displayUser()
@@ -162,7 +165,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         self.user = user
         self.userInfo = (user.accountKey, user.key, user.screenName)
         if (self.isViewLoaded) {
-            performSelector(onMainThread: #selector(self.displayUserSelector), with: nil, waitUntilDone: true)
+            displayUser()
         }
         self.reloadNeeded = reload
         if (reload) {
@@ -262,53 +265,73 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         
         let descriptionText = NSMutableAttributedString()
         
+        descriptionText.yy_font = descriptionFont
+        
         if let descriptionDisplay = user.descriptionDisplay {
             descriptionText.append(UserProfileController.createDescriptionText(descriptionDisplay, metadata: user.metadata, font: descriptionFont, displayOption: self.cellDisplayOption))
-            descriptionText.yy_appendString("\n")
         }
         if let location = user.location {
-            descriptionText.yy_appendString("\u{1f4cd}")
-            descriptionText.yy_appendString(location)
+            descriptionText.yy_appendString("\n")
+            let image = UIImage(named: "Text Icon Location")!
+            descriptionText.yy_appendAttachment(with: image, contentMode: .center, attachmentSize: image.size, alignTo: descriptionFont, alignment: .center)
+            
+            descriptionText.yy_appendStringRemoveHighlight(location)
         }
-        if let url = user.urlDisplay ?? user.url {
-            descriptionText.yy_appendString("\u{1f517}")
-            descriptionText.yy_appendString(url)
+        if let urlDisplay = user.urlDisplay ?? user.url, let url = user.urlExpanded ?? user.url {
+            descriptionText.yy_appendString("\n")
+            let image = UIImage(named: "Text Icon Web")!
+            descriptionText.yy_appendAttachment(with: image, contentMode: .center, attachmentSize: image.size, alignTo: descriptionFont, alignment: .center)
+            
+            descriptionText.yy_appendTextHighlight(string: urlDisplay, color: cellDisplayOption.linkColor, backgroundColor: nil, userInfo: [highlightUserInfoKey: LinkSpanItem(link: url)])
         }
-        
+        if let createdAt = user.createdAt as NSDate? {
+            descriptionText.yy_appendString("\n")
+            let image = UIImage(named: "Text Icon Time")!
+            descriptionText.yy_appendAttachment(with: image, contentMode: .center, attachmentSize: image.size, alignTo: descriptionFont, alignment: .center)
+            
+            descriptionText.yy_appendStringRemoveHighlight(createdAt.formattedDate(with: .long))
+            if let metadata = user.metadata, metadata.statusesCount >= 0 {
+                let tweetsPerDay = Int64(round(Double(metadata.statusesCount) / Double(createdAt.daysAgo())))
+                descriptionText.yy_appendStringRemoveHighlight(" (\(tweetsPerDay.shortLocalizedString) tweets per day)")
+            }
+        }
         descriptionView.attributedText = descriptionText
         
-        var infoTags = [UserInfoTag]()
-        
-        var userInfoTags = [[UserInfoTag]]()
-        
-        if let location = user.location {
-            infoTags.append(UserInfoTag(text: "Location: " + location))
-        }
-        
-        if let url = user.url {
-            infoTags.append(UserInfoTag(text: "URL: " + url))
-        }
-        
-        userInfoTags.append(infoTags)
         
         if let metadata = user.metadata {
-            var countTags = [UserInfoTag]()
-            countTags.append(UserInfoTag(text: "\(metadata.followersCount)"))
-            countTags.append(UserInfoTag(text: "\(metadata.friendsCount)"))
-            countTags.append(UserInfoTag(text: "\(metadata.listedCount)"))
-            
-            userInfoTags.append(countTags)
+            if (metadata.followRequestSent) {
+                userActionButton.templateImage = #imageLiteral(resourceName: "Button Follow Pending")
+                userActionButton.setTitle("Requested", for: .normal)
+                userActionButton.tintColor = materialLightBlue300
+            } else if (metadata.following) {
+                if (metadata.followedBy) {
+                    userActionButton.templateImage = #imageLiteral(resourceName: "Button Follow Mutual")
+                } else {
+                    userActionButton.templateImage = #imageLiteral(resourceName: "Button Follow Outgoing")
+                }
+                userActionButton.setTitle("Following", for: .normal)
+                userActionButton.tintColor = materialLightBlue300
+            } else if (metadata.followedBy) {
+                userActionButton.templateImage = #imageLiteral(resourceName: "Button Follow Incoming")
+                userActionButton.tintColor = materialLightBlue300
+                userActionButton.setTitle("Follow", for: .normal)
+            } else {
+                userActionButton.templateImage = #imageLiteral(resourceName: "Button Follow")
+                userActionButton.tintColor = materialLightBlue300
+                userActionButton.setTitle("Follow", for: .normal)
+            }
+        } else {
+            userActionButton.tintColor = materialLightBlue300
+            userActionButton.setTitle("Follow", for: .normal)
         }
+        userActionButton.layer.makeRoundedCorner(radius: 4, borderColor: userActionButton.tintColor.cgColor, borderWidth: 1)
         
-        self.userInfoTags = userInfoTags
-        
+        self.userActionContainer.setNeedsLayout()
+        self.userButtonsBackground.setNeedsLayout()
         self.view.setNeedsLayout()
+        self.view.layoutIfNeeded()
         
         updateBannerScaleTransfom(false)
-    }
-    
-    @objc private func displayUserSelector() {
-        displayUser()
     }
     
     func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
@@ -368,7 +391,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
             let diff = profileImageExceddedHeight
             let scaleFactor = diff / profileImageHeight
             profileImageTransform = CATransform3DScale(profileImageTransform, 1.0 - scaleFactor, 1.0 - scaleFactor, 0)
-            profileImageTransform = CATransform3DTranslate(profileImageTransform, -diff, diff, 0)
+            profileImageTransform = CATransform3DTranslate(profileImageTransform, 0, diff, 0)
             // Show blurred banner
             self.blurredBannerView.alpha = 1
             
@@ -379,7 +402,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
             let diff = topOffset - (bannerHeight - topLayoutGuideLength - navBarHeight - profileImageExceddedHeight)
             let scaleFactor = diff / profileImageHeight
             profileImageTransform = CATransform3DScale(profileImageTransform, 1.0 - scaleFactor, 1.0 - scaleFactor, 0)
-            profileImageTransform = CATransform3DTranslate(profileImageTransform, -diff, diff, 0)
+            profileImageTransform = CATransform3DTranslate(profileImageTransform, 0, diff, 0)
             
             self.blurredBannerView.alpha = min(1, diff / 10)
             titleTextColor = titleTextColor.withAlphaComponent(0)
@@ -491,8 +514,5 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         return attributed
     }
     
-    struct UserInfoTag {
-        var text: String
-    }
 }
 
