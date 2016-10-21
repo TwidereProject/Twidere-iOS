@@ -5,8 +5,8 @@ import Foundation
 extension LinkSpanItem: JSONStaticDecodable {
 
     static func fromJSON(json value: Freddy.JSON) throws -> LinkSpanItem {
-        let start: Int = try value.decode(at: "start")
-        let end: Int = try value.decode(at: "end")
+        let start: Int = try value.decode(at: "start", or: -1)
+        let end: Int = try value.decode(at: "end", or: -1)
         let link: String = try value.decode(at: "link")
         let display: String? = try? value.decode(at: "display")
         return LinkSpanItem(start: start, end: end, link: link, display: display)
@@ -30,8 +30,8 @@ extension LinkSpanItem: JSONEncodable {
 extension MentionSpanItem: JSONStaticDecodable {
 
     static func fromJSON(json value: Freddy.JSON) throws -> MentionSpanItem {
-        let start: Int = try value.decode(at: "start")
-        let end: Int = try value.decode(at: "end")
+        let start: Int = try value.decode(at: "start", or: -1)
+        let end: Int = try value.decode(at: "end", or: -1)
         let key: UserKey = try value.decode(at: "key")
         let name: String? = try? value.decode(at: "name")
         let screenName: String = try value.decode(at: "screen_name")
@@ -57,8 +57,8 @@ extension MentionSpanItem: JSONEncodable {
 extension HashtagSpanItem: JSONStaticDecodable {
 
     static func fromJSON(json value: Freddy.JSON) throws -> HashtagSpanItem {
-        let start: Int = try value.decode(at: "start")
-        let end: Int = try value.decode(at: "end")
+        let start: Int = try value.decode(at: "start", or: -1)
+        let end: Int = try value.decode(at: "end", or: -1)
         let hashtag: String = try value.decode(at: "hashtag")
         return HashtagSpanItem(start: start, end: end, hashtag: hashtag)
     }

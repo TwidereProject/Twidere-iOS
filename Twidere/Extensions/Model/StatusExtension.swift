@@ -56,4 +56,25 @@ extension Status {
         }
         return "https://twitter.com/\(self.userScreenName)/status/\(self.id)"
     }
+    
+    var isMyRetweet: Bool {
+        if self.metadata?.myRetweetId != nil {
+            return true
+        }
+        if let retweetedByUserKey = self.retweetedByUserKey, retweetedByUserKey == self.accountKey {
+            return true
+        }
+        return false
+    }
+    
+    
+    var myRetweetId: String? {
+        if let myRetweetId = self.metadata?.myRetweetId {
+            return myRetweetId
+        }
+        if let retweetedByUserKey = self.retweetedByUserKey, retweetedByUserKey == self.accountKey {
+            return self.id
+        }
+        return nil
+    }
 }

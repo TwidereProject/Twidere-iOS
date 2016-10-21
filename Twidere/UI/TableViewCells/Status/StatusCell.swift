@@ -154,18 +154,26 @@ class StatusCell: ALSTableViewCell {
             replyButton.setTitle(nil, for: .normal)
         }
         
-        
         if let retweetCount = status.metadata?.retweetCount, retweetCount > 0 {
             retwetButton.setTitle(" \(retweetCount.shortLocalizedString)", for: .normal)
         } else {
             retwetButton.setTitle(nil, for: .normal)
         }
-        
+        if (status.isMyRetweet) {
+            retwetButton.imageView?.tintColor = materialLightGreen
+        } else {
+            retwetButton.imageView?.tintColor = nil
+        }
         
         if let favoriteCount = status.metadata?.favoriteCount, favoriteCount > 0 {
             favoriteButton.setTitle(" \(favoriteCount.shortLocalizedString)", for: .normal)
         } else {
             favoriteButton.setTitle(nil, for: .normal)
+        }
+        if (status.metadata?.isFavorite ?? false) {
+            favoriteButton.imageView?.tintColor = materialAmber
+        } else {
+            favoriteButton.imageView?.tintColor = nil
         }
     }
     

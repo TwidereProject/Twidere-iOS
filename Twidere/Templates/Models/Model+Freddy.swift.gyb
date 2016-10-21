@@ -38,6 +38,7 @@ def generateModelContent(name, modelType, outerName, model):
         jsonField = field.get('json_field', None)
 
         propertyType = field['type']
+        defaultValue = field.get('init', None)
         jsonTransform = field.get('json_transform', None)
         jsonNull = field.get('json_null', 'omit')
         isArray = False
@@ -50,14 +51,19 @@ def generateModelContent(name, modelType, outerName, model):
             isArray = True
         if (jsonField is None):
             continue
-        if isOptional:
+        extraParameters = ''
+        if defaultValue:
+            extraParameters = ", or: {defaultValue}".format(defaultValue=defaultValue)
+            tryClause = 'try'
+        elif isOptional:
             tryClause = 'try?'
         else:
             tryClause = 'try'
+
         if isArray:
-            getMethod = "value.decodedArray(at: \"{jsonField}\")".format(jsonField=jsonField)
+            getMethod = "value.decodedArray(at: \"{jsonField}\"{extraParameters})".format(jsonField=jsonField, extraParameters=extraParameters)
         else:
-            getMethod = "value.decode(at: \"{jsonField}\")".format(jsonField=jsonField)
+            getMethod = "value.decode(at: \"{jsonField}\"{extraParameters})".format(jsonField=jsonField, extraParameters=extraParameters)
         if modelType == 'struct':
             initLines.append("        self.{propertyName} = {tryClause} {getMethod}"
                 .format(propertyName=propertyName, propertyType=propertyType, tryClause=tryClause, getMethod=getMethod))

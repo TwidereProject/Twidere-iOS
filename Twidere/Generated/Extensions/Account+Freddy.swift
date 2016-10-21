@@ -17,7 +17,7 @@ extension Account: JSONStaticDecodable {
         let oauthToken: String? = try? value.decode(at: "oauth_token")
         let oauthTokenSecret: String? = try? value.decode(at: "oauth_token_secret")
         let sameOAuthSigningUrl: Bool = try value.decode(at: "same_oauth_signing_url")
-        let config: Config? = try? value.decode(at: "config")
+        let config: Config? = try value.decode(at: "config", or: nil)
         let user: User = try value.decode(at: "user")
         return Account(key: key, type: type, apiUrlFormat: apiUrlFormat, authType: authType, basicPassword: basicPassword, basicUsername: basicUsername, consumerKey: consumerKey, consumerSecret: consumerSecret, noVersionSuffix: noVersionSuffix, oauthToken: oauthToken, oauthTokenSecret: oauthTokenSecret, sameOAuthSigningUrl: sameOAuthSigningUrl, config: config, user: user)
     }

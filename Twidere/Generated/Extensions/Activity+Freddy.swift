@@ -6,8 +6,8 @@ extension Activity: JSONStaticDecodable {
 
     static func fromJSON(json value: Freddy.JSON) throws -> Activity {
         let accountKey: UserKey? = try? value.decode(at: "account_key")
-        let isGap: Bool = try value.decode(at: "is_gap")
-        let positionKey: Int64 = try value.decode(at: "position_key")
+        let isGap: Bool = try value.decode(at: "is_gap", or: false)
+        let positionKey: Int64 = try value.decode(at: "position_key", or: -1)
         let createdAt: Date = try value.decode(at: "created_at")
         let maxSortPosition: Int64 = try value.decode(at: "max_sort_position")
         let minSortPosition: Int64 = try value.decode(at: "min_sort_position")
@@ -54,9 +54,9 @@ extension Activity.Action: JSONDecodable, JSONEncodable {}
 extension Activity.ObjectList: JSONStaticDecodable {
 
     static func fromJSON(json value: Freddy.JSON) throws -> Activity.ObjectList {
-        let statuses: [Status]? = try? value.decodedArray(at: "statuses")
-        let users: [User]? = try? value.decodedArray(at: "users")
-        let userLists: [UserList]? = try? value.decodedArray(at: "user_lists")
+        let statuses: [Status]? = try value.decodedArray(at: "statuses", or: nil)
+        let users: [User]? = try value.decodedArray(at: "users", or: nil)
+        let userLists: [UserList]? = try value.decodedArray(at: "user_lists", or: nil)
         return Activity.ObjectList(statuses: statuses, users: users, userLists: userLists)
     }
 

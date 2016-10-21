@@ -15,8 +15,8 @@ extension Status.Metadata: Value {
         return String.declaredDatatype
     }
     
-    static func fromDatatypeValue(_ datatypeValue: String) -> Status.Metadata? {
-        return try? fromJSON(json: JSON(jsonString: datatypeValue))
+    static func fromDatatypeValue(_ datatypeValue: String) -> Status.Metadata {
+        return try! fromJSON(json: JSON(jsonString: datatypeValue))
     }
     
     var datatypeValue: String {

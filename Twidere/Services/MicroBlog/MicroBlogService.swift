@@ -21,7 +21,8 @@ class MicroBlogService: RestClient {
         "tweet_mode": "extended",
         "model_version": "7",
         "include_cards": "true",
-        "cards_platform": "iPhone-8"
+        "cards_platform": "iPhone-8",
+        "include_my_retweet": "true"
     ]
     
     func verifyCredentials() -> Promise<User> {

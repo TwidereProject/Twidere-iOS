@@ -32,6 +32,7 @@
 		CE358B711D811C84002A33B3 /* SpanItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE358B701D811C84002A33B3 /* SpanItem.swift */; };
 		CE358B751D825942002A33B3 /* Viewers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE358B741D825942002A33B3 /* Viewers.storyboard */; };
 		CE3E5DF61D978A6100454A61 /* NSShadowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */; };
+		CE412B221DB9F38D00C52099 /* SwiftyJSONExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE412B211DB9F38D00C52099 /* SwiftyJSONExtension.swift */; };
 		CE45CA821D853D310004CC1C /* Status.model.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE45CA811D853D310004CC1C /* Status.model.yml */; };
 		CE45CA861D85416C0004CC1C /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CA831D85416C0004CC1C /* Status.swift */; };
 		CE45CA871D85416C0004CC1C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CA841D85416C0004CC1C /* User.swift */; };
@@ -230,6 +231,7 @@
 		CE358B701D811C84002A33B3 /* SpanItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItem.swift; sourceTree = "<group>"; };
 		CE358B741D825942002A33B3 /* Viewers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Viewers.storyboard; sourceTree = "<group>"; };
 		CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSShadowExtension.swift; sourceTree = "<group>"; };
+		CE412B211DB9F38D00C52099 /* SwiftyJSONExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSONExtension.swift; sourceTree = "<group>"; };
 		CE45CA811D853D310004CC1C /* Status.model.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Status.model.yml; sourceTree = "<group>"; };
 		CE45CA831D85416C0004CC1C /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		CE45CA841D85416C0004CC1C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -887,6 +889,7 @@
 				CE79C83E1DA77777007C05F2 /* YYTextExtensions.swift */,
 				CEEF42B81DB669C2009ECD0F /* YYTextExtension.swift */,
 				CEEF42BA1DB9D650009ECD0F /* Promise+TaskMessage.swift */,
+				CE412B211DB9F38D00C52099 /* SwiftyJSONExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1134,6 +1137,7 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = K5277Y55W8;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					CE0529F91CF7F35300E06364 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1570,6 +1574,7 @@
 				CEBED5FB1D4C86C700619D1C /* BackgroundOperationService.swift in Sources */,
 				CEA2E2B11D3681FD0095BC57 /* ComposeController.swift in Sources */,
 				CE9574851D32221A00504D52 /* RestClient.swift in Sources */,
+				CE412B221DB9F38D00C52099 /* SwiftyJSONExtension.swift in Sources */,
 				CE6C6C1A1DB09A9800DF4892 /* SpanItem+Freddy.swift in Sources */,
 				CED73F6E1D953C6E0066F554 /* UIBarButtonItemExtension.swift in Sources */,
 				CE7A57471D9185DC0027BECE /* UserFavoritesStatusesListControllerDelaSourceegate.swift in Sources */,
@@ -1765,6 +1770,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = K5277Y55W8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Twidere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1784,6 +1791,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = K5277Y55W8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Twidere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

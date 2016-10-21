@@ -69,6 +69,8 @@ extension Status {
         metadata.favoriteCount = status["favorite_count"].int64 ?? -1
         
         metadata.externalUrl = status["external_url"].string
+        metadata.myRetweetId = status["current_user_retweet"]["id"].optionalStringValue
+        metadata.isFavorite = status["favorited"].boolValue
         
         self.init(accountKey: accountKey, sortId: sortId, createdAt: createdAt, id: id, userKey: userKey, userName: userName, userScreenName: userScreenName, userProfileImage: userProfileImage, textPlain: textPlain, textDisplay: textDisplay, metadata: metadata, source: source)
         

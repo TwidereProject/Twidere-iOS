@@ -189,6 +189,14 @@ submodels:
             type: Int64
             init: -1
             json_field: 'favorite_count'
+          myRetweetId:
+            type: String?
+            init: nil
+            json_field: 'my_retweet_id'
+          isFavorite:
+            type: Bool
+            init: 'false'
+            json_field: 'is_favorite'
         submodels:
           InReplyTo:
             type: class
