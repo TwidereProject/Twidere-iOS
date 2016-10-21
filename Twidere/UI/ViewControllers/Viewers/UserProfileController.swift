@@ -25,6 +25,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     @IBOutlet weak var profileBannerView: UIImageView!
     @IBOutlet weak var blurredBannerView: UIImageView!
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileImageContainer: UIView!
     @IBOutlet weak var profileContainer: ALSRelativeLayout!
     @IBOutlet weak var userButtonsBackground: UIView!
     @IBOutlet weak var profileRefreshIndicator: ActivityIndicator!
@@ -63,10 +64,13 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         profileBannerView.contentMode = .scaleAspectFill
         blurredBannerView.contentMode = .scaleAspectFill
         
-        profileImageView.contentMode = .scaleAspectFill
-        profileImageView.makeCircular()
-        profileImageView.layer.borderColor = UIColor.white.cgColor
-        profileImageView.layer.borderWidth = 2
+        self.profileImageView.contentMode = .scaleAspectFill
+        self.profileImageView.makeCircular()
+        
+        let border = CALayerBorder(color: UIColor.white.cgColor, width: 2)
+        let shadow = CALayerShadow(color: UIColor.black.cgColor, offset: CGSize(width: 0, height: 1), blurRadius: 2, opacity: 0.33)
+        self.profileImageContainer.layer.makeCircular(border: border, shadow: shadow)
+        self.profileImageContainer.clipsToBounds = false
         
         self.segmentedContainerView.dataSource = self
         self.segmentedContainerView.delegate = self
@@ -86,9 +90,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         descriptionView.displaysAsynchronously = true
         nameView.displaysAsynchronously = true
         screenNameView.displaysAsynchronously = true
-
-        userActionButton.contentEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 12)
-        userActionButton.titleEdgeInsets = UIEdgeInsetsMake(0, 4, 0, -4)
+        
         
         if (self.user != nil) {
             displayUser()
@@ -151,7 +153,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     
     override func viewDidLayoutSubviews() {
         if (self.profileImageHeight.isNaN || self.profileImageExceddedHeight.isNaN) {
-            self.profileImageHeight = profileImageView.frame.height
+            self.profileImageHeight = profileImageContainer.frame.height
             self.profileImageExceddedHeight = profileImageHeight - userButtonsBackground.frame.height
         }
         updateBannerScaleTransfom(false)
@@ -270,14 +272,14 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         if let descriptionDisplay = user.descriptionDisplay {
             descriptionText.append(UserProfileController.createDescriptionText(descriptionDisplay, metadata: user.metadata, font: descriptionFont, displayOption: self.cellDisplayOption))
         }
-        if let location = user.location {
+        if let location = user.location, !location.isEmpty {
             descriptionText.yy_appendString("\n")
             let image = UIImage(named: "Text Icon Location")!
             descriptionText.yy_appendAttachment(with: image, contentMode: .center, attachmentSize: image.size, alignTo: descriptionFont, alignment: .center)
             
             descriptionText.yy_appendStringRemoveHighlight(location)
         }
-        if let urlDisplay = user.urlDisplay ?? user.url, let url = user.urlExpanded ?? user.url {
+        if let urlDisplay = user.urlDisplay ?? user.url, let url = user.urlExpanded ?? user.url, !urlDisplay.isEmpty, !url.isEmpty {
             descriptionText.yy_appendString("\n")
             let image = UIImage(named: "Text Icon Web")!
             descriptionText.yy_appendAttachment(with: image, contentMode: .center, attachmentSize: image.size, alignTo: descriptionFont, alignment: .center)
@@ -296,10 +298,21 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
             }
         }
         descriptionView.attributedText = descriptionText
-        
-        
-        if let metadata = user.metadata {
-            if (metadata.followRequestSent) {
+        if user.accountKey == user.key {
+            let image = #imageLiteral(resourceName: "Button Follow Empty")
+            userActionButton.templateImage = image
+            userActionButton.titleEdgeInsets = UIEdgeInsetsMake(0, -image.size.width, 0, 0)
+            userActionButton.contentEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4)
+            userActionButton.setTitle("Edit", for: .normal)
+            userActionButton.tintColor = materialLightBlue300
+        } else if let metadata = user.metadata {
+            userActionButton.titleEdgeInsets = UIEdgeInsetsMake(0, 4, 0, -4)
+            userActionButton.contentEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 12)
+            if (metadata.blocking) {
+                userActionButton.templateImage = #imageLiteral(resourceName: "Button Follow Block")
+                userActionButton.setTitle("Blocking", for: .normal)
+                userActionButton.tintColor = materialLightBlue300
+            } else if (metadata.followRequestSent) {
                 userActionButton.templateImage = #imageLiteral(resourceName: "Button Follow Pending")
                 userActionButton.setTitle("Requested", for: .normal)
                 userActionButton.tintColor = materialLightBlue300
@@ -313,17 +326,22 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
                 userActionButton.tintColor = materialLightBlue300
             } else if (metadata.followedBy) {
                 userActionButton.templateImage = #imageLiteral(resourceName: "Button Follow Incoming")
-                userActionButton.tintColor = materialLightBlue300
                 userActionButton.setTitle("Follow", for: .normal)
+                userActionButton.tintColor = materialLightBlue300
             } else {
                 userActionButton.templateImage = #imageLiteral(resourceName: "Button Follow")
-                userActionButton.tintColor = materialLightBlue300
                 userActionButton.setTitle("Follow", for: .normal)
+                userActionButton.tintColor = materialLightBlue300
             }
         } else {
+            let image = #imageLiteral(resourceName: "Button Follow Empty")
+            userActionButton.templateImage = image
+            userActionButton.titleEdgeInsets = UIEdgeInsetsMake(0, -image.size.width, 0, 0)
+            userActionButton.contentEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4)
+            userActionButton.setTitle("Loading", for: .normal)
             userActionButton.tintColor = materialLightBlue300
-            userActionButton.setTitle("Follow", for: .normal)
         }
+        
         userActionButton.layer.makeRoundedCorner(radius: 4, borderColor: userActionButton.tintColor.cgColor, borderWidth: 1)
         
         self.userActionContainer.setNeedsLayout()
@@ -414,7 +432,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         titleTextAttributes?[NSForegroundColorAttributeName] = titleTextColor
         // Apply Transformations
         profileBannerContainer.layer.transform = bannerTransform
-        profileImageView.layer.transform = profileImageTransform
+        profileImageContainer.layer.transform = profileImageTransform
         
         profileRefreshIndicator.layer.bounds.origin.y = -(bannerHeight - profileRefreshIndicator.frame.height) / 2 + indicatorOffset
         if (fromUserInteraction && !self.profileRefreshIndicator.animationStarted) {
@@ -502,6 +520,59 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         self.profileRefreshIndicator.stopAnimation()
     }
     
+    @IBAction func userActionTapped(_ sender: ActionIconButton) {
+        guard let user = self.user else {
+            return
+        }
+        if user.accountKey == user.key {
+            
+        } else if let metadata = user.metadata {
+            if (metadata.blocking) {
+                let ac = PMKAlertController(title: "Unblock \(user.name)", message: nil, preferredStyle: .alert)
+                _ = ac.addActionWithTitle(title: "Cancel", style: .cancel)
+                _ = ac.addActionWithTitle(title: "Unblock", style: .default)
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                promise(ac).then(on: DispatchQueue.global()) { action -> Promise<User> in
+                    guard let microBlog = getAccount(forKey: user.accountKey)?.newMicroBlogService() else {
+                        return Promise(error: MicroBlogError.argumentError(message: "No account found"))
+                    }
+                    return microBlog.destroyBlock(id: user.key.id)
+                }.then { _ -> Void in
+                    self.loadUser()
+                }.always {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }.showStatusBarNotificationAfterTask(success: "Unfollowed \(user.name)", failure: "Unable to unfollow \(user.name)")
+            } else if (metadata.followRequestSent) {
+            } else if (metadata.following) {
+                let ac = PMKAlertController(title: "Unfollow \(user.name)", message: nil, preferredStyle: .alert)
+                _ = ac.addActionWithTitle(title: "Cancel", style: .cancel)
+                _ = ac.addActionWithTitle(title: "Unfollow", style: .destructive)
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                promise(ac).then(on: DispatchQueue.global()) { action -> Promise<User> in
+                    guard let microBlog = getAccount(forKey: user.accountKey)?.newMicroBlogService() else {
+                        return Promise(error: MicroBlogError.argumentError(message: "No account found"))
+                    }
+                    return microBlog.destroyFriendship(id: user.key.id)
+                }.then { _ -> Void in
+                    self.loadUser()
+                }.always {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }.showStatusBarNotificationAfterTask(success: "Unfollowed \(user.name)", failure: "Unable to unfollow \(user.name)")
+            } else {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                DispatchQueue.global().promise { action -> Promise<User> in
+                    guard let microBlog = getAccount(forKey: user.accountKey)?.newMicroBlogService() else {
+                        return Promise(error: MicroBlogError.argumentError(message: "No account found"))
+                    }
+                    return microBlog.createFriendship(id: user.key.id)
+                }.then { _ -> Void in
+                    self.loadUser()
+                }.always {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }.showStatusBarNotificationAfterTask(success: "Following \(user.name)", failure: "Unable to follow \(user.name)")
+            }
+        }
+    }
     
     static func createDescriptionText(_ text: String, metadata: User.Metadata?, font: UIFont, displayOption: StatusCell.DisplayOption) -> NSAttributedString {
         let attributed = NSMutableAttributedString(string: text)

@@ -10,10 +10,11 @@ import UIKit
 
 extension UIView {
     
-    func makeCircular() {
-        self.layer.cornerRadius = self.frame.size.width / 2
+    func makeCircular(border: CALayerBorder? = nil, shadow: CALayerShadow? = nil) {
+        self.layer.makeCircular(border: border, shadow: shadow)
+        
         self.clipsToBounds = true
+        
     }
-    
     
 }

@@ -12,9 +12,9 @@ import UIKit
 class ActionIconButton: UIButton {
     
     @IBInspectable
-    var templateImage: UIImage! {
+    var templateImage: UIImage? {
         didSet {
-            let template = templateImage.withRenderingMode(.alwaysTemplate)
+            let template = templateImage?.withRenderingMode(.alwaysTemplate)
             self.setImage(template, for: .normal)
         }
     }

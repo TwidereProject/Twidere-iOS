@@ -106,6 +106,30 @@ class MicroBlogService: RestClient {
         return makeTypedRequest(.get, path: "/users/show.json", queries: queries, serializer: MicroBlogService.convertUser(accountKey))
     }
     
+    // MARK: Friendship functions
+    
+    func createFriendship(id: String) -> Promise<User> {
+        let params: [String: String] = ["user_id": id]
+        return makeTypedRequest(.post, path: "/friendships/create.json", params: params, serializer: MicroBlogService.convertUser(accountKey))
+    }
+    
+    func destroyFriendship(id: String) -> Promise<User> {
+        let params: [String: String] = ["user_id": id]
+        return makeTypedRequest(.post, path: "/friendships/destroy.json", params: params, serializer: MicroBlogService.convertUser(accountKey))
+    }
+    
+    // MARK: Block functions
+    
+    func createBlock(id: String) -> Promise<User> {
+        let params: [String: String] = ["user_id": id]
+        return makeTypedRequest(.post, path: "/blocks/create.json", params: params, serializer: MicroBlogService.convertUser(accountKey))
+    }
+    
+    func destroyBlock(id: String) -> Promise<User> {
+        let params: [String: String] = ["user_id": id]
+        return makeTypedRequest(.post, path: "/blocks/destroy.json", params: params, serializer: MicroBlogService.convertUser(accountKey))
+    }
+    
     func updateStatus(_ request: UpdateStatusRequest) -> Promise<Status> {
         var forms: [String: Any] = ["status": request.text]
         if (request.mediaIds != nil) {

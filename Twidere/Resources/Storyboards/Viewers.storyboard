@@ -299,6 +299,7 @@
                         <outlet property="profileBannerContainer" destination="AUv-lq-axA" id="L6X-pz-L58"/>
                         <outlet property="profileBannerView" destination="Pad-7j-3yT" id="7bc-p6-kKS"/>
                         <outlet property="profileContainer" destination="gpl-ko-XjS" id="Yak-Je-9gX"/>
+                        <outlet property="profileImageContainer" destination="9Q4-B0-XMv" id="QL7-LO-Epa"/>
                         <outlet property="profileImageView" destination="u3M-nX-Zeo" id="eeH-jL-1q2"/>
                         <outlet property="profileRefreshIndicator" destination="NfK-Tm-qYV" id="jxQ-JW-vdR"/>
                         <outlet property="screenNameView" destination="Yjc-JK-LNJ" id="9Tz-Nh-Zdk"/>
@@ -407,6 +408,9 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                                 <userDefinedRuntimeAttribute type="image" keyPath="templateImage" value="Button Follow"/>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="userActionTapped:" destination="YzN-GI-JwS" eventType="primaryActionTriggered" id="oxE-YB-LsS"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <userDefinedRuntimeAttributes>
@@ -424,7 +428,7 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="userButtonsBackground"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="profileBannerContainer"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="layoutToTrailingOf" value="profileImageView"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="layoutToTrailingOf" value="profileImageContainer"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="ignoreLayoutMargins" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </view>
@@ -456,20 +460,30 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="profileInfoContent"/>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="u3M-nX-Zeo">
+                        <view opaque="NO" contentMode="scaleToFill" misplaced="YES" id="9Q4-B0-XMv">
                             <frame key="frameInset" minX="16" minY="89" width="84" height="84"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="u3M-nX-Zeo">
+                                    <frame key="frameInset"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="profileImageView"/>
+                                    </userDefinedRuntimeAttributes>
+                                </imageView>
+                            </subviews>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="StaticSize"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="StaticSize"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="profileImageContainer"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignBottom" value="userButtonsBackground"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginLeading">
                                     <real key="value" value="16"/>
                                 </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="profileImageView"/>
                             </userDefinedRuntimeAttributes>
-                        </imageView>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
