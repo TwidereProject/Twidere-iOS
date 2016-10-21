@@ -117,6 +117,11 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         updateBannerScaleTransfom(false)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateBannerScaleTransfom(false)
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if let navigationController = self.navigationController {
@@ -149,6 +154,8 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         self.segmentedContainerView.parallaxHeader.height = self.profileContainer.frame.height
         
         self.bannerShadowLayer.frame.size = CGSize(width: containerSize.width, height: topBarsHeight)
+        
+        updateBannerScaleTransfom(false)
     }
     
     override func viewDidLayoutSubviews() {
@@ -244,7 +251,6 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         guard let user = self.user else {
             return
         }
-        self.title = user.name
         navBar.topItem?.title = user.name
         let placeholder = UIImage.withColor(user.metadata?.backgroundUIColor ?? UIColor.white)
         profileBannerView.displayImage(user.profileBannerUrlForSize(Int(self.view.frame.width)), placeholder: placeholder, completed: { image, error, cacheType, url in
@@ -267,27 +273,31 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         
         let descriptionText = NSMutableAttributedString()
         
-        descriptionText.yy_font = descriptionFont
-        
         if let descriptionDisplay = user.descriptionDisplay {
             descriptionText.append(UserProfileController.createDescriptionText(descriptionDisplay, metadata: user.metadata, font: descriptionFont, displayOption: self.cellDisplayOption))
         }
         if let location = user.location, !location.isEmpty {
-            descriptionText.yy_appendString("\n")
+            if (descriptionText.length > 0) {
+                descriptionText.yy_appendString("\n")
+            }
             let image = UIImage(named: "Text Icon Location")!
             descriptionText.yy_appendAttachment(with: image, contentMode: .center, attachmentSize: image.size, alignTo: descriptionFont, alignment: .center)
             
             descriptionText.yy_appendStringRemoveHighlight(location)
         }
         if let urlDisplay = user.urlDisplay ?? user.url, let url = user.urlExpanded ?? user.url, !urlDisplay.isEmpty, !url.isEmpty {
-            descriptionText.yy_appendString("\n")
+            if (descriptionText.length > 0) {
+                descriptionText.yy_appendString("\n")
+            }
             let image = UIImage(named: "Text Icon Web")!
             descriptionText.yy_appendAttachment(with: image, contentMode: .center, attachmentSize: image.size, alignTo: descriptionFont, alignment: .center)
             
             descriptionText.yy_appendTextHighlight(string: urlDisplay, color: cellDisplayOption.linkColor, backgroundColor: nil, userInfo: [highlightUserInfoKey: LinkSpanItem(link: url)])
         }
         if let createdAt = user.createdAt as NSDate? {
-            descriptionText.yy_appendString("\n")
+            if (descriptionText.length > 0) {
+                descriptionText.yy_appendString("\n")
+            }
             let image = UIImage(named: "Text Icon Time")!
             descriptionText.yy_appendAttachment(with: image, contentMode: .center, attachmentSize: image.size, alignTo: descriptionFont, alignment: .center)
             
@@ -297,6 +307,8 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
                 descriptionText.yy_appendStringRemoveHighlight(" (\(tweetsPerDay.shortLocalizedString) tweets per day)")
             }
         }
+        descriptionText.yy_setFont(descriptionFont, range: descriptionText.yy_rangeOfAll())
+        
         descriptionView.attributedText = descriptionText
         if user.accountKey == user.key {
             let image = #imageLiteral(resourceName: "Button Follow Empty")
@@ -344,12 +356,11 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         
         userActionButton.layer.makeRoundedCorner(radius: 4, borderColor: userActionButton.tintColor.cgColor, borderWidth: 1)
         
+        updateBannerScaleTransfom(true)
+        
         self.userActionContainer.setNeedsLayout()
         self.userButtonsBackground.setNeedsLayout()
         self.view.setNeedsLayout()
-        self.view.layoutIfNeeded()
-        
-        updateBannerScaleTransfom(false)
     }
     
     func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
@@ -380,6 +391,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         }
         
         let topLayoutGuideLength = topLayoutGuide.length
+        
         let navBarHeight = navigationController.navigationBar.frame.height
         
         var bannerTransform = CATransform3DIdentity
@@ -404,6 +416,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
             self.blurredBannerView.alpha = min(1, -topOffset / 30)
             titleTextColor = titleTextColor.withAlphaComponent(0)
         } else if (topOffset > (bannerHeight - topLayoutGuideLength - navBarHeight)) {
+        
             bannerTransform = CATransform3DTranslate(bannerTransform, 0, topOffset - (bannerHeight - topLayoutGuideLength - navBarHeight), 1)
             
             let diff = profileImageExceddedHeight

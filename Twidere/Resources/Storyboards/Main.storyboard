@@ -33,51 +33,15 @@
                 <viewControllerPlaceholder storyboardIdentifier="Compose" storyboardName="Compose" id="jeK-UO-IK4" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWT-6I-d6g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2781.5" y="789"/>
+            <point key="canvasLocation" x="1844" y="789"/>
         </scene>
-        <!--Twidere-->
+        <!--Home Controller-->
         <scene sceneID="0Oy-e8-DWL">
             <objects>
-                <tabBarController storyboardIdentifier="HomeTabs" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FoP-na-KSh" customClass="HomeController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Twidere" id="r5m-0b-NVD">
-                        <barButtonItem key="leftBarButtonItem" id="kK6-0x-XAl">
-                            <view key="customView" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="Jx2-wh-WQW">
-                                <rect key="frame" x="16" y="5" width="33" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Image Default" translatesAutoresizingMaskIntoConstraints="NO" id="B8K-zC-a4m" userLabel="Profile image"/>
-                                </subviews>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstItem="B8K-zC-a4m" firstAttribute="top" secondItem="Jx2-wh-WQW" secondAttribute="top" id="4Ki-CL-Bc5"/>
-                                    <constraint firstAttribute="trailing" secondItem="B8K-zC-a4m" secondAttribute="trailing" id="AWu-Ra-7P0"/>
-                                    <constraint firstItem="B8K-zC-a4m" firstAttribute="leading" secondItem="Jx2-wh-WQW" secondAttribute="leading" id="evD-z0-9A7"/>
-                                    <constraint firstAttribute="bottom" secondItem="B8K-zC-a4m" secondAttribute="bottom" id="r7i-gA-1mT"/>
-                                </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="lFZ-cu-Jdq" appends="YES" id="5Rt-lC-G6J"/>
-                                </connections>
-                            </view>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="Toolbar Status Compose" id="g9c-7t-Vlv">
-                            <connections>
-                                <action selector="composeClicked:" destination="FoP-na-KSh" id="txv-Ai-KQ0"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="accountProfileImageView" destination="B8K-zC-a4m" id="VrY-MV-nt3"/>
-                        <outlet property="menuToggleItem" destination="kK6-0x-XAl" id="9Do-0a-5WX"/>
-                    </connections>
-                </tabBarController>
+                <tabBarController storyboardIdentifier="HomeTabs" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FoP-na-KSh" customClass="HomeController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zbH-ua-W4v" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="lFZ-cu-Jdq">
-                    <connections>
-                        <action selector="accountIconClicked:" destination="FoP-na-KSh" id="1DM-y3-oPo"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3037" y="425"/>
+            <point key="canvasLocation" x="2100" y="424"/>
         </scene>
         <!--SignIn-->
         <scene sceneID="Mhw-70-NRU">
@@ -93,7 +57,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="Preferences" storyboardName="Preferences" referencedIdentifier="Preferences" id="OJ1-o4-iPA" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HTB-ZU-hMH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2790" y="956"/>
+            <point key="canvasLocation" x="1853" y="955"/>
         </scene>
         <!--UserProfile-->
         <scene sceneID="8Dh-9C-9GH">
@@ -101,7 +65,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="AccountProfile" storyboardName="Viewers" referencedIdentifier="UserProfile" id="GPr-XG-frw" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0rJ-b8-VXj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2787.5" y="1013"/>
+            <point key="canvasLocation" x="1850" y="1013"/>
         </scene>
         <!--AccountsList-->
         <scene sceneID="N99-ug-yJF">
@@ -109,7 +73,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="AccountsManager" storyboardName="SignIn" referencedIdentifier="AccountsList" id="qcR-Hk-JLw" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Aj-zN-gRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2793" y="838"/>
+            <point key="canvasLocation" x="1856" y="837"/>
         </scene>
         <!--FiltersTabs-->
         <scene sceneID="yDI-Xa-IYh">
@@ -117,29 +81,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="Filters" storyboardName="Filters" referencedIdentifier="FiltersTabs" id="J6n-9v-0uY" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EvF-Ld-KhX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2786" y="892"/>
-        </scene>
-        <!--Home Root-->
-        <scene sceneID="ywf-E1-9cT">
-            <objects>
-                <navigationController storyboardIdentifier="HomeRoot" useStoryboardIdentifierAsRestorationIdentifier="YES" id="y6G-7y-M1v" userLabel="Home Root" customClass="HomeRootController" customModule="Twidere" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pvw-rH-LYc">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="FoP-na-KSh" kind="relationship" relationship="rootViewController" id="1Us-ic-BTf"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="L6R-WO-8k5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2185" y="425"/>
+            <point key="canvasLocation" x="1850" y="891"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Profile Image Default" width="24" height="24"/>
-        <image name="Toolbar Status Compose" width="22" height="22"/>
-    </resources>
 </document>

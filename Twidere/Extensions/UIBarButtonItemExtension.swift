@@ -12,6 +12,11 @@ private var originalImageKey: UInt8 = 0
 
 extension UIBarButtonItem {
     
+    convenience init(tappableCustomView: UIView, target: Any?, action: Selector?) {
+        tappableCustomView.addGestureRecognizer(UITapGestureRecognizer(target: target, action: action))
+        self.init(customView: tappableCustomView)
+    }
+    
     func makeShadowed(_ shadow: NSShadow) {
         let origImage: UIImage?
         if let obj = objc_getAssociatedObject(self, &originalImageKey) as? UIImage {
@@ -22,4 +27,5 @@ extension UIBarButtonItem {
         }
         self.image = origImage?.withShadow(shadow).withRenderingMode(.alwaysOriginal)
     }
+    
 }

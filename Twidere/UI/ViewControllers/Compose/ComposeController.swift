@@ -18,6 +18,7 @@ import SwiftyUserDefaults
 import AssetsLibrary
 import Photos
 
+
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
@@ -217,41 +218,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     }
     
     private func pickMedia() {
-        _ = firstly { () -> Promise<[String: Any]> in
-            return Promise { fulfill, reject in
-                class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-                    let fulfill: ([String: Any]) -> Void
-                    let reject: (Error) -> Void
-                    init(_ fulfill: @escaping ([String: Any]) -> Void, _ reject: @escaping (Error) -> Void) {
-                        self.fulfill = fulfill
-                        self.reject = reject
-                    }
-                    
-                     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-                        fulfill(info)
-                    }
-                    
-                    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-                        reject(PMKError.noImageFound)
-                    }
-                }
-                let picker = UIImagePickerController()
-                picker.sourceType = .photoLibrary
-                picker.delegate = ImagePickerDelegate(fulfill, reject)
-                present(picker, animated: true, completion: nil)
-            }
-        }.then { info -> Promise<Data> in
-            return Promise { fullfill, reject in
-                let imageUrl = info[UIImagePickerControllerReferenceURL] as! URL
-                    
-                let asset = PHAsset.fetchAssets(withALAssetURLs: [imageUrl], options: nil).firstObject!
-                self.imageManager.requestImageData(for: asset, options: nil, resultHandler: { (data, dataUTI, orientation, info) in
-                    if (data != nil) {
-                        fullfill(data!)
-                    }
-                })
-            }
-        }.then(on: .global()) { data -> MediaUpdate? in
+        _ = promise(UIImagePickerController()).then(on: .global()) { (data: Data) -> MediaUpdate? in
             guard let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else {
                 return nil
             }

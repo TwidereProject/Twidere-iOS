@@ -19,10 +19,11 @@ extension NSMutableAttributedString {
     
     
     func yy_appendStringRemoveHighlight(_ string: String) {
+        let emptyBefore = string.isEmpty
         var range = NSMakeRange(self.length, 0)
         self.yy_appendString(string)
         range.length = self.length - range.location
-        if let font = self.yy_font(at: UInt(range.location)) {
+        if !emptyBefore, let font = self.yy_font(at: UInt(range.location)) {
             self.yy_removeAttributes(in: range)
             self.yy_setFont(font, range: range)
         }

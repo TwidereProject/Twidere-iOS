@@ -5,7 +5,7 @@ use_frameworks!
 
 target 'Twidere' do
   pod 'SwiftyJSON', '~> 3.1.0' # Swift 3
-  pod 'SQLite.swift', :git => 'https://github.com/stephencelis/SQLite.swift.git' # Swift 3
+  pod 'SQLite.swift', '~> 0.11.0' # Swift 3
   pod 'CryptoSwift', '~> 0.6.0'  # Swift 3
   pod 'Alamofire', '~> 4.0' # Swift 3
   pod 'JVFloatLabeledTextField', '1.1.1' # Obj-C
@@ -32,7 +32,7 @@ target 'Twidere' do
   pod 'YYText', '~> 1.0.7'
   pod 'MWPhotoBrowser', '~> 2.1.2'
   pod 'DeviceKit', '~> 1.0'
-  pod 'SwiftHEXColors', :git=> 'https://github.com/thii/SwiftHEXColors.git', :branch=> 'swift-3.0'
+  pod 'SwiftHEXColors', '~> 1.0.4'
   pod 'Freddy', '~> 3.0.0'
 end
 

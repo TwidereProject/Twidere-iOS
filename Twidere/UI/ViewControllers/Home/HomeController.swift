@@ -14,46 +14,62 @@ import SQLite
 
 class HomeController: UITabBarController {
     
-    @IBOutlet weak var accountProfileImageView: UIImageView!
-    @IBOutlet weak var menuToggleItem: UIBarButtonItem!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        self.accountProfileImageView.layer.cornerRadius = self.accountProfileImageView.frame.size.width / 2
-        self.accountProfileImageView.clipsToBounds = true
-        
-        self.menuToggleItem.customView?.touchHighlightingStyle = .transparentMask
-        self.tabBar.isTranslucent = false
-        
         let pages = UIStoryboard(name: "Pages", bundle: nil)
+        let viewers = UIStoryboard(name: "Viewers", bundle: nil)
         
-        let homeTimelineController = pages.instantiateViewController(withIdentifier: "StatusesList") as! StatusesListController
-        homeTimelineController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "Tab Icon Home"), tag: 1)
-        homeTimelineController.dataSource = HomeTimelineStatusesListControllerDataSource()
-        let notificationsTimelineController = pages.instantiateViewController(withIdentifier: "ActivitiesList") as! ActivitiesListController
-        notificationsTimelineController.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(named: "Tab Icon Notification"), tag: 2)
-        notificationsTimelineController.dataSource = InteractionsActivitiesListControllerDataSource()
-        let messageConversationsController = pages.instantiateViewController(withIdentifier: "StubTab")
-        messageConversationsController.tabBarItem = UITabBarItem(title: "Messages", image: UIImage(named: "Tab Icon Message"), tag: 3)
-        let testController = pages.instantiateViewController(withIdentifier: "StubTab")
-        testController.tabBarItem = UITabBarItem(title: "User", image: UIImage(named: "Tab Icon User"), tag: 4)
+        let homeTimelineController: UIViewController = {
+            let vc = pages.instantiateViewController(withIdentifier: "StatusesList") as! StatusesListController
+            vc.dataSource = HomeTimelineStatusesListControllerDataSource()
+            
+            vc.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Toolbar Status Compose"), style: .plain, target: self, action: #selector(self.composeClicked(_:)))
+            vc.navigationItem.title = "Home"
+            
+            let nvc = UINavigationController(rootViewController: vc)
+            nvc.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "Tab Icon Home"), tag: 1)
+            return nvc
+        }()
         
-        let pageControllers = [homeTimelineController, notificationsTimelineController, messageConversationsController, testController]
+        let notificationsTimelineController: UIViewController = {
+            let vc = pages.instantiateViewController(withIdentifier: "ActivitiesList") as! ActivitiesListController
+            vc.dataSource = InteractionsActivitiesListControllerDataSource()
+            
+            vc.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Toolbar Status Compose"), style: .plain, target: self, action: #selector(self.composeClicked(_:)))
+            vc.navigationItem.title = "Notifications"
+            
+            let nvc = UINavigationController(rootViewController: vc)
+            nvc.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(named: "Tab Icon Notification"), tag: 2)
+            return nvc
+        }()
+        
+        let messageConversationsController: UIViewController = {
+            let vc = pages.instantiateViewController(withIdentifier: "StubTab")
+            
+            vc.navigationItem.title = "Messages"
+            
+            let nvc = UINavigationController(rootViewController: vc)
+            nvc.tabBarItem = UITabBarItem(title: "Messages", image: UIImage(named: "Tab Icon Message"), tag: 3)
+            return nvc
+        }()
+        
+        let profileController: UIViewController = {
+            let vc = viewers.instantiateViewController(withIdentifier: "UserProfile") as! UserProfileController
+            try! vc.displayUser(user: defaultAccount()!.user, reload: true)
+            
+            vc.navigationItem.title = "Me"
+            
+            let nvc = UINavigationController(rootViewController: vc)
+            nvc.tabBarItem = UITabBarItem(title: "Me", image: UIImage(named: "Tab Icon User"), tag: 4)
+            return nvc
+        }()
+        
+        let pageControllers = [homeTimelineController, notificationsTimelineController, messageConversationsController, profileController]
         
         setViewControllers(pageControllers, animated: false)
         
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        _ = DispatchQueue.global().promise { () -> Account in
-            return try defaultAccount()!
-        }.then { account -> Void in
-            self.accountProfileImageView.displayImage(account.user.profileImageUrlForSize(.reasonablySmall), placeholder: UIImage(named: "Profile Image Default"))
-        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,20 +77,20 @@ class HomeController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func composeClicked(_ sender: UIBarButtonItem) {
+    @objc private func composeClicked(_ sender: UIBarButtonItem) {
         ComposeController.create().show(parent: self.parent ?? self)
     }
     
-    @IBAction func accountIconClicked(_ sender: UITapGestureRecognizer) {
+    @objc private func accountIconClicked(_ sender: UITapGestureRecognizer) {
         sender.isEnabled = false
         _ = DispatchQueue.global().promise { () -> Account in
             return try defaultAccount()!
-        }.then { account -> Void in
-            let vc = self.storyboard!.instantiateViewController(withIdentifier: "AccountProfile") as! UserProfileController
-            vc.displayUser(user: account.user, reload: true)
-            self.show(vc, sender: self)
-        }.always {
-            sender.isEnabled = true
+            }.then { account -> Void in
+                let vc = self.storyboard!.instantiateViewController(withIdentifier: "AccountProfile") as! UserProfileController
+                vc.displayUser(user: account.user, reload: true)
+                self.show(vc, sender: self)
+            }.always {
+                sender.isEnabled = true
         }
     }
     

@@ -2,14 +2,14 @@ PODS:
   - ActionSheetPicker-3.0 (2.2.0)
   - Alamofire (4.0.1)
   - ALSLayouts (2.0.4)
-  - CryptoSwift (0.6.0)
+  - CryptoSwift (0.6.1)
   - DACircularProgress (2.3.1)
   - DateTools (1.7.0)
   - DeviceKit (1.0.0)
   - Freddy (3.0.0)
   - FXBlurView (1.6.4)
   - FXImageView (1.3.5)
-  - IQKeyboardManagerSwift (4.0.6)
+  - IQKeyboardManagerSwift (4.0.7)
   - JDStatusBarNotification (1.5.4)
   - JVFloatLabeledTextField (1.1.1)
   - Kanna (2.0.0)
@@ -20,23 +20,23 @@ PODS:
     - SDWebImage (!= 3.7.2, ~> 3.7)
   - MXPagerView (0.1.3)
   - MXParallaxHeader (0.5.2)
-  - PromiseKit (4.0.3):
-    - PromiseKit/Foundation (= 4.0.3)
-    - PromiseKit/QuartzCore (= 4.0.3)
-    - PromiseKit/UIKit (= 4.0.3)
-  - PromiseKit/CorePromise (4.0.3)
-  - PromiseKit/Foundation (4.0.3):
+  - PromiseKit (4.0.4):
+    - PromiseKit/Foundation (= 4.0.4)
+    - PromiseKit/QuartzCore (= 4.0.4)
+    - PromiseKit/UIKit (= 4.0.4)
+  - PromiseKit/CorePromise (4.0.4)
+  - PromiseKit/Foundation (4.0.4):
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (4.0.3):
+  - PromiseKit/QuartzCore (4.0.4):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (4.0.3):
+  - PromiseKit/UIKit (4.0.4):
     - PromiseKit/CorePromise
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
-  - SQLite.swift (0.10.1):
-    - SQLite.swift/standard (= 0.10.1)
-  - SQLite.swift/standard (0.10.1)
+  - SQLite.swift (0.11.0):
+    - SQLite.swift/standard (= 0.11.0)
+  - SQLite.swift/standard (0.11.0)
   - StaticDataTableViewController (2.0.5)
   - STPopup (1.8.0)
   - SwiftHEXColors (1.0.4)
@@ -68,10 +68,10 @@ DEPENDENCIES:
   - MXParallaxHeader (~> 0.5.2)
   - PromiseKit (~> 4.0)
   - SDWebImage (~> 3.8.2)
-  - SQLite.swift (from `https://github.com/stephencelis/SQLite.swift.git`)
+  - SQLite.swift (~> 0.11.0)
   - StaticDataTableViewController (= 2.0.5)
   - STPopup (~> 1.8)
-  - SwiftHEXColors (from `https://github.com/thii/SwiftHEXColors.git`, branch `swift-3.0`)
+  - SwiftHEXColors (~> 1.0.4)
   - SwiftyJSON (~> 3.1.0)
   - SwiftyUserDefaults (~> 3.0)
   - ThumborURL (= 0.0.4)
@@ -81,33 +81,18 @@ DEPENDENCIES:
   - UIView+TouchHighlighting (~> 1.1)
   - YYText (~> 1.0.7)
 
-EXTERNAL SOURCES:
-  SQLite.swift:
-    :git: https://github.com/stephencelis/SQLite.swift.git
-  SwiftHEXColors:
-    :branch: swift-3.0
-    :git: https://github.com/thii/SwiftHEXColors.git
-
-CHECKOUT OPTIONS:
-  SQLite.swift:
-    :commit: 38d9b8508f77b51f7fe0bed9f360248bd32f4baf
-    :git: https://github.com/stephencelis/SQLite.swift.git
-  SwiftHEXColors:
-    :commit: f4b98e298528fd9d88b10ab55e806d29ce497daa
-    :git: https://github.com/thii/SwiftHEXColors.git
-
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   ALSLayouts: 73bf82f8475a0533c4513570ba13e442d1d1cd5a
-  CryptoSwift: 4a599b7241b8d3b857d6e2c28867d0bd5d1aae24
+  CryptoSwift: abdbc1bf32c89117c6b403810a7b30f742d86e68
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   DeviceKit: ddead7f3a7c9603ba3a63cb748566428c38dd11f
   Freddy: 367f994c88a90dd3987293b4b1bec94a4530745a
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   FXImageView: 7d84722b37f0afea9a64f12fdd4a6c7f9ecc4b16
-  IQKeyboardManagerSwift: b3015e819559ca76381f87a0833f44d178564603
+  IQKeyboardManagerSwift: 58bbcf46b5cf9fd4ed625d28a60cb2fbae4ab0f4
   JDStatusBarNotification: d47dded0594a50a39c84a2cc5aa356fcf6750d0e
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   Kanna: 9a6637f72f5c77fe9c045b1efb2a5bb074754af8
@@ -115,9 +100,9 @@ SPEC CHECKSUMS:
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
   MXPagerView: db0c020aeada6a0c704f18f8053468560e346982
   MXParallaxHeader: 5070ba8e8af27ec793c0d32ae82cfd2318e59635
-  PromiseKit: dfe8fcc6445674fb23378d89990838c1cbdbf05a
+  PromiseKit: 8e8ee39d33ff199d92a1a883b5396f6285be6c91
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  SQLite.swift: c54b2cb32c2ec77cd52bc7442d05dd51b0623861
+  SQLite.swift: 9a26273607d3077a2e5a8d33486e9989f8404c7d
   StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a
   STPopup: af630a85628e4226ffcbda5caaead0d99aed13a8
   SwiftHEXColors: b0ecc7bd83a1aa2e1956f9ba51f55ebb2bcf86ef
@@ -130,6 +115,6 @@ SPEC CHECKSUMS:
   UIView+TouchHighlighting: e05a338801522cbdc4a1e236bd189f2a928a781f
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: a411fa775eea61bc7e95c915ed3ff3c109f660a1
+PODFILE CHECKSUM: 38d81b04f7adb23a4dbfd4ff9abf32432a6b5dc8
 
-COCOAPODS: 1.1.0.rc.2
+COCOAPODS: 1.1.1

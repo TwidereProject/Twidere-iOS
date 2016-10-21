@@ -34,7 +34,7 @@ class SingleAccountStatusesListControllerDataSource: StatusesListControllerDataS
             paging.sinceId = sinceId
         }
         
-        return getStatusesRequest(microBlog: microBlog, paging: paging).then(on: DispatchQueue.global()) { fetched -> [Status] in
+        return self.getStatusesRequest(microBlog: microBlog, paging: paging).then(on: DispatchQueue.global()) { fetched -> [Status] in
             var rowsDeleted: Int = 0
             
             let noItemsBefore = self.statuses?.isEmpty ?? true
