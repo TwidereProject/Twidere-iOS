@@ -64,11 +64,11 @@ extension Status {
         let (textPlain, textDisplay, metadata) = Status.getMetadata(primary, accountKey: accountKey)
         let source: String? = primary["source"].string
         
-        metadata.replyCount = status["reply_count"].int64 ?? -1
-        metadata.retweetCount = status["retweet_count"].int64 ?? -1
-        metadata.favoriteCount = status["favorite_count"].int64 ?? -1
+        metadata.replyCount = primary["reply_count"].int64 ?? -1
+        metadata.retweetCount = primary["retweet_count"].int64 ?? -1
+        metadata.favoriteCount = primary["favorite_count"].int64 ?? -1
         
-        metadata.externalUrl = status["external_url"].string
+        metadata.externalUrl = primary["external_url"].string
         metadata.myRetweetId = status["current_user_retweet"]["id"].optionalStringValue
         metadata.isFavorite = status["favorited"].boolValue
         

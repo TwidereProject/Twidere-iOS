@@ -26,6 +26,8 @@ class DetailStatusCell: ALSTableViewCell {
     @IBOutlet weak var statusToolbar: UIToolbar!
 
     var displayOption: StatusCell.DisplayOption!
+    var delegate: DetailStatusCellDelegate!
+    var status: Status!
 
     override func awakeFromNib() {
         textView.numberOfLines = 0
@@ -45,6 +47,9 @@ class DetailStatusCell: ALSTableViewCell {
         statusToolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         statusToolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
         
+        textView.highlightTapAction = self.highlightTapped
+        quotedTextView.highlightTapAction  = self.highlightTapped
+        
         self.contentView.layoutMargins = UIEdgeInsets.zero
     }
     
@@ -54,6 +59,7 @@ class DetailStatusCell: ALSTableViewCell {
     }
 
     func display(_ status: Status) {
+        self.status = status
         let nameFontSize: CGFloat = displayOption.fontSize * 1.05
         let textFont: UIFont = UIFont.systemFont(ofSize: displayOption.fontSize * 1.2)
         let timeSourceFont: UIFont = UIFont.systemFont(ofSize: displayOption.fontSize * 0.9)
@@ -94,4 +100,37 @@ class DetailStatusCell: ALSTableViewCell {
         }
         return string
     }
+    
+    
+    @IBAction func replyTapped(_ sender: UIBarButtonItem) {
+        delegate.actionSelected(status: status, action: .reply)
+    }
+    
+    @IBAction func retweetTapped(_ sender: UIBarButtonItem) {
+        delegate.actionSelected(status: status, action: .retweet)
+    }
+    
+    @IBAction func favoriteTapped(_ sender: UIBarButtonItem) {
+        delegate.actionSelected(status: status, action: .favorite)
+    }
+    
+    @IBAction func shareTapped(_ sender: UIBarButtonItem) {
+        delegate.actionSelected(status: status, action: .share)
+    }
+    
+    @IBAction func moreTapped(_ sender: UIBarButtonItem) {
+        delegate.actionSelected(status: status, action: .more)
+    }
+    
+    @objc private func highlightTapped(view: UIView, string: NSAttributedString, range: NSRange, rect: CGRect) {
+        guard let span = string.yy_highlight(at: UInt(range.location))?.spanItem else {
+            return
+        }
+        delegate?.spanItemTapped(status: self.status, span: span)
+    }
+    
+}
+
+protocol DetailStatusCellDelegate: StatusCellDelegate {
+    
 }

@@ -71,4 +71,18 @@ extension NSMutableAttributedString {
             self.yy_setRunDelegate(delegateRef, range: range)
         }
     }
+    
+}
+
+extension NSAttributedString {
+    
+    func yy_highlight(at: UInt) -> YYTextHighlight? {
+        return yy_attribute(YYTextHighlightAttributeName, at: at) as? YYTextHighlight
+    }
+}
+
+extension YYTextHighlight {
+    var spanItem: SpanItem? {
+        return userInfo?[highlightUserInfoKey] as? SpanItem
+    }
 }

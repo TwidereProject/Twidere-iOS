@@ -189,10 +189,7 @@ class StatusCell: ALSTableViewCell {
     }
     
     @objc private func highlightTapped(view: UIView, string: NSAttributedString, range: NSRange, rect: CGRect) {
-        guard let highlight = string.yy_attribute(YYTextHighlightAttributeName, at: UInt(range.location)) as? YYTextHighlight else {
-            return
-        }
-        guard let span = highlight.userInfo?[highlightUserInfoKey] as? SpanItem else {
+        guard let span = string.yy_highlight(at: UInt(range.location))?.spanItem else {
             return
         }
         delegate?.spanItemTapped(status: self.status, span: span)
@@ -311,7 +308,7 @@ class StatusCell: ALSTableViewCell {
     }
     
     enum StatusAction {
-        case reply, retweet, favorite, more
+        case reply, retweet, favorite, share, more
     }
 }
 

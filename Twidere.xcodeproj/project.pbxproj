@@ -104,9 +104,10 @@
 		CE6C6C341DB35C1D00DF4892 /* AccountExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C301DB35C1D00DF4892 /* AccountExtensions.swift */; };
 		CE6C6C361DB35C1D00DF4892 /* StatusExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C321DB35C1D00DF4892 /* StatusExtension.swift */; };
 		CE6C6C371DB35C1D00DF4892 /* UserKey+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C331DB35C1D00DF4892 /* UserKey+Freddy.swift */; };
+		CE6D6E9A1DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D6E991DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift */; };
 		CE779F361D858B210053B5C7 /* User+MicroBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE779F351D858B210053B5C7 /* User+MicroBlog.swift */; };
 		CE79C83D1DA62E56007C05F2 /* SpanItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */; };
-		CE79C83F1DA77777007C05F2 /* YYTextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C83E1DA77777007C05F2 /* YYTextExtensions.swift */; };
+		CE79C83F1DA77777007C05F2 /* YYText+ALSLayouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C83E1DA77777007C05F2 /* YYText+ALSLayouts.swift */; };
 		CE79C8411DA7ACE3007C05F2 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C8401DA7ACE3007C05F2 /* UIViewExtension.swift */; };
 		CE7A573C1D910EB00027BECE /* SegmentedContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A573B1D910EB00027BECE /* SegmentedContainerView.swift */; };
 		CE7A57401D917B580027BECE /* HomeTimelineStatusesListControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A573F1D917B580027BECE /* HomeTimelineStatusesListControllerDataSource.swift */; };
@@ -301,9 +302,10 @@
 		CE6C6C301DB35C1D00DF4892 /* AccountExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountExtensions.swift; sourceTree = "<group>"; };
 		CE6C6C321DB35C1D00DF4892 /* StatusExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusExtension.swift; sourceTree = "<group>"; };
 		CE6C6C331DB35C1D00DF4892 /* UserKey+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserKey+Freddy.swift"; sourceTree = "<group>"; };
+		CE6D6E991DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNavigationBarProtocol.swift; sourceTree = "<group>"; };
 		CE779F351D858B210053B5C7 /* User+MicroBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+MicroBlog.swift"; sourceTree = "<group>"; };
 		CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItemExtension.swift; sourceTree = "<group>"; };
-		CE79C83E1DA77777007C05F2 /* YYTextExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYTextExtensions.swift; sourceTree = "<group>"; };
+		CE79C83E1DA77777007C05F2 /* YYText+ALSLayouts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "YYText+ALSLayouts.swift"; sourceTree = "<group>"; };
 		CE79C8401DA7ACE3007C05F2 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		CE7A573B1D910EB00027BECE /* SegmentedContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedContainerView.swift; sourceTree = "<group>"; };
 		CE7A573F1D917B580027BECE /* HomeTimelineStatusesListControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineStatusesListControllerDataSource.swift; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 				CED41F281D2FEE9C0089E0B6 /* ViewControllers */,
 				CEA2E2B21D368B1D0095BC57 /* Views */,
 				CE65B1B51D9C20AE00A38A61 /* PullToRefreshProtocol.swift */,
+				CE6D6E991DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -881,7 +884,7 @@
 				CEDEE3F41D9270BA00001BE8 /* UIRefreshControlExtension.swift */,
 				CEBECFC11DAA2F4500350383 /* UIViewControllerPreviewingExtension.swift */,
 				CE79C8401DA7ACE3007C05F2 /* UIViewExtension.swift */,
-				CE79C83E1DA77777007C05F2 /* YYTextExtensions.swift */,
+				CE79C83E1DA77777007C05F2 /* YYText+ALSLayouts.swift */,
 				CEEF42B81DB669C2009ECD0F /* YYTextExtension.swift */,
 				CEEF42BA1DB9D650009ECD0F /* Promise+TaskMessage.swift */,
 				CE412B211DB9F38D00C52099 /* SwiftyJSONExtension.swift */,
@@ -1523,7 +1526,7 @@
 				CE6C6C271DB0AC5800DF4892 /* Foundation+Freddy.swift in Sources */,
 				CE65B1D31D9CE3C800A38A61 /* Activity+MicroBlog.swift in Sources */,
 				CEDC3B261D7D9FE70082A8BA /* GetStatusesTask.swift in Sources */,
-				CE79C83F1DA77777007C05F2 /* YYTextExtensions.swift in Sources */,
+				CE79C83F1DA77777007C05F2 /* YYText+ALSLayouts.swift in Sources */,
 				CEBECFB71DA9EBD300350383 /* CALayerExtension.swift in Sources */,
 				CE7A57421D917BDB0027BECE /* SingleAccountStatusesListControllerDataSource.swift in Sources */,
 				CE2903EC1D4F200A0056D0E2 /* UserExtensions.swift in Sources */,
@@ -1596,6 +1599,7 @@
 				CE03118A1D87D946009475E8 /* MediaUploadResponse.swift in Sources */,
 				CEA2E2CF1D3A779B0095BC57 /* UIImageViewExtension.swift in Sources */,
 				CEDC3B1F1D7D82370082A8BA /* CoreConstants.swift in Sources */,
+				CE6D6E9A1DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift in Sources */,
 				CEA2E2A71D34C1610095BC57 /* DefaultAPISettingsController.swift in Sources */,
 				CEDFEA6D1D4F4BF600E1F8B8 /* Status+MicroBlog.swift in Sources */,
 				CEEF42B91DB669C2009ECD0F /* YYTextExtension.swift in Sources */,

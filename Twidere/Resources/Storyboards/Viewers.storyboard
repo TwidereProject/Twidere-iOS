@@ -180,15 +180,35 @@
                                                     <frame key="frameInset" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     <items>
-                                                        <barButtonItem image="Button Action Reply" id="Gfa-bD-8gM"/>
+                                                        <barButtonItem image="Button Action Reply" id="Gfa-bD-8gM" userLabel="Reply Item">
+                                                            <connections>
+                                                                <action selector="replyTapped:" destination="uo2-VL-hN1" id="VNO-r9-T7E"/>
+                                                            </connections>
+                                                        </barButtonItem>
                                                         <barButtonItem style="plain" systemItem="flexibleSpace" id="baS-Zc-pan"/>
-                                                        <barButtonItem image="Button Action Retweet" id="z8P-ji-h6u"/>
+                                                        <barButtonItem image="Button Action Retweet" id="z8P-ji-h6u" userLabel="Retweet Item">
+                                                            <connections>
+                                                                <action selector="retweetTapped:" destination="uo2-VL-hN1" id="xS0-Gy-C7T"/>
+                                                            </connections>
+                                                        </barButtonItem>
                                                         <barButtonItem style="plain" systemItem="flexibleSpace" id="gG0-Ug-0sL"/>
-                                                        <barButtonItem image="Button Action Star" id="Dh8-D7-e3N"/>
+                                                        <barButtonItem image="Button Action Star" id="Dh8-D7-e3N" userLabel="Favorite Item">
+                                                            <connections>
+                                                                <action selector="favoriteTapped:" destination="uo2-VL-hN1" id="v5t-GC-57j"/>
+                                                            </connections>
+                                                        </barButtonItem>
                                                         <barButtonItem style="plain" systemItem="flexibleSpace" id="aEc-Hd-rF4"/>
-                                                        <barButtonItem image="Button Action Share" id="iW2-WX-Gnm"/>
+                                                        <barButtonItem image="Button Action Share" id="iW2-WX-Gnm" userLabel="Share Item">
+                                                            <connections>
+                                                                <action selector="shareTapped:" destination="uo2-VL-hN1" id="QIr-Vv-Uqg"/>
+                                                            </connections>
+                                                        </barButtonItem>
                                                         <barButtonItem style="plain" systemItem="flexibleSpace" id="SDq-bX-MCx"/>
-                                                        <barButtonItem image="Button Action More" id="aQd-dP-Ivt"/>
+                                                        <barButtonItem image="Button Action More" id="aQd-dP-Ivt" userLabel="More Item">
+                                                            <connections>
+                                                                <action selector="moreTapped:" destination="uo2-VL-hN1" id="9RV-bs-qsN"/>
+                                                            </connections>
+                                                        </barButtonItem>
                                                     </items>
                                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>

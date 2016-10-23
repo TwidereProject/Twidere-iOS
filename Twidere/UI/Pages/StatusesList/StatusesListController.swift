@@ -308,6 +308,8 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         switch action {
         case .reply:
             replyStatus(status: status)
+        case .favorite:
+            toggleFavoriteStatus(status: status)
         case .more:
             openStatusMenu(status: status)
         default:
@@ -331,6 +333,25 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         let cvc = ComposeController.create()
         cvc.inReplyToStatus = status
         cvc.show(parent: nvc.parent ?? nvc)
+    }
+    
+    func toggleFavoriteStatus(status: Status) {
+        guard let accountKey = status.accountKey, let isFavorite = status.metadata?.isFavorite else {
+            return
+        }
+        let servicePromise = DispatchQueue.global().promise { () -> MicroBlogService in
+            let account = getAccount(forKey: accountKey)!
+            return account.newMicroBlogService()
+        }
+        if (isFavorite) {
+            servicePromise.then { microBlog -> Promise<Status> in
+                return microBlog.destroyFavorite(id: status.id)
+            }.showStatusBarNotificationAfterTask(success: "Tweet unfavorited", failure: "Unable to unfavorite tweet")
+        } else {
+            servicePromise.then { microBlog -> Promise<Status> in
+                return microBlog.createFavorite(id: status.id)
+            }.showStatusBarNotificationAfterTask(success: "Tweet favorited", failure: "Unable to favorite tweet")
+        }
     }
     
     func confirmAndDestroyStatus(status: Status) {

@@ -13,7 +13,7 @@ import PromiseKit
 typealias StatusInfo = (accountKey: UserKey, id: String)
 typealias StatusPreviewCallback = (_ status: Status, _ action: StatusViewerController.PreviewAction) -> Void
 
-class StatusViewerController: UITableViewController {
+class StatusViewerController: UITableViewController, DetailStatusCellDelegate {
     
     var cellDisplayOption: StatusCell.DisplayOption! = StatusCell.DisplayOption()
     var previewCallback: StatusPreviewCallback!
@@ -68,6 +68,7 @@ class StatusViewerController: UITableViewController {
         case 0:
             let statusCell = tableView.dequeueReusableCell(withIdentifier: "DetailStatus", for: indexPath) as! DetailStatusCell
             statusCell.displayOption = self.cellDisplayOption
+            statusCell.delegate = self
             return statusCell
         default:
             break
@@ -142,7 +143,7 @@ class StatusViewerController: UITableViewController {
         previewCallback?(status, action)
     }
     
-    fileprivate func shareStatus() {
+    fileprivate func shareStatus(status: Status) {
         guard let status = self.status else {
             return
         }
@@ -167,6 +168,70 @@ class StatusViewerController: UITableViewController {
         }.then { status -> Void in
             self.status = status
             self.tableView.reloadData()
+        }
+    }
+    
+    func actionSelected(status: Status, action: StatusCell.StatusAction) {
+        switch action {
+        case .reply:
+            replyStatus(status: status)
+        case .favorite:
+            toggleFavoriteStatus(status: status)
+        case .share:
+            shareStatus(status: status)
+        default:
+            break
+        }
+    }
+    
+    func profileImageTapped(status: Status) {
+        
+    }
+    
+    func quotedViewTapped(status: Status) {
+        
+    }
+    
+    func mediaPreviewTapped(status: Status) {
+        
+    }
+    
+    func spanItemTapped(status: Status, span: SpanItem) {
+        guard let (vc, present) = span.createViewController(accountKey: status.accountKey) else {
+            return
+        }
+        if (present) {
+            self.present(vc, animated: true, completion: nil)
+        } else {
+            self.show(vc, sender: self)
+        }
+    }
+    
+    func replyStatus(status: Status) {
+        guard let nvc = self.navigationController else {
+            return
+        }
+        let cvc = ComposeController.create()
+        cvc.inReplyToStatus = status
+        cvc.show(parent: nvc.parent ?? nvc)
+    }
+    
+    func toggleFavoriteStatus(status: Status) {
+        guard let accountKey = status.accountKey, let isFavorite = status.metadata?.isFavorite else {
+            return
+        }
+        let servicePromise = DispatchQueue.global().promise { () -> MicroBlogService in
+            let account = getAccount(forKey: accountKey)!
+            return account.newMicroBlogService()
+        }
+        if (isFavorite) {
+            servicePromise.then { microBlog -> Promise<Status> in
+                return microBlog.destroyFavorite(id: status.id)
+                }.showStatusBarNotificationAfterTask(success: "Tweet unfavorited", failure: "Unable to unfavorite tweet")
+        } else {
+            servicePromise.then { microBlog -> Promise<Status> in
+                return microBlog.createFavorite(id: status.id)
+                }.showStatusBarNotificationAfterTask(success: "Tweet favorited", failure: "Unable to favorite tweet")
         }
     }
     

@@ -27,7 +27,7 @@ class HomeController: UITabBarController, UIViewControllerTransitioningDelegate 
             vc.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Toolbar Status Compose"), style: .plain, target: self, action: #selector(self.composeClicked(_:)))
             vc.navigationItem.title = "Home"
             
-            let nvc = UINavigationController(rootViewController: vc)
+            let nvc = HomeNavigationController(rootViewController: vc)
             nvc.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "Tab Icon Home"), tag: 1)
             nvc.navigationBar.isTranslucent = false
             return nvc
@@ -40,7 +40,7 @@ class HomeController: UITabBarController, UIViewControllerTransitioningDelegate 
             vc.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Toolbar Status Compose"), style: .plain, target: self, action: #selector(self.composeClicked(_:)))
             vc.navigationItem.title = "Notifications"
             
-            let nvc = UINavigationController(rootViewController: vc)
+            let nvc = HomeNavigationController(rootViewController: vc)
             nvc.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(named: "Tab Icon Notification"), tag: 2)
             nvc.navigationBar.isTranslucent = false
             return nvc
@@ -51,7 +51,7 @@ class HomeController: UITabBarController, UIViewControllerTransitioningDelegate 
             
             vc.navigationItem.title = "Messages"
             
-            let nvc = UINavigationController(rootViewController: vc)
+            let nvc = HomeNavigationController(rootViewController: vc)
             nvc.tabBarItem = UITabBarItem(title: "Messages", image: UIImage(named: "Tab Icon Message"), tag: 3)
             nvc.navigationBar.isTranslucent = false
             return nvc
@@ -63,7 +63,7 @@ class HomeController: UITabBarController, UIViewControllerTransitioningDelegate 
             
             vc.navigationItem.title = "Me"
             
-            let nvc = UINavigationController(rootViewController: vc)
+            let nvc = HomeNavigationController(rootViewController: vc)
             nvc.tabBarItem = UITabBarItem(title: "Me", image: UIImage(named: "Tab Icon User"), tag: 4)
             nvc.navigationBar.isTranslucent = false
             return nvc
@@ -98,4 +98,25 @@ class HomeController: UITabBarController, UIViewControllerTransitioningDelegate 
         }
     }
     
+}
+
+class HomeNavigationController: UINavigationController, UINavigationControllerDelegate {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.delegate = self
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if (viewController is HideNavigationBarProtocol) {
+            navigationController.setNavigationBarHidden(true, animated: animated)
+            if let recognizer = navigationController.interactivePopGestureRecognizer {
+                recognizer.isEnabled = true
+                if let delegate = navigationController as? UIGestureRecognizerDelegate {
+                    recognizer.delegate = delegate
+                }
+            }
+        } else {
+            navigationController.setNavigationBarHidden(false, animated: animated)
+        }
+    }
 }

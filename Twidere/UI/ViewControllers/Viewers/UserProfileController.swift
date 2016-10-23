@@ -18,7 +18,7 @@ import DateTools
 
 typealias UserInfo = (accountKey: UserKey, userKey: UserKey?, screenName: String?)
 
-class UserProfileController: UIViewController, UINavigationBarDelegate, SegmentedContainerViewDelegate, SegmentedContainerViewDataSource, StatusesListControllerDelegate {
+class UserProfileController: UIViewController, UINavigationBarDelegate, SegmentedContainerViewDelegate, SegmentedContainerViewDataSource, StatusesListControllerDelegate, HideNavigationBarProtocol {
     
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var profileBannerContainer: ProfileBannerContainer!
@@ -104,15 +104,6 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let navigationController = self.navigationController {
-            navigationController.setNavigationBarHidden(true, animated: animated)
-            if let recognizer = navigationController.interactivePopGestureRecognizer {
-                recognizer.isEnabled = true
-                if let delegate = navigationController as? UIGestureRecognizerDelegate {
-                    recognizer.delegate = delegate
-                }
-            }
-        }
         setupNavBar()
         updateBannerScaleTransfom(false)
     }
@@ -120,14 +111,6 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateBannerScaleTransfom(false)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        if let navigationController = self.navigationController {
-            let top = navigationController.topViewController
-            navigationController.setNavigationBarHidden(top is UserProfileController, animated: animated)
-        }
     }
     
     override func viewWillLayoutSubviews() {
