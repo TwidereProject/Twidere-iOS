@@ -3,7 +3,6 @@ PODS:
   - Alamofire (4.0.1)
   - ALSLayouts (2.0.4)
   - CryptoSwift (0.6.1)
-  - DACircularProgress (2.3.1)
   - DateTools (1.7.0)
   - DeviceKit (1.0.0)
   - Freddy (3.0.0)
@@ -13,11 +12,6 @@ PODS:
   - JDStatusBarNotification (1.5.4)
   - JVFloatLabeledTextField (1.1.1)
   - Kanna (2.0.0)
-  - MBProgressHUD (0.9.2)
-  - MWPhotoBrowser (2.1.2):
-    - DACircularProgress (~> 2.3)
-    - MBProgressHUD (~> 0.9)
-    - SDWebImage (!= 3.7.2, ~> 3.7)
   - MXPagerView (0.1.3)
   - MXParallaxHeader (0.5.2)
   - PromiseKit (4.0.4):
@@ -63,7 +57,6 @@ DEPENDENCIES:
   - JDStatusBarNotification (= 1.5.4)
   - JVFloatLabeledTextField (= 1.1.1)
   - Kanna (~> 2.0.0)
-  - MWPhotoBrowser (~> 2.1.2)
   - MXPagerView (~> 0.1.3)
   - MXParallaxHeader (~> 0.5.2)
   - PromiseKit (~> 4.0)
@@ -86,7 +79,6 @@ SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   ALSLayouts: 73bf82f8475a0533c4513570ba13e442d1d1cd5a
   CryptoSwift: abdbc1bf32c89117c6b403810a7b30f742d86e68
-  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   DeviceKit: ddead7f3a7c9603ba3a63cb748566428c38dd11f
   Freddy: 367f994c88a90dd3987293b4b1bec94a4530745a
@@ -96,8 +88,6 @@ SPEC CHECKSUMS:
   JDStatusBarNotification: d47dded0594a50a39c84a2cc5aa356fcf6750d0e
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   Kanna: 9a6637f72f5c77fe9c045b1efb2a5bb074754af8
-  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
   MXPagerView: db0c020aeada6a0c704f18f8053468560e346982
   MXParallaxHeader: 5070ba8e8af27ec793c0d32ae82cfd2318e59635
   PromiseKit: 8e8ee39d33ff199d92a1a883b5396f6285be6c91
@@ -115,6 +105,6 @@ SPEC CHECKSUMS:
   UIView+TouchHighlighting: e05a338801522cbdc4a1e236bd189f2a928a781f
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 38d81b04f7adb23a4dbfd4ff9abf32432a6b5dc8
+PODFILE CHECKSUM: 0eab7a1c234da33a9e73754bc7bc0f8f495d3377
 
 COCOAPODS: 1.1.1

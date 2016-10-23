@@ -11,7 +11,6 @@ import SwiftyJSON
 import DateTools
 import ALSLayouts
 import YYText
-import MWPhotoBrowser
 
 class StatusCell: ALSTableViewCell {
     
@@ -255,11 +254,10 @@ class StatusCell: ALSTableViewCell {
                 vc.displayStatus(status.quotedStatus!, reload: true)
                 return (vc, v.convert(v.bounds, to: self), false)
             case self.mediaPreview:
-                let vc = MediaViewerController(media: status.metadata!.media!)
                 if let item = status.metadata?.media?.first {
-                    vc.preferredContentSize = CGSize(width: item.width, height: item.height)
+                    let vc = SafariBrowserController(url: URL(string: item.mediaUrl!)!)
+                    return (vc, v.convert(v.bounds, to: self), true)
                 }
-                return (vc, v.convert(v.bounds, to: self), false)
             default:
                 break
             }

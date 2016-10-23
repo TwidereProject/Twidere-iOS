@@ -11,7 +11,6 @@ import SwiftyJSON
 import PromiseKit
 import UITableView_FDTemplateLayoutCell
 import YYText
-import ActionSheetPicker_3_0
 
 class StatusesListController: UITableViewController, StatusCellDelegate, PullToRefreshProtocol, UIViewControllerPreviewingDelegate {
     
@@ -301,8 +300,8 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
     }
     
     func mediaPreviewTapped(status: Status) {
-        let vc = MediaViewerController(media: status.metadata!.media!)
-        self.show(vc, sender: self)
+        let vc = SafariBrowserController(url: URL(string: status.metadata!.media.first!.mediaUrl!)!)
+        self.present(vc, animated: true, completion: nil)
     }
     
     func actionSelected(status: Status, action: StatusCell.StatusAction) {

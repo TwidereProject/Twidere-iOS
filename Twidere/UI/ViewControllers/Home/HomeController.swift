@@ -12,7 +12,7 @@ import UIView_TouchHighlighting
 import PromiseKit
 import SQLite
 
-class HomeController: UITabBarController {
+class HomeController: UITabBarController, UIViewControllerTransitioningDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +29,7 @@ class HomeController: UITabBarController {
             
             let nvc = UINavigationController(rootViewController: vc)
             nvc.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "Tab Icon Home"), tag: 1)
+            nvc.navigationBar.isTranslucent = false
             return nvc
         }()
         
@@ -41,6 +42,7 @@ class HomeController: UITabBarController {
             
             let nvc = UINavigationController(rootViewController: vc)
             nvc.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(named: "Tab Icon Notification"), tag: 2)
+            nvc.navigationBar.isTranslucent = false
             return nvc
         }()
         
@@ -51,6 +53,7 @@ class HomeController: UITabBarController {
             
             let nvc = UINavigationController(rootViewController: vc)
             nvc.tabBarItem = UITabBarItem(title: "Messages", image: UIImage(named: "Tab Icon Message"), tag: 3)
+            nvc.navigationBar.isTranslucent = false
             return nvc
         }()
         
@@ -62,14 +65,15 @@ class HomeController: UITabBarController {
             
             let nvc = UINavigationController(rootViewController: vc)
             nvc.tabBarItem = UITabBarItem(title: "Me", image: UIImage(named: "Tab Icon User"), tag: 4)
+            nvc.navigationBar.isTranslucent = false
             return nvc
         }()
         
         let pageControllers = [homeTimelineController, notificationsTimelineController, messageConversationsController, profileController]
         
         setViewControllers(pageControllers, animated: false)
-        
-        
+
+        self.tabBar.isTranslucent = false
     }
     
     override func didReceiveMemoryWarning() {

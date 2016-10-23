@@ -14,4 +14,6 @@ class HomeRootController: UINavigationController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         self.navigationBar.isTranslucent = false
     }
+    
+    
 }

@@ -145,10 +145,8 @@
 		CEBECFB31DA8C0C200350383 /* SafariBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBECFB21DA8C0C200350383 /* SafariBrowserController.swift */; };
 		CEBECFB51DA9E18100350383 /* TimelineContentTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBECFB41DA9E18100350383 /* TimelineContentTextView.swift */; };
 		CEBECFB71DA9EBD300350383 /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBECFB61DA9EBD300350383 /* CALayerExtension.swift */; };
-		CEBECFBE1DAA175500350383 /* MediaItem+MWPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBECFBD1DAA175500350383 /* MediaItem+MWPhoto.swift */; };
 		CEBECFC01DAA2BE300350383 /* TintedImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBECFBF1DAA2BE300350383 /* TintedImageButton.swift */; };
 		CEBECFC21DAA2F4500350383 /* UIViewControllerPreviewingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBECFC11DAA2F4500350383 /* UIViewControllerPreviewingExtension.swift */; };
-		CEBECFC41DAA36B600350383 /* MediaViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBECFC31DAA36B600350383 /* MediaViewerController.swift */; };
 		CEBECFCA1DAB8AD900350383 /* CollectionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBECFC91DAB8AD900350383 /* CollectionUtils.swift */; };
 		CEBED5FB1D4C86C700619D1C /* BackgroundOperationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBED5FA1D4C86C700619D1C /* BackgroundOperationService.swift */; };
 		CED41F2F1D2FF7C80089E0B6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F2E1D2FF7C80089E0B6 /* HomeController.swift */; };
@@ -344,10 +342,8 @@
 		CEBECFB21DA8C0C200350383 /* SafariBrowserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariBrowserController.swift; sourceTree = "<group>"; };
 		CEBECFB41DA9E18100350383 /* TimelineContentTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineContentTextView.swift; sourceTree = "<group>"; };
 		CEBECFB61DA9EBD300350383 /* CALayerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
-		CEBECFBD1DAA175500350383 /* MediaItem+MWPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaItem+MWPhoto.swift"; sourceTree = "<group>"; };
 		CEBECFBF1DAA2BE300350383 /* TintedImageButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TintedImageButton.swift; sourceTree = "<group>"; };
 		CEBECFC11DAA2F4500350383 /* UIViewControllerPreviewingExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerPreviewingExtension.swift; sourceTree = "<group>"; };
-		CEBECFC31DAA36B600350383 /* MediaViewerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerController.swift; sourceTree = "<group>"; };
 		CEBECFC91DAB8AD900350383 /* CollectionUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionUtils.swift; sourceTree = "<group>"; };
 		CEBED5FA1D4C86C700619D1C /* BackgroundOperationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BackgroundOperationService.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CED41F2E1D2FF7C80089E0B6 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomeController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -517,7 +513,6 @@
 				CE65B1CB1D9CC21000A38A61 /* Activity+Value.swift */,
 				CE65B1DA1D9D525C00A38A61 /* ActivityExtension.swift */,
 				CE6C6C261DB0AC5800DF4892 /* Foundation+Freddy.swift */,
-				CEBECFBD1DAA175500350383 /* MediaItem+MWPhoto.swift */,
 				CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */,
 				CE4B1A9C1D7172F00017CB85 /* Status+Value.swift */,
 				CE6C6C321DB35C1D00DF4892 /* StatusExtension.swift */,
@@ -911,7 +906,6 @@
 		CEBECFBA1DAA153B00350383 /* MediaViewer */ = {
 			isa = PBXGroup;
 			children = (
-				CEBECFC31DAA36B600350383 /* MediaViewerController.swift */,
 			);
 			path = MediaViewer;
 			sourceTree = "<group>";
@@ -1547,7 +1541,6 @@
 				CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */,
 				CEDC3B211D7D87F80082A8BA /* SQLite+UserVersion.swift in Sources */,
 				CE65B1B61D9C20AE00A38A61 /* PullToRefreshProtocol.swift in Sources */,
-				CEBECFBE1DAA175500350383 /* MediaItem+MWPhoto.swift in Sources */,
 				CE95749A1D33DC7B00504D52 /* BasePreferencesController.swift in Sources */,
 				CE65B1BE1D9CC01500A38A61 /* Activity.swift in Sources */,
 				CE65B1E61D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift in Sources */,
@@ -1606,7 +1599,6 @@
 				CEA2E2A71D34C1610095BC57 /* DefaultAPISettingsController.swift in Sources */,
 				CEDFEA6D1D4F4BF600E1F8B8 /* Status+MicroBlog.swift in Sources */,
 				CEEF42B91DB669C2009ECD0F /* YYTextExtension.swift in Sources */,
-				CEBECFC41DAA36B600350383 /* MediaViewerController.swift in Sources */,
 				CEDC3B231D7D8BE90082A8BA /* DatabaseMigration.swift in Sources */,
 				CE6C6C201DB09A9800DF4892 /* UserList+SQLite.swift in Sources */,
 				CE95747D1D3210A300504D52 /* CustomAPIConfig.swift in Sources */,

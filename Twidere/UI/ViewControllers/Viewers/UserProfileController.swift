@@ -68,8 +68,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         self.profileImageView.makeCircular()
         
         let border = CALayerBorder(color: UIColor.white.cgColor, width: 2)
-        let shadow = CALayerShadow(color: UIColor.black.cgColor, offset: CGSize(width: 0, height: 1), blurRadius: 2, opacity: 0.33)
-        self.profileImageContainer.layer.makeCircular(border: border, shadow: shadow)
+        self.profileImageContainer.layer.makeCircular(border: border)
         self.profileImageContainer.clipsToBounds = false
         
         self.segmentedContainerView.dataSource = self
@@ -100,6 +99,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         } else if (self.userInfo != nil) {
             loadUser()
         }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -168,6 +168,10 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    override var bottomLayoutGuide: UILayoutSupport {
+        return super.bottomLayoutGuide
     }
     
     func displayUser(user: User, reload: Bool = false) {

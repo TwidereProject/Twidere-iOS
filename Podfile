@@ -30,7 +30,6 @@ target 'Twidere' do
   pod 'FXBlurView', '~> 1.6'
   pod 'FXImageView', '~> 1.3.5'
   pod 'YYText', '~> 1.0.7'
-  pod 'MWPhotoBrowser', '~> 2.1.2'
   pod 'DeviceKit', '~> 1.0'
   pod 'SwiftHEXColors', '~> 1.0.4'
   pod 'Freddy', '~> 3.0.0'
