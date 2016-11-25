@@ -10,7 +10,7 @@ import UIKit
 import PromiseKit
 import UITableView_FDTemplateLayoutCell
 
-class ActivitiesListController: UITableViewController, StatusCellDelegate, PullToRefreshProtocol {
+class ActivitiesListController: UITableViewController, StatusCellDelegate, ActivityTitleSummaryCellDelegate, PullToRefreshProtocol {
     
     var activities: [Activity]! {
         didSet {
@@ -100,6 +100,7 @@ class ActivitiesListController: UITableViewController, StatusCellDelegate, PullT
                     return cell
                 default:
                     let cell = tableView.dequeueReusableCell(withIdentifier: "Activity", for: indexPath) as! ActivityTitleSummaryCell
+                    cell.delegate = self
                     cell.displayOption = cellDisplayOption
                     return cell
                 }
@@ -244,6 +245,13 @@ class ActivitiesListController: UITableViewController, StatusCellDelegate, PullT
     
     func actionSelected(for cell: StatusCellProtocol, status: Status, action: StatusCell.StatusAction) {
         
+    }
+    
+    func profileImageTapped(for cell: ActivityTitleSummaryCell, user: User, index: Int) {
+        let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "UserProfile") as! UserProfileController
+        vc.displayUser(user: user, reload: true)
+        self.show(vc, sender: self)
     }
     
     @available(iOS 9.0, *)

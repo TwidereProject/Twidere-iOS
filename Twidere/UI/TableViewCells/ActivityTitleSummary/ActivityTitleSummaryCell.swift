@@ -34,6 +34,7 @@ class ActivityTitleSummaryCell: ALSTableViewCell {
         // Initialization code
         for view in profileImagesContainer.subviews {
             let view = view as! UIImageView
+            view.isUserInteractionEnabled = true
             view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.profileImageTapped(_:))))
             view.contentMode = .scaleAspectFill
             view.makeCircular()
@@ -58,8 +59,8 @@ class ActivityTitleSummaryCell: ALSTableViewCell {
         }
     }
     
-    @objc private func profileImageTapped(_ view: UIImageView) {
-        guard let idx = profileImagesContainer.subviews.index(of: view) else {
+    @objc private func profileImageTapped(_ sender: UITapGestureRecognizer) {
+        guard let view = sender.view, let idx = profileImagesContainer.subviews.index(of: view) else {
             return
         }
         delegate?.profileImageTapped(for: self, user: activity.sources[idx], index: idx)

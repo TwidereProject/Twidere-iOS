@@ -189,7 +189,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         update.media = self.attachedMedia
         update.inReplyToStatus = self.inReplyToStatus
         bos.updateStatus(update)
-        popupController.dismiss()
+        popupController?.dismiss()
     }
     
     @IBAction func attachLocationClicked(_ sender: UIBarButtonItem) {
@@ -293,8 +293,8 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     
     func show(parent: UIViewController) {
         let controller = STPopupController(rootViewController: self)
-        controller?.containerView.layer.cornerRadius = 4
-        controller?.present(in: parent)
+        controller.containerView.layer.cornerRadius = 4
+        controller.present(in: parent)
     }
 
 }
