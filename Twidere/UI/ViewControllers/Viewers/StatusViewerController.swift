@@ -144,10 +144,11 @@ class StatusViewerController: UITableViewController, DetailStatusCellDelegate {
     }
     
     fileprivate func shareStatus(status: Status) {
-        guard let status = self.status else {
+        guard let status = self.status, let url = URL(string: status.statusUrl) else {
             return
         }
         let activityItems: [Any] = [
+            url,
             status.textPlain
         ]
         let avc = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
@@ -189,7 +190,10 @@ class StatusViewerController: UITableViewController, DetailStatusCellDelegate {
     }
     
     func quotedViewTapped(status: Status) {
-        
+        let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
+        vc.displayStatus(status.quotedStatus!, reload: true)
+        self.show(vc, sender: self)
     }
     
     func mediaPreviewTapped(status: Status) {

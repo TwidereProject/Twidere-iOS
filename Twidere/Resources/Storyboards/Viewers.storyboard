@@ -162,6 +162,7 @@
                                                         </view>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <gestureRecognizers/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>

@@ -114,8 +114,8 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
                 return tableView.dequeueReusableCell(withIdentifier: "Gap", for: indexPath)
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Status", for: indexPath) as! StatusCell
-                cell.displayOption = self.cellDisplayOption
                 cell.delegate = self
+                cell.displayOption = self.cellDisplayOption
                 return cell
             }
         case 1:
@@ -318,8 +318,11 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
     }
     
     func shareStatus(status: Status) {
+        guard let url = URL(string: status.statusUrl) else {
+            return
+        }
         let activityItems: [Any] = [
-            URL(string: status.statusUrl)!,
+            url,
             status.textPlain
         ]
         let avc = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)

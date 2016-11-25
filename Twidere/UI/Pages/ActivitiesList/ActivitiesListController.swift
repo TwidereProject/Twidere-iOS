@@ -10,7 +10,7 @@ import UIKit
 import PromiseKit
 import UITableView_FDTemplateLayoutCell
 
-class ActivitiesListController: UITableViewController {
+class ActivitiesListController: UITableViewController, StatusCellDelegate, PullToRefreshProtocol {
     
     var activities: [Activity]! {
         didSet {
@@ -63,7 +63,6 @@ class ActivitiesListController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
 
-    
     func willEnterForeground() {
         let opts = LoadOptions()
         
@@ -96,6 +95,7 @@ class ActivitiesListController: UITableViewController {
                 switch activity.action {
                 case .mention, .reply, .quote:
                     let cell = tableView.dequeueReusableCell(withIdentifier: "Status", for: indexPath) as! StatusCell
+                    cell.delegate = self
                     cell.displayOption = cellDisplayOption
                     return cell
                 default:
@@ -181,7 +181,20 @@ class ActivitiesListController: UITableViewController {
         case 0:
             let activity = activities![(indexPath as NSIndexPath).item]
             if (activity.isGap) {
-//                let accounts = dataSource.getAccounts()
+                guard let account = dataSource.getAccounts().first(where: {$0.key == activity.accountKey}) else {
+                    return
+                }
+                let maxId = activity.minPosition
+                let maxSortId = activity.minSortPosition
+                let param = SimpleRefreshTaskParam(accounts: [account])
+                param.maxIds = [maxId]
+                param.maxSortIds = [maxSortId]
+                param.isLoadingMore = true
+                
+                let opts = LoadOptions()
+                opts.initLoad = false
+                opts.params = param
+                loadActivities(opts)
             } else if let status = activity.activityStatus {
                 let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
@@ -196,6 +209,40 @@ class ActivitiesListController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func profileImageTapped(status: Status) {
+        let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "UserProfile") as! UserProfileController
+        vc.displayUser(user: status.user, reload: true)
+        self.show(vc, sender: self)
+    }
+    
+    func quotedViewTapped(status: Status) {
+        let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
+        vc.displayStatus(status.quotedStatus!, reload: true)
+        self.show(vc, sender: self)
+    }
+    
+    func mediaPreviewTapped(status: Status) {
+        let vc = SafariBrowserController(url: URL(string: status.metadata!.media.first!.mediaUrl!)!)
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    
+    func spanItemTapped(status: Status, span: SpanItem) {
+        guard let (vc, present) = span.createViewController(accountKey: status.accountKey) else {
+            return
+        }
+        if (present) {
+            self.present(vc, animated: true, completion: nil)
+        } else {
+            self.show(vc, sender: self)
+        }
+    }
+    
+    func actionSelected(status: Status, action: StatusCell.StatusAction) {
+        
+    }
     
     @available(iOS 9.0, *)
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {

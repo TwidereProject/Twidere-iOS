@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DateTools
 
 extension Date {
     
@@ -20,6 +21,17 @@ extension Date {
         }
     }
     
+}
+
+extension Date {
+    var dateTimeString: String {
+        let date = self as NSDate
+        let timeString = date.formattedDate(withFormat: "H:mm")!
+        if (date.daysAgo() < 1) {
+            return timeString
+        }
+        return "\(date.formattedDate(with: .long)!) \(timeString)"
+    }
 }
 
 extension Date {

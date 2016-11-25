@@ -50,6 +50,8 @@ class DetailStatusCell: ALSTableViewCell {
         textView.highlightTapAction = self.highlightTapped
         quotedTextView.highlightTapAction  = self.highlightTapped
         
+        quotedView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.quotedStatusTapped(_:))))
+        
         self.contentView.layoutMargins = UIEdgeInsets.zero
     }
     
@@ -85,7 +87,7 @@ class DetailStatusCell: ALSTableViewCell {
     }
 
     func createTimeSourceText(createdAt: Date, source: String?, font: UIFont) -> NSAttributedString {
-        let string = NSMutableAttributedString(string: (createdAt as NSDate).formattedDate(with: .long))
+        let string = NSMutableAttributedString(string: createdAt.dateTimeString)
         string.yy_font = font
         if let source = source {
             string.yy_appendString(" \u{00B7} ")
@@ -120,6 +122,10 @@ class DetailStatusCell: ALSTableViewCell {
     
     @IBAction func moreTapped(_ sender: UIBarButtonItem) {
         delegate.actionSelected(status: status, action: .more)
+    }
+    
+    @objc private func quotedStatusTapped(_ sender: UITapGestureRecognizer) {
+        delegate.quotedViewTapped(status: status)
     }
     
     @objc private func highlightTapped(view: UIView, string: NSAttributedString, range: NSRange, rect: CGRect) {

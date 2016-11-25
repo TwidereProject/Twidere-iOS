@@ -129,8 +129,8 @@ class GetActivitiesTask {
         }
         
         // Remove gap flag
-        if let maxId = maxId, sinceId == nil {
-            _ = try db.run(table.filter(Activity.RowIndices.accountKey == accountKey && Activity.RowIndices.minPosition == maxId && Activity.RowIndices.maxPosition == maxId).update(Activity.RowIndices.isGap <- false))
+        if let maxId = maxId, sinceId == nil, maxSortId > 0 {
+            _ = try db.run(table.filter(Activity.RowIndices.accountKey == accountKey && Activity.RowIndices.minPosition == maxId && Activity.RowIndices.minSortPosition == maxSortId).update(Activity.RowIndices.isGap <- false))
         }
     }
     

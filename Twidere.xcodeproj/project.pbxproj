@@ -54,7 +54,7 @@
 		CE497FB81D698C98000F16D2 /* statuses_list.json in Resources */ = {isa = PBXBuildFile; fileRef = CE497FB61D698C98000F16D2 /* statuses_list.json */; };
 		CE497FBA1D6A8A65000F16D2 /* UserKey+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497FB91D6A8A65000F16D2 /* UserKey+Value.swift */; };
 		CE497FBC1D6AF71E000F16D2 /* StatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE497FBB1D6AF71E000F16D2 /* StatusCell.xib */; };
-		CE497FBE1D6B01D1000F16D2 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497FBD1D6B01D1000F16D2 /* DateExtensions.swift */; };
+		CE497FBE1D6B01D1000F16D2 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497FBD1D6B01D1000F16D2 /* DateExtension.swift */; };
 		CE497FC81D6B2017000F16D2 /* GapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497FC61D6B2017000F16D2 /* GapCell.swift */; };
 		CE497FC91D6B2017000F16D2 /* GapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE497FC71D6B2017000F16D2 /* GapCell.xib */; };
 		CE497FCD1D6BE643000F16D2 /* QuotedStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497FCC1D6BE643000F16D2 /* QuotedStatusView.swift */; };
@@ -252,7 +252,7 @@
 		CE497FB61D698C98000F16D2 /* statuses_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = statuses_list.json; sourceTree = "<group>"; };
 		CE497FB91D6A8A65000F16D2 /* UserKey+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserKey+Value.swift"; sourceTree = "<group>"; };
 		CE497FBB1D6AF71E000F16D2 /* StatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusCell.xib; sourceTree = "<group>"; };
-		CE497FBD1D6B01D1000F16D2 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		CE497FBD1D6B01D1000F16D2 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		CE497FC61D6B2017000F16D2 /* GapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GapCell.swift; sourceTree = "<group>"; };
 		CE497FC71D6B2017000F16D2 /* GapCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GapCell.xib; sourceTree = "<group>"; };
 		CE497FCC1D6BE643000F16D2 /* QuotedStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotedStatusView.swift; sourceTree = "<group>"; };
@@ -873,7 +873,7 @@
 				CE497FBF1D6B08B4000F16D2 /* SQLite */,
 				CEBECFB61DA9EBD300350383 /* CALayerExtension.swift */,
 				CEA2E2C01D379CD90095BC57 /* CoreLocationExtensions.swift */,
-				CE497FBD1D6B01D1000F16D2 /* DateExtensions.swift */,
+				CE497FBD1D6B01D1000F16D2 /* DateExtension.swift */,
 				CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */,
 				CE9DB0481DACA34B000C150F /* Number+LocalizedString.swift */,
 				CE4B1AA41D719E160017CB85 /* StringExtensions.swift */,
@@ -1531,7 +1531,7 @@
 				CE7A57421D917BDB0027BECE /* SingleAccountStatusesListControllerDataSource.swift in Sources */,
 				CE2903EC1D4F200A0056D0E2 /* UserExtensions.swift in Sources */,
 				CEA2E2D31D3B42180095BC57 /* AccountsManagerController.swift in Sources */,
-				CE497FBE1D6B01D1000F16D2 /* DateExtensions.swift in Sources */,
+				CE497FBE1D6B01D1000F16D2 /* DateExtension.swift in Sources */,
 				CE65B1B41D9BA35A00A38A61 /* ActivityIndicator.swift in Sources */,
 				CE6C6C151DB09A9800DF4892 /* Account+Freddy.swift in Sources */,
 				CE7A57401D917B580027BECE /* HomeTimelineStatusesListControllerDataSource.swift in Sources */,
