@@ -12,7 +12,7 @@ import DateTools
 import ALSLayouts
 import YYText
 
-class StatusCell: ALSTableViewCell {
+class StatusCell: ALSTableViewCell, StatusCellProtocol {
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameView: YYLabel!
@@ -177,38 +177,38 @@ class StatusCell: ALSTableViewCell {
     }
     
     @objc private func profileImageTapped(_ sender: UITapGestureRecognizer) {
-        delegate?.profileImageTapped(status: self.status)
+        delegate?.profileImageTapped(for: self, status: self.status)
     }
     
     @objc private func mediaPreviewTapped(_ sender: UITapGestureRecognizer) {
-        delegate?.mediaPreviewTapped(status: self.status)
+        delegate?.mediaPreviewTapped(for: self, status: self.status)
     }
     
     @objc private func quotedViewTapped(_ sender: UITapGestureRecognizer) {
-        delegate?.quotedViewTapped(status: self.status)
+        delegate?.quotedViewTapped(for: self, status: self.status)
     }
     
     @objc private func highlightTapped(view: UIView, string: NSAttributedString, range: NSRange, rect: CGRect) {
         guard let span = string.yy_highlight(at: UInt(range.location))?.spanItem else {
             return
         }
-        delegate?.spanItemTapped(status: self.status, span: span)
+        delegate?.spanItemTapped(for: self, status: self.status, span: span)
     }
     
     @IBAction func replyTapped(_ sender: ActionIconButton) {
-        delegate.actionSelected(status: status, action: .reply)
+        delegate.actionSelected(for: self, status: status, action: .reply)
     }
     
     @IBAction func retweetTapped(_ sender: ActionIconButton) {
-        delegate.actionSelected(status: status, action: .retweet)
+        delegate.actionSelected(for: self, status: status, action: .retweet)
     }
     
     @IBAction func favoriteTapped(_ sender: ActionIconButton) {
-        delegate.actionSelected(status: status, action: .favorite)
+        delegate.actionSelected(for: self, status: status, action: .favorite)
     }
     
     @IBAction func moreTapped(_ sender: ActionIconButton) {
-        delegate.actionSelected(status: status, action: .more)
+        delegate.actionSelected(for: self, status: status, action: .more)
     }
     
     func previewViewController(for location: CGPoint) -> (vc: UIViewController, sourceRect: CGRect, shouldPresentViewController: Bool) {
@@ -313,9 +313,9 @@ class StatusCell: ALSTableViewCell {
 }
 
 protocol StatusCellDelegate {
-    func profileImageTapped(status: Status)
-    func mediaPreviewTapped(status: Status)
-    func quotedViewTapped(status: Status)
-    func spanItemTapped(status: Status, span: SpanItem)
-    func actionSelected(status: Status, action: StatusCell.StatusAction)
+    func profileImageTapped(for cell: StatusCellProtocol, status: Status)
+    func mediaPreviewTapped(for cell: StatusCellProtocol, status: Status)
+    func quotedViewTapped(for cell: StatusCellProtocol, status: Status)
+    func spanItemTapped(for cell: StatusCellProtocol, status: Status, span: SpanItem)
+    func actionSelected(for cell: StatusCellProtocol, status: Status, action: StatusCell.StatusAction)
 }

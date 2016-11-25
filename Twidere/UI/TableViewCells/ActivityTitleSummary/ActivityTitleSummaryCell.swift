@@ -16,6 +16,10 @@ class ActivityTitleSummaryCell: ALSTableViewCell {
     @IBOutlet weak var summaryView: YYLabel!
     @IBOutlet weak var profileImagesContainer: UIStackView!
     
+    var delegate: ActivityTitleSummaryCellDelegate!
+    
+    var activity: Activity!
+    
     var displayOption: StatusCell.DisplayOption! {
         didSet {
             timeView.font = UIFont.systemFont(ofSize: displayOption.fontSize * 0.85)
@@ -30,12 +34,13 @@ class ActivityTitleSummaryCell: ALSTableViewCell {
         // Initialization code
         for view in profileImagesContainer.subviews {
             let view = view as! UIImageView
+            view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.profileImageTapped(_:))))
             view.contentMode = .scaleAspectFill
             view.makeCircular()
         }
     }
 
-    func displayActivity(_ activity: Activity) {
+    func display() {
         let (title, summary) = activity.getTitleSummary()
         titleView.text = title
         summaryView.text = summary
@@ -53,4 +58,14 @@ class ActivityTitleSummaryCell: ALSTableViewCell {
         }
     }
     
+    @objc private func profileImageTapped(_ view: UIImageView) {
+        guard let idx = profileImagesContainer.subviews.index(of: view) else {
+            return
+        }
+        delegate?.profileImageTapped(for: self, user: activity.sources[idx], index: idx)
+    }
+}
+
+protocol ActivityTitleSummaryCellDelegate {
+    func profileImageTapped(for cell: ActivityTitleSummaryCell, user: User, index: Int)
 }

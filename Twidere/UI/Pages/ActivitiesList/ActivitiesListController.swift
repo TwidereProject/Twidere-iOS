@@ -115,7 +115,8 @@ class ActivitiesListController: UITableViewController, StatusCellDelegate, PullT
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         switch cell {
         case let cell as ActivityTitleSummaryCell:
-            cell.displayActivity(self.activities[indexPath.item])
+            cell.activity = self.activities[indexPath.item]
+            cell.display()
         case let cell as StatusCell:
             cell.status = self.activities[indexPath.item].activityStatus
         default:
@@ -141,7 +142,8 @@ class ActivitiesListController: UITableViewController, StatusCellDelegate, PullT
                     return tableView.fd_heightForCell(withIdentifier: "Activity", cacheBy: indexPath) { cell in
                         let cell = (cell as! ActivityTitleSummaryCell)
                         cell.displayOption = self.cellDisplayOption
-                        cell.displayActivity(self.activities[indexPath.item])
+                        cell.activity = self.activities[indexPath.item]
+                        cell.display()
                     }
                 }
             }
@@ -209,27 +211,27 @@ class ActivitiesListController: UITableViewController, StatusCellDelegate, PullT
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func profileImageTapped(status: Status) {
+    func profileImageTapped(for cell: StatusCellProtocol, status: Status) {
         let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "UserProfile") as! UserProfileController
         vc.displayUser(user: status.user, reload: true)
         self.show(vc, sender: self)
     }
     
-    func quotedViewTapped(status: Status) {
+    func quotedViewTapped(for cell: StatusCellProtocol, status: Status) {
         let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
         vc.displayStatus(status.quotedStatus!, reload: true)
         self.show(vc, sender: self)
     }
     
-    func mediaPreviewTapped(status: Status) {
+    func mediaPreviewTapped(for cell: StatusCellProtocol, status: Status) {
         let vc = SafariBrowserController(url: URL(string: status.metadata!.media.first!.mediaUrl!)!)
         self.present(vc, animated: true, completion: nil)
     }
     
     
-    func spanItemTapped(status: Status, span: SpanItem) {
+    func spanItemTapped(for cell: StatusCellProtocol, status: Status, span: SpanItem) {
         guard let (vc, present) = span.createViewController(accountKey: status.accountKey) else {
             return
         }
@@ -240,7 +242,7 @@ class ActivitiesListController: UITableViewController, StatusCellDelegate, PullT
         }
     }
     
-    func actionSelected(status: Status, action: StatusCell.StatusAction) {
+    func actionSelected(for cell: StatusCellProtocol, status: Status, action: StatusCell.StatusAction) {
         
     }
     

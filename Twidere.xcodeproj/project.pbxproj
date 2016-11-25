@@ -143,6 +143,7 @@
 		CEA2E2D11D3A7EA20095BC57 /* HomeRootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2D01D3A7EA20095BC57 /* HomeRootController.swift */; };
 		CEA2E2D31D3B42180095BC57 /* AccountsManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2E2D21D3B42180095BC57 /* AccountsManagerController.swift */; };
 		CEB187371D980AF6004ADB3A /* LoadMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB187361D980AF6004ADB3A /* LoadMoreCell.swift */; };
+		CEB60E901DE7CAB300C08E39 /* StatusCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB60E8F1DE7CAB300C08E39 /* StatusCellProtocol.swift */; };
 		CEBECFB31DA8C0C200350383 /* SafariBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBECFB21DA8C0C200350383 /* SafariBrowserController.swift */; };
 		CEBECFB51DA9E18100350383 /* TimelineContentTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBECFB41DA9E18100350383 /* TimelineContentTextView.swift */; };
 		CEBECFB71DA9EBD300350383 /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBECFB61DA9EBD300350383 /* CALayerExtension.swift */; };
@@ -341,6 +342,7 @@
 		CEA2E2D01D3A7EA20095BC57 /* HomeRootController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRootController.swift; sourceTree = "<group>"; };
 		CEA2E2D21D3B42180095BC57 /* AccountsManagerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsManagerController.swift; sourceTree = "<group>"; };
 		CEB187361D980AF6004ADB3A /* LoadMoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreCell.swift; sourceTree = "<group>"; };
+		CEB60E8F1DE7CAB300C08E39 /* StatusCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCellProtocol.swift; sourceTree = "<group>"; };
 		CEBECFB21DA8C0C200350383 /* SafariBrowserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariBrowserController.swift; sourceTree = "<group>"; };
 		CEBECFB41DA9E18100350383 /* TimelineContentTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineContentTextView.swift; sourceTree = "<group>"; };
 		CEBECFB61DA9EBD300350383 /* CALayerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
@@ -571,6 +573,7 @@
 			children = (
 				CE497F971D6959B0000F16D2 /* StatusCell.swift */,
 				CE497FBB1D6AF71E000F16D2 /* StatusCell.xib */,
+				CEB60E8F1DE7CAB300C08E39 /* StatusCellProtocol.swift */,
 			);
 			path = Status;
 			sourceTree = "<group>";
@@ -1510,6 +1513,7 @@
 				CE45CAF51D855AE10004CC1C /* User+Value.swift in Sources */,
 				CE779F361D858B210053B5C7 /* User+MicroBlog.swift in Sources */,
 				CE6C6C181DB09A9800DF4892 /* Activity+SQLite.swift in Sources */,
+				CEB60E901DE7CAB300C08E39 /* StatusCellProtocol.swift in Sources */,
 				CE5993191D83CAAA00653220 /* DetailStatusCell.swift in Sources */,
 				CEF2CF451D83F11200131EAE /* UserProfileController.swift in Sources */,
 				CEBECFCA1DAB8AD900350383 /* CollectionUtils.swift in Sources */,

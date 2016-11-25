@@ -12,7 +12,7 @@ import DateTools
 import ALSLayouts
 import Kanna
 
-class DetailStatusCell: ALSTableViewCell {
+class DetailStatusCell: ALSTableViewCell, StatusCellProtocol {
 
     @IBOutlet weak var userProfileImageView: UIImageView!
     @IBOutlet weak var userNameView: YYLabel!
@@ -105,34 +105,34 @@ class DetailStatusCell: ALSTableViewCell {
     
     
     @IBAction func replyTapped(_ sender: UIBarButtonItem) {
-        delegate.actionSelected(status: status, action: .reply)
+        delegate.actionSelected(for: self, status: status, action: .reply)
     }
     
     @IBAction func retweetTapped(_ sender: UIBarButtonItem) {
-        delegate.actionSelected(status: status, action: .retweet)
+        delegate.actionSelected(for: self, status: status, action: .retweet)
     }
     
     @IBAction func favoriteTapped(_ sender: UIBarButtonItem) {
-        delegate.actionSelected(status: status, action: .favorite)
+        delegate.actionSelected(for: self, status: status, action: .favorite)
     }
     
     @IBAction func shareTapped(_ sender: UIBarButtonItem) {
-        delegate.actionSelected(status: status, action: .share)
+        delegate.actionSelected(for: self, status: status, action: .share)
     }
     
     @IBAction func moreTapped(_ sender: UIBarButtonItem) {
-        delegate.actionSelected(status: status, action: .more)
+        delegate.actionSelected(for: self, status: status, action: .more)
     }
     
     @objc private func quotedStatusTapped(_ sender: UITapGestureRecognizer) {
-        delegate.quotedViewTapped(status: status)
+        delegate.quotedViewTapped(for: self, status: status)
     }
     
     @objc private func highlightTapped(view: UIView, string: NSAttributedString, range: NSRange, rect: CGRect) {
         guard let span = string.yy_highlight(at: UInt(range.location))?.spanItem else {
             return
         }
-        delegate?.spanItemTapped(status: self.status, span: span)
+        delegate?.spanItemTapped(for: self, status: self.status, span: span)
     }
     
 }
