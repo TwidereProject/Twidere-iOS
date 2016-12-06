@@ -25,6 +25,7 @@ target 'Twidere' do
   pod 'DateTools', '~> 1.7' # Obj-C
   pod 'ALSLayouts', '~> 2.0' # Swift 3
   pod 'ThumborURL', '~> 0.0' # Obj-C
+  pod 'IDMPhotoBrowser', '~> 1.9.1'	#Obj-C
   pod 'MXPagerView', '~> 0.1'
   pod 'MXParallaxHeader', '~> 0.6.0'
   pod 'FXBlurView', '~> 1.6'
