@@ -11,6 +11,7 @@ import SwiftyJSON
 import PromiseKit
 import UITableView_FDTemplateLayoutCell
 import YYText
+import IDMPhotoBrowser
 
 class StatusesListController: UITableViewController, StatusCellDelegate, PullToRefreshProtocol, UIViewControllerPreviewingDelegate {
     
@@ -300,8 +301,12 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
     }
     
     func mediaPreviewTapped(for cell: StatusCellProtocol, status: Status) {
-        let vc = SafariBrowserController(url: URL(string: status.metadata!.media.first!.mediaUrl!)!)
-        self.present(vc, animated: true, completion: nil)
+        
+        let vc = IDMPhotoBrowser(photoURLs: [URL(string: status.metadata!.media.first!.mediaUrl!)!])
+        self.present(vc!, animated: true, completion: nil)
+        
+//        let vc = SafariBrowserController(url: URL(string: status.metadata!.media.first!.mediaUrl!)!)
+//        self.present(vc, animated: true, completion: nil)
     }
     
     func actionSelected(for cell: StatusCellProtocol, status: Status, action: StatusCell.StatusAction) {
