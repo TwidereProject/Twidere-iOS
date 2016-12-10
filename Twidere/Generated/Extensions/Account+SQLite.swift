@@ -9,19 +9,11 @@ extension Account {
         let _id = row.get(RowIndices._id)
         let key = row.get(RowIndices.key)
         let type = row.get(RowIndices.type)
-        let apiUrlFormat = row.get(RowIndices.apiUrlFormat)
         let authType = row.get(RowIndices.authType)
-        let basicPassword = row.get(RowIndices.basicPassword)
-        let basicUsername = row.get(RowIndices.basicUsername)
-        let consumerKey = row.get(RowIndices.consumerKey)
-        let consumerSecret = row.get(RowIndices.consumerSecret)
-        let noVersionSuffix = row.get(RowIndices.noVersionSuffix)
-        let oauthToken = row.get(RowIndices.oauthToken)
-        let oauthTokenSecret = row.get(RowIndices.oauthTokenSecret)
-        let sameOAuthSigningUrl = row.get(RowIndices.sameOAuthSigningUrl)
-        let config = row.get(RowIndices.config)
+        let credentials = row.get(RowIndices.credentials)
         let user = row.get(RowIndices.user)
-        self.init(_id: _id, key: key, type: type, apiUrlFormat: apiUrlFormat, authType: authType, basicPassword: basicPassword, basicUsername: basicUsername, consumerKey: consumerKey, consumerSecret: consumerSecret, noVersionSuffix: noVersionSuffix, oauthToken: oauthToken, oauthTokenSecret: oauthTokenSecret, sameOAuthSigningUrl: sameOAuthSigningUrl, config: config, user: user)
+        let extras = row.get(RowIndices.extras)
+        self.init(_id: _id, key: key, type: type, authType: authType, credentials: credentials, user: user, extras: extras)
     }
 
     static func createTable(table: Table, temporary: Bool = false, ifNotExists: Bool = false) -> String {
@@ -29,18 +21,10 @@ extension Account {
             t.column(RowIndices._id, primaryKey: .autoincrement)
             t.column(RowIndices.key)
             t.column(RowIndices.type)
-            t.column(RowIndices.apiUrlFormat)
             t.column(RowIndices.authType)
-            t.column(RowIndices.basicPassword)
-            t.column(RowIndices.basicUsername)
-            t.column(RowIndices.consumerKey)
-            t.column(RowIndices.consumerSecret)
-            t.column(RowIndices.noVersionSuffix)
-            t.column(RowIndices.oauthToken)
-            t.column(RowIndices.oauthTokenSecret)
-            t.column(RowIndices.sameOAuthSigningUrl)
-            t.column(RowIndices.config)
+            t.column(RowIndices.credentials)
             t.column(RowIndices.user)
+            t.column(RowIndices.extras)
         }
     }
 
@@ -48,18 +32,10 @@ extension Account {
         return table.insert( [
                 RowIndices.key <- model.key,
                 RowIndices.type <- model.type,
-                RowIndices.apiUrlFormat <- model.apiUrlFormat,
                 RowIndices.authType <- model.authType,
-                RowIndices.basicPassword <- model.basicPassword,
-                RowIndices.basicUsername <- model.basicUsername,
-                RowIndices.consumerKey <- model.consumerKey,
-                RowIndices.consumerSecret <- model.consumerSecret,
-                RowIndices.noVersionSuffix <- model.noVersionSuffix,
-                RowIndices.oauthToken <- model.oauthToken,
-                RowIndices.oauthTokenSecret <- model.oauthTokenSecret,
-                RowIndices.sameOAuthSigningUrl <- model.sameOAuthSigningUrl,
-                RowIndices.config <- model.config,
+                RowIndices.credentials <- model.credentials,
                 RowIndices.user <- model.user,
+                RowIndices.extras <- model.extras,
         ])
     }
 
@@ -68,35 +44,19 @@ extension Account {
         static let _id = Expression<Int64>("_id")
         static let key = Expression<UserKey>("account_key")
         static let type = Expression<AccountType>("account_type")
-        static let apiUrlFormat = Expression<String>("api_url_format")
         static let authType = Expression<AuthType>("auth_type")
-        static let basicPassword = Expression<String?>("basic_password")
-        static let basicUsername = Expression<String?>("basic_username")
-        static let consumerKey = Expression<String?>("consumer_key")
-        static let consumerSecret = Expression<String?>("consumer_secret")
-        static let noVersionSuffix = Expression<Bool>("no_version_suffix")
-        static let oauthToken = Expression<String?>("oauth_token")
-        static let oauthTokenSecret = Expression<String?>("oauth_token_secret")
-        static let sameOAuthSigningUrl = Expression<Bool>("same_oauth_signing_url")
-        static let config = Expression<Config?>("config")
+        static let credentials = Expression<Credentials>("credentials")
         static let user = Expression<User>("user")
+        static let extras = Expression<Extras?>("extras")
 
         static let columns: [Expressible] = [
             _id,
             key,
             type,
-            apiUrlFormat,
             authType,
-            basicPassword,
-            basicUsername,
-            consumerKey,
-            consumerSecret,
-            noVersionSuffix,
-            oauthToken,
-            oauthTokenSecret,
-            sameOAuthSigningUrl,
-            config,
+            credentials,
             user,
+            extras,
         ]
     }
 }

@@ -272,15 +272,19 @@ class SignInController: UIViewController {
                     switch (error) {
                     case AuthenticationError.accessTokenFailed:
                         let vc = UIAlertController(title: nil, message: "Unable to get access token", preferredStyle: .alert)
+                        vc.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self.present(vc, animated: true, completion: nil)
-                    case AuthenticationError.requestTokenFailed:
-                        let vc = UIAlertController(title: nil, message: "Unable to get request token", preferredStyle: .alert)
+                    case AuthenticationError.requestTokenFailed, AuthenticationError.authenticationTokenFailed:
+                        let vc = UIAlertController(title: nil, message: "Wrong OAuth configuration", preferredStyle: .alert)
+                        vc.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self.present(vc, animated: true, completion: nil)
                     case AuthenticationError.wrongUsernamePassword:
                         let vc = UIAlertController(title: nil, message: "Wrong username or password", preferredStyle: .alert)
+                        vc.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self.present(vc, animated: true, completion: nil)
                     case AuthenticationError.verificationFailed:
                         let vc = UIAlertController(title: nil, message: "Verification failed", preferredStyle: .alert)
+                        vc.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self.present(vc, animated: true, completion: nil)
                     default: break
                     }
@@ -329,16 +333,8 @@ fileprivate extension Account {
     convenience init(config: CustomAPIConfig, result: SignInResult, user: User) {
         let key = user.key
         let type: Account.AccountType = .twitter
-        let apiUrlFormat = config.apiUrlFormat
         let authType = config.authType
-        let basicUsername = result.username
-        let basicPassword = result.password
-        let consumerKey = config.consumerKey
-        let consumerSecret = config.consumerSecret
-        let noVersionSuffix = config.noVersionSuffix
-        let oauthToken = result.accessToken?.oauthToken
-        let oauthTokenSecret = result.accessToken?.oauthTokenSecret
-        let sameOAuthSigningUrl = config.sameOAuthSigningUrl
-        self.init(key: key, type: type, apiUrlFormat: apiUrlFormat, authType: authType, basicPassword: basicPassword, basicUsername: basicUsername, consumerKey: consumerKey, consumerSecret: consumerSecret, noVersionSuffix: noVersionSuffix, oauthToken: oauthToken, oauthTokenSecret: oauthTokenSecret, sameOAuthSigningUrl: sameOAuthSigningUrl, user: user)
+        let credentials = Credentials(apiUrlFormat: config.apiUrlFormat, noVersionSuffix: config.noVersionSuffix, consumerKey: config.consumerKey, consumerSecret: config.consumerSecret, accessToken: result.accessToken?.oauthToken, accessTokenSecret: result.accessToken?.oauthTokenSecret, sameOAuthSigningUrl: config.sameOAuthSigningUrl, basicUsername: result.username, basicPassword: result.password)
+        self.init(key: key, type: type, authType: authType, credentials: credentials, user: user)
     }
 }

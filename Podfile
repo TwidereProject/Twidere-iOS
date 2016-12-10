@@ -33,6 +33,9 @@ target 'Twidere' do
   pod 'DeviceKit', '~> 1.0'
   pod 'SwiftHEXColors', '~> 1.1.0'
   pod 'Freddy', '~> 3.0'
+  
+  pod 'Fabric'
+  pod 'Crashlytics'
 end
 
 target 'TwidereTests' do

@@ -37,7 +37,7 @@
 		CE45CA861D85416C0004CC1C /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CA831D85416C0004CC1C /* Status.swift */; };
 		CE45CA871D85416C0004CC1C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CA841D85416C0004CC1C /* User.swift */; };
 		CE45CA881D85416C0004CC1C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CA851D85416C0004CC1C /* Account.swift */; };
-		CE45CAEF1D8556DE0004CC1C /* AccountConfig+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CAEE1D8556DE0004CC1C /* AccountConfig+Value.swift */; };
+		CE45CAEF1D8556DE0004CC1C /* Account+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CAEE1D8556DE0004CC1C /* Account+Value.swift */; };
 		CE45CAF21D8559780004CC1C /* User.model.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE45CAF01D8559780004CC1C /* User.model.yml */; };
 		CE45CAF31D8559780004CC1C /* Account.model.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE45CAF11D8559780004CC1C /* Account.model.yml */; };
 		CE45CAF51D855AE10004CC1C /* User+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CAF41D855AE10004CC1C /* User+Value.swift */; };
@@ -236,7 +236,7 @@
 		CE45CA831D85416C0004CC1C /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		CE45CA841D85416C0004CC1C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CE45CA851D85416C0004CC1C /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		CE45CAEE1D8556DE0004CC1C /* AccountConfig+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountConfig+Value.swift"; sourceTree = "<group>"; };
+		CE45CAEE1D8556DE0004CC1C /* Account+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+Value.swift"; sourceTree = "<group>"; };
 		CE45CAF01D8559780004CC1C /* User.model.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = User.model.yml; sourceTree = "<group>"; };
 		CE45CAF11D8559780004CC1C /* Account.model.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Account.model.yml; sourceTree = "<group>"; };
 		CE45CAF41D855AE10004CC1C /* User+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+Value.swift"; sourceTree = "<group>"; };
@@ -512,7 +512,7 @@
 		CE29039C1D4CEF0B0056D0E2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CE45CAEE1D8556DE0004CC1C /* AccountConfig+Value.swift */,
+				CE45CAEE1D8556DE0004CC1C /* Account+Value.swift */,
 				CE6C6C301DB35C1D00DF4892 /* AccountExtensions.swift */,
 				CE65B1CB1D9CC21000A38A61 /* Activity+Value.swift */,
 				CE65B1DA1D9D525C00A38A61 /* ActivityExtension.swift */,
@@ -1066,6 +1066,7 @@
 				9EA744A7688B4064B093AD91 /* [CP] Copy Pods Resources */,
 				D42DE4D656FF36A4C4CB6565 /* 📦 Embed Pods Frameworks */,
 				C45CB1C5C054FEF1B8399FB6 /* 📦 Copy Pods Resources */,
+				CE6ED1671DFC4F7D001756DD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1413,6 +1414,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Twidere/Pods-Twidere-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CE6ED1671DFC4F7D001756DD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" dc4ee756d3b705e00011782f1426fc8656ad3bd9 86b4d243c6f85309571a2fa5a1022c1e63f4d809eb2a8874a77bb231a4b2b1d9";
+		};
 		D42DE4D656FF36A4C4CB6565 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1588,7 +1602,7 @@
 				CE6C6C1F1DB09A9800DF4892 /* UserList+Freddy.swift in Sources */,
 				CEA2E2BE1D3761780095BC57 /* StatusUpdate.swift in Sources */,
 				CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */,
-				CE45CAEF1D8556DE0004CC1C /* AccountConfig+Value.swift in Sources */,
+				CE45CAEF1D8556DE0004CC1C /* Account+Value.swift in Sources */,
 				CEF2CF481D840D7B00131EAE /* MediaPreviewContainer.swift in Sources */,
 				CE6C6C1E1DB09A9800DF4892 /* User+SQLite.swift in Sources */,
 				CE9574891D32232600504D52 /* OAuthService.swift in Sources */,

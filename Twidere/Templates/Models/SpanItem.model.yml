@@ -4,7 +4,7 @@ sqlite: false
 submodels:
   SpanItem:
     type: protocol
-    mapable: false
+    mappable: false
     fields:
       start:
         type: Int

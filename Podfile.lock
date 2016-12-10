@@ -2,9 +2,12 @@ PODS:
   - ActionSheetPicker-3.0 (2.2.0)
   - Alamofire (4.2.0)
   - ALSLayouts (2.0.4)
+  - Crashlytics (3.8.3):
+    - Fabric (~> 1.6.3)
   - CryptoSwift (0.6.6)
   - DateTools (1.7.0)
   - DeviceKit (1.0.0)
+  - Fabric (1.6.11)
   - Freddy (3.0.0)
   - FXBlurView (1.6.4)
   - FXImageView (1.3.5)
@@ -47,24 +50,26 @@ DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.0)
   - Alamofire (~> 4.0)
   - ALSLayouts (~> 2.0)
+  - Crashlytics
   - CryptoSwift (~> 0.6.0)
   - DateTools (~> 1.7)
   - DeviceKit (~> 1.0)
+  - Fabric
   - Freddy (~> 3.0)
   - FXBlurView (~> 1.6)
   - FXImageView (~> 1.3)
   - IQKeyboardManagerSwift (~> 4.0.6)
-  - JDStatusBarNotification (~> 1.5)
+  - JDStatusBarNotification (~> 1.5.5)
   - JVFloatLabeledTextField (~> 1.1)
   - Kanna (~> 2.0)
   - MXPagerView (~> 0.1)
-  - MXParallaxHeader (~> 0.5)
-  - PromiseKit (~> 4.0)
+  - MXParallaxHeader (~> 0.6.0)
+  - PromiseKit (~> 4.0.0)
   - SDWebImage (~> 3.8.2)
   - SQLite.swift (~> 0.11.0)
   - StaticDataTableViewController (~> 2.0.5)
-  - STPopup (~> 1.8)
-  - SwiftHEXColors (~> 1.0)
+  - STPopup (~> 1.8.0)
+  - SwiftHEXColors (~> 1.1.0)
   - SwiftyJSON (~> 3.1.0)
   - SwiftyUserDefaults (~> 3.0)
   - ThumborURL (~> 0.0)
@@ -78,9 +83,11 @@ SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   ALSLayouts: 73bf82f8475a0533c4513570ba13e442d1d1cd5a
+  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
   CryptoSwift: 88592381b73f36e192124539390a7c9bacda76af
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   DeviceKit: ddead7f3a7c9603ba3a63cb748566428c38dd11f
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Freddy: 367f994c88a90dd3987293b4b1bec94a4530745a
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   FXImageView: 7d84722b37f0afea9a64f12fdd4a6c7f9ecc4b16
@@ -105,6 +112,6 @@ SPEC CHECKSUMS:
   UIView+TouchHighlighting: e05a338801522cbdc4a1e236bd189f2a928a781f
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 4863d996b8dcb018bb225d308b252b689da1be09
+PODFILE CHECKSUM: fac5d8fbfc15a8dd68c56f90c5f4a579385beb7c
 
 COCOAPODS: 1.1.1

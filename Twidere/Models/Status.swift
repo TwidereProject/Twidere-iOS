@@ -87,8 +87,10 @@ class Status {
         var favoriteCount: Int64 = -1
         var myRetweetId: String? = nil
         var isFavorite: Bool = false
+        var isUserProtected: Bool = false
+        var isUserVerified: Bool = false
         // Initializers
-        init(links: [LinkSpanItem]! = nil, mentions: [MentionSpanItem]! = nil, hashtags: [HashtagSpanItem]! = nil, media: [MediaItem]! = nil, displayRange: [Int]! = nil, inReplyTo: InReplyTo! = nil, externalUrl: String! = nil, replyCount: Int64 = -1, retweetCount: Int64 = -1, favoriteCount: Int64 = -1, myRetweetId: String? = nil, isFavorite: Bool = false) {
+        init(links: [LinkSpanItem]! = nil, mentions: [MentionSpanItem]! = nil, hashtags: [HashtagSpanItem]! = nil, media: [MediaItem]! = nil, displayRange: [Int]! = nil, inReplyTo: InReplyTo! = nil, externalUrl: String! = nil, replyCount: Int64 = -1, retweetCount: Int64 = -1, favoriteCount: Int64 = -1, myRetweetId: String? = nil, isFavorite: Bool = false, isUserProtected: Bool = false, isUserVerified: Bool = false) {
             self.links = links
             self.mentions = mentions
             self.hashtags = hashtags
@@ -101,6 +103,8 @@ class Status {
             self.favoriteCount = favoriteCount
             self.myRetweetId = myRetweetId
             self.isFavorite = isFavorite
+            self.isUserProtected = isUserProtected
+            self.isUserVerified = isUserVerified
         }
         // Append body content
     

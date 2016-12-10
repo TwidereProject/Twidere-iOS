@@ -197,6 +197,14 @@ submodels:
             type: Bool
             init: 'false'
             json_field: 'is_favorite'
+          isUserProtected:
+            type: Bool
+            init: 'false'
+            json_field: 'is_user_protected'
+          isUserVerified:
+            type: Bool
+            init: 'false'
+            json_field: 'is_user_verified'
         submodels:
           InReplyTo:
             type: class

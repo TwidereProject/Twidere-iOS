@@ -82,7 +82,7 @@ def generateModelContent(name, modelType, model, indent=0):
     fieldsLines = []
     initParameters = []
     initLines = []
-    fields = model['fields']
+    fields = model.get('fields', [])
     for propertyName in fields:
         field = fields[propertyName]
         propertyType = field['type']

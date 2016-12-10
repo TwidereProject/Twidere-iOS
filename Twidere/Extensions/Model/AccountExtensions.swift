@@ -12,22 +12,22 @@ import DeviceKit
 extension Account {
     func createAPIConfig() -> CustomAPIConfig {
         let config = CustomAPIConfig()
-        config.apiUrlFormat = apiUrlFormat
+        config.apiUrlFormat = credentials.apiUrlFormat
         config.authType = self.authType
-        config.consumerKey = consumerKey!
-        config.consumerSecret = consumerSecret!
-        config.sameOAuthSigningUrl = sameOAuthSigningUrl
-        config.noVersionSuffix = noVersionSuffix
+        config.consumerKey = credentials.consumerKey!
+        config.consumerSecret = credentials.consumerSecret!
+        config.sameOAuthSigningUrl = credentials.sameOAuthSigningUrl
+        config.noVersionSuffix = credentials.noVersionSuffix
         return config
     }
     
     func createAuthorization() -> Authorization {
         switch authType {
         case .oauth, .xAuth:
-            let token = OAuthToken(oauthToken!, oauthTokenSecret!)
-            return OAuthAuthorization(consumerKey!, consumerSecret!, oauthToken: token)
+            let token = OAuthToken(credentials.accessToken, credentials.accessTokenSecret)
+            return OAuthAuthorization(credentials.consumerKey, credentials.consumerSecret, oauthToken: token)
         case .basic:
-            return BasicAuthorization(username: basicUsername!, password: basicPassword!)
+            return BasicAuthorization(username: credentials.basicUsername, password: credentials.basicPassword)
         case .empty:
             return EmptyAuthorization()
         }
@@ -36,7 +36,7 @@ extension Account {
     func createClientUserAgent() -> String? {
         switch authType {
         case .oauth, .xAuth:
-            switch consumerKey!.sha1() {
+            switch credentials.consumerKey.sha1() {
             case "ec7250f480e5dedff7688c78188886c282a3d968":
                 // Twitter for iPhone
                 let device = Device()

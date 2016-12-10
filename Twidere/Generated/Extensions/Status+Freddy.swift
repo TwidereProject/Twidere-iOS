@@ -131,7 +131,9 @@ extension Status.Metadata: JSONStaticDecodable {
         let favoriteCount: Int64 = try value.decode(at: "favorite_count", or: -1)
         let myRetweetId: String? = try value.decode(at: "my_retweet_id", or: nil)
         let isFavorite: Bool = try value.decode(at: "is_favorite", or: false)
-        return Status.Metadata(links: links, mentions: mentions, hashtags: hashtags, media: media, displayRange: displayRange, inReplyTo: inReplyTo, externalUrl: externalUrl, replyCount: replyCount, retweetCount: retweetCount, favoriteCount: favoriteCount, myRetweetId: myRetweetId, isFavorite: isFavorite)
+        let isUserProtected: Bool = try value.decode(at: "is_user_protected", or: false)
+        let isUserVerified: Bool = try value.decode(at: "is_user_verified", or: false)
+        return Status.Metadata(links: links, mentions: mentions, hashtags: hashtags, media: media, displayRange: displayRange, inReplyTo: inReplyTo, externalUrl: externalUrl, replyCount: replyCount, retweetCount: retweetCount, favoriteCount: favoriteCount, myRetweetId: myRetweetId, isFavorite: isFavorite, isUserProtected: isUserProtected, isUserVerified: isUserVerified)
     }
 
 }
@@ -167,6 +169,8 @@ extension Status.Metadata: JSONEncodable {
             dict["my_retweet_id"] = self.myRetweetId!.toJSON()
         }
         dict["is_favorite"] = self.isFavorite.toJSON()
+        dict["is_user_protected"] = self.isUserProtected.toJSON()
+        dict["is_user_verified"] = self.isUserVerified.toJSON()
         return .dictionary(dict)
     }
 }

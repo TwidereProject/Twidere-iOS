@@ -7,35 +7,19 @@ class Account {
     var _id: Int64 = -1
     var key: UserKey
     var type: AccountType
-    var apiUrlFormat: String
     var authType: AuthType
-    var basicPassword: String?
-    var basicUsername: String?
-    var consumerKey: String?
-    var consumerSecret: String?
-    var noVersionSuffix: Bool
-    var oauthToken: String?
-    var oauthTokenSecret: String?
-    var sameOAuthSigningUrl: Bool
-    var config: Config? = nil
+    var credentials: Credentials
     var user: User
+    var extras: Extras? = nil
     // Initializers
-    init(_id: Int64 = -1, key: UserKey, type: AccountType, apiUrlFormat: String, authType: AuthType, basicPassword: String?, basicUsername: String?, consumerKey: String?, consumerSecret: String?, noVersionSuffix: Bool, oauthToken: String?, oauthTokenSecret: String?, sameOAuthSigningUrl: Bool, config: Config? = nil, user: User) {
+    init(_id: Int64 = -1, key: UserKey, type: AccountType, authType: AuthType, credentials: Credentials, user: User, extras: Extras? = nil) {
         self._id = _id
         self.key = key
         self.type = type
-        self.apiUrlFormat = apiUrlFormat
         self.authType = authType
-        self.basicPassword = basicPassword
-        self.basicUsername = basicUsername
-        self.consumerKey = consumerKey
-        self.consumerSecret = consumerSecret
-        self.noVersionSuffix = noVersionSuffix
-        self.oauthToken = oauthToken
-        self.oauthTokenSecret = oauthTokenSecret
-        self.sameOAuthSigningUrl = sameOAuthSigningUrl
-        self.config = config
+        self.credentials = credentials
         self.user = user
+        self.extras = extras
     }
     // Append body content
 
@@ -101,7 +85,7 @@ class Account {
     
     
     }
-    class Config {
+    class Extras {
     
         // Fields
         var characterLimit: Int
@@ -110,6 +94,35 @@ class Account {
         init(characterLimit: Int, officialCredentials: Bool) {
             self.characterLimit = characterLimit
             self.officialCredentials = officialCredentials
+        }
+        // Append body content
+    
+        // Sub models
+    
+    }
+    class Credentials {
+    
+        // Fields
+        var apiUrlFormat: String
+        var noVersionSuffix: Bool
+        var consumerKey: String!
+        var consumerSecret: String!
+        var accessToken: String!
+        var accessTokenSecret: String!
+        var sameOAuthSigningUrl: Bool!
+        var basicUsername: String!
+        var basicPassword: String!
+        // Initializers
+        init(apiUrlFormat: String, noVersionSuffix: Bool, consumerKey: String! = nil, consumerSecret: String! = nil, accessToken: String! = nil, accessTokenSecret: String! = nil, sameOAuthSigningUrl: Bool! = nil, basicUsername: String! = nil, basicPassword: String! = nil) {
+            self.apiUrlFormat = apiUrlFormat
+            self.noVersionSuffix = noVersionSuffix
+            self.consumerKey = consumerKey
+            self.consumerSecret = consumerSecret
+            self.accessToken = accessToken
+            self.accessTokenSecret = accessTokenSecret
+            self.sameOAuthSigningUrl = sameOAuthSigningUrl
+            self.basicUsername = basicUsername
+            self.basicPassword = basicPassword
         }
         // Append body content
     

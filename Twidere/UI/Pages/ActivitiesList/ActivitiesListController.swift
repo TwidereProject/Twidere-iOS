@@ -244,7 +244,20 @@ class ActivitiesListController: UITableViewController, StatusCellDelegate, Activ
     }
     
     func actionSelected(for cell: StatusCellProtocol, status: Status, action: StatusCell.StatusAction) {
-        
+        switch action {
+        case .reply:
+            replyStatus(status: status)
+        default:
+            break
+        }
+    }
+    
+    func replyStatus(status: Status) {
+        guard let nvc = self.navigationController else {
+            return
+        }
+        let cvc = ComposeController.create(inReplyTo: status)
+        cvc.show(parent: nvc.parent ?? nvc)
     }
     
     func profileImageTapped(for cell: ActivityTitleSummaryCell, user: User, index: Int) {

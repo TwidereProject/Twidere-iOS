@@ -244,7 +244,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     
     func textViewDidChange(_ textView: UITextView) {
         let accounts = try! allAccounts()
-        let textLimit = accounts.flatMap { $0.config?.characterLimit }.reduce(140) { (result, limit) -> Int in
+        let textLimit = accounts.flatMap { $0.extras?.characterLimit }.reduce(140) { (result, limit) -> Int in
             if (limit > 0 && limit < result) {
                 return limit
             }
@@ -289,6 +289,12 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     static func create() -> ComposeController {
         let storyboard = UIStoryboard(name: "Compose", bundle: nil)
         return storyboard.instantiateInitialViewController() as! ComposeController
+    }
+    
+    static func create(inReplyTo: Status) -> ComposeController {
+        let vc = create()
+        vc.inReplyToStatus = inReplyTo
+        return vc
     }
     
     func show(parent: UIViewController) {

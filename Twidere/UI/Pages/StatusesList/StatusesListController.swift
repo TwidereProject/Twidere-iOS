@@ -308,6 +308,8 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         switch action {
         case .reply:
             replyStatus(status: status)
+        case .retweet:
+            showRetweetActions(status: status)
         case .favorite:
             toggleFavoriteStatus(status: status)
         case .more:
@@ -333,9 +335,29 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         guard let nvc = self.navigationController else {
             return
         }
-        let cvc = ComposeController.create()
-        cvc.inReplyToStatus = status
+        let cvc = ComposeController.create(inReplyTo: status)
         cvc.show(parent: nvc.parent ?? nvc)
+    }
+    
+    func showRetweetActions(status: Status) {
+        let ac = UIAlertController(title: "Retweet", message: nil, preferredStyle: .actionSheet)
+        if (status.metadata?.myRetweetId != nil) {
+            ac.addAction(UIAlertAction(title: "Cencel retweet", style: .destructive) { _ in
+                
+            })
+        } else if (status.metadata?.isUserProtected ?? false) {
+            ac.addAction(UIAlertAction(title: "Retweet", style: .default) { _ in
+            
+            })
+        }
+        ac.addAction(UIAlertAction(title: "Quote", style: .default) { _ in
+            
+        })
+        ac.addAction(UIAlertAction(title: "RT tweet", style: .default) { _ in
+            
+        })
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(ac, animated: true, completion: nil)
     }
     
     func toggleFavoriteStatus(status: Status) {

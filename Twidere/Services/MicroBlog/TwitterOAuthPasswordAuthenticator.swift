@@ -65,6 +65,9 @@ class TwitterOAuthPasswordAuthenticator {
         
         return rest.makeTypedRequest(.get, path: "/oauth/authorize", headers: requestHeaders, queries: queries, serializer: DataResponseSerializer { (req, resp, data, error) -> Alamofire.Result<AuthorizeRequestData> in
             let result = AuthorizeRequestData.parseFromHttpResult(data!)
+            if (result.authenticityToken == nil) {
+                return .failure(AuthenticationError.authenticationTokenFailed)
+            }
             result.requestToken = requestToken
             result.referer = Endpoint.construct("https://api.twitter.com/", path: "/oauth/authorize", queries: queries)
             return .success(result)
@@ -134,6 +137,7 @@ class TwitterOAuthPasswordAuthenticator {
 }
 
 enum AuthenticationError: Error {
+    case authenticationTokenFailed
     case requestTokenFailed
     case accessTokenFailed
     case wrongUsernamePassword

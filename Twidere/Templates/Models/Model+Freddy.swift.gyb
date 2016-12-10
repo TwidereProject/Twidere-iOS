@@ -32,7 +32,7 @@ def generateModelContent(name, modelType, outerName, model):
     initLines = []
     toJsonLines = []
     initParameters = []
-    fields = model['fields']
+    fields = model.get('fields', [])
     for propertyName in fields:
         field = fields[propertyName]
         jsonField = field.get('json_field', None)
@@ -150,9 +150,9 @@ import ${importName}
 % for modelName in rootModels:
     % model = rootModels[modelName]
     % modelType = model.get('type', 'class')
-    % if model.get('mapable', True):
+    % if model.get('mappable', True):
         % if modelType == 'enum':
-${generateModelContent(name = modelName, outerName = None, model = model)}
+${generateEnumContent(name = modelName, outerName = None, model = model)}
         %else:
 ${generateModelContent(name = modelName, modelType = modelType, outerName = None, model = model)}
         %end
