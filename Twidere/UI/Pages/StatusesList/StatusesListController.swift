@@ -341,20 +341,33 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
     
     func showRetweetActions(status: Status) {
         let ac = UIAlertController(title: "Retweet", message: nil, preferredStyle: .actionSheet)
+        let servicePromise = DispatchQueue.global().promise { () -> MicroBlogService in
+            let account = getAccount(forKey: status.accountKey)!
+            return account.newMicroBlogService()
+        }
         if (status.metadata?.myRetweetId != nil) {
             ac.addAction(UIAlertAction(title: "Cencel retweet", style: .destructive) { _ in
-                
+                servicePromise.then { microBlog -> Promise<Status> in
+                    return microBlog.unretweetStatus(id: status.id)
+                }.showStatusBarNotificationAfterTask(success: "Retweet cancelled", failure: "Unable to cancel retweet")
             })
-        } else if (status.metadata?.isUserProtected ?? false) {
+        } else if (!(status.metadata?.isUserProtected ?? false)) {
             ac.addAction(UIAlertAction(title: "Retweet", style: .default) { _ in
-            
+                servicePromise.then { microBlog -> Promise<Status> in
+                    return microBlog.retweetStatus(id: status.id)
+                }.showStatusBarNotificationAfterTask(success: "Retweeted", failure: "Unable to retweet")
             })
         }
         ac.addAction(UIAlertAction(title: "Quote", style: .default) { _ in
             
         })
         ac.addAction(UIAlertAction(title: "RT tweet", style: .default) { _ in
-            
+            guard let nvc = self.navigationController else {
+                return
+            }
+            let vc = ComposeController.create(inReplyTo: status)
+            vc.originalText = "RT @\(status.userScreenName): \(status.textPlain)"
+            vc.show(parent: nvc.parent ?? nvc)
         })
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(ac, animated: true, completion: nil)

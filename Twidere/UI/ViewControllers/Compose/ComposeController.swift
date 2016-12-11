@@ -39,7 +39,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 }
 
 
-class ComposeController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+class ComposeController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIViewControllerTransitioningDelegate {
 
     lazy var locationManager: CLLocationManager = {
         return CLLocationManager()
@@ -55,9 +55,10 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     @IBOutlet weak var sendTextCountView: UILabel!
     @IBOutlet weak var sendIconView: UIImageView!
     @IBOutlet weak var accountProfileImageView: UIImageView!
-    @IBOutlet weak var attachmedMediaCollectionView: UICollectionView!
+    @IBOutlet weak var attachmentCollectionView: UICollectionView!
     
     var locationAuthorizationGrantedSelector: Selector? = nil
+    var keyboardHeight: CGFloat = 0
     
     var attachLocation: Bool {
         get {
@@ -72,6 +73,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
             }
         }
     }
+    var originalText: String? = nil
     
     var recentLocation: CLLocationCoordinate2D? = nil
     var attachedMedia: [MediaUpdate]? = nil
@@ -79,6 +81,7 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         locationManager.delegate = self
         // Do any additional setup after loading the view.
         
@@ -91,8 +94,8 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         editText.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         editText.delegate = self
         
-        attachmedMediaCollectionView.dataSource = self
-        attachmedMediaCollectionView.delegate = self
+        attachmentCollectionView.dataSource = self
+        attachmentCollectionView.delegate = self
         
         self.accountProfileImageView.layer.cornerRadius = self.accountProfileImageView.frame.size.width / 2
         self.accountProfileImageView.clipsToBounds = true
@@ -103,7 +106,9 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
             self.recentLocation = locationManager.location?.coordinate
         }
         
-        if let inReplyToStatus = self.inReplyToStatus {
+        if let originalText = originalText {
+            editText.text = originalText
+        } else if let inReplyToStatus = self.inReplyToStatus {
             var text = "@\(inReplyToStatus.userScreenName) "
             var range = NSMakeRange(text.utf16.count, 0)
             if let screenNames = inReplyToStatus.metadata?.mentions?.flatMap({ $0.screenName }) {
@@ -125,6 +130,9 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         super.viewWillAppear(animated)
         
         editText.becomeFirstResponder()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidChangeFrame(_:)), name: .UIKeyboardDidChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -134,6 +142,11 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         }.then { account -> Void in
                 self.accountProfileImageView.displayImage(account.user.profileImageUrlForSize(.reasonablySmall), placeholder: UIImage(named: "Profile Image Default"))
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardDidChangeFrame, object: nil)
+        super.viewWillDisappear(animated)
     }
     
     override func didReceiveMemoryWarning() {
@@ -169,10 +182,20 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     }
     
     func updateMediaPreview() {
-        attachmedMediaCollectionView.reloadData()
+        attachmentCollectionView.reloadData()
 //        attachmedMediaCollectionView.fd_collapsed = attachedMedia?.isEmpty ?? true
     }
 
+    func keyboardDidChangeFrame(_ notification: NSNotification) {
+        let value: AnyObject = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as AnyObject
+        let keyboardFrame = self.view.convert(value.cgRectValue!, from: nil)
+        self.keyboardHeight = keyboardFrame.height
+    }
+    
+    func keyboardWillHide(_ notification: NSNotification) {
+        
+    }
+    
     @IBAction func updateStatusTapped(_ sender: UITapGestureRecognizer) {
         guard let text = self.editText.text else {
             //
@@ -204,11 +227,11 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
     @IBAction func attachMediaClicked(_ sender: UIBarButtonItem) {
         switch PHPhotoLibrary.authorizationStatus() {
         case .authorized:
-            self.pickMedia()
+            self.showMediaPicker()
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization { status in
                 if (status == .authorized) {
-                    self.pickMedia()
+                    self.performSelector(onMainThread: #selector(self.showMediaPicker), with: nil, waitUntilDone: true)
                 }
             }
         default:
@@ -216,31 +239,6 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         }
     }
     
-    private func pickMedia() {
-        _ = promise(UIImagePickerController()).then(on: .global()) { (data: Data) -> MediaUpdate? in
-            guard let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else {
-                return nil
-            }
-                
-            let timestamp = Date().timeIntervalSince1970
-            var writePath = URL(fileURLWithPath: path).appendingPathComponent("\(timestamp)").path
-            let fm = FileManager.default
-            var n = 0
-            while (fm.fileExists(atPath: writePath)) {
-                writePath = NSURL(fileURLWithPath: path).appendingPathComponent("\(timestamp)_\(n)")!.path
-                n += 1
-            }
-            fm.createFile(atPath: writePath, contents: data, attributes: nil)
-            let media = MediaUpdate(path: writePath, type: .image)
-            return media
-        }.then { media -> Void in
-            if (media != nil) {
-                self.addMedia(media!)
-            }
-        }.catch { error in
-            debugPrint(error)
-        }
-    }
     
     func textViewDidChange(_ textView: UITextView) {
         let accounts = try! allAccounts()
@@ -254,15 +252,37 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         sendTextCountView.text = "\(textLimit - textLength)"
     }
     
+    @objc
+    private func showMediaPicker() {
+        let vc = UIImagePickerController()
+        vc.modalPresentationStyle = .custom
+        vc.transitioningDelegate = self
+        present(vc, animated: true) {
+            
+        }
+    }
     
-    func showLocationViewController() {
+    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+        if (viewControllerToPresent.transitioningDelegate === self) {
+            NotificationCenter.default.removeObserver(self.popupController!, name: .UIKeyboardWillHide, object: nil)
+        }
+        
+        super.present(viewControllerToPresent, animated: flag) {
+            let pc = self.popupController!
+            NotificationCenter.default.addObserver(pc, selector: Selector("keyboardWillHide:"), name: .UIKeyboardWillHide, object: nil)
+            completion?()
+        }
+    }
+    
+    @objc
+    private func showLocationViewController() {
         let vc = storyboard?.instantiateViewController(withIdentifier: "ComposeLocation") as! ComposeLocationController
         vc.callback = { location, precise in
             self.attachLocation = true
             self.recentLocation = location
         }
-        vc.modalPresentationStyle = .formSheet
-        vc.modalTransitionStyle = .coverVertical
+        vc.modalPresentationStyle = .custom
+        vc.transitioningDelegate = self
         present(vc, animated: true) { 
             
         }
@@ -275,6 +295,11 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         locationAuthorizationGrantedSelector = nil
     }
     
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        let vc = KeyboardHeightPresentationController(presentedViewController: presented, presenting: presenting)
+        vc.height = keyboardHeight
+        return vc
+    }
     
     /*
     // MARK: - Navigation
@@ -303,4 +328,15 @@ class ComposeController: UIViewController, UITextViewDelegate, CLLocationManager
         controller.present(in: parent)
     }
 
+}
+
+
+class KeyboardHeightPresentationController : UIPresentationController {
+    
+    var height: CGFloat = 0
+    
+    override var frameOfPresentedViewInContainerView: CGRect {
+        let containerBounds = containerView!.bounds
+        return CGRect(x: 0, y: containerBounds.height - self.height, width: containerBounds.width, height: self.height)
+    }
 }
