@@ -449,10 +449,12 @@
 			isa = PBXGroup;
 			children = (
 				0F80558F5C8F18CCEBAD61DC /* Frameworks */,
+				CE2660201DAFDD79007FF7CF /* Generated */,
 				112D8F55CE395A2A6ED13654 /* Pods */,
 				CE0529E41CF7F35300E06364 /* Products */,
 				CEA2E2B71D368BCF0095BC57 /* Resources */,
 				CE0529E51CF7F35300E06364 /* Sources */,
+				CEDFEA681D4F392200E1F8B8 /* Templates */,
 				CE0529FD1CF7F35300E06364 /* Tests */,
 				CE052A081CF7F35300E06364 /* UITests */,
 			);
@@ -473,10 +475,8 @@
 			children = (
 				CE95747E1D32169D00504D52 /* Constants */,
 				CEA2E2BF1D379CB10095BC57 /* Extensions */,
-				CE2660201DAFDD79007FF7CF /* Generated */,
 				CE95747B1D32107800504D52 /* Models */,
 				CED41F3C1D30D2C80089E0B6 /* Services */,
-				CEDFEA681D4F392200E1F8B8 /* Templates */,
 				CE497F911D6958F7000F16D2 /* UI */,
 				CE9574941D33B6EA00504D52 /* Utils */,
 				CE0529E61CF7F35300E06364 /* AppDelegate.swift */,
@@ -508,6 +508,7 @@
 			children = (
 				CE6C6C081DB09A9800DF4892 /* Extensions */,
 			);
+			name = Generated;
 			path = Generated;
 			sourceTree = "<group>";
 		};
@@ -875,7 +876,6 @@
 				CEA2E2B81D368BF10095BC57 /* Views */,
 				CE0529F01CF7F35300E06364 /* Assets.xcassets */,
 			);
-			name = Resources;
 			path = Resources;
 			sourceTree = "<group>";
 		};
@@ -1032,6 +1032,7 @@
 				C57AEF08A154F0228C04EAB7 /* FlatBuffers */,
 				CEDFEA691D4F392900E1F8B8 /* Models */,
 			);
+			name = Templates;
 			path = Templates;
 			sourceTree = "<group>";
 		};
