@@ -229,7 +229,7 @@
 		CE2660181DAFD1BF007FF7CF /* StringLiteral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringLiteral.swift; sourceTree = "<group>"; };
 		CE26603E1DB0638D007FF7CF /* SQLite+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SQLite+Array.swift"; sourceTree = "<group>"; };
 		CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserExtensions.swift; sourceTree = "<group>"; };
-		CE2A7F981EB5BCC6003791F2 /* MicroBlogStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MicroBlogStatus.swift; path = MicroBlogStatus.swift; sourceTree = "<group>"; };
+		CE2A7F981EB5BCC6003791F2 /* MicroBlogStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogStatus.swift; sourceTree = "<group>"; };
 		CE358B701D811C84002A33B3 /* SpanItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItem.swift; sourceTree = "<group>"; };
 		CE358B741D825942002A33B3 /* Viewers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Viewers.storyboard; sourceTree = "<group>"; };
 		CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSShadowExtension.swift; sourceTree = "<group>"; };
@@ -451,6 +451,7 @@
 				0F80558F5C8F18CCEBAD61DC /* Frameworks */,
 				112D8F55CE395A2A6ED13654 /* Pods */,
 				CE0529E41CF7F35300E06364 /* Products */,
+				CEA2E2B71D368BCF0095BC57 /* Resources */,
 				CE0529E51CF7F35300E06364 /* Sources */,
 				CE0529FD1CF7F35300E06364 /* Tests */,
 				CE052A081CF7F35300E06364 /* UITests */,
@@ -474,7 +475,6 @@
 				CEA2E2BF1D379CB10095BC57 /* Extensions */,
 				CE2660201DAFDD79007FF7CF /* Generated */,
 				CE95747B1D32107800504D52 /* Models */,
-				CEA2E2B71D368BCF0095BC57 /* Resources */,
 				CED41F3C1D30D2C80089E0B6 /* Services */,
 				CEDFEA681D4F392200E1F8B8 /* Templates */,
 				CE497F911D6958F7000F16D2 /* UI */,
@@ -482,7 +482,6 @@
 				CE0529E61CF7F35300E06364 /* AppDelegate.swift */,
 				CE0529F51CF7F35300E06364 /* Info.plist */,
 			);
-			name = Sources;
 			path = Sources;
 			sourceTree = "<group>";
 		};
@@ -492,7 +491,6 @@
 				CE052A001CF7F35300E06364 /* Info.plist */,
 				CE0529FE1CF7F35300E06364 /* TwidereTests.swift */,
 			);
-			name = Tests;
 			path = Tests;
 			sourceTree = "<group>";
 		};
@@ -502,7 +500,6 @@
 				CE052A0B1CF7F35300E06364 /* Info.plist */,
 				CE052A091CF7F35300E06364 /* TwidereUITests.swift */,
 			);
-			name = UITests;
 			path = UITests;
 			sourceTree = "<group>";
 		};
@@ -539,7 +536,6 @@
 			children = (
 				CE2A7F971EB5BC8F003791F2 /* MicroBlog */,
 			);
-			name = API;
 			path = API;
 			sourceTree = "<group>";
 		};
@@ -548,7 +544,6 @@
 			children = (
 				CE2A7F981EB5BCC6003791F2 /* MicroBlogStatus.swift */,
 			);
-			name = MicroBlog;
 			path = MicroBlog;
 			sourceTree = "<group>";
 		};
@@ -880,6 +875,7 @@
 				CEA2E2B81D368BF10095BC57 /* Views */,
 				CE0529F01CF7F35300E06364 /* Assets.xcassets */,
 			);
+			name = Resources;
 			path = Resources;
 			sourceTree = "<group>";
 		};
