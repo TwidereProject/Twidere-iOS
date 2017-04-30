@@ -4,6 +4,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'Twidere' do
+  pod 'Sourcery', '~> 0.6'
   pod 'SwiftyJSON', '~> 3.1.0' # Swift 3
   pod 'SQLite.swift', '~> 0.11.0' # Swift 3
   pod 'CryptoSwift', '~> 0.6.0'  # Swift 3

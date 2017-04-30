@@ -29,6 +29,7 @@
 		CE2660191DAFD1BF007FF7CF /* StringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2660181DAFD1BF007FF7CF /* StringLiteral.swift */; };
 		CE26603F1DB0638D007FF7CF /* SQLite+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26603E1DB0638D007FF7CF /* SQLite+Array.swift */; };
 		CE2903EC1D4F200A0056D0E2 /* UserExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */; };
+		CE2A7F991EB5BCC6003791F2 /* MicroBlogStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7F981EB5BCC6003791F2 /* MicroBlogStatus.swift */; };
 		CE358B711D811C84002A33B3 /* SpanItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE358B701D811C84002A33B3 /* SpanItem.swift */; };
 		CE358B751D825942002A33B3 /* Viewers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE358B741D825942002A33B3 /* Viewers.storyboard */; };
 		CE3E5DF61D978A6100454A61 /* NSShadowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */; };
@@ -228,6 +229,7 @@
 		CE2660181DAFD1BF007FF7CF /* StringLiteral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringLiteral.swift; sourceTree = "<group>"; };
 		CE26603E1DB0638D007FF7CF /* SQLite+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SQLite+Array.swift"; sourceTree = "<group>"; };
 		CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserExtensions.swift; sourceTree = "<group>"; };
+		CE2A7F981EB5BCC6003791F2 /* MicroBlogStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MicroBlogStatus.swift; path = API/MicroBlog/MicroBlogStatus.swift; sourceTree = "<group>"; };
 		CE358B701D811C84002A33B3 /* SpanItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItem.swift; sourceTree = "<group>"; };
 		CE358B741D825942002A33B3 /* Viewers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Viewers.storyboard; sourceTree = "<group>"; };
 		CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSShadowExtension.swift; sourceTree = "<group>"; };
@@ -449,9 +451,9 @@
 				0F80558F5C8F18CCEBAD61DC /* Frameworks */,
 				112D8F55CE395A2A6ED13654 /* Pods */,
 				CE0529E41CF7F35300E06364 /* Products */,
-				CE0529E51CF7F35300E06364 /* Twidere */,
-				CE0529FD1CF7F35300E06364 /* TwidereTests */,
-				CE052A081CF7F35300E06364 /* TwidereUITests */,
+				CE0529E51CF7F35300E06364 /* Sources */,
+				CE0529FD1CF7F35300E06364 /* Tests */,
+				CE052A081CF7F35300E06364 /* UITests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -465,7 +467,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CE0529E51CF7F35300E06364 /* Twidere */ = {
+		CE0529E51CF7F35300E06364 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				CE95747E1D32169D00504D52 /* Constants */,
@@ -480,24 +482,27 @@
 				CE0529E61CF7F35300E06364 /* AppDelegate.swift */,
 				CE0529F51CF7F35300E06364 /* Info.plist */,
 			);
+			name = Sources;
 			path = Twidere;
 			sourceTree = "<group>";
 		};
-		CE0529FD1CF7F35300E06364 /* TwidereTests */ = {
+		CE0529FD1CF7F35300E06364 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				CE052A001CF7F35300E06364 /* Info.plist */,
 				CE0529FE1CF7F35300E06364 /* TwidereTests.swift */,
 			);
+			name = Tests;
 			path = TwidereTests;
 			sourceTree = "<group>";
 		};
-		CE052A081CF7F35300E06364 /* TwidereUITests */ = {
+		CE052A081CF7F35300E06364 /* UITests */ = {
 			isa = PBXGroup;
 			children = (
 				CE052A0B1CF7F35300E06364 /* Info.plist */,
 				CE052A091CF7F35300E06364 /* TwidereUITests.swift */,
 			);
+			name = UITests;
 			path = TwidereUITests;
 			sourceTree = "<group>";
 		};
@@ -527,6 +532,22 @@
 				CE45CAF61D855EFA0004CC1C /* UserKeyExtensions.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CE2A7F961EB5BC85003791F2 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A7F971EB5BC8F003791F2 /* MicroBlog */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		CE2A7F971EB5BC8F003791F2 /* MicroBlog */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A7F981EB5BCC6003791F2 /* MicroBlogStatus.swift */,
+			);
+			name = MicroBlog;
 			sourceTree = "<group>";
 		};
 		CE497F911D6958F7000F16D2 /* UI */ = {
@@ -750,6 +771,7 @@
 		CE95747B1D32107800504D52 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CE2A7F961EB5BC85003791F2 /* API */,
 				CE45CA851D85416C0004CC1C /* Account.swift */,
 				CE65B1BD1D9CC01500A38A61 /* Activity.swift */,
 				CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */,
@@ -1336,7 +1358,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7B841558B50E9345C753B191 /* [CP] Copy Pods Resources */ = {
@@ -1381,7 +1403,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9EA744A7688B4064B093AD91 /* [CP] Copy Pods Resources */ = {
@@ -1499,7 +1521,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1570,6 +1592,7 @@
 				CE65B1DB1D9D525C00A38A61 /* ActivityExtension.swift in Sources */,
 				CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */,
 				CE6C6C171DB09A9800DF4892 /* Activity+Freddy.swift in Sources */,
+				CE2A7F991EB5BCC6003791F2 /* MicroBlogStatus.swift in Sources */,
 				CEBECFC21DAA2F4500350383 /* UIViewControllerPreviewingExtension.swift in Sources */,
 				CED41F481D3147460089E0B6 /* APIEditorController.swift in Sources */,
 				CE45CA881D85416C0004CC1C /* Account.swift in Sources */,
