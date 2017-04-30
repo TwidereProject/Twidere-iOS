@@ -229,7 +229,7 @@
 		CE2660181DAFD1BF007FF7CF /* StringLiteral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringLiteral.swift; sourceTree = "<group>"; };
 		CE26603E1DB0638D007FF7CF /* SQLite+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SQLite+Array.swift"; sourceTree = "<group>"; };
 		CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserExtensions.swift; sourceTree = "<group>"; };
-		CE2A7F981EB5BCC6003791F2 /* MicroBlogStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MicroBlogStatus.swift; path = API/MicroBlog/MicroBlogStatus.swift; sourceTree = "<group>"; };
+		CE2A7F981EB5BCC6003791F2 /* MicroBlogStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MicroBlogStatus.swift; path = MicroBlogStatus.swift; sourceTree = "<group>"; };
 		CE358B701D811C84002A33B3 /* SpanItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItem.swift; sourceTree = "<group>"; };
 		CE358B741D825942002A33B3 /* Viewers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Viewers.storyboard; sourceTree = "<group>"; };
 		CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSShadowExtension.swift; sourceTree = "<group>"; };
@@ -483,7 +483,7 @@
 				CE0529F51CF7F35300E06364 /* Info.plist */,
 			);
 			name = Sources;
-			path = Twidere;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		CE0529FD1CF7F35300E06364 /* Tests */ = {
@@ -493,7 +493,7 @@
 				CE0529FE1CF7F35300E06364 /* TwidereTests.swift */,
 			);
 			name = Tests;
-			path = TwidereTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		CE052A081CF7F35300E06364 /* UITests */ = {
@@ -503,7 +503,7 @@
 				CE052A091CF7F35300E06364 /* TwidereUITests.swift */,
 			);
 			name = UITests;
-			path = TwidereUITests;
+			path = UITests;
 			sourceTree = "<group>";
 		};
 		CE2660201DAFDD79007FF7CF /* Generated */ = {
@@ -540,6 +540,7 @@
 				CE2A7F971EB5BC8F003791F2 /* MicroBlog */,
 			);
 			name = API;
+			path = API;
 			sourceTree = "<group>";
 		};
 		CE2A7F971EB5BC8F003791F2 /* MicroBlog */ = {
@@ -548,6 +549,7 @@
 				CE2A7F981EB5BCC6003791F2 /* MicroBlogStatus.swift */,
 			);
 			name = MicroBlog;
+			path = MicroBlog;
 			sourceTree = "<group>";
 		};
 		CE497F911D6958F7000F16D2 /* UI */ = {
@@ -558,8 +560,8 @@
 				CE497F9B1D695F5D000F16D2 /* Utils */,
 				CED41F281D2FEE9C0089E0B6 /* ViewControllers */,
 				CEA2E2B21D368B1D0095BC57 /* Views */,
-				CE65B1B51D9C20AE00A38A61 /* PullToRefreshProtocol.swift */,
 				CE6D6E991DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift */,
+				CE65B1B51D9C20AE00A38A61 /* PullToRefreshProtocol.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -901,8 +903,10 @@
 				CE497FBD1D6B01D1000F16D2 /* DateExtension.swift */,
 				CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */,
 				CE9DB0481DACA34B000C150F /* Number+LocalizedString.swift */,
+				CEEF42BA1DB9D650009ECD0F /* Promise+TaskMessage.swift */,
 				CE4B1AA41D719E160017CB85 /* StringExtensions.swift */,
 				CE2660181DAFD1BF007FF7CF /* StringLiteral.swift */,
+				CE412B211DB9F38D00C52099 /* SwiftyJSONExtension.swift */,
 				CED73F6D1D953C6E0066F554 /* UIBarButtonItemExtension.swift */,
 				CED73F6B1D9519B80066F554 /* UIImageExtensions.swift */,
 				CEA2E2CE1D3A779B0095BC57 /* UIImageViewExtension.swift */,
@@ -911,8 +915,6 @@
 				CE79C8401DA7ACE3007C05F2 /* UIViewExtension.swift */,
 				CE79C83E1DA77777007C05F2 /* YYText+ALSLayouts.swift */,
 				CEEF42B81DB669C2009ECD0F /* YYTextExtension.swift */,
-				CEEF42BA1DB9D650009ECD0F /* Promise+TaskMessage.swift */,
-				CE412B211DB9F38D00C52099 /* SwiftyJSONExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1810,7 +1812,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = K5277Y55W8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = Twidere/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.Twidere;
@@ -1831,7 +1833,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = K5277Y55W8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = Twidere/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.Twidere;
