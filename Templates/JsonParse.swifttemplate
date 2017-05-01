@@ -1,0 +1,99 @@
+<%
+
+func generateGetValueStatement(_ varName: String, _ varType: Type?, _ varTypeName: String, _ varAnnotations: [String: Any]) -> String {
+    switch (varTypeName) {
+    case "String": return "parser.getValueAsString()"
+    case "Int64": return "parser.getValueAsInt64()"
+    case "Int32", "Int": return "parser.getValueAsInt32()"
+    case "Double": return "parser.getValueAsDouble()"
+    case "Bool": return "parser.getValueAsBool()"
+    default:
+        if let parseFunction = varAnnotations["jsonParseFunction"] {
+            return "\(parseFunction)(parser)"
+        }
+        if (varType?.annotations["jsonParse"] == nil) {
+            fatalError("\(varName) is not parsable")
+        }
+        return "\(varTypeName).parse(parser: parser)"
+    }
+}
+
+func generateFieldNames(_ annotationValue: String) -> String {
+    return annotationValue.components(separatedBy: "|").map { "\"\($0)\"" }.joined(separator: ", ")
+}
+
+%>
+<% for type in types.all where type.annotations["jsonParse"] != nil { %>
+// sourcery:file:<%= type.name %>+JsonParse.swift
+import PMJackson
+
+extension <%= type.name %> {
+
+    static func parse(parser: PMJacksonParser) -> <%= type.name %>! {
+        let instance = <%= type.name %>()
+        if (parser.currentEvent == nil) {
+            parser.nextEvent()
+        }
+
+        if (parser.currentEvent != .objectStart) {
+            parser.skipChildren()
+            return nil
+        }
+        while (parser.nextEvent() != .objectEnd) {
+            let fieldName = parser.currentName!
+            parser.nextEvent()
+            parseField(instance, fieldName, parser)
+            parser.skipChildren()
+        }
+        return instance
+    }
+
+    private static func parseField(_ instance: <%= type.name %>, _ fieldName: String, _ parser: PMJacksonParser) {
+        switch fieldName {
+        <% for variable in type.allVariables where variable.annotations["jsonFieldName"] != nil { %>
+            <% let fieldNames = generateFieldNames(variable.annotations["jsonFieldName"] as! String) %>
+            <% if (variable.isArray) { %>
+        case <%= fieldNames %>:
+            if (parser.currentEvent == .arrayStart) {
+                var array = <%= variable.unwrappedTypeName %>()
+                <% let arrayType = variable.typeName.array! %>
+                <% let elemType = arrayType.elementType %>
+                <% let elemTypeName = arrayType.elementTypeName.unwrappedTypeName %>
+                while (parser.nextEvent() != .arrayEnd) {
+                    array.append(<%= generateGetValueStatement(variable.name, elemType, elemTypeName, variable.annotations) %>)
+                }
+                instance.<%= variable.name %> = array
+            } else {
+                instance.<%= variable.name %> = nil
+            }
+            <% } else if (variable.isDictionary) { %>
+        case <%= fieldNames %>:
+            if (parser.currentEvent == .objectStart) {
+                var dict = <%= variable.unwrappedTypeName %>()
+                <% let dictType = variable.typeName.dictionary! %>
+                <% let valType = dictType.valueType %>
+                <% let valTypeName = dictType.valueTypeName.unwrappedTypeName %>
+                while (parser.nextEvent() != .objectStart) {
+                    let dictKey = parser.getValueAsString()!
+                    parser.nextEvent()
+                    if (parser.currentEvent == .nullValue) {
+                       dict[dictKey] = nil
+                    } else {
+                       dict[dictKey] = <%= generateGetValueStatement(variable.name, valType, valTypeName, variable.annotations) %>
+                    }
+
+                }
+                instance.<%= variable.name %> = dict
+            } else {
+                instance.<%= variable.name %> = nil
+            }
+            <% } else { %>
+        case <%= fieldNames %>: instance.<%= variable.name %> = <%= generateGetValueStatement(variable.name, variable.type, variable.unwrappedTypeName, variable.annotations) %>
+            <% } %>
+        <% } %>
+        default: break
+        }
+    }
+}
+// sourcery:end
+<% } %>

@@ -4,7 +4,7 @@ PODS:
   - ALSLayouts (2.0.4)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
-  - CryptoSwift (0.6.8)
+  - CryptoSwift (0.6.9)
   - DateTools (1.7.0)
   - DeviceKit (1.0.1)
   - Fabric (1.6.11)
@@ -17,6 +17,9 @@ PODS:
   - Kanna (2.2.1)
   - MXPagerView (0.2.1)
   - MXParallaxHeader (0.6.1)
+  - PMJackson (1.0.8):
+    - PMJSON (~> 2.0)
+  - PMJSON (2.0.2)
   - PromiseKit (4.0.5):
     - PromiseKit/Foundation (= 4.0.5)
     - PromiseKit/QuartzCore (= 4.0.5)
@@ -65,6 +68,8 @@ DEPENDENCIES:
   - Kanna (~> 2.0)
   - MXPagerView (~> 0.1)
   - MXParallaxHeader (~> 0.6.0)
+  - PMJackson (~> 1.0.8)
+  - PMJSON (~> 2.0.2)
   - PromiseKit (~> 4.0.0)
   - SDWebImage (~> 3.8.2)
   - Sourcery (~> 0.6)
@@ -86,7 +91,7 @@ SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   ALSLayouts: 73bf82f8475a0533c4513570ba13e442d1d1cd5a
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
-  CryptoSwift: f21ea03ed3a94e79d241648ce26652cd4810508a
+  CryptoSwift: a22f6ba238e9ce4d26ee7bf45b9ed82e7122d4a0
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   DeviceKit: 461e525867e48e725f41699c1cab3100df1258ff
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
@@ -99,6 +104,8 @@ SPEC CHECKSUMS:
   Kanna: 182789ab065e8f9a6ccc2a74ce6283d3401c0c4a
   MXPagerView: ede184b5191b2ed689ccf05a750a9978cce42414
   MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
+  PMJackson: 393eb0859a0c18bd9b9d38f93cc830205db79b43
+  PMJSON: 1887d12b6a85b3c9f9d1a7e4b32860d4901d9505
   PromiseKit: 593b5e24ded6cbb1ebc708bc2c3428a8a5632d91
   SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
   Sourcery: b3a93fcdf9c256feeb16e85f4d1bbf46baa42464
@@ -115,6 +122,6 @@ SPEC CHECKSUMS:
   UIView+TouchHighlighting: e05a338801522cbdc4a1e236bd189f2a928a781f
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 25ffcf18d5d344e6fa5e792b0a9a4019dd6ee759
+PODFILE CHECKSUM: cfa9cda093e485b6b758afc0354974dcf679da2e
 
 COCOAPODS: 1.2.1

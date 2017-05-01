@@ -52,7 +52,7 @@ func getBestBannerType(_ width: Int) -> String {
     }
 }
 
-func parseTwitterDate(_ str: String) -> Date? {
+func parseTwitterDate(_ str: String) -> Date! {
     return twitterDateFormatter.date(from: str)
 }
 
