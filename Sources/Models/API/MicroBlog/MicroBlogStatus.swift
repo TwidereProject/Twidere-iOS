@@ -162,9 +162,6 @@ class MicroBlogStatus {
     // sourcery: jsonFieldName=extended_tweet
     var extendedTweet: ExtendedTweet? = nil
     
-    // sourcery: jsonFieldName=test_dict
-    var testDict: [String: String?]!
-    
     init() {
 
     }

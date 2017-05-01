@@ -263,30 +263,6 @@ extension MicroBlogStatus {
         case "extended_tweet": instance.extendedTweet = ExtendedTweet.parse(parser: parser)
             
         
-            
-            
-        case "test_dict":
-            if (parser.currentEvent == .objectStart) {
-                var dict = [String: String?]()
-                
-                
-                
-                while (parser.nextEvent() != .objectStart) {
-                    let dictKey = parser.getValueAsString()!
-                    parser.nextEvent()
-                    if (parser.currentEvent == .nullValue) {
-                       dict[dictKey] = nil
-                    } else {
-                       dict[dictKey] = parser.getValueAsString()
-                    }
-
-                }
-                instance.testDict = dict
-            } else {
-                instance.testDict = nil
-            }
-            
-        
         default: break
         }
     }
