@@ -26,7 +26,6 @@ extension GNUSocialAttention {
 
     private static func parseField(_ instance: GNUSocialAttention, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-        
         default: break
         }
     }

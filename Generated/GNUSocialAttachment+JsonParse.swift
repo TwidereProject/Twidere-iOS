@@ -26,7 +26,6 @@ extension GNUSocialAttachment {
 
     private static func parseField(_ instance: GNUSocialAttachment, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-        
         default: break
         }
     }

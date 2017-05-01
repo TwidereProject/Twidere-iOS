@@ -26,7 +26,6 @@ extension MicroBlogStatus.ExtendedTweet {
 
     private static func parseField(_ instance: MicroBlogStatus.ExtendedTweet, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-        
         default: break
         }
     }

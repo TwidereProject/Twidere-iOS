@@ -26,7 +26,6 @@ extension FanfouPhoto {
 
     private static func parseField(_ instance: FanfouPhoto, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-        
         default: break
         }
     }

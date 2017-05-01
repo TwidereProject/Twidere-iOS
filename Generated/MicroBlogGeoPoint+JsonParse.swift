@@ -26,7 +26,6 @@ extension MicroBlogGeoPoint {
 
     private static func parseField(_ instance: MicroBlogGeoPoint, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-        
         default: break
         }
     }

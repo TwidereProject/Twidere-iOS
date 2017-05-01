@@ -23,7 +23,7 @@ func generateFieldNames(_ annotationValue: String) -> String {
 }
 
 %>
-<% for type in types.all where type.annotations["jsonParse"] != nil { %>
+<%_ for type in types.all where type.annotations["jsonParse"] != nil { _%>
 // sourcery:file:<%= type.name %>+JsonParse.swift
 import PMJackson
 
@@ -50,15 +50,15 @@ extension <%= type.name %> {
 
     private static func parseField(_ instance: <%= type.name %>, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-        <% for variable in type.allVariables where variable.annotations["jsonFieldName"] != nil { %>
-            <% let fieldNames = generateFieldNames(variable.annotations["jsonFieldName"] as! String) %>
-            <% if (variable.isArray) { %>
+        <%_ for variable in type.allVariables where variable.annotations["jsonFieldName"] != nil { -%>
+            <%_ let fieldNames = generateFieldNames(variable.annotations["jsonFieldName"] as! String) -%>
+            <%_ if (variable.isArray) { -%>
         case <%= fieldNames %>:
             if (parser.currentEvent == .arrayStart) {
                 var array = <%= variable.unwrappedTypeName %>()
-                <% let arrayType = variable.typeName.array! %>
-                <% let elemType = arrayType.elementType %>
-                <% let elemTypeName = arrayType.elementTypeName.unwrappedTypeName %>
+                <%_ let arrayType = variable.typeName.array! -%>
+                <%_ let elemType = arrayType.elementType -%>
+                <%_ let elemTypeName = arrayType.elementTypeName.unwrappedTypeName -%>
                 while (parser.nextEvent() != .arrayEnd) {
                     array.append(<%= generateGetValueStatement(variable.name, elemType, elemTypeName, variable.annotations) %>)
                 }
@@ -66,13 +66,13 @@ extension <%= type.name %> {
             } else {
                 instance.<%= variable.name %> = nil
             }
-            <% } else if (variable.isDictionary) { %>
+            <%_ } else if (variable.isDictionary) { -%>
         case <%= fieldNames %>:
             if (parser.currentEvent == .objectStart) {
                 var dict = <%= variable.unwrappedTypeName %>()
-                <% let dictType = variable.typeName.dictionary! %>
-                <% let valType = dictType.valueType %>
-                <% let valTypeName = dictType.valueTypeName.unwrappedTypeName %>
+                <%_ let dictType = variable.typeName.dictionary! -%>
+                <%_ let valType = dictType.valueType -%>
+                <%_ let valTypeName = dictType.valueTypeName.unwrappedTypeName -%>
                 while (parser.nextEvent() != .objectStart) {
                     let dictKey = parser.getValueAsString()!
                     parser.nextEvent()
@@ -87,13 +87,13 @@ extension <%= type.name %> {
             } else {
                 instance.<%= variable.name %> = nil
             }
-            <% } else { %>
+          <%_ } else { -%>
         case <%= fieldNames %>: instance.<%= variable.name %> = <%= generateGetValueStatement(variable.name, variable.type, variable.unwrappedTypeName, variable.annotations) %>
-            <% } %>
-        <% } %>
+          <%_ } -%>
+        <%_ } -%>
         default: break
         }
     }
 }
 // sourcery:end
-<% } %>
+<%_ } -%>

@@ -26,7 +26,6 @@ extension MicroBlogPlace {
 
     private static func parseField(_ instance: MicroBlogPlace, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-        
         default: break
         }
     }

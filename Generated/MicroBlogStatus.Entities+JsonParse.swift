@@ -26,7 +26,6 @@ extension MicroBlogStatus.Entities {
 
     private static func parseField(_ instance: MicroBlogStatus.Entities, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-        
         default: break
         }
     }

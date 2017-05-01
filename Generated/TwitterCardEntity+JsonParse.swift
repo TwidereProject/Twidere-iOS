@@ -26,7 +26,6 @@ extension TwitterCardEntity {
 
     private static func parseField(_ instance: TwitterCardEntity, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-        
         default: break
         }
     }
