@@ -5,6 +5,8 @@ import PMJackson
 
 internal extension FanfouPhoto {
 
+    typealias T = FanfouPhoto
+
     internal static func parse(_ instance: FanfouPhoto = FanfouPhoto(), parser: PMJacksonParser) -> FanfouPhoto! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()

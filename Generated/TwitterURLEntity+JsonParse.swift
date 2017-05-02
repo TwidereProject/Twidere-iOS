@@ -5,6 +5,8 @@ import PMJackson
 
 internal extension TwitterURLEntity {
 
+    typealias T = TwitterURLEntity
+
     internal static func parse(_ instance: TwitterURLEntity = TwitterURLEntity(), parser: PMJacksonParser) -> TwitterURLEntity! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()

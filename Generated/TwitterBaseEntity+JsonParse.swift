@@ -5,6 +5,8 @@ import PMJackson
 
 internal extension TwitterBaseEntity {
 
+    typealias T = TwitterBaseEntity
+
     internal static func parse(_ instance: TwitterBaseEntity = TwitterBaseEntity(), parser: PMJacksonParser) -> TwitterBaseEntity! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()

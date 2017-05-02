@@ -7,10 +7,11 @@ target 'Twidere' do
   pod 'Sourcery', '~> 0.6'
   pod 'PMJSON', '~> 2.0.2'
   pod 'PMJackson', '~> 1.0.8'
-  pod 'SwiftyJSON', '~> 3.1.0' # Swift 3
-  pod 'SQLite.swift', '~> 0.11.0' # Swift 3
-  pod 'CryptoSwift', '~> 0.6.0'  # Swift 3
-  pod 'Alamofire', '~> 4.0' # Swift 3
+  pod 'SwiftyJSON', '~> 3.1.0'
+  pod 'SQLite.swift', '~> 0.11.0'
+  pod 'CryptoSwift', '~> 0.6.0'
+  pod 'Alamofire', '~> 4.0'
+  pod 'PromiseKit/Alamofire', '~> 4.0'
   pod 'JVFloatLabeledTextField', '~> 1.1' # Obj-C
   pod 'ActionSheetPicker-3.0', '~> 2.0' # Obj-C
   pod 'StaticDataTableViewController', '~> 2.0.5' # Obj-C

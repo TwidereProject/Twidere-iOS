@@ -5,6 +5,8 @@ import PMJackson
 
 internal extension MicroBlogPlace {
 
+    typealias T = MicroBlogPlace
+
     internal static func parse(_ instance: MicroBlogPlace = MicroBlogPlace(), parser: PMJacksonParser) -> MicroBlogPlace! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()

@@ -24,6 +24,9 @@ PODS:
     - PromiseKit/Foundation (= 4.0.5)
     - PromiseKit/QuartzCore (= 4.0.5)
     - PromiseKit/UIKit (= 4.0.5)
+  - PromiseKit/Alamofire (4.0.5):
+    - Alamofire (~> 4.0)
+    - PromiseKit/CorePromise
   - PromiseKit/CorePromise (4.0.5)
   - PromiseKit/Foundation (4.0.5):
     - PromiseKit/CorePromise
@@ -71,6 +74,7 @@ DEPENDENCIES:
   - PMJackson (~> 1.0.8)
   - PMJSON (~> 2.0.2)
   - PromiseKit (~> 4.0.0)
+  - PromiseKit/Alamofire (~> 4.0)
   - SDWebImage (~> 3.8.2)
   - Sourcery (~> 0.6)
   - SQLite.swift (~> 0.11.0)
@@ -122,6 +126,6 @@ SPEC CHECKSUMS:
   UIView+TouchHighlighting: e05a338801522cbdc4a1e236bd189f2a928a781f
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: cfa9cda093e485b6b758afc0354974dcf679da2e
+PODFILE CHECKSUM: 7442211d343ecf74d1f36ab69e4e5ff25c087be1
 
 COCOAPODS: 1.2.1

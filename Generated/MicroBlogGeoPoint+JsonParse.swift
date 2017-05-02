@@ -5,6 +5,8 @@ import PMJackson
 
 internal extension MicroBlogGeoPoint {
 
+    typealias T = MicroBlogGeoPoint
+
     internal static func parse(_ instance: MicroBlogGeoPoint = MicroBlogGeoPoint(), parser: PMJacksonParser) -> MicroBlogGeoPoint! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()

@@ -5,6 +5,8 @@ import PMJackson
 
 internal extension MicroBlogStatus.CurrentUserRetweet {
 
+    typealias T = MicroBlogStatus.CurrentUserRetweet
+
     internal static func parse(_ instance: MicroBlogStatus.CurrentUserRetweet = MicroBlogStatus.CurrentUserRetweet(), parser: PMJacksonParser) -> MicroBlogStatus.CurrentUserRetweet! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()

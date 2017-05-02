@@ -3,11 +3,11 @@
 
 import PMJackson
 
-internal extension TwitterCardEntity {
+internal extension MastodonAccount {
 
-    typealias T = TwitterCardEntity
+    typealias T = MastodonAccount
 
-    internal static func parse(_ instance: TwitterCardEntity = TwitterCardEntity(), parser: PMJacksonParser) -> TwitterCardEntity! {
+    internal static func parse(_ instance: MastodonAccount = MastodonAccount(), parser: PMJacksonParser) -> MastodonAccount! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -26,7 +26,7 @@ internal extension TwitterCardEntity {
         return instance
     }
 
-    internal static func parseField(_ instance: TwitterCardEntity, _ fieldName: String, _ parser: PMJacksonParser) {
+    internal static func parseField(_ instance: MastodonAccount, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         default:
             break

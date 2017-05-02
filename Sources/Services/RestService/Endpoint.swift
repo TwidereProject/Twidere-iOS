@@ -21,7 +21,7 @@ class Endpoint {
         self.fixUrl = fixUrl
     }
     
-    func constructUrl(_ path: String, queries: [String: String]? = nil) -> String {
+    func constructUrl(_ path: String, queries: [String: String?]? = nil) -> String {
         let url = Endpoint.construct(base, path: path, queries: queries)
         if (fixUrl != nil) {
             return fixUrl!(url)
@@ -29,7 +29,7 @@ class Endpoint {
         return url
     }
     
-    static func construct(_ base: String, path: String, queries: [String: String]? = nil) -> String {
+    static func construct(_ base: String, path: String, queries: [String: String?]? = nil) -> String {
         var components = URLComponents(string: base)!
         var basePath = components.path 
         if (basePath.hasSuffix("/")) {

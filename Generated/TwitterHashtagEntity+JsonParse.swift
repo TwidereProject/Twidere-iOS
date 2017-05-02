@@ -5,6 +5,8 @@ import PMJackson
 
 internal extension TwitterHashtagEntity {
 
+    typealias T = TwitterHashtagEntity
+
     internal static func parse(_ instance: TwitterHashtagEntity = TwitterHashtagEntity(), parser: PMJacksonParser) -> TwitterHashtagEntity! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()

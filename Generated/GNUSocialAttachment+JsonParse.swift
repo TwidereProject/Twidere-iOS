@@ -5,6 +5,8 @@ import PMJackson
 
 internal extension GNUSocialAttachment {
 
+    typealias T = GNUSocialAttachment
+
     internal static func parse(_ instance: GNUSocialAttachment = GNUSocialAttachment(), parser: PMJacksonParser) -> GNUSocialAttachment! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()

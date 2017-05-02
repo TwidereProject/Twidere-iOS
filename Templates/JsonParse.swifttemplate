@@ -1,5 +1,13 @@
-<%
+import PMJackson
 
+protocol JsonParsable {
+    associatedtype T
+
+    static func parse(_ instance: T, parser: PMJacksonParser) -> T
+
+    static func parseField(_ instance: T, _ fieldName: String, _ parser: PMJacksonParser)
+}
+<%_
 func generateGetValueStatement(_ typeName: String, _ varName: String, _ varType: Type?, _ varTypeName: String, _ varAnnotations: [String: Any]) -> String {
     switch (varTypeName) {
     case "String": return "parser.getValueAsString()"
@@ -21,13 +29,14 @@ func generateGetValueStatement(_ typeName: String, _ varName: String, _ varType:
 func generateFieldNames(_ annotationValue: String) -> String {
     return annotationValue.components(separatedBy: "|").map { "\"\($0)\"" }.joined(separator: ", ")
 }
-
-%>
+-%>
 <%_ for type in types.all where type.annotations["jsonParse"] != nil { _%>
 // sourcery:file:<%= type.name %>+JsonParse.swift
 import PMJackson
 
 <%= "\(type.accessLevel) " %>extension <%= type.name %> {
+
+    typealias T = <%= type.name %>
 
     <%= "\(type.accessLevel) " %>static func parse(_ instance: <%= type.name %> = <%= type.name %>(), parser: PMJacksonParser) -> <%= type.name %>! {
         if (parser.currentEvent == nil) {
