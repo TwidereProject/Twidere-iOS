@@ -3,10 +3,10 @@
 
 import PMJackson
 
-extension FanfouPhoto {
+extension TwitterEntities {
 
-    static func parse(parser: PMJacksonParser) -> FanfouPhoto! {
-        let instance = FanfouPhoto()
+    static func parse(parser: PMJacksonParser) -> TwitterEntities! {
+        let instance = TwitterEntities()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -24,12 +24,18 @@ extension FanfouPhoto {
         return instance
     }
 
-    private static func parseField(_ instance: FanfouPhoto, _ fieldName: String, _ parser: PMJacksonParser) {
+    private static func parseField(_ instance: TwitterEntities, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-                    case "url": instance.url = parser.getValueAsString()
-                    case "imageurl": instance.imageUrl = parser.getValueAsString()
-                    case "thumburl": instance.thumbUrl = parser.getValueAsString()
-                    case "largeurl": instance.largeUrl = parser.getValueAsString()
+                    case "urls":
+            if (parser.currentEvent == .arrayStart) {
+                var array = [TwitterURLEntity]()
+                while (parser.nextEvent() != .arrayEnd) {
+                    array.append(TwitterURLEntity.parse(parser: parser))
+                }
+                instance.urls = array
+            } else {
+                instance.urls = nil
+            }
         default: break
         }
     }

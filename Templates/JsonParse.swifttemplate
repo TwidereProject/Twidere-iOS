@@ -1,6 +1,6 @@
 <%
 
-func generateGetValueStatement(_ varName: String, _ varType: Type?, _ varTypeName: String, _ varAnnotations: [String: Any]) -> String {
+func generateGetValueStatement(_ typeName: String, _ varName: String, _ varType: Type?, _ varTypeName: String, _ varAnnotations: [String: Any]) -> String {
     switch (varTypeName) {
     case "String": return "parser.getValueAsString()"
     case "Int64": return "parser.getValueAsInt64()"
@@ -12,7 +12,7 @@ func generateGetValueStatement(_ varName: String, _ varType: Type?, _ varTypeNam
             return "\(parseFunction)(parser)"
         }
         if (varType?.annotations["jsonParse"] == nil) {
-            fatalError("\(varName) is not parsable")
+            fatalError("\(typeName).\(varName) is not parsable")
         }
         return "\(varTypeName).parse(parser: parser)"
     }
@@ -51,7 +51,11 @@ extension <%= type.name %> {
     private static func parseField(_ instance: <%= type.name %>, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         <%_ for variable in type.allVariables where variable.annotations["jsonFieldName"] != nil { -%>
-            <%_ let fieldNames = generateFieldNames(variable.annotations["jsonFieldName"] as! String) -%>
+            <%  guard let fieldNameAnnotationValue = variable.annotations["jsonFieldName"] as? String else {
+                    fatalError("jsonFieldName annotation of \(type.name).\(variable.name) is incorrect")
+                }
+                let fieldNames = generateFieldNames(fieldNameAnnotationValue)
+            -%>
             <%_ if (variable.isArray) { -%>
         case <%= fieldNames %>:
             if (parser.currentEvent == .arrayStart) {
@@ -60,7 +64,7 @@ extension <%= type.name %> {
                 <%_ let elemType = arrayType.elementType -%>
                 <%_ let elemTypeName = arrayType.elementTypeName.unwrappedTypeName -%>
                 while (parser.nextEvent() != .arrayEnd) {
-                    array.append(<%= generateGetValueStatement(variable.name, elemType, elemTypeName, variable.annotations) %>)
+                    array.append(<%= generateGetValueStatement(type.name, variable.name, elemType, elemTypeName, variable.annotations) %>)
                 }
                 instance.<%= variable.name %> = array
             } else {
@@ -79,7 +83,7 @@ extension <%= type.name %> {
                     if (parser.currentEvent == .nullValue) {
                        dict[dictKey] = nil
                     } else {
-                       dict[dictKey] = <%= generateGetValueStatement(variable.name, valType, valTypeName, variable.annotations) %>
+                       dict[dictKey] = <%= generateGetValueStatement(type.name, variable.name, valType, valTypeName, variable.annotations) %>
                     }
 
                 }
@@ -88,7 +92,7 @@ extension <%= type.name %> {
                 instance.<%= variable.name %> = nil
             }
           <%_ } else { -%>
-        case <%= fieldNames %>: instance.<%= variable.name %> = <%= generateGetValueStatement(variable.name, variable.type, variable.unwrappedTypeName, variable.annotations) %>
+        case <%= fieldNames %>: instance.<%= variable.name %> = <%= generateGetValueStatement(type.name, variable.name, variable.type, variable.unwrappedTypeName, variable.annotations) %>
           <%_ } -%>
         <%_ } -%>
         default: break

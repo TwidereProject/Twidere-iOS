@@ -11,4 +11,7 @@ import Foundation
 // sourcery: jsonParse
 class MicroBlogPlace {
     
+    // sourcery: jsonFieldName=full_name
+    var fullName: String!
+    
 }

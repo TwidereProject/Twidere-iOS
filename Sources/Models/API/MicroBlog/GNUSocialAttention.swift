@@ -10,5 +10,18 @@ import Foundation
 
 // sourcery: jsonParse
 class GNUSocialAttention {
+    // sourcery: jsonFieldName=fullname
+    var fullName: String!
+    // sourcery: jsonFieldName=id
+    var id: String!
+    // sourcery: jsonFieldName=ostatus_uri
+    var ostatusUri: String!
+    // sourcery: jsonFieldName=profileurl
+    var profileUrl: String!
+    // sourcery: jsonFieldName=screen_name
+    var screenName: String!
     
+    init() {
+        
+    }
 }

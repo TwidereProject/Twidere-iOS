@@ -10,5 +10,16 @@ import Foundation
 
 // sourcery: jsonParse
 class MicroBlogGeoPoint {
+    // sourcery: jsonFieldName=coordinates
+    var coordinates: [Double]!
     
+    // sourcery: jsonFieldName=type
+    var type: String!
+    
+    var geoLocation: GeoLocation! {
+        guard let coords = coordinates else {
+            return nil
+        }
+        return GeoLocation(coords[0], coords[1])
+    }
 }

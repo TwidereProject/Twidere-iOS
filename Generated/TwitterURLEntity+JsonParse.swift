@@ -3,10 +3,10 @@
 
 import PMJackson
 
-extension MicroBlogStatus.ExtendedTweet {
+extension TwitterURLEntity {
 
-    static func parse(parser: PMJacksonParser) -> MicroBlogStatus.ExtendedTweet! {
-        let instance = MicroBlogStatus.ExtendedTweet()
+    static func parse(parser: PMJacksonParser) -> TwitterURLEntity! {
+        let instance = TwitterURLEntity()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -24,20 +24,17 @@ extension MicroBlogStatus.ExtendedTweet {
         return instance
     }
 
-    private static func parseField(_ instance: MicroBlogStatus.ExtendedTweet, _ fieldName: String, _ parser: PMJacksonParser) {
+    private static func parseField(_ instance: TwitterURLEntity, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-                    case "full_text": instance.fullText = parser.getValueAsString()
-                    case "entities": instance.entities = TwitterEntities.parse(parser: parser)
-                    case "extended_entities": instance.extendedEntities = TwitterEntities.parse(parser: parser)
-                    case "display_text_range":
+                    case "indices":
             if (parser.currentEvent == .arrayStart) {
                 var array = [Int32]()
                 while (parser.nextEvent() != .arrayEnd) {
                     array.append(parser.getValueAsInt32())
                 }
-                instance.displayTextRange = array
+                instance.indices = array
             } else {
-                instance.displayTextRange = nil
+                instance.indices = nil
             }
         default: break
         }

@@ -42,10 +42,10 @@ class MicroBlogStatus {
     var truncated: Bool = false
     
     // sourcery: jsonFieldName=entities
-    var entities: Entities? = nil
+    var entities: TwitterEntities? = nil
     
     // sourcery: jsonFieldName=extended_entities
-    var extendedEntities: Entities? = nil
+    var extendedEntities: TwitterEntities? = nil
     
     // sourcery: jsonFieldName=in_reply_to_status_id
     var inReplyToStatusId: String?
@@ -167,18 +167,25 @@ class MicroBlogStatus {
     }
     
     // sourcery: jsonParse
-    class Entities {
-        
-    }
-    
-    // sourcery: jsonParse
     class ExtendedTweet {
         
+        // sourcery: jsonFieldName=full_text
+        var fullText: String!
+        
+        // sourcery: jsonFieldName=entities
+        var entities: TwitterEntities? = nil
+        
+        // sourcery: jsonFieldName=extended_entities
+        var extendedEntities: TwitterEntities? = nil
+        
+        // sourcery: jsonFieldName=display_text_range
+        var displayTextRange: [Int32]!
     }
     
     // sourcery: jsonParse
     class CurrentUserRetweet {
-        
+        // sourcery: jsonFieldName=id
+        var id: String!
     }
     
     

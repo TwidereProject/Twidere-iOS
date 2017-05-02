@@ -26,6 +26,7 @@ extension MicroBlogStatus.CurrentUserRetweet {
 
     private static func parseField(_ instance: MicroBlogStatus.CurrentUserRetweet, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
+                    case "id": instance.id = parser.getValueAsString()
         default: break
         }
     }
