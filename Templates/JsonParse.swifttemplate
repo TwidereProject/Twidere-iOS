@@ -27,10 +27,9 @@ func generateFieldNames(_ annotationValue: String) -> String {
 // sourcery:file:<%= type.name %>+JsonParse.swift
 import PMJackson
 
-extension <%= type.name %> {
+<%= "\(type.accessLevel) " %>extension <%= type.name %> {
 
-    static func parse(parser: PMJacksonParser) -> <%= type.name %>! {
-        let instance = <%= type.name %>()
+    <%= "\(type.accessLevel) " %>static func parse(_ instance: <%= type.name %> = <%= type.name %>(), parser: PMJacksonParser) -> <%= type.name %>! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -39,6 +38,7 @@ extension <%= type.name %> {
             parser.skipChildren()
             return nil
         }
+
         while (parser.nextEvent() != .objectEnd) {
             let fieldName = parser.currentName!
             parser.nextEvent()
@@ -48,7 +48,7 @@ extension <%= type.name %> {
         return instance
     }
 
-    private static func parseField(_ instance: <%= type.name %>, _ fieldName: String, _ parser: PMJacksonParser) {
+    internal static func parseField(_ instance: <%= type.name %>, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         <%_ for variable in type.allVariables where variable.annotations["jsonFieldName"] != nil { -%>
             <%_ guard let fieldNameAnnotationValue = variable.annotations["jsonFieldName"] as? String else {
@@ -94,7 +94,12 @@ extension <%= type.name %> {
             instance.<%= variable.name %> = <%= generateGetValueStatement(type.name, variable.name, variable.type, variable.unwrappedTypeName, variable.annotations) %>
           <%_ } -%>
         <%_ } -%>
-        default: break
+        default:
+          <%_ if let superType = type.supertype, superType.annotations["jsonParse"] != nil { -%>
+            <%= superType.name %>.parseField(instance, fieldName, parser)
+          <%_ } else { -%>
+            break
+          <%_ } -%>
         }
     }
 }

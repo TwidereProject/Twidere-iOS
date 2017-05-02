@@ -14,4 +14,7 @@ class TwitterEntities {
     // sourcery: jsonFieldName=urls
     var urls: [TwitterURLEntity]!
     
+    // sourcery: jsonFieldName=hashtags
+    var hashtags: [TwitterHashtagEntity]!
+    
 }

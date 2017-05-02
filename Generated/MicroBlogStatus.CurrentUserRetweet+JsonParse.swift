@@ -3,10 +3,9 @@
 
 import PMJackson
 
-extension MicroBlogStatus.CurrentUserRetweet {
+internal extension MicroBlogStatus.CurrentUserRetweet {
 
-    static func parse(parser: PMJacksonParser) -> MicroBlogStatus.CurrentUserRetweet! {
-        let instance = MicroBlogStatus.CurrentUserRetweet()
+    internal static func parse(_ instance: MicroBlogStatus.CurrentUserRetweet = MicroBlogStatus.CurrentUserRetweet(), parser: PMJacksonParser) -> MicroBlogStatus.CurrentUserRetweet! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -15,6 +14,7 @@ extension MicroBlogStatus.CurrentUserRetweet {
             parser.skipChildren()
             return nil
         }
+
         while (parser.nextEvent() != .objectEnd) {
             let fieldName = parser.currentName!
             parser.nextEvent()
@@ -24,11 +24,12 @@ extension MicroBlogStatus.CurrentUserRetweet {
         return instance
     }
 
-    private static func parseField(_ instance: MicroBlogStatus.CurrentUserRetweet, _ fieldName: String, _ parser: PMJacksonParser) {
+    internal static func parseField(_ instance: MicroBlogStatus.CurrentUserRetweet, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "id":
             instance.id = parser.getValueAsString()
-        default: break
+        default:
+            break
         }
     }
 }

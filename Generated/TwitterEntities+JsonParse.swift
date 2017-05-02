@@ -3,10 +3,9 @@
 
 import PMJackson
 
-extension TwitterEntities {
+internal extension TwitterEntities {
 
-    static func parse(parser: PMJacksonParser) -> TwitterEntities! {
-        let instance = TwitterEntities()
+    internal static func parse(_ instance: TwitterEntities = TwitterEntities(), parser: PMJacksonParser) -> TwitterEntities! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -15,6 +14,7 @@ extension TwitterEntities {
             parser.skipChildren()
             return nil
         }
+
         while (parser.nextEvent() != .objectEnd) {
             let fieldName = parser.currentName!
             parser.nextEvent()
@@ -24,7 +24,7 @@ extension TwitterEntities {
         return instance
     }
 
-    private static func parseField(_ instance: TwitterEntities, _ fieldName: String, _ parser: PMJacksonParser) {
+    internal static func parseField(_ instance: TwitterEntities, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "urls":
             if (parser.currentEvent == .arrayStart) {
@@ -36,7 +36,18 @@ extension TwitterEntities {
             } else {
                 instance.urls = nil
             }
-        default: break
+        case "hashtags":
+            if (parser.currentEvent == .arrayStart) {
+                var array = [TwitterHashtagEntity]()
+                while (parser.nextEvent() != .arrayEnd) {
+                    array.append(TwitterHashtagEntity.parse(parser: parser))
+                }
+                instance.hashtags = array
+            } else {
+                instance.hashtags = nil
+            }
+        default:
+            break
         }
     }
 }

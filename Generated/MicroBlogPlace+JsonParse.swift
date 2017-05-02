@@ -3,10 +3,9 @@
 
 import PMJackson
 
-extension MicroBlogPlace {
+internal extension MicroBlogPlace {
 
-    static func parse(parser: PMJacksonParser) -> MicroBlogPlace! {
-        let instance = MicroBlogPlace()
+    internal static func parse(_ instance: MicroBlogPlace = MicroBlogPlace(), parser: PMJacksonParser) -> MicroBlogPlace! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -15,6 +14,7 @@ extension MicroBlogPlace {
             parser.skipChildren()
             return nil
         }
+
         while (parser.nextEvent() != .objectEnd) {
             let fieldName = parser.currentName!
             parser.nextEvent()
@@ -24,11 +24,12 @@ extension MicroBlogPlace {
         return instance
     }
 
-    private static func parseField(_ instance: MicroBlogPlace, _ fieldName: String, _ parser: PMJacksonParser) {
+    internal static func parseField(_ instance: MicroBlogPlace, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "full_name":
             instance.fullName = parser.getValueAsString()
-        default: break
+        default:
+            break
         }
     }
 }

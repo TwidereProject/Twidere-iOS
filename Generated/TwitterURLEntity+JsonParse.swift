@@ -3,10 +3,9 @@
 
 import PMJackson
 
-extension TwitterURLEntity {
+internal extension TwitterURLEntity {
 
-    static func parse(parser: PMJacksonParser) -> TwitterURLEntity! {
-        let instance = TwitterURLEntity()
+    internal static func parse(_ instance: TwitterURLEntity = TwitterURLEntity(), parser: PMJacksonParser) -> TwitterURLEntity! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -15,6 +14,7 @@ extension TwitterURLEntity {
             parser.skipChildren()
             return nil
         }
+
         while (parser.nextEvent() != .objectEnd) {
             let fieldName = parser.currentName!
             parser.nextEvent()
@@ -24,7 +24,7 @@ extension TwitterURLEntity {
         return instance
     }
 
-    private static func parseField(_ instance: TwitterURLEntity, _ fieldName: String, _ parser: PMJacksonParser) {
+    internal static func parseField(_ instance: TwitterURLEntity, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "indices":
             if (parser.currentEvent == .arrayStart) {
@@ -36,7 +36,8 @@ extension TwitterURLEntity {
             } else {
                 instance.indices = nil
             }
-        default: break
+        default:
+            TwitterBaseEntity.parseField(instance, fieldName, parser)
         }
     }
 }

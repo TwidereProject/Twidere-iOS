@@ -3,10 +3,9 @@
 
 import PMJackson
 
-extension FanfouPhoto {
+internal extension FanfouPhoto {
 
-    static func parse(parser: PMJacksonParser) -> FanfouPhoto! {
-        let instance = FanfouPhoto()
+    internal static func parse(_ instance: FanfouPhoto = FanfouPhoto(), parser: PMJacksonParser) -> FanfouPhoto! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -15,6 +14,7 @@ extension FanfouPhoto {
             parser.skipChildren()
             return nil
         }
+
         while (parser.nextEvent() != .objectEnd) {
             let fieldName = parser.currentName!
             parser.nextEvent()
@@ -24,7 +24,7 @@ extension FanfouPhoto {
         return instance
     }
 
-    private static func parseField(_ instance: FanfouPhoto, _ fieldName: String, _ parser: PMJacksonParser) {
+    internal static func parseField(_ instance: FanfouPhoto, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "url":
             instance.url = parser.getValueAsString()
@@ -34,7 +34,8 @@ extension FanfouPhoto {
             instance.thumbUrl = parser.getValueAsString()
         case "largeurl":
             instance.largeUrl = parser.getValueAsString()
-        default: break
+        default:
+            break
         }
     }
 }

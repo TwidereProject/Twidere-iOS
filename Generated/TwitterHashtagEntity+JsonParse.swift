@@ -3,9 +3,9 @@
 
 import PMJackson
 
-internal extension MicroBlogGeoPoint {
+internal extension TwitterHashtagEntity {
 
-    internal static func parse(_ instance: MicroBlogGeoPoint = MicroBlogGeoPoint(), parser: PMJacksonParser) -> MicroBlogGeoPoint! {
+    internal static func parse(_ instance: TwitterHashtagEntity = TwitterHashtagEntity(), parser: PMJacksonParser) -> TwitterHashtagEntity! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -24,22 +24,20 @@ internal extension MicroBlogGeoPoint {
         return instance
     }
 
-    internal static func parseField(_ instance: MicroBlogGeoPoint, _ fieldName: String, _ parser: PMJacksonParser) {
+    internal static func parseField(_ instance: TwitterHashtagEntity, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-        case "coordinates":
+        case "indices":
             if (parser.currentEvent == .arrayStart) {
-                var array = [Double]()
+                var array = [Int32]()
                 while (parser.nextEvent() != .arrayEnd) {
-                    array.append(parser.getValueAsDouble())
+                    array.append(parser.getValueAsInt32())
                 }
-                instance.coordinates = array
+                instance.indices = array
             } else {
-                instance.coordinates = nil
+                instance.indices = nil
             }
-        case "type":
-            instance.type = parser.getValueAsString()
         default:
-            break
+            TwitterBaseEntity.parseField(instance, fieldName, parser)
         }
     }
 }

@@ -3,10 +3,9 @@
 
 import PMJackson
 
-extension GNUSocialAttention {
+internal extension GNUSocialAttention {
 
-    static func parse(parser: PMJacksonParser) -> GNUSocialAttention! {
-        let instance = GNUSocialAttention()
+    internal static func parse(_ instance: GNUSocialAttention = GNUSocialAttention(), parser: PMJacksonParser) -> GNUSocialAttention! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -15,6 +14,7 @@ extension GNUSocialAttention {
             parser.skipChildren()
             return nil
         }
+
         while (parser.nextEvent() != .objectEnd) {
             let fieldName = parser.currentName!
             parser.nextEvent()
@@ -24,7 +24,7 @@ extension GNUSocialAttention {
         return instance
     }
 
-    private static func parseField(_ instance: GNUSocialAttention, _ fieldName: String, _ parser: PMJacksonParser) {
+    internal static func parseField(_ instance: GNUSocialAttention, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "fullname":
             instance.fullName = parser.getValueAsString()
@@ -36,7 +36,8 @@ extension GNUSocialAttention {
             instance.profileUrl = parser.getValueAsString()
         case "screen_name":
             instance.screenName = parser.getValueAsString()
-        default: break
+        default:
+            break
         }
     }
 }

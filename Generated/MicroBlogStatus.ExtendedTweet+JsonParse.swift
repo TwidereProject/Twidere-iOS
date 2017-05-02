@@ -3,10 +3,9 @@
 
 import PMJackson
 
-extension MicroBlogStatus.ExtendedTweet {
+internal extension MicroBlogStatus.ExtendedTweet {
 
-    static func parse(parser: PMJacksonParser) -> MicroBlogStatus.ExtendedTweet! {
-        let instance = MicroBlogStatus.ExtendedTweet()
+    internal static func parse(_ instance: MicroBlogStatus.ExtendedTweet = MicroBlogStatus.ExtendedTweet(), parser: PMJacksonParser) -> MicroBlogStatus.ExtendedTweet! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -15,6 +14,7 @@ extension MicroBlogStatus.ExtendedTweet {
             parser.skipChildren()
             return nil
         }
+
         while (parser.nextEvent() != .objectEnd) {
             let fieldName = parser.currentName!
             parser.nextEvent()
@@ -24,7 +24,7 @@ extension MicroBlogStatus.ExtendedTweet {
         return instance
     }
 
-    private static func parseField(_ instance: MicroBlogStatus.ExtendedTweet, _ fieldName: String, _ parser: PMJacksonParser) {
+    internal static func parseField(_ instance: MicroBlogStatus.ExtendedTweet, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "full_text":
             instance.fullText = parser.getValueAsString()
@@ -42,7 +42,8 @@ extension MicroBlogStatus.ExtendedTweet {
             } else {
                 instance.displayTextRange = nil
             }
-        default: break
+        default:
+            break
         }
     }
 }

@@ -3,10 +3,9 @@
 
 import PMJackson
 
-extension TwitterCardEntity {
+internal extension TwitterCardEntity {
 
-    static func parse(parser: PMJacksonParser) -> TwitterCardEntity! {
-        let instance = TwitterCardEntity()
+    internal static func parse(_ instance: TwitterCardEntity = TwitterCardEntity(), parser: PMJacksonParser) -> TwitterCardEntity! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -15,6 +14,7 @@ extension TwitterCardEntity {
             parser.skipChildren()
             return nil
         }
+
         while (parser.nextEvent() != .objectEnd) {
             let fieldName = parser.currentName!
             parser.nextEvent()
@@ -24,9 +24,10 @@ extension TwitterCardEntity {
         return instance
     }
 
-    private static func parseField(_ instance: TwitterCardEntity, _ fieldName: String, _ parser: PMJacksonParser) {
+    internal static func parseField(_ instance: TwitterCardEntity, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-        default: break
+        default:
+            break
         }
     }
 }

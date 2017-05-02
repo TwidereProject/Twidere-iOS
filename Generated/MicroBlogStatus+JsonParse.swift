@@ -3,10 +3,9 @@
 
 import PMJackson
 
-extension MicroBlogStatus {
+internal extension MicroBlogStatus {
 
-    static func parse(parser: PMJacksonParser) -> MicroBlogStatus! {
-        let instance = MicroBlogStatus()
+    internal static func parse(_ instance: MicroBlogStatus = MicroBlogStatus(), parser: PMJacksonParser) -> MicroBlogStatus! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -15,6 +14,7 @@ extension MicroBlogStatus {
             parser.skipChildren()
             return nil
         }
+
         while (parser.nextEvent() != .objectEnd) {
             let fieldName = parser.currentName!
             parser.nextEvent()
@@ -24,7 +24,7 @@ extension MicroBlogStatus {
         return instance
     }
 
-    private static func parseField(_ instance: MicroBlogStatus, _ fieldName: String, _ parser: PMJacksonParser) {
+    internal static func parseField(_ instance: MicroBlogStatus, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "created_at":
             instance.createdAt = Date.parseTwitterDate(parser)
@@ -130,7 +130,8 @@ extension MicroBlogStatus {
             instance.timestampMs = parser.getValueAsInt64()
         case "extended_tweet":
             instance.extendedTweet = ExtendedTweet.parse(parser: parser)
-        default: break
+        default:
+            break
         }
     }
 }

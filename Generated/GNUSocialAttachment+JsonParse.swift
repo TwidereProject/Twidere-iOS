@@ -3,10 +3,9 @@
 
 import PMJackson
 
-extension GNUSocialAttachment {
+internal extension GNUSocialAttachment {
 
-    static func parse(parser: PMJacksonParser) -> GNUSocialAttachment! {
-        let instance = GNUSocialAttachment()
+    internal static func parse(_ instance: GNUSocialAttachment = GNUSocialAttachment(), parser: PMJacksonParser) -> GNUSocialAttachment! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -15,6 +14,7 @@ extension GNUSocialAttachment {
             parser.skipChildren()
             return nil
         }
+
         while (parser.nextEvent() != .objectEnd) {
             let fieldName = parser.currentName!
             parser.nextEvent()
@@ -24,7 +24,7 @@ extension GNUSocialAttachment {
         return instance
     }
 
-    private static func parseField(_ instance: GNUSocialAttachment, _ fieldName: String, _ parser: PMJacksonParser) {
+    internal static func parseField(_ instance: GNUSocialAttachment, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "width":
             instance.width = parser.getValueAsInt32()
@@ -46,7 +46,8 @@ extension GNUSocialAttachment {
             instance.size = parser.getValueAsInt64()
         case "version":
             instance.version = parser.getValueAsString()
-        default: break
+        default:
+            break
         }
     }
 }

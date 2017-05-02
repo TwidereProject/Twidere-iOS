@@ -54,6 +54,10 @@
 		CE2A7FFC1EB83200003791F2 /* TwitterURLEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FFB1EB83200003791F2 /* TwitterURLEntity.swift */; };
 		CE2A7FFF1EB83A75003791F2 /* TwitterEntities+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FFD1EB83A75003791F2 /* TwitterEntities+JsonParse.swift */; };
 		CE2A80001EB83A75003791F2 /* TwitterURLEntity+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FFE1EB83A75003791F2 /* TwitterURLEntity+JsonParse.swift */; };
+		CE2A80021EB84696003791F2 /* TwitterHashtagEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80011EB84696003791F2 /* TwitterHashtagEntity.swift */; };
+		CE2A80041EB84759003791F2 /* TwitterHashtagEntity+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80031EB84759003791F2 /* TwitterHashtagEntity+JsonParse.swift */; };
+		CE2A80061EB848E5003791F2 /* TwitterBaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80051EB848E5003791F2 /* TwitterBaseEntity.swift */; };
+		CE2A80081EB84968003791F2 /* TwitterBaseEntity+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80071EB84968003791F2 /* TwitterBaseEntity+JsonParse.swift */; };
 		CE358B711D811C84002A33B3 /* SpanItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE358B701D811C84002A33B3 /* SpanItem.swift */; };
 		CE358B751D825942002A33B3 /* Viewers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE358B741D825942002A33B3 /* Viewers.storyboard */; };
 		CE3E5DF61D978A6100454A61 /* NSShadowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */; };
@@ -278,6 +282,10 @@
 		CE2A7FFB1EB83200003791F2 /* TwitterURLEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterURLEntity.swift; sourceTree = "<group>"; };
 		CE2A7FFD1EB83A75003791F2 /* TwitterEntities+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterEntities+JsonParse.swift"; sourceTree = "<group>"; };
 		CE2A7FFE1EB83A75003791F2 /* TwitterURLEntity+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterURLEntity+JsonParse.swift"; sourceTree = "<group>"; };
+		CE2A80011EB84696003791F2 /* TwitterHashtagEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterHashtagEntity.swift; sourceTree = "<group>"; };
+		CE2A80031EB84759003791F2 /* TwitterHashtagEntity+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterHashtagEntity+JsonParse.swift"; sourceTree = "<group>"; };
+		CE2A80051EB848E5003791F2 /* TwitterBaseEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterBaseEntity.swift; sourceTree = "<group>"; };
+		CE2A80071EB84968003791F2 /* TwitterBaseEntity+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterBaseEntity+JsonParse.swift"; sourceTree = "<group>"; };
 		CE358B701D811C84002A33B3 /* SpanItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItem.swift; sourceTree = "<group>"; };
 		CE358B741D825942002A33B3 /* Viewers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Viewers.storyboard; sourceTree = "<group>"; };
 		CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSShadowExtension.swift; sourceTree = "<group>"; };
@@ -554,6 +562,8 @@
 		CE2660201DAFDD79007FF7CF /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				CE2A80071EB84968003791F2 /* TwitterBaseEntity+JsonParse.swift */,
+				CE2A80031EB84759003791F2 /* TwitterHashtagEntity+JsonParse.swift */,
 				CE2A7FFD1EB83A75003791F2 /* TwitterEntities+JsonParse.swift */,
 				CE2A7FFE1EB83A75003791F2 /* TwitterURLEntity+JsonParse.swift */,
 				CE2A7FF51EB775C0003791F2 /* GNUSocialAttachment+JsonParse.swift */,
@@ -638,6 +648,8 @@
 				CE2A7FDD1EB72638003791F2 /* TwitterCardEntity.swift */,
 				CE2A7FF91EB83176003791F2 /* TwitterEntities.swift */,
 				CE2A7FFB1EB83200003791F2 /* TwitterURLEntity.swift */,
+				CE2A80011EB84696003791F2 /* TwitterHashtagEntity.swift */,
+				CE2A80051EB848E5003791F2 /* TwitterBaseEntity.swift */,
 			);
 			name = Twitter;
 			sourceTree = "<group>";
@@ -1646,16 +1658,19 @@
 				CE6C6C181DB09A9800DF4892 /* Activity+SQLite.swift in Sources */,
 				CEB60E901DE7CAB300C08E39 /* StatusCellProtocol.swift in Sources */,
 				CE5993191D83CAAA00653220 /* DetailStatusCell.swift in Sources */,
+				CE2A80021EB84696003791F2 /* TwitterHashtagEntity.swift in Sources */,
 				CE2A7FE21EB72689003791F2 /* MicroBlogGeoPoint.swift in Sources */,
 				CEF2CF451D83F11200131EAE /* UserProfileController.swift in Sources */,
 				CEBECFCA1DAB8AD900350383 /* CollectionUtils.swift in Sources */,
 				CE9574981D33D87200504D52 /* NetworkPreferencesController.swift in Sources */,
+				CE2A80041EB84759003791F2 /* TwitterHashtagEntity+JsonParse.swift in Sources */,
 				CEA2E2C51D37C2590095BC57 /* ComposeLocationController.swift in Sources */,
 				CE6C6C371DB35C1D00DF4892 /* UserKey+Freddy.swift in Sources */,
 				CE2A7FD81EB725BE003791F2 /* GNUSocialAttention.swift in Sources */,
 				CE45CA861D85416C0004CC1C /* Status.swift in Sources */,
 				CE7A57441D917E1C0027BECE /* UserTimelineStatusesListControllerDataSource.swift in Sources */,
 				CE2A7FEE1EB76F3F003791F2 /* MicroBlogGeoPoint+JsonParse.swift in Sources */,
+				CE2A80061EB848E5003791F2 /* TwitterBaseEntity.swift in Sources */,
 				CE65B1E81D9F546700A38A61 /* ItemIndices.swift in Sources */,
 				CE5993101D83901B00653220 /* MediaItem.swift in Sources */,
 				CE497FB31D698B1B000F16D2 /* UsersListController.swift in Sources */,
@@ -1669,6 +1684,7 @@
 				CE7A57421D917BDB0027BECE /* SingleAccountStatusesListControllerDataSource.swift in Sources */,
 				CE2903EC1D4F200A0056D0E2 /* UserExtensions.swift in Sources */,
 				CEA2E2D31D3B42180095BC57 /* AccountsManagerController.swift in Sources */,
+				CE2A80081EB84968003791F2 /* TwitterBaseEntity+JsonParse.swift in Sources */,
 				CE497FBE1D6B01D1000F16D2 /* DateExtension.swift in Sources */,
 				CE65B1B41D9BA35A00A38A61 /* ActivityIndicator.swift in Sources */,
 				CE6C6C151DB09A9800DF4892 /* Account+Freddy.swift in Sources */,
