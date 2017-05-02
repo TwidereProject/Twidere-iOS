@@ -51,13 +51,13 @@ extension <%= type.name %> {
     private static func parseField(_ instance: <%= type.name %>, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         <%_ for variable in type.allVariables where variable.annotations["jsonFieldName"] != nil { -%>
-            <%  guard let fieldNameAnnotationValue = variable.annotations["jsonFieldName"] as? String else {
+            <%_ guard let fieldNameAnnotationValue = variable.annotations["jsonFieldName"] as? String else {
                     fatalError("jsonFieldName annotation of \(type.name).\(variable.name) is incorrect")
                 }
                 let fieldNames = generateFieldNames(fieldNameAnnotationValue)
             -%>
-            <%_ if (variable.isArray) { -%>
         case <%= fieldNames %>:
+            <%_ if (variable.isArray) { -%>
             if (parser.currentEvent == .arrayStart) {
                 var array = <%= variable.unwrappedTypeName %>()
                 <%_ let arrayType = variable.typeName.array! -%>
@@ -71,7 +71,6 @@ extension <%= type.name %> {
                 instance.<%= variable.name %> = nil
             }
             <%_ } else if (variable.isDictionary) { -%>
-        case <%= fieldNames %>:
             if (parser.currentEvent == .objectStart) {
                 var dict = <%= variable.unwrappedTypeName %>()
                 <%_ let dictType = variable.typeName.dictionary! -%>
@@ -92,7 +91,7 @@ extension <%= type.name %> {
                 instance.<%= variable.name %> = nil
             }
           <%_ } else { -%>
-        case <%= fieldNames %>: instance.<%= variable.name %> = <%= generateGetValueStatement(type.name, variable.name, variable.type, variable.unwrappedTypeName, variable.annotations) %>
+            instance.<%= variable.name %> = <%= generateGetValueStatement(type.name, variable.name, variable.type, variable.unwrappedTypeName, variable.annotations) %>
           <%_ } -%>
         <%_ } -%>
         default: break

@@ -26,7 +26,7 @@ extension MicroBlogGeoPoint {
 
     private static func parseField(_ instance: MicroBlogGeoPoint, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-                    case "coordinates":
+        case "coordinates":
             if (parser.currentEvent == .arrayStart) {
                 var array = [Double]()
                 while (parser.nextEvent() != .arrayEnd) {
@@ -36,7 +36,8 @@ extension MicroBlogGeoPoint {
             } else {
                 instance.coordinates = nil
             }
-                    case "type": instance.type = parser.getValueAsString()
+        case "type":
+            instance.type = parser.getValueAsString()
         default: break
         }
     }

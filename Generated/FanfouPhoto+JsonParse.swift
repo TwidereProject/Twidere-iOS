@@ -26,10 +26,14 @@ extension FanfouPhoto {
 
     private static func parseField(_ instance: FanfouPhoto, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-                    case "url": instance.url = parser.getValueAsString()
-                    case "imageurl": instance.imageUrl = parser.getValueAsString()
-                    case "thumburl": instance.thumbUrl = parser.getValueAsString()
-                    case "largeurl": instance.largeUrl = parser.getValueAsString()
+        case "url":
+            instance.url = parser.getValueAsString()
+        case "imageurl":
+            instance.imageUrl = parser.getValueAsString()
+        case "thumburl":
+            instance.thumbUrl = parser.getValueAsString()
+        case "largeurl":
+            instance.largeUrl = parser.getValueAsString()
         default: break
         }
     }

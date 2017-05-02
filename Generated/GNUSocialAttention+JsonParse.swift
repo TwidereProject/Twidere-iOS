@@ -26,11 +26,16 @@ extension GNUSocialAttention {
 
     private static func parseField(_ instance: GNUSocialAttention, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-                    case "fullname": instance.fullName = parser.getValueAsString()
-                    case "id": instance.id = parser.getValueAsString()
-                    case "ostatus_uri": instance.ostatusUri = parser.getValueAsString()
-                    case "profileurl": instance.profileUrl = parser.getValueAsString()
-                    case "screen_name": instance.screenName = parser.getValueAsString()
+        case "fullname":
+            instance.fullName = parser.getValueAsString()
+        case "id":
+            instance.id = parser.getValueAsString()
+        case "ostatus_uri":
+            instance.ostatusUri = parser.getValueAsString()
+        case "profileurl":
+            instance.profileUrl = parser.getValueAsString()
+        case "screen_name":
+            instance.screenName = parser.getValueAsString()
         default: break
         }
     }

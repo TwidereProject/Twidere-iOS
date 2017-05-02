@@ -26,10 +26,13 @@ extension MicroBlogStatus.ExtendedTweet {
 
     private static func parseField(_ instance: MicroBlogStatus.ExtendedTweet, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-                    case "full_text": instance.fullText = parser.getValueAsString()
-                    case "entities": instance.entities = TwitterEntities.parse(parser: parser)
-                    case "extended_entities": instance.extendedEntities = TwitterEntities.parse(parser: parser)
-                    case "display_text_range":
+        case "full_text":
+            instance.fullText = parser.getValueAsString()
+        case "entities":
+            instance.entities = TwitterEntities.parse(parser: parser)
+        case "extended_entities":
+            instance.extendedEntities = TwitterEntities.parse(parser: parser)
+        case "display_text_range":
             if (parser.currentEvent == .arrayStart) {
                 var array = [Int32]()
                 while (parser.nextEvent() != .arrayEnd) {

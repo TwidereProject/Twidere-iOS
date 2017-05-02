@@ -26,7 +26,7 @@ extension TwitterEntities {
 
     private static func parseField(_ instance: TwitterEntities, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-                    case "urls":
+        case "urls":
             if (parser.currentEvent == .arrayStart) {
                 var array = [TwitterURLEntity]()
                 while (parser.nextEvent() != .arrayEnd) {
