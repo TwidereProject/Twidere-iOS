@@ -42,7 +42,7 @@ import PromiseKit
         <%_ } -%>
         <%_ let queryParameters = method.parameters.filter { $0.annotations["query"] != nil } -%>
         <%_ if (!queryParameters.isEmpty) { -%>
-        call.querys = [
+        call.queries = [
             <%_ for param in queryParameters { -%>
                 <%_ let queryName = param.annotations["query"] as? String ?? param.name -%>
             "<%= queryName %>": "\(<%= param.name %>)"
@@ -58,6 +58,12 @@ import PromiseKit
             <%_ } -%>
         ]
         <%_ } -%>
+        <%_
+        guard let reqSerializer = method.annotations["restSerializer"] as? String else {
+            fatalError("invalid annotation restSerializer in \(type.name).\(method.name)")
+        }
+        -%>
+        call.serializer = <%= reqSerializer %>
         return client.toPromise(call)
     }
 <% } %>

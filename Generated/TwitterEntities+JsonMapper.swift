@@ -3,11 +3,11 @@
 
 import PMJackson
 
-internal extension TwitterEntities {
+internal class TwitterEntitiesJsonMapper: JsonMapper<TwitterEntities> {
 
-    typealias T = TwitterEntities
+    internal static let singleton = TwitterEntitiesJsonMapper()
 
-    internal static func parse(_ instance: TwitterEntities = TwitterEntities(), parser: PMJacksonParser) -> TwitterEntities! {
+    override func parse(_ instance: TwitterEntities = TwitterEntities(), parser: PMJacksonParser) -> TwitterEntities! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -26,13 +26,13 @@ internal extension TwitterEntities {
         return instance
     }
 
-    internal static func parseField(_ instance: TwitterEntities, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: TwitterEntities, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "urls":
             if (parser.currentEvent == .arrayStart) {
                 var array = [TwitterURLEntity]()
                 while (parser.nextEvent() != .arrayEnd) {
-                    array.append(TwitterURLEntity.parse(parser: parser))
+                    array.append(TwitterURLEntityJsonMapper.singleton.parse(parser: parser))
                 }
                 instance.urls = array
             } else {
@@ -42,7 +42,7 @@ internal extension TwitterEntities {
             if (parser.currentEvent == .arrayStart) {
                 var array = [TwitterHashtagEntity]()
                 while (parser.nextEvent() != .arrayEnd) {
-                    array.append(TwitterHashtagEntity.parse(parser: parser))
+                    array.append(TwitterHashtagEntityJsonMapper.singleton.parse(parser: parser))
                 }
                 instance.hashtags = array
             } else {

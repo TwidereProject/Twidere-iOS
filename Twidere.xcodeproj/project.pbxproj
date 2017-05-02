@@ -30,9 +30,7 @@
 		CE26603F1DB0638D007FF7CF /* SQLite+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26603E1DB0638D007FF7CF /* SQLite+Array.swift */; };
 		CE2903EC1D4F200A0056D0E2 /* UserExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */; };
 		CE2A7F991EB5BCC6003791F2 /* MicroBlogStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7F981EB5BCC6003791F2 /* MicroBlogStatus.swift */; };
-		CE2A7F9B1EB5CED0003791F2 /* JsonParse.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = CE2A7F9A1EB5CED0003791F2 /* JsonParse.swifttemplate */; };
 		CE2A7FD01EB71762003791F2 /* MicroBlogUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FCF1EB71762003791F2 /* MicroBlogUser.swift */; };
-		CE2A7FD21EB720E2003791F2 /* MicroBlogStatus+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FD11EB720E2003791F2 /* MicroBlogStatus+JsonParse.swift */; };
 		CE2A7FD51EB725A4003791F2 /* FanfouPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FD41EB725A4003791F2 /* FanfouPhoto.swift */; };
 		CE2A7FD81EB725BE003791F2 /* GNUSocialAttention.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FD71EB725BE003791F2 /* GNUSocialAttention.swift */; };
 		CE2A7FDB1EB7261B003791F2 /* GNUSocialAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FDA1EB7261B003791F2 /* GNUSocialAttachment.swift */; };
@@ -40,31 +38,33 @@
 		CE2A7FE01EB72675003791F2 /* MicroBlogPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FDF1EB72675003791F2 /* MicroBlogPlace.swift */; };
 		CE2A7FE21EB72689003791F2 /* MicroBlogGeoPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FE11EB72689003791F2 /* MicroBlogGeoPoint.swift */; };
 		CE2A7FE41EB767B0003791F2 /* Date+MicroBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FE31EB767B0003791F2 /* Date+MicroBlog.swift */; };
-		CE2A7FED1EB76F3F003791F2 /* FanfouPhoto+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FE51EB76F3F003791F2 /* FanfouPhoto+JsonParse.swift */; };
-		CE2A7FEE1EB76F3F003791F2 /* MicroBlogGeoPoint+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FE61EB76F3F003791F2 /* MicroBlogGeoPoint+JsonParse.swift */; };
-		CE2A7FEF1EB76F3F003791F2 /* MicroBlogPlace+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FE71EB76F3F003791F2 /* MicroBlogPlace+JsonParse.swift */; };
-		CE2A7FF01EB76F3F003791F2 /* MicroBlogStatus.CurrentUserRetweet+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FE81EB76F3F003791F2 /* MicroBlogStatus.CurrentUserRetweet+JsonParse.swift */; };
-		CE2A7FF21EB76F3F003791F2 /* MicroBlogStatus.ExtendedTweet+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FEA1EB76F3F003791F2 /* MicroBlogStatus.ExtendedTweet+JsonParse.swift */; };
-		CE2A7FF31EB76F3F003791F2 /* MicroBlogUser+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FEB1EB76F3F003791F2 /* MicroBlogUser+JsonParse.swift */; };
-		CE2A7FF41EB76F3F003791F2 /* TwitterCardEntity+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FEC1EB76F3F003791F2 /* TwitterCardEntity+JsonParse.swift */; };
-		CE2A7FF71EB775C0003791F2 /* GNUSocialAttachment+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FF51EB775C0003791F2 /* GNUSocialAttachment+JsonParse.swift */; };
-		CE2A7FF81EB775C0003791F2 /* GNUSocialAttention+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FF61EB775C0003791F2 /* GNUSocialAttention+JsonParse.swift */; };
 		CE2A7FFA1EB83176003791F2 /* TwitterEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FF91EB83176003791F2 /* TwitterEntities.swift */; };
 		CE2A7FFC1EB83200003791F2 /* TwitterURLEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FFB1EB83200003791F2 /* TwitterURLEntity.swift */; };
-		CE2A7FFF1EB83A75003791F2 /* TwitterEntities+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FFD1EB83A75003791F2 /* TwitterEntities+JsonParse.swift */; };
-		CE2A80001EB83A75003791F2 /* TwitterURLEntity+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FFE1EB83A75003791F2 /* TwitterURLEntity+JsonParse.swift */; };
 		CE2A80021EB84696003791F2 /* TwitterHashtagEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80011EB84696003791F2 /* TwitterHashtagEntity.swift */; };
-		CE2A80041EB84759003791F2 /* TwitterHashtagEntity+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80031EB84759003791F2 /* TwitterHashtagEntity+JsonParse.swift */; };
 		CE2A80061EB848E5003791F2 /* TwitterBaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80051EB848E5003791F2 /* TwitterBaseEntity.swift */; };
-		CE2A80081EB84968003791F2 /* TwitterBaseEntity+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80071EB84968003791F2 /* TwitterBaseEntity+JsonParse.swift */; };
 		CE2A800A1EB8518C003791F2 /* RestCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80091EB8518C003791F2 /* RestCall.swift */; };
 		CE2A800C1EB8582D003791F2 /* MicroBlogAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A800B1EB8582D003791F2 /* MicroBlogAccountService.swift */; };
-		CE2A800E1EB85A6D003791F2 /* MicroBlogAccountService+RestImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A800D1EB85A6D003791F2 /* MicroBlogAccountService+RestImpl.swift */; };
 		CE2A80111EB88B28003791F2 /* MastodonAccountsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80101EB88B28003791F2 /* MastodonAccountsService.swift */; };
 		CE2A80141EB88B77003791F2 /* MastodonAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80131EB88B77003791F2 /* MastodonAccount.swift */; };
-		CE2A80171EB88C01003791F2 /* MastodonAccount+JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80151EB88C01003791F2 /* MastodonAccount+JsonParse.swift */; };
-		CE2A80181EB88C01003791F2 /* MastodonAccountsServices+RestImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80161EB88C01003791F2 /* MastodonAccountsServices+RestImpl.swift */; };
-		CE2A801A1EB89B8D003791F2 /* JsonParse.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80191EB89B8D003791F2 /* JsonParse.generated.swift */; };
+		CE2A801C1EB8D0AE003791F2 /* JsonParsableUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A801B1EB8D0AE003791F2 /* JsonParsableUtils.swift */; };
+		CE2A802F1EB8D982003791F2 /* FanfouPhoto+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A801D1EB8D982003791F2 /* FanfouPhoto+JsonMapper.swift */; };
+		CE2A80301EB8D982003791F2 /* GNUSocialAttachment+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A801E1EB8D982003791F2 /* GNUSocialAttachment+JsonMapper.swift */; };
+		CE2A80311EB8D982003791F2 /* GNUSocialAttention+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A801F1EB8D982003791F2 /* GNUSocialAttention+JsonMapper.swift */; };
+		CE2A80321EB8D982003791F2 /* JsonMapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80201EB8D982003791F2 /* JsonMapper.generated.swift */; };
+		CE2A80331EB8D982003791F2 /* MastodonAccount+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80211EB8D982003791F2 /* MastodonAccount+JsonMapper.swift */; };
+		CE2A80341EB8D982003791F2 /* MastodonAccountsServices+RestImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80221EB8D982003791F2 /* MastodonAccountsServices+RestImpl.swift */; };
+		CE2A80351EB8D982003791F2 /* MicroBlogAccountService+RestImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80231EB8D982003791F2 /* MicroBlogAccountService+RestImpl.swift */; };
+		CE2A80361EB8D982003791F2 /* MicroBlogGeoPoint+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80241EB8D982003791F2 /* MicroBlogGeoPoint+JsonMapper.swift */; };
+		CE2A80371EB8D982003791F2 /* MicroBlogPlace+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80251EB8D982003791F2 /* MicroBlogPlace+JsonMapper.swift */; };
+		CE2A80381EB8D982003791F2 /* MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80261EB8D982003791F2 /* MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift */; };
+		CE2A80391EB8D982003791F2 /* MicroBlogStatus.ExtendedTweet+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80271EB8D982003791F2 /* MicroBlogStatus.ExtendedTweet+JsonMapper.swift */; };
+		CE2A803A1EB8D982003791F2 /* MicroBlogStatus+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80281EB8D982003791F2 /* MicroBlogStatus+JsonMapper.swift */; };
+		CE2A803B1EB8D982003791F2 /* MicroBlogUser+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80291EB8D982003791F2 /* MicroBlogUser+JsonMapper.swift */; };
+		CE2A803C1EB8D982003791F2 /* TwitterBaseEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A802A1EB8D982003791F2 /* TwitterBaseEntity+JsonMapper.swift */; };
+		CE2A803D1EB8D982003791F2 /* TwitterCardEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A802B1EB8D982003791F2 /* TwitterCardEntity+JsonMapper.swift */; };
+		CE2A803E1EB8D982003791F2 /* TwitterEntities+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A802C1EB8D982003791F2 /* TwitterEntities+JsonMapper.swift */; };
+		CE2A803F1EB8D982003791F2 /* TwitterHashtagEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A802D1EB8D982003791F2 /* TwitterHashtagEntity+JsonMapper.swift */; };
+		CE2A80401EB8D982003791F2 /* TwitterURLEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A802E1EB8D982003791F2 /* TwitterURLEntity+JsonMapper.swift */; };
 		CE358B711D811C84002A33B3 /* SpanItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE358B701D811C84002A33B3 /* SpanItem.swift */; };
 		CE358B751D825942002A33B3 /* Viewers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE358B741D825942002A33B3 /* Viewers.storyboard */; };
 		CE3E5DF61D978A6100454A61 /* NSShadowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */; };
@@ -265,9 +265,7 @@
 		CE26603E1DB0638D007FF7CF /* SQLite+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SQLite+Array.swift"; sourceTree = "<group>"; };
 		CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserExtensions.swift; sourceTree = "<group>"; };
 		CE2A7F981EB5BCC6003791F2 /* MicroBlogStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogStatus.swift; sourceTree = "<group>"; };
-		CE2A7F9A1EB5CED0003791F2 /* JsonParse.swifttemplate */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JsonParse.swifttemplate; sourceTree = "<group>"; };
 		CE2A7FCF1EB71762003791F2 /* MicroBlogUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogUser.swift; sourceTree = "<group>"; };
-		CE2A7FD11EB720E2003791F2 /* MicroBlogStatus+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogStatus+JsonParse.swift"; sourceTree = "<group>"; };
 		CE2A7FD41EB725A4003791F2 /* FanfouPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanfouPhoto.swift; sourceTree = "<group>"; };
 		CE2A7FD71EB725BE003791F2 /* GNUSocialAttention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GNUSocialAttention.swift; sourceTree = "<group>"; };
 		CE2A7FDA1EB7261B003791F2 /* GNUSocialAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GNUSocialAttachment.swift; sourceTree = "<group>"; };
@@ -275,31 +273,33 @@
 		CE2A7FDF1EB72675003791F2 /* MicroBlogPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogPlace.swift; sourceTree = "<group>"; };
 		CE2A7FE11EB72689003791F2 /* MicroBlogGeoPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogGeoPoint.swift; sourceTree = "<group>"; };
 		CE2A7FE31EB767B0003791F2 /* Date+MicroBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+MicroBlog.swift"; sourceTree = "<group>"; };
-		CE2A7FE51EB76F3F003791F2 /* FanfouPhoto+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FanfouPhoto+JsonParse.swift"; sourceTree = "<group>"; };
-		CE2A7FE61EB76F3F003791F2 /* MicroBlogGeoPoint+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogGeoPoint+JsonParse.swift"; sourceTree = "<group>"; };
-		CE2A7FE71EB76F3F003791F2 /* MicroBlogPlace+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogPlace+JsonParse.swift"; sourceTree = "<group>"; };
-		CE2A7FE81EB76F3F003791F2 /* MicroBlogStatus.CurrentUserRetweet+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogStatus.CurrentUserRetweet+JsonParse.swift"; sourceTree = "<group>"; };
-		CE2A7FEA1EB76F3F003791F2 /* MicroBlogStatus.ExtendedTweet+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogStatus.ExtendedTweet+JsonParse.swift"; sourceTree = "<group>"; };
-		CE2A7FEB1EB76F3F003791F2 /* MicroBlogUser+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogUser+JsonParse.swift"; sourceTree = "<group>"; };
-		CE2A7FEC1EB76F3F003791F2 /* TwitterCardEntity+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterCardEntity+JsonParse.swift"; sourceTree = "<group>"; };
-		CE2A7FF51EB775C0003791F2 /* GNUSocialAttachment+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GNUSocialAttachment+JsonParse.swift"; sourceTree = "<group>"; };
-		CE2A7FF61EB775C0003791F2 /* GNUSocialAttention+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GNUSocialAttention+JsonParse.swift"; sourceTree = "<group>"; };
 		CE2A7FF91EB83176003791F2 /* TwitterEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterEntities.swift; sourceTree = "<group>"; };
 		CE2A7FFB1EB83200003791F2 /* TwitterURLEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterURLEntity.swift; sourceTree = "<group>"; };
-		CE2A7FFD1EB83A75003791F2 /* TwitterEntities+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterEntities+JsonParse.swift"; sourceTree = "<group>"; };
-		CE2A7FFE1EB83A75003791F2 /* TwitterURLEntity+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterURLEntity+JsonParse.swift"; sourceTree = "<group>"; };
 		CE2A80011EB84696003791F2 /* TwitterHashtagEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterHashtagEntity.swift; sourceTree = "<group>"; };
-		CE2A80031EB84759003791F2 /* TwitterHashtagEntity+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterHashtagEntity+JsonParse.swift"; sourceTree = "<group>"; };
 		CE2A80051EB848E5003791F2 /* TwitterBaseEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterBaseEntity.swift; sourceTree = "<group>"; };
-		CE2A80071EB84968003791F2 /* TwitterBaseEntity+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterBaseEntity+JsonParse.swift"; sourceTree = "<group>"; };
 		CE2A80091EB8518C003791F2 /* RestCall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestCall.swift; sourceTree = "<group>"; };
 		CE2A800B1EB8582D003791F2 /* MicroBlogAccountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogAccountService.swift; sourceTree = "<group>"; };
-		CE2A800D1EB85A6D003791F2 /* MicroBlogAccountService+RestImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogAccountService+RestImpl.swift"; sourceTree = "<group>"; };
 		CE2A80101EB88B28003791F2 /* MastodonAccountsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonAccountsService.swift; sourceTree = "<group>"; };
 		CE2A80131EB88B77003791F2 /* MastodonAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonAccount.swift; sourceTree = "<group>"; };
-		CE2A80151EB88C01003791F2 /* MastodonAccount+JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MastodonAccount+JsonParse.swift"; sourceTree = "<group>"; };
-		CE2A80161EB88C01003791F2 /* MastodonAccountsServices+RestImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MastodonAccountsServices+RestImpl.swift"; sourceTree = "<group>"; };
-		CE2A80191EB89B8D003791F2 /* JsonParse.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParse.generated.swift; sourceTree = "<group>"; };
+		CE2A801B1EB8D0AE003791F2 /* JsonParsableUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParsableUtils.swift; sourceTree = "<group>"; };
+		CE2A801D1EB8D982003791F2 /* FanfouPhoto+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FanfouPhoto+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE2A801E1EB8D982003791F2 /* GNUSocialAttachment+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GNUSocialAttachment+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE2A801F1EB8D982003791F2 /* GNUSocialAttention+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GNUSocialAttention+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE2A80201EB8D982003791F2 /* JsonMapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonMapper.generated.swift; sourceTree = "<group>"; };
+		CE2A80211EB8D982003791F2 /* MastodonAccount+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MastodonAccount+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE2A80221EB8D982003791F2 /* MastodonAccountsServices+RestImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MastodonAccountsServices+RestImpl.swift"; sourceTree = "<group>"; };
+		CE2A80231EB8D982003791F2 /* MicroBlogAccountService+RestImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogAccountService+RestImpl.swift"; sourceTree = "<group>"; };
+		CE2A80241EB8D982003791F2 /* MicroBlogGeoPoint+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogGeoPoint+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE2A80251EB8D982003791F2 /* MicroBlogPlace+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogPlace+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE2A80261EB8D982003791F2 /* MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE2A80271EB8D982003791F2 /* MicroBlogStatus.ExtendedTweet+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogStatus.ExtendedTweet+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE2A80281EB8D982003791F2 /* MicroBlogStatus+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogStatus+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE2A80291EB8D982003791F2 /* MicroBlogUser+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogUser+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE2A802A1EB8D982003791F2 /* TwitterBaseEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterBaseEntity+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE2A802B1EB8D982003791F2 /* TwitterCardEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterCardEntity+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE2A802C1EB8D982003791F2 /* TwitterEntities+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterEntities+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE2A802D1EB8D982003791F2 /* TwitterHashtagEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterHashtagEntity+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE2A802E1EB8D982003791F2 /* TwitterURLEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterURLEntity+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE358B701D811C84002A33B3 /* SpanItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItem.swift; sourceTree = "<group>"; };
 		CE358B741D825942002A33B3 /* Viewers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Viewers.storyboard; sourceTree = "<group>"; };
 		CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSShadowExtension.swift; sourceTree = "<group>"; };
@@ -576,24 +576,24 @@
 		CE2660201DAFDD79007FF7CF /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				CE2A80191EB89B8D003791F2 /* JsonParse.generated.swift */,
-				CE2A80151EB88C01003791F2 /* MastodonAccount+JsonParse.swift */,
-				CE2A80161EB88C01003791F2 /* MastodonAccountsServices+RestImpl.swift */,
-				CE2A800D1EB85A6D003791F2 /* MicroBlogAccountService+RestImpl.swift */,
-				CE2A80071EB84968003791F2 /* TwitterBaseEntity+JsonParse.swift */,
-				CE2A80031EB84759003791F2 /* TwitterHashtagEntity+JsonParse.swift */,
-				CE2A7FFD1EB83A75003791F2 /* TwitterEntities+JsonParse.swift */,
-				CE2A7FFE1EB83A75003791F2 /* TwitterURLEntity+JsonParse.swift */,
-				CE2A7FF51EB775C0003791F2 /* GNUSocialAttachment+JsonParse.swift */,
-				CE2A7FF61EB775C0003791F2 /* GNUSocialAttention+JsonParse.swift */,
-				CE2A7FE51EB76F3F003791F2 /* FanfouPhoto+JsonParse.swift */,
-				CE2A7FE61EB76F3F003791F2 /* MicroBlogGeoPoint+JsonParse.swift */,
-				CE2A7FE71EB76F3F003791F2 /* MicroBlogPlace+JsonParse.swift */,
-				CE2A7FE81EB76F3F003791F2 /* MicroBlogStatus.CurrentUserRetweet+JsonParse.swift */,
-				CE2A7FEA1EB76F3F003791F2 /* MicroBlogStatus.ExtendedTweet+JsonParse.swift */,
-				CE2A7FEB1EB76F3F003791F2 /* MicroBlogUser+JsonParse.swift */,
-				CE2A7FEC1EB76F3F003791F2 /* TwitterCardEntity+JsonParse.swift */,
-				CE2A7FD11EB720E2003791F2 /* MicroBlogStatus+JsonParse.swift */,
+				CE2A801D1EB8D982003791F2 /* FanfouPhoto+JsonMapper.swift */,
+				CE2A801E1EB8D982003791F2 /* GNUSocialAttachment+JsonMapper.swift */,
+				CE2A801F1EB8D982003791F2 /* GNUSocialAttention+JsonMapper.swift */,
+				CE2A80201EB8D982003791F2 /* JsonMapper.generated.swift */,
+				CE2A80211EB8D982003791F2 /* MastodonAccount+JsonMapper.swift */,
+				CE2A80221EB8D982003791F2 /* MastodonAccountsServices+RestImpl.swift */,
+				CE2A80231EB8D982003791F2 /* MicroBlogAccountService+RestImpl.swift */,
+				CE2A80241EB8D982003791F2 /* MicroBlogGeoPoint+JsonMapper.swift */,
+				CE2A80251EB8D982003791F2 /* MicroBlogPlace+JsonMapper.swift */,
+				CE2A80261EB8D982003791F2 /* MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift */,
+				CE2A80271EB8D982003791F2 /* MicroBlogStatus.ExtendedTweet+JsonMapper.swift */,
+				CE2A80281EB8D982003791F2 /* MicroBlogStatus+JsonMapper.swift */,
+				CE2A80291EB8D982003791F2 /* MicroBlogUser+JsonMapper.swift */,
+				CE2A802A1EB8D982003791F2 /* TwitterBaseEntity+JsonMapper.swift */,
+				CE2A802B1EB8D982003791F2 /* TwitterCardEntity+JsonMapper.swift */,
+				CE2A802C1EB8D982003791F2 /* TwitterEntities+JsonMapper.swift */,
+				CE2A802D1EB8D982003791F2 /* TwitterHashtagEntity+JsonMapper.swift */,
+				CE2A802E1EB8D982003791F2 /* TwitterURLEntity+JsonMapper.swift */,
 				CE6C6C081DB09A9800DF4892 /* Extensions */,
 			);
 			path = Generated;
@@ -962,6 +962,7 @@
 				CEDC3B221D7D8BE90082A8BA /* DatabaseMigration.swift */,
 				CE9574951D33B71B00504D52 /* DefaultsKeys.swift */,
 				CE95748A1D322CC700504D52 /* ModelConverter.swift */,
+				CE2A801B1EB8D0AE003791F2 /* JsonParsableUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1175,7 +1176,6 @@
 			children = (
 				C57AEF08A154F0228C04EAB7 /* FlatBuffers */,
 				CEDFEA691D4F392900E1F8B8 /* Models */,
-				CE2A7F9A1EB5CED0003791F2 /* JsonParse.swifttemplate */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -1347,7 +1347,6 @@
 				CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */,
 				CE497FBC1D6AF71E000F16D2 /* StatusCell.xib in Resources */,
 				CE497F901D695835000F16D2 /* Main.storyboard in Resources */,
-				CE2A7F9B1EB5CED0003791F2 /* JsonParse.swifttemplate in Resources */,
 				CE497FB81D698C98000F16D2 /* statuses_list.json in Resources */,
 				CE45CAF21D8559780004CC1C /* User.model.yml in Resources */,
 				CEF53C501D8FC40B0032F434 /* LoadMoreCell.xib in Resources */,
@@ -1682,12 +1681,15 @@
 				CE0529E91CF7F35300E06364 /* MainViewController.swift in Sources */,
 				CEA2E2D11D3A7EA20095BC57 /* HomeRootController.swift in Sources */,
 				CE65B1CC1D9CC21000A38A61 /* Activity+Value.swift in Sources */,
+				CE2A803A1EB8D982003791F2 /* MicroBlogStatus+JsonMapper.swift in Sources */,
 				CE6C6C1B1DB09A9800DF4892 /* Status+Freddy.swift in Sources */,
 				CE79C83D1DA62E56007C05F2 /* SpanItemExtension.swift in Sources */,
 				CE9574961D33B71B00504D52 /* DefaultsKeys.swift in Sources */,
 				CEDC3B2A1D7DB04F0082A8BA /* Paging.swift in Sources */,
 				CE6C6C1D1DB09A9800DF4892 /* User+Freddy.swift in Sources */,
+				CE2A803D1EB8D982003791F2 /* TwitterCardEntity+JsonMapper.swift in Sources */,
 				CED73F6C1D9519B80066F554 /* UIImageExtensions.swift in Sources */,
+				CE2A80321EB8D982003791F2 /* JsonMapper.generated.swift in Sources */,
 				CE95748F1D33871E00504D52 /* PasswordSignInController.swift in Sources */,
 				CEDEE3F51D9270BA00001BE8 /* UIRefreshControlExtension.swift in Sources */,
 				CE2A7FD01EB71762003791F2 /* MicroBlogUser.swift in Sources */,
@@ -1695,22 +1697,21 @@
 				CE779F361D858B210053B5C7 /* User+MicroBlog.swift in Sources */,
 				CE6C6C181DB09A9800DF4892 /* Activity+SQLite.swift in Sources */,
 				CEB60E901DE7CAB300C08E39 /* StatusCellProtocol.swift in Sources */,
-				CE2A80171EB88C01003791F2 /* MastodonAccount+JsonParse.swift in Sources */,
 				CE5993191D83CAAA00653220 /* DetailStatusCell.swift in Sources */,
 				CE2A80021EB84696003791F2 /* TwitterHashtagEntity.swift in Sources */,
 				CE2A7FE21EB72689003791F2 /* MicroBlogGeoPoint.swift in Sources */,
+				CE2A80401EB8D982003791F2 /* TwitterURLEntity+JsonMapper.swift in Sources */,
 				CEF2CF451D83F11200131EAE /* UserProfileController.swift in Sources */,
 				CEBECFCA1DAB8AD900350383 /* CollectionUtils.swift in Sources */,
 				CE9574981D33D87200504D52 /* NetworkPreferencesController.swift in Sources */,
-				CE2A80041EB84759003791F2 /* TwitterHashtagEntity+JsonParse.swift in Sources */,
 				CEA2E2C51D37C2590095BC57 /* ComposeLocationController.swift in Sources */,
 				CE6C6C371DB35C1D00DF4892 /* UserKey+Freddy.swift in Sources */,
 				CE2A800C1EB8582D003791F2 /* MicroBlogAccountService.swift in Sources */,
+				CE2A80331EB8D982003791F2 /* MastodonAccount+JsonMapper.swift in Sources */,
 				CE2A7FD81EB725BE003791F2 /* GNUSocialAttention.swift in Sources */,
 				CE2A800A1EB8518C003791F2 /* RestCall.swift in Sources */,
 				CE45CA861D85416C0004CC1C /* Status.swift in Sources */,
 				CE7A57441D917E1C0027BECE /* UserTimelineStatusesListControllerDataSource.swift in Sources */,
-				CE2A7FEE1EB76F3F003791F2 /* MicroBlogGeoPoint+JsonParse.swift in Sources */,
 				CE2A80061EB848E5003791F2 /* TwitterBaseEntity.swift in Sources */,
 				CE65B1E81D9F546700A38A61 /* ItemIndices.swift in Sources */,
 				CE5993101D83901B00653220 /* MediaItem.swift in Sources */,
@@ -1720,13 +1721,13 @@
 				CE6C6C271DB0AC5800DF4892 /* Foundation+Freddy.swift in Sources */,
 				CE65B1D31D9CE3C800A38A61 /* Activity+MicroBlog.swift in Sources */,
 				CE2A80141EB88B77003791F2 /* MastodonAccount.swift in Sources */,
+				CE2A803F1EB8D982003791F2 /* TwitterHashtagEntity+JsonMapper.swift in Sources */,
 				CEDC3B261D7D9FE70082A8BA /* GetStatusesTask.swift in Sources */,
 				CE79C83F1DA77777007C05F2 /* YYText+ALSLayouts.swift in Sources */,
 				CEBECFB71DA9EBD300350383 /* CALayerExtension.swift in Sources */,
 				CE7A57421D917BDB0027BECE /* SingleAccountStatusesListControllerDataSource.swift in Sources */,
 				CE2903EC1D4F200A0056D0E2 /* UserExtensions.swift in Sources */,
 				CEA2E2D31D3B42180095BC57 /* AccountsManagerController.swift in Sources */,
-				CE2A80081EB84968003791F2 /* TwitterBaseEntity+JsonParse.swift in Sources */,
 				CE497FBE1D6B01D1000F16D2 /* DateExtension.swift in Sources */,
 				CE65B1B41D9BA35A00A38A61 /* ActivityIndicator.swift in Sources */,
 				CE6C6C151DB09A9800DF4892 /* Account+Freddy.swift in Sources */,
@@ -1734,14 +1735,13 @@
 				CE497FC81D6B2017000F16D2 /* GapCell.swift in Sources */,
 				CE65B1CA1D9CC11600A38A61 /* UserList.swift in Sources */,
 				CED41F411D30E6B80089E0B6 /* Endpoint.swift in Sources */,
-				CE2A7FF21EB76F3F003791F2 /* MicroBlogStatus.ExtendedTweet+JsonParse.swift in Sources */,
 				CE7A57491D918A5C0027BECE /* ReselectUISegmentedControl.swift in Sources */,
 				CEBECFC01DAA2BE300350383 /* TintedImageButton.swift in Sources */,
+				CE2A80301EB8D982003791F2 /* GNUSocialAttachment+JsonMapper.swift in Sources */,
 				CE6C6C191DB09A9800DF4892 /* MediaItem+Freddy.swift in Sources */,
 				CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */,
 				CE2A7FFC1EB83200003791F2 /* TwitterURLEntity.swift in Sources */,
 				CEDC3B211D7D87F80082A8BA /* SQLite+UserVersion.swift in Sources */,
-				CE2A80181EB88C01003791F2 /* MastodonAccountsServices+RestImpl.swift in Sources */,
 				CE65B1B61D9C20AE00A38A61 /* PullToRefreshProtocol.swift in Sources */,
 				CE95749A1D33DC7B00504D52 /* BasePreferencesController.swift in Sources */,
 				CE65B1BE1D9CC01500A38A61 /* Activity.swift in Sources */,
@@ -1756,6 +1756,7 @@
 				CED41F481D3147460089E0B6 /* APIEditorController.swift in Sources */,
 				CE45CA881D85416C0004CC1C /* Account.swift in Sources */,
 				CE9574871D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift in Sources */,
+				CE2A80351EB8D982003791F2 /* MicroBlogAccountService+RestImpl.swift in Sources */,
 				CEA2E2C11D379CD90095BC57 /* CoreLocationExtensions.swift in Sources */,
 				CE6C6C2F1DB3378B00DF4892 /* Freddy+Optional.swift in Sources */,
 				CE497FCD1D6BE643000F16D2 /* QuotedStatusView.swift in Sources */,
@@ -1766,19 +1767,19 @@
 				CE3E5DF61D978A6100454A61 /* NSShadowExtension.swift in Sources */,
 				CE2660191DAFD1BF007FF7CF /* StringLiteral.swift in Sources */,
 				CEDC3B281D7DAE2C0082A8BA /* RefreshTaskParam.swift in Sources */,
-				CE2A7FED1EB76F3F003791F2 /* FanfouPhoto+JsonParse.swift in Sources */,
+				CE2A80381EB8D982003791F2 /* MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift in Sources */,
 				CE5993091D82E4DE00653220 /* AccountCell.swift in Sources */,
 				CE95748B1D322CC700504D52 /* ModelConverter.swift in Sources */,
 				CEBED5FB1D4C86C700619D1C /* BackgroundOperationService.swift in Sources */,
-				CE2A80001EB83A75003791F2 /* TwitterURLEntity+JsonParse.swift in Sources */,
 				CEA2E2B11D3681FD0095BC57 /* ComposeController.swift in Sources */,
 				CE9574851D32221A00504D52 /* RestClient.swift in Sources */,
+				CE2A803B1EB8D982003791F2 /* MicroBlogUser+JsonMapper.swift in Sources */,
 				CE412B221DB9F38D00C52099 /* SwiftyJSONExtension.swift in Sources */,
-				CE2A7FD21EB720E2003791F2 /* MicroBlogStatus+JsonParse.swift in Sources */,
-				CE2A7FF01EB76F3F003791F2 /* MicroBlogStatus.CurrentUserRetweet+JsonParse.swift in Sources */,
 				CE6C6C1A1DB09A9800DF4892 /* SpanItem+Freddy.swift in Sources */,
 				CED73F6E1D953C6E0066F554 /* UIBarButtonItemExtension.swift in Sources */,
+				CE2A801C1EB8D0AE003791F2 /* JsonParsableUtils.swift in Sources */,
 				CE7A57471D9185DC0027BECE /* UserFavoritesStatusesListControllerDelaSourceegate.swift in Sources */,
+				CE2A80371EB8D982003791F2 /* MicroBlogPlace+JsonMapper.swift in Sources */,
 				CEBECFB31DA8C0C200350383 /* SafariBrowserController.swift in Sources */,
 				CED41F2F1D2FF7C80089E0B6 /* HomeController.swift in Sources */,
 				CED41F431D30E6E40089E0B6 /* Authorization.swift in Sources */,
@@ -1788,9 +1789,12 @@
 				CE9574B91D349C3F00504D52 /* BrowserSignInController.swift in Sources */,
 				CE6C6C1F1DB09A9800DF4892 /* UserList+Freddy.swift in Sources */,
 				CEA2E2BE1D3761780095BC57 /* StatusUpdate.swift in Sources */,
+				CE2A803C1EB8D982003791F2 /* TwitterBaseEntity+JsonMapper.swift in Sources */,
 				CE2A7FFA1EB83176003791F2 /* TwitterEntities.swift in Sources */,
 				CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */,
+				CE2A802F1EB8D982003791F2 /* FanfouPhoto+JsonMapper.swift in Sources */,
 				CE45CAEF1D8556DE0004CC1C /* Account+Value.swift in Sources */,
+				CE2A80311EB8D982003791F2 /* GNUSocialAttention+JsonMapper.swift in Sources */,
 				CEF2CF481D840D7B00131EAE /* MediaPreviewContainer.swift in Sources */,
 				CE2A7FD51EB725A4003791F2 /* FanfouPhoto.swift in Sources */,
 				CE6C6C1E1DB09A9800DF4892 /* User+SQLite.swift in Sources */,
@@ -1799,26 +1803,25 @@
 				CE6C6C1C1DB09A9800DF4892 /* Status+SQLite.swift in Sources */,
 				CE497FAC1D6988BA000F16D2 /* UserCell.swift in Sources */,
 				CE59930E1D82F17F00653220 /* FiltersTabsController.swift in Sources */,
-				CE2A7FF71EB775C0003791F2 /* GNUSocialAttachment+JsonParse.swift in Sources */,
 				CE90A55B1D7EDC9D007050E5 /* SimpleRefreshTaskParam.swift in Sources */,
 				CE65B1CF1D9CDFEA00A38A61 /* ActivitiesListController.swift in Sources */,
-				CE2A7FEF1EB76F3F003791F2 /* MicroBlogPlace+JsonParse.swift in Sources */,
+				CE2A80391EB8D982003791F2 /* MicroBlogStatus.ExtendedTweet+JsonMapper.swift in Sources */,
 				CE5993161D83C95800653220 /* StatusViewerController.swift in Sources */,
 				CEDC3B321D7E5FB30082A8BA /* DatabaseConstants.swift in Sources */,
 				CE03118A1D87D946009475E8 /* MediaUploadResponse.swift in Sources */,
 				CEA2E2CF1D3A779B0095BC57 /* UIImageViewExtension.swift in Sources */,
+				CE2A80341EB8D982003791F2 /* MastodonAccountsServices+RestImpl.swift in Sources */,
+				CE2A803E1EB8D982003791F2 /* TwitterEntities+JsonMapper.swift in Sources */,
 				CEDC3B1F1D7D82370082A8BA /* CoreConstants.swift in Sources */,
 				CE6D6E9A1DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift in Sources */,
-				CE2A7FF81EB775C0003791F2 /* GNUSocialAttention+JsonParse.swift in Sources */,
 				CE2A7FDB1EB7261B003791F2 /* GNUSocialAttachment.swift in Sources */,
 				CEA2E2A71D34C1610095BC57 /* DefaultAPISettingsController.swift in Sources */,
 				CE2A7FDE1EB72638003791F2 /* TwitterCardEntity.swift in Sources */,
 				CEDFEA6D1D4F4BF600E1F8B8 /* Status+MicroBlog.swift in Sources */,
 				CEEF42B91DB669C2009ECD0F /* YYTextExtension.swift in Sources */,
-				CE2A800E1EB85A6D003791F2 /* MicroBlogAccountService+RestImpl.swift in Sources */,
 				CEDC3B231D7D8BE90082A8BA /* DatabaseMigration.swift in Sources */,
+				CE2A80361EB8D982003791F2 /* MicroBlogGeoPoint+JsonMapper.swift in Sources */,
 				CE6C6C201DB09A9800DF4892 /* UserList+SQLite.swift in Sources */,
-				CE2A7FF31EB76F3F003791F2 /* MicroBlogUser+JsonParse.swift in Sources */,
 				CE95747D1D3210A300504D52 /* CustomAPIConfig.swift in Sources */,
 				CE2A80111EB88B28003791F2 /* MastodonAccountsService.swift in Sources */,
 				CE9DB0491DACA34B000C150F /* Number+LocalizedString.swift in Sources */,
@@ -1828,16 +1831,13 @@
 				CE26603F1DB0638D007FF7CF /* SQLite+Array.swift in Sources */,
 				CE358B711D811C84002A33B3 /* SpanItem.swift in Sources */,
 				CEB187371D980AF6004ADB3A /* LoadMoreCell.swift in Sources */,
-				CE2A7FF41EB76F3F003791F2 /* TwitterCardEntity+JsonParse.swift in Sources */,
 				CE497F991D6959B0000F16D2 /* StatusCell.swift in Sources */,
 				CE79C8411DA7ACE3007C05F2 /* UIViewExtension.swift in Sources */,
 				CE6C6C161DB09A9800DF4892 /* Account+SQLite.swift in Sources */,
-				CE2A7FFF1EB83A75003791F2 /* TwitterEntities+JsonParse.swift in Sources */,
 				CE4B1A9D1D7172F00017CB85 /* Status+Value.swift in Sources */,
 				CE497FA91D697CEA000F16D2 /* ConvertUtils.swift in Sources */,
 				CE6C6C361DB35C1D00DF4892 /* StatusExtension.swift in Sources */,
 				CE7A573C1D910EB00027BECE /* SegmentedContainerView.swift in Sources */,
-				CE2A801A1EB89B8D003791F2 /* JsonParse.generated.swift in Sources */,
 				CE2A7FE01EB72675003791F2 /* MicroBlogPlace.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

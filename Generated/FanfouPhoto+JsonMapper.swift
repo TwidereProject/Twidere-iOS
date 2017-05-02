@@ -3,11 +3,11 @@
 
 import PMJackson
 
-internal extension MicroBlogStatus.CurrentUserRetweet {
+internal class FanfouPhotoJsonMapper: JsonMapper<FanfouPhoto> {
 
-    typealias T = MicroBlogStatus.CurrentUserRetweet
+    internal static let singleton = FanfouPhotoJsonMapper()
 
-    internal static func parse(_ instance: MicroBlogStatus.CurrentUserRetweet = MicroBlogStatus.CurrentUserRetweet(), parser: PMJacksonParser) -> MicroBlogStatus.CurrentUserRetweet! {
+    override func parse(_ instance: FanfouPhoto = FanfouPhoto(), parser: PMJacksonParser) -> FanfouPhoto! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -26,10 +26,16 @@ internal extension MicroBlogStatus.CurrentUserRetweet {
         return instance
     }
 
-    internal static func parseField(_ instance: MicroBlogStatus.CurrentUserRetweet, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: FanfouPhoto, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-        case "id":
-            instance.id = parser.getValueAsString()
+        case "url":
+            instance.url = parser.getValueAsString()
+        case "imageurl":
+            instance.imageUrl = parser.getValueAsString()
+        case "thumburl":
+            instance.thumbUrl = parser.getValueAsString()
+        case "largeurl":
+            instance.largeUrl = parser.getValueAsString()
         default:
             break
         }

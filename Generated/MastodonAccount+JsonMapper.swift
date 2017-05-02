@@ -3,11 +3,11 @@
 
 import PMJackson
 
-internal extension MastodonAccount {
+internal class MastodonAccountJsonMapper: JsonMapper<MastodonAccount> {
 
-    typealias T = MastodonAccount
+    internal static let singleton = MastodonAccountJsonMapper()
 
-    internal static func parse(_ instance: MastodonAccount = MastodonAccount(), parser: PMJacksonParser) -> MastodonAccount! {
+    override func parse(_ instance: MastodonAccount = MastodonAccount(), parser: PMJacksonParser) -> MastodonAccount! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -26,7 +26,7 @@ internal extension MastodonAccount {
         return instance
     }
 
-    internal static func parseField(_ instance: MastodonAccount, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: MastodonAccount, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         default:
             break

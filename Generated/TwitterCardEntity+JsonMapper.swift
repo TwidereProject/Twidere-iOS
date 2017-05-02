@@ -3,11 +3,11 @@
 
 import PMJackson
 
-internal extension TwitterCardEntity {
+internal class TwitterCardEntityJsonMapper: JsonMapper<TwitterCardEntity> {
 
-    typealias T = TwitterCardEntity
+    internal static let singleton = TwitterCardEntityJsonMapper()
 
-    internal static func parse(_ instance: TwitterCardEntity = TwitterCardEntity(), parser: PMJacksonParser) -> TwitterCardEntity! {
+    override func parse(_ instance: TwitterCardEntity = TwitterCardEntity(), parser: PMJacksonParser) -> TwitterCardEntity! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -26,7 +26,7 @@ internal extension TwitterCardEntity {
         return instance
     }
 
-    internal static func parseField(_ instance: TwitterCardEntity, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: TwitterCardEntity, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         default:
             break

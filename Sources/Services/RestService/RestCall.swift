@@ -38,7 +38,7 @@ extension RestClient {
             }
             if let params = call.params, params.contains(where: { $0.1 is Data }) {
                 //finalHeaders["Content-Type"] = multipart.contentType
-                let finalHeaders = call.headers
+                let finalHeaders = constructHeaders(call.method, path: call.path, headers: call.headers, queries: call.queries, auth: auth)
                 Alamofire.upload(
                     multipartFormData: { multipart in
                         for (k, v) in params {
@@ -60,7 +60,8 @@ extension RestClient {
                 })
             } else {
                 let encoding = URLEncoding.methodDependent
-                let request = Alamofire.request(url, method: call.method, parameters: call.params, encoding: encoding, headers: call.headers)
+                let finalHeaders = constructHeaders(call.method, path: call.path, headers: call.headers, queries: call.queries, forms: call.params, auth: auth, encoding: encoding)
+                let request = Alamofire.request(url, method: call.method, parameters: call.params, encoding: encoding, headers: finalHeaders)
                 if (call.validation != nil) {
                     request.validate(call.validation)
                 } else {
@@ -71,4 +72,20 @@ extension RestClient {
         }
     }
     
+    
+    fileprivate func constructHeaders(_ method: HTTPMethod, path: String, headers: [String: String]? = nil, queries: [String: String?]? = nil, forms: [String: Any]? = nil, auth: Authorization?, encoding: URLEncoding? = nil) -> [String: String] {
+        var mergedHeaders = [String: String]()
+        if let headers = headers {
+            for (k, v) in headers {
+                mergedHeaders[k] = v
+            }
+        }
+        if let auth = auth, let encoding = encoding, auth.hasAuthorization {
+            mergedHeaders["Authorization"] = auth.getHeader(method.rawValue, endpoint: endpoint, path: path, queries: queries, forms: forms, encoding: encoding)
+        }
+        if let userAgent = userAgent {
+            mergedHeaders["User-Agent"] = userAgent
+        }
+        return mergedHeaders
+    }
 }

@@ -3,11 +3,11 @@
 
 import PMJackson
 
-internal extension TwitterURLEntity {
+internal class MicroBlogGeoPointJsonMapper: JsonMapper<MicroBlogGeoPoint> {
 
-    typealias T = TwitterURLEntity
+    internal static let singleton = MicroBlogGeoPointJsonMapper()
 
-    internal static func parse(_ instance: TwitterURLEntity = TwitterURLEntity(), parser: PMJacksonParser) -> TwitterURLEntity! {
+    override func parse(_ instance: MicroBlogGeoPoint = MicroBlogGeoPoint(), parser: PMJacksonParser) -> MicroBlogGeoPoint! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -26,20 +26,22 @@ internal extension TwitterURLEntity {
         return instance
     }
 
-    internal static func parseField(_ instance: TwitterURLEntity, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: MicroBlogGeoPoint, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-        case "indices":
+        case "coordinates":
             if (parser.currentEvent == .arrayStart) {
-                var array = [Int32]()
+                var array = [Double]()
                 while (parser.nextEvent() != .arrayEnd) {
-                    array.append(parser.getValueAsInt32())
+                    array.append(parser.getValueAsDouble())
                 }
-                instance.indices = array
+                instance.coordinates = array
             } else {
-                instance.indices = nil
+                instance.coordinates = nil
             }
+        case "type":
+            instance.type = parser.getValueAsString()
         default:
-            TwitterBaseEntity.parseField(instance, fieldName, parser)
+            break
         }
     }
 }

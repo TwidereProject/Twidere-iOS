@@ -15,16 +15,7 @@ internal class MastodonAccountsServicesRestImpl: MastodonAccountsServices {
         let call = RestCall<MastodonAccount>()
         call.method = .get
         call.path = "/v1/accounts/\(id)"
-        return client.toPromise(call)
-    }
-
-    func searchAccounts(query: String) -> Promise<MastodonAccount> {
-        let call = RestCall<MastodonAccount>()
-        call.method = .get
-        call.path = "/v1/accounts/search"
-        call.querys = [
-            "q": "\(query)"
-        ]
+        call.serializer = parseJsonMapperResponse(MastodonAccountJsonMapper.singleton, MastodonAccount())
         return client.toPromise(call)
     }
 

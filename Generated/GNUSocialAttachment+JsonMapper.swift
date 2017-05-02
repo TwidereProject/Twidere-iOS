@@ -3,11 +3,11 @@
 
 import PMJackson
 
-internal extension GNUSocialAttachment {
+internal class GNUSocialAttachmentJsonMapper: JsonMapper<GNUSocialAttachment> {
 
-    typealias T = GNUSocialAttachment
+    internal static let singleton = GNUSocialAttachmentJsonMapper()
 
-    internal static func parse(_ instance: GNUSocialAttachment = GNUSocialAttachment(), parser: PMJacksonParser) -> GNUSocialAttachment! {
+    override func parse(_ instance: GNUSocialAttachment = GNUSocialAttachment(), parser: PMJacksonParser) -> GNUSocialAttachment! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -26,7 +26,7 @@ internal extension GNUSocialAttachment {
         return instance
     }
 
-    internal static func parseField(_ instance: GNUSocialAttachment, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: GNUSocialAttachment, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "width":
             instance.width = parser.getValueAsInt32()

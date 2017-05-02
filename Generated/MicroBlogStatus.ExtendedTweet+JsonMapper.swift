@@ -3,11 +3,11 @@
 
 import PMJackson
 
-internal extension MicroBlogStatus.ExtendedTweet {
+internal class MicroBlogStatusExtendedTweetJsonMapper: JsonMapper<MicroBlogStatus.ExtendedTweet> {
 
-    typealias T = MicroBlogStatus.ExtendedTweet
+    internal static let singleton = MicroBlogStatusExtendedTweetJsonMapper()
 
-    internal static func parse(_ instance: MicroBlogStatus.ExtendedTweet = MicroBlogStatus.ExtendedTweet(), parser: PMJacksonParser) -> MicroBlogStatus.ExtendedTweet! {
+    override func parse(_ instance: MicroBlogStatus.ExtendedTweet = MicroBlogStatus.ExtendedTweet(), parser: PMJacksonParser) -> MicroBlogStatus.ExtendedTweet! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -26,14 +26,14 @@ internal extension MicroBlogStatus.ExtendedTweet {
         return instance
     }
 
-    internal static func parseField(_ instance: MicroBlogStatus.ExtendedTweet, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: MicroBlogStatus.ExtendedTweet, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "full_text":
             instance.fullText = parser.getValueAsString()
         case "entities":
-            instance.entities = TwitterEntities.parse(parser: parser)
+            instance.entities = TwitterEntitiesJsonMapper.singleton.parse(parser: parser)
         case "extended_entities":
-            instance.extendedEntities = TwitterEntities.parse(parser: parser)
+            instance.extendedEntities = TwitterEntitiesJsonMapper.singleton.parse(parser: parser)
         case "display_text_range":
             if (parser.currentEvent == .arrayStart) {
                 var array = [Int32]()

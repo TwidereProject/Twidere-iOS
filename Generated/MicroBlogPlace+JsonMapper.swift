@@ -3,11 +3,11 @@
 
 import PMJackson
 
-internal extension GNUSocialAttention {
+internal class MicroBlogPlaceJsonMapper: JsonMapper<MicroBlogPlace> {
 
-    typealias T = GNUSocialAttention
+    internal static let singleton = MicroBlogPlaceJsonMapper()
 
-    internal static func parse(_ instance: GNUSocialAttention = GNUSocialAttention(), parser: PMJacksonParser) -> GNUSocialAttention! {
+    override func parse(_ instance: MicroBlogPlace = MicroBlogPlace(), parser: PMJacksonParser) -> MicroBlogPlace! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -26,18 +26,10 @@ internal extension GNUSocialAttention {
         return instance
     }
 
-    internal static func parseField(_ instance: GNUSocialAttention, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: MicroBlogPlace, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-        case "fullname":
+        case "full_name":
             instance.fullName = parser.getValueAsString()
-        case "id":
-            instance.id = parser.getValueAsString()
-        case "ostatus_uri":
-            instance.ostatusUri = parser.getValueAsString()
-        case "profileurl":
-            instance.profileUrl = parser.getValueAsString()
-        case "screen_name":
-            instance.screenName = parser.getValueAsString()
         default:
             break
         }

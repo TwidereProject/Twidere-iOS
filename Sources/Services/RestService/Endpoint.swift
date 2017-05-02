@@ -73,7 +73,7 @@ class OAuthEndpoint: Endpoint {
     }
     
     
-    func constructSigningUrl(_ path: String, queries: [String: String]? = nil) -> String {
+    func constructSigningUrl(_ path: String, queries: [String: String?]? = nil) -> String {
         let url = Endpoint.construct(signingBase, path: path, queries: queries)
         if (fixUrl != nil) {
             return fixUrl!(url)

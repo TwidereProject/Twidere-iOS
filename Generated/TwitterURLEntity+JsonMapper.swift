@@ -3,11 +3,11 @@
 
 import PMJackson
 
-internal extension TwitterHashtagEntity {
+internal class TwitterURLEntityJsonMapper: JsonMapper<TwitterURLEntity> {
 
-    typealias T = TwitterHashtagEntity
+    internal static let singleton = TwitterURLEntityJsonMapper()
 
-    internal static func parse(_ instance: TwitterHashtagEntity = TwitterHashtagEntity(), parser: PMJacksonParser) -> TwitterHashtagEntity! {
+    override func parse(_ instance: TwitterURLEntity = TwitterURLEntity(), parser: PMJacksonParser) -> TwitterURLEntity! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -26,7 +26,7 @@ internal extension TwitterHashtagEntity {
         return instance
     }
 
-    internal static func parseField(_ instance: TwitterHashtagEntity, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: TwitterURLEntity, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "indices":
             if (parser.currentEvent == .arrayStart) {
@@ -39,7 +39,7 @@ internal extension TwitterHashtagEntity {
                 instance.indices = nil
             }
         default:
-            TwitterBaseEntity.parseField(instance, fieldName, parser)
+            TwitterBaseEntityJsonMapper.singleton.parseField(instance, fieldName, parser)
         }
     }
 }

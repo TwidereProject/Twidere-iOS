@@ -1,15 +1,19 @@
 import PMJackson
 
-protocol JsonParsable {
-    associatedtype T
+public class JsonMapper<T> {
 
-    static func parse(_ instance: T, parser: PMJacksonParser) -> T
+    public func parse(_ instance: T, parser: PMJacksonParser) -> T! {
+        fatalError("Not implemented")
+    }
 
-    static func parseField(_ instance: T, _ fieldName: String, _ parser: PMJacksonParser)
+    public func parseField(_ instance: T, _ fieldName: String, _ parser: PMJacksonParser) {
+        // No-op
+    }
+
 }
 <%_
-func generateGetValueStatement(_ typeName: String, _ varName: String, _ varType: Type?, _ varTypeName: String, _ varAnnotations: [String: Any]) -> String {
-    switch (varTypeName) {
+func generateGetValueStatement(_ typeName: String, _ varName: String, _ varType: Type?, _ varTypeName: TypeName, _ varAnnotations: [String: Any]) -> String {
+    switch (varTypeName.unwrappedTypeName) {
     case "String": return "parser.getValueAsString()"
     case "Int64": return "parser.getValueAsInt64()"
     case "Int32", "Int": return "parser.getValueAsInt32()"
@@ -22,23 +26,30 @@ func generateGetValueStatement(_ typeName: String, _ varName: String, _ varType:
         if (varType?.annotations["jsonParse"] == nil) {
             fatalError("\(typeName).\(varName) is not parsable")
         }
-        return "\(varTypeName).parse(parser: parser)"
+        return "\(qualifiedTypeName(varType, varTypeName).replacingOccurrences(of: ".", with: ""))JsonMapper.singleton.parse(parser: parser)"
     }
 }
 
 func generateFieldNames(_ annotationValue: String) -> String {
     return annotationValue.components(separatedBy: "|").map { "\"\($0)\"" }.joined(separator: ", ")
 }
+
+func qualifiedTypeName(_ type: Type!, _ typeName: TypeName) -> String {
+    if (type == nil) {
+        return typeName.unwrappedTypeName
+    }
+    return type.name
+}
 -%>
 <%_ for type in types.all where type.annotations["jsonParse"] != nil { _%>
-// sourcery:file:<%= type.name %>+JsonParse.swift
+// sourcery:file:<%= type.name %>+JsonMapper.swift
 import PMJackson
+<% let mapperName = "\(type.name)JsonMapper".replacingOccurrences(of: ".", with: "") %>
+<%= "\(type.accessLevel) " %>class <%= mapperName %>: JsonMapper<<%= type.name %>> {
 
-<%= "\(type.accessLevel) " %>extension <%= type.name %> {
+    <%= "\(type.accessLevel) " %>static let singleton = <%= mapperName %>()
 
-    typealias T = <%= type.name %>
-
-    <%= "\(type.accessLevel) " %>static func parse(_ instance: <%= type.name %> = <%= type.name %>(), parser: PMJacksonParser) -> <%= type.name %>! {
+    override func parse(_ instance: <%= type.name %> = <%= type.name %>(), parser: PMJacksonParser) -> <%= type.name %>! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -57,7 +68,7 @@ import PMJackson
         return instance
     }
 
-    internal static func parseField(_ instance: <%= type.name %>, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: <%= type.name %>, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         <%_ for variable in type.allVariables where variable.annotations["jsonFieldName"] != nil { -%>
             <%_ guard let fieldNameAnnotationValue = variable.annotations["jsonFieldName"] as? String else {
@@ -71,7 +82,7 @@ import PMJackson
                 var array = <%= variable.unwrappedTypeName %>()
                 <%_ let arrayType = variable.typeName.array! -%>
                 <%_ let elemType = arrayType.elementType -%>
-                <%_ let elemTypeName = arrayType.elementTypeName.unwrappedTypeName -%>
+                <%_ let elemTypeName = arrayType.elementTypeName -%>
                 while (parser.nextEvent() != .arrayEnd) {
                     array.append(<%= generateGetValueStatement(type.name, variable.name, elemType, elemTypeName, variable.annotations) %>)
                 }
@@ -84,7 +95,7 @@ import PMJackson
                 var dict = <%= variable.unwrappedTypeName %>()
                 <%_ let dictType = variable.typeName.dictionary! -%>
                 <%_ let valType = dictType.valueType -%>
-                <%_ let valTypeName = dictType.valueTypeName.unwrappedTypeName -%>
+                <%_ let valTypeName = dictType.valueTypeName -%>
                 while (parser.nextEvent() != .objectStart) {
                     let dictKey = parser.getValueAsString()!
                     parser.nextEvent()
@@ -100,12 +111,12 @@ import PMJackson
                 instance.<%= variable.name %> = nil
             }
           <%_ } else { -%>
-            instance.<%= variable.name %> = <%= generateGetValueStatement(type.name, variable.name, variable.type, variable.unwrappedTypeName, variable.annotations) %>
+            instance.<%= variable.name %> = <%= generateGetValueStatement(type.name, variable.name, variable.type, variable.typeName, variable.annotations) %>
           <%_ } -%>
         <%_ } -%>
         default:
           <%_ if let superType = type.supertype, superType.annotations["jsonParse"] != nil { -%>
-            <%= superType.name %>.parseField(instance, fieldName, parser)
+            <%= superType.name.replacingOccurrences(of: ".", with: "") %>JsonMapper.singleton.parseField(instance, fieldName, parser)
           <%_ } else { -%>
             break
           <%_ } -%>

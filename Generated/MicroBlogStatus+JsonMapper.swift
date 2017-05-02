@@ -3,11 +3,11 @@
 
 import PMJackson
 
-internal extension MicroBlogStatus {
+internal class MicroBlogStatusJsonMapper: JsonMapper<MicroBlogStatus> {
 
-    typealias T = MicroBlogStatus
+    internal static let singleton = MicroBlogStatusJsonMapper()
 
-    internal static func parse(_ instance: MicroBlogStatus = MicroBlogStatus(), parser: PMJacksonParser) -> MicroBlogStatus! {
+    override func parse(_ instance: MicroBlogStatus = MicroBlogStatus(), parser: PMJacksonParser) -> MicroBlogStatus! {
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -26,7 +26,7 @@ internal extension MicroBlogStatus {
         return instance
     }
 
-    internal static func parseField(_ instance: MicroBlogStatus, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: MicroBlogStatus, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "created_at":
             instance.createdAt = Date.parseTwitterDate(parser)
@@ -45,9 +45,9 @@ internal extension MicroBlogStatus {
         case "truncated":
             instance.truncated = parser.getValueAsBool()
         case "entities":
-            instance.entities = TwitterEntities.parse(parser: parser)
+            instance.entities = TwitterEntitiesJsonMapper.singleton.parse(parser: parser)
         case "extended_entities":
-            instance.extendedEntities = TwitterEntities.parse(parser: parser)
+            instance.extendedEntities = TwitterEntitiesJsonMapper.singleton.parse(parser: parser)
         case "in_reply_to_status_id":
             instance.inReplyToStatusId = parser.getValueAsString()
         case "in_reply_to_user_id":
@@ -55,13 +55,13 @@ internal extension MicroBlogStatus {
         case "in_reply_to_screen_name":
             instance.inReplyToScreenName = parser.getValueAsString()
         case "user":
-            instance.user = MicroBlogUser.parse(parser: parser)
+            instance.user = MicroBlogUserJsonMapper.singleton.parse(parser: parser)
         case "geo":
-            instance.geo = MicroBlogGeoPoint.parse(parser: parser)
+            instance.geo = MicroBlogGeoPointJsonMapper.singleton.parse(parser: parser)
         case "place":
-            instance.place = MicroBlogPlace.parse(parser: parser)
+            instance.place = MicroBlogPlaceJsonMapper.singleton.parse(parser: parser)
         case "current_user_retweet":
-            instance.currentUserRetweet = CurrentUserRetweet.parse(parser: parser)
+            instance.currentUserRetweet = MicroBlogStatusCurrentUserRetweetJsonMapper.singleton.parse(parser: parser)
         case "retweet_count", "repeat_num":
             instance.retweetCount = parser.getValueAsInt64()
         case "favorite_count", "fave_num":
@@ -77,22 +77,22 @@ internal extension MicroBlogStatus {
         case "descendent_reply_count":
             instance.descendentReplyCount = parser.getValueAsInt64()
         case "retweeted_status":
-            instance.retweetedStatus = MicroBlogStatus.parse(parser: parser)
+            instance.retweetedStatus = MicroBlogStatusJsonMapper.singleton.parse(parser: parser)
         case "quoted_status", "repost_status":
-            instance.quotedStatus = MicroBlogStatus.parse(parser: parser)
+            instance.quotedStatus = MicroBlogStatusJsonMapper.singleton.parse(parser: parser)
         case "quoted_status_id_str", "repost_status_id":
             instance.quotedStatusId = parser.getValueAsString()
         case "is_quote_status":
             instance.isQuoteStatus = parser.getValueAsBool()
         case "card":
-            instance.card = TwitterCardEntity.parse(parser: parser)
+            instance.card = TwitterCardEntityJsonMapper.singleton.parse(parser: parser)
         case "possibly_sensitive":
             instance.possiblySensitive = parser.getValueAsBool()
         case "attachments":
             if (parser.currentEvent == .arrayStart) {
                 var array = [GNUSocialAttachment]()
                 while (parser.nextEvent() != .arrayEnd) {
-                    array.append(GNUSocialAttachment.parse(parser: parser))
+                    array.append(GNUSocialAttachmentJsonMapper.singleton.parse(parser: parser))
                 }
                 instance.attachments = array
             } else {
@@ -106,14 +106,14 @@ internal extension MicroBlogStatus {
             if (parser.currentEvent == .arrayStart) {
                 var array = [GNUSocialAttention]()
                 while (parser.nextEvent() != .arrayEnd) {
-                    array.append(GNUSocialAttention.parse(parser: parser))
+                    array.append(GNUSocialAttentionJsonMapper.singleton.parse(parser: parser))
                 }
                 instance.attentions = array
             } else {
                 instance.attentions = nil
             }
         case "photo":
-            instance.photo = FanfouPhoto.parse(parser: parser)
+            instance.photo = FanfouPhotoJsonMapper.singleton.parse(parser: parser)
         case "location":
             instance.location = parser.getValueAsString()
         case "display_text_range":
@@ -131,7 +131,7 @@ internal extension MicroBlogStatus {
         case "timestamp_ms":
             instance.timestampMs = parser.getValueAsInt64()
         case "extended_tweet":
-            instance.extendedTweet = ExtendedTweet.parse(parser: parser)
+            instance.extendedTweet = MicroBlogStatusExtendedTweetJsonMapper.singleton.parse(parser: parser)
         default:
             break
         }

@@ -13,7 +13,7 @@ import Alamofire
 
 protocol Authorization {
     var hasAuthorization: Bool { get }
-    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: Any]?, encoding: URLEncoding) -> String!
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String?]?, forms: [String: Any]?, encoding: URLEncoding) -> String!
 }
 
 class EmptyAuthorization: Authorization {
@@ -24,7 +24,7 @@ class EmptyAuthorization: Authorization {
         }
     }
     
-    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : Any]?, encoding: URLEncoding) -> String! {
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String?]?, forms: [String : Any]?, encoding: URLEncoding) -> String! {
         return nil
     }
 }
@@ -48,7 +48,7 @@ class BasicAuthorization: Authorization {
         }
     }
     
-    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String]?, forms: [String : Any]?, encoding: URLEncoding) -> String! {
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String?]?, forms: [String : Any]?, encoding: URLEncoding) -> String! {
         return "\(username):\(password)".utf8.map({$0}).toBase64()
     }
     
@@ -85,7 +85,7 @@ class OAuthAuthorization: Authorization {
         }
     }
     
-    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String]?, forms: [String: Any]?, encoding: URLEncoding) -> String! {
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String?]?, forms: [String: Any]?, encoding: URLEncoding) -> String! {
         let oauthEndpoint = endpoint as! OAuthEndpoint
         let signingUrl = oauthEndpoint.constructSigningUrl(path, queries: queries)
         let oauthParams = generateOAuthParams(method, url: signingUrl, oauthToken: oauthToken, queries: queries, forms: forms, encoding: encoding)
@@ -94,7 +94,7 @@ class OAuthAuthorization: Authorization {
         }).joined(separator: ", ")
     }
     
-    fileprivate func generateOAuthParams(_ method: String, url: String, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: Any]?, encoding: URLEncoding) -> [(String, String)] {
+    fileprivate func generateOAuthParams(_ method: String, url: String, oauthToken: OAuthToken?, queries: [String: String?]?, forms: [String: Any]?, encoding: URLEncoding) -> [(String, String)] {
         let oauthNonce = generateOAuthNonce()
         let timestamp =  UInt64(Date().timeIntervalSince1970)
         let oauthSignature = generateOAuthSignature(method, url: url, oauthNonce: oauthNonce, timestamp: timestamp, oauthToken: oauthToken, queries: queries, forms: forms, encoding: encoding)
@@ -115,7 +115,7 @@ class OAuthAuthorization: Authorization {
         return encodeParams
     }
     
-    fileprivate func generateOAuthSignature(_ method: String, url: String, oauthNonce: String, timestamp: UInt64, oauthToken: OAuthToken?, queries: [String: String]?, forms: [String: Any]?, encoding: URLEncoding) -> String {
+    fileprivate func generateOAuthSignature(_ method: String, url: String, oauthNonce: String, timestamp: UInt64, oauthToken: OAuthToken?, queries: [String: String?]?, forms: [String: Any]?, encoding: URLEncoding) -> String {
         var oauthParams: [String] = [
             escape("oauth_consumer_key", consumerKey),
             escape("oauth_nonce", oauthNonce),
@@ -127,8 +127,12 @@ class OAuthAuthorization: Authorization {
             oauthParams.append(escape("oauth_token", token.oauthToken))
         }
         queries?.forEach { (k, v) in
-            for (ek, ev) in encoding.queryComponents(fromKey: k, value: v) {
-                oauthParams.append("\(ek)=\(ev)")
+            if (v != nil) {
+                for (ek, ev) in encoding.queryComponents(fromKey: k, value: v!) {
+                    oauthParams.append("\(ek)=\(ev)")
+                }
+            } else {
+                oauthParams.append("\(encoding.escape(k))")
             }
         }
         forms?.forEach { (k, v) in
