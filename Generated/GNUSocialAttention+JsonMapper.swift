@@ -11,7 +11,8 @@ internal class GNUSocialAttentionJsonMapper: JsonMapper<GNUSocialAttention> {
 
     internal static let singleton = GNUSocialAttentionJsonMapper()
 
-    override func parse(_ instance: GNUSocialAttention = GNUSocialAttention(), parser: PMJacksonParser) -> GNUSocialAttention! {
+    override func parse(_ parser: PMJacksonParser) -> GNUSocialAttention! {
+        let instance = GNUSocialAttention()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }

@@ -11,7 +11,8 @@ internal class MicroBlogGeoPointJsonMapper: JsonMapper<MicroBlogGeoPoint> {
 
     internal static let singleton = MicroBlogGeoPointJsonMapper()
 
-    override func parse(_ instance: MicroBlogGeoPoint = MicroBlogGeoPoint(), parser: PMJacksonParser) -> MicroBlogGeoPoint! {
+    override func parse(_ parser: PMJacksonParser) -> MicroBlogGeoPoint! {
+        let instance = MicroBlogGeoPoint()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }

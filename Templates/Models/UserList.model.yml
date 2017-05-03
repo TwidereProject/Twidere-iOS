@@ -1,9 +1,0 @@
-imports:
-  - Foundation
-submodels:
-  UserList:
-    fields:
-      accountKey:
-        type: UserKey
-        column: account_key
-        json_field: account_key

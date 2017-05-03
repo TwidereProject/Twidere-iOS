@@ -15,15 +15,3 @@ private let twitterDateFormatter: DateFormatter = {
     f.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
     return f
 }()
-
-extension Date {
-    
-    static func parseTwitterDate(_ parser: PMJacksonParser) -> Date! {
-        return parseTwitterDate(parser.getValueAsString())
-    }
-    
-    static func parseTwitterDate(_ string: String?) -> Date! {
-        return parseTwitterDate(string)
-    }
-    
-}

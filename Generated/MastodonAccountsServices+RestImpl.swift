@@ -15,7 +15,7 @@ internal class MastodonAccountsServicesRestImpl: MastodonAccountsServices {
         let call = RestCall<MastodonAccount>()
         call.method = .get
         call.path = "/v1/accounts/\(id)"
-        call.serializer = parseJsonMapperResponse(MastodonAccountJsonMapper.singleton, MastodonAccount())
+        call.serializer = MastodonAccountJsonMapper.singleton.responseSerializer
         return client.toPromise(call)
     }
 

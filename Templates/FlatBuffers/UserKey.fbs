@@ -1,6 +1,0 @@
-table UserKey {
-  id:string;
-  host:string;
-}
-
-root_type UserKey;

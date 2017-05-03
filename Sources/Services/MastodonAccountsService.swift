@@ -13,7 +13,7 @@ protocol MastodonAccountsServices {
     
     // sourcery: restMethod=GET
     // sourcery: restPath=/v1/accounts/\(id)
-    // sourcery: restSerializer=parseJsonMapperResponse(MastodonAccountJsonMapper.singleton)
+    // sourcery: restSerializer=MastodonAccountJsonMapper.singleton.responseSerializer
     func getAccount(id: String) -> Promise<MastodonAccount>
     
 }

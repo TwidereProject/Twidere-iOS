@@ -6,7 +6,7 @@ use_frameworks!
 target 'Twidere' do
   pod 'Sourcery', '~> 0.6'
   pod 'PMJSON', '~> 2.0.2'
-  pod 'PMJackson', '~> 1.0.8'
+  pod 'PMJackson', '~> 1.0.9'
   pod 'SwiftyJSON', '~> 3.1.0'
   pod 'SQLite.swift', '~> 0.11.0'
   pod 'CryptoSwift', '~> 0.6.0'

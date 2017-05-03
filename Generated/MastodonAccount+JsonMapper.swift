@@ -11,7 +11,8 @@ internal class MastodonAccountJsonMapper: JsonMapper<MastodonAccount> {
 
     internal static let singleton = MastodonAccountJsonMapper()
 
-    override func parse(_ instance: MastodonAccount = MastodonAccount(), parser: PMJacksonParser) -> MastodonAccount! {
+    override func parse(_ parser: PMJacksonParser) -> MastodonAccount! {
+        let instance = MastodonAccount()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }

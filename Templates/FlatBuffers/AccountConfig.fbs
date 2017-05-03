@@ -1,5 +1,0 @@
-table AccountConfig {
-  characterLimit:int = 140;
-}
-
-root_type AccountConfig;

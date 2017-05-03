@@ -11,7 +11,8 @@ internal class TwitterCardEntityJsonMapper: JsonMapper<TwitterCardEntity> {
 
     internal static let singleton = TwitterCardEntityJsonMapper()
 
-    override func parse(_ instance: TwitterCardEntity = TwitterCardEntity(), parser: PMJacksonParser) -> TwitterCardEntity! {
+    override func parse(_ parser: PMJacksonParser) -> TwitterCardEntity! {
+        let instance = TwitterCardEntity()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }

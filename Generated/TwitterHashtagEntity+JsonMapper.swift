@@ -7,7 +7,8 @@ internal class TwitterHashtagEntityJsonMapper: JsonMapper<TwitterHashtagEntity> 
 
     internal static let singleton = TwitterHashtagEntityJsonMapper()
 
-    override func parse(_ instance: TwitterHashtagEntity = TwitterHashtagEntity(), parser: PMJacksonParser) -> TwitterHashtagEntity! {
+    override func parse(_ parser: PMJacksonParser) -> TwitterHashtagEntity! {
+        let instance = TwitterHashtagEntity()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }

@@ -13,7 +13,7 @@ protocol MicroBlogAccountService {
     
     // sourcery: restMethod=GET
     // sourcery: restPath=/account/verify_credentials.json
-    // sourcery: restSerializer=parseJsonMapperResponse(MicroBlogUserJsonMapper.singleton)
+    // sourcery: restSerializer=MicroBlogUserJsonMapper.singleton.responseSerializer
     func verifyCredentials() -> Promise<MicroBlogUser>
     
 }

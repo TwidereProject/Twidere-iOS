@@ -11,7 +11,8 @@ internal class GNUSocialAttachmentJsonMapper: JsonMapper<GNUSocialAttachment> {
 
     internal static let singleton = GNUSocialAttachmentJsonMapper()
 
-    override func parse(_ instance: GNUSocialAttachment = GNUSocialAttachment(), parser: PMJacksonParser) -> GNUSocialAttachment! {
+    override func parse(_ parser: PMJacksonParser) -> GNUSocialAttachment! {
+        let instance = GNUSocialAttachment()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }

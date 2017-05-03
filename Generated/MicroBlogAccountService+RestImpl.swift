@@ -15,7 +15,7 @@ internal class MicroBlogAccountServiceRestImpl: MicroBlogAccountService {
         let call = RestCall<MicroBlogUser>()
         call.method = .get
         call.path = "/account/verify_credentials.json"
-        call.serializer = parseJsonMapperResponse(MicroBlogUserJsonMapper.singleton, MicroBlogUser())
+        call.serializer = MicroBlogUserJsonMapper.singleton.responseSerializer
         return client.toPromise(call)
     }
 

@@ -11,7 +11,8 @@ internal class MicroBlogStatusCurrentUserRetweetJsonMapper: JsonMapper<MicroBlog
 
     internal static let singleton = MicroBlogStatusCurrentUserRetweetJsonMapper()
 
-    override func parse(_ instance: MicroBlogStatus.CurrentUserRetweet = MicroBlogStatus.CurrentUserRetweet(), parser: PMJacksonParser) -> MicroBlogStatus.CurrentUserRetweet! {
+    override func parse(_ parser: PMJacksonParser) -> MicroBlogStatus.CurrentUserRetweet! {
+        let instance = MicroBlogStatus.CurrentUserRetweet()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }

@@ -7,7 +7,8 @@ internal class TwitterURLEntityJsonMapper: JsonMapper<TwitterURLEntity> {
 
     internal static let singleton = TwitterURLEntityJsonMapper()
 
-    override func parse(_ instance: TwitterURLEntity = TwitterURLEntity(), parser: PMJacksonParser) -> TwitterURLEntity! {
+    override func parse(_ parser: PMJacksonParser) -> TwitterURLEntity! {
+        let instance = TwitterURLEntity()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }

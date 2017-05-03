@@ -3,9 +3,13 @@
 
 import PMJackson
 
-public class JsonMapper<T> {
+public protocol JsonMappable {
+    init()
+}
 
-    public func parse(_ instance: T, parser: PMJacksonParser) -> T! {
+public class JsonMapper<T: JsonMappable> {
+
+    public func parse(_ parser: PMJacksonParser) -> T! {
         fatalError("Not implemented")
     }
 
@@ -15,9 +19,6 @@ public class JsonMapper<T> {
 
 }
 
-protocol JsonMappable {
-    init()
-}
 
 
 

@@ -1,8 +1,12 @@
 import PMJackson
 
-public class JsonMapper<T> {
+public protocol JsonMappable {
+    init()
+}
 
-    public func parse(_ instance: T, parser: PMJacksonParser) -> T! {
+public class JsonMapper<T: JsonMappable> {
+
+    public func parse(_ parser: PMJacksonParser) -> T! {
         fatalError("Not implemented")
     }
 
@@ -11,16 +15,13 @@ public class JsonMapper<T> {
     }
 
 }
-
-protocol JsonMappable {
-    init()
-}
 <%_
 func generateGetValueStatement(_ typeName: String, _ varName: String, _ varType: Type?, _ varTypeName: TypeName, _ varAnnotations: [String: Any]) -> String {
     switch (varTypeName.unwrappedTypeName) {
     case "String": return "parser.getValueAsString()"
+    case "Int": return "parser.getValueAsInt()"
+    case "Int32": return "parser.getValueAsInt32()"
     case "Int64": return "parser.getValueAsInt64()"
-    case "Int32", "Int": return "parser.getValueAsInt32()"
     case "Double": return "parser.getValueAsDouble()"
     case "Bool": return "parser.getValueAsBool()"
     default:
@@ -30,7 +31,7 @@ func generateGetValueStatement(_ typeName: String, _ varName: String, _ varType:
         if (varType?.annotations["jsonParse"] == nil) {
             fatalError("\(typeName).\(varName) is not parsable")
         }
-        return "\(qualifiedTypeName(varType, varTypeName).replacingOccurrences(of: ".", with: ""))JsonMapper.singleton.parse(parser: parser)"
+        return "\(qualifiedTypeName(varType, varTypeName).replacingOccurrences(of: ".", with: ""))JsonMapper.singleton.parse(parser)"
     }
 }
 
@@ -60,7 +61,8 @@ extension <%= type.name %>: JsonMappable {
 
     <%= "\(type.accessLevel) " %>static let singleton = <%= mapperName %>()
 
-    override func parse(_ instance: <%= type.name %> = <%= type.name %>(), parser: PMJacksonParser) -> <%= type.name %>! {
+    override func parse(_ parser: PMJacksonParser) -> <%= type.name %>! {
+        let instance = <%= type.name %>()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }

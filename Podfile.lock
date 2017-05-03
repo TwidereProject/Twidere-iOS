@@ -17,7 +17,7 @@ PODS:
   - Kanna (2.2.1)
   - MXPagerView (0.2.1)
   - MXParallaxHeader (0.6.1)
-  - PMJackson (1.0.8):
+  - PMJackson (1.0.9):
     - PMJSON (~> 2.0)
   - PMJSON (2.0.2)
   - PromiseKit (4.0.5):
@@ -71,7 +71,7 @@ DEPENDENCIES:
   - Kanna (~> 2.0)
   - MXPagerView (~> 0.1)
   - MXParallaxHeader (~> 0.6.0)
-  - PMJackson (~> 1.0.8)
+  - PMJackson (~> 1.0.9)
   - PMJSON (~> 2.0.2)
   - PromiseKit (~> 4.0.0)
   - PromiseKit/Alamofire (~> 4.0)
@@ -108,7 +108,7 @@ SPEC CHECKSUMS:
   Kanna: 182789ab065e8f9a6ccc2a74ce6283d3401c0c4a
   MXPagerView: ede184b5191b2ed689ccf05a750a9978cce42414
   MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
-  PMJackson: 393eb0859a0c18bd9b9d38f93cc830205db79b43
+  PMJackson: 87df673465053b00c404ac44b3dd46c2b3d12b74
   PMJSON: 1887d12b6a85b3c9f9d1a7e4b32860d4901d9505
   PromiseKit: 593b5e24ded6cbb1ebc708bc2c3428a8a5632d91
   SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
@@ -126,6 +126,6 @@ SPEC CHECKSUMS:
   UIView+TouchHighlighting: e05a338801522cbdc4a1e236bd189f2a928a781f
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 7442211d343ecf74d1f36ab69e4e5ff25c087be1
+PODFILE CHECKSUM: 50a5409ab2ee72a4e215f3f211561634db79513b
 
 COCOAPODS: 1.2.1

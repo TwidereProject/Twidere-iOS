@@ -11,7 +11,8 @@ internal class TwitterEntitiesJsonMapper: JsonMapper<TwitterEntities> {
 
     internal static let singleton = TwitterEntitiesJsonMapper()
 
-    override func parse(_ instance: TwitterEntities = TwitterEntities(), parser: PMJacksonParser) -> TwitterEntities! {
+    override func parse(_ parser: PMJacksonParser) -> TwitterEntities! {
+        let instance = TwitterEntities()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -36,7 +37,7 @@ internal class TwitterEntitiesJsonMapper: JsonMapper<TwitterEntities> {
             if (parser.currentEvent == .arrayStart) {
                 var array = [TwitterURLEntity]()
                 while (parser.nextEvent() != .arrayEnd) {
-                    array.append(TwitterURLEntityJsonMapper.singleton.parse(parser: parser))
+                    array.append(TwitterURLEntityJsonMapper.singleton.parse(parser))
                 }
                 instance.urls = array
             } else {
@@ -46,7 +47,7 @@ internal class TwitterEntitiesJsonMapper: JsonMapper<TwitterEntities> {
             if (parser.currentEvent == .arrayStart) {
                 var array = [TwitterHashtagEntity]()
                 while (parser.nextEvent() != .arrayEnd) {
-                    array.append(TwitterHashtagEntityJsonMapper.singleton.parse(parser: parser))
+                    array.append(TwitterHashtagEntityJsonMapper.singleton.parse(parser))
                 }
                 instance.hashtags = array
             } else {
