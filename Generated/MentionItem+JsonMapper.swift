@@ -3,12 +3,16 @@
 
 import PMJackson
 
-internal class TwitterURLEntityJsonMapper: JsonMapper<TwitterURLEntity> {
+extension MentionItem: JsonMappable {
 
-    internal static let singleton = TwitterURLEntityJsonMapper()
+}
 
-    override func parse(_ parser: PMJacksonParser) -> TwitterURLEntity! {
-        let instance = TwitterURLEntity()
+internal class MentionItemJsonMapper: JsonMapper<MentionItem> {
+
+    internal static let singleton = MentionItemJsonMapper()
+
+    override func parse(_ parser: PMJacksonParser) -> MentionItem! {
+        let instance = MentionItem()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -27,10 +31,10 @@ internal class TwitterURLEntityJsonMapper: JsonMapper<TwitterURLEntity> {
         return instance
     }
 
-    override func parseField(_ instance: TwitterURLEntity, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: MentionItem, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         default:
-            TwitterBaseEntityJsonMapper.singleton.parseField(instance, fieldName, parser)
+            break
         }
     }
 }

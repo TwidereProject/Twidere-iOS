@@ -35,7 +35,7 @@ internal class MicroBlogGeoPointJsonMapper: JsonMapper<MicroBlogGeoPoint> {
         switch fieldName {
         case "coordinates":
             if (parser.currentEvent == .arrayStart) {
-                var array = [Double]()
+                var array: [Double] = []
                 while (parser.nextEvent() != .arrayEnd) {
                     array.append(parser.getValueAsDouble())
                 }

@@ -35,7 +35,7 @@ internal class TwitterBaseEntityJsonMapper: JsonMapper<TwitterBaseEntity> {
         switch fieldName {
         case "indices":
             if (parser.currentEvent == .arrayStart) {
-                var array = [Int32]()
+                var array: [Int32] = []
                 while (parser.nextEvent() != .arrayEnd) {
                     array.append(parser.getValueAsInt32())
                 }

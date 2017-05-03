@@ -34,7 +34,7 @@ internal class MicroBlogStatusJsonMapper: JsonMapper<MicroBlogStatus> {
     override func parseField(_ instance: MicroBlogStatus, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "created_at":
-            instance.createdAt = Date.parseTwitterDate(parser)
+            instance.createdAt = TwitterDateFieldConverter.parse(parser)
         case "id":
             instance.id = parser.getValueAsString()
         case "rawid":
@@ -95,7 +95,7 @@ internal class MicroBlogStatusJsonMapper: JsonMapper<MicroBlogStatus> {
             instance.possiblySensitive = parser.getValueAsBool()
         case "attachments":
             if (parser.currentEvent == .arrayStart) {
-                var array = [GNUSocialAttachment]()
+                var array: [GNUSocialAttachment] = []
                 while (parser.nextEvent() != .arrayEnd) {
                     array.append(GNUSocialAttachmentJsonMapper.singleton.parse(parser))
                 }
@@ -109,7 +109,7 @@ internal class MicroBlogStatusJsonMapper: JsonMapper<MicroBlogStatus> {
             instance.conversationId = parser.getValueAsString()
         case "attentions":
             if (parser.currentEvent == .arrayStart) {
-                var array = [GNUSocialAttention]()
+                var array: [GNUSocialAttention] = []
                 while (parser.nextEvent() != .arrayEnd) {
                     array.append(GNUSocialAttentionJsonMapper.singleton.parse(parser))
                 }
@@ -123,7 +123,7 @@ internal class MicroBlogStatusJsonMapper: JsonMapper<MicroBlogStatus> {
             instance.location = parser.getValueAsString()
         case "display_text_range":
             if (parser.currentEvent == .arrayStart) {
-                var array = [Int32]()
+                var array: [Int32] = []
                 while (parser.nextEvent() != .arrayEnd) {
                     array.append(parser.getValueAsInt32())
                 }

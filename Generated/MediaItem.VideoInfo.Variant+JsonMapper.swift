@@ -3,12 +3,16 @@
 
 import PMJackson
 
-internal class TwitterURLEntityJsonMapper: JsonMapper<TwitterURLEntity> {
+extension MediaItem.VideoInfo.Variant: JsonMappable {
 
-    internal static let singleton = TwitterURLEntityJsonMapper()
+}
 
-    override func parse(_ parser: PMJacksonParser) -> TwitterURLEntity! {
-        let instance = TwitterURLEntity()
+internal class MediaItemVideoInfoVariantJsonMapper: JsonMapper<MediaItem.VideoInfo.Variant> {
+
+    internal static let singleton = MediaItemVideoInfoVariantJsonMapper()
+
+    override func parse(_ parser: PMJacksonParser) -> MediaItem.VideoInfo.Variant! {
+        let instance = MediaItem.VideoInfo.Variant()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -27,10 +31,10 @@ internal class TwitterURLEntityJsonMapper: JsonMapper<TwitterURLEntity> {
         return instance
     }
 
-    override func parseField(_ instance: TwitterURLEntity, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: MediaItem.VideoInfo.Variant, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         default:
-            TwitterBaseEntityJsonMapper.singleton.parseField(instance, fieldName, parser)
+            break
         }
     }
 }

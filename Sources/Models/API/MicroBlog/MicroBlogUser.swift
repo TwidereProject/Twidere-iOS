@@ -23,7 +23,7 @@ class MicroBlogUser {
     var uniqueId: String? = nil
     
     // sourcery: jsonFieldName=created_at
-    // sourcery: jsonParseFunction=Date.parseTwitterDate
+    // sourcery: jsonFieldConverter=TwitterDateFieldConverter
     var createdAt: Date!
     
     // sourcery: jsonFieldName=name

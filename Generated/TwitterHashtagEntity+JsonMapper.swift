@@ -29,16 +29,6 @@ internal class TwitterHashtagEntityJsonMapper: JsonMapper<TwitterHashtagEntity> 
 
     override func parseField(_ instance: TwitterHashtagEntity, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-        case "indices":
-            if (parser.currentEvent == .arrayStart) {
-                var array = [Int32]()
-                while (parser.nextEvent() != .arrayEnd) {
-                    array.append(parser.getValueAsInt32())
-                }
-                instance.indices = array
-            } else {
-                instance.indices = nil
-            }
         default:
             TwitterBaseEntityJsonMapper.singleton.parseField(instance, fieldName, parser)
         }

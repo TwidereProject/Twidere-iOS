@@ -35,7 +35,7 @@ internal class TwitterEntitiesJsonMapper: JsonMapper<TwitterEntities> {
         switch fieldName {
         case "urls":
             if (parser.currentEvent == .arrayStart) {
-                var array = [TwitterURLEntity]()
+                var array: [TwitterURLEntity] = []
                 while (parser.nextEvent() != .arrayEnd) {
                     array.append(TwitterURLEntityJsonMapper.singleton.parse(parser))
                 }
@@ -45,7 +45,7 @@ internal class TwitterEntitiesJsonMapper: JsonMapper<TwitterEntities> {
             }
         case "hashtags":
             if (parser.currentEvent == .arrayStart) {
-                var array = [TwitterHashtagEntity]()
+                var array: [TwitterHashtagEntity] = []
                 while (parser.nextEvent() != .arrayEnd) {
                     array.append(TwitterHashtagEntityJsonMapper.singleton.parse(parser))
                 }

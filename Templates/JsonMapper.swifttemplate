@@ -4,6 +4,13 @@ public protocol JsonMappable {
     init()
 }
 
+public protocol JsonFieldConverter {
+    associatedtype T
+
+    static func parse(_ parser: PMJacksonParser) -> T!
+
+}
+
 public class JsonMapper<T: JsonMappable> {
 
     public func parse(_ parser: PMJacksonParser) -> T! {
@@ -25,8 +32,8 @@ func generateGetValueStatement(_ typeName: String, _ varName: String, _ varType:
     case "Double": return "parser.getValueAsDouble()"
     case "Bool": return "parser.getValueAsBool()"
     default:
-        if let parseFunction = varAnnotations["jsonParseFunction"] {
-            return "\(parseFunction)(parser)"
+        if let fieldConverter = varAnnotations["jsonFieldConverter"] {
+            return "\(fieldConverter).parse(parser)"
         }
         if (varType?.annotations["jsonParse"] == nil) {
             fatalError("\(typeName).\(varName) is not parsable")
@@ -83,7 +90,7 @@ extension <%= type.name %>: JsonMappable {
 
     override func parseField(_ instance: <%= type.name %>, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-        <%_ for variable in type.allVariables where variable.annotations["jsonFieldName"] != nil { -%>
+        <%_ for variable in type.variables where variable.annotations["jsonFieldName"] != nil { -%>
             <%_ guard let fieldNameAnnotationValue = variable.annotations["jsonFieldName"] as? String else {
                     fatalError("jsonFieldName annotation of \(type.name).\(variable.name) is incorrect")
                 }
@@ -92,10 +99,10 @@ extension <%= type.name %>: JsonMappable {
         case <%= fieldNames %>:
             <%_ if (variable.isArray) { -%>
             if (parser.currentEvent == .arrayStart) {
-                var array = <%= variable.unwrappedTypeName %>()
                 <%_ let arrayType = variable.typeName.array! -%>
                 <%_ let elemType = arrayType.elementType -%>
                 <%_ let elemTypeName = arrayType.elementTypeName -%>
+                var array: [<%= qualifiedTypeName(elemType, elemTypeName) %>] = []
                 while (parser.nextEvent() != .arrayEnd) {
                     array.append(<%= generateGetValueStatement(type.name, variable.name, elemType, elemTypeName, variable.annotations) %>)
                 }
@@ -105,10 +112,10 @@ extension <%= type.name %>: JsonMappable {
             }
             <%_ } else if (variable.isDictionary) { -%>
             if (parser.currentEvent == .objectStart) {
-                var dict = <%= variable.unwrappedTypeName %>()
                 <%_ let dictType = variable.typeName.dictionary! -%>
                 <%_ let valType = dictType.valueType -%>
                 <%_ let valTypeName = dictType.valueTypeName -%>
+                var dict: [String: <%= qualifiedTypeName(valType, valTypeName) %>] = [:]
                 while (parser.nextEvent() != .objectStart) {
                     let dictKey = parser.getValueAsString()!
                     parser.nextEvent()

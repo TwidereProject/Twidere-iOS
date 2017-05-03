@@ -10,7 +10,7 @@ import Foundation
 
 //@CursorObject(valuesCreator = true, tableInfo = true)
 // sourcery:jsonParse
-class ParcelableStatus {
+class PersistableStatus {
     //@CursorField(value = Statuses._ID, excludeWrite = true, type = TwidereDataStore.TYPE_PRIMARY_KEY)
     var _id: Int64 = 0
     
@@ -20,7 +20,7 @@ class ParcelableStatus {
     
     //@CursorField(value = Statuses.ACCOUNT_KEY, converter = UserKeyCursorFieldConverter::class)
     // sourcery: jsonFieldName=account_key
-    // sourcery: jsonParseFunction=UserKey.parse
+    // sourcery: jsonFieldConverter=UserKeyFieldConverter
     var account_key: UserKey!
     
     // sourcery: jsonFieldName=sort_id
@@ -37,7 +37,7 @@ class ParcelableStatus {
     
     //@CursorField(value = Statuses.USER_KEY, converter = UserKeyCursorFieldConverter::class)
     // sourcery: jsonFieldName=user_key
-    // sourcery: jsonParseFunction=UserKey.parse
+    // sourcery: jsonFieldConverter=UserKeyFieldConverter
     var user_key: UserKey!
     
     // sourcery: jsonFieldName=retweet_id
@@ -45,7 +45,7 @@ class ParcelableStatus {
     var retweet_id: String? = nil
     
     // sourcery: jsonFieldName=retweeted_by_user_key
-    // sourcery: jsonParseFunction=UserKey.parse
+    // sourcery: jsonFieldConverter=UserKeyFieldConverter
     //@CursorField(value = Statuses.RETWEETED_BY_USER_KEY, converter = UserKeyCursorFieldConverter::class)
     var retweeted_by_user_key: UserKey? = nil
     
@@ -70,7 +70,7 @@ class ParcelableStatus {
     var in_reply_to_status_id: String? = nil
     
     // sourcery: jsonFieldName=in_reply_to_user_key
-    // sourcery: jsonParseFunction=UserKey.parse
+    // sourcery: jsonFieldConverter=UserKeyFieldConverter
     //@CursorField(value = Statuses.IN_REPLY_TO_USER_KEY, converter = UserKeyCursorFieldConverter::class)
     var in_reply_to_user_key: UserKey? = nil
     
@@ -87,7 +87,7 @@ class ParcelableStatus {
     var quoted_timestamp: Int64 = 0
     
     // sourcery: jsonFieldName=quoted_user_key
-    // sourcery: jsonParseFunction=UserKey.parse
+    // sourcery: jsonFieldConverter=UserKeyFieldConverter
     //@CursorField(value = Statuses.QUOTED_USER_KEY, converter = UserKeyCursorFieldConverter::class)
     var quoted_user_key: UserKey? = nil
     
@@ -211,8 +211,9 @@ class ParcelableStatus {
     var quoted_user_profile_image: String? = nil
     
     // sourcery: jsonFieldName=location
+    // sourcery: jsonFieldConverter=GeoLocationFieldConverter
     //@CursorField(value = Statuses.LOCATION, converter = ParcelableLocation.Converter::class)
-    var location: ParcelableLocation? = nil
+    var location: GeoLocation? = nil
     
     // sourcery: jsonFieldName=place_full_name
     //@CursorField(value = Statuses.PLACE_FULL_NAME, converter = LoganSquareCursorFieldConverter::class)
@@ -220,18 +221,18 @@ class ParcelableStatus {
     
     // sourcery: jsonFieldName=mentions
     //@CursorField(value = Statuses.MENTIONS_JSON, converter = LoganSquareCursorFieldConverter::class)
-    var mentions: Array<ParcelableUserMention>? = nil
+    var mentions: [MentionItem]? = nil
     
     // sourcery: jsonFieldName=media
     //@CursorField(value = Statuses.MEDIA_JSON, converter = LoganSquareCursorFieldConverter::class)
-    var media: Array<ParcelableMedia>? = nil
+    var media: [MediaItem]? = nil
     
     // sourcery: jsonFieldName=quoted_media
     //@CursorField(value = Statuses.QUOTED_MEDIA_JSON, converter = LoganSquareCursorFieldConverter::class)
-    var quoted_media: Array<ParcelableMedia>? = nil
+    var quoted_media: [MediaItem]? = nil
     // sourcery: jsonFieldName=card
     //@CursorField(value = Statuses.CARD, converter = LoganSquareCursorFieldConverter::class)
-    var card: ParcelableCardEntity? = nil
+    var card: PersistableCardEntity? = nil
     
     // sourcery: jsonFieldName=extras
     //@CursorField(value = Statuses.EXTRAS, converter = LoganSquareCursorFieldConverter::class)
@@ -239,11 +240,11 @@ class ParcelableStatus {
     
     // sourcery: jsonFieldName=spans
     //@CursorField(value = Statuses.SPANS, converter = LoganSquareCursorFieldConverter::class)
-    var spans: Array<SpanItem>? = nil
+    var spans: [SpanItem]? = nil
     
     // sourcery: jsonFieldName=quoted_spans
     //@CursorField(value = Statuses.QUOTED_SPANS, converter = LoganSquareCursorFieldConverter::class)
-    var quoted_spans: Array<SpanItem>? = nil
+    var quoted_spans: [SpanItem]? = nil
     
     // transient
     var is_filtered: Bool = false
@@ -262,26 +263,21 @@ class ParcelableStatus {
     var filter_flags: FilterFlags = []
     
     internal func finishCursorObjectCreation() {
-    card_name = if (card != nil) card!!.name else nil
-    fixSortId()
+        card_name = card?.name
+        fixSortId()
     }
     
     internal func onParseComplete() {
-    fixSortId()
+        fixSortId()
     }
     
     private func fixSortId() {
-    if (sort_id <= 0) {
-    try {
-    sort_id = java.lang.Int64.parseInt64(id)
-    } catch (e: NumberFormatException) {
-    // Ignore
-    }
-    
-    }
-    if (sort_id <= 0) {
-    sort_id = timestamp
-    }
+        if (sort_id <= 0) {
+            sort_id = Int64(id) ?? -1
+        }
+        if (sort_id <= 0) {
+            sort_id = timestamp
+        }
     }
     
     // sourcery:jsonParse
@@ -355,10 +351,9 @@ class ParcelableStatus {
         
     }
     
-    
     static func calculateHashCode(accountKey: UserKey, id: String) -> Int {
-        var result = id.hashCode()
-        result = 31 * result + accountKey.hashCode()
+        var result = id.hashValue
+        result = 31 * result + accountKey.hashValue
         return result
     }
     

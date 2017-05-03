@@ -38,7 +38,7 @@ internal class MicroBlogUserJsonMapper: JsonMapper<MicroBlogUser> {
         case "unique_id":
             instance.uniqueId = parser.getValueAsString()
         case "created_at":
-            instance.createdAt = Date.parseTwitterDate(parser)
+            instance.createdAt = TwitterDateFieldConverter.parse(parser)
         case "name":
             instance.name = parser.getValueAsString()
         case "screen_name":
@@ -129,7 +129,7 @@ internal class MicroBlogUserJsonMapper: JsonMapper<MicroBlogUser> {
             instance.profileImageUrlOriginal = parser.getValueAsString()
         case "pinned_tweet_ids":
             if (parser.currentEvent == .arrayStart) {
-                var array = [String]()
+                var array: [String] = []
                 while (parser.nextEvent() != .arrayEnd) {
                     array.append(parser.getValueAsString())
                 }

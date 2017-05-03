@@ -1,38 +1,35 @@
-// Automatically generated, DO NOT MODIFY
-import Foundation
 
+// sourcery: jsonParse
 class MediaItem {
-
-    // Fields
-    var url: String
+    
+    // sourcery:jsonFieldName=url
+    var url: String!
+    // sourcery:jsonFieldName=media_url
     var mediaUrl: String?
+    // sourcery:jsonFieldName=preview_url
     var previewUrl: String? = nil
+    // sourcery:jsonFieldName=type
+    // sourcery:jsonFieldConverter=MediaItemTypeFieldConverter
     var type: MediaType = .unknown
+    // sourcery:jsonFieldName=width
     var width: Int = 0
+    // sourcery:jsonFieldName=height
     var height: Int = 0
-    var videoInfo: VideoInfo
+    // sourcery:jsonFieldName=video_info
+    var videoInfo: VideoInfo? = nil
+    // sourcery:jsonFieldName=page_url
     var pageUrl: String? = nil
+    // sourcery:jsonFieldName=open_browser
     var openBrowser: Bool = false
+    // sourcery:jsonFieldName=alt_text
     var altText: String? = nil
-    // Initializers
-    init(url: String, mediaUrl: String?, previewUrl: String? = nil, type: MediaType = .unknown, width: Int = 0, height: Int = 0, videoInfo: VideoInfo, pageUrl: String? = nil, openBrowser: Bool = false, altText: String? = nil) {
-        self.url = url
-        self.mediaUrl = mediaUrl
-        self.previewUrl = previewUrl
-        self.type = type
-        self.width = width
-        self.height = height
-        self.videoInfo = videoInfo
-        self.pageUrl = pageUrl
-        self.openBrowser = openBrowser
-        self.altText = altText
+    
+    required init() {
+        
     }
-    // Append body content
-
-    // Sub models
     
     enum MediaType : String {
-    
+        
         // Fields
         case unknown
         case image
@@ -40,7 +37,7 @@ class MediaItem {
         case animatedGif
         case externalPlayer
         case variableType
-    
+        
         var rawValue: String {
             switch self {
             case .unknown: return "unknown"
@@ -51,7 +48,7 @@ class MediaItem {
             case .variableType: return "variable_type"
             }
         }
-    
+        
         init?(rawValue: String) {
             switch rawValue {
             case "unknown": self = .unknown
@@ -63,40 +60,33 @@ class MediaItem {
             default: return nil
             }
         }
-            
-        // Append body content
-    
-    
+        
+        
+        
     }
+    
+    // sourcery: jsonParse
     class VideoInfo {
-    
+        
         // Fields
-        var variants: [Variant]
+        var variants: [Variant]!
         var duration: Int64 = -1
-        // Initializers
-        init(variants: [Variant], duration: Int64 = -1) {
-            self.variants = variants
-            self.duration = duration
+        
+        required init() {
+            
         }
-        // Append body content
-    
-        // Sub models
-            class Variant {
+        
+        // sourcery: jsonParse
+        class Variant {
             
-                // Fields
-                var url: String
-                var contentType: String? = nil
-                var bitrate: Int64 = -1
-                // Initializers
-                init(url: String, contentType: String? = nil, bitrate: Int64 = -1) {
-                    self.url = url
-                    self.contentType = contentType
-                    self.bitrate = bitrate
-                }
-                // Append body content
+            // Fields
+            var url: String!
+            var contentType: String? = nil
+            var bitrate: Int64 = -1
             
-                // Sub models
-            
+            required init() {
+                
             }
+        }
     }
 }
