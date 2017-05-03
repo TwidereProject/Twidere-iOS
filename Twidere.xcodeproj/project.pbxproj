@@ -551,25 +551,16 @@
 		CE2660201DAFDD79007FF7CF /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				CE2A80731EB9C0A0003791F2 /* PersistableActivity.RelatedObject+JsonMapper.swift */,
-				CE2A80741EB9C0A1003791F2 /* PersistableActivity.SummaryLine+JsonMapper.swift */,
-				CE2A80751EB9C0A1003791F2 /* PersistableActivity+JsonMapper.swift */,
-				CE2A80761EB9C0A1003791F2 /* PersistableLiteUser+JsonMapper.swift */,
-				CE2A80771EB9C0A1003791F2 /* PersistableUser+JsonMapper.swift */,
-				CE2A805D1EB9B5EB003791F2 /* MediaItem.VideoInfo.Variant+JsonMapper.swift */,
-				CE2A805E1EB9B5EB003791F2 /* MediaItem.VideoInfo+JsonMapper.swift */,
-				CE2A805F1EB9B5EB003791F2 /* MediaItem+JsonMapper.swift */,
-				CE2A80601EB9B5EB003791F2 /* MentionItem+JsonMapper.swift */,
-				CE2A80611EB9B5EB003791F2 /* PersistableCardEntity+JsonMapper.swift */,
-				CE2A80621EB9B5EB003791F2 /* PersistableStatus.Extras+JsonMapper.swift */,
-				CE2A80631EB9B5EB003791F2 /* PersistableStatus+JsonMapper.swift */,
-				CE2A80641EB9B5EB003791F2 /* SpanItem+JsonMapper.swift */,
 				CE2A801D1EB8D982003791F2 /* FanfouPhoto+JsonMapper.swift */,
 				CE2A801E1EB8D982003791F2 /* GNUSocialAttachment+JsonMapper.swift */,
 				CE2A801F1EB8D982003791F2 /* GNUSocialAttention+JsonMapper.swift */,
 				CE2A80201EB8D982003791F2 /* JsonMapper.generated.swift */,
 				CE2A80211EB8D982003791F2 /* MastodonAccount+JsonMapper.swift */,
 				CE2A80221EB8D982003791F2 /* MastodonAccountsServices+RestImpl.swift */,
+				CE2A805F1EB9B5EB003791F2 /* MediaItem+JsonMapper.swift */,
+				CE2A805E1EB9B5EB003791F2 /* MediaItem.VideoInfo+JsonMapper.swift */,
+				CE2A805D1EB9B5EB003791F2 /* MediaItem.VideoInfo.Variant+JsonMapper.swift */,
+				CE2A80601EB9B5EB003791F2 /* MentionItem+JsonMapper.swift */,
 				CE2A80231EB8D982003791F2 /* MicroBlogAccountService+RestImpl.swift */,
 				CE2A80241EB8D982003791F2 /* MicroBlogGeoPoint+JsonMapper.swift */,
 				CE2A80251EB8D982003791F2 /* MicroBlogPlace+JsonMapper.swift */,
@@ -577,6 +568,15 @@
 				CE2A80261EB8D982003791F2 /* MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift */,
 				CE2A80271EB8D982003791F2 /* MicroBlogStatus.ExtendedTweet+JsonMapper.swift */,
 				CE2A80291EB8D982003791F2 /* MicroBlogUser+JsonMapper.swift */,
+				CE2A80751EB9C0A1003791F2 /* PersistableActivity+JsonMapper.swift */,
+				CE2A80731EB9C0A0003791F2 /* PersistableActivity.RelatedObject+JsonMapper.swift */,
+				CE2A80741EB9C0A1003791F2 /* PersistableActivity.SummaryLine+JsonMapper.swift */,
+				CE2A80611EB9B5EB003791F2 /* PersistableCardEntity+JsonMapper.swift */,
+				CE2A80761EB9C0A1003791F2 /* PersistableLiteUser+JsonMapper.swift */,
+				CE2A80631EB9B5EB003791F2 /* PersistableStatus+JsonMapper.swift */,
+				CE2A80621EB9B5EB003791F2 /* PersistableStatus.Extras+JsonMapper.swift */,
+				CE2A80771EB9C0A1003791F2 /* PersistableUser+JsonMapper.swift */,
+				CE2A80641EB9B5EB003791F2 /* SpanItem+JsonMapper.swift */,
 				CE2A802A1EB8D982003791F2 /* TwitterBaseEntity+JsonMapper.swift */,
 				CE2A802B1EB8D982003791F2 /* TwitterCardEntity+JsonMapper.swift */,
 				CE2A802C1EB8D982003791F2 /* TwitterEntities+JsonMapper.swift */,
@@ -681,8 +681,8 @@
 		CE2A80471EB995D3003791F2 /* PMJackson */ = {
 			isa = PBXGroup;
 			children = (
-				CE2A804A1EB995F1003791F2 /* UserKey+PMJackson.swift */,
 				CE2A80501EB9A9B7003791F2 /* MediaType+PMJackson.swift */,
+				CE2A804A1EB995F1003791F2 /* UserKey+PMJackson.swift */,
 			);
 			path = PMJackson;
 			sourceTree = "<group>";
@@ -695,6 +695,7 @@
 				CE2A80571EB9B03E003791F2 /* SimpleTypesFieldConverters.swift */,
 			);
 			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CE497F911D6958F7000F16D2 /* UI */ = {
@@ -904,17 +905,17 @@
 				CE59930F1D83901B00653220 /* MediaItem.swift */,
 				CE0311891D87D946009475E8 /* MediaUploadResponse.swift */,
 				CEDC3B291D7DB04F0082A8BA /* Paging.swift */,
+				CE2A806D1EB9BFDC003791F2 /* PersistableActivity.swift */,
+				CE2A80591EB9B1AE003791F2 /* PersistableCardEntity.swift */,
+				CE2A80711EB9C030003791F2 /* PersistableLiteUser.swift */,
 				CE2A80451EB98FD9003791F2 /* PersistableStatus.swift */,
+				CE2A806F1EB9C014003791F2 /* PersistableUser.swift */,
 				CEDC3B271D7DAE2C0082A8BA /* RefreshTaskParam.swift */,
 				CE90A55A1D7EDC9D007050E5 /* SimpleRefreshTaskParam.swift */,
 				CE358B701D811C84002A33B3 /* SpanItem.swift */,
 				CEA2E2BD1D3761780095BC57 /* StatusUpdate.swift */,
 				CEA2E2AB1D3549480095BC57 /* UserKey.swift */,
 				CE65B1C91D9CC11600A38A61 /* UserList.swift */,
-				CE2A80591EB9B1AE003791F2 /* PersistableCardEntity.swift */,
-				CE2A806D1EB9BFDC003791F2 /* PersistableActivity.swift */,
-				CE2A806F1EB9C014003791F2 /* PersistableUser.swift */,
-				CE2A80711EB9C030003791F2 /* PersistableLiteUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
