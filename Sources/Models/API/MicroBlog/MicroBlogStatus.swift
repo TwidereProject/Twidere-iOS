@@ -9,7 +9,7 @@
 import Foundation
 
 // sourcery: jsonParse,jsonSerialize
-class MicroBlogStatus {
+class MicroBlogStatus: TwitterEntitySupport {
 
     // sourcery: jsonFieldName=created_at
     // sourcery: jsonFieldConverter=TwitterDateFieldConverter
@@ -124,6 +124,9 @@ class MicroBlogStatus {
     // sourcery: jsonFieldName=external_url
     var externalUrl: String? = nil
     
+    // sourcery: jsonFieldName=statusnet_conversation_id
+    var statusnetConversationId: String? = nil
+    
     // sourcery: jsonFieldName=conversation_id|statusnet_conversation_id
     var conversationId: String? = nil
     
@@ -160,6 +163,48 @@ class MicroBlogStatus {
     
     // sourcery: jsonFieldName=extended_tweet
     var extendedTweet: ExtendedTweet? = nil
+    
+    var sortId: Int64 {
+        var result: Int64 = -1
+        result = rawId;
+        if (result == -1) {
+            // Try use long id
+            result = Int64(id) ?? -1
+        }
+        if (result == -1 && createdAt != nil) {
+            // Try use timestamp
+            result = createdAt.timeIntervalSince1970Millis
+        }
+        return result
+    }
+    
+    var isRetweet: Bool {
+        return retweetedStatus != nil
+    }
+    
+    var fullEntities: TwitterEntities? {
+        if let extended = self.extendedTweet {
+            return extended.entities
+        }
+        return self.entities
+    }
+    
+    var fullExtendedEntities: TwitterEntities? {
+        if let extended = self.extendedTweet {
+            return extended.extendedEntities
+        }
+        return self.extendedEntities
+    }
+    
+    var htmlText: String! {
+        if let html = statusnetHtml {
+            return html
+        }
+        if let full = fullText {
+            return full
+        }
+        return text
+    }
     
     required init() {
 

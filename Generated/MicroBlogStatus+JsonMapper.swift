@@ -105,6 +105,8 @@ internal class MicroBlogStatusJsonMapper: JsonMapper<MicroBlogStatus> {
             }
         case "external_url":
             instance.externalUrl = parser.getValueAsString()
+        case "statusnet_conversation_id":
+            instance.statusnetConversationId = parser.getValueAsString()
         case "conversation_id", "statusnet_conversation_id":
             instance.conversationId = parser.getValueAsString()
         case "attentions":

@@ -10,4 +10,8 @@
 //sourcery: jsonParse
 class PersistableLiteUser {
     
+    required init() {
+        
+    }
+    
 }

@@ -17,6 +17,8 @@ class TwitterEntities {
     // sourcery: jsonFieldName=hashtags
     var hashtags: [TwitterHashtagEntity]!
     
+    // sourcery: jsonFieldName=mentions
+    var mentions: [TwitterMentionEntity]!
     
     required init() {
         

@@ -1,5 +1,5 @@
 //
-//  PersistableCardEntity.swift
+//  TwitterMentionEntity.swift
 //  Twidere
 //
 //  Created by Mariotaku Lee on 2017/5/3.
@@ -9,7 +9,12 @@
 import Foundation
 
 // sourcery: jsonParse
-class PersistableCardEntity {
+class TwitterMentionEntity : TwitterBaseEntity {
+    // sourcery: id
+    var id: String!
+    // sourcery: screen_name
+    var screenName: String!
+    // sourcery: name
     var name: String!
     
     required init() {

@@ -10,7 +10,14 @@ import Foundation
 
 // sourcery:jsonParse
 class MentionItem {
+    
     var key: UserKey!
-    var screenName: String!
+    
     var name: String!
+    
+    var screen_name: String!
+    
+    required init() {
+        
+    }
 }

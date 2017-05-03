@@ -69,10 +69,18 @@ class PersistableActivity: PersistableStatus {
     //sourcery: jsonParse
     class RelatedObject {
         
+        required init() {
+            
+        }
+        
     }
     
     //sourcery: jsonParse
     class SummaryLine {
+        
+        required init() {
+            
+        }
         
     }
     

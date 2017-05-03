@@ -260,7 +260,7 @@ class PersistableStatus {
     var is_pinned_status: Bool = false
     
     //@CursorField(Statuses.FILTER_FLAGS)
-    var filter_flags: FilterFlags = []
+    var filter_flags: FilterFlag = []
     
     internal func finishCursorObjectCreation() {
         card_name = card?.name
@@ -269,6 +269,10 @@ class PersistableStatus {
     
     internal func onParseComplete() {
         fixSortId()
+    }
+    
+    required init() {
+        
     }
     
     private func fixSortId() {
@@ -320,7 +324,7 @@ class PersistableStatus {
      *
      * DO NOT CHANGE ONCE DEFINED!
      */
-    struct FilterFlags: OptionSet {
+    struct FilterFlag: OptionSet {
         
         let rawValue: UInt32
         
@@ -335,19 +339,19 @@ class PersistableStatus {
          *  * Original tweet was deleted
          *  * Original tweet author blocked or blocked by quoted tweet author
          */
-        static let quoteNotAvailable = FilterFlags(rawValue: 0x1)
+        static let quoteNotAvailable = FilterFlag(rawValue: 0x1)
         /**
          * Original author of a quote/retweet was blocked by you
          */
-        static let blockingUser = FilterFlags(rawValue: 0x2)
+        static let blockingUser = FilterFlag(rawValue: 0x2)
         /**
          * You were blocked by original author of a quote/retweet
          */
-        static let blockedByUser = FilterFlags(rawValue: 0x4)
+        static let blockedByUser = FilterFlag(rawValue: 0x4)
         /**
          * Status possibly sensitive (NSFW etc)
          */
-        static let possiblySensitive = FilterFlags(rawValue: 0x8)
+        static let possiblySensitive = FilterFlag(rawValue: 0x8)
         
     }
     

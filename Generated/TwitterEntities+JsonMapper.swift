@@ -53,6 +53,16 @@ internal class TwitterEntitiesJsonMapper: JsonMapper<TwitterEntities> {
             } else {
                 instance.hashtags = nil
             }
+        case "mentions":
+            if (parser.currentEvent == .arrayStart) {
+                var array: [TwitterMentionEntity] = []
+                while (parser.nextEvent() != .arrayEnd) {
+                    array.append(TwitterMentionEntityJsonMapper.singleton.parse(parser))
+                }
+                instance.mentions = array
+            } else {
+                instance.mentions = nil
+            }
         default:
             break
         }

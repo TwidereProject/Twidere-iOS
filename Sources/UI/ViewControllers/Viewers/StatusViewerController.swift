@@ -11,14 +11,14 @@ import UITableView_FDTemplateLayoutCell
 import PromiseKit
 
 typealias StatusInfo = (accountKey: UserKey, id: String)
-typealias StatusPreviewCallback = (_ status: Status, _ action: StatusViewerController.PreviewAction) -> Void
+typealias StatusPreviewCallback = (_ status: PersistableStatus, _ action: StatusViewerController.PreviewAction) -> Void
 
 class StatusViewerController: UITableViewController, DetailStatusCellDelegate {
     
     var cellDisplayOption: StatusCell.DisplayOption! = StatusCell.DisplayOption()
     var previewCallback: StatusPreviewCallback!
     
-    private var status: Status! {
+    private var status: PersistableStatus! {
         didSet {
             rebuildIndices()
         }
@@ -30,7 +30,7 @@ class StatusViewerController: UITableViewController, DetailStatusCellDelegate {
     }
     private var reloadNeeded: Bool = false
     
-    private var conversation: [Status]!
+    private var conversation: [PersistableStatus]!
     private var itemIndices: ItemIndices = ItemIndices(1)
     
     override func viewDidLoad() {
@@ -109,16 +109,16 @@ class StatusViewerController: UITableViewController, DetailStatusCellDelegate {
         }
         items.append(UIPreviewAction(title: "Share…", style: .default, handler: {_,_ in self.invokePreviewCallback(.share) }))
         if let status = self.status {
-            if (status.accountKey == status.userKey) {
+            if (status.account_key == status.user_key) {
                 items.append(UIPreviewAction(title: "Delete", style: .destructive, handler: {_,_ in self.invokePreviewCallback(.destroy) }))
             }
         }
         return items
     }
     
-    func displayStatus(_ status: Status, reload: Bool = false) {
+    func displayStatus(_ status: PersistableStatus, reload: Bool = false) {
         self.status = status
-        self.statusInfo = (status.accountKey, status.id)
+        self.statusInfo = (status.account_key, status.id)
         if (self.isViewLoaded) {
             self.tableView.reloadData()
         }
@@ -143,7 +143,7 @@ class StatusViewerController: UITableViewController, DetailStatusCellDelegate {
         previewCallback?(status, action)
     }
     
-    fileprivate func shareStatus(status: Status) {
+    fileprivate func shareStatus(status: PersistableStatus) {
         guard let status = self.status, let url = URL(string: status.statusUrl) else {
             return
         }
@@ -163,7 +163,7 @@ class StatusViewerController: UITableViewController, DetailStatusCellDelegate {
         self.reloadNeeded = false
         _ = DispatchQueue.global().promise { () -> Account in
             return getAccount(forKey: statusInfo.accountKey)!
-        }.then { account -> Promise<Status> in
+        }.then { account -> Promise<PersistableStatus> in
             let api = account.newMicroBlogService()
             return api.showStatus(id: statusInfo.id)
         }.then { status -> Void in
@@ -172,7 +172,7 @@ class StatusViewerController: UITableViewController, DetailStatusCellDelegate {
         }
     }
     
-    func actionSelected(for cell: StatusCellProtocol, status: Status, action: StatusCell.StatusAction) {
+    func actionSelected(for cell: StatusCellProtocol, status: PersistableStatus, action: StatusCell.StatusAction) {
         switch action {
         case .reply:
             replyStatus(status: status)
@@ -185,23 +185,23 @@ class StatusViewerController: UITableViewController, DetailStatusCellDelegate {
         }
     }
     
-    func profileImageTapped(for cell: StatusCellProtocol, status: Status) {
+    func profileImageTapped(for cell: StatusCellProtocol, status: PersistableStatus) {
         
     }
     
-    func quotedViewTapped(for cell: StatusCellProtocol, status: Status) {
+    func quotedViewTapped(for cell: StatusCellProtocol, status: PersistableStatus) {
         let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
         vc.displayStatus(status.quotedStatus!, reload: true)
         self.show(vc, sender: self)
     }
     
-    func mediaPreviewTapped(for cell: StatusCellProtocol, status: Status) {
+    func mediaPreviewTapped(for cell: StatusCellProtocol, status: PersistableStatus) {
         
     }
     
-    func spanItemTapped(for cell: StatusCellProtocol, status: Status, span: SpanItem) {
-        guard let (vc, present) = span.createViewController(accountKey: status.accountKey) else {
+    func spanItemTapped(for cell: StatusCellProtocol, status: PersistableStatus, span: SpanItem) {
+        guard let (vc, present) = span.createViewController(accountKey: status.account_key) else {
             return
         }
         if (present) {
@@ -211,7 +211,7 @@ class StatusViewerController: UITableViewController, DetailStatusCellDelegate {
         }
     }
     
-    func replyStatus(status: Status) {
+    func replyStatus(status: PersistableStatus) {
         guard let nvc = self.navigationController else {
             return
         }
@@ -220,8 +220,8 @@ class StatusViewerController: UITableViewController, DetailStatusCellDelegate {
         cvc.show(parent: nvc.parent ?? nvc)
     }
     
-    func toggleFavoriteStatus(status: Status) {
-        guard let accountKey = status.accountKey, let isFavorite = status.metadata?.isFavorite else {
+    func toggleFavoriteStatus(status: PersistableStatus) {
+        guard let accountKey = status.account_key, let isFavorite = status.is_favorite else {
             return
         }
         let servicePromise = DispatchQueue.global().promise { () -> MicroBlogService in
@@ -229,11 +229,11 @@ class StatusViewerController: UITableViewController, DetailStatusCellDelegate {
             return account.newMicroBlogService()
         }
         if (isFavorite) {
-            servicePromise.then { microBlog -> Promise<Status> in
+            servicePromise.then { microBlog -> Promise<PersistableStatus> in
                 return microBlog.destroyFavorite(id: status.id)
                 }.showStatusBarNotificationAfterTask(success: "Tweet unfavorited", failure: "Unable to unfavorite tweet")
         } else {
-            servicePromise.then { microBlog -> Promise<Status> in
+            servicePromise.then { microBlog -> Promise<PersistableStatus> in
                 return microBlog.createFavorite(id: status.id)
                 }.showStatusBarNotificationAfterTask(success: "Tweet favorited", failure: "Unable to favorite tweet")
         }
