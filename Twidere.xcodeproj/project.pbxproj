@@ -320,13 +320,13 @@
 		CE2A80751EB9C0A1003791F2 /* PersistableActivity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableActivity+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE2A80761EB9C0A1003791F2 /* PersistableLiteUser+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableLiteUser+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE2A80771EB9C0A1003791F2 /* PersistableUser+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableUser+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A807D1EB9C46C003791F2 /* MicroBlogStatusExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MicroBlogStatusExtension.swift; path = Generated/MicroBlogStatusExtension.swift; sourceTree = SOURCE_ROOT; };
-		CE2A80811EB9D672003791F2 /* MicroBlogUserExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MicroBlogUserExtension.swift; path = Sources/Extensions/MicroBlogUserExtension.swift; sourceTree = SOURCE_ROOT; };
+		CE2A807D1EB9C46C003791F2 /* MicroBlogStatusExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MicroBlogStatusExtension.swift; path = MicroBlogStatusExtension.swift; sourceTree = "<group>"; };
+		CE2A80811EB9D672003791F2 /* MicroBlogUserExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MicroBlogUserExtension.swift; path = MicroBlogUserExtension.swift; sourceTree = "<group>"; };
 		CE2A80831EB9EDCC003791F2 /* TwitterMentionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterMentionEntity.swift; sourceTree = "<group>"; };
 		CE2A80851EB9F4D7003791F2 /* PersistableStatusExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableStatusExtension.swift; sourceTree = "<group>"; };
-		CE2A80871EBA17B7003791F2 /* TwitterMentionEntityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterMentionEntityExtension.swift; path = Sources/Extensions/TwitterMentionEntityExtension.swift; sourceTree = SOURCE_ROOT; };
+		CE2A80871EBA17B7003791F2 /* TwitterMentionEntityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterMentionEntityExtension.swift; path = TwitterMentionEntityExtension.swift; sourceTree = "<group>"; };
 		CE2A80891EBA18A8003791F2 /* TwitterMentionEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterMentionEntity+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A808B1EBA24CA003791F2 /* TwitterCardEntityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterCardEntityExtension.swift; path = Generated/TwitterCardEntityExtension.swift; sourceTree = SOURCE_ROOT; };
+		CE2A808B1EBA24CA003791F2 /* TwitterCardEntityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterCardEntityExtension.swift; path = TwitterCardEntityExtension.swift; sourceTree = "<group>"; };
 		CE2A808D1EBA3404003791F2 /* HtmlBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HtmlBuilder.swift; sourceTree = "<group>"; };
 		CE2A808F1EBA346C003791F2 /* TwitterEntitySupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterEntitySupport.swift; sourceTree = "<group>"; };
 		CE358B701D811C84002A33B3 /* SpanItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItem.swift; sourceTree = "<group>"; };
@@ -565,7 +565,6 @@
 		CE2660201DAFDD79007FF7CF /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				CE2A80891EBA18A8003791F2 /* TwitterMentionEntity+JsonMapper.swift */,
 				CE2A801D1EB8D982003791F2 /* FanfouPhoto+JsonMapper.swift */,
 				CE2A801E1EB8D982003791F2 /* GNUSocialAttachment+JsonMapper.swift */,
 				CE2A801F1EB8D982003791F2 /* GNUSocialAttention+JsonMapper.swift */,
@@ -596,6 +595,7 @@
 				CE2A802B1EB8D982003791F2 /* TwitterCardEntity+JsonMapper.swift */,
 				CE2A802C1EB8D982003791F2 /* TwitterEntities+JsonMapper.swift */,
 				CE2A802D1EB8D982003791F2 /* TwitterHashtagEntity+JsonMapper.swift */,
+				CE2A80891EBA18A8003791F2 /* TwitterMentionEntity+JsonMapper.swift */,
 				CE2A802E1EB8D982003791F2 /* TwitterURLEntity+JsonMapper.swift */,
 				CE2A80431EB97E24003791F2 /* TwitterUserEntities+JsonMapper.swift */,
 			);
@@ -670,11 +670,11 @@
 				CE2A80051EB848E5003791F2 /* TwitterBaseEntity.swift */,
 				CE2A7FDD1EB72638003791F2 /* TwitterCardEntity.swift */,
 				CE2A7FF91EB83176003791F2 /* TwitterEntities.swift */,
+				CE2A808F1EBA346C003791F2 /* TwitterEntitySupport.swift */,
 				CE2A80011EB84696003791F2 /* TwitterHashtagEntity.swift */,
+				CE2A80831EB9EDCC003791F2 /* TwitterMentionEntity.swift */,
 				CE2A7FFB1EB83200003791F2 /* TwitterURLEntity.swift */,
 				CE2A80411EB97D8B003791F2 /* TwitterUserEntities.swift */,
-				CE2A80831EB9EDCC003791F2 /* TwitterMentionEntity.swift */,
-				CE2A808F1EBA346C003791F2 /* TwitterEntitySupport.swift */,
 			);
 			path = Twitter;
 			sourceTree = "<group>";
@@ -828,8 +828,8 @@
 			children = (
 				CE2A807D1EB9C46C003791F2 /* MicroBlogStatusExtension.swift */,
 				CE2A80811EB9D672003791F2 /* MicroBlogUserExtension.swift */,
-				CE2A80871EBA17B7003791F2 /* TwitterMentionEntityExtension.swift */,
 				CE2A808B1EBA24CA003791F2 /* TwitterCardEntityExtension.swift */,
+				CE2A80871EBA17B7003791F2 /* TwitterMentionEntityExtension.swift */,
 			);
 			path = MicroBlog;
 			sourceTree = "<group>";
@@ -963,9 +963,9 @@
 				CE497FA81D697CEA000F16D2 /* ConvertUtils.swift */,
 				CEDC3B221D7D8BE90082A8BA /* DatabaseMigration.swift */,
 				CE9574951D33B71B00504D52 /* DefaultsKeys.swift */,
+				CE2A808D1EBA3404003791F2 /* HtmlBuilder.swift */,
 				CE2A801B1EB8D0AE003791F2 /* JsonParsableUtils.swift */,
 				CE95748A1D322CC700504D52 /* ModelConverter.swift */,
-				CE2A808D1EBA3404003791F2 /* HtmlBuilder.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1045,6 +1045,7 @@
 				CE497FBD1D6B01D1000F16D2 /* DateExtension.swift */,
 				CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */,
 				CE9DB0481DACA34B000C150F /* Number+LocalizedString.swift */,
+				CE2A80851EB9F4D7003791F2 /* PersistableStatusExtension.swift */,
 				CEEF42BA1DB9D650009ECD0F /* Promise+TaskMessage.swift */,
 				CE4B1AA41D719E160017CB85 /* StringExtensions.swift */,
 				CE2660181DAFD1BF007FF7CF /* StringLiteral.swift */,
@@ -1057,7 +1058,6 @@
 				CE79C8401DA7ACE3007C05F2 /* UIViewExtension.swift */,
 				CE79C83E1DA77777007C05F2 /* YYText+ALSLayouts.swift */,
 				CEEF42B81DB669C2009ECD0F /* YYTextExtension.swift */,
-				CE2A80851EB9F4D7003791F2 /* PersistableStatusExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
