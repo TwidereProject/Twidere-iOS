@@ -15,6 +15,10 @@ public class JsonMapper<T> {
 
 }
 
+protocol JsonMappable {
+    init()
+}
+
 
 
 

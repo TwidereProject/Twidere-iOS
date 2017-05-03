@@ -162,7 +162,7 @@ class MicroBlogStatus {
     // sourcery: jsonFieldName=extended_tweet
     var extendedTweet: ExtendedTweet? = nil
     
-    init() {
+    required init() {
 
     }
     
@@ -180,12 +180,20 @@ class MicroBlogStatus {
         
         // sourcery: jsonFieldName=display_text_range
         var displayTextRange: [Int32]!
+        
+        required init() {
+            
+        }
     }
     
     // sourcery: jsonParse
     class CurrentUserRetweet {
         // sourcery: jsonFieldName=id
         var id: String!
+        
+        required init() {
+            
+        }
     }
     
     

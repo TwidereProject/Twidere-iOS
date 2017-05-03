@@ -19,7 +19,7 @@ class FanfouPhoto {
     // sourcery: jsonFieldName=largeurl
     var largeUrl: String!
  
-    init() {
+    required init() {
         
     }
 }

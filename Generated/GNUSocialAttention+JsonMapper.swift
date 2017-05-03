@@ -3,6 +3,10 @@
 
 import PMJackson
 
+extension GNUSocialAttention: JsonMappable {
+
+}
+
 internal class GNUSocialAttentionJsonMapper: JsonMapper<GNUSocialAttention> {
 
     internal static let singleton = GNUSocialAttentionJsonMapper()

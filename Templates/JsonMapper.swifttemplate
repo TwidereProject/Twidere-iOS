@@ -11,6 +11,10 @@ public class JsonMapper<T> {
     }
 
 }
+
+protocol JsonMappable {
+    init()
+}
 <%_
 func generateGetValueStatement(_ typeName: String, _ varName: String, _ varType: Type?, _ varTypeName: TypeName, _ varAnnotations: [String: Any]) -> String {
     switch (varTypeName.unwrappedTypeName) {
@@ -44,7 +48,14 @@ func qualifiedTypeName(_ type: Type!, _ typeName: TypeName) -> String {
 <%_ for type in types.all where type.annotations["jsonParse"] != nil { _%>
 // sourcery:file:<%= type.name %>+JsonMapper.swift
 import PMJackson
-<% let mapperName = "\(type.name)JsonMapper".replacingOccurrences(of: ".", with: "") %>
+
+<%_ if (type.supertype?.annotations["jsonParse"] == nil) { -%>
+extension <%= type.name %>: JsonMappable {
+
+}
+
+<%_ } -%>
+<%_ let mapperName = "\(type.name)JsonMapper".replacingOccurrences(of: ".", with: "") -%>
 <%= "\(type.accessLevel) " %>class <%= mapperName %>: JsonMapper<<%= type.name %>> {
 
     <%= "\(type.accessLevel) " %>static let singleton = <%= mapperName %>()

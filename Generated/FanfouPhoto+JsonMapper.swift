@@ -3,6 +3,10 @@
 
 import PMJackson
 
+extension FanfouPhoto: JsonMappable {
+
+}
+
 internal class FanfouPhotoJsonMapper: JsonMapper<FanfouPhoto> {
 
     internal static let singleton = FanfouPhotoJsonMapper()

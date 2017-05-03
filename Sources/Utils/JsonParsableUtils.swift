@@ -11,7 +11,7 @@ import PMJackson
 import PMJSON
 
 
-func parseJsonMapperResponse<T>(_ mapper: JsonMapper<T>, _ instance: T) -> DataResponseSerializer<T> {
+func parseJsonMapperResponse<T: JsonMappable>(_ mapper: JsonMapper<T>, _ instance: T = T()) -> DataResponseSerializer<T> {
     return DataResponseSerializer { (req, resp, data, err) -> Alamofire.Result<T> in
         if err != nil, let resp = resp {
 //            if let data = data {

@@ -22,4 +22,8 @@ class MicroBlogGeoPoint {
         }
         return GeoLocation(coords[0], coords[1])
     }
+    
+    required init() {
+        
+    }
 }

@@ -3,6 +3,10 @@
 
 import PMJackson
 
+extension MastodonAccount: JsonMappable {
+
+}
+
 internal class MastodonAccountJsonMapper: JsonMapper<MastodonAccount> {
 
     internal static let singleton = MastodonAccountJsonMapper()

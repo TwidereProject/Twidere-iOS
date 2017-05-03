@@ -21,7 +21,7 @@ class GNUSocialAttention {
     // sourcery: jsonFieldName=screen_name
     var screenName: String!
     
-    init() {
+    required init() {
         
     }
 }

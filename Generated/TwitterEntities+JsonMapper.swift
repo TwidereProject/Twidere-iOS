@@ -3,6 +3,10 @@
 
 import PMJackson
 
+extension TwitterEntities: JsonMappable {
+
+}
+
 internal class TwitterEntitiesJsonMapper: JsonMapper<TwitterEntities> {
 
     internal static let singleton = TwitterEntitiesJsonMapper()

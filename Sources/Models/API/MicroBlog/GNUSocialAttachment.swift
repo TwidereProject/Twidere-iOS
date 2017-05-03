@@ -31,7 +31,7 @@ class GNUSocialAttachment {
     // sourcery: jsonFieldName=version
     var version: String!
     
-    init() {
+    required init() {
         
     }
 }

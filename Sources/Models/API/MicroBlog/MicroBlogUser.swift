@@ -11,4 +11,8 @@ import Foundation
 // sourcery: jsonParse
 class MicroBlogUser {
     
+    required init() {
+        
+    }
+    
 }

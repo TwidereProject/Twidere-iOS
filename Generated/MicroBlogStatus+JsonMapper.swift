@@ -3,6 +3,10 @@
 
 import PMJackson
 
+extension MicroBlogStatus: JsonMappable {
+
+}
+
 internal class MicroBlogStatusJsonMapper: JsonMapper<MicroBlogStatus> {
 
     internal static let singleton = MicroBlogStatusJsonMapper()

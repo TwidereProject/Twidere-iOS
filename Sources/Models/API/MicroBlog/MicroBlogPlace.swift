@@ -14,4 +14,7 @@ class MicroBlogPlace {
     // sourcery: jsonFieldName=full_name
     var fullName: String!
     
+    required init() {
+        
+    }
 }

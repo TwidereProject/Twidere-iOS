@@ -10,5 +10,7 @@ import Foundation
 
 // sourcery: jsonParse
 class MastodonAccount {
-    
+    required init() {
+        
+    }
 }

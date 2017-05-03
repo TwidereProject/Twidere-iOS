@@ -14,4 +14,8 @@ class TwitterBaseEntity {
     // sourcery: jsonFieldName=indices
     var indices: [Int32]!
     
+    
+    required init() {
+        
+    }
 }

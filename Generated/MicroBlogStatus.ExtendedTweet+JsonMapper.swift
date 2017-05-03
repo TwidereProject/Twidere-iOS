@@ -3,6 +3,10 @@
 
 import PMJackson
 
+extension MicroBlogStatus.ExtendedTweet: JsonMappable {
+
+}
+
 internal class MicroBlogStatusExtendedTweetJsonMapper: JsonMapper<MicroBlogStatus.ExtendedTweet> {
 
     internal static let singleton = MicroBlogStatusExtendedTweetJsonMapper()

@@ -17,4 +17,8 @@ class TwitterEntities {
     // sourcery: jsonFieldName=hashtags
     var hashtags: [TwitterHashtagEntity]!
     
+    
+    required init() {
+        
+    }
 }
