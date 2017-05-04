@@ -375,7 +375,7 @@
 		CE6C6C301DB35C1D00DF4892 /* AccountDetailsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailsExtensions.swift; sourceTree = "<group>"; };
 		CE6C6C331DB35C1D00DF4892 /* UserKey+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserKey+Freddy.swift"; sourceTree = "<group>"; };
 		CE6D6E991DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNavigationBarProtocol.swift; sourceTree = "<group>"; };
-		CE6FA33E1EBAD4ED0068BE01 /* AccountDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountDetails.swift; path = ../Extensions/MicroBlog/AccountDetails.swift; sourceTree = "<group>"; };
+		CE6FA33E1EBAD4ED0068BE01 /* AccountDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountDetails.swift; path = AccountDetails.swift; sourceTree = "<group>"; };
 		CE6FA3411EBAE3E00068BE01 /* AccountCredentialsImpls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCredentialsImpls.swift; sourceTree = "<group>"; };
 		CE6FA3431EBAE4340068BE01 /* AccountOAuthCredentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountOAuthCredentials+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE6FA3451EBAE55B0068BE01 /* AccountDetails.Credentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountDetails.Credentials+JsonMapper.swift"; sourceTree = "<group>"; };
@@ -575,17 +575,11 @@
 		CE2660201DAFDD79007FF7CF /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				CE6FA35D1EBB08480068BE01 /* TwitterUploadService+RestImpl.swift */,
-				CE6FA3531EBB050D0068BE01 /* MediaUploadResponse.Image+JsonMapper.swift */,
-				CE6FA3541EBB050D0068BE01 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift */,
-				CE6FA3551EBB050D0068BE01 /* MediaUploadResponse.Video+JsonMapper.swift */,
-				CE6FA3561EBB050D0068BE01 /* MediaUploadResponse+JsonMapper.swift */,
 				CE6FA34B1EBAF9250068BE01 /* AccountBasicCredentials+JsonMapper.swift */,
+				CE6FA3451EBAE55B0068BE01 /* AccountDetails.Credentials+JsonMapper.swift */,
+				CE6FA3471EBAE6C40068BE01 /* AccountDetails.Extras+JsonMapper.swift */,
 				CE6FA34C1EBAF9250068BE01 /* AccountEmptyCredentials+JsonMapper.swift */,
 				CE6FA34D1EBAF9250068BE01 /* AccountOAuth2Credentials+JsonMapper.swift */,
-				CE6FA34E1EBAF9250068BE01 /* RestProtocolImpl.generated.swift */,
-				CE6FA3471EBAE6C40068BE01 /* AccountDetails.Extras+JsonMapper.swift */,
-				CE6FA3451EBAE55B0068BE01 /* AccountDetails.Credentials+JsonMapper.swift */,
 				CE6FA3431EBAE4340068BE01 /* AccountOAuthCredentials+JsonMapper.swift */,
 				CE2A801D1EB8D982003791F2 /* FanfouPhoto+JsonMapper.swift */,
 				CE2A801E1EB8D982003791F2 /* GNUSocialAttachment+JsonMapper.swift */,
@@ -596,6 +590,10 @@
 				CE2A805F1EB9B5EB003791F2 /* MediaItem+JsonMapper.swift */,
 				CE2A805E1EB9B5EB003791F2 /* MediaItem.VideoInfo+JsonMapper.swift */,
 				CE2A805D1EB9B5EB003791F2 /* MediaItem.VideoInfo.Variant+JsonMapper.swift */,
+				CE6FA3561EBB050D0068BE01 /* MediaUploadResponse+JsonMapper.swift */,
+				CE6FA3531EBB050D0068BE01 /* MediaUploadResponse.Image+JsonMapper.swift */,
+				CE6FA3541EBB050D0068BE01 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift */,
+				CE6FA3551EBB050D0068BE01 /* MediaUploadResponse.Video+JsonMapper.swift */,
 				CE2A80601EB9B5EB003791F2 /* MentionItem+JsonMapper.swift */,
 				CE2A80231EB8D982003791F2 /* MicroBlogAccountService+RestImpl.swift */,
 				CE2A80241EB8D982003791F2 /* MicroBlogGeoPoint+JsonMapper.swift */,
@@ -612,6 +610,7 @@
 				CE2A80631EB9B5EB003791F2 /* PersistableStatus+JsonMapper.swift */,
 				CE2A80621EB9B5EB003791F2 /* PersistableStatus.Extras+JsonMapper.swift */,
 				CE2A80771EB9C0A1003791F2 /* PersistableUser+JsonMapper.swift */,
+				CE6FA34E1EBAF9250068BE01 /* RestProtocolImpl.generated.swift */,
 				CE2A80641EB9B5EB003791F2 /* SpanItem+JsonMapper.swift */,
 				CE2A802A1EB8D982003791F2 /* TwitterBaseEntity+JsonMapper.swift */,
 				CE2A802B1EB8D982003791F2 /* TwitterCardEntity+JsonMapper.swift */,
@@ -619,6 +618,7 @@
 				CE2A802D1EB8D982003791F2 /* TwitterHashtagEntity+JsonMapper.swift */,
 				CE2A80891EBA18A8003791F2 /* TwitterMentionEntity+JsonMapper.swift */,
 				CE2A802E1EB8D982003791F2 /* TwitterURLEntity+JsonMapper.swift */,
+				CE6FA35D1EBB08480068BE01 /* TwitterUploadService+RestImpl.swift */,
 				CE2A80431EB97E24003791F2 /* TwitterUserEntities+JsonMapper.swift */,
 			);
 			path = Generated;
@@ -914,6 +914,7 @@
 				CE6FA3411EBAE3E00068BE01 /* AccountCredentialsImpls.swift */,
 			);
 			name = Credentials;
+			path = Credentials;
 			sourceTree = "<group>";
 		};
 		CE7A573D1D917B410027BECE /* DataSources */ = {
@@ -930,9 +931,9 @@
 		CE95747B1D32107800504D52 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CE2A7F961EB5BC85003791F2 /* API */,
 				CE6FA3401EBAE3CF0068BE01 /* Credentials */,
 				CE6FA33E1EBAD4ED0068BE01 /* AccountDetails.swift */,
-				CE2A7F961EB5BC85003791F2 /* API */,
 				CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */,
 				CE65B1E71D9F546700A38A61 /* ItemIndices.swift */,
 				CE59930F1D83901B00653220 /* MediaItem.swift */,
