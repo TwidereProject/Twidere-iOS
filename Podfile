@@ -10,7 +10,6 @@ target 'Twidere' do
     pod 'Sourcery', '~> 0.6'
     pod 'PMJSON', '~> 2.0.2'
     pod 'PMJackson', '~> 1.0.9'
-    pod 'SwiftyJSON', '~> 3.1.0'
     pod 'SQLite.swift', '~> 0.11.0'
     pod 'CryptoSwift', '~> 0.6.0'
     pod 'Alamofire', '~> 4.0'
@@ -39,7 +38,6 @@ target 'Twidere' do
     pod 'YYText', '~> 1.0'
     pod 'DeviceKit', '~> 1.0'
     pod 'SwiftHEXColors', '~> 1.1.0'
-    pod 'Freddy', '~> 3.0'
 
     pod 'Fabric'
     pod 'Crashlytics'

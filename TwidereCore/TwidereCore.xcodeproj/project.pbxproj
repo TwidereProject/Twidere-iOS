@@ -52,7 +52,6 @@
 		CE750A2E1EBB3F3C003E6249 = {
 			isa = PBXGroup;
 			children = (
-				CE750A451EBB4150003E6249 /* Templates */,
 				CE750A441EBB4144003E6249 /* Generated */,
 				CE750A3A1EBB3F3C003E6249 /* Sources */,
 				CE750A391EBB3F3C003E6249 /* Products */,
@@ -84,13 +83,6 @@
 			children = (
 			);
 			name = Generated;
-			sourceTree = "<group>";
-		};
-		CE750A451EBB4150003E6249 /* Templates */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Templates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,6 +364,7 @@
 				CE750A421EBB3F3C003E6249 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

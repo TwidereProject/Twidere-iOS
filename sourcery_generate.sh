@@ -1,3 +1,5 @@
 #!/bin/bash
-cd Generated
-../Pods/Sourcery/bin/sourcery --sources ../Sources/ --templates ../Templates/ --disableCache
+
+for project in 'TwidereCore Twidere'; do
+  ./Pods/Sourcery/bin/sourcery --templates ./Templates/ --sources $project/Sources/ --output $project/Generated
+done

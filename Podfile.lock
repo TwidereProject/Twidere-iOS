@@ -8,7 +8,6 @@ PODS:
   - DateTools (1.7.0)
   - DeviceKit (1.0.1)
   - Fabric (1.6.11)
-  - Freddy (3.0.0)
   - FXBlurView (1.6.4)
   - FXImageView (1.3.6)
   - IQKeyboardManagerSwift (4.0.9)
@@ -45,7 +44,6 @@ PODS:
   - StaticDataTableViewController (2.0.5)
   - STPopup (1.8.2)
   - SwiftHEXColors (1.1.0)
-  - SwiftyJSON (3.1.4)
   - SwiftyUserDefaults (3.0.0)
   - ThumborURL (0.0.4)
   - twitter-text (1.14.3)
@@ -63,7 +61,6 @@ DEPENDENCIES:
   - DateTools (~> 1.7)
   - DeviceKit (~> 1.0)
   - Fabric
-  - Freddy (~> 3.0)
   - FXBlurView (~> 1.6)
   - FXImageView (~> 1.3)
   - IQKeyboardManagerSwift (~> 4.0.6)
@@ -83,7 +80,6 @@ DEPENDENCIES:
   - StaticDataTableViewController (~> 2.0.5)
   - STPopup (~> 1.8.0)
   - SwiftHEXColors (~> 1.1.0)
-  - SwiftyJSON (~> 3.1.0)
   - SwiftyUserDefaults (~> 3.0)
   - ThumborURL (~> 0.0)
   - twitter-text (~> 1.14)
@@ -101,7 +97,6 @@ SPEC CHECKSUMS:
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   DeviceKit: 461e525867e48e725f41699c1cab3100df1258ff
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  Freddy: 367f994c88a90dd3987293b4b1bec94a4530745a
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   FXImageView: 34792b9c9bbdbfed70ff33cb015cc4d333daac34
   IQKeyboardManagerSwift: 2eefe6c429b86aa08bfbc1b5c891164d754adf91
@@ -120,7 +115,6 @@ SPEC CHECKSUMS:
   StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a
   STPopup: b69b3e7484ef7d2baec5f9ab2939f8a7bcdfe218
   SwiftHEXColors: 8f7e364df7929e32cff9f9eeb044bb215167d6be
-  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   ThumborURL: 0e1f058fb79c37660aa7d302fe77c48366902325
   twitter-text: a1b7255d3f924dae6cbe4d9cf57be9c5430699ae
@@ -129,6 +123,6 @@ SPEC CHECKSUMS:
   UIView+TouchHighlighting: e05a338801522cbdc4a1e236bd189f2a928a781f
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 649c928e067122d18944f10ce10dba09d62fb9f0
+PODFILE CHECKSUM: 56b4d81f5adc3a902c628040caa1b0938218dcc1
 
 COCOAPODS: 1.2.1
