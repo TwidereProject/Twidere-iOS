@@ -1,12 +1,12 @@
 import Foundation
 
 // sourcery: jsonParse
-class Place {
+public class Place {
     
     // sourcery: jsonField=full_name
-    var fullName: String!
+    public var fullName: String!
     
-    required init() {
+    required public init() {
         
     }
 }

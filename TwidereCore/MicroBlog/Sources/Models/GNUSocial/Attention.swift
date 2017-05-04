@@ -7,19 +7,19 @@
 //
 
 // sourcery: jsonParse
-class Attention {
+public class Attention {
     // sourcery: jsonField=fullname
-    var fullName: String!
+    public var fullName: String!
     // sourcery: jsonField=id
-    var id: String!
+    public var id: String!
     // sourcery: jsonField=ostatus_uri
-    var ostatusUri: String!
+    public var ostatusUri: String!
     // sourcery: jsonField=profileurl
-    var profileUrl: String!
+    public var profileUrl: String!
     // sourcery: jsonField=screen_name
-    var screenName: String!
+    public var screenName: String!
     
-    required init() {
+    required public init() {
         
     }
 }

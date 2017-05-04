@@ -7,11 +7,11 @@ extension MediaUploadResponse.ProcessingInfo: JsonMappable {
 
 }
 
-internal class MediaUploadResponseProcessingInfoJsonMapper: JsonMapper<MediaUploadResponse.ProcessingInfo> {
+public class MediaUploadResponseProcessingInfoJsonMapper: JsonMapper<MediaUploadResponse.ProcessingInfo> {
 
-    internal static let singleton = MediaUploadResponseProcessingInfoJsonMapper()
+    public static let singleton = MediaUploadResponseProcessingInfoJsonMapper()
 
-    override func parse(_ parser: JsonParser) -> MediaUploadResponse.ProcessingInfo! {
+    override public func parse(_ parser: JsonParser) -> MediaUploadResponse.ProcessingInfo! {
         let instance = MediaUploadResponse.ProcessingInfo()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class MediaUploadResponseProcessingInfoJsonMapper: JsonMapper<MediaUplo
         return instance
     }
 
-    override func parseField(_ instance: MediaUploadResponse.ProcessingInfo, _ fieldName: String, _ parser: JsonParser) {
+    override public func parseField(_ instance: MediaUploadResponse.ProcessingInfo, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         default:
             break

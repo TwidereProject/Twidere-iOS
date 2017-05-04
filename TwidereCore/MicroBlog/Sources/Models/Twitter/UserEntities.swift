@@ -1,14 +1,14 @@
 // sourcery: jsonParse
-class UserEntities {
+public class UserEntities {
     
     // sourcery: jsonField=url
-    var url: Entities!
+    public var url: Entities!
     
     // sourcery: jsonField=description
-    var description: Entities!
+    public var description: Entities!
     
     
-    required init() {
+    required public init() {
         
     }
 }

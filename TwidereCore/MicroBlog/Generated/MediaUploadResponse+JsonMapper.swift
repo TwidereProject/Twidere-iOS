@@ -7,11 +7,11 @@ extension MediaUploadResponse: JsonMappable {
 
 }
 
-internal class MediaUploadResponseJsonMapper: JsonMapper<MediaUploadResponse> {
+public class MediaUploadResponseJsonMapper: JsonMapper<MediaUploadResponse> {
 
-    internal static let singleton = MediaUploadResponseJsonMapper()
+    public static let singleton = MediaUploadResponseJsonMapper()
 
-    override func parse(_ parser: JsonParser) -> MediaUploadResponse! {
+    override public func parse(_ parser: JsonParser) -> MediaUploadResponse! {
         let instance = MediaUploadResponse()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class MediaUploadResponseJsonMapper: JsonMapper<MediaUploadResponse> {
         return instance
     }
 
-    override func parseField(_ instance: MediaUploadResponse, _ fieldName: String, _ parser: JsonParser) {
+    override public func parseField(_ instance: MediaUploadResponse, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         default:
             break

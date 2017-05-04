@@ -1,4 +1,4 @@
-protocol EntitySupport {
+public protocol EntitySupport {
     
     var entities: Entities? { get }
     

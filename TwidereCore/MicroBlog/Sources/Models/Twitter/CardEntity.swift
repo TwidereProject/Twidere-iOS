@@ -1,7 +1,7 @@
 // sourcery: jsonParse
-class CardEntity {
+public class CardEntity {
     
-    required init() {
+    required public init() {
         
     }
     

@@ -11,7 +11,7 @@ internal class SpanItemJsonMapper: JsonMapper<SpanItem> {
 
     internal static let singleton = SpanItemJsonMapper()
 
-    override func parse(_ parser: JsonParser) -> SpanItem! {
+    override internal func parse(_ parser: JsonParser) -> SpanItem! {
         let instance = SpanItem()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class SpanItemJsonMapper: JsonMapper<SpanItem> {
         return instance
     }
 
-    override func parseField(_ instance: SpanItem, _ fieldName: String, _ parser: JsonParser) {
+    override internal func parseField(_ instance: SpanItem, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         default:
             break

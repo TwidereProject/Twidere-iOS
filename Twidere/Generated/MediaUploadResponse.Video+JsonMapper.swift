@@ -11,7 +11,7 @@ internal class MediaUploadResponseVideoJsonMapper: JsonMapper<MediaUploadRespons
 
     internal static let singleton = MediaUploadResponseVideoJsonMapper()
 
-    override func parse(_ parser: JsonParser) -> MediaUploadResponse.Video! {
+    override internal func parse(_ parser: JsonParser) -> MediaUploadResponse.Video! {
         let instance = MediaUploadResponse.Video()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class MediaUploadResponseVideoJsonMapper: JsonMapper<MediaUploadRespons
         return instance
     }
 
-    override func parseField(_ instance: MediaUploadResponse.Video, _ fieldName: String, _ parser: JsonParser) {
+    override internal func parseField(_ instance: MediaUploadResponse.Video, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         default:
             break

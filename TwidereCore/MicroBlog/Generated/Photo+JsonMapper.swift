@@ -7,11 +7,11 @@ extension Photo: JsonMappable {
 
 }
 
-internal class PhotoJsonMapper: JsonMapper<Photo> {
+public class PhotoJsonMapper: JsonMapper<Photo> {
 
-    internal static let singleton = PhotoJsonMapper()
+    public static let singleton = PhotoJsonMapper()
 
-    override func parse(_ parser: JsonParser) -> Photo! {
+    override public func parse(_ parser: JsonParser) -> Photo! {
         let instance = Photo()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class PhotoJsonMapper: JsonMapper<Photo> {
         return instance
     }
 
-    override func parseField(_ instance: Photo, _ fieldName: String, _ parser: JsonParser) {
+    override public func parseField(_ instance: Photo, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         case "url":
             instance.url = parser.getValueAsString()

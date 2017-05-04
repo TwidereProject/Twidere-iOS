@@ -7,29 +7,29 @@
 //
 
 // sourcery: jsonParse
-class Attachment {
+public class Attachment {
     // sourcery: jsonField=width
-    var width: Int32 = 0
+    public var width: Int32 = 0
     // sourcery: jsonField=height
-    var height: Int32 = 0
+    public var height: Int32 = 0
     // sourcery: jsonField=url
-    var url: String!
+    public var url: String!
     // sourcery: jsonField=thumb_url
-    var thumbUrl: String!
+    public var thumbUrl: String!
     // sourcery: jsonField=large_thumb_url
-    var largeThumbUrl: String!
+    public var largeThumbUrl: String!
     // sourcery: jsonField=mimetype
-    var mimetype: String!
+    public var mimetype: String!
     // sourcery: jsonField=id
-    var id: Int64 = -1
+    public var id: Int64 = -1
     // sourcery: jsonField=oembed
-    var oembed: Bool = false
+    public var oembed: Bool = false
     // sourcery: jsonField=size
-    var size: Int64 = -1
+    public var size: Int64 = -1
     // sourcery: jsonField=version
-    var version: String!
+    public var version: String!
     
-    required init() {
+    required public init() {
         
     }
 }

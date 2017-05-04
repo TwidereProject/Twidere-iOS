@@ -11,7 +11,7 @@ internal class AccountDetailsCredentialsJsonMapper: JsonMapper<AccountDetails.Cr
 
     internal static let singleton = AccountDetailsCredentialsJsonMapper()
 
-    override func parse(_ parser: JsonParser) -> AccountDetails.Credentials! {
+    override internal func parse(_ parser: JsonParser) -> AccountDetails.Credentials! {
         let instance = AccountDetails.Credentials()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class AccountDetailsCredentialsJsonMapper: JsonMapper<AccountDetails.Cr
         return instance
     }
 
-    override func parseField(_ instance: AccountDetails.Credentials, _ fieldName: String, _ parser: JsonParser) {
+    override internal func parseField(_ instance: AccountDetails.Credentials, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         case "api_url_format":
             instance.api_url_format = parser.getValueAsString()

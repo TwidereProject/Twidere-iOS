@@ -81,7 +81,6 @@
 		CE6C6C371DB35C1D00DF4892 /* UserKey+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C331DB35C1D00DF4892 /* UserKey+Freddy.swift */; };
 		CE6D6E9A1DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D6E991DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift */; };
 		CE6FA33F1EBAD4ED0068BE01 /* AccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA33E1EBAD4ED0068BE01 /* AccountDetails.swift */; };
-		CE6FA3421EBAE3E00068BE01 /* AccountCredentialsImpls.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3411EBAE3E00068BE01 /* AccountCredentialsImpls.swift */; };
 		CE750A471EBB4CC9003E6249 /* TwidereCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750A461EBB4CC9003E6249 /* TwidereCore.framework */; };
 		CE750B671EBB71A6003E6249 /* AccountBasicCredentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B4A1EBB71A6003E6249 /* AccountBasicCredentials+JsonMapper.swift */; };
 		CE750B681EBB71A6003E6249 /* AccountDetails.Credentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B4B1EBB71A6003E6249 /* AccountDetails.Credentials+JsonMapper.swift */; };
@@ -279,7 +278,6 @@
 		CE6C6C331DB35C1D00DF4892 /* UserKey+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserKey+Freddy.swift"; sourceTree = "<group>"; };
 		CE6D6E991DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNavigationBarProtocol.swift; sourceTree = "<group>"; };
 		CE6FA33E1EBAD4ED0068BE01 /* AccountDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetails.swift; sourceTree = "<group>"; };
-		CE6FA3411EBAE3E00068BE01 /* AccountCredentialsImpls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCredentialsImpls.swift; sourceTree = "<group>"; };
 		CE750A461EBB4CC9003E6249 /* TwidereCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwidereCore.framework; path = "../../../../../Users/mariotaku/Library/Developer/Xcode/DerivedData/Twidere-dhschizzfhkqdkgwpcupdypbyxay/Build/Products/Debug-iphoneos/TwidereCore.framework"; sourceTree = "<group>"; };
 		CE750B4A1EBB71A6003E6249 /* AccountBasicCredentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountBasicCredentials+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE750B4B1EBB71A6003E6249 /* AccountDetails.Credentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountDetails.Credentials+JsonMapper.swift"; sourceTree = "<group>"; };
@@ -745,7 +743,6 @@
 		CE6FA3401EBAE3CF0068BE01 /* Credentials */ = {
 			isa = PBXGroup;
 			children = (
-				CE6FA3411EBAE3E00068BE01 /* AccountCredentialsImpls.swift */,
 			);
 			path = Credentials;
 			sourceTree = "<group>";
@@ -1497,7 +1494,6 @@
 				CEF2CF451D83F11200131EAE /* UserProfileController.swift in Sources */,
 				CEBECFCA1DAB8AD900350383 /* CollectionUtils.swift in Sources */,
 				CE9574981D33D87200504D52 /* NetworkPreferencesController.swift in Sources */,
-				CE6FA3421EBAE3E00068BE01 /* AccountCredentialsImpls.swift in Sources */,
 				CEA2E2C51D37C2590095BC57 /* ComposeLocationController.swift in Sources */,
 				CE6C6C371DB35C1D00DF4892 /* UserKey+Freddy.swift in Sources */,
 				CE750B831EBB71A6003E6249 /* TwitterUploadService+RestImpl.swift in Sources */,

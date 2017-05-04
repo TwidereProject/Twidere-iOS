@@ -7,11 +7,11 @@ extension GeoPoint: JsonMappable {
 
 }
 
-internal class GeoPointJsonMapper: JsonMapper<GeoPoint> {
+public class GeoPointJsonMapper: JsonMapper<GeoPoint> {
 
-    internal static let singleton = GeoPointJsonMapper()
+    public static let singleton = GeoPointJsonMapper()
 
-    override func parse(_ parser: JsonParser) -> GeoPoint! {
+    override public func parse(_ parser: JsonParser) -> GeoPoint! {
         let instance = GeoPoint()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class GeoPointJsonMapper: JsonMapper<GeoPoint> {
         return instance
     }
 
-    override func parseField(_ instance: GeoPoint, _ fieldName: String, _ parser: JsonParser) {
+    override public func parseField(_ instance: GeoPoint, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         case "coordinates":
             if (parser.currentEvent == .arrayStart) {

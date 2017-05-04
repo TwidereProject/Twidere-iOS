@@ -323,9 +323,9 @@ class PersistableStatus {
      *
      * DO NOT CHANGE ONCE DEFINED!
      */
-    struct FilterFlag: OptionSet {
+    public struct FilterFlag: OptionSet {
         
-        let rawValue: UInt32
+        public let rawValue: UInt32
         
         /**
          * Original tweet of a quote tweet is unavailable.
@@ -338,19 +338,19 @@ class PersistableStatus {
          *  * Original tweet was deleted
          *  * Original tweet author blocked or blocked by quoted tweet author
          */
-        static let quoteNotAvailable = FilterFlag(rawValue: 0x1)
+        public static let quoteNotAvailable = FilterFlag(rawValue: 0x1)
         /**
          * Original author of a quote/retweet was blocked by you
          */
-        static let blockingUser = FilterFlag(rawValue: 0x2)
+        public static let blockingUser = FilterFlag(rawValue: 0x2)
         /**
          * You were blocked by original author of a quote/retweet
          */
-        static let blockedByUser = FilterFlag(rawValue: 0x4)
+        public static let blockedByUser = FilterFlag(rawValue: 0x4)
         /**
          * Status possibly sensitive (NSFW etc)
          */
-        static let possiblySensitive = FilterFlag(rawValue: 0x8)
+        public static let possiblySensitive = FilterFlag(rawValue: 0x8)
         
     }
     

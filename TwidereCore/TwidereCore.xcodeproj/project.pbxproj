@@ -11,6 +11,45 @@
 		CE750A3D1EBB3F3C003E6249 /* TwidereCore.h in Headers */ = {isa = PBXBuildFile; fileRef = CE750A3B1EBB3F3C003E6249 /* TwidereCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE750A631EBB4D28003E6249 /* MicroBlog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750A621EBB4D09003E6249 /* MicroBlog.framework */; };
 		CE750B3F1EBB6DC8003E6249 /* RestClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750B3E1EBB6DC8003E6249 /* RestClient.framework */; };
+		CE750BB01EBB7E39003E6249 /* StatusExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BAE1EBB7E39003E6249 /* StatusExtension.swift */; };
+		CE750BB11EBB7E39003E6249 /* UserExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BAF1EBB7E39003E6249 /* UserExtension.swift */; };
+		CE750BB91EBB7E6A003E6249 /* PersistableActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BB41EBB7E6A003E6249 /* PersistableActivity.swift */; };
+		CE750BBA1EBB7E6A003E6249 /* PersistableCardEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BB51EBB7E6A003E6249 /* PersistableCardEntity.swift */; };
+		CE750BBB1EBB7E6A003E6249 /* PersistableLiteUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BB61EBB7E6A003E6249 /* PersistableLiteUser.swift */; };
+		CE750BBC1EBB7E6A003E6249 /* PersistableStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BB71EBB7E6A003E6249 /* PersistableStatus.swift */; };
+		CE750BBD1EBB7E6A003E6249 /* PersistableUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BB81EBB7E6A003E6249 /* PersistableUser.swift */; };
+		CE750BC21EBB7EB0003E6249 /* AccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BC11EBB7EB0003E6249 /* AccountDetails.swift */; };
+		CE750BC41EBB7EC2003E6249 /* UserKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BC31EBB7EC2003E6249 /* UserKey.swift */; };
+		CE750BC61EBB80C6003E6249 /* SpanItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BC51EBB80C6003E6249 /* SpanItem.swift */; };
+		CE750BC81EBB80F4003E6249 /* HtmlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BC71EBB80F4003E6249 /* HtmlBuilder.swift */; };
+		CE750BCB1EBB8175003E6249 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BCA1EBB8175003E6249 /* DateExtensions.swift */; };
+		CE750BCF1EBB8230003E6249 /* PersistableStatusExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BCE1EBB8230003E6249 /* PersistableStatusExtension.swift */; };
+		CE750BD41EBB82B9003E6249 /* MediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BD31EBB82B9003E6249 /* MediaItem.swift */; };
+		CE750BD61EBB82D5003E6249 /* MentionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BD51EBB82D5003E6249 /* MentionItem.swift */; };
+		CE750BE91EBB840F003E6249 /* AccountDetails.Credentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BDA1EBB840F003E6249 /* AccountDetails.Credentials+JsonMapper.swift */; };
+		CE750BEA1EBB840F003E6249 /* AccountDetails.Extras+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BDB1EBB840F003E6249 /* AccountDetails.Extras+JsonMapper.swift */; };
+		CE750BEB1EBB840F003E6249 /* MediaItem.VideoInfo.Variant+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BDC1EBB840F003E6249 /* MediaItem.VideoInfo.Variant+JsonMapper.swift */; };
+		CE750BEC1EBB840F003E6249 /* MediaItem.VideoInfo+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BDD1EBB840F003E6249 /* MediaItem.VideoInfo+JsonMapper.swift */; };
+		CE750BED1EBB840F003E6249 /* MediaItem+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BDE1EBB840F003E6249 /* MediaItem+JsonMapper.swift */; };
+		CE750BEE1EBB840F003E6249 /* MentionItem+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BDF1EBB840F003E6249 /* MentionItem+JsonMapper.swift */; };
+		CE750BEF1EBB840F003E6249 /* PersistableActivity.RelatedObject+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BE01EBB840F003E6249 /* PersistableActivity.RelatedObject+JsonMapper.swift */; };
+		CE750BF01EBB840F003E6249 /* PersistableActivity.SummaryLine+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BE11EBB840F003E6249 /* PersistableActivity.SummaryLine+JsonMapper.swift */; };
+		CE750BF11EBB840F003E6249 /* PersistableActivity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BE21EBB840F003E6249 /* PersistableActivity+JsonMapper.swift */; };
+		CE750BF21EBB840F003E6249 /* PersistableCardEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BE31EBB840F003E6249 /* PersistableCardEntity+JsonMapper.swift */; };
+		CE750BF31EBB840F003E6249 /* PersistableLiteUser+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BE41EBB840F003E6249 /* PersistableLiteUser+JsonMapper.swift */; };
+		CE750BF41EBB840F003E6249 /* PersistableStatus.Extras+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BE51EBB840F003E6249 /* PersistableStatus.Extras+JsonMapper.swift */; };
+		CE750BF51EBB840F003E6249 /* PersistableStatus+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BE61EBB840F003E6249 /* PersistableStatus+JsonMapper.swift */; };
+		CE750BF61EBB840F003E6249 /* PersistableUser+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BE71EBB840F003E6249 /* PersistableUser+JsonMapper.swift */; };
+		CE750BF71EBB840F003E6249 /* SpanItem+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BE81EBB840F003E6249 /* SpanItem+JsonMapper.swift */; };
+		CE750BF91EBB854F003E6249 /* AccountCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BF81EBB854F003E6249 /* AccountCredentials.swift */; };
+		CE750BFE1EBB85DA003E6249 /* BasicCredentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BFA1EBB85DA003E6249 /* BasicCredentials+JsonMapper.swift */; };
+		CE750BFF1EBB85DA003E6249 /* EmptyCredentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BFB1EBB85DA003E6249 /* EmptyCredentials+JsonMapper.swift */; };
+		CE750C001EBB85DA003E6249 /* OAuth2Credentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BFC1EBB85DA003E6249 /* OAuth2Credentials+JsonMapper.swift */; };
+		CE750C011EBB85DA003E6249 /* OAuthCredentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BFD1EBB85DA003E6249 /* OAuthCredentials+JsonMapper.swift */; };
+		CE750C031EBB8709003E6249 /* SimpleTypesFieldConverters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750C021EBB8709003E6249 /* SimpleTypesFieldConverters.swift */; };
+		CE750C051EBB8951003E6249 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750C041EBB8951003E6249 /* StringExtensions.swift */; };
+		CE750C081EBB89AC003E6249 /* CardEntityExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750C061EBB89AC003E6249 /* CardEntityExtension.swift */; };
+		CE750C091EBB89AC003E6249 /* UserMentionEntityExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750C071EBB89AC003E6249 /* UserMentionEntityExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +79,45 @@
 		CE750A5D1EBB4D08003E6249 /* MicroBlog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MicroBlog.xcodeproj; path = MicroBlog/MicroBlog.xcodeproj; sourceTree = "<group>"; };
 		CE750AAA1EBB600B003E6249 /* Mastodon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Mastodon.xcodeproj; path = Mastodon/Mastodon.xcodeproj; sourceTree = "<group>"; };
 		CE750B3E1EBB6DC8003E6249 /* RestClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestClient.framework; path = "../../../../../Users/mariotaku/Library/Developer/Xcode/DerivedData/Twidere-dhschizzfhkqdkgwpcupdypbyxay/Build/Products/Debug-iphoneos/RestClient.framework"; sourceTree = "<group>"; };
+		CE750BAE1EBB7E39003E6249 /* StatusExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusExtension.swift; sourceTree = "<group>"; };
+		CE750BAF1EBB7E39003E6249 /* UserExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserExtension.swift; sourceTree = "<group>"; };
+		CE750BB41EBB7E6A003E6249 /* PersistableActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableActivity.swift; sourceTree = "<group>"; };
+		CE750BB51EBB7E6A003E6249 /* PersistableCardEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableCardEntity.swift; sourceTree = "<group>"; };
+		CE750BB61EBB7E6A003E6249 /* PersistableLiteUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableLiteUser.swift; sourceTree = "<group>"; };
+		CE750BB71EBB7E6A003E6249 /* PersistableStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableStatus.swift; sourceTree = "<group>"; };
+		CE750BB81EBB7E6A003E6249 /* PersistableUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableUser.swift; sourceTree = "<group>"; };
+		CE750BC11EBB7EB0003E6249 /* AccountDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetails.swift; sourceTree = "<group>"; };
+		CE750BC31EBB7EC2003E6249 /* UserKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserKey.swift; sourceTree = "<group>"; };
+		CE750BC51EBB80C6003E6249 /* SpanItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItem.swift; sourceTree = "<group>"; };
+		CE750BC71EBB80F4003E6249 /* HtmlBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HtmlBuilder.swift; sourceTree = "<group>"; };
+		CE750BCA1EBB8175003E6249 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		CE750BCE1EBB8230003E6249 /* PersistableStatusExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableStatusExtension.swift; sourceTree = "<group>"; };
+		CE750BD31EBB82B9003E6249 /* MediaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaItem.swift; sourceTree = "<group>"; };
+		CE750BD51EBB82D5003E6249 /* MentionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionItem.swift; sourceTree = "<group>"; };
+		CE750BDA1EBB840F003E6249 /* AccountDetails.Credentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountDetails.Credentials+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750BDB1EBB840F003E6249 /* AccountDetails.Extras+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountDetails.Extras+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750BDC1EBB840F003E6249 /* MediaItem.VideoInfo.Variant+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaItem.VideoInfo.Variant+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750BDD1EBB840F003E6249 /* MediaItem.VideoInfo+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaItem.VideoInfo+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750BDE1EBB840F003E6249 /* MediaItem+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaItem+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750BDF1EBB840F003E6249 /* MentionItem+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MentionItem+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750BE01EBB840F003E6249 /* PersistableActivity.RelatedObject+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableActivity.RelatedObject+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750BE11EBB840F003E6249 /* PersistableActivity.SummaryLine+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableActivity.SummaryLine+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750BE21EBB840F003E6249 /* PersistableActivity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableActivity+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750BE31EBB840F003E6249 /* PersistableCardEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableCardEntity+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750BE41EBB840F003E6249 /* PersistableLiteUser+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableLiteUser+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750BE51EBB840F003E6249 /* PersistableStatus.Extras+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableStatus.Extras+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750BE61EBB840F003E6249 /* PersistableStatus+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableStatus+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750BE71EBB840F003E6249 /* PersistableUser+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableUser+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750BE81EBB840F003E6249 /* SpanItem+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SpanItem+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750BF81EBB854F003E6249 /* AccountCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCredentials.swift; sourceTree = "<group>"; };
+		CE750BFA1EBB85DA003E6249 /* BasicCredentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BasicCredentials+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750BFB1EBB85DA003E6249 /* EmptyCredentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EmptyCredentials+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750BFC1EBB85DA003E6249 /* OAuth2Credentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuth2Credentials+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750BFD1EBB85DA003E6249 /* OAuthCredentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuthCredentials+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750C021EBB8709003E6249 /* SimpleTypesFieldConverters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTypesFieldConverters.swift; sourceTree = "<group>"; };
+		CE750C041EBB8951003E6249 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		CE750C061EBB89AC003E6249 /* CardEntityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardEntityExtension.swift; sourceTree = "<group>"; };
+		CE750C071EBB89AC003E6249 /* UserMentionEntityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMentionEntityExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +176,9 @@
 		CE750A3A1EBB3F3C003E6249 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				CE750BC91EBB80FB003E6249 /* Utils */,
+				CE750BBF1EBB7E7C003E6249 /* Extensions */,
+				CE750BBE1EBB7E6E003E6249 /* Model */,
 				CE750A3C1EBB3F3C003E6249 /* Info.plist */,
 				CE750A3B1EBB3F3C003E6249 /* TwidereCore.h */,
 			);
@@ -107,6 +188,25 @@
 		CE750A441EBB4144003E6249 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				CE750BFA1EBB85DA003E6249 /* BasicCredentials+JsonMapper.swift */,
+				CE750BFB1EBB85DA003E6249 /* EmptyCredentials+JsonMapper.swift */,
+				CE750BFC1EBB85DA003E6249 /* OAuth2Credentials+JsonMapper.swift */,
+				CE750BFD1EBB85DA003E6249 /* OAuthCredentials+JsonMapper.swift */,
+				CE750BDA1EBB840F003E6249 /* AccountDetails.Credentials+JsonMapper.swift */,
+				CE750BDB1EBB840F003E6249 /* AccountDetails.Extras+JsonMapper.swift */,
+				CE750BDC1EBB840F003E6249 /* MediaItem.VideoInfo.Variant+JsonMapper.swift */,
+				CE750BDD1EBB840F003E6249 /* MediaItem.VideoInfo+JsonMapper.swift */,
+				CE750BDE1EBB840F003E6249 /* MediaItem+JsonMapper.swift */,
+				CE750BDF1EBB840F003E6249 /* MentionItem+JsonMapper.swift */,
+				CE750BE01EBB840F003E6249 /* PersistableActivity.RelatedObject+JsonMapper.swift */,
+				CE750BE11EBB840F003E6249 /* PersistableActivity.SummaryLine+JsonMapper.swift */,
+				CE750BE21EBB840F003E6249 /* PersistableActivity+JsonMapper.swift */,
+				CE750BE31EBB840F003E6249 /* PersistableCardEntity+JsonMapper.swift */,
+				CE750BE41EBB840F003E6249 /* PersistableLiteUser+JsonMapper.swift */,
+				CE750BE51EBB840F003E6249 /* PersistableStatus.Extras+JsonMapper.swift */,
+				CE750BE61EBB840F003E6249 /* PersistableStatus+JsonMapper.swift */,
+				CE750BE71EBB840F003E6249 /* PersistableUser+JsonMapper.swift */,
+				CE750BE81EBB840F003E6249 /* SpanItem+JsonMapper.swift */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -125,6 +225,63 @@
 				CE750B141EBB692A003E6249 /* Mastodon.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CE750BBE1EBB7E6E003E6249 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE750BF81EBB854F003E6249 /* AccountCredentials.swift */,
+				CE750BD51EBB82D5003E6249 /* MentionItem.swift */,
+				CE750BD31EBB82B9003E6249 /* MediaItem.swift */,
+				CE750BC51EBB80C6003E6249 /* SpanItem.swift */,
+				CE750BC31EBB7EC2003E6249 /* UserKey.swift */,
+				CE750BC11EBB7EB0003E6249 /* AccountDetails.swift */,
+				CE750BB41EBB7E6A003E6249 /* PersistableActivity.swift */,
+				CE750BB51EBB7E6A003E6249 /* PersistableCardEntity.swift */,
+				CE750BB61EBB7E6A003E6249 /* PersistableLiteUser.swift */,
+				CE750BB71EBB7E6A003E6249 /* PersistableStatus.swift */,
+				CE750BB81EBB7E6A003E6249 /* PersistableUser.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		CE750BBF1EBB7E7C003E6249 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE750C041EBB8951003E6249 /* StringExtensions.swift */,
+				CE750C021EBB8709003E6249 /* SimpleTypesFieldConverters.swift */,
+				CE750BD21EBB8238003E6249 /* Model */,
+				CE750BC01EBB7E8E003E6249 /* MicroBlog */,
+				CE750BCA1EBB8175003E6249 /* DateExtensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		CE750BC01EBB7E8E003E6249 /* MicroBlog */ = {
+			isa = PBXGroup;
+			children = (
+				CE750C061EBB89AC003E6249 /* CardEntityExtension.swift */,
+				CE750C071EBB89AC003E6249 /* UserMentionEntityExtension.swift */,
+				CE750BAE1EBB7E39003E6249 /* StatusExtension.swift */,
+				CE750BAF1EBB7E39003E6249 /* UserExtension.swift */,
+			);
+			name = MicroBlog;
+			sourceTree = "<group>";
+		};
+		CE750BC91EBB80FB003E6249 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CE750BC71EBB80F4003E6249 /* HtmlBuilder.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		CE750BD21EBB8238003E6249 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE750BCE1EBB8230003E6249 /* PersistableStatusExtension.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +427,45 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE750BCF1EBB8230003E6249 /* PersistableStatusExtension.swift in Sources */,
+				CE750BEC1EBB840F003E6249 /* MediaItem.VideoInfo+JsonMapper.swift in Sources */,
+				CE750C031EBB8709003E6249 /* SimpleTypesFieldConverters.swift in Sources */,
+				CE750BFF1EBB85DA003E6249 /* EmptyCredentials+JsonMapper.swift in Sources */,
+				CE750BFE1EBB85DA003E6249 /* BasicCredentials+JsonMapper.swift in Sources */,
+				CE750BF61EBB840F003E6249 /* PersistableUser+JsonMapper.swift in Sources */,
+				CE750BC61EBB80C6003E6249 /* SpanItem.swift in Sources */,
+				CE750BC41EBB7EC2003E6249 /* UserKey.swift in Sources */,
+				CE750BBC1EBB7E6A003E6249 /* PersistableStatus.swift in Sources */,
+				CE750BF41EBB840F003E6249 /* PersistableStatus.Extras+JsonMapper.swift in Sources */,
+				CE750BD61EBB82D5003E6249 /* MentionItem.swift in Sources */,
+				CE750BF21EBB840F003E6249 /* PersistableCardEntity+JsonMapper.swift in Sources */,
+				CE750BEE1EBB840F003E6249 /* MentionItem+JsonMapper.swift in Sources */,
+				CE750BF31EBB840F003E6249 /* PersistableLiteUser+JsonMapper.swift in Sources */,
+				CE750BF51EBB840F003E6249 /* PersistableStatus+JsonMapper.swift in Sources */,
+				CE750C011EBB85DA003E6249 /* OAuthCredentials+JsonMapper.swift in Sources */,
+				CE750BBD1EBB7E6A003E6249 /* PersistableUser.swift in Sources */,
+				CE750BEF1EBB840F003E6249 /* PersistableActivity.RelatedObject+JsonMapper.swift in Sources */,
+				CE750C091EBB89AC003E6249 /* UserMentionEntityExtension.swift in Sources */,
+				CE750C081EBB89AC003E6249 /* CardEntityExtension.swift in Sources */,
+				CE750BF91EBB854F003E6249 /* AccountCredentials.swift in Sources */,
+				CE750BC21EBB7EB0003E6249 /* AccountDetails.swift in Sources */,
+				CE750C051EBB8951003E6249 /* StringExtensions.swift in Sources */,
+				CE750BCB1EBB8175003E6249 /* DateExtensions.swift in Sources */,
+				CE750BE91EBB840F003E6249 /* AccountDetails.Credentials+JsonMapper.swift in Sources */,
+				CE750C001EBB85DA003E6249 /* OAuth2Credentials+JsonMapper.swift in Sources */,
+				CE750BF01EBB840F003E6249 /* PersistableActivity.SummaryLine+JsonMapper.swift in Sources */,
+				CE750BD41EBB82B9003E6249 /* MediaItem.swift in Sources */,
+				CE750BED1EBB840F003E6249 /* MediaItem+JsonMapper.swift in Sources */,
+				CE750BEA1EBB840F003E6249 /* AccountDetails.Extras+JsonMapper.swift in Sources */,
+				CE750BB01EBB7E39003E6249 /* StatusExtension.swift in Sources */,
+				CE750BC81EBB80F4003E6249 /* HtmlBuilder.swift in Sources */,
+				CE750BEB1EBB840F003E6249 /* MediaItem.VideoInfo.Variant+JsonMapper.swift in Sources */,
+				CE750BF71EBB840F003E6249 /* SpanItem+JsonMapper.swift in Sources */,
+				CE750BB11EBB7E39003E6249 /* UserExtension.swift in Sources */,
+				CE750BBB1EBB7E6A003E6249 /* PersistableLiteUser.swift in Sources */,
+				CE750BF11EBB840F003E6249 /* PersistableActivity+JsonMapper.swift in Sources */,
+				CE750BB91EBB7E6A003E6249 /* PersistableActivity.swift in Sources */,
+				CE750BBA1EBB7E6A003E6249 /* PersistableCardEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

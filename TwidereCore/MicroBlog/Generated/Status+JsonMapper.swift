@@ -7,11 +7,11 @@ extension Status: JsonMappable {
 
 }
 
-internal class StatusJsonMapper: JsonMapper<Status> {
+public class StatusJsonMapper: JsonMapper<Status> {
 
-    internal static let singleton = StatusJsonMapper()
+    public static let singleton = StatusJsonMapper()
 
-    override func parse(_ parser: JsonParser) -> Status! {
+    override public func parse(_ parser: JsonParser) -> Status! {
         let instance = Status()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class StatusJsonMapper: JsonMapper<Status> {
         return instance
     }
 
-    override func parseField(_ instance: Status, _ fieldName: String, _ parser: JsonParser) {
+    override public func parseField(_ instance: Status, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         case "created_at":
             instance.createdAt = TwitterDateFieldConverter.parse(parser)

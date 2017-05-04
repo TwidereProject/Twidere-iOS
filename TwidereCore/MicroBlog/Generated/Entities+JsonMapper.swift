@@ -7,11 +7,11 @@ extension Entities: JsonMappable {
 
 }
 
-internal class EntitiesJsonMapper: JsonMapper<Entities> {
+public class EntitiesJsonMapper: JsonMapper<Entities> {
 
-    internal static let singleton = EntitiesJsonMapper()
+    public static let singleton = EntitiesJsonMapper()
 
-    override func parse(_ parser: JsonParser) -> Entities! {
+    override public func parse(_ parser: JsonParser) -> Entities! {
         let instance = Entities()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class EntitiesJsonMapper: JsonMapper<Entities> {
         return instance
     }
 
-    override func parseField(_ instance: Entities, _ fieldName: String, _ parser: JsonParser) {
+    override public func parseField(_ instance: Entities, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         case "urls":
             if (parser.currentEvent == .arrayStart) {

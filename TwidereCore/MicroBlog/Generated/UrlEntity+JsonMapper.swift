@@ -7,11 +7,11 @@ extension UrlEntity: JsonMappable {
 
 }
 
-internal class UrlEntityJsonMapper: JsonMapper<UrlEntity> {
+public class UrlEntityJsonMapper: JsonMapper<UrlEntity> {
 
-    internal static let singleton = UrlEntityJsonMapper()
+    public static let singleton = UrlEntityJsonMapper()
 
-    override func parse(_ parser: JsonParser) -> UrlEntity! {
+    override public func parse(_ parser: JsonParser) -> UrlEntity! {
         let instance = UrlEntity()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class UrlEntityJsonMapper: JsonMapper<UrlEntity> {
         return instance
     }
 
-    override func parseField(_ instance: UrlEntity, _ fieldName: String, _ parser: JsonParser) {
+    override public func parseField(_ instance: UrlEntity, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         case "url":
             instance.url = parser.getValueAsString()

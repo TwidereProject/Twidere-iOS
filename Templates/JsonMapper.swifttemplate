@@ -44,7 +44,7 @@ extension <%= type.name %>: JsonMappable {
 
     <%= "\(type.accessLevel) " %>static let singleton = <%= mapperName %>()
 
-    override func parse(_ parser: JsonParser) -> <%= type.name %>! {
+    override <%= "\(type.accessLevel) " %>func parse(_ parser: JsonParser) -> <%= type.name %>! {
         let instance = <%= type.name %>()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -64,7 +64,7 @@ extension <%= type.name %>: JsonMappable {
         return instance
     }
 
-    override func parseField(_ instance: <%= type.name %>, _ fieldName: String, _ parser: JsonParser) {
+    override <%= "\(type.accessLevel) " %>func parseField(_ instance: <%= type.name %>, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         <%_ for variable in type.variables where variable.annotations["jsonField"] != nil { -%>
             <%_ guard let fieldNameAnnotationValue = variable.annotations["jsonField"] as? String else {

@@ -50,6 +50,7 @@ target 'TwidereCore' do
     pod 'Alamofire', '~> 4.0'
     pod 'PMJackson', '~> 1.1.2'
     pod 'PromiseKit', '~> 4.0.0'
+    pod 'Kanna', '~> 2.0'
 end
 
 target 'MicroBlog' do

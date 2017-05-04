@@ -7,11 +7,11 @@ extension CardEntity: JsonMappable {
 
 }
 
-internal class CardEntityJsonMapper: JsonMapper<CardEntity> {
+public class CardEntityJsonMapper: JsonMapper<CardEntity> {
 
-    internal static let singleton = CardEntityJsonMapper()
+    public static let singleton = CardEntityJsonMapper()
 
-    override func parse(_ parser: JsonParser) -> CardEntity! {
+    override public func parse(_ parser: JsonParser) -> CardEntity! {
         let instance = CardEntity()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class CardEntityJsonMapper: JsonMapper<CardEntity> {
         return instance
     }
 
-    override func parseField(_ instance: CardEntity, _ fieldName: String, _ parser: JsonParser) {
+    override public func parseField(_ instance: CardEntity, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         default:
             break

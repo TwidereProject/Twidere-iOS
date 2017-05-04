@@ -1,160 +1,160 @@
 // sourcery: jsonParse,jsonSerialize
-class Status: EntitySupport {
+public class Status: EntitySupport {
 
     // sourcery: jsonField=created_at
     // sourcery: jsonFieldConverter=TwitterDateFieldConverter
-    var createdAt: Date!
+    public var createdAt: Date!
 
     // sourcery: jsonField=id
-    var id: String!
+    public var id: String!
     
     // Fanfou uses this key
     // sourcery: jsonField=rawid
-    var rawId: Int64 = -1
+    public var rawId: Int64 = -1
     
     // sourcery: jsonField=text
-    var text: String!
+    public var text: String!
     
     /**
      * https://dev.twitter.com/overview/api/upcoming-changes-to-tweets
      */
     // sourcery: jsonField=full_text
-    var fullText: String!
+    public var fullText: String!
     
     // sourcery: jsonField=statusnet_html
-    var statusnetHtml: String!
+    public var statusnetHtml: String!
     
     // sourcery: jsonField=source
-    var source: String? = nil
+    public var source: String? = nil
     
     // sourcery: jsonField=truncated
-    var truncated: Bool = false
+    public var truncated: Bool = false
     
     // sourcery: jsonField=entities
-    var entities: Entities? = nil
+    public var entities: Entities? = nil
     
     // sourcery: jsonField=extended_entities
-    var extendedEntities: Entities? = nil
+    public var extendedEntities: Entities? = nil
     
     // sourcery: jsonField=in_reply_to_status_id
-    var inReplyToStatusId: String?
+    public var inReplyToStatusId: String?
     
     // sourcery: jsonField=in_reply_to_user_id
-    var inReplyToUserId: String?
+    public var inReplyToUserId: String?
     
     // sourcery: jsonField=in_reply_to_screen_name
-    var inReplyToScreenName: String?
+    public var inReplyToScreenName: String?
     
     // sourcery: jsonField=user
-    var user: User! = nil
+    public var user: User! = nil
     
     // sourcery: jsonField=geo
-    var geo: GeoPoint? = nil
+    public var geo: GeoPoint? = nil
     
     // sourcery: jsonField=place
-    var place: Place? = nil
+    public var place: Place? = nil
     
     // sourcery: jsonField=current_user_retweet
-    var currentUserRetweet: CurrentUserRetweet? = nil
+    public var currentUserRetweet: CurrentUserRetweet? = nil
     
     // sourcery: jsonField=retweet_count|repeat_num
-    var retweetCount: Int64 = -1
+    public var retweetCount: Int64 = -1
     
     // sourcery: jsonField=favorite_count|fave_num
-    var favoriteCount: Int64 = -1
+    public var favoriteCount: Int64 = -1
     
     // sourcery: jsonField=reply_count
-    var replyCount: Int64 = -1
+    public var replyCount: Int64 = -1
     
     // sourcery: jsonField=favorited
-    var favorited: Bool = false
+    public var favorited: Bool = false
     
     // sourcery: jsonField=retweeted|repeated
-    var retweeted: Bool = false
+    public var retweeted: Bool = false
     
     // sourcery: jsonField=lang
-    var lang: String? = nil
+    public var lang: String? = nil
     
     // sourcery: jsonField=descendent_reply_count
-    var descendentReplyCount: Int64 = -1
+    public var descendentReplyCount: Int64 = -1
     
     // sourcery: jsonField=retweeted_status
-    var retweetedStatus: Status? = nil
+    public var retweetedStatus: Status? = nil
     
     /**
      * <code>repost_status</code> is for Fanfou, <code>quoted_status</code> is for twitter
      */
     // sourcery: jsonField=quoted_status|repost_status
-    var quotedStatus: Status? = nil
+    public var quotedStatus: Status? = nil
     
     /**
      * <code>repost_status_id</code> is for Fanfou, <code>quoted_status_id_str</code> is for twitter
      */
     // sourcery: jsonField=quoted_status_id_str|repost_status_id
-    var quotedStatusId: String? = nil
+    public var quotedStatusId: String? = nil
     
     // sourcery: jsonField=is_quote_status
-    var isQuoteStatus: Bool = false
+    public var isQuoteStatus: Bool = false
     
     // sourcery: jsonField=card
-    var card: CardEntity? = nil
+    public var card: CardEntity? = nil
     
     // sourcery: jsonField=possibly_sensitive
-    var possiblySensitive: Bool = false
+    public var possiblySensitive: Bool = false
     
     /**
      * For GNU social
      */
     // sourcery: jsonField=attachments
-    var attachments: [Attachment]? = nil
+    public var attachments: [Attachment]? = nil
     
     /**
      * For GNU social
      */
     // sourcery: jsonField=external_url
-    var externalUrl: String? = nil
+    public var externalUrl: String? = nil
     
     // sourcery: jsonField=statusnet_conversation_id
-    var statusnetConversationId: String? = nil
+    public var statusnetConversationId: String? = nil
     
     // sourcery: jsonField=conversation_id|statusnet_conversation_id
-    var conversationId: String? = nil
+    public var conversationId: String? = nil
     
     
     /**
      * For GNU social
      */
     // sourcery: jsonField=attentions
-    var attentions: [Attention]? = nil
+    public var attentions: [Attention]? = nil
     
     /**
      * For Fanfou
      */
     // sourcery: jsonField=photo
-    var photo: Photo? = nil
+    public var photo: Photo? = nil
     /**
      * For Fanfou
      */
     // sourcery: jsonField=location
-    var location: String? = nil
+    public var location: String? = nil
     
     // sourcery: jsonField=display_text_range
-    var displayTextRange: [Int]!
+    public var displayTextRange: [Int]!
     
     /**
      * GNU social value
      * Format: {@code "tag:[gnusocial.host],YYYY-MM-DD:noticeId=[noticeId]:objectType=[objectType]"}
      */
     // sourcery: jsonField=uri
-    var uri: String? = nil
+    public var uri: String? = nil
     
     // sourcery: jsonField=timestamp_ms
-    var timestampMs: Int64 = -1
+    public var timestampMs: Int64 = -1
     
     // sourcery: jsonField=extended_tweet
-    var extendedTweet: ExtendedTweet? = nil
+    public var extendedTweet: ExtendedTweet? = nil
     
-    var sortId: Int64 {
+    public var sortId: Int64 {
         var result: Int64 = -1
         result = rawId;
         if (result == -1) {
@@ -163,30 +163,30 @@ class Status: EntitySupport {
         }
         if (result == -1 && createdAt != nil) {
             // Try use timestamp
-            result = createdAt.millisSince1970
+            result = Int64(createdAt.timeIntervalSince1970 * 1000)
         }
         return result
     }
     
-    var isRetweet: Bool {
+    public var isRetweet: Bool {
         return retweetedStatus != nil
     }
     
-    var fullEntities: Entities? {
+    public var fullEntities: Entities? {
         if let extended = self.extendedTweet {
             return extended.entities
         }
         return self.entities
     }
     
-    var fullExtendedEntities: Entities? {
+    public var fullExtendedEntities: Entities? {
         if let extended = self.extendedTweet {
             return extended.extendedEntities
         }
         return self.extendedEntities
     }
     
-    var htmlText: String! {
+    public var htmlText: String! {
         if let html = statusnetHtml {
             return html
         }
@@ -196,36 +196,36 @@ class Status: EntitySupport {
         return text
     }
     
-    required init() {
+    required public init() {
 
     }
     
     // sourcery: jsonParse
-    class ExtendedTweet {
+    public class ExtendedTweet {
         
         // sourcery: jsonField=full_text
-        var fullText: String!
+        public var fullText: String!
         
         // sourcery: jsonField=entities
-        var entities: Entities? = nil
+        public var entities: Entities? = nil
         
         // sourcery: jsonField=extended_entities
-        var extendedEntities: Entities? = nil
+        public var extendedEntities: Entities? = nil
         
         // sourcery: jsonField=display_text_range
-        var displayTextRange: [Int]!
+        public var displayTextRange: [Int]!
         
-        required init() {
+        required public init() {
             
         }
     }
     
     // sourcery: jsonParse
-    class CurrentUserRetweet {
+    public class CurrentUserRetweet {
         // sourcery: jsonField=id
-        var id: String!
+        public var id: String!
         
-        required init() {
+        required public init() {
             
         }
     }

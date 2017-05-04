@@ -1,15 +1,5 @@
-//
-//  AccountOAuthCredentials.swift
-//  Twidere
-//
-//  Created by Mariotaku Lee on 2017/5/4.
-//  Copyright © 2017年 Mariotaku Dev. All rights reserved.
-//
-
-import Foundation
-
 // sourcery:jsonParse
-class AccountOAuthCredentials: AccountDetails.Credentials {
+public class OAuthCredentials: AccountDetails.Credentials {
     
     // sourcery: jsonField=consumer_key
     var consumer_key: String!
@@ -24,40 +14,40 @@ class AccountOAuthCredentials: AccountDetails.Credentials {
     // sourcery: jsonField=same_oauth_signing_url
     var same_oauth_signing_url: Bool = false
     
-    required init() {
+    required public init() {
         
     }
     
 }
 
 // sourcery:jsonParse
-class AccountOAuth2Credentials: AccountDetails.Credentials {
+public class OAuth2Credentials: AccountDetails.Credentials {
     
     // sourcery: jsonField=access_token
     var access_token: String!
     
-    required init() {
+    required public init() {
         
     }
 }
 
 // sourcery:jsonParse
-class AccountBasicCredentials: AccountDetails.Credentials {
+public class BasicCredentials: AccountDetails.Credentials {
     
     // sourcery: jsonField=username
     var username: String!
     // sourcery: jsonField=password
     var password: String!
     
-    required init() {
+    required public init() {
         
     }
 }
 
 // sourcery:jsonParse
-class AccountEmptyCredentials: AccountDetails.Credentials {
+public class EmptyCredentials: AccountDetails.Credentials {
     
-    required init() {
+    required public init() {
         
     }
 }

@@ -1,13 +1,13 @@
 // sourcery: jsonParse
-class HashtagEntity {
+public class HashtagEntity {
     
     // sourcery: jsonField=text
-    var text: String!
+    public var text: String!
     // sourcery: jsonField=indices
-    var indices: [Int32]!
+    public var indices: [Int32]!
     
     
-    required init() {
+    required public init() {
         
     }
 }

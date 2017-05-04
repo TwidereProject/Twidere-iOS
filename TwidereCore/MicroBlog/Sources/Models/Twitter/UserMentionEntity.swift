@@ -1,15 +1,15 @@
 // sourcery: jsonParse
-class UserMentionEntity {
+public class UserMentionEntity {
     // sourcery: id
-    var id: String!
+    public var id: String!
     // sourcery: screen_name
-    var screenName: String!
+    public var screenName: String!
     // sourcery: name
-    var name: String!
+    public var name: String!
     // sourcery: jsonField=indices
-    var indices: [Int32]!
+    public var indices: [Int32]!
     
-    required init() {
+    required public init() {
         
     }
 }

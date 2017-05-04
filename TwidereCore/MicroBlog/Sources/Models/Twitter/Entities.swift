@@ -1,16 +1,16 @@
 // sourcery: jsonParse
-class Entities {
+public class Entities {
     
     // sourcery: jsonField=urls
-    var urls: [UrlEntity]!
+    public var urls: [UrlEntity]!
     
     // sourcery: jsonField=hashtags
-    var hashtags: [HashtagEntity]!
+    public var hashtags: [HashtagEntity]!
     
     // sourcery: jsonField=mentions
-    var mentions: [UserMentionEntity]!
+    public var mentions: [UserMentionEntity]!
     
-    required init() {
+    required public init() {
         
     }
 }

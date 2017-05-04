@@ -20,7 +20,6 @@
 		CE750A781EBB4E9A003E6249 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A761EBB4E9A003E6249 /* Place.swift */; };
 		CE750A7A1EBB5C56003E6249 /* CardEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A791EBB5C56003E6249 /* CardEntity.swift */; };
 		CE750A8A1EBB5CF6003E6249 /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A891EBB5CF6003E6249 /* GeoLocation.swift */; };
-		CE750A8D1EBB5D75003E6249 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A8C1EBB5D75003E6249 /* DateExtensions.swift */; };
 		CE750A901EBB5FAC003E6249 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A8F1EBB5FAC003E6249 /* Photo.swift */; };
 		CE750A931EBB5FBA003E6249 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A911EBB5FBA003E6249 /* Attachment.swift */; };
 		CE750A941EBB5FBA003E6249 /* Attention.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A921EBB5FBA003E6249 /* Attention.swift */; };
@@ -78,7 +77,6 @@
 		CE750A761EBB4E9A003E6249 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		CE750A791EBB5C56003E6249 /* CardEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardEntity.swift; sourceTree = "<group>"; };
 		CE750A891EBB5CF6003E6249 /* GeoLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
-		CE750A8C1EBB5D75003E6249 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		CE750A8F1EBB5FAC003E6249 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		CE750A911EBB5FBA003E6249 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		CE750A921EBB5FBA003E6249 /* Attention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attention.swift; sourceTree = "<group>"; };
@@ -231,7 +229,6 @@
 		CE750A8B1EBB5D6D003E6249 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CE750A8C1EBB5D75003E6249 /* DateExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -439,7 +436,6 @@
 				CE750BA01EBB7A24003E6249 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift in Sources */,
 				CE750BA71EBB7A63003E6249 /* ResponseSerializers.swift in Sources */,
 				CE750B081EBB68C7003E6249 /* Status.ExtendedTweet+JsonMapper.swift in Sources */,
-				CE750A8D1EBB5D75003E6249 /* DateExtensions.swift in Sources */,
 				CE750B8E1EBB77CA003E6249 /* TwitterUploadAPI.swift in Sources */,
 				CE750A781EBB4E9A003E6249 /* Place.swift in Sources */,
 				CE750A671EBB4D50003E6249 /* User.swift in Sources */,

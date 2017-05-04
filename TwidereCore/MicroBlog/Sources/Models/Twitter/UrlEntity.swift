@@ -1,17 +1,17 @@
 // sourcery: jsonParse
-class UrlEntity {
+public class UrlEntity {
     
     // sourcery: jsonField=url
-    var url: String!
+    public var url: String!
     // sourcery: jsonField=display_url
-    var displayUrl: String!
+    public var displayUrl: String!
     // sourcery: jsonField=expanded_url
-    var expandedUrl: String!
+    public var expandedUrl: String!
     
     // sourcery: jsonField=indices
-    var indices: [Int32]!
+    public var indices: [Int32]!
     
-    required init() {
+    required public init() {
         
     }
 }

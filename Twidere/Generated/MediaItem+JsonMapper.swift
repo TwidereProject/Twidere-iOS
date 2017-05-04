@@ -11,7 +11,7 @@ internal class MediaItemJsonMapper: JsonMapper<MediaItem> {
 
     internal static let singleton = MediaItemJsonMapper()
 
-    override func parse(_ parser: JsonParser) -> MediaItem! {
+    override internal func parse(_ parser: JsonParser) -> MediaItem! {
         let instance = MediaItem()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class MediaItemJsonMapper: JsonMapper<MediaItem> {
         return instance
     }
 
-    override func parseField(_ instance: MediaItem, _ fieldName: String, _ parser: JsonParser) {
+    override internal func parseField(_ instance: MediaItem, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         case "url":
             instance.url = parser.getValueAsString()

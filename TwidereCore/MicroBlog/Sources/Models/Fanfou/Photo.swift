@@ -9,17 +9,17 @@
 import Foundation
 
 // sourcery: jsonParse
-class Photo {
+public class Photo {
     // sourcery: jsonField=url
-    var url: String!
+    public var url: String!
     // sourcery: jsonField=imageurl
-    var imageUrl: String!
+    public var imageUrl: String!
     // sourcery: jsonField=thumburl
-    var thumbUrl: String!
+    public var thumbUrl: String!
     // sourcery: jsonField=largeurl
-    var largeUrl: String!
+    public var largeUrl: String!
  
-    required init() {
+    required public init() {
         
     }
 }

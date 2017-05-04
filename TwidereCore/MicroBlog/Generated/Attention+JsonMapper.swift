@@ -7,11 +7,11 @@ extension Attention: JsonMappable {
 
 }
 
-internal class AttentionJsonMapper: JsonMapper<Attention> {
+public class AttentionJsonMapper: JsonMapper<Attention> {
 
-    internal static let singleton = AttentionJsonMapper()
+    public static let singleton = AttentionJsonMapper()
 
-    override func parse(_ parser: JsonParser) -> Attention! {
+    override public func parse(_ parser: JsonParser) -> Attention! {
         let instance = Attention()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class AttentionJsonMapper: JsonMapper<Attention> {
         return instance
     }
 
-    override func parseField(_ instance: Attention, _ fieldName: String, _ parser: JsonParser) {
+    override public func parseField(_ instance: Attention, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         case "fullname":
             instance.fullName = parser.getValueAsString()

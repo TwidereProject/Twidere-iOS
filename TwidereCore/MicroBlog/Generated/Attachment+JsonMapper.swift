@@ -7,11 +7,11 @@ extension Attachment: JsonMappable {
 
 }
 
-internal class AttachmentJsonMapper: JsonMapper<Attachment> {
+public class AttachmentJsonMapper: JsonMapper<Attachment> {
 
-    internal static let singleton = AttachmentJsonMapper()
+    public static let singleton = AttachmentJsonMapper()
 
-    override func parse(_ parser: JsonParser) -> Attachment! {
+    override public func parse(_ parser: JsonParser) -> Attachment! {
         let instance = Attachment()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class AttachmentJsonMapper: JsonMapper<Attachment> {
         return instance
     }
 
-    override func parseField(_ instance: Attachment, _ fieldName: String, _ parser: JsonParser) {
+    override public func parseField(_ instance: Attachment, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         case "width":
             instance.width = parser.getValueAsInt32()

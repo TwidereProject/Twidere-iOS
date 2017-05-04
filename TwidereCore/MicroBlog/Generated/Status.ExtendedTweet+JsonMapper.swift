@@ -7,11 +7,11 @@ extension Status.ExtendedTweet: JsonMappable {
 
 }
 
-internal class StatusExtendedTweetJsonMapper: JsonMapper<Status.ExtendedTweet> {
+public class StatusExtendedTweetJsonMapper: JsonMapper<Status.ExtendedTweet> {
 
-    internal static let singleton = StatusExtendedTweetJsonMapper()
+    public static let singleton = StatusExtendedTweetJsonMapper()
 
-    override func parse(_ parser: JsonParser) -> Status.ExtendedTweet! {
+    override public func parse(_ parser: JsonParser) -> Status.ExtendedTweet! {
         let instance = Status.ExtendedTweet()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class StatusExtendedTweetJsonMapper: JsonMapper<Status.ExtendedTweet> {
         return instance
     }
 
-    override func parseField(_ instance: Status.ExtendedTweet, _ fieldName: String, _ parser: JsonParser) {
+    override public func parseField(_ instance: Status.ExtendedTweet, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         case "full_text":
             instance.fullText = parser.getValueAsString()

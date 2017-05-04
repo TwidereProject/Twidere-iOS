@@ -1,19 +1,19 @@
 // sourcery: jsonParse
-class GeoPoint {
+public class GeoPoint {
     // sourcery: jsonField=coordinates
-    var coordinates: [Double]!
+    public var coordinates: [Double]!
     
     // sourcery: jsonField=type
-    var type: String!
+    public var type: String!
     
-    var geoLocation: GeoLocation! {
+    public var geoLocation: GeoLocation! {
         guard let coords = coordinates, coords.count == 2 else {
             return nil
         }
         return GeoLocation(latitude: coords[0], longitude: coords[1])
     }
     
-    required init() {
+    required public init() {
         
     }
 }
