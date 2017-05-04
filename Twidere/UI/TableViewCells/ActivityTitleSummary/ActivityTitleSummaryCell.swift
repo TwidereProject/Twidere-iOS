@@ -18,7 +18,7 @@ class ActivityTitleSummaryCell: ALSTableViewCell {
     
     var delegate: ActivityTitleSummaryCellDelegate!
     
-    var activity: Activity!
+    var activity: PersistableActivity!
     
     var displayOption: StatusCell.DisplayOption! {
         didSet {
@@ -52,7 +52,7 @@ class ActivityTitleSummaryCell: ALSTableViewCell {
         for profileImageIdx in 0..<profileImageViews.count {
             let view = profileImageViews[profileImageIdx] as! UIImageView
             if (profileImageIdx < activity.sources.count) {
-                view.displayImage(activity.sources[profileImageIdx].profileImageUrlForSize(.reasonablySmall))
+                view.displayImage(activity.sources[profileImageIdx].profileImageUrl(forSize: .reasonablySmall))
             } else {
                 view.displayImage(nil)
             }
@@ -68,5 +68,5 @@ class ActivityTitleSummaryCell: ALSTableViewCell {
 }
 
 protocol ActivityTitleSummaryCellDelegate {
-    func profileImageTapped(for cell: ActivityTitleSummaryCell, user: User, index: Int)
+    func profileImageTapped(for cell: ActivityTitleSummaryCell, user: PersistableUser, index: Int)
 }

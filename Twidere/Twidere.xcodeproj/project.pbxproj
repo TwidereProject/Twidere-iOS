@@ -128,7 +128,6 @@
 		CE65B1CA1D9CC11600A38A61 /* UserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1C91D9CC11600A38A61 /* UserList.swift */; };
 		CE65B1CF1D9CDFEA00A38A61 /* ActivitiesListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1CD1D9CDFEA00A38A61 /* ActivitiesListController.swift */; };
 		CE65B1DD1D9E0D4900A38A61 /* ShortTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1DC1D9E0D4900A38A61 /* ShortTimeView.swift */; };
-		CE65B1E31D9E97D700A38A61 /* GetActivitiesTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1E21D9E97D700A38A61 /* GetActivitiesTask.swift */; };
 		CE65B1E61D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1E51D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift */; };
 		CE65B1E81D9F546700A38A61 /* ItemIndices.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1E71D9F546700A38A61 /* ItemIndices.swift */; };
 		CE6C6C341DB35C1D00DF4892 /* AccountDetailsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C301DB35C1D00DF4892 /* AccountDetailsExtensions.swift */; };
@@ -208,7 +207,6 @@
 		CEDC3B1F1D7D82370082A8BA /* CoreConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC3B1E1D7D82370082A8BA /* CoreConstants.swift */; };
 		CEDC3B211D7D87F80082A8BA /* SQLite+UserVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC3B201D7D87F80082A8BA /* SQLite+UserVersion.swift */; };
 		CEDC3B231D7D8BE90082A8BA /* DatabaseMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC3B221D7D8BE90082A8BA /* DatabaseMigration.swift */; };
-		CEDC3B261D7D9FE70082A8BA /* GetStatusesTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC3B251D7D9FE70082A8BA /* GetStatusesTask.swift */; };
 		CEDC3B281D7DAE2C0082A8BA /* RefreshTaskParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC3B271D7DAE2C0082A8BA /* RefreshTaskParam.swift */; };
 		CEDC3B2A1D7DB04F0082A8BA /* Paging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC3B291D7DB04F0082A8BA /* Paging.swift */; };
 		CEDC3B321D7E5FB30082A8BA /* DatabaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC3B311D7E5FB30082A8BA /* DatabaseConstants.swift */; };
@@ -370,7 +368,6 @@
 		CE65B1C91D9CC11600A38A61 /* UserList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserList.swift; sourceTree = "<group>"; };
 		CE65B1CD1D9CDFEA00A38A61 /* ActivitiesListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesListController.swift; sourceTree = "<group>"; };
 		CE65B1DC1D9E0D4900A38A61 /* ShortTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortTimeView.swift; sourceTree = "<group>"; };
-		CE65B1E21D9E97D700A38A61 /* GetActivitiesTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetActivitiesTask.swift; sourceTree = "<group>"; };
 		CE65B1E51D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionsActivitiesListControllerDataSource.swift; sourceTree = "<group>"; };
 		CE65B1E71D9F546700A38A61 /* ItemIndices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemIndices.swift; sourceTree = "<group>"; };
 		CE6C6C301DB35C1D00DF4892 /* AccountDetailsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailsExtensions.swift; sourceTree = "<group>"; };
@@ -450,7 +447,6 @@
 		CEDC3B1E1D7D82370082A8BA /* CoreConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreConstants.swift; sourceTree = "<group>"; };
 		CEDC3B201D7D87F80082A8BA /* SQLite+UserVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SQLite+UserVersion.swift"; sourceTree = "<group>"; };
 		CEDC3B221D7D8BE90082A8BA /* DatabaseMigration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DatabaseMigration.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		CEDC3B251D7D9FE70082A8BA /* GetStatusesTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GetStatusesTask.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CEDC3B271D7DAE2C0082A8BA /* RefreshTaskParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTaskParam.swift; sourceTree = "<group>"; };
 		CEDC3B291D7DB04F0082A8BA /* Paging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paging.swift; sourceTree = "<group>"; };
 		CEDC3B311D7E5FB30082A8BA /* DatabaseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseConstants.swift; sourceTree = "<group>"; };
@@ -1195,8 +1191,6 @@
 		CEDC3B241D7D9FDA0082A8BA /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
-				CE65B1E21D9E97D700A38A61 /* GetActivitiesTask.swift */,
-				CEDC3B251D7D9FE70082A8BA /* GetStatusesTask.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -1671,7 +1665,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE65B1E31D9E97D700A38A61 /* GetActivitiesTask.swift in Sources */,
 				CE45CAF71D855EFA0004CC1C /* UserKeyExtensions.swift in Sources */,
 				CEA2E2AC1D3549480095BC57 /* UserKey.swift in Sources */,
 				CE65B1BB1D9CB2B100A38A61 /* ActivityTitleSummaryCell.swift in Sources */,
@@ -1721,7 +1714,6 @@
 				CE2A80141EB88B77003791F2 /* MastodonAccount.swift in Sources */,
 				CE2A803F1EB8D982003791F2 /* TwitterHashtagEntity+JsonMapper.swift in Sources */,
 				CE6FA3591EBB050D0068BE01 /* MediaUploadResponse.Video+JsonMapper.swift in Sources */,
-				CEDC3B261D7D9FE70082A8BA /* GetStatusesTask.swift in Sources */,
 				CE79C83F1DA77777007C05F2 /* YYText+ALSLayouts.swift in Sources */,
 				CEBECFB71DA9EBD300350383 /* CALayerExtension.swift in Sources */,
 				CE7A57421D917BDB0027BECE /* SingleAccountStatusesListControllerDataSource.swift in Sources */,

@@ -15,6 +15,7 @@ PODS:
   - JDStatusBarNotification (1.5.5)
   - JVFloatLabeledTextField (1.1.1)
   - Kanna (2.2.1)
+  - LayoutKit (4.0.2)
   - MXPagerView (0.2.1)
   - MXParallaxHeader (0.6.1)
   - PMJackson (1.0.9):
@@ -69,6 +70,7 @@ DEPENDENCIES:
   - JDStatusBarNotification (~> 1.5.5)
   - JVFloatLabeledTextField (~> 1.1)
   - Kanna (~> 2.0)
+  - LayoutKit
   - MXPagerView (~> 0.1)
   - MXParallaxHeader (~> 0.6.0)
   - PMJackson (~> 1.0.9)
@@ -106,6 +108,7 @@ SPEC CHECKSUMS:
   JDStatusBarNotification: 2b4f29bd68a60d7aa2f190b5265f1ce59c18aaf8
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   Kanna: 182789ab065e8f9a6ccc2a74ce6283d3401c0c4a
+  LayoutKit: 7a7b20acc03d815ff444d44cf4d982aed6839688
   MXPagerView: ede184b5191b2ed689ccf05a750a9978cce42414
   MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
   PMJackson: 87df673465053b00c404ac44b3dd46c2b3d12b74
@@ -126,6 +129,6 @@ SPEC CHECKSUMS:
   UIView+TouchHighlighting: e05a338801522cbdc4a1e236bd189f2a928a781f
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 50a5409ab2ee72a4e215f3f211561634db79513b
+PODFILE CHECKSUM: 598c96c63f5120eaba456f18a00e8aec23196bcf
 
 COCOAPODS: 1.2.1

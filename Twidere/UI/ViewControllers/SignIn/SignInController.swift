@@ -328,13 +328,3 @@ class SignInResult {
         self.password = password
     }
 }
-
-fileprivate extension Account {
-    convenience init(config: CustomAPIConfig, result: SignInResult, user: User) {
-        let key = user.key
-        let type: Account.AccountType = .twitter
-        let authType = config.authType
-        let credentials = Credentials(apiUrlFormat: config.apiUrlFormat, noVersionSuffix: config.noVersionSuffix, consumerKey: config.consumerKey, consumerSecret: config.consumerSecret, accessToken: result.accessToken?.oauthToken, accessTokenSecret: result.accessToken?.oauthTokenSecret, sameOAuthSigningUrl: config.sameOAuthSigningUrl, basicUsername: result.username, basicPassword: result.password)
-        self.init(key: key, type: type, authType: authType, credentials: credentials, user: user)
-    }
-}

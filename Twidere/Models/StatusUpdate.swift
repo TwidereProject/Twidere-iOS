@@ -11,17 +11,17 @@ import Foundation
 typealias GeoLocation = (latitude: Double, longitude: Double)
 
 class StatusUpdate {
-    var accounts: [Account]
+    var accounts: [AccountDetails]
     var text: String
     var media: [MediaUpdate]? = nil
     var location: GeoLocation? = nil
     var displayCoordinates: Bool = false
-    var inReplyToStatus: Status? = nil
+    var inReplyToStatus: PersistableStatus? = nil
     var repostStatusId: String? = nil
     var attachmentUrl: String? = nil
     var possiblySensitive: Bool = false
     
-    init(accounts: [Account], text: String) {
+    init(accounts: [AccountDetails], text: String) {
         self.accounts = accounts
         self.text = text
     }
@@ -75,9 +75,9 @@ class StatusShortenResult {
 }
 
 class UpdateStatusResult {
-    let statuses: [Status]
+    let statuses: [PersistableStatus]
     
-    init(statuses: [Status]) {
+    init(statuses: [PersistableStatus]) {
         self.statuses = statuses
     }
     
