@@ -59,8 +59,6 @@
 		CE2A80441EB97E24003791F2 /* TwitterUserEntities+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80431EB97E24003791F2 /* TwitterUserEntities+JsonMapper.swift */; };
 		CE2A80461EB98FD9003791F2 /* PersistableStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80451EB98FD9003791F2 /* PersistableStatus.swift */; };
 		CE2A804B1EB995F1003791F2 /* UserKey+PMJackson.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A804A1EB995F1003791F2 /* UserKey+PMJackson.swift */; };
-		CE2A804E1EB9A7F2003791F2 /* JsonMapper.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = CE2A804C1EB9A7F2003791F2 /* JsonMapper.swifttemplate */; };
-		CE2A804F1EB9A7F2003791F2 /* RestProtocolImpl.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = CE2A804D1EB9A7F2003791F2 /* RestProtocolImpl.swifttemplate */; };
 		CE2A80511EB9A9B7003791F2 /* MediaType+PMJackson.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80501EB9A9B7003791F2 /* MediaType+PMJackson.swift */; };
 		CE2A80541EB9ABB0003791F2 /* DateFieldConverters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80531EB9ABB0003791F2 /* DateFieldConverters.swift */; };
 		CE2A80561EB9ACF3003791F2 /* MediaItemFieldConverters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80551EB9ACF3003791F2 /* MediaItemFieldConverters.swift */; };
@@ -299,8 +297,6 @@
 		CE2A80431EB97E24003791F2 /* TwitterUserEntities+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterUserEntities+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE2A80451EB98FD9003791F2 /* PersistableStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableStatus.swift; sourceTree = "<group>"; };
 		CE2A804A1EB995F1003791F2 /* UserKey+PMJackson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserKey+PMJackson.swift"; sourceTree = "<group>"; };
-		CE2A804C1EB9A7F2003791F2 /* JsonMapper.swifttemplate */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JsonMapper.swifttemplate; sourceTree = "<group>"; };
-		CE2A804D1EB9A7F2003791F2 /* RestProtocolImpl.swifttemplate */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RestProtocolImpl.swifttemplate; sourceTree = "<group>"; };
 		CE2A80501EB9A9B7003791F2 /* MediaType+PMJackson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaType+PMJackson.swift"; sourceTree = "<group>"; };
 		CE2A80531EB9ABB0003791F2 /* DateFieldConverters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFieldConverters.swift; sourceTree = "<group>"; };
 		CE2A80551EB9ACF3003791F2 /* MediaItemFieldConverters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaItemFieldConverters.swift; sourceTree = "<group>"; };
@@ -521,7 +517,6 @@
 				CE0529E41CF7F35300E06364 /* Products */,
 				CEA2E2B71D368BCF0095BC57 /* Resources */,
 				CE0529E51CF7F35300E06364 /* Sources */,
-				CEDFEA681D4F392200E1F8B8 /* Templates */,
 				CE0529FD1CF7F35300E06364 /* Tests */,
 				CE052A081CF7F35300E06364 /* UITests */,
 			);
@@ -1195,15 +1190,6 @@
 			path = Tasks;
 			sourceTree = "<group>";
 		};
-		CEDFEA681D4F392200E1F8B8 /* Templates */ = {
-			isa = PBXGroup;
-			children = (
-				CE2A804C1EB9A7F2003791F2 /* JsonMapper.swifttemplate */,
-				CE2A804D1EB9A7F2003791F2 /* RestProtocolImpl.swifttemplate */,
-			);
-			path = Templates;
-			sourceTree = "<group>";
-		};
 		CEF2CF461D840D5C00131EAE /* MediaPreview */ = {
 			isa = PBXGroup;
 			children = (
@@ -1365,11 +1351,9 @@
 				CED41F451D313B6C0089E0B6 /* Preferences.storyboard in Resources */,
 				CE497FB71D698C98000F16D2 /* users_list.json in Resources */,
 				CEA2E2AF1D3681D00095BC57 /* Compose.storyboard in Resources */,
-				CE2A804E1EB9A7F2003791F2 /* JsonMapper.swifttemplate in Resources */,
 				CE497FB41D698B1B000F16D2 /* UsersListController.xib in Resources */,
 				CE497FAF1D6988CC000F16D2 /* UserCell.xib in Resources */,
 				CE65B1BC1D9CB2B100A38A61 /* ActivityTitleSummaryCell.xib in Resources */,
-				CE2A804F1EB9A7F2003791F2 /* RestProtocolImpl.swifttemplate in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
