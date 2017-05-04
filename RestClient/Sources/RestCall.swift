@@ -21,6 +21,10 @@ public class RestCall<T> {
     
     public var serializer: DataResponseSerializer<T>!
     public var validation: DataRequest.Validation!
+    
+    public init() {
+        
+    }
 }
 
 public extension RestClient {

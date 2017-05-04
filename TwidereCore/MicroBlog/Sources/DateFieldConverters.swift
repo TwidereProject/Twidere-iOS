@@ -18,7 +18,7 @@ struct TwitterDateFieldConverter: JsonFieldConverter {
         return f
     }()
     
-    static func parse(_ parser: PMJacksonParser) -> Date! {
+    static func parse(_ parser: JsonParser) -> Date! {
         guard let str = parser.getValueAsString() else {
             return nil
         }

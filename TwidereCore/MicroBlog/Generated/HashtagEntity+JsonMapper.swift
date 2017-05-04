@@ -11,7 +11,7 @@ internal class HashtagEntityJsonMapper: JsonMapper<HashtagEntity> {
 
     internal static let singleton = HashtagEntityJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> HashtagEntity! {
+    override func parse(_ parser: JsonParser) -> HashtagEntity! {
         let instance = HashtagEntity()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class HashtagEntityJsonMapper: JsonMapper<HashtagEntity> {
         return instance
     }
 
-    override func parseField(_ instance: HashtagEntity, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: HashtagEntity, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         case "text":
             instance.text = parser.getValueAsString()

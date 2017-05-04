@@ -4,7 +4,7 @@
 import PromiseKit
 import RestClient
 
-internal class MicroBlogAccountServiceRestImpl: MicroBlogAccountService, RestAPIProtocol {
+internal class AccountAPIRestImpl: AccountAPI, RestAPIProtocol {
 
     let client: RestClient
 
@@ -12,11 +12,11 @@ internal class MicroBlogAccountServiceRestImpl: MicroBlogAccountService, RestAPI
         self.client = client
     }
 
-    func verifyCredentials() -> Promise<MicroBlogUser> {
-        let call = RestCall<MicroBlogUser>()
+    func verifyCredentials() -> Promise<User> {
+        let call = RestCall<User>()
         call.method = .get
         call.path = "/account/verify_credentials.json"
-        call.serializer = MicroBlogUserJsonMapper.singleton.responseSerializer
+        call.serializer = UserJsonMapper.singleton.responseSerializer
         return client.toPromise(call)
     }
 

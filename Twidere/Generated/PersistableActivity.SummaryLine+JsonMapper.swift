@@ -11,7 +11,7 @@ internal class PersistableActivitySummaryLineJsonMapper: JsonMapper<PersistableA
 
     internal static let singleton = PersistableActivitySummaryLineJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> PersistableActivity.SummaryLine! {
+    override func parse(_ parser: JsonParser) -> PersistableActivity.SummaryLine! {
         let instance = PersistableActivity.SummaryLine()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class PersistableActivitySummaryLineJsonMapper: JsonMapper<PersistableA
         return instance
     }
 
-    override func parseField(_ instance: PersistableActivity.SummaryLine, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: PersistableActivity.SummaryLine, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         default:
             break

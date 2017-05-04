@@ -11,7 +11,7 @@ internal class PersistableCardEntityJsonMapper: JsonMapper<PersistableCardEntity
 
     internal static let singleton = PersistableCardEntityJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> PersistableCardEntity! {
+    override func parse(_ parser: JsonParser) -> PersistableCardEntity! {
         let instance = PersistableCardEntity()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class PersistableCardEntityJsonMapper: JsonMapper<PersistableCardEntity
         return instance
     }
 
-    override func parseField(_ instance: PersistableCardEntity, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: PersistableCardEntity, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         default:
             break

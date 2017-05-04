@@ -11,7 +11,7 @@ internal class UserMentionEntityJsonMapper: JsonMapper<UserMentionEntity> {
 
     internal static let singleton = UserMentionEntityJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> UserMentionEntity! {
+    override func parse(_ parser: JsonParser) -> UserMentionEntity! {
         let instance = UserMentionEntity()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class UserMentionEntityJsonMapper: JsonMapper<UserMentionEntity> {
         return instance
     }
 
-    override func parseField(_ instance: UserMentionEntity, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: UserMentionEntity, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         case "indices":
             if (parser.currentEvent == .arrayStart) {

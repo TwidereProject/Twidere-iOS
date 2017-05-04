@@ -11,7 +11,7 @@ internal class PersistableActivityRelatedObjectJsonMapper: JsonMapper<Persistabl
 
     internal static let singleton = PersistableActivityRelatedObjectJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> PersistableActivity.RelatedObject! {
+    override func parse(_ parser: JsonParser) -> PersistableActivity.RelatedObject! {
         let instance = PersistableActivity.RelatedObject()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class PersistableActivityRelatedObjectJsonMapper: JsonMapper<Persistabl
         return instance
     }
 
-    override func parseField(_ instance: PersistableActivity.RelatedObject, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: PersistableActivity.RelatedObject, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         default:
             break

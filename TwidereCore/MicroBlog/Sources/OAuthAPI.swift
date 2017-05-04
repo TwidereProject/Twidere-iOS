@@ -7,9 +7,10 @@
 //
 
 import PromiseKit
+import RestClient
 
 // sourcery: restProtocol
-protocol OAuthService {
+protocol OAuthAPI {
     
     // sourcery: restMethod=POST
     // sourcery: restPath=/oauth/request_token

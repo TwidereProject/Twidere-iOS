@@ -4,7 +4,7 @@
 import PromiseKit
 import RestClient
 
-internal class MastodonAccountsServicesRestImpl: MastodonAccountsServices, RestAPIProtocol {
+internal class AccountsAPIRestImpl: AccountsAPI, RestAPIProtocol {
 
     let client: RestClient
 
@@ -12,8 +12,8 @@ internal class MastodonAccountsServicesRestImpl: MastodonAccountsServices, RestA
         self.client = client
     }
 
-    func getAccount(id: String) -> Promise<MastodonAccount> {
-        let call = RestCall<MastodonAccount>()
+    func getAccount(id: String) -> Promise<Account> {
+        let call = RestCall<Account>()
         call.method = .get
         call.path = "/v1/accounts/\(id)"
         call.serializer = MastodonAccountJsonMapper.singleton.responseSerializer

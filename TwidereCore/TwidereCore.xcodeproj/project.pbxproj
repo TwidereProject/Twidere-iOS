@@ -10,7 +10,6 @@
 		5EE236E547ACBEFE194924B3 /* Pods_TwidereCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF9C6A51C84A59CCC84A725 /* Pods_TwidereCore.framework */; };
 		CE750A3D1EBB3F3C003E6249 /* TwidereCore.h in Headers */ = {isa = PBXBuildFile; fileRef = CE750A3B1EBB3F3C003E6249 /* TwidereCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE750A631EBB4D28003E6249 /* MicroBlog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750A621EBB4D09003E6249 /* MicroBlog.framework */; };
-		CE750AE41EBB6473003E6249 /* JsonMapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AE21EBB6473003E6249 /* JsonMapper.generated.swift */; };
 		CE750B3F1EBB6DC8003E6249 /* RestClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750B3E1EBB6DC8003E6249 /* RestClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +39,6 @@
 		CE750A3C1EBB3F3C003E6249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE750A5D1EBB4D08003E6249 /* MicroBlog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MicroBlog.xcodeproj; path = MicroBlog/MicroBlog.xcodeproj; sourceTree = "<group>"; };
 		CE750AAA1EBB600B003E6249 /* Mastodon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Mastodon.xcodeproj; path = Mastodon/Mastodon.xcodeproj; sourceTree = "<group>"; };
-		CE750AE21EBB6473003E6249 /* JsonMapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonMapper.generated.swift; sourceTree = "<group>"; };
 		CE750B3E1EBB6DC8003E6249 /* RestClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestClient.framework; path = "../../../../../Users/mariotaku/Library/Developer/Xcode/DerivedData/Twidere-dhschizzfhkqdkgwpcupdypbyxay/Build/Products/Debug-iphoneos/RestClient.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,7 +107,6 @@
 		CE750A441EBB4144003E6249 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				CE750AE21EBB6473003E6249 /* JsonMapper.generated.swift */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -273,7 +270,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE750AE41EBB6473003E6249 /* JsonMapper.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,11 +9,11 @@
 import PromiseKit
 
 // sourcery: restProtocol
-protocol MicroBlogAccountService {
+protocol AccountAPI {
     
     // sourcery: restMethod=GET
     // sourcery: restPath=/account/verify_credentials.json
-    // sourcery: restSerializer=MicroBlogUserJsonMapper.singleton.responseSerializer
-    func verifyCredentials() -> Promise<MicroBlogUser>
+    // sourcery: restSerializer=UserJsonMapper.singleton.responseSerializer
+    func verifyCredentials() -> Promise<User>
     
 }

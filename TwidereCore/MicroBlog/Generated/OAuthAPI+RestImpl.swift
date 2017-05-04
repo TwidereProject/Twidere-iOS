@@ -4,7 +4,7 @@
 import PromiseKit
 import RestClient
 
-internal class OAuthServiceRestImpl: OAuthService, RestAPIProtocol {
+internal class OAuthAPIRestImpl: OAuthAPI, RestAPIProtocol {
 
     let client: RestClient
 

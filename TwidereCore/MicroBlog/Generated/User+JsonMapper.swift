@@ -11,7 +11,7 @@ internal class UserJsonMapper: JsonMapper<User> {
 
     internal static let singleton = UserJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> User! {
+    override func parse(_ parser: JsonParser) -> User! {
         let instance = User()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class UserJsonMapper: JsonMapper<User> {
         return instance
     }
 
-    override func parseField(_ instance: User, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: User, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         case "id":
             instance.id = parser.getValueAsString()

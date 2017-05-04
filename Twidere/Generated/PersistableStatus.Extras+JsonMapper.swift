@@ -11,7 +11,7 @@ internal class PersistableStatusExtrasJsonMapper: JsonMapper<PersistableStatus.E
 
     internal static let singleton = PersistableStatusExtrasJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> PersistableStatus.Extras! {
+    override func parse(_ parser: JsonParser) -> PersistableStatus.Extras! {
         let instance = PersistableStatus.Extras()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class PersistableStatusExtrasJsonMapper: JsonMapper<PersistableStatus.E
         return instance
     }
 
-    override func parseField(_ instance: PersistableStatus.Extras, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: PersistableStatus.Extras, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         case "external_url":
             instance.external_url = parser.getValueAsString()

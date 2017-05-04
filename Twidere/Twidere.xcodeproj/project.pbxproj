@@ -20,8 +20,6 @@
 		CE2660191DAFD1BF007FF7CF /* StringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2660181DAFD1BF007FF7CF /* StringLiteral.swift */; };
 		CE26603F1DB0638D007FF7CF /* SQLite+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26603E1DB0638D007FF7CF /* SQLite+Array.swift */; };
 		CE2A7FE41EB767B0003791F2 /* Date+MicroBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FE31EB767B0003791F2 /* Date+MicroBlog.swift */; };
-		CE2A800A1EB8518C003791F2 /* RestCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80091EB8518C003791F2 /* RestCall.swift */; };
-		CE2A800C1EB8582D003791F2 /* MicroBlogAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A800B1EB8582D003791F2 /* MicroBlogAccountService.swift */; };
 		CE2A80111EB88B28003791F2 /* MastodonAccountsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80101EB88B28003791F2 /* MastodonAccountsService.swift */; };
 		CE2A801C1EB8D0AE003791F2 /* JsonParsableUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A801B1EB8D0AE003791F2 /* JsonParsableUtils.swift */; };
 		CE2A80461EB98FD9003791F2 /* PersistableStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80451EB98FD9003791F2 /* PersistableStatus.swift */; };
@@ -84,8 +82,35 @@
 		CE6D6E9A1DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D6E991DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift */; };
 		CE6FA33F1EBAD4ED0068BE01 /* AccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA33E1EBAD4ED0068BE01 /* AccountDetails.swift */; };
 		CE6FA3421EBAE3E00068BE01 /* AccountCredentialsImpls.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3411EBAE3E00068BE01 /* AccountCredentialsImpls.swift */; };
-		CE6FA35C1EBB05680068BE01 /* TwitterUploadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA35B1EBB05680068BE01 /* TwitterUploadService.swift */; };
 		CE750A471EBB4CC9003E6249 /* TwidereCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750A461EBB4CC9003E6249 /* TwidereCore.framework */; };
+		CE750B671EBB71A6003E6249 /* AccountBasicCredentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B4A1EBB71A6003E6249 /* AccountBasicCredentials+JsonMapper.swift */; };
+		CE750B681EBB71A6003E6249 /* AccountDetails.Credentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B4B1EBB71A6003E6249 /* AccountDetails.Credentials+JsonMapper.swift */; };
+		CE750B691EBB71A6003E6249 /* AccountDetails.Extras+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B4C1EBB71A6003E6249 /* AccountDetails.Extras+JsonMapper.swift */; };
+		CE750B6A1EBB71A6003E6249 /* AccountEmptyCredentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B4D1EBB71A6003E6249 /* AccountEmptyCredentials+JsonMapper.swift */; };
+		CE750B6B1EBB71A6003E6249 /* AccountOAuth2Credentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B4E1EBB71A6003E6249 /* AccountOAuth2Credentials+JsonMapper.swift */; };
+		CE750B6C1EBB71A6003E6249 /* AccountOAuthCredentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B4F1EBB71A6003E6249 /* AccountOAuthCredentials+JsonMapper.swift */; };
+		CE750B6E1EBB71A6003E6249 /* MastodonAccountsServices+RestImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B511EBB71A6003E6249 /* MastodonAccountsServices+RestImpl.swift */; };
+		CE750B6F1EBB71A6003E6249 /* MediaItem.VideoInfo.Variant+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B521EBB71A6003E6249 /* MediaItem.VideoInfo.Variant+JsonMapper.swift */; };
+		CE750B701EBB71A6003E6249 /* MediaItem.VideoInfo+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B531EBB71A6003E6249 /* MediaItem.VideoInfo+JsonMapper.swift */; };
+		CE750B711EBB71A6003E6249 /* MediaItem+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B541EBB71A6003E6249 /* MediaItem+JsonMapper.swift */; };
+		CE750B721EBB71A6003E6249 /* MediaUploadResponse.Image+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B551EBB71A6003E6249 /* MediaUploadResponse.Image+JsonMapper.swift */; };
+		CE750B731EBB71A6003E6249 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B561EBB71A6003E6249 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift */; };
+		CE750B741EBB71A6003E6249 /* MediaUploadResponse.Video+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B571EBB71A6003E6249 /* MediaUploadResponse.Video+JsonMapper.swift */; };
+		CE750B751EBB71A6003E6249 /* MediaUploadResponse+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B581EBB71A6003E6249 /* MediaUploadResponse+JsonMapper.swift */; };
+		CE750B761EBB71A6003E6249 /* MentionItem+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B591EBB71A6003E6249 /* MentionItem+JsonMapper.swift */; };
+		CE750B771EBB71A6003E6249 /* MicroBlogAccountService+RestImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B5A1EBB71A6003E6249 /* MicroBlogAccountService+RestImpl.swift */; };
+		CE750B781EBB71A6003E6249 /* OAuthService+RestImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B5B1EBB71A6003E6249 /* OAuthService+RestImpl.swift */; };
+		CE750B791EBB71A6003E6249 /* PersistableActivity.RelatedObject+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B5C1EBB71A6003E6249 /* PersistableActivity.RelatedObject+JsonMapper.swift */; };
+		CE750B7A1EBB71A6003E6249 /* PersistableActivity.SummaryLine+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B5D1EBB71A6003E6249 /* PersistableActivity.SummaryLine+JsonMapper.swift */; };
+		CE750B7B1EBB71A6003E6249 /* PersistableActivity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B5E1EBB71A6003E6249 /* PersistableActivity+JsonMapper.swift */; };
+		CE750B7C1EBB71A6003E6249 /* PersistableCardEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B5F1EBB71A6003E6249 /* PersistableCardEntity+JsonMapper.swift */; };
+		CE750B7D1EBB71A6003E6249 /* PersistableLiteUser+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B601EBB71A6003E6249 /* PersistableLiteUser+JsonMapper.swift */; };
+		CE750B7E1EBB71A6003E6249 /* PersistableStatus.Extras+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B611EBB71A6003E6249 /* PersistableStatus.Extras+JsonMapper.swift */; };
+		CE750B7F1EBB71A6003E6249 /* PersistableStatus+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B621EBB71A6003E6249 /* PersistableStatus+JsonMapper.swift */; };
+		CE750B801EBB71A6003E6249 /* PersistableUser+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B631EBB71A6003E6249 /* PersistableUser+JsonMapper.swift */; };
+		CE750B811EBB71A6003E6249 /* RestProtocolImpl.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B641EBB71A6003E6249 /* RestProtocolImpl.generated.swift */; };
+		CE750B821EBB71A6003E6249 /* SpanItem+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B651EBB71A6003E6249 /* SpanItem+JsonMapper.swift */; };
+		CE750B831EBB71A6003E6249 /* TwitterUploadService+RestImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B661EBB71A6003E6249 /* TwitterUploadService+RestImpl.swift */; };
 		CE79C83D1DA62E56007C05F2 /* SpanItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */; };
 		CE79C83F1DA77777007C05F2 /* YYText+ALSLayouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C83E1DA77777007C05F2 /* YYText+ALSLayouts.swift */; };
 		CE79C8411DA7ACE3007C05F2 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C8401DA7ACE3007C05F2 /* UIViewExtension.swift */; };
@@ -99,9 +124,7 @@
 		CE95747D1D3210A300504D52 /* CustomAPIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */; };
 		CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95747F1D3216BC00504D52 /* ServiceConstants.swift */; };
 		CE9574821D32186A00504D52 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574811D32186A00504D52 /* UIConstants.swift */; };
-		CE9574851D32221A00504D52 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574841D32221A00504D52 /* RestClient.swift */; };
 		CE9574871D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574861D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift */; };
-		CE9574891D32232600504D52 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574881D32232600504D52 /* OAuthService.swift */; };
 		CE95748B1D322CC700504D52 /* ModelConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95748A1D322CC700504D52 /* ModelConverter.swift */; };
 		CE95748F1D33871E00504D52 /* PasswordSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95748E1D33871E00504D52 /* PasswordSignInController.swift */; };
 		CE9574961D33B71B00504D52 /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574951D33B71B00504D52 /* DefaultsKeys.swift */; };
@@ -135,8 +158,6 @@
 		CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F331D2FF88D0089E0B6 /* SignInController.swift */; };
 		CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED41F351D3085FF0089E0B6 /* SignIn.storyboard */; };
 		CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */; };
-		CED41F411D30E6B80089E0B6 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F401D30E6B80089E0B6 /* Endpoint.swift */; };
-		CED41F431D30E6E40089E0B6 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F421D30E6E40089E0B6 /* Authorization.swift */; };
 		CED41F451D313B6C0089E0B6 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED41F441D313B6C0089E0B6 /* Preferences.storyboard */; };
 		CED41F481D3147460089E0B6 /* APIEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F471D3147460089E0B6 /* APIEditorController.swift */; };
 		CED73F6C1D9519B80066F554 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED73F6B1D9519B80066F554 /* UIImageExtensions.swift */; };
@@ -197,8 +218,6 @@
 		CE2660181DAFD1BF007FF7CF /* StringLiteral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringLiteral.swift; sourceTree = "<group>"; };
 		CE26603E1DB0638D007FF7CF /* SQLite+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SQLite+Array.swift"; sourceTree = "<group>"; };
 		CE2A7FE31EB767B0003791F2 /* Date+MicroBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+MicroBlog.swift"; sourceTree = "<group>"; };
-		CE2A80091EB8518C003791F2 /* RestCall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestCall.swift; sourceTree = "<group>"; };
-		CE2A800B1EB8582D003791F2 /* MicroBlogAccountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogAccountService.swift; sourceTree = "<group>"; };
 		CE2A80101EB88B28003791F2 /* MastodonAccountsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonAccountsService.swift; sourceTree = "<group>"; };
 		CE2A801B1EB8D0AE003791F2 /* JsonParsableUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParsableUtils.swift; sourceTree = "<group>"; };
 		CE2A80451EB98FD9003791F2 /* PersistableStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableStatus.swift; sourceTree = "<group>"; };
@@ -261,8 +280,35 @@
 		CE6D6E991DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNavigationBarProtocol.swift; sourceTree = "<group>"; };
 		CE6FA33E1EBAD4ED0068BE01 /* AccountDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetails.swift; sourceTree = "<group>"; };
 		CE6FA3411EBAE3E00068BE01 /* AccountCredentialsImpls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCredentialsImpls.swift; sourceTree = "<group>"; };
-		CE6FA35B1EBB05680068BE01 /* TwitterUploadService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUploadService.swift; sourceTree = "<group>"; };
 		CE750A461EBB4CC9003E6249 /* TwidereCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwidereCore.framework; path = "../../../../../Users/mariotaku/Library/Developer/Xcode/DerivedData/Twidere-dhschizzfhkqdkgwpcupdypbyxay/Build/Products/Debug-iphoneos/TwidereCore.framework"; sourceTree = "<group>"; };
+		CE750B4A1EBB71A6003E6249 /* AccountBasicCredentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountBasicCredentials+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B4B1EBB71A6003E6249 /* AccountDetails.Credentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountDetails.Credentials+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B4C1EBB71A6003E6249 /* AccountDetails.Extras+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountDetails.Extras+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B4D1EBB71A6003E6249 /* AccountEmptyCredentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountEmptyCredentials+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B4E1EBB71A6003E6249 /* AccountOAuth2Credentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountOAuth2Credentials+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B4F1EBB71A6003E6249 /* AccountOAuthCredentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountOAuthCredentials+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B511EBB71A6003E6249 /* MastodonAccountsServices+RestImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MastodonAccountsServices+RestImpl.swift"; sourceTree = "<group>"; };
+		CE750B521EBB71A6003E6249 /* MediaItem.VideoInfo.Variant+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaItem.VideoInfo.Variant+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B531EBB71A6003E6249 /* MediaItem.VideoInfo+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaItem.VideoInfo+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B541EBB71A6003E6249 /* MediaItem+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaItem+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B551EBB71A6003E6249 /* MediaUploadResponse.Image+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaUploadResponse.Image+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B561EBB71A6003E6249 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaUploadResponse.ProcessingInfo+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B571EBB71A6003E6249 /* MediaUploadResponse.Video+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaUploadResponse.Video+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B581EBB71A6003E6249 /* MediaUploadResponse+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaUploadResponse+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B591EBB71A6003E6249 /* MentionItem+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MentionItem+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B5A1EBB71A6003E6249 /* MicroBlogAccountService+RestImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogAccountService+RestImpl.swift"; sourceTree = "<group>"; };
+		CE750B5B1EBB71A6003E6249 /* OAuthService+RestImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuthService+RestImpl.swift"; sourceTree = "<group>"; };
+		CE750B5C1EBB71A6003E6249 /* PersistableActivity.RelatedObject+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableActivity.RelatedObject+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B5D1EBB71A6003E6249 /* PersistableActivity.SummaryLine+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableActivity.SummaryLine+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B5E1EBB71A6003E6249 /* PersistableActivity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableActivity+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B5F1EBB71A6003E6249 /* PersistableCardEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableCardEntity+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B601EBB71A6003E6249 /* PersistableLiteUser+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableLiteUser+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B611EBB71A6003E6249 /* PersistableStatus.Extras+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableStatus.Extras+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B621EBB71A6003E6249 /* PersistableStatus+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableStatus+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B631EBB71A6003E6249 /* PersistableUser+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableUser+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B641EBB71A6003E6249 /* RestProtocolImpl.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestProtocolImpl.generated.swift; sourceTree = "<group>"; };
+		CE750B651EBB71A6003E6249 /* SpanItem+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SpanItem+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B661EBB71A6003E6249 /* TwitterUploadService+RestImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterUploadService+RestImpl.swift"; sourceTree = "<group>"; };
 		CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItemExtension.swift; sourceTree = "<group>"; };
 		CE79C83E1DA77777007C05F2 /* YYText+ALSLayouts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "YYText+ALSLayouts.swift"; sourceTree = "<group>"; };
 		CE79C8401DA7ACE3007C05F2 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -276,9 +322,7 @@
 		CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAPIConfig.swift; sourceTree = "<group>"; };
 		CE95747F1D3216BC00504D52 /* ServiceConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceConstants.swift; sourceTree = "<group>"; };
 		CE9574811D32186A00504D52 /* UIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
-		CE9574841D32221A00504D52 /* RestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
 		CE9574861D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterOAuthPasswordAuthenticator.swift; sourceTree = "<group>"; };
-		CE9574881D32232600504D52 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthService.swift; sourceTree = "<group>"; };
 		CE95748A1D322CC700504D52 /* ModelConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelConverter.swift; sourceTree = "<group>"; };
 		CE95748E1D33871E00504D52 /* PasswordSignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordSignInController.swift; sourceTree = "<group>"; };
 		CE9574951D33B71B00504D52 /* DefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
@@ -312,8 +356,6 @@
 		CED41F331D2FF88D0089E0B6 /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		CED41F351D3085FF0089E0B6 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogService.swift; sourceTree = "<group>"; };
-		CED41F401D30E6B80089E0B6 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
-		CED41F421D30E6E40089E0B6 /* Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
 		CED41F441D313B6C0089E0B6 /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
 		CED41F471D3147460089E0B6 /* APIEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEditorController.swift; sourceTree = "<group>"; };
 		CED73F6B1D9519B80066F554 /* UIImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
@@ -448,6 +490,34 @@
 		CE2660201DAFDD79007FF7CF /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				CE750B4A1EBB71A6003E6249 /* AccountBasicCredentials+JsonMapper.swift */,
+				CE750B4B1EBB71A6003E6249 /* AccountDetails.Credentials+JsonMapper.swift */,
+				CE750B4C1EBB71A6003E6249 /* AccountDetails.Extras+JsonMapper.swift */,
+				CE750B4D1EBB71A6003E6249 /* AccountEmptyCredentials+JsonMapper.swift */,
+				CE750B4E1EBB71A6003E6249 /* AccountOAuth2Credentials+JsonMapper.swift */,
+				CE750B4F1EBB71A6003E6249 /* AccountOAuthCredentials+JsonMapper.swift */,
+				CE750B511EBB71A6003E6249 /* MastodonAccountsServices+RestImpl.swift */,
+				CE750B521EBB71A6003E6249 /* MediaItem.VideoInfo.Variant+JsonMapper.swift */,
+				CE750B531EBB71A6003E6249 /* MediaItem.VideoInfo+JsonMapper.swift */,
+				CE750B541EBB71A6003E6249 /* MediaItem+JsonMapper.swift */,
+				CE750B551EBB71A6003E6249 /* MediaUploadResponse.Image+JsonMapper.swift */,
+				CE750B561EBB71A6003E6249 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift */,
+				CE750B571EBB71A6003E6249 /* MediaUploadResponse.Video+JsonMapper.swift */,
+				CE750B581EBB71A6003E6249 /* MediaUploadResponse+JsonMapper.swift */,
+				CE750B591EBB71A6003E6249 /* MentionItem+JsonMapper.swift */,
+				CE750B5A1EBB71A6003E6249 /* MicroBlogAccountService+RestImpl.swift */,
+				CE750B5B1EBB71A6003E6249 /* OAuthService+RestImpl.swift */,
+				CE750B5C1EBB71A6003E6249 /* PersistableActivity.RelatedObject+JsonMapper.swift */,
+				CE750B5D1EBB71A6003E6249 /* PersistableActivity.SummaryLine+JsonMapper.swift */,
+				CE750B5E1EBB71A6003E6249 /* PersistableActivity+JsonMapper.swift */,
+				CE750B5F1EBB71A6003E6249 /* PersistableCardEntity+JsonMapper.swift */,
+				CE750B601EBB71A6003E6249 /* PersistableLiteUser+JsonMapper.swift */,
+				CE750B611EBB71A6003E6249 /* PersistableStatus.Extras+JsonMapper.swift */,
+				CE750B621EBB71A6003E6249 /* PersistableStatus+JsonMapper.swift */,
+				CE750B631EBB71A6003E6249 /* PersistableUser+JsonMapper.swift */,
+				CE750B641EBB71A6003E6249 /* RestProtocolImpl.generated.swift */,
+				CE750B651EBB71A6003E6249 /* SpanItem+JsonMapper.swift */,
+				CE750B661EBB71A6003E6249 /* TwitterUploadService+RestImpl.swift */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -728,17 +798,6 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		CE9574831D32220C00504D52 /* RestService */ = {
-			isa = PBXGroup;
-			children = (
-				CED41F421D30E6E40089E0B6 /* Authorization.swift */,
-				CED41F401D30E6B80089E0B6 /* Endpoint.swift */,
-				CE2A80091EB8518C003791F2 /* RestCall.swift */,
-				CE9574841D32221A00504D52 /* RestClient.swift */,
-			);
-			path = RestService;
-			sourceTree = "<group>";
-		};
 		CE9574941D33B6EA00504D52 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -923,7 +982,6 @@
 			children = (
 				CE2A800F1EB88B19003791F2 /* Mastodon */,
 				CED41F3F1D30E6760089E0B6 /* MicroBlog */,
-				CE9574831D32220C00504D52 /* RestService */,
 				CEBED5FA1D4C86C700619D1C /* BackgroundOperationService.swift */,
 			);
 			path = Services;
@@ -932,11 +990,8 @@
 		CED41F3F1D30E6760089E0B6 /* MicroBlog */ = {
 			isa = PBXGroup;
 			children = (
-				CE2A800B1EB8582D003791F2 /* MicroBlogAccountService.swift */,
 				CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */,
-				CE9574881D32232600504D52 /* OAuthService.swift */,
 				CE9574861D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift */,
-				CE6FA35B1EBB05680068BE01 /* TwitterUploadService.swift */,
 			);
 			path = MicroBlog;
 			sourceTree = "<group>";
@@ -1428,8 +1483,13 @@
 				CE79C83D1DA62E56007C05F2 /* SpanItemExtension.swift in Sources */,
 				CE9574961D33B71B00504D52 /* DefaultsKeys.swift in Sources */,
 				CEDC3B2A1D7DB04F0082A8BA /* Paging.swift in Sources */,
+				CE750B7A1EBB71A6003E6249 /* PersistableActivity.SummaryLine+JsonMapper.swift in Sources */,
+				CE750B6E1EBB71A6003E6249 /* MastodonAccountsServices+RestImpl.swift in Sources */,
 				CED73F6C1D9519B80066F554 /* UIImageExtensions.swift in Sources */,
+				CE750B781EBB71A6003E6249 /* OAuthService+RestImpl.swift in Sources */,
+				CE750B731EBB71A6003E6249 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift in Sources */,
 				CE95748F1D33871E00504D52 /* PasswordSignInController.swift in Sources */,
+				CE750B711EBB71A6003E6249 /* MediaItem+JsonMapper.swift in Sources */,
 				CEDEE3F51D9270BA00001BE8 /* UIRefreshControlExtension.swift in Sources */,
 				CEB60E901DE7CAB300C08E39 /* StatusCellProtocol.swift in Sources */,
 				CE2A808C1EBA24CA003791F2 /* TwitterCardEntityExtension.swift in Sources */,
@@ -1440,10 +1500,9 @@
 				CE6FA3421EBAE3E00068BE01 /* AccountCredentialsImpls.swift in Sources */,
 				CEA2E2C51D37C2590095BC57 /* ComposeLocationController.swift in Sources */,
 				CE6C6C371DB35C1D00DF4892 /* UserKey+Freddy.swift in Sources */,
+				CE750B831EBB71A6003E6249 /* TwitterUploadService+RestImpl.swift in Sources */,
 				CE2A80701EB9C014003791F2 /* PersistableUser.swift in Sources */,
-				CE2A800C1EB8582D003791F2 /* MicroBlogAccountService.swift in Sources */,
 				CE2A80821EB9D672003791F2 /* MicroBlogUserExtension.swift in Sources */,
-				CE2A800A1EB8518C003791F2 /* RestCall.swift in Sources */,
 				CE7A57441D917E1C0027BECE /* UserTimelineStatusesListControllerDataSource.swift in Sources */,
 				CE65B1E81D9F546700A38A61 /* ItemIndices.swift in Sources */,
 				CE5993101D83901B00653220 /* MediaItem.swift in Sources */,
@@ -1457,10 +1516,11 @@
 				CE65B1B41D9BA35A00A38A61 /* ActivityIndicator.swift in Sources */,
 				CE7A57401D917B580027BECE /* HomeTimelineStatusesListControllerDataSource.swift in Sources */,
 				CE497FC81D6B2017000F16D2 /* GapCell.swift in Sources */,
+				CE750B6F1EBB71A6003E6249 /* MediaItem.VideoInfo.Variant+JsonMapper.swift in Sources */,
 				CE65B1CA1D9CC11600A38A61 /* UserList.swift in Sources */,
-				CED41F411D30E6B80089E0B6 /* Endpoint.swift in Sources */,
 				CE7A57491D918A5C0027BECE /* ReselectUISegmentedControl.swift in Sources */,
 				CEBECFC01DAA2BE300350383 /* TintedImageButton.swift in Sources */,
+				CE750B751EBB71A6003E6249 /* MediaUploadResponse+JsonMapper.swift in Sources */,
 				CE6FA33F1EBAD4ED0068BE01 /* AccountDetails.swift in Sources */,
 				CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */,
 				CEDC3B211D7D87F80082A8BA /* SQLite+UserVersion.swift in Sources */,
@@ -1470,7 +1530,9 @@
 				CE6C6C341DB35C1D00DF4892 /* AccountDetailsExtensions.swift in Sources */,
 				CE2A80881EBA17B7003791F2 /* TwitterMentionEntityExtension.swift in Sources */,
 				CE2A80721EB9C030003791F2 /* PersistableLiteUser.swift in Sources */,
+				CE750B761EBB71A6003E6249 /* MentionItem+JsonMapper.swift in Sources */,
 				CE4B1AA51D719E160017CB85 /* StringExtensions.swift in Sources */,
+				CE750B701EBB71A6003E6249 /* MediaItem.VideoInfo+JsonMapper.swift in Sources */,
 				CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */,
 				CEBECFC21DAA2F4500350383 /* UIViewControllerPreviewingExtension.swift in Sources */,
 				CED41F481D3147460089E0B6 /* APIEditorController.swift in Sources */,
@@ -1486,31 +1548,38 @@
 				CE2660191DAFD1BF007FF7CF /* StringLiteral.swift in Sources */,
 				CEDC3B281D7DAE2C0082A8BA /* RefreshTaskParam.swift in Sources */,
 				CE5993091D82E4DE00653220 /* AccountCell.swift in Sources */,
+				CE750B7F1EBB71A6003E6249 /* PersistableStatus+JsonMapper.swift in Sources */,
 				CE95748B1D322CC700504D52 /* ModelConverter.swift in Sources */,
 				CEBED5FB1D4C86C700619D1C /* BackgroundOperationService.swift in Sources */,
 				CEA2E2B11D3681FD0095BC57 /* ComposeController.swift in Sources */,
 				CE2A808E1EBA3404003791F2 /* HtmlBuilder.swift in Sources */,
-				CE9574851D32221A00504D52 /* RestClient.swift in Sources */,
 				CE412B221DB9F38D00C52099 /* SwiftyJSONExtension.swift in Sources */,
 				CE2A80561EB9ACF3003791F2 /* MediaItemFieldConverters.swift in Sources */,
+				CE750B7B1EBB71A6003E6249 /* PersistableActivity+JsonMapper.swift in Sources */,
 				CED73F6E1D953C6E0066F554 /* UIBarButtonItemExtension.swift in Sources */,
 				CE2A801C1EB8D0AE003791F2 /* JsonParsableUtils.swift in Sources */,
 				CE7A57471D9185DC0027BECE /* UserFavoritesStatusesListControllerDelaSourceegate.swift in Sources */,
 				CEBECFB31DA8C0C200350383 /* SafariBrowserController.swift in Sources */,
 				CED41F2F1D2FF7C80089E0B6 /* HomeController.swift in Sources */,
-				CED41F431D30E6E40089E0B6 /* Authorization.swift in Sources */,
 				CEA2E2CD1D3A732C0095BC57 /* AccountUtils.swift in Sources */,
 				CEEF42BB1DB9D650009ECD0F /* Promise+TaskMessage.swift in Sources */,
 				CE497FBA1D6A8A65000F16D2 /* UserKey+Value.swift in Sources */,
+				CE750B791EBB71A6003E6249 /* PersistableActivity.RelatedObject+JsonMapper.swift in Sources */,
 				CE9574B91D349C3F00504D52 /* BrowserSignInController.swift in Sources */,
+				CE750B7D1EBB71A6003E6249 /* PersistableLiteUser+JsonMapper.swift in Sources */,
 				CEA2E2BE1D3761780095BC57 /* StatusUpdate.swift in Sources */,
+				CE750B721EBB71A6003E6249 /* MediaUploadResponse.Image+JsonMapper.swift in Sources */,
 				CE2A804B1EB995F1003791F2 /* UserKey+PMJackson.swift in Sources */,
+				CE750B7C1EBB71A6003E6249 /* PersistableCardEntity+JsonMapper.swift in Sources */,
 				CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */,
 				CEF2CF481D840D7B00131EAE /* MediaPreviewContainer.swift in Sources */,
+				CE750B7E1EBB71A6003E6249 /* PersistableStatus.Extras+JsonMapper.swift in Sources */,
 				CE2A80511EB9A9B7003791F2 /* MediaType+PMJackson.swift in Sources */,
+				CE750B811EBB71A6003E6249 /* RestProtocolImpl.generated.swift in Sources */,
 				CE2A805A1EB9B1AE003791F2 /* PersistableCardEntity.swift in Sources */,
+				CE750B681EBB71A6003E6249 /* AccountDetails.Credentials+JsonMapper.swift in Sources */,
 				CE2A80541EB9ABB0003791F2 /* DateFieldConverters.swift in Sources */,
-				CE9574891D32232600504D52 /* OAuthService.swift in Sources */,
+				CE750B6A1EBB71A6003E6249 /* AccountEmptyCredentials+JsonMapper.swift in Sources */,
 				CE497FAC1D6988BA000F16D2 /* UserCell.swift in Sources */,
 				CE59930E1D82F17F00653220 /* FiltersTabsController.swift in Sources */,
 				CE90A55B1D7EDC9D007050E5 /* SimpleRefreshTaskParam.swift in Sources */,
@@ -1519,26 +1588,33 @@
 				CE2A80861EB9F4D7003791F2 /* PersistableStatusExtension.swift in Sources */,
 				CE5993161D83C95800653220 /* StatusViewerController.swift in Sources */,
 				CE2A807E1EB9C46C003791F2 /* MicroBlogStatusExtension.swift in Sources */,
+				CE750B691EBB71A6003E6249 /* AccountDetails.Extras+JsonMapper.swift in Sources */,
 				CEDC3B321D7E5FB30082A8BA /* DatabaseConstants.swift in Sources */,
 				CE2A806E1EB9BFDC003791F2 /* PersistableActivity.swift in Sources */,
 				CE03118A1D87D946009475E8 /* MediaUploadResponse.swift in Sources */,
+				CE750B741EBB71A6003E6249 /* MediaUploadResponse.Video+JsonMapper.swift in Sources */,
 				CEA2E2CF1D3A779B0095BC57 /* UIImageViewExtension.swift in Sources */,
 				CEDC3B1F1D7D82370082A8BA /* CoreConstants.swift in Sources */,
 				CE6D6E9A1DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift in Sources */,
-				CE6FA35C1EBB05680068BE01 /* TwitterUploadService.swift in Sources */,
+				CE750B771EBB71A6003E6249 /* MicroBlogAccountService+RestImpl.swift in Sources */,
 				CEA2E2A71D34C1610095BC57 /* DefaultAPISettingsController.swift in Sources */,
 				CEEF42B91DB669C2009ECD0F /* YYTextExtension.swift in Sources */,
 				CEDC3B231D7D8BE90082A8BA /* DatabaseMigration.swift in Sources */,
 				CE95747D1D3210A300504D52 /* CustomAPIConfig.swift in Sources */,
 				CE2A80111EB88B28003791F2 /* MastodonAccountsService.swift in Sources */,
 				CE9DB0491DACA34B000C150F /* Number+LocalizedString.swift in Sources */,
+				CE750B821EBB71A6003E6249 /* SpanItem+JsonMapper.swift in Sources */,
 				CEBECFB51DA9E18100350383 /* TimelineContentTextView.swift in Sources */,
+				CE750B801EBB71A6003E6249 /* PersistableUser+JsonMapper.swift in Sources */,
+				CE750B671EBB71A6003E6249 /* AccountBasicCredentials+JsonMapper.swift in Sources */,
 				CE65B1DD1D9E0D4900A38A61 /* ShortTimeView.swift in Sources */,
+				CE750B6C1EBB71A6003E6249 /* AccountOAuthCredentials+JsonMapper.swift in Sources */,
 				CE9574821D32186A00504D52 /* UIConstants.swift in Sources */,
 				CE26603F1DB0638D007FF7CF /* SQLite+Array.swift in Sources */,
 				CE358B711D811C84002A33B3 /* SpanItem.swift in Sources */,
 				CEB187371D980AF6004ADB3A /* LoadMoreCell.swift in Sources */,
 				CE497F991D6959B0000F16D2 /* StatusCell.swift in Sources */,
+				CE750B6B1EBB71A6003E6249 /* AccountOAuth2Credentials+JsonMapper.swift in Sources */,
 				CE79C8411DA7ACE3007C05F2 /* UIViewExtension.swift in Sources */,
 				CE497FA91D697CEA000F16D2 /* ConvertUtils.swift in Sources */,
 				CE7A573C1D910EB00027BECE /* SegmentedContainerView.swift in Sources */,

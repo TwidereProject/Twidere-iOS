@@ -11,7 +11,7 @@ internal class AccountDetailsExtrasJsonMapper: JsonMapper<AccountDetails.Extras>
 
     internal static let singleton = AccountDetailsExtrasJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> AccountDetails.Extras! {
+    override func parse(_ parser: JsonParser) -> AccountDetails.Extras! {
         let instance = AccountDetails.Extras()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class AccountDetailsExtrasJsonMapper: JsonMapper<AccountDetails.Extras>
         return instance
     }
 
-    override func parseField(_ instance: AccountDetails.Extras, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: AccountDetails.Extras, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         default:
             break

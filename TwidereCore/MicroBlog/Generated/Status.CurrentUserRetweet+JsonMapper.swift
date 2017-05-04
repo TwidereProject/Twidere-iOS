@@ -11,7 +11,7 @@ internal class StatusCurrentUserRetweetJsonMapper: JsonMapper<Status.CurrentUser
 
     internal static let singleton = StatusCurrentUserRetweetJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> Status.CurrentUserRetweet! {
+    override func parse(_ parser: JsonParser) -> Status.CurrentUserRetweet! {
         let instance = Status.CurrentUserRetweet()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class StatusCurrentUserRetweetJsonMapper: JsonMapper<Status.CurrentUser
         return instance
     }
 
-    override func parseField(_ instance: Status.CurrentUserRetweet, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: Status.CurrentUserRetweet, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         case "id":
             instance.id = parser.getValueAsString()

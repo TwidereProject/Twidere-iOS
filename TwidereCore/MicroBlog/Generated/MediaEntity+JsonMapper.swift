@@ -7,7 +7,7 @@ internal class MediaEntityJsonMapper: JsonMapper<MediaEntity> {
 
     internal static let singleton = MediaEntityJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> MediaEntity! {
+    override func parse(_ parser: JsonParser) -> MediaEntity! {
         let instance = MediaEntity()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -27,7 +27,7 @@ internal class MediaEntityJsonMapper: JsonMapper<MediaEntity> {
         return instance
     }
 
-    override func parseField(_ instance: MediaEntity, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: MediaEntity, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         default:
             UrlEntityJsonMapper.singleton.parseField(instance, fieldName, parser)

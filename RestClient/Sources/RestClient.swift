@@ -25,7 +25,7 @@ public class RestClient {
 
 }
 
-public protocol RestProtocolService {
+public protocol RestAPIProtocol {
     
     init(client: RestClient)
     

@@ -1,27 +1,3 @@
-import PMJackson
-
-public protocol JsonMappable {
-    init()
-}
-
-public protocol JsonFieldConverter {
-    associatedtype T
-
-    static func parse(_ parser: PMJacksonParser) -> T!
-
-}
-
-public class JsonMapper<T: JsonMappable> {
-
-    public func parse(_ parser: PMJacksonParser) -> T! {
-        fatalError("Not implemented")
-    }
-
-    public func parseField(_ instance: T, _ fieldName: String, _ parser: PMJacksonParser) {
-        // No-op
-    }
-
-}
 <%_
 func generateGetValueStatement(_ typeName: String, _ varName: String, _ varType: Type?, _ varTypeName: TypeName, _ varAnnotations: [String: Any]) -> String {
     switch (varTypeName.unwrappedTypeName) {
@@ -68,7 +44,7 @@ extension <%= type.name %>: JsonMappable {
 
     <%= "\(type.accessLevel) " %>static let singleton = <%= mapperName %>()
 
-    override func parse(_ parser: PMJacksonParser) -> <%= type.name %>! {
+    override func parse(_ parser: JsonParser) -> <%= type.name %>! {
         let instance = <%= type.name %>()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -88,7 +64,7 @@ extension <%= type.name %>: JsonMappable {
         return instance
     }
 
-    override func parseField(_ instance: <%= type.name %>, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: <%= type.name %>, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         <%_ for variable in type.variables where variable.annotations["jsonField"] != nil { -%>
             <%_ guard let fieldNameAnnotationValue = variable.annotations["jsonField"] as? String else {

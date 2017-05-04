@@ -7,7 +7,7 @@ internal class AccountEmptyCredentialsJsonMapper: JsonMapper<AccountEmptyCredent
 
     internal static let singleton = AccountEmptyCredentialsJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> AccountEmptyCredentials! {
+    override func parse(_ parser: JsonParser) -> AccountEmptyCredentials! {
         let instance = AccountEmptyCredentials()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -27,7 +27,7 @@ internal class AccountEmptyCredentialsJsonMapper: JsonMapper<AccountEmptyCredent
         return instance
     }
 
-    override func parseField(_ instance: AccountEmptyCredentials, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: AccountEmptyCredentials, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         default:
             AccountDetailsCredentialsJsonMapper.singleton.parseField(instance, fieldName, parser)

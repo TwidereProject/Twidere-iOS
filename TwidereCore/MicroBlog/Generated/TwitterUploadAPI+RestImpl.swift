@@ -4,7 +4,7 @@
 import PromiseKit
 import RestClient
 
-internal class TwitterUploadServiceRestImpl: TwitterUploadService, RestAPIProtocol {
+internal class TwitterUploadAPIRestImpl: TwitterUploadAPI, RestAPIProtocol {
 
     let client: RestClient
 

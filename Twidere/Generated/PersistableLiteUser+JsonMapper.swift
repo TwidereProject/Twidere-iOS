@@ -11,7 +11,7 @@ internal class PersistableLiteUserJsonMapper: JsonMapper<PersistableLiteUser> {
 
     internal static let singleton = PersistableLiteUserJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> PersistableLiteUser! {
+    override func parse(_ parser: JsonParser) -> PersistableLiteUser! {
         let instance = PersistableLiteUser()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class PersistableLiteUserJsonMapper: JsonMapper<PersistableLiteUser> {
         return instance
     }
 
-    override func parseField(_ instance: PersistableLiteUser, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: PersistableLiteUser, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         default:
             break

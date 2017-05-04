@@ -11,7 +11,7 @@ internal class AttentionJsonMapper: JsonMapper<Attention> {
 
     internal static let singleton = AttentionJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> Attention! {
+    override func parse(_ parser: JsonParser) -> Attention! {
         let instance = Attention()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class AttentionJsonMapper: JsonMapper<Attention> {
         return instance
     }
 
-    override func parseField(_ instance: Attention, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: Attention, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         case "fullname":
             instance.fullName = parser.getValueAsString()

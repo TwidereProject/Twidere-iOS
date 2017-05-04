@@ -9,7 +9,7 @@ target 'Twidere' do
     pod 'LayoutKit'
     pod 'Sourcery', '~> 0.6'
     pod 'PMJSON', '~> 2.0.2'
-    pod 'PMJackson', '~> 1.0.9'
+    pod 'PMJackson', '~> 1.1.2'
     pod 'SQLite.swift', '~> 0.11.0'
     pod 'CryptoSwift', '~> 0.6.0'
     pod 'Alamofire', '~> 4.0'
@@ -47,21 +47,27 @@ target 'TwidereCore' do
     workspace 'Twidere'
     project 'TwidereCore/TwidereCore'
     
-    pod 'PMJackson', '~> 1.0.9'
+    pod 'Alamofire', '~> 4.0'
+    pod 'PMJackson', '~> 1.1.2'
+    pod 'PromiseKit', '~> 4.0.0'
 end
 
 target 'MicroBlog' do
     workspace 'Twidere'
     project 'TwidereCore/MicroBlog/MicroBlog'
     
-    pod 'PMJackson', '~> 1.0.9'
+    pod 'Alamofire', '~> 4.0'
+    pod 'PMJackson', '~> 1.1.2'
+    pod 'PromiseKit', '~> 4.0.0'
 end
 
 target 'Mastodon' do
     workspace 'Twidere'
     project 'TwidereCore/Mastodon/Mastodon'
     
-    pod 'PMJackson', '~> 1.0.9'
+    pod 'Alamofire', '~> 4.0'
+    pod 'PMJackson', '~> 1.1.2'
+    pod 'PromiseKit', '~> 4.0.0'
 end
 
 target 'RestClient' do

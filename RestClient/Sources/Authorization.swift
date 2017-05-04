@@ -187,12 +187,12 @@ public class OAuth2Authorization: Authorization {
 }
 
 public class OAuthToken {
-    let oauthToken: String
-    let oauthTokenSecret: String
-    var screenName: String? = nil
-    var userId: String? = nil
+    public let oauthToken: String
+    public let oauthTokenSecret: String
+    public var screenName: String? = nil
+    public var userId: String? = nil
     
-    init(_ oauthToken: String, _ oauthTokenSecret: String) {
+    public init(_ oauthToken: String, _ oauthTokenSecret: String) {
         self.oauthToken = oauthToken
         self.oauthTokenSecret = oauthTokenSecret
     }

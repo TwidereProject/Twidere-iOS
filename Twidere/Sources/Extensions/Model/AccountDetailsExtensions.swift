@@ -16,7 +16,7 @@ extension AccountDetails {
 
 extension AccountDetails.Credentials {
     
-    func createService<T: RestProtocolService>(accountType: AccountDetails.AccountType!, endpointConfig: EndpointConfig, type: T.Type) -> T {
+    func createService<T: RestAPIProtocol>(accountType: AccountDetails.AccountType!, endpointConfig: EndpointConfig, type: T.Type) -> T {
         let endpoint = getEndpoint(endpointConfig: endpointConfig)
         let auth = getAuthorization()
         return endpoint.createService(auth: auth, accountType: accountType, type: type)
@@ -60,7 +60,7 @@ extension AccountDetails.Credentials {
 
 extension Endpoint {
     
-    func createService<T: RestProtocolService>(auth: Authorization!, accountType: AccountDetails.AccountType!, type: T.Type) -> T {
+    func createService<T: RestAPIProtocol>(auth: Authorization!, accountType: AccountDetails.AccountType!, type: T.Type) -> T {
         let client = RestClient(endpoint: self, auth: auth)
         return type.init(client: client)
     }
