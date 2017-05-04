@@ -10,6 +10,8 @@
 		5EE236E547ACBEFE194924B3 /* Pods_TwidereCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF9C6A51C84A59CCC84A725 /* Pods_TwidereCore.framework */; };
 		CE750A3D1EBB3F3C003E6249 /* TwidereCore.h in Headers */ = {isa = PBXBuildFile; fileRef = CE750A3B1EBB3F3C003E6249 /* TwidereCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE750A631EBB4D28003E6249 /* MicroBlog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750A621EBB4D09003E6249 /* MicroBlog.framework */; };
+		CE750AE41EBB6473003E6249 /* JsonMapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AE21EBB6473003E6249 /* JsonMapper.generated.swift */; };
+		CE750AE51EBB6473003E6249 /* RestProtocolImpl.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AE31EBB6473003E6249 /* RestProtocolImpl.generated.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +33,8 @@
 		CE750A3C1EBB3F3C003E6249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE750A5D1EBB4D08003E6249 /* MicroBlog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MicroBlog.xcodeproj; path = MicroBlog/MicroBlog.xcodeproj; sourceTree = "<group>"; };
 		CE750AAA1EBB600B003E6249 /* Mastodon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Mastodon.xcodeproj; path = Mastodon/Mastodon.xcodeproj; sourceTree = "<group>"; };
+		CE750AE21EBB6473003E6249 /* JsonMapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonMapper.generated.swift; sourceTree = "<group>"; };
+		CE750AE31EBB6473003E6249 /* RestProtocolImpl.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestProtocolImpl.generated.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,13 +70,13 @@
 		CE750A2E1EBB3F3C003E6249 = {
 			isa = PBXGroup;
 			children = (
-				CE750AAA1EBB600B003E6249 /* Mastodon.xcodeproj */,
-				CE750A5D1EBB4D08003E6249 /* MicroBlog.xcodeproj */,
 				C6DB3F6BC1AF1F22B4CCB1CA /* Frameworks */,
 				CE750A441EBB4144003E6249 /* Generated */,
 				631B055608C155DB3F2579A2 /* Pods */,
 				CE750A391EBB3F3C003E6249 /* Products */,
 				CE750A3A1EBB3F3C003E6249 /* Sources */,
+				CE750AAA1EBB600B003E6249 /* Mastodon.xcodeproj */,
+				CE750A5D1EBB4D08003E6249 /* MicroBlog.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +100,8 @@
 		CE750A441EBB4144003E6249 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				CE750AE21EBB6473003E6249 /* JsonMapper.generated.swift */,
+				CE750AE31EBB6473003E6249 /* RestProtocolImpl.generated.swift */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -154,6 +160,7 @@
 					CE750A371EBB3F3C003E6249 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = K5277Y55W8;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -239,6 +246,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE750AE51EBB6473003E6249 /* RestProtocolImpl.generated.swift in Sources */,
+				CE750AE41EBB6473003E6249 /* JsonMapper.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +357,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2281E0BF2DC0671EB8B723C7 /* Pods-TwidereCore.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = K5277Y55W8;
@@ -360,6 +370,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.TwidereCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -368,6 +379,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B05C38CF48F42A8EF30FF3DE /* Pods-TwidereCore.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = K5277Y55W8;
