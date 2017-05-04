@@ -30,20 +30,20 @@
 		CE750A521EBB4D08003E6249 /* MicroBlog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MicroBlog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE750A551EBB4D08003E6249 /* MicroBlog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MicroBlog.h; sourceTree = "<group>"; };
 		CE750A561EBB4D08003E6249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE750A641EBB4D50003E6249 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Status.swift; path = ../../../Twidere/Sources/Models/API/MicroBlog/Status.swift; sourceTree = "<group>"; };
-		CE750A651EBB4D50003E6249 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../../../Twidere/Sources/Models/API/MicroBlog/User.swift; sourceTree = "<group>"; };
-		CE750A691EBB4D77003E6249 /* EntitySupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntitySupport.swift; path = ../../../Twidere/Sources/Models/API/MicroBlog/Twitter/EntitySupport.swift; sourceTree = "<group>"; };
-		CE750A6B1EBB4DA6003E6249 /* Entities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entities.swift; path = ../../../Twidere/Sources/Models/API/MicroBlog/Twitter/Entities.swift; sourceTree = "<group>"; };
-		CE750A6D1EBB4DCD003E6249 /* HashtagEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HashtagEntity.swift; path = ../../../Twidere/Sources/Models/API/MicroBlog/Twitter/HashtagEntity.swift; sourceTree = "<group>"; };
-		CE750A6E1EBB4DCD003E6249 /* MentionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MentionEntity.swift; path = ../../../Twidere/Sources/Models/API/MicroBlog/Twitter/MentionEntity.swift; sourceTree = "<group>"; };
-		CE750A6F1EBB4DCD003E6249 /* UrlEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UrlEntity.swift; path = ../../../Twidere/Sources/Models/API/MicroBlog/Twitter/UrlEntity.swift; sourceTree = "<group>"; };
-		CE750A701EBB4DCD003E6249 /* UserEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserEntities.swift; path = ../../../Twidere/Sources/Models/API/MicroBlog/Twitter/UserEntities.swift; sourceTree = "<group>"; };
-		CE750A751EBB4E9A003E6249 /* GeoPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeoPoint.swift; path = ../../../Twidere/Sources/Models/API/MicroBlog/GeoPoint.swift; sourceTree = "<group>"; };
-		CE750A761EBB4E9A003E6249 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Place.swift; path = ../../../Twidere/Sources/Models/API/MicroBlog/Place.swift; sourceTree = "<group>"; };
-		CE750A791EBB5C56003E6249 /* CardEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardEntity.swift; path = ../../../Twidere/Sources/Models/API/MicroBlog/Twitter/CardEntity.swift; sourceTree = "<group>"; };
-		CE750A7B1EBB5C7A003E6249 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
-		CE750A7C1EBB5C7A003E6249 /* Attention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attention.swift; sourceTree = "<group>"; };
-		CE750A861EBB5CCB003E6249 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		CE750A641EBB4D50003E6249 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Status.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/Status.swift; sourceTree = "<group>"; };
+		CE750A651EBB4D50003E6249 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/User.swift; sourceTree = "<group>"; };
+		CE750A691EBB4D77003E6249 /* EntitySupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntitySupport.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/Twitter/EntitySupport.swift; sourceTree = "<group>"; };
+		CE750A6B1EBB4DA6003E6249 /* Entities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entities.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/Twitter/Entities.swift; sourceTree = "<group>"; };
+		CE750A6D1EBB4DCD003E6249 /* HashtagEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HashtagEntity.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/Twitter/HashtagEntity.swift; sourceTree = "<group>"; };
+		CE750A6E1EBB4DCD003E6249 /* MentionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MentionEntity.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/Twitter/MentionEntity.swift; sourceTree = "<group>"; };
+		CE750A6F1EBB4DCD003E6249 /* UrlEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UrlEntity.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/Twitter/UrlEntity.swift; sourceTree = "<group>"; };
+		CE750A701EBB4DCD003E6249 /* UserEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserEntities.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/Twitter/UserEntities.swift; sourceTree = "<group>"; };
+		CE750A751EBB4E9A003E6249 /* GeoPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeoPoint.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/GeoPoint.swift; sourceTree = "<group>"; };
+		CE750A761EBB4E9A003E6249 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Place.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/Place.swift; sourceTree = "<group>"; };
+		CE750A791EBB5C56003E6249 /* CardEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardEntity.swift; path = ../../../../../Twidere/Sources/Models/API/MicroBlog/Twitter/CardEntity.swift; sourceTree = "<group>"; };
+		CE750A7B1EBB5C7A003E6249 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ../../../../../Twidere/Sources/Models/API/MicroBlog/GNUSocial/Attachment.swift; sourceTree = "<group>"; };
+		CE750A7C1EBB5C7A003E6249 /* Attention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ../../../../../Twidere/Sources/Models/API/MicroBlog/GNUSocial/Attention.swift; sourceTree = "<group>"; };
+		CE750A861EBB5CCB003E6249 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ../../../../../Twidere/Sources/Models/API/MicroBlog/Fanfou/Photo.swift; sourceTree = "<group>"; };
 		CE750A891EBB5CF6003E6249 /* GeoLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
 		CE750A8C1EBB5D75003E6249 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,8 +62,8 @@
 		CE750A481EBB4D08003E6249 = {
 			isa = PBXGroup;
 			children = (
-				CE750A541EBB4D08003E6249 /* Sources */,
 				CE750A531EBB4D08003E6249 /* Products */,
+				CE750A541EBB4D08003E6249 /* Sources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,11 +80,11 @@
 			children = (
 				CE750A8B1EBB5D6D003E6249 /* Extensions */,
 				CE750A681EBB4D5A003E6249 /* Models */,
-				CE750A551EBB4D08003E6249 /* MicroBlog.h */,
 				CE750A561EBB4D08003E6249 /* Info.plist */,
+				CE750A551EBB4D08003E6249 /* MicroBlog.h */,
 			);
 			name = Sources;
-			path = MicroBlog;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		CE750A681EBB4D5A003E6249 /* Models */ = {
@@ -93,19 +93,20 @@
 				CE750A871EBB5CCB003E6249 /* Fanfou */,
 				CE750A7D1EBB5C7A003E6249 /* GNUSocial */,
 				CE750A801EBB5C88003E6249 /* Twitter */,
-				CE750A751EBB4E9A003E6249 /* GeoPoint.swift */,
-				CE750A761EBB4E9A003E6249 /* Place.swift */,
-				CE750A6D1EBB4DCD003E6249 /* HashtagEntity.swift */,
-				CE750A6E1EBB4DCD003E6249 /* MentionEntity.swift */,
-				CE750A6F1EBB4DCD003E6249 /* UrlEntity.swift */,
-				CE750A701EBB4DCD003E6249 /* UserEntities.swift */,
 				CE750A6B1EBB4DA6003E6249 /* Entities.swift */,
 				CE750A691EBB4D77003E6249 /* EntitySupport.swift */,
-				CE750A641EBB4D50003E6249 /* Status.swift */,
-				CE750A651EBB4D50003E6249 /* User.swift */,
 				CE750A891EBB5CF6003E6249 /* GeoLocation.swift */,
+				CE750A751EBB4E9A003E6249 /* GeoPoint.swift */,
+				CE750A6D1EBB4DCD003E6249 /* HashtagEntity.swift */,
+				CE750A6E1EBB4DCD003E6249 /* MentionEntity.swift */,
+				CE750A761EBB4E9A003E6249 /* Place.swift */,
+				CE750A641EBB4D50003E6249 /* Status.swift */,
+				CE750A6F1EBB4DCD003E6249 /* UrlEntity.swift */,
+				CE750A651EBB4D50003E6249 /* User.swift */,
+				CE750A701EBB4DCD003E6249 /* UserEntities.swift */,
 			);
 			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		CE750A7D1EBB5C7A003E6249 /* GNUSocial */ = {
@@ -115,7 +116,7 @@
 				CE750A7C1EBB5C7A003E6249 /* Attention.swift */,
 			);
 			name = GNUSocial;
-			path = ../../../Twidere/Sources/Models/API/MicroBlog/GNUSocial;
+			path = GNUSocial;
 			sourceTree = "<group>";
 		};
 		CE750A801EBB5C88003E6249 /* Twitter */ = {
@@ -124,6 +125,7 @@
 				CE750A791EBB5C56003E6249 /* CardEntity.swift */,
 			);
 			name = Twitter;
+			path = Twitter;
 			sourceTree = "<group>";
 		};
 		CE750A871EBB5CCB003E6249 /* Fanfou */ = {
@@ -132,7 +134,7 @@
 				CE750A861EBB5CCB003E6249 /* Photo.swift */,
 			);
 			name = Fanfou;
-			path = ../../../Twidere/Sources/Models/API/MicroBlog/Fanfou;
+			path = Fanfou;
 			sourceTree = "<group>";
 		};
 		CE750A8B1EBB5D6D003E6249 /* Extensions */ = {
@@ -141,6 +143,7 @@
 				CE750A8C1EBB5D75003E6249 /* DateExtensions.swift */,
 			);
 			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,7 +356,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = MicroBlog/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.library.MicroBlog;
@@ -372,7 +375,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = MicroBlog/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.library.MicroBlog;
