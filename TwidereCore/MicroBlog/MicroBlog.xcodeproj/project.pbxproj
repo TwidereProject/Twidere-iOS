@@ -148,11 +148,11 @@
 		CE750A481EBB4D08003E6249 = {
 			isa = PBXGroup;
 			children = (
+				3D1EEC3E4D316C1114D2C76B /* Frameworks */,
 				CE750ABB1EBB636C003E6249 /* Generated */,
+				92A3A741EF253A85160D84B0 /* Pods */,
 				CE750A531EBB4D08003E6249 /* Products */,
 				CE750A541EBB4D08003E6249 /* Sources */,
-				92A3A741EF253A85160D84B0 /* Pods */,
-				3D1EEC3E4D316C1114D2C76B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -168,9 +168,9 @@
 			isa = PBXGroup;
 			children = (
 				CE750B881EBB775A003E6249 /* API */,
-				CE750B161EBB69C1003E6249 /* Utils */,
 				CE750A8B1EBB5D6D003E6249 /* Extensions */,
 				CE750A681EBB4D5A003E6249 /* Models */,
+				CE750B161EBB69C1003E6249 /* Utils */,
 				CE750A561EBB4D08003E6249 /* Info.plist */,
 				CE750A551EBB4D08003E6249 /* MicroBlog.h */,
 				CE750BA81EBB7B9B003E6249 /* MicroBlogError.swift */,
@@ -205,15 +205,15 @@
 		CE750A801EBB5C88003E6249 /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
-				CE750B911EBB78E2003E6249 /* MediaUploadResponse.swift */,
 				CE750A791EBB5C56003E6249 /* CardEntity.swift */,
 				CE750A6B1EBB4DA6003E6249 /* Entities.swift */,
 				CE750A691EBB4D77003E6249 /* EntitySupport.swift */,
 				CE750A6D1EBB4DCD003E6249 /* HashtagEntity.swift */,
-				CE750A6E1EBB4DCD003E6249 /* UserMentionEntity.swift */,
+				CE750AE71EBB6775003E6249 /* MediaEntity.swift */,
+				CE750B911EBB78E2003E6249 /* MediaUploadResponse.swift */,
 				CE750A6F1EBB4DCD003E6249 /* UrlEntity.swift */,
 				CE750A701EBB4DCD003E6249 /* UserEntities.swift */,
-				CE750AE71EBB6775003E6249 /* MediaEntity.swift */,
+				CE750A6E1EBB4DCD003E6249 /* UserMentionEntity.swift */,
 			);
 			path = Twitter;
 			sourceTree = "<group>";
@@ -237,12 +237,6 @@
 			isa = PBXGroup;
 			children = (
 				CE750B961EBB7A24003E6249 /* AccountAPI+RestImpl.swift */,
-				CE750B971EBB7A24003E6249 /* MediaUploadResponse.Image+JsonMapper.swift */,
-				CE750B981EBB7A24003E6249 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift */,
-				CE750B991EBB7A24003E6249 /* MediaUploadResponse.Video+JsonMapper.swift */,
-				CE750B9A1EBB7A24003E6249 /* MediaUploadResponse+JsonMapper.swift */,
-				CE750B9B1EBB7A24003E6249 /* OAuthAPI+RestImpl.swift */,
-				CE750B9D1EBB7A24003E6249 /* TwitterUploadAPI+RestImpl.swift */,
 				CE750AE91EBB68C7003E6249 /* Attachment+JsonMapper.swift */,
 				CE750AEA1EBB68C7003E6249 /* Attention+JsonMapper.swift */,
 				CE750AEB1EBB68C7003E6249 /* CardEntity+JsonMapper.swift */,
@@ -250,11 +244,17 @@
 				CE750AED1EBB68C7003E6249 /* GeoPoint+JsonMapper.swift */,
 				CE750AEE1EBB68C7003E6249 /* HashtagEntity+JsonMapper.swift */,
 				CE750AF01EBB68C7003E6249 /* MediaEntity+JsonMapper.swift */,
+				CE750B9A1EBB7A24003E6249 /* MediaUploadResponse+JsonMapper.swift */,
+				CE750B971EBB7A24003E6249 /* MediaUploadResponse.Image+JsonMapper.swift */,
+				CE750B981EBB7A24003E6249 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift */,
+				CE750B991EBB7A24003E6249 /* MediaUploadResponse.Video+JsonMapper.swift */,
+				CE750B9B1EBB7A24003E6249 /* OAuthAPI+RestImpl.swift */,
 				CE750AF11EBB68C7003E6249 /* Photo+JsonMapper.swift */,
 				CE750AF21EBB68C7003E6249 /* Place+JsonMapper.swift */,
+				CE750AF61EBB68C7003E6249 /* Status+JsonMapper.swift */,
 				CE750AF41EBB68C7003E6249 /* Status.CurrentUserRetweet+JsonMapper.swift */,
 				CE750AF51EBB68C7003E6249 /* Status.ExtendedTweet+JsonMapper.swift */,
-				CE750AF61EBB68C7003E6249 /* Status+JsonMapper.swift */,
+				CE750B9D1EBB7A24003E6249 /* TwitterUploadAPI+RestImpl.swift */,
 				CE750AF81EBB68C7003E6249 /* UrlEntity+JsonMapper.swift */,
 				CE750AF91EBB68C7003E6249 /* User+JsonMapper.swift */,
 				CE750AFA1EBB68C7003E6249 /* UserEntities+JsonMapper.swift */,
@@ -266,20 +266,22 @@
 		CE750B161EBB69C1003E6249 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				CE750BA61EBB7A63003E6249 /* ResponseSerializers.swift */,
 				CE750B171EBB69F0003E6249 /* DateFieldConverters.swift */,
+				CE750BA61EBB7A63003E6249 /* ResponseSerializers.swift */,
 			);
 			name = Utils;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		CE750B881EBB775A003E6249 /* API */ = {
 			isa = PBXGroup;
 			children = (
 				CE750B8F1EBB77F2003E6249 /* AccountAPI.swift */,
-				CE750B8D1EBB77CA003E6249 /* TwitterUploadAPI.swift */,
 				CE750B891EBB7769003E6249 /* OAuthAPI.swift */,
+				CE750B8D1EBB77CA003E6249 /* TwitterUploadAPI.swift */,
 			);
 			name = API;
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

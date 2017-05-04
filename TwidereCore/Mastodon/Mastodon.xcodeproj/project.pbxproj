@@ -53,11 +53,11 @@
 		CE750A951EBB600B003E6249 = {
 			isa = PBXGroup;
 			children = (
+				7B4356E588A60AFB15F7AA44 /* Frameworks */,
 				CE750AB41EBB6363003E6249 /* Generated */,
+				ED23389A7F4752C5DF43061C /* Pods */,
 				CE750AA01EBB600B003E6249 /* Products */,
 				CE750AA11EBB600B003E6249 /* Sources */,
-				ED23389A7F4752C5DF43061C /* Pods */,
-				7B4356E588A60AFB15F7AA44 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +102,7 @@
 				CE750B941EBB7942003E6249 /* AccountsAPI.swift */,
 			);
 			name = API;
+			path = API;
 			sourceTree = "<group>";
 		};
 		ED23389A7F4752C5DF43061C /* Pods */ = {

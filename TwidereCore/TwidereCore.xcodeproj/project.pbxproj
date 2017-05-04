@@ -176,9 +176,9 @@
 		CE750A3A1EBB3F3C003E6249 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				CE750BC91EBB80FB003E6249 /* Utils */,
 				CE750BBF1EBB7E7C003E6249 /* Extensions */,
 				CE750BBE1EBB7E6E003E6249 /* Model */,
+				CE750BC91EBB80FB003E6249 /* Utils */,
 				CE750A3C1EBB3F3C003E6249 /* Info.plist */,
 				CE750A3B1EBB3F3C003E6249 /* TwidereCore.h */,
 			);
@@ -188,23 +188,23 @@
 		CE750A441EBB4144003E6249 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				CE750BFA1EBB85DA003E6249 /* BasicCredentials+JsonMapper.swift */,
-				CE750BFB1EBB85DA003E6249 /* EmptyCredentials+JsonMapper.swift */,
-				CE750BFC1EBB85DA003E6249 /* OAuth2Credentials+JsonMapper.swift */,
-				CE750BFD1EBB85DA003E6249 /* OAuthCredentials+JsonMapper.swift */,
 				CE750BDA1EBB840F003E6249 /* AccountDetails.Credentials+JsonMapper.swift */,
 				CE750BDB1EBB840F003E6249 /* AccountDetails.Extras+JsonMapper.swift */,
-				CE750BDC1EBB840F003E6249 /* MediaItem.VideoInfo.Variant+JsonMapper.swift */,
-				CE750BDD1EBB840F003E6249 /* MediaItem.VideoInfo+JsonMapper.swift */,
+				CE750BFA1EBB85DA003E6249 /* BasicCredentials+JsonMapper.swift */,
+				CE750BFB1EBB85DA003E6249 /* EmptyCredentials+JsonMapper.swift */,
 				CE750BDE1EBB840F003E6249 /* MediaItem+JsonMapper.swift */,
+				CE750BDD1EBB840F003E6249 /* MediaItem.VideoInfo+JsonMapper.swift */,
+				CE750BDC1EBB840F003E6249 /* MediaItem.VideoInfo.Variant+JsonMapper.swift */,
 				CE750BDF1EBB840F003E6249 /* MentionItem+JsonMapper.swift */,
+				CE750BFC1EBB85DA003E6249 /* OAuth2Credentials+JsonMapper.swift */,
+				CE750BFD1EBB85DA003E6249 /* OAuthCredentials+JsonMapper.swift */,
+				CE750BE21EBB840F003E6249 /* PersistableActivity+JsonMapper.swift */,
 				CE750BE01EBB840F003E6249 /* PersistableActivity.RelatedObject+JsonMapper.swift */,
 				CE750BE11EBB840F003E6249 /* PersistableActivity.SummaryLine+JsonMapper.swift */,
-				CE750BE21EBB840F003E6249 /* PersistableActivity+JsonMapper.swift */,
 				CE750BE31EBB840F003E6249 /* PersistableCardEntity+JsonMapper.swift */,
 				CE750BE41EBB840F003E6249 /* PersistableLiteUser+JsonMapper.swift */,
-				CE750BE51EBB840F003E6249 /* PersistableStatus.Extras+JsonMapper.swift */,
 				CE750BE61EBB840F003E6249 /* PersistableStatus+JsonMapper.swift */,
+				CE750BE51EBB840F003E6249 /* PersistableStatus.Extras+JsonMapper.swift */,
 				CE750BE71EBB840F003E6249 /* PersistableUser+JsonMapper.swift */,
 				CE750BE81EBB840F003E6249 /* SpanItem+JsonMapper.swift */,
 			);
@@ -231,41 +231,44 @@
 			isa = PBXGroup;
 			children = (
 				CE750BF81EBB854F003E6249 /* AccountCredentials.swift */,
-				CE750BD51EBB82D5003E6249 /* MentionItem.swift */,
-				CE750BD31EBB82B9003E6249 /* MediaItem.swift */,
-				CE750BC51EBB80C6003E6249 /* SpanItem.swift */,
-				CE750BC31EBB7EC2003E6249 /* UserKey.swift */,
 				CE750BC11EBB7EB0003E6249 /* AccountDetails.swift */,
+				CE750BD31EBB82B9003E6249 /* MediaItem.swift */,
+				CE750BD51EBB82D5003E6249 /* MentionItem.swift */,
 				CE750BB41EBB7E6A003E6249 /* PersistableActivity.swift */,
 				CE750BB51EBB7E6A003E6249 /* PersistableCardEntity.swift */,
 				CE750BB61EBB7E6A003E6249 /* PersistableLiteUser.swift */,
 				CE750BB71EBB7E6A003E6249 /* PersistableStatus.swift */,
 				CE750BB81EBB7E6A003E6249 /* PersistableUser.swift */,
+				CE750BC51EBB80C6003E6249 /* SpanItem.swift */,
+				CE750BC31EBB7EC2003E6249 /* UserKey.swift */,
 			);
 			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CE750BBF1EBB7E7C003E6249 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CE750C041EBB8951003E6249 /* StringExtensions.swift */,
-				CE750C021EBB8709003E6249 /* SimpleTypesFieldConverters.swift */,
-				CE750BD21EBB8238003E6249 /* Model */,
 				CE750BC01EBB7E8E003E6249 /* MicroBlog */,
+				CE750BD21EBB8238003E6249 /* Model */,
 				CE750BCA1EBB8175003E6249 /* DateExtensions.swift */,
+				CE750C021EBB8709003E6249 /* SimpleTypesFieldConverters.swift */,
+				CE750C041EBB8951003E6249 /* StringExtensions.swift */,
 			);
 			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		CE750BC01EBB7E8E003E6249 /* MicroBlog */ = {
 			isa = PBXGroup;
 			children = (
 				CE750C061EBB89AC003E6249 /* CardEntityExtension.swift */,
-				CE750C071EBB89AC003E6249 /* UserMentionEntityExtension.swift */,
 				CE750BAE1EBB7E39003E6249 /* StatusExtension.swift */,
 				CE750BAF1EBB7E39003E6249 /* UserExtension.swift */,
+				CE750C071EBB89AC003E6249 /* UserMentionEntityExtension.swift */,
 			);
 			name = MicroBlog;
+			path = MicroBlog;
 			sourceTree = "<group>";
 		};
 		CE750BC91EBB80FB003E6249 /* Utils */ = {
@@ -274,6 +277,7 @@
 				CE750BC71EBB80F4003E6249 /* HtmlBuilder.swift */,
 			);
 			name = Utils;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		CE750BD21EBB8238003E6249 /* Model */ = {
@@ -282,6 +286,7 @@
 				CE750BCE1EBB8230003E6249 /* PersistableStatusExtension.swift */,
 			);
 			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
