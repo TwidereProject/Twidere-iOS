@@ -10,10 +10,11 @@ import Foundation
 import Kanna
 import PromiseKit
 import Alamofire
+import MicroBlog
 
 class TwitterOAuthPasswordAuthenticator {
     
-    let oauth: OAuthService
+    let oauth: OAuthAPI
     let rest: RestClient
     let loginVerificationCallback: ((_ challangeType: String) -> String?)
     let browserUserAgent: String?
