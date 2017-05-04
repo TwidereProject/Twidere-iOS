@@ -3,16 +3,16 @@
 
 import PMJackson
 
-extension MicroBlogStatus.CurrentUserRetweet: JsonMappable {
+extension Status.CurrentUserRetweet: JsonMappable {
 
 }
 
-internal class MicroBlogStatusCurrentUserRetweetJsonMapper: JsonMapper<MicroBlogStatus.CurrentUserRetweet> {
+internal class StatusCurrentUserRetweetJsonMapper: JsonMapper<Status.CurrentUserRetweet> {
 
-    internal static let singleton = MicroBlogStatusCurrentUserRetweetJsonMapper()
+    internal static let singleton = StatusCurrentUserRetweetJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> MicroBlogStatus.CurrentUserRetweet! {
-        let instance = MicroBlogStatus.CurrentUserRetweet()
+    override func parse(_ parser: PMJacksonParser) -> Status.CurrentUserRetweet! {
+        let instance = Status.CurrentUserRetweet()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -31,7 +31,7 @@ internal class MicroBlogStatusCurrentUserRetweetJsonMapper: JsonMapper<MicroBlog
         return instance
     }
 
-    override func parseField(_ instance: MicroBlogStatus.CurrentUserRetweet, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: Status.CurrentUserRetweet, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "id":
             instance.id = parser.getValueAsString()

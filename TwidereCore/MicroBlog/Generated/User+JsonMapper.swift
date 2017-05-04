@@ -3,16 +3,16 @@
 
 import PMJackson
 
-extension MicroBlogUser: JsonMappable {
+extension User: JsonMappable {
 
 }
 
-internal class MicroBlogUserJsonMapper: JsonMapper<MicroBlogUser> {
+internal class UserJsonMapper: JsonMapper<User> {
 
-    internal static let singleton = MicroBlogUserJsonMapper()
+    internal static let singleton = UserJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> MicroBlogUser! {
-        let instance = MicroBlogUser()
+    override func parse(_ parser: PMJacksonParser) -> User! {
+        let instance = User()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -31,7 +31,7 @@ internal class MicroBlogUserJsonMapper: JsonMapper<MicroBlogUser> {
         return instance
     }
 
-    override func parseField(_ instance: MicroBlogUser, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: User, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "id":
             instance.id = parser.getValueAsString()
@@ -78,7 +78,7 @@ internal class MicroBlogUserJsonMapper: JsonMapper<MicroBlogUser> {
         case "lang":
             instance.lang = parser.getValueAsString()
         case "status":
-            instance.status = MicroBlogStatusJsonMapper.singleton.parse(parser)
+            instance.status = StatusJsonMapper.singleton.parse(parser)
         case "contributors_enabled":
             instance.contributorsEnabled = parser.getValueAsBool()
         case "is_translator":

@@ -1,11 +1,7 @@
-protocol RestProtocolService {
-
-    init(client: RestClient)
-
-}
-<%_ for type in types.protocols where type.annotations["restProtocol"] != nil { _%>
+<%_ for type in types.protocols where type.annotations["restProtocol"] != nil { -%>
 // sourcery:file:<%= type.name %>+RestImpl.swift
 import PromiseKit
+import RestClient
 
 <%= "\(type.accessLevel) " %>class <%= type.name %>RestImpl: <%= type.name %>, RestProtocolService {
 

@@ -3,16 +3,16 @@
 
 import PMJackson
 
-extension MicroBlogStatus.ExtendedTweet: JsonMappable {
+extension Status.ExtendedTweet: JsonMappable {
 
 }
 
-internal class MicroBlogStatusExtendedTweetJsonMapper: JsonMapper<MicroBlogStatus.ExtendedTweet> {
+internal class StatusExtendedTweetJsonMapper: JsonMapper<Status.ExtendedTweet> {
 
-    internal static let singleton = MicroBlogStatusExtendedTweetJsonMapper()
+    internal static let singleton = StatusExtendedTweetJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> MicroBlogStatus.ExtendedTweet! {
-        let instance = MicroBlogStatus.ExtendedTweet()
+    override func parse(_ parser: PMJacksonParser) -> Status.ExtendedTweet! {
+        let instance = Status.ExtendedTweet()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -31,7 +31,7 @@ internal class MicroBlogStatusExtendedTweetJsonMapper: JsonMapper<MicroBlogStatu
         return instance
     }
 
-    override func parseField(_ instance: MicroBlogStatus.ExtendedTweet, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: Status.ExtendedTweet, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "full_text":
             instance.fullText = parser.getValueAsString()

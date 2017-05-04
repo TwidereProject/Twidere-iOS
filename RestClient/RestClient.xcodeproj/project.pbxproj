@@ -7,173 +7,157 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A26DB373F054D412C90DD980 /* Pods_Mastodon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E13A13EE711B32D3F4A6CBC /* Pods_Mastodon.framework */; };
-		CE750AA41EBB600B003E6249 /* Mastodon.h in Headers */ = {isa = PBXBuildFile; fileRef = CE750AA21EBB600B003E6249 /* Mastodon.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CE750AB21EBB603D003E6249 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AB11EBB603D003E6249 /* Account.swift */; };
-		CE750AB81EBB6363003E6249 /* Account+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AB51EBB6363003E6249 /* Account+JsonMapper.swift */; };
-		CE750AB91EBB6363003E6249 /* JsonMapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AB61EBB6363003E6249 /* JsonMapper.generated.swift */; };
-		CE750B411EBB6DD0003E6249 /* RestClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750B401EBB6DD0003E6249 /* RestClient.framework */; };
+		08D36B4C89B09FB579B6A882 /* Pods_RestClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B427DBA6F94F061D54C0097 /* Pods_RestClient.framework */; };
+		CE750B281EBB6A9C003E6249 /* RestClient.h in Headers */ = {isa = PBXBuildFile; fileRef = CE750B261EBB6A9C003E6249 /* RestClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE750B341EBB6B0B003E6249 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B301EBB6B0B003E6249 /* Authorization.swift */; };
+		CE750B351EBB6B0B003E6249 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B311EBB6B0B003E6249 /* Endpoint.swift */; };
+		CE750B361EBB6B0B003E6249 /* RestCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B321EBB6B0B003E6249 /* RestCall.swift */; };
+		CE750B371EBB6B0B003E6249 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B331EBB6B0B003E6249 /* RestClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		528B28521598F949854FD62D /* Pods-Mastodon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mastodon.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-Mastodon/Pods-Mastodon.debug.xcconfig"; sourceTree = "<group>"; };
-		7E13A13EE711B32D3F4A6CBC /* Pods_Mastodon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mastodon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE750A9F1EBB600B003E6249 /* Mastodon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mastodon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE750AA21EBB600B003E6249 /* Mastodon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mastodon.h; sourceTree = "<group>"; };
-		CE750AA31EBB600B003E6249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE750AB11EBB603D003E6249 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		CE750AB51EBB6363003E6249 /* Account+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE750AB61EBB6363003E6249 /* JsonMapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonMapper.generated.swift; sourceTree = "<group>"; };
-		CE750B401EBB6DD0003E6249 /* RestClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestClient.framework; path = "../../../../../../Users/mariotaku/Library/Developer/Xcode/DerivedData/Twidere-dhschizzfhkqdkgwpcupdypbyxay/Build/Products/Debug-iphoneos/RestClient.framework"; sourceTree = "<group>"; };
-		EEFAAA3A495D3BBE5973CD2C /* Pods-Mastodon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mastodon.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-Mastodon/Pods-Mastodon.release.xcconfig"; sourceTree = "<group>"; };
+		07FD931E084FC2F9CC965C39 /* Pods-RestClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestClient.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-RestClient/Pods-RestClient.debug.xcconfig"; sourceTree = "<group>"; };
+		166EBF2436D48661D6178410 /* Pods-RestClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestClient.release.xcconfig"; path = "../Pods/Target Support Files/Pods-RestClient/Pods-RestClient.release.xcconfig"; sourceTree = "<group>"; };
+		2B427DBA6F94F061D54C0097 /* Pods_RestClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RestClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE750B231EBB6A9C003E6249 /* RestClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RestClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE750B261EBB6A9C003E6249 /* RestClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestClient.h; sourceTree = "<group>"; };
+		CE750B271EBB6A9C003E6249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE750B301EBB6B0B003E6249 /* Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
+		CE750B311EBB6B0B003E6249 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		CE750B321EBB6B0B003E6249 /* RestCall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestCall.swift; sourceTree = "<group>"; };
+		CE750B331EBB6B0B003E6249 /* RestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		CE750A9B1EBB600B003E6249 /* Frameworks */ = {
+		CE750B1F1EBB6A9C003E6249 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE750B411EBB6DD0003E6249 /* RestClient.framework in Frameworks */,
-				A26DB373F054D412C90DD980 /* Pods_Mastodon.framework in Frameworks */,
+				08D36B4C89B09FB579B6A882 /* Pods_RestClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7B4356E588A60AFB15F7AA44 /* Frameworks */ = {
+		2D441E921B63B2E940EA7D8A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CE750B401EBB6DD0003E6249 /* RestClient.framework */,
-				7E13A13EE711B32D3F4A6CBC /* Pods_Mastodon.framework */,
+				07FD931E084FC2F9CC965C39 /* Pods-RestClient.debug.xcconfig */,
+				166EBF2436D48661D6178410 /* Pods-RestClient.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		690C036ACE3CDA3EF3A5DAB3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2B427DBA6F94F061D54C0097 /* Pods_RestClient.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CE750A951EBB600B003E6249 = {
+		CE750B191EBB6A9C003E6249 = {
 			isa = PBXGroup;
 			children = (
-				CE750AB41EBB6363003E6249 /* Generated */,
-				CE750AA01EBB600B003E6249 /* Products */,
-				CE750AA11EBB600B003E6249 /* Sources */,
-				ED23389A7F4752C5DF43061C /* Pods */,
-				7B4356E588A60AFB15F7AA44 /* Frameworks */,
+				CE750B251EBB6A9C003E6249 /* Sources */,
+				CE750B241EBB6A9C003E6249 /* Products */,
+				2D441E921B63B2E940EA7D8A /* Pods */,
+				690C036ACE3CDA3EF3A5DAB3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		CE750AA01EBB600B003E6249 /* Products */ = {
+		CE750B241EBB6A9C003E6249 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CE750A9F1EBB600B003E6249 /* Mastodon.framework */,
+				CE750B231EBB6A9C003E6249 /* RestClient.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CE750AA11EBB600B003E6249 /* Sources */ = {
+		CE750B251EBB6A9C003E6249 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				CE750AB01EBB6026003E6249 /* Models */,
-				CE750AA31EBB600B003E6249 /* Info.plist */,
-				CE750AA21EBB600B003E6249 /* Mastodon.h */,
+				CE750B301EBB6B0B003E6249 /* Authorization.swift */,
+				CE750B311EBB6B0B003E6249 /* Endpoint.swift */,
+				CE750B321EBB6B0B003E6249 /* RestCall.swift */,
+				CE750B331EBB6B0B003E6249 /* RestClient.swift */,
+				CE750B261EBB6A9C003E6249 /* RestClient.h */,
+				CE750B271EBB6A9C003E6249 /* Info.plist */,
 			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		CE750AB01EBB6026003E6249 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				CE750AB11EBB603D003E6249 /* Account.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		CE750AB41EBB6363003E6249 /* Generated */ = {
-			isa = PBXGroup;
-			children = (
-				CE750AB51EBB6363003E6249 /* Account+JsonMapper.swift */,
-				CE750AB61EBB6363003E6249 /* JsonMapper.generated.swift */,
-			);
-			path = Generated;
-			sourceTree = "<group>";
-		};
-		ED23389A7F4752C5DF43061C /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				528B28521598F949854FD62D /* Pods-Mastodon.debug.xcconfig */,
-				EEFAAA3A495D3BBE5973CD2C /* Pods-Mastodon.release.xcconfig */,
-			);
-			name = Pods;
+			name = Sources;
+			path = RestClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		CE750A9C1EBB600B003E6249 /* Headers */ = {
+		CE750B201EBB6A9C003E6249 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE750AA41EBB600B003E6249 /* Mastodon.h in Headers */,
+				CE750B281EBB6A9C003E6249 /* RestClient.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		CE750A9E1EBB600B003E6249 /* Mastodon */ = {
+		CE750B221EBB6A9C003E6249 /* RestClient */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE750AA71EBB600B003E6249 /* Build configuration list for PBXNativeTarget "Mastodon" */;
+			buildConfigurationList = CE750B2B1EBB6A9C003E6249 /* Build configuration list for PBXNativeTarget "RestClient" */;
 			buildPhases = (
-				577E7DC812156D617294C054 /* [CP] Check Pods Manifest.lock */,
-				CE750A9A1EBB600B003E6249 /* Sources */,
-				CE750A9B1EBB600B003E6249 /* Frameworks */,
-				CE750A9C1EBB600B003E6249 /* Headers */,
-				CE750A9D1EBB600B003E6249 /* Resources */,
-				BF0440659DD0DAE41B65EBCD /* [CP] Copy Pods Resources */,
+				40D73F50A1F170144ACC8391 /* [CP] Check Pods Manifest.lock */,
+				CE750B1E1EBB6A9C003E6249 /* Sources */,
+				CE750B1F1EBB6A9C003E6249 /* Frameworks */,
+				CE750B201EBB6A9C003E6249 /* Headers */,
+				CE750B211EBB6A9C003E6249 /* Resources */,
+				A9EE42F0FCFEE1D7102473F2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Mastodon;
-			productName = Mastodon;
-			productReference = CE750A9F1EBB600B003E6249 /* Mastodon.framework */;
+			name = RestClient;
+			productName = RestClient;
+			productReference = CE750B231EBB6A9C003E6249 /* RestClient.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		CE750A961EBB600B003E6249 /* Project object */ = {
+		CE750B1A1EBB6A9C003E6249 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Mariotaku Lee";
 				TargetAttributes = {
-					CE750A9E1EBB600B003E6249 = {
+					CE750B221EBB6A9C003E6249 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = K5277Y55W8;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = CE750A991EBB600B003E6249 /* Build configuration list for PBXProject "Mastodon" */;
+			buildConfigurationList = CE750B1D1EBB6A9C003E6249 /* Build configuration list for PBXProject "RestClient" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = CE750A951EBB600B003E6249;
-			productRefGroup = CE750AA01EBB600B003E6249 /* Products */;
+			mainGroup = CE750B191EBB6A9C003E6249;
+			productRefGroup = CE750B241EBB6A9C003E6249 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CE750A9E1EBB600B003E6249 /* Mastodon */,
+				CE750B221EBB6A9C003E6249 /* RestClient */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		CE750A9D1EBB600B003E6249 /* Resources */ = {
+		CE750B211EBB6A9C003E6249 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -183,7 +167,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		577E7DC812156D617294C054 /* [CP] Check Pods Manifest.lock */ = {
+		40D73F50A1F170144ACC8391 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -198,7 +182,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		BF0440659DD0DAE41B65EBCD /* [CP] Copy Pods Resources */ = {
+		A9EE42F0FCFEE1D7102473F2 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -210,26 +194,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-Mastodon/Pods-Mastodon-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-RestClient/Pods-RestClient-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		CE750A9A1EBB600B003E6249 /* Sources */ = {
+		CE750B1E1EBB6A9C003E6249 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE750AB81EBB6363003E6249 /* Account+JsonMapper.swift in Sources */,
-				CE750AB91EBB6363003E6249 /* JsonMapper.generated.swift in Sources */,
-				CE750AB21EBB603D003E6249 /* Account.swift in Sources */,
+				CE750B371EBB6B0B003E6249 /* RestClient.swift in Sources */,
+				CE750B351EBB6B0B003E6249 /* Endpoint.swift in Sources */,
+				CE750B361EBB6B0B003E6249 /* RestCall.swift in Sources */,
+				CE750B341EBB6B0B003E6249 /* Authorization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		CE750AA51EBB600B003E6249 /* Debug */ = {
+		CE750B291EBB6A9C003E6249 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -282,7 +267,7 @@
 			};
 			name = Debug;
 		};
-		CE750AA61EBB600B003E6249 /* Release */ = {
+		CE750B2A1EBB6A9C003E6249 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -328,9 +313,9 @@
 			};
 			name = Release;
 		};
-		CE750AA81EBB600B003E6249 /* Debug */ = {
+		CE750B2C1EBB6A9C003E6249 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 528B28521598F949854FD62D /* Pods-Mastodon.debug.xcconfig */;
+			baseConfigurationReference = 07FD931E084FC2F9CC965C39 /* Pods-RestClient.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -338,19 +323,19 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Sources/Info.plist;
+				INFOPLIST_FILE = RestClient/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.library.Mastodon;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.library.RestClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		CE750AA91EBB600B003E6249 /* Release */ = {
+		CE750B2D1EBB6A9C003E6249 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EEFAAA3A495D3BBE5973CD2C /* Pods-Mastodon.release.xcconfig */;
+			baseConfigurationReference = 166EBF2436D48661D6178410 /* Pods-RestClient.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -358,10 +343,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Sources/Info.plist;
+				INFOPLIST_FILE = RestClient/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.library.Mastodon;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.library.RestClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -371,25 +356,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CE750A991EBB600B003E6249 /* Build configuration list for PBXProject "Mastodon" */ = {
+		CE750B1D1EBB6A9C003E6249 /* Build configuration list for PBXProject "RestClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CE750AA51EBB600B003E6249 /* Debug */,
-				CE750AA61EBB600B003E6249 /* Release */,
+				CE750B291EBB6A9C003E6249 /* Debug */,
+				CE750B2A1EBB6A9C003E6249 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CE750AA71EBB600B003E6249 /* Build configuration list for PBXNativeTarget "Mastodon" */ = {
+		CE750B2B1EBB6A9C003E6249 /* Build configuration list for PBXNativeTarget "RestClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CE750AA81EBB600B003E6249 /* Debug */,
-				CE750AA91EBB600B003E6249 /* Release */,
+				CE750B2C1EBB6A9C003E6249 /* Debug */,
+				CE750B2D1EBB6A9C003E6249 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = CE750A961EBB600B003E6249 /* Project object */;
+	rootObject = CE750B1A1EBB6A9C003E6249 /* Project object */;
 }

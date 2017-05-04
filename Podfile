@@ -46,6 +46,32 @@ end
 target 'TwidereCore' do
     workspace 'Twidere'
     project 'TwidereCore/TwidereCore'
+    
+    pod 'PMJackson', '~> 1.0.9'
+end
+
+target 'MicroBlog' do
+    workspace 'Twidere'
+    project 'TwidereCore/MicroBlog/MicroBlog'
+    
+    pod 'PMJackson', '~> 1.0.9'
+end
+
+target 'Mastodon' do
+    workspace 'Twidere'
+    project 'TwidereCore/Mastodon/Mastodon'
+    
+    pod 'PMJackson', '~> 1.0.9'
+end
+
+target 'RestClient' do
+    workspace 'Twidere'
+    project 'RestClient/RestClient'
+    
+    pod 'Alamofire', '~> 4.0'
+    pod 'PromiseKit/Alamofire', '~> 4.0'
+    pod 'PromiseKit', '~> 4.0.0'
+    pod 'CryptoSwift', '~> 0.6.0'
 end
 
 target 'TwidereTests' do

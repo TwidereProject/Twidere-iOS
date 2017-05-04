@@ -3,16 +3,16 @@
 
 import PMJackson
 
-extension MicroBlogStatus: JsonMappable {
+extension Status: JsonMappable {
 
 }
 
-internal class MicroBlogStatusJsonMapper: JsonMapper<MicroBlogStatus> {
+internal class StatusJsonMapper: JsonMapper<Status> {
 
-    internal static let singleton = MicroBlogStatusJsonMapper()
+    internal static let singleton = StatusJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> MicroBlogStatus! {
-        let instance = MicroBlogStatus()
+    override func parse(_ parser: PMJacksonParser) -> Status! {
+        let instance = Status()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -31,7 +31,7 @@ internal class MicroBlogStatusJsonMapper: JsonMapper<MicroBlogStatus> {
         return instance
     }
 
-    override func parseField(_ instance: MicroBlogStatus, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: Status, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "created_at":
             instance.createdAt = TwitterDateFieldConverter.parse(parser)
@@ -60,13 +60,13 @@ internal class MicroBlogStatusJsonMapper: JsonMapper<MicroBlogStatus> {
         case "in_reply_to_screen_name":
             instance.inReplyToScreenName = parser.getValueAsString()
         case "user":
-            instance.user = MicroBlogUserJsonMapper.singleton.parse(parser)
+            instance.user = UserJsonMapper.singleton.parse(parser)
         case "geo":
             instance.geo = GeoPointJsonMapper.singleton.parse(parser)
         case "place":
             instance.place = PlaceJsonMapper.singleton.parse(parser)
         case "current_user_retweet":
-            instance.currentUserRetweet = MicroBlogStatusCurrentUserRetweetJsonMapper.singleton.parse(parser)
+            instance.currentUserRetweet = StatusCurrentUserRetweetJsonMapper.singleton.parse(parser)
         case "retweet_count", "repeat_num":
             instance.retweetCount = parser.getValueAsInt64()
         case "favorite_count", "fave_num":
@@ -82,9 +82,9 @@ internal class MicroBlogStatusJsonMapper: JsonMapper<MicroBlogStatus> {
         case "descendent_reply_count":
             instance.descendentReplyCount = parser.getValueAsInt64()
         case "retweeted_status":
-            instance.retweetedStatus = MicroBlogStatusJsonMapper.singleton.parse(parser)
+            instance.retweetedStatus = StatusJsonMapper.singleton.parse(parser)
         case "quoted_status", "repost_status":
-            instance.quotedStatus = MicroBlogStatusJsonMapper.singleton.parse(parser)
+            instance.quotedStatus = StatusJsonMapper.singleton.parse(parser)
         case "quoted_status_id_str", "repost_status_id":
             instance.quotedStatusId = parser.getValueAsString()
         case "is_quote_status":
@@ -138,7 +138,7 @@ internal class MicroBlogStatusJsonMapper: JsonMapper<MicroBlogStatus> {
         case "timestamp_ms":
             instance.timestampMs = parser.getValueAsInt64()
         case "extended_tweet":
-            instance.extendedTweet = MicroBlogStatusExtendedTweetJsonMapper.singleton.parse(parser)
+            instance.extendedTweet = StatusExtendedTweetJsonMapper.singleton.parse(parser)
         default:
             break
         }

@@ -1,5 +1,5 @@
 // sourcery: jsonParse
-class CardEntity {
+class MediaEntity: UrlEntity {
     
     required init() {
         

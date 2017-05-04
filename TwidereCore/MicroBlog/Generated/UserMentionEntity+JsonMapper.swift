@@ -3,16 +3,16 @@
 
 import PMJackson
 
-extension MentionEntity: JsonMappable {
+extension UserMentionEntity: JsonMappable {
 
 }
 
-internal class MentionEntityJsonMapper: JsonMapper<MentionEntity> {
+internal class UserMentionEntityJsonMapper: JsonMapper<UserMentionEntity> {
 
-    internal static let singleton = MentionEntityJsonMapper()
+    internal static let singleton = UserMentionEntityJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> MentionEntity! {
-        let instance = MentionEntity()
+    override func parse(_ parser: PMJacksonParser) -> UserMentionEntity! {
+        let instance = UserMentionEntity()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -31,7 +31,7 @@ internal class MentionEntityJsonMapper: JsonMapper<MentionEntity> {
         return instance
     }
 
-    override func parseField(_ instance: MentionEntity, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: UserMentionEntity, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "indices":
             if (parser.currentEvent == .arrayStart) {

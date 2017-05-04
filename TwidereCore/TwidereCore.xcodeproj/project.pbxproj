@@ -11,7 +11,7 @@
 		CE750A3D1EBB3F3C003E6249 /* TwidereCore.h in Headers */ = {isa = PBXBuildFile; fileRef = CE750A3B1EBB3F3C003E6249 /* TwidereCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE750A631EBB4D28003E6249 /* MicroBlog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750A621EBB4D09003E6249 /* MicroBlog.framework */; };
 		CE750AE41EBB6473003E6249 /* JsonMapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AE21EBB6473003E6249 /* JsonMapper.generated.swift */; };
-		CE750AE51EBB6473003E6249 /* RestProtocolImpl.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AE31EBB6473003E6249 /* RestProtocolImpl.generated.swift */; };
+		CE750B3F1EBB6DC8003E6249 /* RestClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750B3E1EBB6DC8003E6249 /* RestClient.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -21,6 +21,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = CE750A521EBB4D08003E6249;
 			remoteInfo = MicroBlog;
+		};
+		CE750B131EBB692A003E6249 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE750AAA1EBB600B003E6249 /* Mastodon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CE750A9F1EBB600B003E6249;
+			remoteInfo = Mastodon;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -34,7 +41,7 @@
 		CE750A5D1EBB4D08003E6249 /* MicroBlog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MicroBlog.xcodeproj; path = MicroBlog/MicroBlog.xcodeproj; sourceTree = "<group>"; };
 		CE750AAA1EBB600B003E6249 /* Mastodon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Mastodon.xcodeproj; path = Mastodon/Mastodon.xcodeproj; sourceTree = "<group>"; };
 		CE750AE21EBB6473003E6249 /* JsonMapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonMapper.generated.swift; sourceTree = "<group>"; };
-		CE750AE31EBB6473003E6249 /* RestProtocolImpl.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestProtocolImpl.generated.swift; sourceTree = "<group>"; };
+		CE750B3E1EBB6DC8003E6249 /* RestClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestClient.framework; path = "../../../../../Users/mariotaku/Library/Developer/Xcode/DerivedData/Twidere-dhschizzfhkqdkgwpcupdypbyxay/Build/Products/Debug-iphoneos/RestClient.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE750B3F1EBB6DC8003E6249 /* RestClient.framework in Frameworks */,
 				CE750A631EBB4D28003E6249 /* MicroBlog.framework in Frameworks */,
 				5EE236E547ACBEFE194924B3 /* Pods_TwidereCore.framework in Frameworks */,
 			);
@@ -62,6 +70,7 @@
 		C6DB3F6BC1AF1F22B4CCB1CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE750B3E1EBB6DC8003E6249 /* RestClient.framework */,
 				5BF9C6A51C84A59CCC84A725 /* Pods_TwidereCore.framework */,
 			);
 			name = Frameworks;
@@ -101,7 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				CE750AE21EBB6473003E6249 /* JsonMapper.generated.swift */,
-				CE750AE31EBB6473003E6249 /* RestProtocolImpl.generated.swift */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -110,6 +118,14 @@
 			isa = PBXGroup;
 			children = (
 				CE750A621EBB4D09003E6249 /* MicroBlog.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CE750B101EBB6920003E6249 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE750B141EBB692A003E6249 /* Mastodon.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -177,6 +193,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = CE750B101EBB6920003E6249 /* Products */;
+					ProjectRef = CE750AAA1EBB600B003E6249 /* Mastodon.xcodeproj */;
+				},
+				{
 					ProductGroup = CE750A5E1EBB4D08003E6249 /* Products */;
 					ProjectRef = CE750A5D1EBB4D08003E6249 /* MicroBlog.xcodeproj */;
 				},
@@ -194,6 +214,13 @@
 			fileType = wrapper.framework;
 			path = MicroBlog.framework;
 			remoteRef = CE750A611EBB4D09003E6249 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CE750B141EBB692A003E6249 /* Mastodon.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Mastodon.framework;
+			remoteRef = CE750B131EBB692A003E6249 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -246,7 +273,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE750AE51EBB6473003E6249 /* RestProtocolImpl.generated.swift in Sources */,
 				CE750AE41EBB6473003E6249 /* JsonMapper.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,15 +1,5 @@
-//
-//  Status.swift
-//  Twidere
-//
-//  Created by Mariotaku Lee on 2017/4/30.
-//  Copyright © 2017年 Mariotaku Dev. All rights reserved.
-//
-
-import Foundation
-
 // sourcery: jsonParse,jsonSerialize
-class MicroBlogStatus: EntitySupport {
+class Status: EntitySupport {
 
     // sourcery: jsonField=created_at
     // sourcery: jsonFieldConverter=TwitterDateFieldConverter
@@ -56,7 +46,7 @@ class MicroBlogStatus: EntitySupport {
     var inReplyToScreenName: String?
     
     // sourcery: jsonField=user
-    var user: MicroBlogUser! = nil
+    var user: User! = nil
     
     // sourcery: jsonField=geo
     var geo: GeoPoint? = nil
@@ -89,13 +79,13 @@ class MicroBlogStatus: EntitySupport {
     var descendentReplyCount: Int64 = -1
     
     // sourcery: jsonField=retweeted_status
-    var retweetedStatus: MicroBlogStatus? = nil
+    var retweetedStatus: Status? = nil
     
     /**
      * <code>repost_status</code> is for Fanfou, <code>quoted_status</code> is for twitter
      */
     // sourcery: jsonField=quoted_status|repost_status
-    var quotedStatus: MicroBlogStatus? = nil
+    var quotedStatus: Status? = nil
     
     /**
      * <code>repost_status_id</code> is for Fanfou, <code>quoted_status_id_str</code> is for twitter

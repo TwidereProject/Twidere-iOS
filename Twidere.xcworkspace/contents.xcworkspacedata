@@ -10,4 +10,13 @@
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:TwidereCore/Mastodon/Mastodon.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:TwidereCore/MicroBlog/MicroBlog.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:RestClient/RestClient.xcodeproj">
+   </FileRef>
 </Workspace>

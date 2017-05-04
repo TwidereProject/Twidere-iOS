@@ -2,6 +2,7 @@
 // DO NOT EDIT
 
 import PromiseKit
+import RestClient
 
 internal class MastodonAccountsServicesRestImpl: MastodonAccountsServices, RestProtocolService {
 

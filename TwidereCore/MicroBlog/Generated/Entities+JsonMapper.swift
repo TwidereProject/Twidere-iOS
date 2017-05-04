@@ -55,9 +55,9 @@ internal class EntitiesJsonMapper: JsonMapper<Entities> {
             }
         case "mentions":
             if (parser.currentEvent == .arrayStart) {
-                var array: [MentionEntity] = []
+                var array: [UserMentionEntity] = []
                 while (parser.nextEvent() != .arrayEnd) {
-                    array.append(MentionEntityJsonMapper.singleton.parse(parser))
+                    array.append(UserMentionEntityJsonMapper.singleton.parse(parser))
                 }
                 instance.mentions = array
             } else {

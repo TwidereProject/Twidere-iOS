@@ -13,7 +13,7 @@
 		CE750A6A1EBB4D77003E6249 /* EntitySupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A691EBB4D77003E6249 /* EntitySupport.swift */; };
 		CE750A6C1EBB4DA7003E6249 /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A6B1EBB4DA6003E6249 /* Entities.swift */; };
 		CE750A711EBB4DCD003E6249 /* HashtagEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A6D1EBB4DCD003E6249 /* HashtagEntity.swift */; };
-		CE750A721EBB4DCD003E6249 /* MentionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A6E1EBB4DCD003E6249 /* MentionEntity.swift */; };
+		CE750A721EBB4DCD003E6249 /* UserMentionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A6E1EBB4DCD003E6249 /* UserMentionEntity.swift */; };
 		CE750A731EBB4DCD003E6249 /* UrlEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A6F1EBB4DCD003E6249 /* UrlEntity.swift */; };
 		CE750A741EBB4DCD003E6249 /* UserEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A701EBB4DCD003E6249 /* UserEntities.swift */; };
 		CE750A771EBB4E9A003E6249 /* GeoPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A751EBB4E9A003E6249 /* GeoPoint.swift */; };
@@ -24,27 +24,33 @@
 		CE750A901EBB5FAC003E6249 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A8F1EBB5FAC003E6249 /* Photo.swift */; };
 		CE750A931EBB5FBA003E6249 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A911EBB5FBA003E6249 /* Attachment.swift */; };
 		CE750A941EBB5FBA003E6249 /* Attention.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A921EBB5FBA003E6249 /* Attention.swift */; };
-		CE750ACE1EBB636C003E6249 /* Attachment+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750ABC1EBB636C003E6249 /* Attachment+JsonMapper.swift */; };
-		CE750ACF1EBB636C003E6249 /* Attention+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750ABD1EBB636C003E6249 /* Attention+JsonMapper.swift */; };
-		CE750AD01EBB636C003E6249 /* CardEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750ABE1EBB636C003E6249 /* CardEntity+JsonMapper.swift */; };
-		CE750AD11EBB636C003E6249 /* Entities+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750ABF1EBB636C003E6249 /* Entities+JsonMapper.swift */; };
-		CE750AD21EBB636C003E6249 /* GeoPoint+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AC01EBB636C003E6249 /* GeoPoint+JsonMapper.swift */; };
-		CE750AD31EBB636C003E6249 /* HashtagEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AC11EBB636C003E6249 /* HashtagEntity+JsonMapper.swift */; };
-		CE750AD41EBB636C003E6249 /* JsonMapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AC21EBB636C003E6249 /* JsonMapper.generated.swift */; };
-		CE750AD51EBB636C003E6249 /* MentionEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AC31EBB636C003E6249 /* MentionEntity+JsonMapper.swift */; };
-		CE750AD61EBB636C003E6249 /* MicroBlogStatus+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AC41EBB636C003E6249 /* MicroBlogStatus+JsonMapper.swift */; };
-		CE750AD71EBB636C003E6249 /* MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AC51EBB636C003E6249 /* MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift */; };
-		CE750AD81EBB636C003E6249 /* MicroBlogStatus.ExtendedTweet+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AC61EBB636C003E6249 /* MicroBlogStatus.ExtendedTweet+JsonMapper.swift */; };
-		CE750AD91EBB636C003E6249 /* MicroBlogUser+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AC71EBB636C003E6249 /* MicroBlogUser+JsonMapper.swift */; };
-		CE750ADA1EBB636C003E6249 /* Photo+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AC81EBB636C003E6249 /* Photo+JsonMapper.swift */; };
-		CE750ADB1EBB636C003E6249 /* Place+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AC91EBB636C003E6249 /* Place+JsonMapper.swift */; };
-		CE750ADC1EBB636C003E6249 /* RestProtocolImpl.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750ACA1EBB636C003E6249 /* RestProtocolImpl.generated.swift */; };
-		CE750ADD1EBB636C003E6249 /* TwitterBaseEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750ACB1EBB636C003E6249 /* TwitterBaseEntity+JsonMapper.swift */; };
-		CE750ADE1EBB636C003E6249 /* UrlEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750ACC1EBB636C003E6249 /* UrlEntity+JsonMapper.swift */; };
-		CE750ADF1EBB636C003E6249 /* UserEntities+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750ACD1EBB636C003E6249 /* UserEntities+JsonMapper.swift */; };
+		CE750AE81EBB6775003E6249 /* MediaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AE71EBB6775003E6249 /* MediaEntity.swift */; };
+		CE750AFC1EBB68C7003E6249 /* Attachment+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AE91EBB68C7003E6249 /* Attachment+JsonMapper.swift */; };
+		CE750AFD1EBB68C7003E6249 /* Attention+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AEA1EBB68C7003E6249 /* Attention+JsonMapper.swift */; };
+		CE750AFE1EBB68C7003E6249 /* CardEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AEB1EBB68C7003E6249 /* CardEntity+JsonMapper.swift */; };
+		CE750AFF1EBB68C7003E6249 /* Entities+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AEC1EBB68C7003E6249 /* Entities+JsonMapper.swift */; };
+		CE750B001EBB68C7003E6249 /* GeoPoint+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AED1EBB68C7003E6249 /* GeoPoint+JsonMapper.swift */; };
+		CE750B011EBB68C7003E6249 /* HashtagEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AEE1EBB68C7003E6249 /* HashtagEntity+JsonMapper.swift */; };
+		CE750B021EBB68C7003E6249 /* JsonMapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AEF1EBB68C7003E6249 /* JsonMapper.generated.swift */; };
+		CE750B031EBB68C7003E6249 /* MediaEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AF01EBB68C7003E6249 /* MediaEntity+JsonMapper.swift */; };
+		CE750B041EBB68C7003E6249 /* Photo+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AF11EBB68C7003E6249 /* Photo+JsonMapper.swift */; };
+		CE750B051EBB68C7003E6249 /* Place+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AF21EBB68C7003E6249 /* Place+JsonMapper.swift */; };
+		CE750B071EBB68C7003E6249 /* Status.CurrentUserRetweet+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AF41EBB68C7003E6249 /* Status.CurrentUserRetweet+JsonMapper.swift */; };
+		CE750B081EBB68C7003E6249 /* Status.ExtendedTweet+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AF51EBB68C7003E6249 /* Status.ExtendedTweet+JsonMapper.swift */; };
+		CE750B091EBB68C7003E6249 /* Status+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AF61EBB68C7003E6249 /* Status+JsonMapper.swift */; };
+		CE750B0B1EBB68C7003E6249 /* UrlEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AF81EBB68C7003E6249 /* UrlEntity+JsonMapper.swift */; };
+		CE750B0C1EBB68C7003E6249 /* User+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AF91EBB68C7003E6249 /* User+JsonMapper.swift */; };
+		CE750B0D1EBB68C7003E6249 /* UserEntities+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AFA1EBB68C7003E6249 /* UserEntities+JsonMapper.swift */; };
+		CE750B0E1EBB68C7003E6249 /* UserMentionEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AFB1EBB68C7003E6249 /* UserMentionEntity+JsonMapper.swift */; };
+		CE750B181EBB69F0003E6249 /* DateFieldConverters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B171EBB69F0003E6249 /* DateFieldConverters.swift */; };
+		CE750B431EBB6DD6003E6249 /* RestClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750B421EBB6DD6003E6249 /* RestClient.framework */; };
+		CF0608C71A3775EACAA2B31B /* Pods_MicroBlog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BCFC58BA5A4BB7DDCCD14A /* Pods_MicroBlog.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15BCFC58BA5A4BB7DDCCD14A /* Pods_MicroBlog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MicroBlog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		314DDF9E1B754ADD05809137 /* Pods-MicroBlog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MicroBlog.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-MicroBlog/Pods-MicroBlog.debug.xcconfig"; sourceTree = "<group>"; };
+		416A6D611084B9041BE95122 /* Pods-MicroBlog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MicroBlog.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-MicroBlog/Pods-MicroBlog.release.xcconfig"; sourceTree = "<group>"; };
 		CE750A521EBB4D08003E6249 /* MicroBlog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MicroBlog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE750A551EBB4D08003E6249 /* MicroBlog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MicroBlog.h; sourceTree = "<group>"; };
 		CE750A561EBB4D08003E6249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,7 +59,7 @@
 		CE750A691EBB4D77003E6249 /* EntitySupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntitySupport.swift; sourceTree = "<group>"; };
 		CE750A6B1EBB4DA6003E6249 /* Entities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
 		CE750A6D1EBB4DCD003E6249 /* HashtagEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashtagEntity.swift; sourceTree = "<group>"; };
-		CE750A6E1EBB4DCD003E6249 /* MentionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionEntity.swift; sourceTree = "<group>"; };
+		CE750A6E1EBB4DCD003E6249 /* UserMentionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMentionEntity.swift; sourceTree = "<group>"; };
 		CE750A6F1EBB4DCD003E6249 /* UrlEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlEntity.swift; sourceTree = "<group>"; };
 		CE750A701EBB4DCD003E6249 /* UserEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntities.swift; sourceTree = "<group>"; };
 		CE750A751EBB4E9A003E6249 /* GeoPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoPoint.swift; sourceTree = "<group>"; };
@@ -64,24 +70,26 @@
 		CE750A8F1EBB5FAC003E6249 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		CE750A911EBB5FBA003E6249 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		CE750A921EBB5FBA003E6249 /* Attention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attention.swift; sourceTree = "<group>"; };
-		CE750ABC1EBB636C003E6249 /* Attachment+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Attachment+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE750ABD1EBB636C003E6249 /* Attention+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Attention+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE750ABE1EBB636C003E6249 /* CardEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardEntity+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE750ABF1EBB636C003E6249 /* Entities+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Entities+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE750AC01EBB636C003E6249 /* GeoPoint+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GeoPoint+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE750AC11EBB636C003E6249 /* HashtagEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HashtagEntity+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE750AC21EBB636C003E6249 /* JsonMapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonMapper.generated.swift; sourceTree = "<group>"; };
-		CE750AC31EBB636C003E6249 /* MentionEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MentionEntity+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE750AC41EBB636C003E6249 /* MicroBlogStatus+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogStatus+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE750AC51EBB636C003E6249 /* MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE750AC61EBB636C003E6249 /* MicroBlogStatus.ExtendedTweet+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogStatus.ExtendedTweet+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE750AC71EBB636C003E6249 /* MicroBlogUser+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogUser+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE750AC81EBB636C003E6249 /* Photo+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Photo+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE750AC91EBB636C003E6249 /* Place+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Place+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE750ACA1EBB636C003E6249 /* RestProtocolImpl.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestProtocolImpl.generated.swift; sourceTree = "<group>"; };
-		CE750ACB1EBB636C003E6249 /* TwitterBaseEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterBaseEntity+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE750ACC1EBB636C003E6249 /* UrlEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UrlEntity+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE750ACD1EBB636C003E6249 /* UserEntities+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserEntities+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750AE71EBB6775003E6249 /* MediaEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaEntity.swift; sourceTree = "<group>"; };
+		CE750AE91EBB68C7003E6249 /* Attachment+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Attachment+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750AEA1EBB68C7003E6249 /* Attention+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Attention+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750AEB1EBB68C7003E6249 /* CardEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardEntity+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750AEC1EBB68C7003E6249 /* Entities+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Entities+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750AED1EBB68C7003E6249 /* GeoPoint+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GeoPoint+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750AEE1EBB68C7003E6249 /* HashtagEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HashtagEntity+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750AEF1EBB68C7003E6249 /* JsonMapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonMapper.generated.swift; sourceTree = "<group>"; };
+		CE750AF01EBB68C7003E6249 /* MediaEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaEntity+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750AF11EBB68C7003E6249 /* Photo+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Photo+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750AF21EBB68C7003E6249 /* Place+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Place+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750AF41EBB68C7003E6249 /* Status.CurrentUserRetweet+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Status.CurrentUserRetweet+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750AF51EBB68C7003E6249 /* Status.ExtendedTweet+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Status.ExtendedTweet+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750AF61EBB68C7003E6249 /* Status+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Status+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750AF81EBB68C7003E6249 /* UrlEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UrlEntity+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750AF91EBB68C7003E6249 /* User+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750AFA1EBB68C7003E6249 /* UserEntities+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserEntities+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750AFB1EBB68C7003E6249 /* UserMentionEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserMentionEntity+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750B171EBB69F0003E6249 /* DateFieldConverters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFieldConverters.swift; sourceTree = "<group>"; };
+		CE750B421EBB6DD6003E6249 /* RestClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestClient.framework; path = "../../../../../../Users/mariotaku/Library/Developer/Xcode/DerivedData/Twidere-dhschizzfhkqdkgwpcupdypbyxay/Build/Products/Debug-iphoneos/RestClient.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,18 +97,40 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE750B431EBB6DD6003E6249 /* RestClient.framework in Frameworks */,
+				CF0608C71A3775EACAA2B31B /* Pods_MicroBlog.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D1EEC3E4D316C1114D2C76B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE750B421EBB6DD6003E6249 /* RestClient.framework */,
+				15BCFC58BA5A4BB7DDCCD14A /* Pods_MicroBlog.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		92A3A741EF253A85160D84B0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				314DDF9E1B754ADD05809137 /* Pods-MicroBlog.debug.xcconfig */,
+				416A6D611084B9041BE95122 /* Pods-MicroBlog.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		CE750A481EBB4D08003E6249 = {
 			isa = PBXGroup;
 			children = (
 				CE750ABB1EBB636C003E6249 /* Generated */,
 				CE750A531EBB4D08003E6249 /* Products */,
 				CE750A541EBB4D08003E6249 /* Sources */,
+				92A3A741EF253A85160D84B0 /* Pods */,
+				3D1EEC3E4D316C1114D2C76B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +145,7 @@
 		CE750A541EBB4D08003E6249 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				CE750B161EBB69C1003E6249 /* Utils */,
 				CE750A8B1EBB5D6D003E6249 /* Extensions */,
 				CE750A681EBB4D5A003E6249 /* Models */,
 				CE750A561EBB4D08003E6249 /* Info.plist */,
@@ -154,9 +185,10 @@
 				CE750A6B1EBB4DA6003E6249 /* Entities.swift */,
 				CE750A691EBB4D77003E6249 /* EntitySupport.swift */,
 				CE750A6D1EBB4DCD003E6249 /* HashtagEntity.swift */,
-				CE750A6E1EBB4DCD003E6249 /* MentionEntity.swift */,
+				CE750A6E1EBB4DCD003E6249 /* UserMentionEntity.swift */,
 				CE750A6F1EBB4DCD003E6249 /* UrlEntity.swift */,
 				CE750A701EBB4DCD003E6249 /* UserEntities.swift */,
+				CE750AE71EBB6775003E6249 /* MediaEntity.swift */,
 			);
 			path = Twitter;
 			sourceTree = "<group>";
@@ -180,26 +212,33 @@
 		CE750ABB1EBB636C003E6249 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				CE750ABC1EBB636C003E6249 /* Attachment+JsonMapper.swift */,
-				CE750ABD1EBB636C003E6249 /* Attention+JsonMapper.swift */,
-				CE750ABE1EBB636C003E6249 /* CardEntity+JsonMapper.swift */,
-				CE750ABF1EBB636C003E6249 /* Entities+JsonMapper.swift */,
-				CE750AC01EBB636C003E6249 /* GeoPoint+JsonMapper.swift */,
-				CE750AC11EBB636C003E6249 /* HashtagEntity+JsonMapper.swift */,
-				CE750AC21EBB636C003E6249 /* JsonMapper.generated.swift */,
-				CE750AC31EBB636C003E6249 /* MentionEntity+JsonMapper.swift */,
-				CE750AC41EBB636C003E6249 /* MicroBlogStatus+JsonMapper.swift */,
-				CE750AC51EBB636C003E6249 /* MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift */,
-				CE750AC61EBB636C003E6249 /* MicroBlogStatus.ExtendedTweet+JsonMapper.swift */,
-				CE750AC71EBB636C003E6249 /* MicroBlogUser+JsonMapper.swift */,
-				CE750AC81EBB636C003E6249 /* Photo+JsonMapper.swift */,
-				CE750AC91EBB636C003E6249 /* Place+JsonMapper.swift */,
-				CE750ACA1EBB636C003E6249 /* RestProtocolImpl.generated.swift */,
-				CE750ACB1EBB636C003E6249 /* TwitterBaseEntity+JsonMapper.swift */,
-				CE750ACC1EBB636C003E6249 /* UrlEntity+JsonMapper.swift */,
-				CE750ACD1EBB636C003E6249 /* UserEntities+JsonMapper.swift */,
+				CE750AE91EBB68C7003E6249 /* Attachment+JsonMapper.swift */,
+				CE750AEA1EBB68C7003E6249 /* Attention+JsonMapper.swift */,
+				CE750AEB1EBB68C7003E6249 /* CardEntity+JsonMapper.swift */,
+				CE750AEC1EBB68C7003E6249 /* Entities+JsonMapper.swift */,
+				CE750AED1EBB68C7003E6249 /* GeoPoint+JsonMapper.swift */,
+				CE750AEE1EBB68C7003E6249 /* HashtagEntity+JsonMapper.swift */,
+				CE750AEF1EBB68C7003E6249 /* JsonMapper.generated.swift */,
+				CE750AF01EBB68C7003E6249 /* MediaEntity+JsonMapper.swift */,
+				CE750AF11EBB68C7003E6249 /* Photo+JsonMapper.swift */,
+				CE750AF21EBB68C7003E6249 /* Place+JsonMapper.swift */,
+				CE750AF41EBB68C7003E6249 /* Status.CurrentUserRetweet+JsonMapper.swift */,
+				CE750AF51EBB68C7003E6249 /* Status.ExtendedTweet+JsonMapper.swift */,
+				CE750AF61EBB68C7003E6249 /* Status+JsonMapper.swift */,
+				CE750AF81EBB68C7003E6249 /* UrlEntity+JsonMapper.swift */,
+				CE750AF91EBB68C7003E6249 /* User+JsonMapper.swift */,
+				CE750AFA1EBB68C7003E6249 /* UserEntities+JsonMapper.swift */,
+				CE750AFB1EBB68C7003E6249 /* UserMentionEntity+JsonMapper.swift */,
 			);
 			path = Generated;
+			sourceTree = "<group>";
+		};
+		CE750B161EBB69C1003E6249 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CE750B171EBB69F0003E6249 /* DateFieldConverters.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,10 +259,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE750A5A1EBB4D08003E6249 /* Build configuration list for PBXNativeTarget "MicroBlog" */;
 			buildPhases = (
+				6A3E8689A56FDF61EF0BE27D /* [CP] Check Pods Manifest.lock */,
 				CE750A4D1EBB4D08003E6249 /* Sources */,
 				CE750A4E1EBB4D08003E6249 /* Frameworks */,
 				CE750A4F1EBB4D08003E6249 /* Headers */,
 				CE750A501EBB4D08003E6249 /* Resources */,
+				D2D1AD26082523E799D7A89A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -277,45 +318,79 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6A3E8689A56FDF61EF0BE27D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D2D1AD26082523E799D7A89A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-MicroBlog/Pods-MicroBlog-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CE750A4D1EBB4D08003E6249 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE750AD71EBB636C003E6249 /* MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift in Sources */,
+				CE750AFF1EBB68C7003E6249 /* Entities+JsonMapper.swift in Sources */,
+				CE750B021EBB68C7003E6249 /* JsonMapper.generated.swift in Sources */,
 				CE750A941EBB5FBA003E6249 /* Attention.swift in Sources */,
 				CE750A901EBB5FAC003E6249 /* Photo.swift in Sources */,
-				CE750AD51EBB636C003E6249 /* MentionEntity+JsonMapper.swift in Sources */,
-				CE750AD21EBB636C003E6249 /* GeoPoint+JsonMapper.swift in Sources */,
+				CE750B071EBB68C7003E6249 /* Status.CurrentUserRetweet+JsonMapper.swift in Sources */,
+				CE750AE81EBB6775003E6249 /* MediaEntity.swift in Sources */,
+				CE750AFC1EBB68C7003E6249 /* Attachment+JsonMapper.swift in Sources */,
 				CE750A711EBB4DCD003E6249 /* HashtagEntity.swift in Sources */,
-				CE750ADB1EBB636C003E6249 /* Place+JsonMapper.swift in Sources */,
-				CE750ADA1EBB636C003E6249 /* Photo+JsonMapper.swift in Sources */,
+				CE750B0C1EBB68C7003E6249 /* User+JsonMapper.swift in Sources */,
 				CE750A6C1EBB4DA7003E6249 /* Entities.swift in Sources */,
 				CE750A6A1EBB4D77003E6249 /* EntitySupport.swift in Sources */,
+				CE750AFE1EBB68C7003E6249 /* CardEntity+JsonMapper.swift in Sources */,
 				CE750A931EBB5FBA003E6249 /* Attachment.swift in Sources */,
-				CE750AD41EBB636C003E6249 /* JsonMapper.generated.swift in Sources */,
-				CE750AD61EBB636C003E6249 /* MicroBlogStatus+JsonMapper.swift in Sources */,
+				CE750AFD1EBB68C7003E6249 /* Attention+JsonMapper.swift in Sources */,
 				CE750A7A1EBB5C56003E6249 /* CardEntity.swift in Sources */,
 				CE750A741EBB4DCD003E6249 /* UserEntities.swift in Sources */,
-				CE750ACE1EBB636C003E6249 /* Attachment+JsonMapper.swift in Sources */,
-				CE750ADF1EBB636C003E6249 /* UserEntities+JsonMapper.swift in Sources */,
-				CE750A721EBB4DCD003E6249 /* MentionEntity.swift in Sources */,
+				CE750B0E1EBB68C7003E6249 /* UserMentionEntity+JsonMapper.swift in Sources */,
+				CE750A721EBB4DCD003E6249 /* UserMentionEntity.swift in Sources */,
+				CE750B051EBB68C7003E6249 /* Place+JsonMapper.swift in Sources */,
+				CE750B031EBB68C7003E6249 /* MediaEntity+JsonMapper.swift in Sources */,
+				CE750B0B1EBB68C7003E6249 /* UrlEntity+JsonMapper.swift in Sources */,
 				CE750A661EBB4D50003E6249 /* Status.swift in Sources */,
-				CE750AD11EBB636C003E6249 /* Entities+JsonMapper.swift in Sources */,
-				CE750ADE1EBB636C003E6249 /* UrlEntity+JsonMapper.swift in Sources */,
-				CE750ACF1EBB636C003E6249 /* Attention+JsonMapper.swift in Sources */,
 				CE750A771EBB4E9A003E6249 /* GeoPoint.swift in Sources */,
+				CE750B091EBB68C7003E6249 /* Status+JsonMapper.swift in Sources */,
+				CE750B011EBB68C7003E6249 /* HashtagEntity+JsonMapper.swift in Sources */,
+				CE750B0D1EBB68C7003E6249 /* UserEntities+JsonMapper.swift in Sources */,
 				CE750A731EBB4DCD003E6249 /* UrlEntity.swift in Sources */,
-				CE750ADC1EBB636C003E6249 /* RestProtocolImpl.generated.swift in Sources */,
-				CE750AD91EBB636C003E6249 /* MicroBlogUser+JsonMapper.swift in Sources */,
-				CE750AD31EBB636C003E6249 /* HashtagEntity+JsonMapper.swift in Sources */,
-				CE750AD81EBB636C003E6249 /* MicroBlogStatus.ExtendedTweet+JsonMapper.swift in Sources */,
-				CE750ADD1EBB636C003E6249 /* TwitterBaseEntity+JsonMapper.swift in Sources */,
-				CE750AD01EBB636C003E6249 /* CardEntity+JsonMapper.swift in Sources */,
 				CE750A8A1EBB5CF6003E6249 /* GeoLocation.swift in Sources */,
+				CE750B081EBB68C7003E6249 /* Status.ExtendedTweet+JsonMapper.swift in Sources */,
 				CE750A8D1EBB5D75003E6249 /* DateExtensions.swift in Sources */,
 				CE750A781EBB4E9A003E6249 /* Place.swift in Sources */,
 				CE750A671EBB4D50003E6249 /* User.swift in Sources */,
+				CE750B181EBB69F0003E6249 /* DateFieldConverters.swift in Sources */,
+				CE750B001EBB68C7003E6249 /* GeoPoint+JsonMapper.swift in Sources */,
+				CE750B041EBB68C7003E6249 /* Photo+JsonMapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +498,7 @@
 		};
 		CE750A5B1EBB4D08003E6249 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 314DDF9E1B754ADD05809137 /* Pods-MicroBlog.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -442,6 +518,7 @@
 		};
 		CE750A5C1EBB4D08003E6249 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 416A6D611084B9041BE95122 /* Pods-MicroBlog.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;

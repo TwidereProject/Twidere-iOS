@@ -1,15 +1,5 @@
-//
-//  MicroBlogUser.swift
-//  Twidere
-//
-//  Created by Mariotaku Lee on 2017/5/1.
-//  Copyright © 2017年 Mariotaku Dev. All rights reserved.
-//
-
-import Foundation
-
 // sourcery: jsonParse
-class MicroBlogUser {
+class User {
     
     // BEGIN Basic information
     
@@ -89,7 +79,7 @@ class MicroBlogUser {
     var lang: String? = nil
     
     // sourcery: jsonField=status
-    var status: MicroBlogStatus? = nil
+    var status: Status? = nil
     
     // sourcery: jsonField=contributors_enabled
     var contributorsEnabled: Bool = false
