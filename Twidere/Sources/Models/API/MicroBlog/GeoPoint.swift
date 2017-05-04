@@ -9,7 +9,7 @@
 import Foundation
 
 // sourcery: jsonParse
-class MicroBlogGeoPoint {
+class GeoPoint {
     // sourcery: jsonField=coordinates
     var coordinates: [Double]!
     
@@ -17,10 +17,10 @@ class MicroBlogGeoPoint {
     var type: String!
     
     var geoLocation: GeoLocation! {
-        guard let coords = coordinates else {
+        guard let coords = coordinates, coords.count == 2 else {
             return nil
         }
-        return GeoLocation(coords[0], coords[1])
+        return GeoLocation(latitude: coords[0], longitude: coords[1])
     }
     
     required init() {

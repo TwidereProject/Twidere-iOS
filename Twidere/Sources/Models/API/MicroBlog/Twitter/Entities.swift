@@ -6,19 +6,17 @@
 //  Copyright © 2017年 Mariotaku Dev. All rights reserved.
 //
 
-import Foundation
-
 // sourcery: jsonParse
-class TwitterEntities {
+class Entities {
     
     // sourcery: jsonField=urls
-    var urls: [TwitterURLEntity]!
+    var urls: [UrlEntity]!
     
     // sourcery: jsonField=hashtags
-    var hashtags: [TwitterHashtagEntity]!
+    var hashtags: [HashtagEntity]!
     
     // sourcery: jsonField=mentions
-    var mentions: [TwitterMentionEntity]!
+    var mentions: [MentionEntity]!
     
     required init() {
         

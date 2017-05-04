@@ -9,7 +9,18 @@
 /* Begin PBXBuildFile section */
 		5EE236E547ACBEFE194924B3 /* Pods_TwidereCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF9C6A51C84A59CCC84A725 /* Pods_TwidereCore.framework */; };
 		CE750A3D1EBB3F3C003E6249 /* TwidereCore.h in Headers */ = {isa = PBXBuildFile; fileRef = CE750A3B1EBB3F3C003E6249 /* TwidereCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE750A631EBB4D28003E6249 /* MicroBlog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750A621EBB4D09003E6249 /* MicroBlog.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CE750A611EBB4D09003E6249 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE750A5D1EBB4D08003E6249 /* MicroBlog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CE750A521EBB4D08003E6249;
+			remoteInfo = MicroBlog;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2281E0BF2DC0671EB8B723C7 /* Pods-TwidereCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereCore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TwidereCore/Pods-TwidereCore.debug.xcconfig"; sourceTree = "<group>"; };
@@ -18,6 +29,7 @@
 		CE750A381EBB3F3C003E6249 /* TwidereCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TwidereCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE750A3B1EBB3F3C003E6249 /* TwidereCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwidereCore.h; sourceTree = "<group>"; };
 		CE750A3C1EBB3F3C003E6249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE750A5D1EBB4D08003E6249 /* MicroBlog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MicroBlog.xcodeproj; path = MicroBlog/MicroBlog.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -25,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE750A631EBB4D28003E6249 /* MicroBlog.framework in Frameworks */,
 				5EE236E547ACBEFE194924B3 /* Pods_TwidereCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,6 +65,7 @@
 		CE750A2E1EBB3F3C003E6249 = {
 			isa = PBXGroup;
 			children = (
+				CE750A5D1EBB4D08003E6249 /* MicroBlog.xcodeproj */,
 				C6DB3F6BC1AF1F22B4CCB1CA /* Frameworks */,
 				CE750A441EBB4144003E6249 /* Generated */,
 				631B055608C155DB3F2579A2 /* Pods */,
@@ -74,7 +88,6 @@
 				CE750A3C1EBB3F3C003E6249 /* Info.plist */,
 				CE750A3B1EBB3F3C003E6249 /* TwidereCore.h */,
 			);
-			name = Sources;
 			path = Sources;
 			sourceTree = "<group>";
 		};
@@ -82,8 +95,15 @@
 			isa = PBXGroup;
 			children = (
 			);
-			name = Generated;
 			path = Generated;
+			sourceTree = "<group>";
+		};
+		CE750A5E1EBB4D08003E6249 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE750A621EBB4D09003E6249 /* MicroBlog.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,12 +166,28 @@
 			mainGroup = CE750A2E1EBB3F3C003E6249;
 			productRefGroup = CE750A391EBB3F3C003E6249 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CE750A5E1EBB4D08003E6249 /* Products */;
+					ProjectRef = CE750A5D1EBB4D08003E6249 /* MicroBlog.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				CE750A371EBB3F3C003E6249 /* TwidereCore */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CE750A621EBB4D09003E6249 /* MicroBlog.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MicroBlog.framework;
+			remoteRef = CE750A611EBB4D09003E6249 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CE750A361EBB3F3C003E6249 /* Resources */ = {

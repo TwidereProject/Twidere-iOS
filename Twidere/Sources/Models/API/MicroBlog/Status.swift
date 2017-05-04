@@ -9,7 +9,7 @@
 import Foundation
 
 // sourcery: jsonParse,jsonSerialize
-class MicroBlogStatus: TwitterEntitySupport {
+class MicroBlogStatus: EntitySupport {
 
     // sourcery: jsonField=created_at
     // sourcery: jsonFieldConverter=TwitterDateFieldConverter
@@ -41,10 +41,10 @@ class MicroBlogStatus: TwitterEntitySupport {
     var truncated: Bool = false
     
     // sourcery: jsonField=entities
-    var entities: TwitterEntities? = nil
+    var entities: Entities? = nil
     
     // sourcery: jsonField=extended_entities
-    var extendedEntities: TwitterEntities? = nil
+    var extendedEntities: Entities? = nil
     
     // sourcery: jsonField=in_reply_to_status_id
     var inReplyToStatusId: String?
@@ -59,10 +59,10 @@ class MicroBlogStatus: TwitterEntitySupport {
     var user: MicroBlogUser! = nil
     
     // sourcery: jsonField=geo
-    var geo: MicroBlogGeoPoint? = nil
+    var geo: GeoPoint? = nil
     
     // sourcery: jsonField=place
-    var place: MicroBlogPlace? = nil
+    var place: Place? = nil
     
     // sourcery: jsonField=current_user_retweet
     var currentUserRetweet: CurrentUserRetweet? = nil
@@ -107,7 +107,7 @@ class MicroBlogStatus: TwitterEntitySupport {
     var isQuoteStatus: Bool = false
     
     // sourcery: jsonField=card
-    var card: TwitterCardEntity? = nil
+    var card: CardEntity? = nil
     
     // sourcery: jsonField=possibly_sensitive
     var possiblySensitive: Bool = false
@@ -116,7 +116,7 @@ class MicroBlogStatus: TwitterEntitySupport {
      * For GNU social
      */
     // sourcery: jsonField=attachments
-    var attachments: [GNUSocialAttachment]? = nil
+    var attachments: [Attachment]? = nil
     
     /**
      * For GNU social
@@ -135,13 +135,13 @@ class MicroBlogStatus: TwitterEntitySupport {
      * For GNU social
      */
     // sourcery: jsonField=attentions
-    var attentions: [GNUSocialAttention]? = nil
+    var attentions: [Attention]? = nil
     
     /**
      * For Fanfou
      */
     // sourcery: jsonField=photo
-    var photo: FanfouPhoto? = nil
+    var photo: Photo? = nil
     /**
      * For Fanfou
      */
@@ -173,7 +173,7 @@ class MicroBlogStatus: TwitterEntitySupport {
         }
         if (result == -1 && createdAt != nil) {
             // Try use timestamp
-            result = createdAt.timeIntervalSince1970Millis
+            result = createdAt.millisSince1970
         }
         return result
     }
@@ -182,14 +182,14 @@ class MicroBlogStatus: TwitterEntitySupport {
         return retweetedStatus != nil
     }
     
-    var fullEntities: TwitterEntities? {
+    var fullEntities: Entities? {
         if let extended = self.extendedTweet {
             return extended.entities
         }
         return self.entities
     }
     
-    var fullExtendedEntities: TwitterEntities? {
+    var fullExtendedEntities: Entities? {
         if let extended = self.extendedTweet {
             return extended.extendedEntities
         }
@@ -217,10 +217,10 @@ class MicroBlogStatus: TwitterEntitySupport {
         var fullText: String!
         
         // sourcery: jsonField=entities
-        var entities: TwitterEntities? = nil
+        var entities: Entities? = nil
         
         // sourcery: jsonField=extended_entities
-        var extendedEntities: TwitterEntities? = nil
+        var extendedEntities: Entities? = nil
         
         // sourcery: jsonField=display_text_range
         var displayTextRange: [Int]!

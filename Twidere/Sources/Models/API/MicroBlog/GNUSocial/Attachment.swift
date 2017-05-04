@@ -6,10 +6,8 @@
 //  Copyright © 2017年 Mariotaku Dev. All rights reserved.
 //
 
-import Foundation
-
 // sourcery: jsonParse
-class GNUSocialAttachment {
+class Attachment {
     // sourcery: jsonField=width
     var width: Int32 = 0
     // sourcery: jsonField=height

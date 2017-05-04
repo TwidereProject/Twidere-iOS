@@ -8,9 +8,9 @@
 
 import Foundation
 
-protocol TwitterEntitySupport {
+protocol EntitySupport {
     
-    var entities: TwitterEntities? { get }
+    var entities: Entities? { get }
     
-    var extendedEntities: TwitterEntities? { get }
+    var extendedEntities: Entities? { get }
 }

@@ -1,5 +1,5 @@
 //
-//  TwitterMentionEntity.swift
+//  MentionEntity.swift
 //  Twidere
 //
 //  Created by Mariotaku Lee on 2017/5/3.
@@ -9,13 +9,15 @@
 import Foundation
 
 // sourcery: jsonParse
-class TwitterMentionEntity : TwitterBaseEntity {
+class MentionEntity {
     // sourcery: id
     var id: String!
     // sourcery: screen_name
     var screenName: String!
     // sourcery: name
     var name: String!
+    // sourcery: jsonField=indices
+    var indices: [Int32]!
     
     required init() {
         

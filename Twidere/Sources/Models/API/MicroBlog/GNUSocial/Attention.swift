@@ -6,10 +6,8 @@
 //  Copyright © 2017年 Mariotaku Dev. All rights reserved.
 //
 
-import Foundation
-
 // sourcery: jsonParse
-class GNUSocialAttention {
+class Attention {
     // sourcery: jsonField=fullname
     var fullName: String!
     // sourcery: jsonField=id

@@ -44,7 +44,7 @@ class MicroBlogUser {
     // END Basic information
     
     // sourcery: jsonField=entities
-    var entities: TwitterUserEntities? = nil
+    var entities: UserEntities? = nil
     
     // sourcery: jsonField=protected
     var isProtected: Bool = false

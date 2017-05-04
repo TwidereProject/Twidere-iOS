@@ -9,7 +9,7 @@
 import Foundation
 
 // sourcery: jsonParse
-class FanfouPhoto {
+class Photo {
     // sourcery: jsonField=url
     var url: String!
     // sourcery: jsonField=imageurl
