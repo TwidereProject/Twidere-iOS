@@ -1401,7 +1401,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TwidereTests/Pods-TwidereTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TwidereTests/Pods-TwidereTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1ECD101FF63F0B92B0AA2486 /* [CP] Check Pods Manifest.lock */ = {
@@ -1431,7 +1431,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TwidereTests/Pods-TwidereTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TwidereTests/Pods-TwidereTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		549985ADC72B2FF2394728C5 /* [CP] Check Pods Manifest.lock */ = {
@@ -1461,7 +1461,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Twidere/Pods-Twidere-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Twidere/Pods-Twidere-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		76419A03C8DA32BB83854B1B /* [CP] Check Pods Manifest.lock */ = {
@@ -1491,7 +1491,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TwidereUITests/Pods-TwidereUITests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TwidereUITests/Pods-TwidereUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7D956DB5F49EAA64B0197802 /* 📦 Copy Pods Resources */ = {
@@ -1536,7 +1536,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Twidere/Pods-Twidere-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Twidere/Pods-Twidere-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C45CB1C5C054FEF1B8399FB6 /* 📦 Copy Pods Resources */ = {
@@ -1624,7 +1624,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TwidereUITests/Pods-TwidereUITests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TwidereUITests/Pods-TwidereUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FED443B8ADC217B91581E92A /* [CP] Check Pods Manifest.lock */ = {

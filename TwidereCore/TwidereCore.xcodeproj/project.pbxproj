@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5EE236E547ACBEFE194924B3 /* Pods_TwidereCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF9C6A51C84A59CCC84A725 /* Pods_TwidereCore.framework */; };
 		CE750A3D1EBB3F3C003E6249 /* TwidereCore.h in Headers */ = {isa = PBXBuildFile; fileRef = CE750A3B1EBB3F3C003E6249 /* TwidereCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2281E0BF2DC0671EB8B723C7 /* Pods-TwidereCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereCore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TwidereCore/Pods-TwidereCore.debug.xcconfig"; sourceTree = "<group>"; };
+		5BF9C6A51C84A59CCC84A725 /* Pods_TwidereCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwidereCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B05C38CF48F42A8EF30FF3DE /* Pods-TwidereCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereCore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TwidereCore/Pods-TwidereCore.release.xcconfig"; sourceTree = "<group>"; };
 		CE750A381EBB3F3C003E6249 /* TwidereCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TwidereCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE750A3B1EBB3F3C003E6249 /* TwidereCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwidereCore.h; sourceTree = "<group>"; };
 		CE750A3C1EBB3F3C003E6249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -21,12 +25,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EE236E547ACBEFE194924B3 /* Pods_TwidereCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		631B055608C155DB3F2579A2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2281E0BF2DC0671EB8B723C7 /* Pods-TwidereCore.debug.xcconfig */,
+				B05C38CF48F42A8EF30FF3DE /* Pods-TwidereCore.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C6DB3F6BC1AF1F22B4CCB1CA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5BF9C6A51C84A59CCC84A725 /* Pods_TwidereCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CE750A2E1EBB3F3C003E6249 = {
 			isa = PBXGroup;
 			children = (
@@ -34,6 +56,8 @@
 				CE750A441EBB4144003E6249 /* Generated */,
 				CE750A3A1EBB3F3C003E6249 /* Sources */,
 				CE750A391EBB3F3C003E6249 /* Products */,
+				631B055608C155DB3F2579A2 /* Pods */,
+				C6DB3F6BC1AF1F22B4CCB1CA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,10 +111,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE750A401EBB3F3C003E6249 /* Build configuration list for PBXNativeTarget "TwidereCore" */;
 			buildPhases = (
+				1324F7A924CC31B473D91989 /* [CP] Check Pods Manifest.lock */,
 				CE750A331EBB3F3C003E6249 /* Sources */,
 				CE750A341EBB3F3C003E6249 /* Frameworks */,
 				CE750A351EBB3F3C003E6249 /* Headers */,
 				CE750A361EBB3F3C003E6249 /* Resources */,
+				F70D3630A4D532FB76FA547E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -143,6 +169,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1324F7A924CC31B473D91989 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F70D3630A4D532FB76FA547E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TwidereCore/Pods-TwidereCore-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CE750A331EBB3F3C003E6249 /* Sources */ = {
@@ -256,6 +315,7 @@
 		};
 		CE750A411EBB3F3C003E6249 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2281E0BF2DC0671EB8B723C7 /* Pods-TwidereCore.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -275,6 +335,7 @@
 		};
 		CE750A421EBB3F3C003E6249 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B05C38CF48F42A8EF30FF3DE /* Pods-TwidereCore.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;

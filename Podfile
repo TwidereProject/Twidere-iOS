@@ -4,6 +4,8 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'Twidere' do
+    workspace 'Twidere'
+    project 'Twidere/Twidere'
     pod 'LayoutKit'
     pod 'Sourcery', '~> 0.6'
     pod 'PMJSON', '~> 2.0.2'
@@ -43,10 +45,17 @@ target 'Twidere' do
     pod 'Crashlytics'
 end
 
-target 'TwidereTests' do
+target 'TwidereCore' do
+    workspace 'Twidere'
+    project 'TwidereCore/TwidereCore'
+end
 
+target 'TwidereTests' do
+    workspace 'Twidere'
+    project 'Twidere/Twidere'
 end
 
 target 'TwidereUITests' do
-
+    workspace 'Twidere'
+    project 'Twidere/Twidere'
 end
