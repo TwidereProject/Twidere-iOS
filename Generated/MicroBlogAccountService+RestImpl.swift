@@ -3,11 +3,11 @@
 
 import PromiseKit
 
-internal class MicroBlogAccountServiceRestImpl: MicroBlogAccountService {
+internal class MicroBlogAccountServiceRestImpl: MicroBlogAccountService, RestProtocolService {
 
     let client: RestClient
 
-    init(client: RestClient) {
+    required init(client: RestClient) {
         self.client = client
     }
 

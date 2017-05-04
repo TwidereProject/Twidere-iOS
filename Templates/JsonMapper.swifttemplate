@@ -90,9 +90,9 @@ extension <%= type.name %>: JsonMappable {
 
     override func parseField(_ instance: <%= type.name %>, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
-        <%_ for variable in type.variables where variable.annotations["jsonFieldName"] != nil { -%>
-            <%_ guard let fieldNameAnnotationValue = variable.annotations["jsonFieldName"] as? String else {
-                    fatalError("jsonFieldName annotation of \(type.name).\(variable.name) is incorrect")
+        <%_ for variable in type.variables where variable.annotations["jsonField"] != nil { -%>
+            <%_ guard let fieldNameAnnotationValue = variable.annotations["jsonField"] as? String else {
+                    fatalError("jsonField annotation of \(type.name).\(variable.name) is incorrect")
                 }
                 let fieldNames = generateFieldNames(fieldNameAnnotationValue)
             -%>

@@ -11,13 +11,13 @@ import Foundation
 // sourcery: jsonParse
 class TwitterEntities {
     
-    // sourcery: jsonFieldName=urls
+    // sourcery: jsonField=urls
     var urls: [TwitterURLEntity]!
     
-    // sourcery: jsonFieldName=hashtags
+    // sourcery: jsonField=hashtags
     var hashtags: [TwitterHashtagEntity]!
     
-    // sourcery: jsonFieldName=mentions
+    // sourcery: jsonField=mentions
     var mentions: [TwitterMentionEntity]!
     
     required init() {

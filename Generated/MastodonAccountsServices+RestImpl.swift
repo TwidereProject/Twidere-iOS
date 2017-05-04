@@ -3,11 +3,11 @@
 
 import PromiseKit
 
-internal class MastodonAccountsServicesRestImpl: MastodonAccountsServices {
+internal class MastodonAccountsServicesRestImpl: MastodonAccountsServices, RestProtocolService {
 
     let client: RestClient
 
-    init(client: RestClient) {
+    required init(client: RestClient) {
         self.client = client
     }
 

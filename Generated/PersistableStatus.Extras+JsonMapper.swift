@@ -49,9 +49,9 @@ internal class PersistableStatusExtrasJsonMapper: JsonMapper<PersistableStatus.E
             instance.user_statusnet_profile_url = parser.getValueAsString()
         case "display_text_range":
             if (parser.currentEvent == .arrayStart) {
-                var array: [Int32] = []
+                var array: [Int] = []
                 while (parser.nextEvent() != .arrayEnd) {
-                    array.append(parser.getValueAsInt32())
+                    array.append(parser.getValueAsInt())
                 }
                 instance.display_text_range = array
             } else {
@@ -59,9 +59,9 @@ internal class PersistableStatusExtrasJsonMapper: JsonMapper<PersistableStatus.E
             }
         case "quoted_display_text_range":
             if (parser.currentEvent == .arrayStart) {
-                var array: [Int32] = []
+                var array: [Int] = []
                 while (parser.nextEvent() != .arrayEnd) {
-                    array.append(parser.getValueAsInt32())
+                    array.append(parser.getValueAsInt())
                 }
                 instance.quoted_display_text_range = array
             } else {

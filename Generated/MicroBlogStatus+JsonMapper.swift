@@ -125,9 +125,9 @@ internal class MicroBlogStatusJsonMapper: JsonMapper<MicroBlogStatus> {
             instance.location = parser.getValueAsString()
         case "display_text_range":
             if (parser.currentEvent == .arrayStart) {
-                var array: [Int32] = []
+                var array: [Int] = []
                 while (parser.nextEvent() != .arrayEnd) {
-                    array.append(parser.getValueAsInt32())
+                    array.append(parser.getValueAsInt())
                 }
                 instance.displayTextRange = array
             } else {

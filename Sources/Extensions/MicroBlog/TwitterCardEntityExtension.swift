@@ -9,7 +9,7 @@
 import Foundation
 
 extension TwitterCardEntity {
-    func toPersistable(accountKey: UserKey, accountType: String?) -> PersistableCardEntity {
+    func toPersistable(accountKey: UserKey, accountType: AccountDetails.AccountType?) -> PersistableCardEntity {
         let obj = PersistableCardEntity()
         return obj
     }

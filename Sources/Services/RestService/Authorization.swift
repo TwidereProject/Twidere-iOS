@@ -18,11 +18,7 @@ protocol Authorization {
 
 class EmptyAuthorization: Authorization {
     
-    var hasAuthorization: Bool {
-        get {
-            return false
-        }
-    }
+    var hasAuthorization: Bool = false
     
     func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String?]?, forms: [String : Any]?, encoding: URLEncoding) -> String! {
         return nil
@@ -42,11 +38,7 @@ class BasicAuthorization: Authorization {
         self.password = password
     }
     
-    var hasAuthorization: Bool {
-        get {
-            return true
-        }
-    }
+    var hasAuthorization: Bool = true
     
     func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String?]?, forms: [String : Any]?, encoding: URLEncoding) -> String! {
         return "\(username):\(password)".utf8.map({$0}).toBase64()
@@ -79,11 +71,7 @@ class OAuthAuthorization: Authorization {
         self.oauthToken = oauthToken
     }
     
-    var hasAuthorization: Bool {
-        get {
-            return true
-        }
-    }
+    var hasAuthorization: Bool = true
     
     func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String: String?]?, forms: [String: Any]?, encoding: URLEncoding) -> String! {
         let oauthEndpoint = endpoint as! OAuthEndpoint
@@ -181,6 +169,21 @@ class OAuthAuthorization: Authorization {
         return escape(key) + "=" + escape(value)
     }
     
+}
+
+class OAuth2Authorization: Authorization {
+    
+    var accessToken: String
+    
+    init(accessToken: String) {
+        self.accessToken = accessToken
+    }
+    
+    private(set) var hasAuthorization: Bool = true
+    
+    func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String?]?, forms: [String : Any]?, encoding: URLEncoding) -> String! {
+        return "Baerer \(accessToken)"
+    }
 }
 
 class OAuthToken {

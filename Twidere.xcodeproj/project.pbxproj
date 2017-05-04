@@ -19,7 +19,6 @@
 		CE052A0A1CF7F35300E06364 /* TwidereUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE052A091CF7F35300E06364 /* TwidereUITests.swift */; };
 		CE2660191DAFD1BF007FF7CF /* StringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2660181DAFD1BF007FF7CF /* StringLiteral.swift */; };
 		CE26603F1DB0638D007FF7CF /* SQLite+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26603E1DB0638D007FF7CF /* SQLite+Array.swift */; };
-		CE2903EC1D4F200A0056D0E2 /* UserExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */; };
 		CE2A7F991EB5BCC6003791F2 /* MicroBlogStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7F981EB5BCC6003791F2 /* MicroBlogStatus.swift */; };
 		CE2A7FD01EB71762003791F2 /* MicroBlogUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FCF1EB71762003791F2 /* MicroBlogUser.swift */; };
 		CE2A7FD51EB725A4003791F2 /* FanfouPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FD41EB725A4003791F2 /* FanfouPhoto.swift */; };
@@ -97,9 +96,6 @@
 		CE358B751D825942002A33B3 /* Viewers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE358B741D825942002A33B3 /* Viewers.storyboard */; };
 		CE3E5DF61D978A6100454A61 /* NSShadowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */; };
 		CE412B221DB9F38D00C52099 /* SwiftyJSONExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE412B211DB9F38D00C52099 /* SwiftyJSONExtension.swift */; };
-		CE45CA881D85416C0004CC1C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CA851D85416C0004CC1C /* Account.swift */; };
-		CE45CAEF1D8556DE0004CC1C /* Account+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CAEE1D8556DE0004CC1C /* Account+Value.swift */; };
-		CE45CAF51D855AE10004CC1C /* User+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CAF41D855AE10004CC1C /* User+Value.swift */; };
 		CE45CAF71D855EFA0004CC1C /* UserKeyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CAF61D855EFA0004CC1C /* UserKeyExtensions.swift */; };
 		CE497F901D695835000F16D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE497F8F1D695835000F16D2 /* Main.storyboard */; };
 		CE497F991D6959B0000F16D2 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497F971D6959B0000F16D2 /* StatusCell.swift */; };
@@ -117,7 +113,6 @@
 		CE497FC81D6B2017000F16D2 /* GapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497FC61D6B2017000F16D2 /* GapCell.swift */; };
 		CE497FC91D6B2017000F16D2 /* GapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE497FC71D6B2017000F16D2 /* GapCell.xib */; };
 		CE497FCD1D6BE643000F16D2 /* QuotedStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497FCC1D6BE643000F16D2 /* QuotedStatusView.swift */; };
-		CE4B1A9D1D7172F00017CB85 /* Status+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B1A9C1D7172F00017CB85 /* Status+Value.swift */; };
 		CE4B1AA51D719E160017CB85 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B1AA41D719E160017CB85 /* StringExtensions.swift */; };
 		CE5993091D82E4DE00653220 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5993081D82E4DE00653220 /* AccountCell.swift */; };
 		CE59930B1D82EDD100653220 /* Filters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE59930A1D82EDD100653220 /* Filters.storyboard */; };
@@ -130,20 +125,30 @@
 		CE65B1B61D9C20AE00A38A61 /* PullToRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1B51D9C20AE00A38A61 /* PullToRefreshProtocol.swift */; };
 		CE65B1BB1D9CB2B100A38A61 /* ActivityTitleSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1B91D9CB2B100A38A61 /* ActivityTitleSummaryCell.swift */; };
 		CE65B1BC1D9CB2B100A38A61 /* ActivityTitleSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE65B1BA1D9CB2B100A38A61 /* ActivityTitleSummaryCell.xib */; };
-		CE65B1BE1D9CC01500A38A61 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1BD1D9CC01500A38A61 /* Activity.swift */; };
 		CE65B1CA1D9CC11600A38A61 /* UserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1C91D9CC11600A38A61 /* UserList.swift */; };
-		CE65B1CC1D9CC21000A38A61 /* Activity+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1CB1D9CC21000A38A61 /* Activity+Value.swift */; };
 		CE65B1CF1D9CDFEA00A38A61 /* ActivitiesListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1CD1D9CDFEA00A38A61 /* ActivitiesListController.swift */; };
-		CE65B1DB1D9D525C00A38A61 /* ActivityExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1DA1D9D525C00A38A61 /* ActivityExtension.swift */; };
 		CE65B1DD1D9E0D4900A38A61 /* ShortTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1DC1D9E0D4900A38A61 /* ShortTimeView.swift */; };
 		CE65B1E31D9E97D700A38A61 /* GetActivitiesTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1E21D9E97D700A38A61 /* GetActivitiesTask.swift */; };
 		CE65B1E61D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1E51D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift */; };
 		CE65B1E81D9F546700A38A61 /* ItemIndices.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1E71D9F546700A38A61 /* ItemIndices.swift */; };
-		CE6C6C271DB0AC5800DF4892 /* Foundation+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C261DB0AC5800DF4892 /* Foundation+Freddy.swift */; };
-		CE6C6C341DB35C1D00DF4892 /* AccountExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C301DB35C1D00DF4892 /* AccountExtensions.swift */; };
-		CE6C6C361DB35C1D00DF4892 /* StatusExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C321DB35C1D00DF4892 /* StatusExtension.swift */; };
+		CE6C6C341DB35C1D00DF4892 /* AccountDetailsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C301DB35C1D00DF4892 /* AccountDetailsExtensions.swift */; };
 		CE6C6C371DB35C1D00DF4892 /* UserKey+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C331DB35C1D00DF4892 /* UserKey+Freddy.swift */; };
 		CE6D6E9A1DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D6E991DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift */; };
+		CE6FA33F1EBAD4ED0068BE01 /* AccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA33E1EBAD4ED0068BE01 /* AccountDetails.swift */; };
+		CE6FA3421EBAE3E00068BE01 /* AccountCredentialsImpls.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3411EBAE3E00068BE01 /* AccountCredentialsImpls.swift */; };
+		CE6FA3441EBAE4340068BE01 /* AccountOAuthCredentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3431EBAE4340068BE01 /* AccountOAuthCredentials+JsonMapper.swift */; };
+		CE6FA3461EBAE55B0068BE01 /* AccountDetails.Credentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3451EBAE55B0068BE01 /* AccountDetails.Credentials+JsonMapper.swift */; };
+		CE6FA3481EBAE6C40068BE01 /* AccountDetails.Extras+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3471EBAE6C40068BE01 /* AccountDetails.Extras+JsonMapper.swift */; };
+		CE6FA34F1EBAF9250068BE01 /* AccountBasicCredentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA34B1EBAF9250068BE01 /* AccountBasicCredentials+JsonMapper.swift */; };
+		CE6FA3501EBAF9250068BE01 /* AccountEmptyCredentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA34C1EBAF9250068BE01 /* AccountEmptyCredentials+JsonMapper.swift */; };
+		CE6FA3511EBAF9250068BE01 /* AccountOAuth2Credentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA34D1EBAF9250068BE01 /* AccountOAuth2Credentials+JsonMapper.swift */; };
+		CE6FA3521EBAF9250068BE01 /* RestProtocolImpl.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA34E1EBAF9250068BE01 /* RestProtocolImpl.generated.swift */; };
+		CE6FA3571EBB050D0068BE01 /* MediaUploadResponse.Image+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3531EBB050D0068BE01 /* MediaUploadResponse.Image+JsonMapper.swift */; };
+		CE6FA3581EBB050D0068BE01 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3541EBB050D0068BE01 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift */; };
+		CE6FA3591EBB050D0068BE01 /* MediaUploadResponse.Video+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3551EBB050D0068BE01 /* MediaUploadResponse.Video+JsonMapper.swift */; };
+		CE6FA35A1EBB050D0068BE01 /* MediaUploadResponse+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3561EBB050D0068BE01 /* MediaUploadResponse+JsonMapper.swift */; };
+		CE6FA35C1EBB05680068BE01 /* TwitterUploadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA35B1EBB05680068BE01 /* TwitterUploadService.swift */; };
+		CE6FA35E1EBB08480068BE01 /* TwitterUploadService+RestImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA35D1EBB08480068BE01 /* TwitterUploadService+RestImpl.swift */; };
 		CE79C83D1DA62E56007C05F2 /* SpanItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */; };
 		CE79C83F1DA77777007C05F2 /* YYText+ALSLayouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C83E1DA77777007C05F2 /* YYText+ALSLayouts.swift */; };
 		CE79C8411DA7ACE3007C05F2 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C8401DA7ACE3007C05F2 /* UIViewExtension.swift */; };
@@ -255,7 +260,6 @@
 		CE052A0B1CF7F35300E06364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE2660181DAFD1BF007FF7CF /* StringLiteral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringLiteral.swift; sourceTree = "<group>"; };
 		CE26603E1DB0638D007FF7CF /* SQLite+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SQLite+Array.swift"; sourceTree = "<group>"; };
-		CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserExtensions.swift; sourceTree = "<group>"; };
 		CE2A7F981EB5BCC6003791F2 /* MicroBlogStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogStatus.swift; sourceTree = "<group>"; };
 		CE2A7FCF1EB71762003791F2 /* MicroBlogUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogUser.swift; sourceTree = "<group>"; };
 		CE2A7FD41EB725A4003791F2 /* FanfouPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanfouPhoto.swift; sourceTree = "<group>"; };
@@ -320,22 +324,19 @@
 		CE2A80751EB9C0A1003791F2 /* PersistableActivity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableActivity+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE2A80761EB9C0A1003791F2 /* PersistableLiteUser+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableLiteUser+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE2A80771EB9C0A1003791F2 /* PersistableUser+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableUser+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A807D1EB9C46C003791F2 /* MicroBlogStatusExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MicroBlogStatusExtension.swift; path = MicroBlogStatusExtension.swift; sourceTree = "<group>"; };
-		CE2A80811EB9D672003791F2 /* MicroBlogUserExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MicroBlogUserExtension.swift; path = MicroBlogUserExtension.swift; sourceTree = "<group>"; };
+		CE2A807D1EB9C46C003791F2 /* MicroBlogStatusExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogStatusExtension.swift; sourceTree = "<group>"; };
+		CE2A80811EB9D672003791F2 /* MicroBlogUserExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogUserExtension.swift; sourceTree = "<group>"; };
 		CE2A80831EB9EDCC003791F2 /* TwitterMentionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterMentionEntity.swift; sourceTree = "<group>"; };
 		CE2A80851EB9F4D7003791F2 /* PersistableStatusExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableStatusExtension.swift; sourceTree = "<group>"; };
-		CE2A80871EBA17B7003791F2 /* TwitterMentionEntityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterMentionEntityExtension.swift; path = TwitterMentionEntityExtension.swift; sourceTree = "<group>"; };
+		CE2A80871EBA17B7003791F2 /* TwitterMentionEntityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterMentionEntityExtension.swift; sourceTree = "<group>"; };
 		CE2A80891EBA18A8003791F2 /* TwitterMentionEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterMentionEntity+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A808B1EBA24CA003791F2 /* TwitterCardEntityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterCardEntityExtension.swift; path = TwitterCardEntityExtension.swift; sourceTree = "<group>"; };
+		CE2A808B1EBA24CA003791F2 /* TwitterCardEntityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterCardEntityExtension.swift; sourceTree = "<group>"; };
 		CE2A808D1EBA3404003791F2 /* HtmlBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HtmlBuilder.swift; sourceTree = "<group>"; };
 		CE2A808F1EBA346C003791F2 /* TwitterEntitySupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterEntitySupport.swift; sourceTree = "<group>"; };
 		CE358B701D811C84002A33B3 /* SpanItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItem.swift; sourceTree = "<group>"; };
 		CE358B741D825942002A33B3 /* Viewers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Viewers.storyboard; sourceTree = "<group>"; };
 		CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSShadowExtension.swift; sourceTree = "<group>"; };
 		CE412B211DB9F38D00C52099 /* SwiftyJSONExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSONExtension.swift; sourceTree = "<group>"; };
-		CE45CA851D85416C0004CC1C /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		CE45CAEE1D8556DE0004CC1C /* Account+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+Value.swift"; sourceTree = "<group>"; };
-		CE45CAF41D855AE10004CC1C /* User+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+Value.swift"; sourceTree = "<group>"; };
 		CE45CAF61D855EFA0004CC1C /* UserKeyExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserKeyExtensions.swift; sourceTree = "<group>"; };
 		CE497F8F1D695835000F16D2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CE497F971D6959B0000F16D2 /* StatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StatusCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -353,7 +354,6 @@
 		CE497FC61D6B2017000F16D2 /* GapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GapCell.swift; sourceTree = "<group>"; };
 		CE497FC71D6B2017000F16D2 /* GapCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GapCell.xib; sourceTree = "<group>"; };
 		CE497FCC1D6BE643000F16D2 /* QuotedStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotedStatusView.swift; sourceTree = "<group>"; };
-		CE4B1A9C1D7172F00017CB85 /* Status+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Status+Value.swift"; sourceTree = "<group>"; };
 		CE4B1AA41D719E160017CB85 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		CE5993081D82E4DE00653220 /* AccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		CE59930A1D82EDD100653220 /* Filters.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Filters.storyboard; sourceTree = "<group>"; };
@@ -366,20 +366,30 @@
 		CE65B1B51D9C20AE00A38A61 /* PullToRefreshProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefreshProtocol.swift; sourceTree = "<group>"; };
 		CE65B1B91D9CB2B100A38A61 /* ActivityTitleSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTitleSummaryCell.swift; sourceTree = "<group>"; };
 		CE65B1BA1D9CB2B100A38A61 /* ActivityTitleSummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityTitleSummaryCell.xib; sourceTree = "<group>"; };
-		CE65B1BD1D9CC01500A38A61 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		CE65B1C91D9CC11600A38A61 /* UserList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserList.swift; sourceTree = "<group>"; };
-		CE65B1CB1D9CC21000A38A61 /* Activity+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Activity+Value.swift"; sourceTree = "<group>"; };
 		CE65B1CD1D9CDFEA00A38A61 /* ActivitiesListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesListController.swift; sourceTree = "<group>"; };
-		CE65B1DA1D9D525C00A38A61 /* ActivityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityExtension.swift; sourceTree = "<group>"; };
 		CE65B1DC1D9E0D4900A38A61 /* ShortTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortTimeView.swift; sourceTree = "<group>"; };
 		CE65B1E21D9E97D700A38A61 /* GetActivitiesTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetActivitiesTask.swift; sourceTree = "<group>"; };
 		CE65B1E51D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionsActivitiesListControllerDataSource.swift; sourceTree = "<group>"; };
 		CE65B1E71D9F546700A38A61 /* ItemIndices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemIndices.swift; sourceTree = "<group>"; };
-		CE6C6C261DB0AC5800DF4892 /* Foundation+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Foundation+Freddy.swift"; sourceTree = "<group>"; };
-		CE6C6C301DB35C1D00DF4892 /* AccountExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountExtensions.swift; sourceTree = "<group>"; };
-		CE6C6C321DB35C1D00DF4892 /* StatusExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusExtension.swift; sourceTree = "<group>"; };
+		CE6C6C301DB35C1D00DF4892 /* AccountDetailsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailsExtensions.swift; sourceTree = "<group>"; };
 		CE6C6C331DB35C1D00DF4892 /* UserKey+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserKey+Freddy.swift"; sourceTree = "<group>"; };
 		CE6D6E991DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNavigationBarProtocol.swift; sourceTree = "<group>"; };
+		CE6FA33E1EBAD4ED0068BE01 /* AccountDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountDetails.swift; path = ../Extensions/MicroBlog/AccountDetails.swift; sourceTree = "<group>"; };
+		CE6FA3411EBAE3E00068BE01 /* AccountCredentialsImpls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCredentialsImpls.swift; sourceTree = "<group>"; };
+		CE6FA3431EBAE4340068BE01 /* AccountOAuthCredentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountOAuthCredentials+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE6FA3451EBAE55B0068BE01 /* AccountDetails.Credentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountDetails.Credentials+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE6FA3471EBAE6C40068BE01 /* AccountDetails.Extras+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountDetails.Extras+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE6FA34B1EBAF9250068BE01 /* AccountBasicCredentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountBasicCredentials+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE6FA34C1EBAF9250068BE01 /* AccountEmptyCredentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountEmptyCredentials+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE6FA34D1EBAF9250068BE01 /* AccountOAuth2Credentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountOAuth2Credentials+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE6FA34E1EBAF9250068BE01 /* RestProtocolImpl.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestProtocolImpl.generated.swift; sourceTree = "<group>"; };
+		CE6FA3531EBB050D0068BE01 /* MediaUploadResponse.Image+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaUploadResponse.Image+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE6FA3541EBB050D0068BE01 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaUploadResponse.ProcessingInfo+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE6FA3551EBB050D0068BE01 /* MediaUploadResponse.Video+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaUploadResponse.Video+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE6FA3561EBB050D0068BE01 /* MediaUploadResponse+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaUploadResponse+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE6FA35B1EBB05680068BE01 /* TwitterUploadService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUploadService.swift; sourceTree = "<group>"; };
+		CE6FA35D1EBB08480068BE01 /* TwitterUploadService+RestImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterUploadService+RestImpl.swift"; sourceTree = "<group>"; };
 		CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItemExtension.swift; sourceTree = "<group>"; };
 		CE79C83E1DA77777007C05F2 /* YYText+ALSLayouts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "YYText+ALSLayouts.swift"; sourceTree = "<group>"; };
 		CE79C8401DA7ACE3007C05F2 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -565,6 +575,18 @@
 		CE2660201DAFDD79007FF7CF /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				CE6FA35D1EBB08480068BE01 /* TwitterUploadService+RestImpl.swift */,
+				CE6FA3531EBB050D0068BE01 /* MediaUploadResponse.Image+JsonMapper.swift */,
+				CE6FA3541EBB050D0068BE01 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift */,
+				CE6FA3551EBB050D0068BE01 /* MediaUploadResponse.Video+JsonMapper.swift */,
+				CE6FA3561EBB050D0068BE01 /* MediaUploadResponse+JsonMapper.swift */,
+				CE6FA34B1EBAF9250068BE01 /* AccountBasicCredentials+JsonMapper.swift */,
+				CE6FA34C1EBAF9250068BE01 /* AccountEmptyCredentials+JsonMapper.swift */,
+				CE6FA34D1EBAF9250068BE01 /* AccountOAuth2Credentials+JsonMapper.swift */,
+				CE6FA34E1EBAF9250068BE01 /* RestProtocolImpl.generated.swift */,
+				CE6FA3471EBAE6C40068BE01 /* AccountDetails.Extras+JsonMapper.swift */,
+				CE6FA3451EBAE55B0068BE01 /* AccountDetails.Credentials+JsonMapper.swift */,
+				CE6FA3431EBAE4340068BE01 /* AccountOAuthCredentials+JsonMapper.swift */,
 				CE2A801D1EB8D982003791F2 /* FanfouPhoto+JsonMapper.swift */,
 				CE2A801E1EB8D982003791F2 /* GNUSocialAttachment+JsonMapper.swift */,
 				CE2A801F1EB8D982003791F2 /* GNUSocialAttention+JsonMapper.swift */,
@@ -605,17 +627,9 @@
 		CE29039C1D4CEF0B0056D0E2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CE45CAEE1D8556DE0004CC1C /* Account+Value.swift */,
-				CE6C6C301DB35C1D00DF4892 /* AccountExtensions.swift */,
-				CE65B1CB1D9CC21000A38A61 /* Activity+Value.swift */,
-				CE65B1DA1D9D525C00A38A61 /* ActivityExtension.swift */,
+				CE6C6C301DB35C1D00DF4892 /* AccountDetailsExtensions.swift */,
 				CE2A7FE31EB767B0003791F2 /* Date+MicroBlog.swift */,
-				CE6C6C261DB0AC5800DF4892 /* Foundation+Freddy.swift */,
 				CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */,
-				CE4B1A9C1D7172F00017CB85 /* Status+Value.swift */,
-				CE6C6C321DB35C1D00DF4892 /* StatusExtension.swift */,
-				CE45CAF41D855AE10004CC1C /* User+Value.swift */,
-				CE2903EB1D4F200A0056D0E2 /* UserExtensions.swift */,
 				CE6C6C331DB35C1D00DF4892 /* UserKey+Freddy.swift */,
 				CE497FB91D6A8A65000F16D2 /* UserKey+Value.swift */,
 				CE45CAF61D855EFA0004CC1C /* UserKeyExtensions.swift */,
@@ -894,6 +908,14 @@
 			path = DataSources;
 			sourceTree = "<group>";
 		};
+		CE6FA3401EBAE3CF0068BE01 /* Credentials */ = {
+			isa = PBXGroup;
+			children = (
+				CE6FA3411EBAE3E00068BE01 /* AccountCredentialsImpls.swift */,
+			);
+			name = Credentials;
+			sourceTree = "<group>";
+		};
 		CE7A573D1D917B410027BECE /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
@@ -908,9 +930,9 @@
 		CE95747B1D32107800504D52 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CE6FA3401EBAE3CF0068BE01 /* Credentials */,
+				CE6FA33E1EBAD4ED0068BE01 /* AccountDetails.swift */,
 				CE2A7F961EB5BC85003791F2 /* API */,
-				CE45CA851D85416C0004CC1C /* Account.swift */,
-				CE65B1BD1D9CC01500A38A61 /* Activity.swift */,
 				CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */,
 				CE65B1E71D9F546700A38A61 /* ItemIndices.swift */,
 				CE59930F1D83901B00653220 /* MediaItem.swift */,
@@ -1150,6 +1172,7 @@
 				CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */,
 				CE9574881D32232600504D52 /* OAuthService.swift */,
 				CE9574861D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift */,
+				CE6FA35B1EBB05680068BE01 /* TwitterUploadService.swift */,
 			);
 			path = MicroBlog;
 			sourceTree = "<group>";
@@ -1652,18 +1675,19 @@
 				CE0529E91CF7F35300E06364 /* MainViewController.swift in Sources */,
 				CE2A80581EB9B03E003791F2 /* SimpleTypesFieldConverters.swift in Sources */,
 				CEA2E2D11D3A7EA20095BC57 /* HomeRootController.swift in Sources */,
-				CE65B1CC1D9CC21000A38A61 /* Activity+Value.swift in Sources */,
 				CE2A803A1EB8D982003791F2 /* MicroBlogStatus+JsonMapper.swift in Sources */,
 				CE79C83D1DA62E56007C05F2 /* SpanItemExtension.swift in Sources */,
 				CE9574961D33B71B00504D52 /* DefaultsKeys.swift in Sources */,
 				CEDC3B2A1D7DB04F0082A8BA /* Paging.swift in Sources */,
 				CE2A803D1EB8D982003791F2 /* TwitterCardEntity+JsonMapper.swift in Sources */,
 				CED73F6C1D9519B80066F554 /* UIImageExtensions.swift in Sources */,
+				CE6FA3501EBAF9250068BE01 /* AccountEmptyCredentials+JsonMapper.swift in Sources */,
 				CE2A80321EB8D982003791F2 /* JsonMapper.generated.swift in Sources */,
+				CE6FA3581EBB050D0068BE01 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift in Sources */,
 				CE95748F1D33871E00504D52 /* PasswordSignInController.swift in Sources */,
+				CE6FA3461EBAE55B0068BE01 /* AccountDetails.Credentials+JsonMapper.swift in Sources */,
 				CEDEE3F51D9270BA00001BE8 /* UIRefreshControlExtension.swift in Sources */,
 				CE2A7FD01EB71762003791F2 /* MicroBlogUser.swift in Sources */,
-				CE45CAF51D855AE10004CC1C /* User+Value.swift in Sources */,
 				CEB60E901DE7CAB300C08E39 /* StatusCellProtocol.swift in Sources */,
 				CE2A808C1EBA24CA003791F2 /* TwitterCardEntityExtension.swift in Sources */,
 				CE5993191D83CAAA00653220 /* DetailStatusCell.swift in Sources */,
@@ -1673,6 +1697,7 @@
 				CEF2CF451D83F11200131EAE /* UserProfileController.swift in Sources */,
 				CEBECFCA1DAB8AD900350383 /* CollectionUtils.swift in Sources */,
 				CE9574981D33D87200504D52 /* NetworkPreferencesController.swift in Sources */,
+				CE6FA3421EBAE3E00068BE01 /* AccountCredentialsImpls.swift in Sources */,
 				CEA2E2C51D37C2590095BC57 /* ComposeLocationController.swift in Sources */,
 				CE6C6C371DB35C1D00DF4892 /* UserKey+Freddy.swift in Sources */,
 				CE2A80701EB9C014003791F2 /* PersistableUser.swift in Sources */,
@@ -1689,14 +1714,13 @@
 				CE2A80901EBA346C003791F2 /* TwitterEntitySupport.swift in Sources */,
 				CE2A80691EB9B5EB003791F2 /* PersistableCardEntity+JsonMapper.swift in Sources */,
 				CE497FA41D69625A000F16D2 /* StatusesListController.swift in Sources */,
-				CE6C6C271DB0AC5800DF4892 /* Foundation+Freddy.swift in Sources */,
 				CE2A80141EB88B77003791F2 /* MastodonAccount.swift in Sources */,
 				CE2A803F1EB8D982003791F2 /* TwitterHashtagEntity+JsonMapper.swift in Sources */,
+				CE6FA3591EBB050D0068BE01 /* MediaUploadResponse.Video+JsonMapper.swift in Sources */,
 				CEDC3B261D7D9FE70082A8BA /* GetStatusesTask.swift in Sources */,
 				CE79C83F1DA77777007C05F2 /* YYText+ALSLayouts.swift in Sources */,
 				CEBECFB71DA9EBD300350383 /* CALayerExtension.swift in Sources */,
 				CE7A57421D917BDB0027BECE /* SingleAccountStatusesListControllerDataSource.swift in Sources */,
-				CE2903EC1D4F200A0056D0E2 /* UserExtensions.swift in Sources */,
 				CE2A80681EB9B5EB003791F2 /* MentionItem+JsonMapper.swift in Sources */,
 				CEA2E2D31D3B42180095BC57 /* AccountsManagerController.swift in Sources */,
 				CE497FBE1D6B01D1000F16D2 /* DateExtension.swift in Sources */,
@@ -1706,10 +1730,12 @@
 				CE497FC81D6B2017000F16D2 /* GapCell.swift in Sources */,
 				CE2A807C1EB9C0A1003791F2 /* PersistableUser+JsonMapper.swift in Sources */,
 				CE65B1CA1D9CC11600A38A61 /* UserList.swift in Sources */,
+				CE6FA3571EBB050D0068BE01 /* MediaUploadResponse.Image+JsonMapper.swift in Sources */,
 				CED41F411D30E6B80089E0B6 /* Endpoint.swift in Sources */,
 				CE7A57491D918A5C0027BECE /* ReselectUISegmentedControl.swift in Sources */,
 				CEBECFC01DAA2BE300350383 /* TintedImageButton.swift in Sources */,
 				CE2A80301EB8D982003791F2 /* GNUSocialAttachment+JsonMapper.swift in Sources */,
+				CE6FA33F1EBAD4ED0068BE01 /* AccountDetails.swift in Sources */,
 				CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */,
 				CE2A808A1EBA18A8003791F2 /* TwitterMentionEntity+JsonMapper.swift in Sources */,
 				CE2A7FFC1EB83200003791F2 /* TwitterURLEntity.swift in Sources */,
@@ -1717,20 +1743,17 @@
 				CEDC3B211D7D87F80082A8BA /* SQLite+UserVersion.swift in Sources */,
 				CE65B1B61D9C20AE00A38A61 /* PullToRefreshProtocol.swift in Sources */,
 				CE95749A1D33DC7B00504D52 /* BasePreferencesController.swift in Sources */,
-				CE65B1BE1D9CC01500A38A61 /* Activity.swift in Sources */,
 				CE65B1E61D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift in Sources */,
-				CE6C6C341DB35C1D00DF4892 /* AccountExtensions.swift in Sources */,
+				CE6C6C341DB35C1D00DF4892 /* AccountDetailsExtensions.swift in Sources */,
 				CE2A80881EBA17B7003791F2 /* TwitterMentionEntityExtension.swift in Sources */,
 				CE2A80721EB9C030003791F2 /* PersistableLiteUser.swift in Sources */,
 				CE2A80421EB97D8B003791F2 /* TwitterUserEntities.swift in Sources */,
 				CE4B1AA51D719E160017CB85 /* StringExtensions.swift in Sources */,
-				CE65B1DB1D9D525C00A38A61 /* ActivityExtension.swift in Sources */,
 				CE2A807B1EB9C0A1003791F2 /* PersistableLiteUser+JsonMapper.swift in Sources */,
 				CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */,
 				CE2A7F991EB5BCC6003791F2 /* MicroBlogStatus.swift in Sources */,
 				CEBECFC21DAA2F4500350383 /* UIViewControllerPreviewingExtension.swift in Sources */,
 				CED41F481D3147460089E0B6 /* APIEditorController.swift in Sources */,
-				CE45CA881D85416C0004CC1C /* Account.swift in Sources */,
 				CE9574871D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift in Sources */,
 				CE2A80651EB9B5EB003791F2 /* MediaItem.VideoInfo.Variant+JsonMapper.swift in Sources */,
 				CE2A805C1EB9B411003791F2 /* MentionItem.swift in Sources */,
@@ -1738,6 +1761,7 @@
 				CEA2E2C11D379CD90095BC57 /* CoreLocationExtensions.swift in Sources */,
 				CE497FCD1D6BE643000F16D2 /* QuotedStatusView.swift in Sources */,
 				CEF2CF4A1D84F98200131EAE /* ProfileBannerContainer.swift in Sources */,
+				CE6FA35A1EBB050D0068BE01 /* MediaUploadResponse+JsonMapper.swift in Sources */,
 				CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */,
 				CE95749C1D33DEC300504D52 /* PreferencesController.swift in Sources */,
 				CE2A7FE41EB767B0003791F2 /* Date+MicroBlog.swift in Sources */,
@@ -1772,8 +1796,8 @@
 				CE2A7FFA1EB83176003791F2 /* TwitterEntities.swift in Sources */,
 				CE2A804B1EB995F1003791F2 /* UserKey+PMJackson.swift in Sources */,
 				CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */,
+				CE6FA35E1EBB08480068BE01 /* TwitterUploadService+RestImpl.swift in Sources */,
 				CE2A802F1EB8D982003791F2 /* FanfouPhoto+JsonMapper.swift in Sources */,
-				CE45CAEF1D8556DE0004CC1C /* Account+Value.swift in Sources */,
 				CE2A80311EB8D982003791F2 /* GNUSocialAttention+JsonMapper.swift in Sources */,
 				CEF2CF481D840D7B00131EAE /* MediaPreviewContainer.swift in Sources */,
 				CE2A806A1EB9B5EC003791F2 /* PersistableStatus.Extras+JsonMapper.swift in Sources */,
@@ -1783,6 +1807,7 @@
 				CE2A806C1EB9B5EC003791F2 /* SpanItem+JsonMapper.swift in Sources */,
 				CE2A80541EB9ABB0003791F2 /* DateFieldConverters.swift in Sources */,
 				CE9574891D32232600504D52 /* OAuthService.swift in Sources */,
+				CE6FA3481EBAE6C40068BE01 /* AccountDetails.Extras+JsonMapper.swift in Sources */,
 				CE497FAC1D6988BA000F16D2 /* UserCell.swift in Sources */,
 				CE59930E1D82F17F00653220 /* FiltersTabsController.swift in Sources */,
 				CE90A55B1D7EDC9D007050E5 /* SimpleRefreshTaskParam.swift in Sources */,
@@ -1799,11 +1824,15 @@
 				CE2A80341EB8D982003791F2 /* MastodonAccountsServices+RestImpl.swift in Sources */,
 				CE2A803E1EB8D982003791F2 /* TwitterEntities+JsonMapper.swift in Sources */,
 				CEDC3B1F1D7D82370082A8BA /* CoreConstants.swift in Sources */,
+				CE6FA3441EBAE4340068BE01 /* AccountOAuthCredentials+JsonMapper.swift in Sources */,
 				CE6D6E9A1DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift in Sources */,
 				CE2A806B1EB9B5EC003791F2 /* PersistableStatus+JsonMapper.swift in Sources */,
+				CE6FA34F1EBAF9250068BE01 /* AccountBasicCredentials+JsonMapper.swift in Sources */,
 				CE2A7FDB1EB7261B003791F2 /* GNUSocialAttachment.swift in Sources */,
+				CE6FA35C1EBB05680068BE01 /* TwitterUploadService.swift in Sources */,
 				CEA2E2A71D34C1610095BC57 /* DefaultAPISettingsController.swift in Sources */,
 				CE2A7FDE1EB72638003791F2 /* TwitterCardEntity.swift in Sources */,
+				CE6FA3521EBAF9250068BE01 /* RestProtocolImpl.generated.swift in Sources */,
 				CEEF42B91DB669C2009ECD0F /* YYTextExtension.swift in Sources */,
 				CEDC3B231D7D8BE90082A8BA /* DatabaseMigration.swift in Sources */,
 				CE2A807A1EB9C0A1003791F2 /* PersistableActivity+JsonMapper.swift in Sources */,
@@ -1821,9 +1850,8 @@
 				CEB187371D980AF6004ADB3A /* LoadMoreCell.swift in Sources */,
 				CE497F991D6959B0000F16D2 /* StatusCell.swift in Sources */,
 				CE79C8411DA7ACE3007C05F2 /* UIViewExtension.swift in Sources */,
-				CE4B1A9D1D7172F00017CB85 /* Status+Value.swift in Sources */,
+				CE6FA3511EBAF9250068BE01 /* AccountOAuth2Credentials+JsonMapper.swift in Sources */,
 				CE497FA91D697CEA000F16D2 /* ConvertUtils.swift in Sources */,
-				CE6C6C361DB35C1D00DF4892 /* StatusExtension.swift in Sources */,
 				CE7A573C1D910EB00027BECE /* SegmentedContainerView.swift in Sources */,
 				CE2A7FE01EB72675003791F2 /* MicroBlogPlace.swift in Sources */,
 			);

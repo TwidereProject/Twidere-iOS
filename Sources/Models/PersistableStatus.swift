@@ -14,248 +14,247 @@ class PersistableStatus {
     //@CursorField(value = Statuses._ID, excludeWrite = true, type = TwidereDataStore.TYPE_PRIMARY_KEY)
     var _id: Int64 = 0
     
-    // sourcery: jsonFieldName=id
+    // sourcery: jsonField=id
     //@CursorField(Statuses.ID)
     var id: String!
     
     //@CursorField(value = Statuses.ACCOUNT_KEY, converter = UserKeyCursorFieldConverter::class)
-    // sourcery: jsonFieldName=account_key
+    // sourcery: jsonField=account_key
     // sourcery: jsonFieldConverter=UserKeyFieldConverter
     var account_key: UserKey!
     
-    // sourcery: jsonFieldName=sort_id
+    // sourcery: jsonField=sort_id
     //@CursorField(Statuses.SORT_ID)
     var sort_id: Int64 = -1
     
-    // sourcery: jsonFieldName=position_key
+    // sourcery: jsonField=position_key
     //@CursorField(Statuses.POSITION_KEY)
     var position_key: Int64 = 0
     
-    // sourcery: jsonFieldName=timestamp
+    // sourcery: jsonField=timestamp
     //@CursorField(Statuses.TIMESTAMP)
     var timestamp: Int64 = 0
     
     //@CursorField(value = Statuses.USER_KEY, converter = UserKeyCursorFieldConverter::class)
-    // sourcery: jsonFieldName=user_key
+    // sourcery: jsonField=user_key
     // sourcery: jsonFieldConverter=UserKeyFieldConverter
     var user_key: UserKey!
     
-    // sourcery: jsonFieldName=retweet_id
+    // sourcery: jsonField=retweet_id
     //@CursorField(Statuses.RETWEET_ID)
     var retweet_id: String? = nil
     
-    // sourcery: jsonFieldName=retweeted_by_user_key
+    // sourcery: jsonField=retweeted_by_user_key
     // sourcery: jsonFieldConverter=UserKeyFieldConverter
     //@CursorField(value = Statuses.RETWEETED_BY_USER_KEY, converter = UserKeyCursorFieldConverter::class)
     var retweeted_by_user_key: UserKey? = nil
     
-    // sourcery: jsonFieldName=retweet_timestamp
+    // sourcery: jsonField=retweet_timestamp
     //@CursorField(Statuses.RETWEET_TIMESTAMP)
     var retweet_timestamp: Int64 = -1
     
-    // sourcery: jsonFieldName=retweet_count
+    // sourcery: jsonField=retweet_count
     //@CursorField(Statuses.RETWEET_COUNT)
     var retweet_count: Int64 = 0
     
-    // sourcery: jsonFieldName=favorite_count
+    // sourcery: jsonField=favorite_count
     //@CursorField(Statuses.FAVORITE_COUNT)
     var favorite_count: Int64 = 0
     
-    // sourcery: jsonFieldName=reply_count
+    // sourcery: jsonField=reply_count
     //@CursorField(Statuses.REPLY_COUNT)
     var reply_count: Int64 = 0
     
-    // sourcery: jsonFieldName=in_reply_to_status_id
+    // sourcery: jsonField=in_reply_to_status_id
     //@CursorField(Statuses.IN_REPLY_TO_STATUS_ID)
     var in_reply_to_status_id: String? = nil
     
-    // sourcery: jsonFieldName=in_reply_to_user_key
+    // sourcery: jsonField=in_reply_to_user_key
     // sourcery: jsonFieldConverter=UserKeyFieldConverter
     //@CursorField(value = Statuses.IN_REPLY_TO_USER_KEY, converter = UserKeyCursorFieldConverter::class)
     var in_reply_to_user_key: UserKey? = nil
     
-    // sourcery: jsonFieldName=my_retweet_id
+    // sourcery: jsonField=my_retweet_id
     //@CursorField(Statuses.MY_RETWEET_ID)
     var my_retweet_id: String? = nil
     
-    // sourcery: jsonFieldName=quoted_id
+    // sourcery: jsonField=quoted_id
     //@CursorField(Statuses.QUOTED_ID)
     var quoted_id: String? = nil
     
-    // sourcery: jsonFieldName=quoted_timestamp
+    // sourcery: jsonField=quoted_timestamp
     //@CursorField(Statuses.QUOTED_TIMESTAMP)
     var quoted_timestamp: Int64 = 0
     
-    // sourcery: jsonFieldName=quoted_user_key
+    // sourcery: jsonField=quoted_user_key
     // sourcery: jsonFieldConverter=UserKeyFieldConverter
     //@CursorField(value = Statuses.QUOTED_USER_KEY, converter = UserKeyCursorFieldConverter::class)
     var quoted_user_key: UserKey? = nil
     
-    // sourcery: jsonFieldName=is_gap
+    // sourcery: jsonField=is_gap
     //@CursorField(Statuses.IS_GAP)
     var is_gap: Bool = false
     
-    // sourcery: jsonFieldName=is_retweet
+    // sourcery: jsonField=is_retweet
     //@CursorField(Statuses.IS_RETWEET)
     var is_retweet: Bool = false
     
-    // sourcery: jsonFieldName=retweeted
+    // sourcery: jsonField=retweeted
     //@CursorField(Statuses.RETWEETED)
     var retweeted: Bool = false
     
-    // sourcery: jsonFieldName=is_favorite
+    // sourcery: jsonField=is_favorite
     //@CursorField(Statuses.IS_FAVORITE)
     var is_favorite: Bool = false
     
-    // sourcery: jsonFieldName=is_possibly_sensitive
+    // sourcery: jsonField=is_possibly_sensitive
     //@CursorField(Statuses.IS_POSSIBLY_SENSITIVE)
     var is_possibly_sensitive: Bool = false
     
-    // sourcery: jsonFieldName=user_is_following
+    // sourcery: jsonField=user_is_following
     //@CursorField(Statuses.IS_FOLLOWING)
     var user_is_following: Bool = false
     
-    // sourcery: jsonFieldName=user_is_protected
+    // sourcery: jsonField=user_is_protected
     //@CursorField(Statuses.IS_PROTECTED)
     var user_is_protected: Bool = false
     
-    // sourcery: jsonFieldName=user_is_verified
+    // sourcery: jsonField=user_is_verified
     //@CursorField(Statuses.IS_VERIFIED)
     var user_is_verified: Bool = false
     
-    // sourcery: jsonFieldName=is_quote
+    // sourcery: jsonField=is_quote
     //@CursorField(Statuses.IS_QUOTE)
     var is_quote: Bool = false
     
-    // sourcery: jsonFieldName=quoted_user_is_protected
+    // sourcery: jsonField=quoted_user_is_protected
     //@CursorField(Statuses.QUOTED_USER_IS_PROTECTED)
     var quoted_user_is_protected: Bool = false
     
-    // sourcery: jsonFieldName=quoted_user_is_verified
+    // sourcery: jsonField=quoted_user_is_verified
     //@CursorField(Statuses.QUOTED_USER_IS_VERIFIED)
     var quoted_user_is_verified: Bool = false
     
-    // sourcery: jsonFieldName=retweeted_by_user_name
+    // sourcery: jsonField=retweeted_by_user_name
     //@CursorField(Statuses.RETWEETED_BY_USER_NAME)
     var retweeted_by_user_name: String? = nil
     
-    // sourcery: jsonFieldName=retweeted_by_user_screen_name
+    // sourcery: jsonField=retweeted_by_user_screen_name
     //@CursorField(Statuses.RETWEETED_BY_USER_SCREEN_NAME)
     var retweeted_by_user_screen_name: String? = nil
     
-    // sourcery: jsonFieldName=retweeted_by_user_profile_image
+    // sourcery: jsonField=retweeted_by_user_profile_image
     //@CursorField(Statuses.RETWEETED_BY_USER_PROFILE_IMAGE)
     var retweeted_by_user_profile_image: String? = nil
     
-    // sourcery: jsonFieldName=text_plain
+    // sourcery: jsonField=text_plain
     //@CursorField(Statuses.TEXT_PLAIN)
     var text_plain: String? = nil
     
-    // sourcery: jsonFieldName=lang
+    // sourcery: jsonField=lang
     //@CursorField(Statuses.LANG)
     var lang: String? = nil
     
-    // sourcery: jsonFieldName=user_name
+    // sourcery: jsonField=user_name
     //@CursorField(Statuses.USER_NAME)
     var user_name: String? = nil
     
-    // sourcery: jsonFieldName=user_screen_name
+    // sourcery: jsonField=user_screen_name
     //@CursorField(Statuses.USER_SCREEN_NAME)
     var user_screen_name: String? = nil
     
-    // sourcery: jsonFieldName=in_reply_to_name
+    // sourcery: jsonField=in_reply_to_name
     //@CursorField(Statuses.IN_REPLY_TO_USER_NAME)
     var in_reply_to_name: String? = nil
     
-    // sourcery: jsonFieldName=in_reply_to_screen_name
+    // sourcery: jsonField=in_reply_to_screen_name
     //@CursorField(Statuses.IN_REPLY_TO_USER_SCREEN_NAME)
     var in_reply_to_screen_name: String? = nil
     
-    // sourcery: jsonFieldName=source
+    // sourcery: jsonField=source
     //@CursorField(Statuses.SOURCE)
     var source: String? = nil
     
-    // sourcery: jsonFieldName=user_profile_image_url
+    // sourcery: jsonField=user_profile_image_url
     //@CursorField(Statuses.USER_PROFILE_IMAGE)
     var user_profile_image_url: String? = nil
     
-    // sourcery: jsonFieldName=text_unescaped
+    // sourcery: jsonField=text_unescaped
     //@CursorField(Statuses.TEXT_UNESCAPED)
     var text_unescaped: String? = nil
-    // sourcery: jsonFieldName=card_name
+    // sourcery: jsonField=card_name
     //@CursorField(Statuses.CARD_NAME)
     var card_name: String? = nil
     
-    // sourcery: jsonFieldName=quoted_text_plain
+    // sourcery: jsonField=quoted_text_plain
     //@CursorField(Statuses.QUOTED_TEXT_PLAIN)
     var quoted_text_plain: String? = nil
     
-    // sourcery: jsonFieldName=quoted_text_unescaped
+    // sourcery: jsonField=quoted_text_unescaped
     //@CursorField(Statuses.QUOTED_TEXT_UNESCAPED)
     var quoted_text_unescaped: String? = nil
     
-    // sourcery: jsonFieldName=quoted_source
+    // sourcery: jsonField=quoted_source
     //@CursorField(Statuses.QUOTED_SOURCE)
     var quoted_source: String? = nil
     
-    // sourcery: jsonFieldName=quoted_user_name
+    // sourcery: jsonField=quoted_user_name
     //@CursorField(Statuses.QUOTED_USER_NAME)
     var quoted_user_name: String? = nil
     
-    // sourcery: jsonFieldName=quoted_user_screen_name
+    // sourcery: jsonField=quoted_user_screen_name
     //@CursorField(Statuses.QUOTED_USER_SCREEN_NAME)
     var quoted_user_screen_name: String? = nil
     
-    // sourcery: jsonFieldName=quoted_user_profile_image
+    // sourcery: jsonField=quoted_user_profile_image
     //@CursorField(Statuses.QUOTED_USER_PROFILE_IMAGE)
     var quoted_user_profile_image: String? = nil
     
-    // sourcery: jsonFieldName=location
+    // sourcery: jsonField=location
     // sourcery: jsonFieldConverter=GeoLocationFieldConverter
     //@CursorField(value = Statuses.LOCATION, converter = ParcelableLocation.Converter::class)
     var location: GeoLocation? = nil
     
-    // sourcery: jsonFieldName=place_full_name
+    // sourcery: jsonField=place_full_name
     //@CursorField(value = Statuses.PLACE_FULL_NAME, converter = LoganSquareCursorFieldConverter::class)
     var place_full_name: String? = nil
     
-    // sourcery: jsonFieldName=mentions
+    // sourcery: jsonField=mentions
     //@CursorField(value = Statuses.MENTIONS_JSON, converter = LoganSquareCursorFieldConverter::class)
     var mentions: [MentionItem]? = nil
     
-    // sourcery: jsonFieldName=media
+    // sourcery: jsonField=media
     //@CursorField(value = Statuses.MEDIA_JSON, converter = LoganSquareCursorFieldConverter::class)
     var media: [MediaItem]? = nil
     
-    // sourcery: jsonFieldName=quoted_media
+    // sourcery: jsonField=quoted_media
     //@CursorField(value = Statuses.QUOTED_MEDIA_JSON, converter = LoganSquareCursorFieldConverter::class)
     var quoted_media: [MediaItem]? = nil
-    // sourcery: jsonFieldName=card
+    // sourcery: jsonField=card
     //@CursorField(value = Statuses.CARD, converter = LoganSquareCursorFieldConverter::class)
     var card: PersistableCardEntity? = nil
     
-    // sourcery: jsonFieldName=extras
+    // sourcery: jsonField=extras
     //@CursorField(value = Statuses.EXTRAS, converter = LoganSquareCursorFieldConverter::class)
     var extras: Extras? = nil
     
-    // sourcery: jsonFieldName=spans
+    // sourcery: jsonField=spans
     //@CursorField(value = Statuses.SPANS, converter = LoganSquareCursorFieldConverter::class)
     var spans: [SpanItem]? = nil
     
-    // sourcery: jsonFieldName=quoted_spans
+    // sourcery: jsonField=quoted_spans
     //@CursorField(value = Statuses.QUOTED_SPANS, converter = LoganSquareCursorFieldConverter::class)
     var quoted_spans: [SpanItem]? = nil
     
     // transient
     var is_filtered: Bool = false
     
-    // sourcery: jsonFieldName=account_color
+    // sourcery: jsonField=account_color
     //@CursorField(Statuses.ACCOUNT_COLOR)
     var account_color: Int = 0
     
     //@CursorField(Statuses.INSERTED_DATE)
     var inserted_date: Int64 = 0
-    
     
     var is_pinned_status: Bool = false
     
@@ -286,29 +285,29 @@ class PersistableStatus {
     
     // sourcery:jsonParse
     class Extras {
-        // sourcery: jsonFieldName=external_url
+        // sourcery: jsonField=external_url
         var external_url: String? = nil
-        // sourcery: jsonFieldName=quoted_external_url
+        // sourcery: jsonField=quoted_external_url
         var quoted_external_url: String? = nil
-        // sourcery: jsonFieldName=retweeted_external_url
+        // sourcery: jsonField=retweeted_external_url
         var retweeted_external_url: String? = nil
-        // sourcery: jsonFieldName=statusnet_conversation_id
+        // sourcery: jsonField=statusnet_conversation_id
         var statusnet_conversation_id: String? = nil
-        // sourcery: jsonFieldName=support_entities
+        // sourcery: jsonField=support_entities
         var support_entities: Bool = false
-        // sourcery: jsonFieldName=user_profile_image_url_fallback
+        // sourcery: jsonField=user_profile_image_url_fallback
         var user_profile_image_url_fallback: String? = nil
-        // sourcery: jsonFieldName=user_statusnet_profile_url
+        // sourcery: jsonField=user_statusnet_profile_url
         var user_statusnet_profile_url: String? = nil
-        // sourcery: jsonFieldName=display_text_range
-        var display_text_range: [Int32]? = nil
-        // sourcery: jsonFieldName=quoted_display_text_range
-        var quoted_display_text_range: [Int32]? = nil
-        // sourcery: jsonFieldName=conversation_id
+        // sourcery: jsonField=display_text_range
+        var display_text_range: [Int]? = nil
+        // sourcery: jsonField=quoted_display_text_range
+        var quoted_display_text_range: [Int]? = nil
+        // sourcery: jsonField=conversation_id
         var conversation_id: String? = nil
-        // sourcery: jsonFieldName=summary_text
+        // sourcery: jsonField=summary_text
         var summary_text: String? = nil
-        // sourcery: jsonFieldName=visibility
+        // sourcery: jsonField=visibility
         var visibility: String? = nil
         
         required init() {

@@ -11,10 +11,10 @@ import Foundation
 // sourcery: jsonParse
 class TwitterUserEntities {
     
-    // sourcery: jsonFieldName=url
+    // sourcery: jsonField=url
     var url: TwitterEntities!
     
-    // sourcery: jsonFieldName=description
+    // sourcery: jsonField=description
     var description: TwitterEntities!
     
     

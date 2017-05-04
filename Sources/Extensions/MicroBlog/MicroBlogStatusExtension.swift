@@ -5,22 +5,23 @@
 //  Created by Mariotaku Lee on 2017/5/3.
 //  Copyright © 2017年 Mariotaku Dev. All rights reserved.
 //
+import Kanna
 
 extension MicroBlogStatus {
   
     func toPersistable(details: AccountDetails, profileImageSize: String = "normal") -> PersistableStatus {
-        return toParcelable(details.key, details.type, profileImageSize).apply {
-            account_color = details.color
-        }
+        let obj = toPersistable(accountKey: details.key, accountType: details.type, profileImageSize: profileImageSize)
+        obj.account_color = details.color
+        return obj
     }
     
-    func toPersistable(accountKey: UserKey, accountType: String, profileImageSize: String = "normal") -> PersistableStatus {
+    func toPersistable(accountKey: UserKey, accountType: AccountDetails.AccountType, profileImageSize: String = "normal") -> PersistableStatus {
         let result = PersistableStatus()
         apply(to: result, accountKey: accountKey, accountType: accountType, profileImageSize: profileImageSize)
         return result
     }
     
-    func apply(to result: PersistableStatus, accountKey: UserKey, accountType: String, profileImageSize: String = "normal") {
+    func apply(to result: PersistableStatus, accountKey: UserKey, accountType: AccountDetails.AccountType, profileImageSize: String = "normal") {
         let extras = PersistableStatus.Extras()
         result.account_key = accountKey
         result.id = id
@@ -77,10 +78,12 @@ extension MicroBlogStatus {
             // Twitter will escape <> to &lt;&gt;, so if a status contains those symbols unescaped
             // We should treat this as an html
             if (quotedText.isHtml) {
-                let html = HtmlSpanBuilder.fromHtml(quotedText, quoted.extendedText)
-                result.quoted_text_unescaped = html?.toString()
+                if let html = HTML(html: quotedText, encoding: .utf8) {
+                    result.quoted_text_unescaped = html.text
+                } else {
+                    result.quoted_text_unescaped = quotedText
+                }
                 result.quoted_text_plain = result.quoted_text_unescaped
-                result.quoted_spans = html?.spanItems
             } else {
                 let textWithIndices = quoted.formattedTextWithIndices()
                 result.quoted_text_plain = quotedText.twitterUnescaped()
@@ -130,10 +133,12 @@ extension MicroBlogStatus {
         // Twitter will escape <> to &lt;&gt;, so if a status contains those symbols unescaped
         // We should treat this as an html
         if (text.isHtml) {
-            let html = HtmlSpanBuilder.fromHtml(text, status.extendedText)
-            result.text_unescaped = html?.toString()
+            if let html = HTML(html: text, encoding: .utf8) {
+                result.text_unescaped = html.text
+            } else {
+                result.quoted_text_unescaped = text
+            }
             result.text_plain = result.text_unescaped
-            result.spans = html?.spanItems
         } else {
             let textWithIndices = status.formattedTextWithIndices()
             result.text_unescaped = textWithIndices.text
@@ -171,8 +176,8 @@ extension MicroBlogStatus {
         textWithIndices.spans = spans
         if let range = self.displayTextRange, range.count == 2 {
             textWithIndices.range = [
-                getResultRangeLength(source, spans, 0, range[0]),
-                text.length - getResultRangeLength(source, spans, range[1], source.length())
+                source.findResultRangeLength(spans: spans, origStart: 0, origEnd: range[0]),
+                text.characters.count - source.findResultRangeLength(spans: spans, origStart: range[1], origEnd: source.count)
             ]
         }
         return textWithIndices
@@ -229,8 +234,33 @@ extension MicroBlogStatus {
     class StatusTextWithIndices {
         var text: String? = nil
         var spans: [SpanItem]? = nil
-        var range: [Int32]? = nil
+        var range: [Int]? = nil
     }
+}
+
+fileprivate extension String.UnicodeScalarView {
+    
+    func findResultRangeLength(spans: [SpanItem], origStart: Int, origEnd: Int) -> Int {
+        let findResult = findByOrigRange(spans: spans, start: origStart, end: origEnd)
+        if (findResult.isEmpty) {
+            return charCount(start: origStart, end: origEnd)
+        }
+        let first = findResult.first!
+        let last = findResult.last!
+        if (first.origStart == -1 || last.origEnd == -1) {
+            return charCount(start: origStart, end: origEnd)
+        }
+        return charCount(start: origStart, end: first.origStart) + (last.end - first.start) + charCount(start: first.origEnd, end: origEnd)
+    }
+    
+    func findByOrigRange(spans: [SpanItem], start: Int, end: Int) -> [SpanItem] {
+        return spans.filter { $0.origStart >= start && $0.origEnd <= end }
+    }
+    
+    func charCount(start: Int, end: Int) -> Int {
+        return characterCount(index(startIndex, offsetBy: start)..<index(startIndex, offsetBy: end))
+    }
+
 }
 
 fileprivate extension HtmlBuilder {

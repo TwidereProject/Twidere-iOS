@@ -11,7 +11,7 @@ import Foundation
 // sourcery: jsonParse
 class TwitterBaseEntity {
     
-    // sourcery: jsonFieldName=indices
+    // sourcery: jsonField=indices
     var indices: [Int32]!
     
     

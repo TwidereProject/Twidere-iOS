@@ -98,18 +98,3 @@ class CustomAPIConfig {
     }
 
 }
-
-extension Account.AuthType {
-    
-    var isOAuthType: Bool {
-        get {
-            return self == .oauth || self == .xAuth
-        }
-    }
-    
-    var usePassword: Bool {
-        get {
-            return self == .xAuth || self == .basic
-        }
-    }
-}

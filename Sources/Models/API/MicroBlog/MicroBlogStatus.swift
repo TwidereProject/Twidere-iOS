@@ -11,157 +11,157 @@ import Foundation
 // sourcery: jsonParse,jsonSerialize
 class MicroBlogStatus: TwitterEntitySupport {
 
-    // sourcery: jsonFieldName=created_at
+    // sourcery: jsonField=created_at
     // sourcery: jsonFieldConverter=TwitterDateFieldConverter
     var createdAt: Date!
 
-    // sourcery: jsonFieldName=id
+    // sourcery: jsonField=id
     var id: String!
     
     // Fanfou uses this key
-    // sourcery: jsonFieldName=rawid
+    // sourcery: jsonField=rawid
     var rawId: Int64 = -1
     
-    // sourcery: jsonFieldName=text
+    // sourcery: jsonField=text
     var text: String!
     
     /**
      * https://dev.twitter.com/overview/api/upcoming-changes-to-tweets
      */
-    // sourcery: jsonFieldName=full_text
+    // sourcery: jsonField=full_text
     var fullText: String!
     
-    // sourcery: jsonFieldName=statusnet_html
+    // sourcery: jsonField=statusnet_html
     var statusnetHtml: String!
     
-    // sourcery: jsonFieldName=source
+    // sourcery: jsonField=source
     var source: String? = nil
     
-    // sourcery: jsonFieldName=truncated
+    // sourcery: jsonField=truncated
     var truncated: Bool = false
     
-    // sourcery: jsonFieldName=entities
+    // sourcery: jsonField=entities
     var entities: TwitterEntities? = nil
     
-    // sourcery: jsonFieldName=extended_entities
+    // sourcery: jsonField=extended_entities
     var extendedEntities: TwitterEntities? = nil
     
-    // sourcery: jsonFieldName=in_reply_to_status_id
+    // sourcery: jsonField=in_reply_to_status_id
     var inReplyToStatusId: String?
     
-    // sourcery: jsonFieldName=in_reply_to_user_id
+    // sourcery: jsonField=in_reply_to_user_id
     var inReplyToUserId: String?
     
-    // sourcery: jsonFieldName=in_reply_to_screen_name
+    // sourcery: jsonField=in_reply_to_screen_name
     var inReplyToScreenName: String?
     
-    // sourcery: jsonFieldName=user
+    // sourcery: jsonField=user
     var user: MicroBlogUser! = nil
     
-    // sourcery: jsonFieldName=geo
+    // sourcery: jsonField=geo
     var geo: MicroBlogGeoPoint? = nil
     
-    // sourcery: jsonFieldName=place
+    // sourcery: jsonField=place
     var place: MicroBlogPlace? = nil
     
-    // sourcery: jsonFieldName=current_user_retweet
+    // sourcery: jsonField=current_user_retweet
     var currentUserRetweet: CurrentUserRetweet? = nil
     
-    // sourcery: jsonFieldName=retweet_count|repeat_num
+    // sourcery: jsonField=retweet_count|repeat_num
     var retweetCount: Int64 = -1
     
-    // sourcery: jsonFieldName=favorite_count|fave_num
+    // sourcery: jsonField=favorite_count|fave_num
     var favoriteCount: Int64 = -1
     
-    // sourcery: jsonFieldName=reply_count
+    // sourcery: jsonField=reply_count
     var replyCount: Int64 = -1
     
-    // sourcery: jsonFieldName=favorited
+    // sourcery: jsonField=favorited
     var favorited: Bool = false
     
-    // sourcery: jsonFieldName=retweeted|repeated
+    // sourcery: jsonField=retweeted|repeated
     var retweeted: Bool = false
     
-    // sourcery: jsonFieldName=lang
+    // sourcery: jsonField=lang
     var lang: String? = nil
     
-    // sourcery: jsonFieldName=descendent_reply_count
+    // sourcery: jsonField=descendent_reply_count
     var descendentReplyCount: Int64 = -1
     
-    // sourcery: jsonFieldName=retweeted_status
+    // sourcery: jsonField=retweeted_status
     var retweetedStatus: MicroBlogStatus? = nil
     
     /**
      * <code>repost_status</code> is for Fanfou, <code>quoted_status</code> is for twitter
      */
-    // sourcery: jsonFieldName=quoted_status|repost_status
+    // sourcery: jsonField=quoted_status|repost_status
     var quotedStatus: MicroBlogStatus? = nil
     
     /**
      * <code>repost_status_id</code> is for Fanfou, <code>quoted_status_id_str</code> is for twitter
      */
-    // sourcery: jsonFieldName=quoted_status_id_str|repost_status_id
+    // sourcery: jsonField=quoted_status_id_str|repost_status_id
     var quotedStatusId: String? = nil
     
-    // sourcery: jsonFieldName=is_quote_status
+    // sourcery: jsonField=is_quote_status
     var isQuoteStatus: Bool = false
     
-    // sourcery: jsonFieldName=card
+    // sourcery: jsonField=card
     var card: TwitterCardEntity? = nil
     
-    // sourcery: jsonFieldName=possibly_sensitive
+    // sourcery: jsonField=possibly_sensitive
     var possiblySensitive: Bool = false
     
     /**
      * For GNU social
      */
-    // sourcery: jsonFieldName=attachments
+    // sourcery: jsonField=attachments
     var attachments: [GNUSocialAttachment]? = nil
     
     /**
      * For GNU social
      */
-    // sourcery: jsonFieldName=external_url
+    // sourcery: jsonField=external_url
     var externalUrl: String? = nil
     
-    // sourcery: jsonFieldName=statusnet_conversation_id
+    // sourcery: jsonField=statusnet_conversation_id
     var statusnetConversationId: String? = nil
     
-    // sourcery: jsonFieldName=conversation_id|statusnet_conversation_id
+    // sourcery: jsonField=conversation_id|statusnet_conversation_id
     var conversationId: String? = nil
     
     
     /**
      * For GNU social
      */
-    // sourcery: jsonFieldName=attentions
+    // sourcery: jsonField=attentions
     var attentions: [GNUSocialAttention]? = nil
     
     /**
      * For Fanfou
      */
-    // sourcery: jsonFieldName=photo
+    // sourcery: jsonField=photo
     var photo: FanfouPhoto? = nil
     /**
      * For Fanfou
      */
-    // sourcery: jsonFieldName=location
+    // sourcery: jsonField=location
     var location: String? = nil
     
-    // sourcery: jsonFieldName=display_text_range
-    var displayTextRange: [Int32]!
+    // sourcery: jsonField=display_text_range
+    var displayTextRange: [Int]!
     
     /**
      * GNU social value
      * Format: {@code "tag:[gnusocial.host],YYYY-MM-DD:noticeId=[noticeId]:objectType=[objectType]"}
      */
-    // sourcery: jsonFieldName=uri
+    // sourcery: jsonField=uri
     var uri: String? = nil
     
-    // sourcery: jsonFieldName=timestamp_ms
+    // sourcery: jsonField=timestamp_ms
     var timestampMs: Int64 = -1
     
-    // sourcery: jsonFieldName=extended_tweet
+    // sourcery: jsonField=extended_tweet
     var extendedTweet: ExtendedTweet? = nil
     
     var sortId: Int64 {
@@ -213,17 +213,17 @@ class MicroBlogStatus: TwitterEntitySupport {
     // sourcery: jsonParse
     class ExtendedTweet {
         
-        // sourcery: jsonFieldName=full_text
+        // sourcery: jsonField=full_text
         var fullText: String!
         
-        // sourcery: jsonFieldName=entities
+        // sourcery: jsonField=entities
         var entities: TwitterEntities? = nil
         
-        // sourcery: jsonFieldName=extended_entities
+        // sourcery: jsonField=extended_entities
         var extendedEntities: TwitterEntities? = nil
         
-        // sourcery: jsonFieldName=display_text_range
-        var displayTextRange: [Int32]!
+        // sourcery: jsonField=display_text_range
+        var displayTextRange: [Int]!
         
         required init() {
             
@@ -232,7 +232,7 @@ class MicroBlogStatus: TwitterEntitySupport {
     
     // sourcery: jsonParse
     class CurrentUserRetweet {
-        // sourcery: jsonFieldName=id
+        // sourcery: jsonField=id
         var id: String!
         
         required init() {

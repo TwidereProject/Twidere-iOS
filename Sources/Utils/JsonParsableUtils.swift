@@ -32,3 +32,12 @@ extension JsonMapper where T: JsonMappable {
         }
     }
 }
+
+let StatusCodeResponseSerializer: DataResponseSerializer<Int> = DataResponseSerializer { (req, resp, data, err) -> Alamofire.Result<Int> in
+    if let resp = resp {
+        return .success(resp.statusCode)
+    } else if err != nil {
+        return .failure(err!)
+    }
+    return .failure(MicroBlogError.networkError)
+}

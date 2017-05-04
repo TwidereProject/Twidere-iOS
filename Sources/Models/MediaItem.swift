@@ -2,26 +2,26 @@
 // sourcery: jsonParse
 class MediaItem {
     
-    // sourcery:jsonFieldName=url
+    // sourcery:jsonField=url
     var url: String!
-    // sourcery:jsonFieldName=media_url
+    // sourcery:jsonField=media_url
     var mediaUrl: String?
-    // sourcery:jsonFieldName=preview_url
+    // sourcery:jsonField=preview_url
     var previewUrl: String? = nil
-    // sourcery:jsonFieldName=type
+    // sourcery:jsonField=type
     // sourcery:jsonFieldConverter=MediaItemTypeFieldConverter
     var type: MediaType = .unknown
-    // sourcery:jsonFieldName=width
+    // sourcery:jsonField=width
     var width: Int = 0
-    // sourcery:jsonFieldName=height
+    // sourcery:jsonField=height
     var height: Int = 0
-    // sourcery:jsonFieldName=video_info
+    // sourcery:jsonField=video_info
     var videoInfo: VideoInfo? = nil
-    // sourcery:jsonFieldName=page_url
+    // sourcery:jsonField=page_url
     var pageUrl: String? = nil
-    // sourcery:jsonFieldName=open_browser
+    // sourcery:jsonField=open_browser
     var openBrowser: Bool = false
-    // sourcery:jsonFieldName=alt_text
+    // sourcery:jsonField=alt_text
     var altText: String? = nil
     
     required init() {

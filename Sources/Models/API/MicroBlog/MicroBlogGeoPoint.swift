@@ -10,10 +10,10 @@ import Foundation
 
 // sourcery: jsonParse
 class MicroBlogGeoPoint {
-    // sourcery: jsonFieldName=coordinates
+    // sourcery: jsonField=coordinates
     var coordinates: [Double]!
     
-    // sourcery: jsonFieldName=type
+    // sourcery: jsonField=type
     var type: String!
     
     var geoLocation: GeoLocation! {

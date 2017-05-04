@@ -81,3 +81,12 @@ class OAuthEndpoint: Endpoint {
         return url
     }
 }
+
+
+struct EndpointConfig {
+    var domain: String?
+    var versionSuffix: String?
+    
+    static let twitter = EndpointConfig(domain: "api", versionSuffix: "1.1")
+    static let mastodon = EndpointConfig(domain: nil, versionSuffix: nil)
+}

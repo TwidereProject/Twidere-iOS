@@ -1,12 +1,17 @@
+protocol RestProtocolService {
+
+    init(client: RestClient)
+
+}
 <%_ for type in types.protocols where type.annotations["restProtocol"] != nil { _%>
 // sourcery:file:<%= type.name %>+RestImpl.swift
 import PromiseKit
 
-<%= "\(type.accessLevel) " %>class <%= type.name %>RestImpl: <%= type.name %> {
+<%= "\(type.accessLevel) " %>class <%= type.name %>RestImpl: <%= type.name %>, RestProtocolService {
 
     let client: RestClient
 
-    init(client: RestClient) {
+    required init(client: RestClient) {
         self.client = client
     }
 <%_ for method in type.methods { -%>
@@ -40,21 +45,53 @@ import PromiseKit
             <%_ } -%>
         ]
         <%_ } -%>
-        <%_ let queryParameters = method.parameters.filter { $0.annotations["query"] != nil } -%>
-        <%_ if (!queryParameters.isEmpty) { -%>
+        <%_
+          var queries: [String: String?] = [:]
+          for query in method.parameters.filter({ $0.annotations["query"] != nil }) {
+              queries[query.annotations["query"] as? String ?? query.name] = query.name
+          }
+          if let constQueries = (method.annotations["restQueries"] as? String)?.removingPercentEncoding {
+              for constQuery in constQueries.components(separatedBy: "&") {
+                  let components = constQuery.components(separatedBy: "=")
+                  if (components.count >= 2) {
+                      queries[components[0]] = "\"\(components[1])\""
+                  } else {
+                      queries[components[0]] = nil
+                  }
+              }
+          }
+         -%>
+        <%_ if (!queries.isEmpty) { -%>
         call.queries = [
-            <%_ for param in queryParameters { -%>
-                <%_ let queryName = param.annotations["query"] as? String ?? param.name -%>
-            "<%= queryName %>": "\(<%= param.name %>)"
+            <%_ for (name, value) in queries { -%>
+            "<%= name %>": <%= value %>,
             <%_ } -%>
         ]
         <%_ } -%>
-        <%_ let paramParameters = method.parameters.filter { $0.annotations["param"] != nil } -%>
-        <%_ if (!paramParameters.isEmpty) { -%>
+        <%_
+          var params: [String: String?] = [:]
+          for param in method.parameters.filter({ $0.annotations["param"] != nil }) {
+              params[param.annotations["param"] as? String ?? param.name] = param.name
+          }
+          if let constParams = (method.annotations["restParams"] as? String)?.removingPercentEncoding {
+              for constParam in constParams.components(separatedBy: "&") {
+                  let components = constParam.components(separatedBy: "=")
+                  if (components.count >= 2) {
+                      params[components[0]] = "\"\(components[1])\""
+                  } else {
+                      params[components[0]] = nil
+                  }
+              }
+          }
+         -%>
+        <%_ if (!params.isEmpty) { -%>
         call.params = [
-            <%_ for param in paramParameters { -%>
-                <%_ let paramName = param.annotations["query"] as? String ?? param.name -%>
-            "<%= paramName %>": <%= param.name %>
+            <%_ for (name, value) in params { -%>
+                <%_ if let value = value { -%>
+            "<%= name %>": <%= value %>,
+                <%_ } else { -%>
+            "<%= name %>": nil,
+                <%_ } -%>
             <%_ } -%>
         ]
         <%_ } -%>

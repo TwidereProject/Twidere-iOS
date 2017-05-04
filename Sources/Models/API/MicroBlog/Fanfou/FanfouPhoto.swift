@@ -10,13 +10,13 @@ import Foundation
 
 // sourcery: jsonParse
 class FanfouPhoto {
-    // sourcery: jsonFieldName=url
+    // sourcery: jsonField=url
     var url: String!
-    // sourcery: jsonFieldName=imageurl
+    // sourcery: jsonField=imageurl
     var imageUrl: String!
-    // sourcery: jsonFieldName=thumburl
+    // sourcery: jsonField=thumburl
     var thumbUrl: String!
-    // sourcery: jsonFieldName=largeurl
+    // sourcery: jsonField=largeurl
     var largeUrl: String!
  
     required init() {
