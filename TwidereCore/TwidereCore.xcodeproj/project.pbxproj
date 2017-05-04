@@ -52,11 +52,11 @@
 		CE750A2E1EBB3F3C003E6249 = {
 			isa = PBXGroup;
 			children = (
-				CE750A441EBB4144003E6249 /* Generated */,
-				CE750A3A1EBB3F3C003E6249 /* Sources */,
-				CE750A391EBB3F3C003E6249 /* Products */,
-				631B055608C155DB3F2579A2 /* Pods */,
 				C6DB3F6BC1AF1F22B4CCB1CA /* Frameworks */,
+				CE750A441EBB4144003E6249 /* Generated */,
+				631B055608C155DB3F2579A2 /* Pods */,
+				CE750A391EBB3F3C003E6249 /* Products */,
+				CE750A3A1EBB3F3C003E6249 /* Sources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,11 +71,11 @@
 		CE750A3A1EBB3F3C003E6249 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				CE750A3B1EBB3F3C003E6249 /* TwidereCore.h */,
 				CE750A3C1EBB3F3C003E6249 /* Info.plist */,
+				CE750A3B1EBB3F3C003E6249 /* TwidereCore.h */,
 			);
 			name = Sources;
-			path = TwidereCore;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		CE750A441EBB4144003E6249 /* Generated */ = {
@@ -83,6 +83,7 @@
 			children = (
 			);
 			name = Generated;
+			path = Generated;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,7 +316,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = TwidereCore/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.TwidereCore;
@@ -335,7 +336,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = TwidereCore/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.TwidereCore;
