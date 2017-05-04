@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import SwiftyJSON
 import DateTools
 import ALSLayouts
 import YYText
+import TwidereCore
 
 class StatusCell: ALSTableViewCell, StatusCellProtocol {
     
@@ -32,7 +32,7 @@ class StatusCell: ALSTableViewCell, StatusCellProtocol {
     
     var delegate: StatusCellDelegate!
     
-    var status: Status! {
+    var status: PersistableStatus! {
         didSet {
             display()
         }

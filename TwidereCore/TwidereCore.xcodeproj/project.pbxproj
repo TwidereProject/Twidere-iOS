@@ -242,7 +242,6 @@
 				CE750BC51EBB80C6003E6249 /* SpanItem.swift */,
 				CE750BC31EBB7EC2003E6249 /* UserKey.swift */,
 			);
-			name = Model;
 			path = Model;
 			sourceTree = "<group>";
 		};
@@ -255,7 +254,6 @@
 				CE750C021EBB8709003E6249 /* SimpleTypesFieldConverters.swift */,
 				CE750C041EBB8951003E6249 /* StringExtensions.swift */,
 			);
-			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -267,7 +265,6 @@
 				CE750BAF1EBB7E39003E6249 /* UserExtension.swift */,
 				CE750C071EBB89AC003E6249 /* UserMentionEntityExtension.swift */,
 			);
-			name = MicroBlog;
 			path = MicroBlog;
 			sourceTree = "<group>";
 		};
@@ -276,7 +273,6 @@
 			children = (
 				CE750BC71EBB80F4003E6249 /* HtmlBuilder.swift */,
 			);
-			name = Utils;
 			path = Utils;
 			sourceTree = "<group>";
 		};
@@ -285,7 +281,6 @@
 			children = (
 				CE750BCE1EBB8230003E6249 /* PersistableStatusExtension.swift */,
 			);
-			name = Model;
 			path = Model;
 			sourceTree = "<group>";
 		};
@@ -518,7 +513,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -565,7 +560,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftyJSON
+import TwidereCore
 
 class UserCell: UITableViewCell {
 
@@ -21,7 +21,7 @@ class UserCell: UITableViewCell {
         // Initialization code
     }
     
-    func displayUser(_ user: JSON) {
+    func displayUser(_ user: PersistableUser) {
         let name = user["name"].stringValue
         let screenName = user["screen_name"].stringValue
         let nameString = NSMutableAttributedString()

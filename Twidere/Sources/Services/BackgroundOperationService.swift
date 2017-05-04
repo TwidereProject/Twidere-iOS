@@ -10,7 +10,6 @@ import Foundation
 import PromiseKit
 import UIKit
 import JDStatusBarNotification
-import SwiftyJSON
 
 class BackgroundOperationService {
     

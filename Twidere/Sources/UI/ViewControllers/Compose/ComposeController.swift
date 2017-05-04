@@ -9,7 +9,6 @@
 import UIKit
 import STPopup
 import PromiseKit
-import SwiftyJSON
 import UITextView_Placeholder
 import twitter_text
 import UIView_TouchHighlighting

@@ -8,6 +8,7 @@
 
 import Foundation
 import YYText
+import TwidereCore
 
 extension Array where Element: SpanItem {
     func applyToAttributedText(_ string: NSMutableAttributedString, linkColor: UIColor) {

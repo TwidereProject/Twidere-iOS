@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 import PromiseKit
 import UITableView_FDTemplateLayoutCell
 import YYText

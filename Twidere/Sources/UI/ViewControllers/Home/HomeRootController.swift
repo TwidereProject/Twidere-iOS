@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Freddy
 
 class HomeRootController: UINavigationController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {

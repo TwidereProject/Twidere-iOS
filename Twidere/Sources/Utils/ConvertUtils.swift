@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 private let twitterProfileImageRegex = try! NSRegularExpression(pattern: "(https?://)?(twimg[\\d\\w\\-]+\\.akamaihd\\.net|[\\w\\d]+\\.twimg\\.com)/profile_images/([\\d\\w\\-_]+)/([\\d\\w\\-_]+)_(bigger|normal|mini|reasonably_small)(\\.?(png|jpeg|jpg|gif|bmp))?")
 private let twitterBannerImageRegex = try! NSRegularExpression(pattern: "(https?://)?(twimg[\\d\\w\\-]+\\.akamaihd\\.net|[\\w\\d]+\\.twimg\\.com)/profile_banners/([\\d\\w\\-_]+)/([\\d\\w\\-_]+)(/[\\d\\w\\-_]+)?")

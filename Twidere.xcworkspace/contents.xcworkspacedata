@@ -2,13 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:RestClient/RestClient.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Twidere/Twidere.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:TwidereCore/TwidereCore.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Pods/Pods.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:TwidereCore/Mastodon/Mastodon.xcodeproj">
@@ -17,6 +14,9 @@
       location = "group:TwidereCore/MicroBlog/MicroBlog.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:RestClient/RestClient.xcodeproj">
+      location = "group:TwidereCore/TwidereCore.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

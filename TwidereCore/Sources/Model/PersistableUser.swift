@@ -7,9 +7,9 @@
 //
 
 //sourcery: jsonParse
-class PersistableUser {
+public class PersistableUser {
     
-    required init() {
+    required public init() {
         
     }
 }

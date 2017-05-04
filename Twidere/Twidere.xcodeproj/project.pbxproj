@@ -19,7 +19,6 @@
 		CE2660191DAFD1BF007FF7CF /* StringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2660181DAFD1BF007FF7CF /* StringLiteral.swift */; };
 		CE26603F1DB0638D007FF7CF /* SQLite+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26603E1DB0638D007FF7CF /* SQLite+Array.swift */; };
 		CE2A7FE41EB767B0003791F2 /* Date+MicroBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FE31EB767B0003791F2 /* Date+MicroBlog.swift */; };
-		CE2A801C1EB8D0AE003791F2 /* JsonParsableUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A801B1EB8D0AE003791F2 /* JsonParsableUtils.swift */; };
 		CE2A804B1EB995F1003791F2 /* UserKey+PMJackson.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A804A1EB995F1003791F2 /* UserKey+PMJackson.swift */; };
 		CE2A80511EB9A9B7003791F2 /* MediaType+PMJackson.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80501EB9A9B7003791F2 /* MediaType+PMJackson.swift */; };
 		CE2A80541EB9ABB0003791F2 /* DateFieldConverters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80531EB9ABB0003791F2 /* DateFieldConverters.swift */; };
@@ -29,8 +28,6 @@
 		CE2A808E1EBA3404003791F2 /* HtmlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A808D1EBA3404003791F2 /* HtmlBuilder.swift */; };
 		CE358B751D825942002A33B3 /* Viewers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE358B741D825942002A33B3 /* Viewers.storyboard */; };
 		CE3E5DF61D978A6100454A61 /* NSShadowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */; };
-		CE412B221DB9F38D00C52099 /* SwiftyJSONExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE412B211DB9F38D00C52099 /* SwiftyJSONExtension.swift */; };
-		CE45CAF71D855EFA0004CC1C /* UserKeyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45CAF61D855EFA0004CC1C /* UserKeyExtensions.swift */; };
 		CE497F901D695835000F16D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE497F8F1D695835000F16D2 /* Main.storyboard */; };
 		CE497F991D6959B0000F16D2 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497F971D6959B0000F16D2 /* StatusCell.swift */; };
 		CE497FA41D69625A000F16D2 /* StatusesListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497FA21D69625A000F16D2 /* StatusesListController.swift */; };
@@ -64,7 +61,6 @@
 		CE65B1E61D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1E51D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift */; };
 		CE65B1E81D9F546700A38A61 /* ItemIndices.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1E71D9F546700A38A61 /* ItemIndices.swift */; };
 		CE6C6C341DB35C1D00DF4892 /* AccountDetailsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C301DB35C1D00DF4892 /* AccountDetailsExtensions.swift */; };
-		CE6C6C371DB35C1D00DF4892 /* UserKey+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C331DB35C1D00DF4892 /* UserKey+Freddy.swift */; };
 		CE6D6E9A1DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D6E991DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift */; };
 		CE750A471EBB4CC9003E6249 /* TwidereCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750A461EBB4CC9003E6249 /* TwidereCore.framework */; };
 		CE79C83D1DA62E56007C05F2 /* SpanItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */; };
@@ -81,7 +77,6 @@
 		CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95747F1D3216BC00504D52 /* ServiceConstants.swift */; };
 		CE9574821D32186A00504D52 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574811D32186A00504D52 /* UIConstants.swift */; };
 		CE9574871D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574861D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift */; };
-		CE95748B1D322CC700504D52 /* ModelConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95748A1D322CC700504D52 /* ModelConverter.swift */; };
 		CE95748F1D33871E00504D52 /* PasswordSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95748E1D33871E00504D52 /* PasswordSignInController.swift */; };
 		CE9574961D33B71B00504D52 /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574951D33B71B00504D52 /* DefaultsKeys.swift */; };
 		CE9574981D33D87200504D52 /* NetworkPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9574971D33D87200504D52 /* NetworkPreferencesController.swift */; };
@@ -112,7 +107,6 @@
 		CED41F2F1D2FF7C80089E0B6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F2E1D2FF7C80089E0B6 /* HomeController.swift */; };
 		CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F331D2FF88D0089E0B6 /* SignInController.swift */; };
 		CED41F361D3085FF0089E0B6 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED41F351D3085FF0089E0B6 /* SignIn.storyboard */; };
-		CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */; };
 		CED41F451D313B6C0089E0B6 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED41F441D313B6C0089E0B6 /* Preferences.storyboard */; };
 		CED41F481D3147460089E0B6 /* APIEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED41F471D3147460089E0B6 /* APIEditorController.swift */; };
 		CED73F6C1D9519B80066F554 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED73F6B1D9519B80066F554 /* UIImageExtensions.swift */; };
@@ -150,13 +144,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		08D56BA5DDFE3020D6C31612 /* Pods-TwidereUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwidereUITests/Pods-TwidereUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		0DD6984F4D94D9627E5C1991 /* Pods_TwidereUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwidereUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F1B07D4B678B2F4AB373F89 /* Pods-TwidereTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TwidereTests/Pods-TwidereTests.debug.xcconfig"; sourceTree = "<group>"; };
 		339BCAC9D930FF8CB3677AFC /* Pods_TwidereTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwidereTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		56F376BF1F75D5F95E44E16C /* Pods-TwidereTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwidereTests/Pods-TwidereTests.release.xcconfig"; sourceTree = "<group>"; };
-		61F2AC8EB68E86535C22CA23 /* Pods-TwidereUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwidereUITests/Pods-TwidereUITests.release.xcconfig"; sourceTree = "<group>"; };
-		6B7616E89DDF2FDDCF64DCCF /* Pods-Twidere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twidere/Pods-Twidere.release.xcconfig"; sourceTree = "<group>"; };
-		A351F2523CA6229EF79900FD /* Pods-Twidere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twidere/Pods-Twidere.debug.xcconfig"; sourceTree = "<group>"; };
+		387D84B040AE8B1D2D6BA8C3 /* Pods-Twidere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Twidere/Pods-Twidere.release.xcconfig"; sourceTree = "<group>"; };
+		6453E0542AD1F43F720FD6D6 /* Pods-Twidere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Twidere/Pods-Twidere.debug.xcconfig"; sourceTree = "<group>"; };
+		94248A1FB73082052F1A2F57 /* Pods-TwidereUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TwidereUITests/Pods-TwidereUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		BA7F76727F5E710E1B724EE7 /* Pods-TwidereTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TwidereTests/Pods-TwidereTests.release.xcconfig"; sourceTree = "<group>"; };
 		CE0529E31CF7F35300E06364 /* Twidere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twidere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0529E61CF7F35300E06364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE0529E81CF7F35300E06364 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -172,7 +166,6 @@
 		CE2660181DAFD1BF007FF7CF /* StringLiteral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringLiteral.swift; sourceTree = "<group>"; };
 		CE26603E1DB0638D007FF7CF /* SQLite+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SQLite+Array.swift"; sourceTree = "<group>"; };
 		CE2A7FE31EB767B0003791F2 /* Date+MicroBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+MicroBlog.swift"; sourceTree = "<group>"; };
-		CE2A801B1EB8D0AE003791F2 /* JsonParsableUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParsableUtils.swift; sourceTree = "<group>"; };
 		CE2A804A1EB995F1003791F2 /* UserKey+PMJackson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserKey+PMJackson.swift"; sourceTree = "<group>"; };
 		CE2A80501EB9A9B7003791F2 /* MediaType+PMJackson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaType+PMJackson.swift"; sourceTree = "<group>"; };
 		CE2A80531EB9ABB0003791F2 /* DateFieldConverters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFieldConverters.swift; sourceTree = "<group>"; };
@@ -182,8 +175,6 @@
 		CE2A808D1EBA3404003791F2 /* HtmlBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HtmlBuilder.swift; sourceTree = "<group>"; };
 		CE358B741D825942002A33B3 /* Viewers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Viewers.storyboard; sourceTree = "<group>"; };
 		CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSShadowExtension.swift; sourceTree = "<group>"; };
-		CE412B211DB9F38D00C52099 /* SwiftyJSONExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSONExtension.swift; sourceTree = "<group>"; };
-		CE45CAF61D855EFA0004CC1C /* UserKeyExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserKeyExtensions.swift; sourceTree = "<group>"; };
 		CE497F8F1D695835000F16D2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CE497F971D6959B0000F16D2 /* StatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StatusCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE497FA21D69625A000F16D2 /* StatusesListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StatusesListController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -217,7 +208,6 @@
 		CE65B1E51D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionsActivitiesListControllerDataSource.swift; sourceTree = "<group>"; };
 		CE65B1E71D9F546700A38A61 /* ItemIndices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemIndices.swift; sourceTree = "<group>"; };
 		CE6C6C301DB35C1D00DF4892 /* AccountDetailsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailsExtensions.swift; sourceTree = "<group>"; };
-		CE6C6C331DB35C1D00DF4892 /* UserKey+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserKey+Freddy.swift"; sourceTree = "<group>"; };
 		CE6D6E991DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNavigationBarProtocol.swift; sourceTree = "<group>"; };
 		CE750A461EBB4CC9003E6249 /* TwidereCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwidereCore.framework; path = "../../../../../Users/mariotaku/Library/Developer/Xcode/DerivedData/Twidere-dhschizzfhkqdkgwpcupdypbyxay/Build/Products/Debug-iphoneos/TwidereCore.framework"; sourceTree = "<group>"; };
 		CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItemExtension.swift; sourceTree = "<group>"; };
@@ -234,7 +224,6 @@
 		CE95747F1D3216BC00504D52 /* ServiceConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceConstants.swift; sourceTree = "<group>"; };
 		CE9574811D32186A00504D52 /* UIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		CE9574861D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterOAuthPasswordAuthenticator.swift; sourceTree = "<group>"; };
-		CE95748A1D322CC700504D52 /* ModelConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelConverter.swift; sourceTree = "<group>"; };
 		CE95748E1D33871E00504D52 /* PasswordSignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordSignInController.swift; sourceTree = "<group>"; };
 		CE9574951D33B71B00504D52 /* DefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
 		CE9574971D33D87200504D52 /* NetworkPreferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkPreferencesController.swift; sourceTree = "<group>"; };
@@ -242,6 +231,7 @@
 		CE95749B1D33DEC300504D52 /* PreferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
 		CE9574B81D349C3F00504D52 /* BrowserSignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserSignInController.swift; sourceTree = "<group>"; };
 		CE9DB0481DACA34B000C150F /* Number+LocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Number+LocalizedString.swift"; sourceTree = "<group>"; };
+		CEA2D6DC1EBBA250002E5762 /* Twidere-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Twidere-Bridging-Header.h"; sourceTree = "<group>"; };
 		CEA2E2A61D34C1610095BC57 /* DefaultAPISettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAPISettingsController.swift; sourceTree = "<group>"; };
 		CEA2E2A91D34C2090095BC57 /* DefaultAPIConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultAPIConfig.plist; sourceTree = "<group>"; };
 		CEA2E2AE1D3681D00095BC57 /* Compose.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Compose.storyboard; sourceTree = "<group>"; };
@@ -265,7 +255,6 @@
 		CED41F2E1D2FF7C80089E0B6 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomeController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CED41F331D2FF88D0089E0B6 /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		CED41F351D3085FF0089E0B6 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
-		CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogService.swift; sourceTree = "<group>"; };
 		CED41F441D313B6C0089E0B6 /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
 		CED41F471D3147460089E0B6 /* APIEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEditorController.swift; sourceTree = "<group>"; };
 		CED73F6B1D9519B80066F554 /* UIImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
@@ -284,7 +273,7 @@
 		CEF2CF491D84F98200131EAE /* ProfileBannerContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileBannerContainer.swift; sourceTree = "<group>"; };
 		CEF53C4F1D8FC40B0032F434 /* LoadMoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadMoreCell.xib; sourceTree = "<group>"; };
 		F33C08D23C1DF70E405B5B09 /* Pods_Twidere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twidere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8A574B1651642A3BEEC8AAE /* Pods-TwidereTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwidereTests/Pods-TwidereTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F4E956937774DEEAAEEB3AC1 /* Pods-TwidereUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TwidereUITests/Pods-TwidereUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,15 +316,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		112D8F55CE395A2A6ED13654 /* Pods */ = {
+		52ED18EAF96AA311DD1E3B7D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A351F2523CA6229EF79900FD /* Pods-Twidere.debug.xcconfig */,
-				6B7616E89DDF2FDDCF64DCCF /* Pods-Twidere.release.xcconfig */,
-				F8A574B1651642A3BEEC8AAE /* Pods-TwidereTests.debug.xcconfig */,
-				56F376BF1F75D5F95E44E16C /* Pods-TwidereTests.release.xcconfig */,
-				08D56BA5DDFE3020D6C31612 /* Pods-TwidereUITests.debug.xcconfig */,
-				61F2AC8EB68E86535C22CA23 /* Pods-TwidereUITests.release.xcconfig */,
+				6453E0542AD1F43F720FD6D6 /* Pods-Twidere.debug.xcconfig */,
+				387D84B040AE8B1D2D6BA8C3 /* Pods-Twidere.release.xcconfig */,
+				0F1B07D4B678B2F4AB373F89 /* Pods-TwidereTests.debug.xcconfig */,
+				BA7F76727F5E710E1B724EE7 /* Pods-TwidereTests.release.xcconfig */,
+				94248A1FB73082052F1A2F57 /* Pods-TwidereUITests.debug.xcconfig */,
+				F4E956937774DEEAAEEB3AC1 /* Pods-TwidereUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -345,12 +334,12 @@
 			children = (
 				0F80558F5C8F18CCEBAD61DC /* Frameworks */,
 				CE2660201DAFDD79007FF7CF /* Generated */,
-				112D8F55CE395A2A6ED13654 /* Pods */,
 				CE0529E41CF7F35300E06364 /* Products */,
 				CEA2E2B71D368BCF0095BC57 /* Resources */,
 				CE0529E51CF7F35300E06364 /* Sources */,
 				CE0529FD1CF7F35300E06364 /* Tests */,
 				CE052A081CF7F35300E06364 /* UITests */,
+				52ED18EAF96AA311DD1E3B7D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -367,6 +356,7 @@
 		CE0529E51CF7F35300E06364 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				CEA2D6DC1EBBA250002E5762 /* Twidere-Bridging-Header.h */,
 				CE95747E1D32169D00504D52 /* Constants */,
 				CEA2E2BF1D379CB10095BC57 /* Extensions */,
 				CE95747B1D32107800504D52 /* Models */,
@@ -410,9 +400,7 @@
 				CE6C6C301DB35C1D00DF4892 /* AccountDetailsExtensions.swift */,
 				CE2A7FE31EB767B0003791F2 /* Date+MicroBlog.swift */,
 				CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */,
-				CE6C6C331DB35C1D00DF4892 /* UserKey+Freddy.swift */,
 				CE497FB91D6A8A65000F16D2 /* UserKey+Value.swift */,
-				CE45CAF61D855EFA0004CC1C /* UserKeyExtensions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -660,8 +648,6 @@
 				CEDC3B221D7D8BE90082A8BA /* DatabaseMigration.swift */,
 				CE9574951D33B71B00504D52 /* DefaultsKeys.swift */,
 				CE2A808D1EBA3404003791F2 /* HtmlBuilder.swift */,
-				CE2A801B1EB8D0AE003791F2 /* JsonParsableUtils.swift */,
-				CE95748A1D322CC700504D52 /* ModelConverter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -744,7 +730,6 @@
 				CEEF42BA1DB9D650009ECD0F /* Promise+TaskMessage.swift */,
 				CE4B1AA41D719E160017CB85 /* StringExtensions.swift */,
 				CE2660181DAFD1BF007FF7CF /* StringLiteral.swift */,
-				CE412B211DB9F38D00C52099 /* SwiftyJSONExtension.swift */,
 				CED73F6D1D953C6E0066F554 /* UIBarButtonItemExtension.swift */,
 				CED73F6B1D9519B80066F554 /* UIImageExtensions.swift */,
 				CEA2E2CE1D3A779B0095BC57 /* UIImageViewExtension.swift */,
@@ -839,7 +824,6 @@
 		CED41F3F1D30E6760089E0B6 /* MicroBlog */ = {
 			isa = PBXGroup;
 			children = (
-				CED41F3D1D30D30B0089E0B6 /* MicroBlogService.swift */,
 				CE9574861D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift */,
 			);
 			path = MicroBlog;
@@ -1323,7 +1307,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE45CAF71D855EFA0004CC1C /* UserKeyExtensions.swift in Sources */,
 				CE65B1BB1D9CB2B100A38A61 /* ActivityTitleSummaryCell.swift in Sources */,
 				CE0529E91CF7F35300E06364 /* MainViewController.swift in Sources */,
 				CE2A80581EB9B03E003791F2 /* SimpleTypesFieldConverters.swift in Sources */,
@@ -1340,7 +1323,6 @@
 				CEBECFCA1DAB8AD900350383 /* CollectionUtils.swift in Sources */,
 				CE9574981D33D87200504D52 /* NetworkPreferencesController.swift in Sources */,
 				CEA2E2C51D37C2590095BC57 /* ComposeLocationController.swift in Sources */,
-				CE6C6C371DB35C1D00DF4892 /* UserKey+Freddy.swift in Sources */,
 				CE7A57441D917E1C0027BECE /* UserTimelineStatusesListControllerDataSource.swift in Sources */,
 				CE65B1E81D9F546700A38A61 /* ItemIndices.swift in Sources */,
 				CE497FB31D698B1B000F16D2 /* UsersListController.swift in Sources */,
@@ -1377,14 +1359,11 @@
 				CE2660191DAFD1BF007FF7CF /* StringLiteral.swift in Sources */,
 				CEDC3B281D7DAE2C0082A8BA /* RefreshTaskParam.swift in Sources */,
 				CE5993091D82E4DE00653220 /* AccountCell.swift in Sources */,
-				CE95748B1D322CC700504D52 /* ModelConverter.swift in Sources */,
 				CEBED5FB1D4C86C700619D1C /* BackgroundOperationService.swift in Sources */,
 				CEA2E2B11D3681FD0095BC57 /* ComposeController.swift in Sources */,
 				CE2A808E1EBA3404003791F2 /* HtmlBuilder.swift in Sources */,
-				CE412B221DB9F38D00C52099 /* SwiftyJSONExtension.swift in Sources */,
 				CE2A80561EB9ACF3003791F2 /* MediaItemFieldConverters.swift in Sources */,
 				CED73F6E1D953C6E0066F554 /* UIBarButtonItemExtension.swift in Sources */,
-				CE2A801C1EB8D0AE003791F2 /* JsonParsableUtils.swift in Sources */,
 				CE7A57471D9185DC0027BECE /* UserFavoritesStatusesListControllerDelaSourceegate.swift in Sources */,
 				CEBECFB31DA8C0C200350383 /* SafariBrowserController.swift in Sources */,
 				CED41F2F1D2FF7C80089E0B6 /* HomeController.swift in Sources */,
@@ -1394,7 +1373,6 @@
 				CE9574B91D349C3F00504D52 /* BrowserSignInController.swift in Sources */,
 				CEA2E2BE1D3761780095BC57 /* StatusUpdate.swift in Sources */,
 				CE2A804B1EB995F1003791F2 /* UserKey+PMJackson.swift in Sources */,
-				CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */,
 				CEF2CF481D840D7B00131EAE /* MediaPreviewContainer.swift in Sources */,
 				CE2A80511EB9A9B7003791F2 /* MediaType+PMJackson.swift in Sources */,
 				CE2A80541EB9ABB0003791F2 /* DateFieldConverters.swift in Sources */,
@@ -1563,7 +1541,7 @@
 		};
 		CE052A0F1CF7F35300E06364 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A351F2523CA6229EF79900FD /* Pods-Twidere.debug.xcconfig */;
+			baseConfigurationReference = 6453E0542AD1F43F720FD6D6 /* Pods-Twidere.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1576,7 +1554,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.Twidere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Twidere/Twidere-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sources/Twidere-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1584,7 +1562,7 @@
 		};
 		CE052A101CF7F35300E06364 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6B7616E89DDF2FDDCF64DCCF /* Pods-Twidere.release.xcconfig */;
+			baseConfigurationReference = 387D84B040AE8B1D2D6BA8C3 /* Pods-Twidere.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1597,14 +1575,14 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.Twidere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Twidere/Twidere-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sources/Twidere-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		CE052A121CF7F35300E06364 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8A574B1651642A3BEEC8AAE /* Pods-TwidereTests.debug.xcconfig */;
+			baseConfigurationReference = 0F1B07D4B678B2F4AB373F89 /* Pods-TwidereTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1619,7 +1597,7 @@
 		};
 		CE052A131CF7F35300E06364 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56F376BF1F75D5F95E44E16C /* Pods-TwidereTests.release.xcconfig */;
+			baseConfigurationReference = BA7F76727F5E710E1B724EE7 /* Pods-TwidereTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1634,7 +1612,7 @@
 		};
 		CE052A151CF7F35300E06364 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 08D56BA5DDFE3020D6C31612 /* Pods-TwidereUITests.debug.xcconfig */;
+			baseConfigurationReference = 94248A1FB73082052F1A2F57 /* Pods-TwidereUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				INFOPLIST_FILE = TwidereUITests/Info.plist;
@@ -1648,7 +1626,7 @@
 		};
 		CE052A161CF7F35300E06364 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 61F2AC8EB68E86535C22CA23 /* Pods-TwidereUITests.release.xcconfig */;
+			baseConfigurationReference = F4E956937774DEEAAEEB3AC1 /* Pods-TwidereUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				INFOPLIST_FILE = TwidereUITests/Info.plist;

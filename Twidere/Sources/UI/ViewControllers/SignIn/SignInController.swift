@@ -10,7 +10,6 @@ import UIKit
 import SwiftyUserDefaults
 import CoreData
 import PromiseKit
-import SwiftyJSON
 import ALSLayouts
 
 class SignInController: UIViewController {
