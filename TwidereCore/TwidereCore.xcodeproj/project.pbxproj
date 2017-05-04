@@ -20,6 +20,13 @@
 			remoteGlobalIDString = CE750A521EBB4D08003E6249;
 			remoteInfo = MicroBlog;
 		};
+		CE750AAE1EBB600C003E6249 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE750AAA1EBB600B003E6249 /* Mastodon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CE750A9F1EBB600B003E6249;
+			remoteInfo = Mastodon;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +37,7 @@
 		CE750A3B1EBB3F3C003E6249 /* TwidereCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwidereCore.h; sourceTree = "<group>"; };
 		CE750A3C1EBB3F3C003E6249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE750A5D1EBB4D08003E6249 /* MicroBlog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MicroBlog.xcodeproj; path = MicroBlog/MicroBlog.xcodeproj; sourceTree = "<group>"; };
+		CE750AAA1EBB600B003E6249 /* Mastodon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Mastodon.xcodeproj; path = Mastodon/Mastodon.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +73,7 @@
 		CE750A2E1EBB3F3C003E6249 = {
 			isa = PBXGroup;
 			children = (
+				CE750AAA1EBB600B003E6249 /* Mastodon.xcodeproj */,
 				CE750A5D1EBB4D08003E6249 /* MicroBlog.xcodeproj */,
 				C6DB3F6BC1AF1F22B4CCB1CA /* Frameworks */,
 				CE750A441EBB4144003E6249 /* Generated */,
@@ -102,6 +111,14 @@
 			isa = PBXGroup;
 			children = (
 				CE750A621EBB4D09003E6249 /* MicroBlog.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CE750AAB1EBB600B003E6249 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE750AAF1EBB600C003E6249 /* Mastodon.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,6 +185,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = CE750AAB1EBB600B003E6249 /* Products */;
+					ProjectRef = CE750AAA1EBB600B003E6249 /* Mastodon.xcodeproj */;
+				},
+				{
 					ProductGroup = CE750A5E1EBB4D08003E6249 /* Products */;
 					ProjectRef = CE750A5D1EBB4D08003E6249 /* MicroBlog.xcodeproj */;
 				},
@@ -185,6 +206,13 @@
 			fileType = wrapper.framework;
 			path = MicroBlog.framework;
 			remoteRef = CE750A611EBB4D09003E6249 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CE750AAF1EBB600C003E6249 /* Mastodon.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Mastodon.framework;
+			remoteRef = CE750AAE1EBB600C003E6249 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

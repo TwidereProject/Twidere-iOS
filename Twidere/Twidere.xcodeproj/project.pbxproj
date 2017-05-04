@@ -19,13 +19,10 @@
 		CE052A0A1CF7F35300E06364 /* TwidereUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE052A091CF7F35300E06364 /* TwidereUITests.swift */; };
 		CE2660191DAFD1BF007FF7CF /* StringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2660181DAFD1BF007FF7CF /* StringLiteral.swift */; };
 		CE26603F1DB0638D007FF7CF /* SQLite+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26603E1DB0638D007FF7CF /* SQLite+Array.swift */; };
-		CE2A7FD51EB725A4003791F2 /* FanfouPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FD41EB725A4003791F2 /* FanfouPhoto.swift */; };
 		CE2A7FE41EB767B0003791F2 /* Date+MicroBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FE31EB767B0003791F2 /* Date+MicroBlog.swift */; };
-		CE2A80061EB848E5003791F2 /* TwitterBaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80051EB848E5003791F2 /* TwitterBaseEntity.swift */; };
 		CE2A800A1EB8518C003791F2 /* RestCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80091EB8518C003791F2 /* RestCall.swift */; };
 		CE2A800C1EB8582D003791F2 /* MicroBlogAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A800B1EB8582D003791F2 /* MicroBlogAccountService.swift */; };
 		CE2A80111EB88B28003791F2 /* MastodonAccountsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80101EB88B28003791F2 /* MastodonAccountsService.swift */; };
-		CE2A80141EB88B77003791F2 /* MastodonAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80131EB88B77003791F2 /* MastodonAccount.swift */; };
 		CE2A801C1EB8D0AE003791F2 /* JsonParsableUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A801B1EB8D0AE003791F2 /* JsonParsableUtils.swift */; };
 		CE2A802F1EB8D982003791F2 /* FanfouPhoto+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A801D1EB8D982003791F2 /* FanfouPhoto+JsonMapper.swift */; };
 		CE2A80301EB8D982003791F2 /* GNUSocialAttachment+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A801E1EB8D982003791F2 /* GNUSocialAttachment+JsonMapper.swift */; };
@@ -245,13 +242,10 @@
 		CE052A0B1CF7F35300E06364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE2660181DAFD1BF007FF7CF /* StringLiteral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringLiteral.swift; sourceTree = "<group>"; };
 		CE26603E1DB0638D007FF7CF /* SQLite+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SQLite+Array.swift"; sourceTree = "<group>"; };
-		CE2A7FD41EB725A4003791F2 /* FanfouPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanfouPhoto.swift; sourceTree = "<group>"; };
 		CE2A7FE31EB767B0003791F2 /* Date+MicroBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+MicroBlog.swift"; sourceTree = "<group>"; };
-		CE2A80051EB848E5003791F2 /* TwitterBaseEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterBaseEntity.swift; sourceTree = "<group>"; };
 		CE2A80091EB8518C003791F2 /* RestCall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestCall.swift; sourceTree = "<group>"; };
 		CE2A800B1EB8582D003791F2 /* MicroBlogAccountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogAccountService.swift; sourceTree = "<group>"; };
 		CE2A80101EB88B28003791F2 /* MastodonAccountsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonAccountsService.swift; sourceTree = "<group>"; };
-		CE2A80131EB88B77003791F2 /* MastodonAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonAccount.swift; sourceTree = "<group>"; };
 		CE2A801B1EB8D0AE003791F2 /* JsonParsableUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParsableUtils.swift; sourceTree = "<group>"; };
 		CE2A801D1EB8D982003791F2 /* FanfouPhoto+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FanfouPhoto+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE2A801E1EB8D982003791F2 /* GNUSocialAttachment+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GNUSocialAttachment+JsonMapper.swift"; sourceTree = "<group>"; };
@@ -279,7 +273,7 @@
 		CE2A80551EB9ACF3003791F2 /* MediaItemFieldConverters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaItemFieldConverters.swift; sourceTree = "<group>"; };
 		CE2A80571EB9B03E003791F2 /* SimpleTypesFieldConverters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTypesFieldConverters.swift; sourceTree = "<group>"; };
 		CE2A80591EB9B1AE003791F2 /* PersistableCardEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableCardEntity.swift; sourceTree = "<group>"; };
-		CE2A805B1EB9B411003791F2 /* MentionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionItem.swift; sourceTree = "<group>"; };
+		CE2A805B1EB9B411003791F2 /* MentionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MentionItem.swift; path = API/MentionItem.swift; sourceTree = "<group>"; };
 		CE2A805D1EB9B5EB003791F2 /* MediaItem.VideoInfo.Variant+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaItem.VideoInfo.Variant+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE2A805E1EB9B5EB003791F2 /* MediaItem.VideoInfo+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaItem.VideoInfo+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE2A805F1EB9B5EB003791F2 /* MediaItem+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaItem+JsonMapper.swift"; sourceTree = "<group>"; };
@@ -609,53 +603,10 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		CE2A7F961EB5BC85003791F2 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				CE2A7F971EB5BC8F003791F2 /* MicroBlog */,
-				CE2A805B1EB9B411003791F2 /* MentionItem.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		CE2A7F971EB5BC8F003791F2 /* MicroBlog */ = {
-			isa = PBXGroup;
-			children = (
-				CE2A7FD31EB72598003791F2 /* Fanfou */,
-				CE2A80121EB88B6A003791F2 /* Mastodon */,
-				CE2A7FDC1EB7262D003791F2 /* Twitter */,
-			);
-			path = MicroBlog;
-			sourceTree = "<group>";
-		};
-		CE2A7FD31EB72598003791F2 /* Fanfou */ = {
-			isa = PBXGroup;
-			children = (
-				CE2A7FD41EB725A4003791F2 /* FanfouPhoto.swift */,
-			);
-			path = Fanfou;
-			sourceTree = "<group>";
-		};
-		CE2A7FDC1EB7262D003791F2 /* Twitter */ = {
-			isa = PBXGroup;
-			children = (
-				CE2A80051EB848E5003791F2 /* TwitterBaseEntity.swift */,
-			);
-			path = Twitter;
-			sourceTree = "<group>";
-		};
 		CE2A800F1EB88B19003791F2 /* Mastodon */ = {
 			isa = PBXGroup;
 			children = (
 				CE2A80101EB88B28003791F2 /* MastodonAccountsService.swift */,
-			);
-			path = Mastodon;
-			sourceTree = "<group>";
-		};
-		CE2A80121EB88B6A003791F2 /* Mastodon */ = {
-			isa = PBXGroup;
-			children = (
-				CE2A80131EB88B77003791F2 /* MastodonAccount.swift */,
 			);
 			path = Mastodon;
 			sourceTree = "<group>";
@@ -881,8 +832,8 @@
 		CE95747B1D32107800504D52 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CE2A7F961EB5BC85003791F2 /* API */,
 				CE6FA3401EBAE3CF0068BE01 /* Credentials */,
+				CE2A805B1EB9B411003791F2 /* MentionItem.swift */,
 				CE6FA33E1EBAD4ED0068BE01 /* AccountDetails.swift */,
 				CE95747C1D3210A300504D52 /* CustomAPIConfig.swift */,
 				CE65B1E71D9F546700A38A61 /* ItemIndices.swift */,
@@ -1641,13 +1592,11 @@
 				CE2A80821EB9D672003791F2 /* MicroBlogUserExtension.swift in Sources */,
 				CE2A800A1EB8518C003791F2 /* RestCall.swift in Sources */,
 				CE7A57441D917E1C0027BECE /* UserTimelineStatusesListControllerDataSource.swift in Sources */,
-				CE2A80061EB848E5003791F2 /* TwitterBaseEntity.swift in Sources */,
 				CE65B1E81D9F546700A38A61 /* ItemIndices.swift in Sources */,
 				CE5993101D83901B00653220 /* MediaItem.swift in Sources */,
 				CE497FB31D698B1B000F16D2 /* UsersListController.swift in Sources */,
 				CE2A80691EB9B5EB003791F2 /* PersistableCardEntity+JsonMapper.swift in Sources */,
 				CE497FA41D69625A000F16D2 /* StatusesListController.swift in Sources */,
-				CE2A80141EB88B77003791F2 /* MastodonAccount.swift in Sources */,
 				CE2A803F1EB8D982003791F2 /* TwitterHashtagEntity+JsonMapper.swift in Sources */,
 				CE6FA3591EBB050D0068BE01 /* MediaUploadResponse.Video+JsonMapper.swift in Sources */,
 				CE79C83F1DA77777007C05F2 /* YYText+ALSLayouts.swift in Sources */,
@@ -1729,7 +1678,6 @@
 				CEF2CF481D840D7B00131EAE /* MediaPreviewContainer.swift in Sources */,
 				CE2A806A1EB9B5EC003791F2 /* PersistableStatus.Extras+JsonMapper.swift in Sources */,
 				CE2A80511EB9A9B7003791F2 /* MediaType+PMJackson.swift in Sources */,
-				CE2A7FD51EB725A4003791F2 /* FanfouPhoto.swift in Sources */,
 				CE2A805A1EB9B1AE003791F2 /* PersistableCardEntity.swift in Sources */,
 				CE2A806C1EB9B5EC003791F2 /* SpanItem+JsonMapper.swift in Sources */,
 				CE2A80541EB9ABB0003791F2 /* DateFieldConverters.swift in Sources */,
