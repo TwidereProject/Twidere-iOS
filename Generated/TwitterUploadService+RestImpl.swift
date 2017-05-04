@@ -16,7 +16,6 @@ internal class TwitterUploadServiceRestImpl: TwitterUploadService, RestProtocolS
         call.method = .post
         call.path = "/media/upload.json"
         call.params = [
-            "a": "b",
             "additional_owners": additionalOwners,
             "command": "INIT",
             "media_type": mediaType,

@@ -149,6 +149,7 @@
 		CE6FA35A1EBB050D0068BE01 /* MediaUploadResponse+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3561EBB050D0068BE01 /* MediaUploadResponse+JsonMapper.swift */; };
 		CE6FA35C1EBB05680068BE01 /* TwitterUploadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA35B1EBB05680068BE01 /* TwitterUploadService.swift */; };
 		CE6FA35E1EBB08480068BE01 /* TwitterUploadService+RestImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA35D1EBB08480068BE01 /* TwitterUploadService+RestImpl.swift */; };
+		CE6FA3601EBB16840068BE01 /* OAuthService+RestImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA35F1EBB16840068BE01 /* OAuthService+RestImpl.swift */; };
 		CE79C83D1DA62E56007C05F2 /* SpanItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */; };
 		CE79C83F1DA77777007C05F2 /* YYText+ALSLayouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C83E1DA77777007C05F2 /* YYText+ALSLayouts.swift */; };
 		CE79C8411DA7ACE3007C05F2 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C8401DA7ACE3007C05F2 /* UIViewExtension.swift */; };
@@ -375,7 +376,7 @@
 		CE6C6C301DB35C1D00DF4892 /* AccountDetailsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailsExtensions.swift; sourceTree = "<group>"; };
 		CE6C6C331DB35C1D00DF4892 /* UserKey+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserKey+Freddy.swift"; sourceTree = "<group>"; };
 		CE6D6E991DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNavigationBarProtocol.swift; sourceTree = "<group>"; };
-		CE6FA33E1EBAD4ED0068BE01 /* AccountDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountDetails.swift; path = AccountDetails.swift; sourceTree = "<group>"; };
+		CE6FA33E1EBAD4ED0068BE01 /* AccountDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetails.swift; sourceTree = "<group>"; };
 		CE6FA3411EBAE3E00068BE01 /* AccountCredentialsImpls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCredentialsImpls.swift; sourceTree = "<group>"; };
 		CE6FA3431EBAE4340068BE01 /* AccountOAuthCredentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountOAuthCredentials+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE6FA3451EBAE55B0068BE01 /* AccountDetails.Credentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountDetails.Credentials+JsonMapper.swift"; sourceTree = "<group>"; };
@@ -390,6 +391,7 @@
 		CE6FA3561EBB050D0068BE01 /* MediaUploadResponse+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaUploadResponse+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE6FA35B1EBB05680068BE01 /* TwitterUploadService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUploadService.swift; sourceTree = "<group>"; };
 		CE6FA35D1EBB08480068BE01 /* TwitterUploadService+RestImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterUploadService+RestImpl.swift"; sourceTree = "<group>"; };
+		CE6FA35F1EBB16840068BE01 /* OAuthService+RestImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuthService+RestImpl.swift"; sourceTree = "<group>"; };
 		CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItemExtension.swift; sourceTree = "<group>"; };
 		CE79C83E1DA77777007C05F2 /* YYText+ALSLayouts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "YYText+ALSLayouts.swift"; sourceTree = "<group>"; };
 		CE79C8401DA7ACE3007C05F2 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -575,6 +577,7 @@
 		CE2660201DAFDD79007FF7CF /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				CE6FA35F1EBB16840068BE01 /* OAuthService+RestImpl.swift */,
 				CE6FA34B1EBAF9250068BE01 /* AccountBasicCredentials+JsonMapper.swift */,
 				CE6FA3451EBAE55B0068BE01 /* AccountDetails.Credentials+JsonMapper.swift */,
 				CE6FA3471EBAE6C40068BE01 /* AccountDetails.Extras+JsonMapper.swift */,
@@ -913,7 +916,6 @@
 			children = (
 				CE6FA3411EBAE3E00068BE01 /* AccountCredentialsImpls.swift */,
 			);
-			name = Credentials;
 			path = Credentials;
 			sourceTree = "<group>";
 		};
@@ -1693,6 +1695,7 @@
 				CE2A808C1EBA24CA003791F2 /* TwitterCardEntityExtension.swift in Sources */,
 				CE5993191D83CAAA00653220 /* DetailStatusCell.swift in Sources */,
 				CE2A80021EB84696003791F2 /* TwitterHashtagEntity.swift in Sources */,
+				CE6FA3601EBB16840068BE01 /* OAuthService+RestImpl.swift in Sources */,
 				CE2A7FE21EB72689003791F2 /* MicroBlogGeoPoint.swift in Sources */,
 				CE2A80401EB8D982003791F2 /* TwitterURLEntity+JsonMapper.swift in Sources */,
 				CEF2CF451D83F11200131EAE /* UserProfileController.swift in Sources */,

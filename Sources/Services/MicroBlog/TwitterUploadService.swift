@@ -14,7 +14,7 @@ protocol TwitterUploadService {
     // sourcery: restMethod=POST
     // sourcery: restPath=/media/upload.json
     // sourcery: restSerializer=MediaUploadResponseJsonMapper.singleton.responseSerializer
-    // sourcery: restParams=command%3DINIT%26a%3Db
+    // sourcery: restParams=command%3DINIT
     func initUploadMedia(/* sourcery: param=media_type */mediaType: String, /* sourcery: restParam=total_bytes */totalBytes: Int, /* sourcery: param=additional_owners */additionalOwners: [String]?) -> Promise<MediaUploadResponse>
     
     // sourcery: restMethod=POST

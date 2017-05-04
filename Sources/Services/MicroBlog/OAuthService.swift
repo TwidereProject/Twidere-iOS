@@ -6,41 +6,26 @@
 //  Copyright © 2016年 Mariotaku Dev. All rights reserved.
 //
 
-import Foundation
 import PromiseKit
 
-class OAuthService: RestClient {
+// sourcery: restProtocol
+protocol OAuthService {
     
-    func getRequestToken(_ oauthCallback: String) -> Promise<OAuthToken> {
-        let forms: [String: Any] = ["oauth_callback": oauthCallback]
-        return makeTypedRequest(.post, path: "/oauth/request_token", params: forms, serializer: ModelConverter.oauthToken)
-    }
+    // sourcery: restMethod=POST
+    // sourcery: restPath=/oauth/request_token
+    // sourcery: restSerializer=OAuthTokenResponseSerializer
+    func getRequestToken(/* sourcery: param=oauth_callback */_ oauthCallback: String) -> Promise<OAuthToken>
     
-    func getAccessToken(_ xauthUsername:String, xauthPassword: String) -> Promise<OAuthToken> {
-        let forms: [String: Any] = [
-            "x_auth_mode": "client_auth",
-            "x_auth_username": xauthUsername,
-            "x_auth_password": xauthPassword
-        ]
-        return makeTypedRequest(.post, path: "/oauth/access_token", params: forms, serializer: ModelConverter.oauthToken)
-        
-    }
+    // sourcery: restMethod=POST
+    // sourcery: restPath=/oauth/access_token
+    // sourcery: restSerializer=OAuthTokenResponseSerializer
+    // sourcery: restParams=x_auth_mode%3Dclient_auth
+    func getAccessToken(/* sourcery: param=x_auth_username */username: String, /* sourcery: param=x_auth_password */password: String) -> Promise<OAuthToken>
     
     
-    func getAccessToken(_ requestToken: OAuthToken, oauthVerifier: String? = nil) -> Promise<OAuthToken> {
-        let forms: [String: Any]
-        if (oauthVerifier != nil) {
-            forms = ["oauth_verifier": oauthVerifier!]
-        } else {
-            forms = [:]
-        }
-        var finalAuth = auth
-        if (auth is OAuthAuthorization) {
-            let oauth = auth as! OAuthAuthorization
-            finalAuth = OAuthAuthorization(oauth.consumerKey, oauth.consumerSecret, oauthToken: requestToken)
-        }
-        return makeTypedRequest(.post, path: "/oauth/access_token", params: forms, authOverride: finalAuth, serializer: ModelConverter.oauthToken)
-        
-    }
+    // sourcery: restMethod=POST
+    // sourcery: restPath=/oauth/access_token
+    // sourcery: restSerializer=OAuthTokenResponseSerializer
+    func getAccessToken(/* sourcery: param=oauth_verifier */_ verifier: String?) -> Promise<OAuthToken>
     
 }
