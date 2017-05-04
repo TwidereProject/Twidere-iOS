@@ -19,33 +19,33 @@
 		CE750A771EBB4E9A003E6249 /* GeoPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A751EBB4E9A003E6249 /* GeoPoint.swift */; };
 		CE750A781EBB4E9A003E6249 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A761EBB4E9A003E6249 /* Place.swift */; };
 		CE750A7A1EBB5C56003E6249 /* CardEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A791EBB5C56003E6249 /* CardEntity.swift */; };
-		CE750A7E1EBB5C7A003E6249 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A7B1EBB5C7A003E6249 /* Attachment.swift */; };
-		CE750A7F1EBB5C7A003E6249 /* Attention.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A7C1EBB5C7A003E6249 /* Attention.swift */; };
-		CE750A881EBB5CCB003E6249 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A861EBB5CCB003E6249 /* Photo.swift */; };
 		CE750A8A1EBB5CF6003E6249 /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A891EBB5CF6003E6249 /* GeoLocation.swift */; };
 		CE750A8D1EBB5D75003E6249 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A8C1EBB5D75003E6249 /* DateExtensions.swift */; };
+		CE750A901EBB5FAC003E6249 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A8F1EBB5FAC003E6249 /* Photo.swift */; };
+		CE750A931EBB5FBA003E6249 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A911EBB5FBA003E6249 /* Attachment.swift */; };
+		CE750A941EBB5FBA003E6249 /* Attention.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A921EBB5FBA003E6249 /* Attention.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CE750A521EBB4D08003E6249 /* MicroBlog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MicroBlog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE750A551EBB4D08003E6249 /* MicroBlog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MicroBlog.h; sourceTree = "<group>"; };
 		CE750A561EBB4D08003E6249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE750A641EBB4D50003E6249 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Status.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/Status.swift; sourceTree = "<group>"; };
-		CE750A651EBB4D50003E6249 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/User.swift; sourceTree = "<group>"; };
-		CE750A691EBB4D77003E6249 /* EntitySupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntitySupport.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/Twitter/EntitySupport.swift; sourceTree = "<group>"; };
-		CE750A6B1EBB4DA6003E6249 /* Entities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entities.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/Twitter/Entities.swift; sourceTree = "<group>"; };
-		CE750A6D1EBB4DCD003E6249 /* HashtagEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HashtagEntity.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/Twitter/HashtagEntity.swift; sourceTree = "<group>"; };
-		CE750A6E1EBB4DCD003E6249 /* MentionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MentionEntity.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/Twitter/MentionEntity.swift; sourceTree = "<group>"; };
-		CE750A6F1EBB4DCD003E6249 /* UrlEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UrlEntity.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/Twitter/UrlEntity.swift; sourceTree = "<group>"; };
-		CE750A701EBB4DCD003E6249 /* UserEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserEntities.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/Twitter/UserEntities.swift; sourceTree = "<group>"; };
-		CE750A751EBB4E9A003E6249 /* GeoPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeoPoint.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/GeoPoint.swift; sourceTree = "<group>"; };
-		CE750A761EBB4E9A003E6249 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Place.swift; path = ../../../../Twidere/Sources/Models/API/MicroBlog/Place.swift; sourceTree = "<group>"; };
-		CE750A791EBB5C56003E6249 /* CardEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardEntity.swift; path = ../../../../../Twidere/Sources/Models/API/MicroBlog/Twitter/CardEntity.swift; sourceTree = "<group>"; };
-		CE750A7B1EBB5C7A003E6249 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ../../../../../Twidere/Sources/Models/API/MicroBlog/GNUSocial/Attachment.swift; sourceTree = "<group>"; };
-		CE750A7C1EBB5C7A003E6249 /* Attention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ../../../../../Twidere/Sources/Models/API/MicroBlog/GNUSocial/Attention.swift; sourceTree = "<group>"; };
-		CE750A861EBB5CCB003E6249 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ../../../../../Twidere/Sources/Models/API/MicroBlog/Fanfou/Photo.swift; sourceTree = "<group>"; };
+		CE750A641EBB4D50003E6249 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		CE750A651EBB4D50003E6249 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CE750A691EBB4D77003E6249 /* EntitySupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntitySupport.swift; sourceTree = "<group>"; };
+		CE750A6B1EBB4DA6003E6249 /* Entities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
+		CE750A6D1EBB4DCD003E6249 /* HashtagEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashtagEntity.swift; sourceTree = "<group>"; };
+		CE750A6E1EBB4DCD003E6249 /* MentionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionEntity.swift; sourceTree = "<group>"; };
+		CE750A6F1EBB4DCD003E6249 /* UrlEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlEntity.swift; sourceTree = "<group>"; };
+		CE750A701EBB4DCD003E6249 /* UserEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntities.swift; sourceTree = "<group>"; };
+		CE750A751EBB4E9A003E6249 /* GeoPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoPoint.swift; sourceTree = "<group>"; };
+		CE750A761EBB4E9A003E6249 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		CE750A791EBB5C56003E6249 /* CardEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardEntity.swift; sourceTree = "<group>"; };
 		CE750A891EBB5CF6003E6249 /* GeoLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
 		CE750A8C1EBB5D75003E6249 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		CE750A8F1EBB5FAC003E6249 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		CE750A911EBB5FBA003E6249 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
+		CE750A921EBB5FBA003E6249 /* Attention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attention.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +83,6 @@
 				CE750A561EBB4D08003E6249 /* Info.plist */,
 				CE750A551EBB4D08003E6249 /* MicroBlog.h */,
 			);
-			name = Sources;
 			path = Sources;
 			sourceTree = "<group>";
 		};
@@ -93,29 +92,21 @@
 				CE750A871EBB5CCB003E6249 /* Fanfou */,
 				CE750A7D1EBB5C7A003E6249 /* GNUSocial */,
 				CE750A801EBB5C88003E6249 /* Twitter */,
-				CE750A6B1EBB4DA6003E6249 /* Entities.swift */,
-				CE750A691EBB4D77003E6249 /* EntitySupport.swift */,
 				CE750A891EBB5CF6003E6249 /* GeoLocation.swift */,
 				CE750A751EBB4E9A003E6249 /* GeoPoint.swift */,
-				CE750A6D1EBB4DCD003E6249 /* HashtagEntity.swift */,
-				CE750A6E1EBB4DCD003E6249 /* MentionEntity.swift */,
 				CE750A761EBB4E9A003E6249 /* Place.swift */,
 				CE750A641EBB4D50003E6249 /* Status.swift */,
-				CE750A6F1EBB4DCD003E6249 /* UrlEntity.swift */,
 				CE750A651EBB4D50003E6249 /* User.swift */,
-				CE750A701EBB4DCD003E6249 /* UserEntities.swift */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
 		CE750A7D1EBB5C7A003E6249 /* GNUSocial */ = {
 			isa = PBXGroup;
 			children = (
-				CE750A7B1EBB5C7A003E6249 /* Attachment.swift */,
-				CE750A7C1EBB5C7A003E6249 /* Attention.swift */,
+				CE750A911EBB5FBA003E6249 /* Attachment.swift */,
+				CE750A921EBB5FBA003E6249 /* Attention.swift */,
 			);
-			name = GNUSocial;
 			path = GNUSocial;
 			sourceTree = "<group>";
 		};
@@ -123,17 +114,21 @@
 			isa = PBXGroup;
 			children = (
 				CE750A791EBB5C56003E6249 /* CardEntity.swift */,
+				CE750A6B1EBB4DA6003E6249 /* Entities.swift */,
+				CE750A691EBB4D77003E6249 /* EntitySupport.swift */,
+				CE750A6D1EBB4DCD003E6249 /* HashtagEntity.swift */,
+				CE750A6E1EBB4DCD003E6249 /* MentionEntity.swift */,
+				CE750A6F1EBB4DCD003E6249 /* UrlEntity.swift */,
+				CE750A701EBB4DCD003E6249 /* UserEntities.swift */,
 			);
-			name = Twitter;
 			path = Twitter;
 			sourceTree = "<group>";
 		};
 		CE750A871EBB5CCB003E6249 /* Fanfou */ = {
 			isa = PBXGroup;
 			children = (
-				CE750A861EBB5CCB003E6249 /* Photo.swift */,
+				CE750A8F1EBB5FAC003E6249 /* Photo.swift */,
 			);
-			name = Fanfou;
 			path = Fanfou;
 			sourceTree = "<group>";
 		};
@@ -142,7 +137,6 @@
 			children = (
 				CE750A8C1EBB5D75003E6249 /* DateExtensions.swift */,
 			);
-			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -226,15 +220,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE750A941EBB5FBA003E6249 /* Attention.swift in Sources */,
+				CE750A901EBB5FAC003E6249 /* Photo.swift in Sources */,
 				CE750A711EBB4DCD003E6249 /* HashtagEntity.swift in Sources */,
 				CE750A6C1EBB4DA7003E6249 /* Entities.swift in Sources */,
-				CE750A7F1EBB5C7A003E6249 /* Attention.swift in Sources */,
 				CE750A6A1EBB4D77003E6249 /* EntitySupport.swift in Sources */,
+				CE750A931EBB5FBA003E6249 /* Attachment.swift in Sources */,
 				CE750A7A1EBB5C56003E6249 /* CardEntity.swift in Sources */,
 				CE750A741EBB4DCD003E6249 /* UserEntities.swift in Sources */,
 				CE750A721EBB4DCD003E6249 /* MentionEntity.swift in Sources */,
-				CE750A881EBB5CCB003E6249 /* Photo.swift in Sources */,
-				CE750A7E1EBB5C7A003E6249 /* Attachment.swift in Sources */,
 				CE750A661EBB4D50003E6249 /* Status.swift in Sources */,
 				CE750A771EBB4E9A003E6249 /* GeoPoint.swift in Sources */,
 				CE750A731EBB4DCD003E6249 /* UrlEntity.swift in Sources */,
@@ -404,6 +398,7 @@
 				CE750A5C1EBB4D08003E6249 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

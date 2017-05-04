@@ -546,7 +546,6 @@
 		CE2660201DAFDD79007FF7CF /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				CE6FA35F1EBB16840068BE01 /* OAuthService+RestImpl.swift */,
 				CE6FA34B1EBAF9250068BE01 /* AccountBasicCredentials+JsonMapper.swift */,
 				CE6FA3451EBAE55B0068BE01 /* AccountDetails.Credentials+JsonMapper.swift */,
 				CE6FA3471EBAE6C40068BE01 /* AccountDetails.Extras+JsonMapper.swift */,
@@ -574,6 +573,7 @@
 				CE2A80261EB8D982003791F2 /* MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift */,
 				CE2A80271EB8D982003791F2 /* MicroBlogStatus.ExtendedTweet+JsonMapper.swift */,
 				CE2A80291EB8D982003791F2 /* MicroBlogUser+JsonMapper.swift */,
+				CE6FA35F1EBB16840068BE01 /* OAuthService+RestImpl.swift */,
 				CE2A80751EB9C0A1003791F2 /* PersistableActivity+JsonMapper.swift */,
 				CE2A80731EB9C0A0003791F2 /* PersistableActivity.RelatedObject+JsonMapper.swift */,
 				CE2A80741EB9C0A1003791F2 /* PersistableActivity.SummaryLine+JsonMapper.swift */,
