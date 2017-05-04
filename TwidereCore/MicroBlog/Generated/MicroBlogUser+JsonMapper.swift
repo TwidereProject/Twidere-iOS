@@ -50,7 +50,7 @@ internal class MicroBlogUserJsonMapper: JsonMapper<MicroBlogUser> {
         case "url":
             instance.url = parser.getValueAsString()
         case "entities":
-            instance.entities = TwitterUserEntitiesJsonMapper.singleton.parse(parser)
+            instance.entities = UserEntitiesJsonMapper.singleton.parse(parser)
         case "protected":
             instance.isProtected = parser.getValueAsBool()
         case "followers_count":

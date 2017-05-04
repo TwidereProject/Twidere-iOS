@@ -1,7 +1,6 @@
 // Generated using Sourcery 0.6.0 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
 
-
 import PMJackson
 
 public protocol JsonMappable {
@@ -24,11 +23,5 @@ public class JsonMapper<T: JsonMappable> {
     public func parseField(_ instance: T, _ fieldName: String, _ parser: PMJacksonParser) {
         // No-op
     }
-
-}
-
-protocol RestProtocolService {
-
-    init(client: RestClient)
 
 }

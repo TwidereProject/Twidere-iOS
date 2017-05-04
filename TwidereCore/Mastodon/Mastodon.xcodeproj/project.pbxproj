@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		CE750AA41EBB600B003E6249 /* Mastodon.h in Headers */ = {isa = PBXBuildFile; fileRef = CE750AA21EBB600B003E6249 /* Mastodon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE750AB21EBB603D003E6249 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AB11EBB603D003E6249 /* Account.swift */; };
+		CE750AB81EBB6363003E6249 /* Account+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AB51EBB6363003E6249 /* Account+JsonMapper.swift */; };
+		CE750AB91EBB6363003E6249 /* JsonMapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AB61EBB6363003E6249 /* JsonMapper.generated.swift */; };
+		CE750ABA1EBB6363003E6249 /* RestProtocolImpl.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AB71EBB6363003E6249 /* RestProtocolImpl.generated.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -16,6 +19,9 @@
 		CE750AA21EBB600B003E6249 /* Mastodon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mastodon.h; sourceTree = "<group>"; };
 		CE750AA31EBB600B003E6249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE750AB11EBB603D003E6249 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		CE750AB51EBB6363003E6249 /* Account+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE750AB61EBB6363003E6249 /* JsonMapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonMapper.generated.swift; sourceTree = "<group>"; };
+		CE750AB71EBB6363003E6249 /* RestProtocolImpl.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestProtocolImpl.generated.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +38,7 @@
 		CE750A951EBB600B003E6249 = {
 			isa = PBXGroup;
 			children = (
+				CE750AB41EBB6363003E6249 /* Generated */,
 				CE750AA01EBB600B003E6249 /* Products */,
 				CE750AA11EBB600B003E6249 /* Sources */,
 			);
@@ -52,7 +59,6 @@
 				CE750AA31EBB600B003E6249 /* Info.plist */,
 				CE750AA21EBB600B003E6249 /* Mastodon.h */,
 			);
-			name = Sources;
 			path = Sources;
 			sourceTree = "<group>";
 		};
@@ -61,8 +67,17 @@
 			children = (
 				CE750AB11EBB603D003E6249 /* Account.swift */,
 			);
-			name = Models;
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CE750AB41EBB6363003E6249 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				CE750AB51EBB6363003E6249 /* Account+JsonMapper.swift */,
+				CE750AB61EBB6363003E6249 /* JsonMapper.generated.swift */,
+				CE750AB71EBB6363003E6249 /* RestProtocolImpl.generated.swift */,
+			);
+			path = Generated;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +160,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE750ABA1EBB6363003E6249 /* RestProtocolImpl.generated.swift in Sources */,
+				CE750AB81EBB6363003E6249 /* Account+JsonMapper.swift in Sources */,
+				CE750AB91EBB6363003E6249 /* JsonMapper.generated.swift in Sources */,
 				CE750AB21EBB603D003E6249 /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +326,7 @@
 				CE750AA91EBB600B003E6249 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

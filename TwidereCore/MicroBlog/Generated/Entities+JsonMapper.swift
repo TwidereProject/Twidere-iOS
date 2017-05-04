@@ -3,16 +3,16 @@
 
 import PMJackson
 
-extension TwitterEntities: JsonMappable {
+extension Entities: JsonMappable {
 
 }
 
-internal class TwitterEntitiesJsonMapper: JsonMapper<TwitterEntities> {
+internal class EntitiesJsonMapper: JsonMapper<Entities> {
 
-    internal static let singleton = TwitterEntitiesJsonMapper()
+    internal static let singleton = EntitiesJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> TwitterEntities! {
-        let instance = TwitterEntities()
+    override func parse(_ parser: PMJacksonParser) -> Entities! {
+        let instance = Entities()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -31,13 +31,13 @@ internal class TwitterEntitiesJsonMapper: JsonMapper<TwitterEntities> {
         return instance
     }
 
-    override func parseField(_ instance: TwitterEntities, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: Entities, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "urls":
             if (parser.currentEvent == .arrayStart) {
-                var array: [TwitterURLEntity] = []
+                var array: [UrlEntity] = []
                 while (parser.nextEvent() != .arrayEnd) {
-                    array.append(TwitterURLEntityJsonMapper.singleton.parse(parser))
+                    array.append(UrlEntityJsonMapper.singleton.parse(parser))
                 }
                 instance.urls = array
             } else {
@@ -45,9 +45,9 @@ internal class TwitterEntitiesJsonMapper: JsonMapper<TwitterEntities> {
             }
         case "hashtags":
             if (parser.currentEvent == .arrayStart) {
-                var array: [TwitterHashtagEntity] = []
+                var array: [HashtagEntity] = []
                 while (parser.nextEvent() != .arrayEnd) {
-                    array.append(TwitterHashtagEntityJsonMapper.singleton.parse(parser))
+                    array.append(HashtagEntityJsonMapper.singleton.parse(parser))
                 }
                 instance.hashtags = array
             } else {
@@ -55,9 +55,9 @@ internal class TwitterEntitiesJsonMapper: JsonMapper<TwitterEntities> {
             }
         case "mentions":
             if (parser.currentEvent == .arrayStart) {
-                var array: [TwitterMentionEntity] = []
+                var array: [MentionEntity] = []
                 while (parser.nextEvent() != .arrayEnd) {
-                    array.append(TwitterMentionEntityJsonMapper.singleton.parse(parser))
+                    array.append(MentionEntityJsonMapper.singleton.parse(parser))
                 }
                 instance.mentions = array
             } else {

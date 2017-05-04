@@ -3,16 +3,16 @@
 
 import PMJackson
 
-extension FanfouPhoto: JsonMappable {
+extension UserEntities: JsonMappable {
 
 }
 
-internal class FanfouPhotoJsonMapper: JsonMapper<FanfouPhoto> {
+internal class UserEntitiesJsonMapper: JsonMapper<UserEntities> {
 
-    internal static let singleton = FanfouPhotoJsonMapper()
+    internal static let singleton = UserEntitiesJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> FanfouPhoto! {
-        let instance = FanfouPhoto()
+    override func parse(_ parser: PMJacksonParser) -> UserEntities! {
+        let instance = UserEntities()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -31,16 +31,12 @@ internal class FanfouPhotoJsonMapper: JsonMapper<FanfouPhoto> {
         return instance
     }
 
-    override func parseField(_ instance: FanfouPhoto, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: UserEntities, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "url":
-            instance.url = parser.getValueAsString()
-        case "imageurl":
-            instance.imageUrl = parser.getValueAsString()
-        case "thumburl":
-            instance.thumbUrl = parser.getValueAsString()
-        case "largeurl":
-            instance.largeUrl = parser.getValueAsString()
+            instance.url = EntitiesJsonMapper.singleton.parse(parser)
+        case "description":
+            instance.description = EntitiesJsonMapper.singleton.parse(parser)
         default:
             break
         }

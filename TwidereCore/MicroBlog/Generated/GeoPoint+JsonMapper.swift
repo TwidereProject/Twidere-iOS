@@ -3,16 +3,16 @@
 
 import PMJackson
 
-extension MicroBlogGeoPoint: JsonMappable {
+extension GeoPoint: JsonMappable {
 
 }
 
-internal class MicroBlogGeoPointJsonMapper: JsonMapper<MicroBlogGeoPoint> {
+internal class GeoPointJsonMapper: JsonMapper<GeoPoint> {
 
-    internal static let singleton = MicroBlogGeoPointJsonMapper()
+    internal static let singleton = GeoPointJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> MicroBlogGeoPoint! {
-        let instance = MicroBlogGeoPoint()
+    override func parse(_ parser: PMJacksonParser) -> GeoPoint! {
+        let instance = GeoPoint()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -31,7 +31,7 @@ internal class MicroBlogGeoPointJsonMapper: JsonMapper<MicroBlogGeoPoint> {
         return instance
     }
 
-    override func parseField(_ instance: MicroBlogGeoPoint, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: GeoPoint, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "coordinates":
             if (parser.currentEvent == .arrayStart) {

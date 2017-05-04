@@ -3,16 +3,16 @@
 
 import PMJackson
 
-extension GNUSocialAttention: JsonMappable {
+extension Attention: JsonMappable {
 
 }
 
-internal class GNUSocialAttentionJsonMapper: JsonMapper<GNUSocialAttention> {
+internal class AttentionJsonMapper: JsonMapper<Attention> {
 
-    internal static let singleton = GNUSocialAttentionJsonMapper()
+    internal static let singleton = AttentionJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> GNUSocialAttention! {
-        let instance = GNUSocialAttention()
+    override func parse(_ parser: PMJacksonParser) -> Attention! {
+        let instance = Attention()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -31,7 +31,7 @@ internal class GNUSocialAttentionJsonMapper: JsonMapper<GNUSocialAttention> {
         return instance
     }
 
-    override func parseField(_ instance: GNUSocialAttention, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: Attention, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
         case "fullname":
             instance.fullName = parser.getValueAsString()

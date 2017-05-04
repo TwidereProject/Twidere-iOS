@@ -36,9 +36,9 @@ internal class MicroBlogStatusExtendedTweetJsonMapper: JsonMapper<MicroBlogStatu
         case "full_text":
             instance.fullText = parser.getValueAsString()
         case "entities":
-            instance.entities = TwitterEntitiesJsonMapper.singleton.parse(parser)
+            instance.entities = EntitiesJsonMapper.singleton.parse(parser)
         case "extended_entities":
-            instance.extendedEntities = TwitterEntitiesJsonMapper.singleton.parse(parser)
+            instance.extendedEntities = EntitiesJsonMapper.singleton.parse(parser)
         case "display_text_range":
             if (parser.currentEvent == .arrayStart) {
                 var array: [Int] = []

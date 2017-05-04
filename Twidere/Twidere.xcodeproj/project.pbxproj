@@ -24,25 +24,6 @@
 		CE2A800C1EB8582D003791F2 /* MicroBlogAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A800B1EB8582D003791F2 /* MicroBlogAccountService.swift */; };
 		CE2A80111EB88B28003791F2 /* MastodonAccountsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80101EB88B28003791F2 /* MastodonAccountsService.swift */; };
 		CE2A801C1EB8D0AE003791F2 /* JsonParsableUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A801B1EB8D0AE003791F2 /* JsonParsableUtils.swift */; };
-		CE2A802F1EB8D982003791F2 /* FanfouPhoto+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A801D1EB8D982003791F2 /* FanfouPhoto+JsonMapper.swift */; };
-		CE2A80301EB8D982003791F2 /* GNUSocialAttachment+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A801E1EB8D982003791F2 /* GNUSocialAttachment+JsonMapper.swift */; };
-		CE2A80311EB8D982003791F2 /* GNUSocialAttention+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A801F1EB8D982003791F2 /* GNUSocialAttention+JsonMapper.swift */; };
-		CE2A80321EB8D982003791F2 /* JsonMapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80201EB8D982003791F2 /* JsonMapper.generated.swift */; };
-		CE2A80331EB8D982003791F2 /* MastodonAccount+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80211EB8D982003791F2 /* MastodonAccount+JsonMapper.swift */; };
-		CE2A80341EB8D982003791F2 /* MastodonAccountsServices+RestImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80221EB8D982003791F2 /* MastodonAccountsServices+RestImpl.swift */; };
-		CE2A80351EB8D982003791F2 /* MicroBlogAccountService+RestImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80231EB8D982003791F2 /* MicroBlogAccountService+RestImpl.swift */; };
-		CE2A80361EB8D982003791F2 /* MicroBlogGeoPoint+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80241EB8D982003791F2 /* MicroBlogGeoPoint+JsonMapper.swift */; };
-		CE2A80371EB8D982003791F2 /* MicroBlogPlace+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80251EB8D982003791F2 /* MicroBlogPlace+JsonMapper.swift */; };
-		CE2A80381EB8D982003791F2 /* MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80261EB8D982003791F2 /* MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift */; };
-		CE2A80391EB8D982003791F2 /* MicroBlogStatus.ExtendedTweet+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80271EB8D982003791F2 /* MicroBlogStatus.ExtendedTweet+JsonMapper.swift */; };
-		CE2A803A1EB8D982003791F2 /* MicroBlogStatus+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80281EB8D982003791F2 /* MicroBlogStatus+JsonMapper.swift */; };
-		CE2A803B1EB8D982003791F2 /* MicroBlogUser+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80291EB8D982003791F2 /* MicroBlogUser+JsonMapper.swift */; };
-		CE2A803C1EB8D982003791F2 /* TwitterBaseEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A802A1EB8D982003791F2 /* TwitterBaseEntity+JsonMapper.swift */; };
-		CE2A803D1EB8D982003791F2 /* TwitterCardEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A802B1EB8D982003791F2 /* TwitterCardEntity+JsonMapper.swift */; };
-		CE2A803E1EB8D982003791F2 /* TwitterEntities+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A802C1EB8D982003791F2 /* TwitterEntities+JsonMapper.swift */; };
-		CE2A803F1EB8D982003791F2 /* TwitterHashtagEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A802D1EB8D982003791F2 /* TwitterHashtagEntity+JsonMapper.swift */; };
-		CE2A80401EB8D982003791F2 /* TwitterURLEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A802E1EB8D982003791F2 /* TwitterURLEntity+JsonMapper.swift */; };
-		CE2A80441EB97E24003791F2 /* TwitterUserEntities+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80431EB97E24003791F2 /* TwitterUserEntities+JsonMapper.swift */; };
 		CE2A80461EB98FD9003791F2 /* PersistableStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80451EB98FD9003791F2 /* PersistableStatus.swift */; };
 		CE2A804B1EB995F1003791F2 /* UserKey+PMJackson.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A804A1EB995F1003791F2 /* UserKey+PMJackson.swift */; };
 		CE2A80511EB9A9B7003791F2 /* MediaType+PMJackson.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80501EB9A9B7003791F2 /* MediaType+PMJackson.swift */; };
@@ -51,27 +32,13 @@
 		CE2A80581EB9B03E003791F2 /* SimpleTypesFieldConverters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80571EB9B03E003791F2 /* SimpleTypesFieldConverters.swift */; };
 		CE2A805A1EB9B1AE003791F2 /* PersistableCardEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80591EB9B1AE003791F2 /* PersistableCardEntity.swift */; };
 		CE2A805C1EB9B411003791F2 /* MentionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A805B1EB9B411003791F2 /* MentionItem.swift */; };
-		CE2A80651EB9B5EB003791F2 /* MediaItem.VideoInfo.Variant+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A805D1EB9B5EB003791F2 /* MediaItem.VideoInfo.Variant+JsonMapper.swift */; };
-		CE2A80661EB9B5EB003791F2 /* MediaItem.VideoInfo+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A805E1EB9B5EB003791F2 /* MediaItem.VideoInfo+JsonMapper.swift */; };
-		CE2A80671EB9B5EB003791F2 /* MediaItem+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A805F1EB9B5EB003791F2 /* MediaItem+JsonMapper.swift */; };
-		CE2A80681EB9B5EB003791F2 /* MentionItem+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80601EB9B5EB003791F2 /* MentionItem+JsonMapper.swift */; };
-		CE2A80691EB9B5EB003791F2 /* PersistableCardEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80611EB9B5EB003791F2 /* PersistableCardEntity+JsonMapper.swift */; };
-		CE2A806A1EB9B5EC003791F2 /* PersistableStatus.Extras+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80621EB9B5EB003791F2 /* PersistableStatus.Extras+JsonMapper.swift */; };
-		CE2A806B1EB9B5EC003791F2 /* PersistableStatus+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80631EB9B5EB003791F2 /* PersistableStatus+JsonMapper.swift */; };
-		CE2A806C1EB9B5EC003791F2 /* SpanItem+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80641EB9B5EB003791F2 /* SpanItem+JsonMapper.swift */; };
 		CE2A806E1EB9BFDC003791F2 /* PersistableActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A806D1EB9BFDC003791F2 /* PersistableActivity.swift */; };
 		CE2A80701EB9C014003791F2 /* PersistableUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A806F1EB9C014003791F2 /* PersistableUser.swift */; };
 		CE2A80721EB9C030003791F2 /* PersistableLiteUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80711EB9C030003791F2 /* PersistableLiteUser.swift */; };
-		CE2A80781EB9C0A1003791F2 /* PersistableActivity.RelatedObject+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80731EB9C0A0003791F2 /* PersistableActivity.RelatedObject+JsonMapper.swift */; };
-		CE2A80791EB9C0A1003791F2 /* PersistableActivity.SummaryLine+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80741EB9C0A1003791F2 /* PersistableActivity.SummaryLine+JsonMapper.swift */; };
-		CE2A807A1EB9C0A1003791F2 /* PersistableActivity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80751EB9C0A1003791F2 /* PersistableActivity+JsonMapper.swift */; };
-		CE2A807B1EB9C0A1003791F2 /* PersistableLiteUser+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80761EB9C0A1003791F2 /* PersistableLiteUser+JsonMapper.swift */; };
-		CE2A807C1EB9C0A1003791F2 /* PersistableUser+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80771EB9C0A1003791F2 /* PersistableUser+JsonMapper.swift */; };
 		CE2A807E1EB9C46C003791F2 /* MicroBlogStatusExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A807D1EB9C46C003791F2 /* MicroBlogStatusExtension.swift */; };
 		CE2A80821EB9D672003791F2 /* MicroBlogUserExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80811EB9D672003791F2 /* MicroBlogUserExtension.swift */; };
 		CE2A80861EB9F4D7003791F2 /* PersistableStatusExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80851EB9F4D7003791F2 /* PersistableStatusExtension.swift */; };
 		CE2A80881EBA17B7003791F2 /* TwitterMentionEntityExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80871EBA17B7003791F2 /* TwitterMentionEntityExtension.swift */; };
-		CE2A808A1EBA18A8003791F2 /* TwitterMentionEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A80891EBA18A8003791F2 /* TwitterMentionEntity+JsonMapper.swift */; };
 		CE2A808C1EBA24CA003791F2 /* TwitterCardEntityExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A808B1EBA24CA003791F2 /* TwitterCardEntityExtension.swift */; };
 		CE2A808E1EBA3404003791F2 /* HtmlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A808D1EBA3404003791F2 /* HtmlBuilder.swift */; };
 		CE358B711D811C84002A33B3 /* SpanItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE358B701D811C84002A33B3 /* SpanItem.swift */; };
@@ -117,20 +84,7 @@
 		CE6D6E9A1DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D6E991DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift */; };
 		CE6FA33F1EBAD4ED0068BE01 /* AccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA33E1EBAD4ED0068BE01 /* AccountDetails.swift */; };
 		CE6FA3421EBAE3E00068BE01 /* AccountCredentialsImpls.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3411EBAE3E00068BE01 /* AccountCredentialsImpls.swift */; };
-		CE6FA3441EBAE4340068BE01 /* AccountOAuthCredentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3431EBAE4340068BE01 /* AccountOAuthCredentials+JsonMapper.swift */; };
-		CE6FA3461EBAE55B0068BE01 /* AccountDetails.Credentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3451EBAE55B0068BE01 /* AccountDetails.Credentials+JsonMapper.swift */; };
-		CE6FA3481EBAE6C40068BE01 /* AccountDetails.Extras+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3471EBAE6C40068BE01 /* AccountDetails.Extras+JsonMapper.swift */; };
-		CE6FA34F1EBAF9250068BE01 /* AccountBasicCredentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA34B1EBAF9250068BE01 /* AccountBasicCredentials+JsonMapper.swift */; };
-		CE6FA3501EBAF9250068BE01 /* AccountEmptyCredentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA34C1EBAF9250068BE01 /* AccountEmptyCredentials+JsonMapper.swift */; };
-		CE6FA3511EBAF9250068BE01 /* AccountOAuth2Credentials+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA34D1EBAF9250068BE01 /* AccountOAuth2Credentials+JsonMapper.swift */; };
-		CE6FA3521EBAF9250068BE01 /* RestProtocolImpl.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA34E1EBAF9250068BE01 /* RestProtocolImpl.generated.swift */; };
-		CE6FA3571EBB050D0068BE01 /* MediaUploadResponse.Image+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3531EBB050D0068BE01 /* MediaUploadResponse.Image+JsonMapper.swift */; };
-		CE6FA3581EBB050D0068BE01 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3541EBB050D0068BE01 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift */; };
-		CE6FA3591EBB050D0068BE01 /* MediaUploadResponse.Video+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3551EBB050D0068BE01 /* MediaUploadResponse.Video+JsonMapper.swift */; };
-		CE6FA35A1EBB050D0068BE01 /* MediaUploadResponse+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA3561EBB050D0068BE01 /* MediaUploadResponse+JsonMapper.swift */; };
 		CE6FA35C1EBB05680068BE01 /* TwitterUploadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA35B1EBB05680068BE01 /* TwitterUploadService.swift */; };
-		CE6FA35E1EBB08480068BE01 /* TwitterUploadService+RestImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA35D1EBB08480068BE01 /* TwitterUploadService+RestImpl.swift */; };
-		CE6FA3601EBB16840068BE01 /* OAuthService+RestImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FA35F1EBB16840068BE01 /* OAuthService+RestImpl.swift */; };
 		CE750A471EBB4CC9003E6249 /* TwidereCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750A461EBB4CC9003E6249 /* TwidereCore.framework */; };
 		CE79C83D1DA62E56007C05F2 /* SpanItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */; };
 		CE79C83F1DA77777007C05F2 /* YYText+ALSLayouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C83E1DA77777007C05F2 /* YYText+ALSLayouts.swift */; };
@@ -247,25 +201,6 @@
 		CE2A800B1EB8582D003791F2 /* MicroBlogAccountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogAccountService.swift; sourceTree = "<group>"; };
 		CE2A80101EB88B28003791F2 /* MastodonAccountsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonAccountsService.swift; sourceTree = "<group>"; };
 		CE2A801B1EB8D0AE003791F2 /* JsonParsableUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParsableUtils.swift; sourceTree = "<group>"; };
-		CE2A801D1EB8D982003791F2 /* FanfouPhoto+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FanfouPhoto+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A801E1EB8D982003791F2 /* GNUSocialAttachment+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GNUSocialAttachment+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A801F1EB8D982003791F2 /* GNUSocialAttention+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GNUSocialAttention+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A80201EB8D982003791F2 /* JsonMapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonMapper.generated.swift; sourceTree = "<group>"; };
-		CE2A80211EB8D982003791F2 /* MastodonAccount+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MastodonAccount+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A80221EB8D982003791F2 /* MastodonAccountsServices+RestImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MastodonAccountsServices+RestImpl.swift"; sourceTree = "<group>"; };
-		CE2A80231EB8D982003791F2 /* MicroBlogAccountService+RestImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogAccountService+RestImpl.swift"; sourceTree = "<group>"; };
-		CE2A80241EB8D982003791F2 /* MicroBlogGeoPoint+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogGeoPoint+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A80251EB8D982003791F2 /* MicroBlogPlace+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogPlace+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A80261EB8D982003791F2 /* MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A80271EB8D982003791F2 /* MicroBlogStatus.ExtendedTweet+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogStatus.ExtendedTweet+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A80281EB8D982003791F2 /* MicroBlogStatus+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogStatus+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A80291EB8D982003791F2 /* MicroBlogUser+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicroBlogUser+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A802A1EB8D982003791F2 /* TwitterBaseEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterBaseEntity+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A802B1EB8D982003791F2 /* TwitterCardEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterCardEntity+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A802C1EB8D982003791F2 /* TwitterEntities+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterEntities+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A802D1EB8D982003791F2 /* TwitterHashtagEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterHashtagEntity+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A802E1EB8D982003791F2 /* TwitterURLEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterURLEntity+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A80431EB97E24003791F2 /* TwitterUserEntities+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterUserEntities+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE2A80451EB98FD9003791F2 /* PersistableStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableStatus.swift; sourceTree = "<group>"; };
 		CE2A804A1EB995F1003791F2 /* UserKey+PMJackson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserKey+PMJackson.swift"; sourceTree = "<group>"; };
 		CE2A80501EB9A9B7003791F2 /* MediaType+PMJackson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaType+PMJackson.swift"; sourceTree = "<group>"; };
@@ -274,27 +209,13 @@
 		CE2A80571EB9B03E003791F2 /* SimpleTypesFieldConverters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTypesFieldConverters.swift; sourceTree = "<group>"; };
 		CE2A80591EB9B1AE003791F2 /* PersistableCardEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableCardEntity.swift; sourceTree = "<group>"; };
 		CE2A805B1EB9B411003791F2 /* MentionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MentionItem.swift; path = API/MentionItem.swift; sourceTree = "<group>"; };
-		CE2A805D1EB9B5EB003791F2 /* MediaItem.VideoInfo.Variant+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaItem.VideoInfo.Variant+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A805E1EB9B5EB003791F2 /* MediaItem.VideoInfo+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaItem.VideoInfo+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A805F1EB9B5EB003791F2 /* MediaItem+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaItem+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A80601EB9B5EB003791F2 /* MentionItem+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MentionItem+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A80611EB9B5EB003791F2 /* PersistableCardEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableCardEntity+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A80621EB9B5EB003791F2 /* PersistableStatus.Extras+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableStatus.Extras+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A80631EB9B5EB003791F2 /* PersistableStatus+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableStatus+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A80641EB9B5EB003791F2 /* SpanItem+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SpanItem+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE2A806D1EB9BFDC003791F2 /* PersistableActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableActivity.swift; sourceTree = "<group>"; };
 		CE2A806F1EB9C014003791F2 /* PersistableUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableUser.swift; sourceTree = "<group>"; };
 		CE2A80711EB9C030003791F2 /* PersistableLiteUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableLiteUser.swift; sourceTree = "<group>"; };
-		CE2A80731EB9C0A0003791F2 /* PersistableActivity.RelatedObject+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableActivity.RelatedObject+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A80741EB9C0A1003791F2 /* PersistableActivity.SummaryLine+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableActivity.SummaryLine+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A80751EB9C0A1003791F2 /* PersistableActivity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableActivity+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A80761EB9C0A1003791F2 /* PersistableLiteUser+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableLiteUser+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE2A80771EB9C0A1003791F2 /* PersistableUser+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableUser+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE2A807D1EB9C46C003791F2 /* MicroBlogStatusExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogStatusExtension.swift; sourceTree = "<group>"; };
 		CE2A80811EB9D672003791F2 /* MicroBlogUserExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogUserExtension.swift; sourceTree = "<group>"; };
 		CE2A80851EB9F4D7003791F2 /* PersistableStatusExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableStatusExtension.swift; sourceTree = "<group>"; };
 		CE2A80871EBA17B7003791F2 /* TwitterMentionEntityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterMentionEntityExtension.swift; sourceTree = "<group>"; };
-		CE2A80891EBA18A8003791F2 /* TwitterMentionEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterMentionEntity+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE2A808B1EBA24CA003791F2 /* TwitterCardEntityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterCardEntityExtension.swift; sourceTree = "<group>"; };
 		CE2A808D1EBA3404003791F2 /* HtmlBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HtmlBuilder.swift; sourceTree = "<group>"; };
 		CE358B701D811C84002A33B3 /* SpanItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItem.swift; sourceTree = "<group>"; };
@@ -340,20 +261,7 @@
 		CE6D6E991DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNavigationBarProtocol.swift; sourceTree = "<group>"; };
 		CE6FA33E1EBAD4ED0068BE01 /* AccountDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetails.swift; sourceTree = "<group>"; };
 		CE6FA3411EBAE3E00068BE01 /* AccountCredentialsImpls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCredentialsImpls.swift; sourceTree = "<group>"; };
-		CE6FA3431EBAE4340068BE01 /* AccountOAuthCredentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountOAuthCredentials+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE6FA3451EBAE55B0068BE01 /* AccountDetails.Credentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountDetails.Credentials+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE6FA3471EBAE6C40068BE01 /* AccountDetails.Extras+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountDetails.Extras+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE6FA34B1EBAF9250068BE01 /* AccountBasicCredentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountBasicCredentials+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE6FA34C1EBAF9250068BE01 /* AccountEmptyCredentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountEmptyCredentials+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE6FA34D1EBAF9250068BE01 /* AccountOAuth2Credentials+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountOAuth2Credentials+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE6FA34E1EBAF9250068BE01 /* RestProtocolImpl.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestProtocolImpl.generated.swift; sourceTree = "<group>"; };
-		CE6FA3531EBB050D0068BE01 /* MediaUploadResponse.Image+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaUploadResponse.Image+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE6FA3541EBB050D0068BE01 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaUploadResponse.ProcessingInfo+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE6FA3551EBB050D0068BE01 /* MediaUploadResponse.Video+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaUploadResponse.Video+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE6FA3561EBB050D0068BE01 /* MediaUploadResponse+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaUploadResponse+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE6FA35B1EBB05680068BE01 /* TwitterUploadService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUploadService.swift; sourceTree = "<group>"; };
-		CE6FA35D1EBB08480068BE01 /* TwitterUploadService+RestImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterUploadService+RestImpl.swift"; sourceTree = "<group>"; };
-		CE6FA35F1EBB16840068BE01 /* OAuthService+RestImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuthService+RestImpl.swift"; sourceTree = "<group>"; };
 		CE750A461EBB4CC9003E6249 /* TwidereCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwidereCore.framework; path = "../../../../../Users/mariotaku/Library/Developer/Xcode/DerivedData/Twidere-dhschizzfhkqdkgwpcupdypbyxay/Build/Products/Debug-iphoneos/TwidereCore.framework"; sourceTree = "<group>"; };
 		CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItemExtension.swift; sourceTree = "<group>"; };
 		CE79C83E1DA77777007C05F2 /* YYText+ALSLayouts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "YYText+ALSLayouts.swift"; sourceTree = "<group>"; };
@@ -540,52 +448,6 @@
 		CE2660201DAFDD79007FF7CF /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				CE6FA34B1EBAF9250068BE01 /* AccountBasicCredentials+JsonMapper.swift */,
-				CE6FA3451EBAE55B0068BE01 /* AccountDetails.Credentials+JsonMapper.swift */,
-				CE6FA3471EBAE6C40068BE01 /* AccountDetails.Extras+JsonMapper.swift */,
-				CE6FA34C1EBAF9250068BE01 /* AccountEmptyCredentials+JsonMapper.swift */,
-				CE6FA34D1EBAF9250068BE01 /* AccountOAuth2Credentials+JsonMapper.swift */,
-				CE6FA3431EBAE4340068BE01 /* AccountOAuthCredentials+JsonMapper.swift */,
-				CE2A801D1EB8D982003791F2 /* FanfouPhoto+JsonMapper.swift */,
-				CE2A801E1EB8D982003791F2 /* GNUSocialAttachment+JsonMapper.swift */,
-				CE2A801F1EB8D982003791F2 /* GNUSocialAttention+JsonMapper.swift */,
-				CE2A80201EB8D982003791F2 /* JsonMapper.generated.swift */,
-				CE2A80211EB8D982003791F2 /* MastodonAccount+JsonMapper.swift */,
-				CE2A80221EB8D982003791F2 /* MastodonAccountsServices+RestImpl.swift */,
-				CE2A805F1EB9B5EB003791F2 /* MediaItem+JsonMapper.swift */,
-				CE2A805E1EB9B5EB003791F2 /* MediaItem.VideoInfo+JsonMapper.swift */,
-				CE2A805D1EB9B5EB003791F2 /* MediaItem.VideoInfo.Variant+JsonMapper.swift */,
-				CE6FA3561EBB050D0068BE01 /* MediaUploadResponse+JsonMapper.swift */,
-				CE6FA3531EBB050D0068BE01 /* MediaUploadResponse.Image+JsonMapper.swift */,
-				CE6FA3541EBB050D0068BE01 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift */,
-				CE6FA3551EBB050D0068BE01 /* MediaUploadResponse.Video+JsonMapper.swift */,
-				CE2A80601EB9B5EB003791F2 /* MentionItem+JsonMapper.swift */,
-				CE2A80231EB8D982003791F2 /* MicroBlogAccountService+RestImpl.swift */,
-				CE2A80241EB8D982003791F2 /* MicroBlogGeoPoint+JsonMapper.swift */,
-				CE2A80251EB8D982003791F2 /* MicroBlogPlace+JsonMapper.swift */,
-				CE2A80281EB8D982003791F2 /* MicroBlogStatus+JsonMapper.swift */,
-				CE2A80261EB8D982003791F2 /* MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift */,
-				CE2A80271EB8D982003791F2 /* MicroBlogStatus.ExtendedTweet+JsonMapper.swift */,
-				CE2A80291EB8D982003791F2 /* MicroBlogUser+JsonMapper.swift */,
-				CE6FA35F1EBB16840068BE01 /* OAuthService+RestImpl.swift */,
-				CE2A80751EB9C0A1003791F2 /* PersistableActivity+JsonMapper.swift */,
-				CE2A80731EB9C0A0003791F2 /* PersistableActivity.RelatedObject+JsonMapper.swift */,
-				CE2A80741EB9C0A1003791F2 /* PersistableActivity.SummaryLine+JsonMapper.swift */,
-				CE2A80611EB9B5EB003791F2 /* PersistableCardEntity+JsonMapper.swift */,
-				CE2A80761EB9C0A1003791F2 /* PersistableLiteUser+JsonMapper.swift */,
-				CE2A80631EB9B5EB003791F2 /* PersistableStatus+JsonMapper.swift */,
-				CE2A80621EB9B5EB003791F2 /* PersistableStatus.Extras+JsonMapper.swift */,
-				CE2A80771EB9C0A1003791F2 /* PersistableUser+JsonMapper.swift */,
-				CE6FA34E1EBAF9250068BE01 /* RestProtocolImpl.generated.swift */,
-				CE2A80641EB9B5EB003791F2 /* SpanItem+JsonMapper.swift */,
-				CE2A802A1EB8D982003791F2 /* TwitterBaseEntity+JsonMapper.swift */,
-				CE2A802B1EB8D982003791F2 /* TwitterCardEntity+JsonMapper.swift */,
-				CE2A802C1EB8D982003791F2 /* TwitterEntities+JsonMapper.swift */,
-				CE2A802D1EB8D982003791F2 /* TwitterHashtagEntity+JsonMapper.swift */,
-				CE2A80891EBA18A8003791F2 /* TwitterMentionEntity+JsonMapper.swift */,
-				CE2A802E1EB8D982003791F2 /* TwitterURLEntity+JsonMapper.swift */,
-				CE6FA35D1EBB08480068BE01 /* TwitterUploadService+RestImpl.swift */,
-				CE2A80431EB97E24003791F2 /* TwitterUserEntities+JsonMapper.swift */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -1563,23 +1425,15 @@
 				CE0529E91CF7F35300E06364 /* MainViewController.swift in Sources */,
 				CE2A80581EB9B03E003791F2 /* SimpleTypesFieldConverters.swift in Sources */,
 				CEA2E2D11D3A7EA20095BC57 /* HomeRootController.swift in Sources */,
-				CE2A803A1EB8D982003791F2 /* MicroBlogStatus+JsonMapper.swift in Sources */,
 				CE79C83D1DA62E56007C05F2 /* SpanItemExtension.swift in Sources */,
 				CE9574961D33B71B00504D52 /* DefaultsKeys.swift in Sources */,
 				CEDC3B2A1D7DB04F0082A8BA /* Paging.swift in Sources */,
-				CE2A803D1EB8D982003791F2 /* TwitterCardEntity+JsonMapper.swift in Sources */,
 				CED73F6C1D9519B80066F554 /* UIImageExtensions.swift in Sources */,
-				CE6FA3501EBAF9250068BE01 /* AccountEmptyCredentials+JsonMapper.swift in Sources */,
-				CE2A80321EB8D982003791F2 /* JsonMapper.generated.swift in Sources */,
-				CE6FA3581EBB050D0068BE01 /* MediaUploadResponse.ProcessingInfo+JsonMapper.swift in Sources */,
 				CE95748F1D33871E00504D52 /* PasswordSignInController.swift in Sources */,
-				CE6FA3461EBAE55B0068BE01 /* AccountDetails.Credentials+JsonMapper.swift in Sources */,
 				CEDEE3F51D9270BA00001BE8 /* UIRefreshControlExtension.swift in Sources */,
 				CEB60E901DE7CAB300C08E39 /* StatusCellProtocol.swift in Sources */,
 				CE2A808C1EBA24CA003791F2 /* TwitterCardEntityExtension.swift in Sources */,
 				CE5993191D83CAAA00653220 /* DetailStatusCell.swift in Sources */,
-				CE6FA3601EBB16840068BE01 /* OAuthService+RestImpl.swift in Sources */,
-				CE2A80401EB8D982003791F2 /* TwitterURLEntity+JsonMapper.swift in Sources */,
 				CEF2CF451D83F11200131EAE /* UserProfileController.swift in Sources */,
 				CEBECFCA1DAB8AD900350383 /* CollectionUtils.swift in Sources */,
 				CE9574981D33D87200504D52 /* NetworkPreferencesController.swift in Sources */,
@@ -1588,38 +1442,27 @@
 				CE6C6C371DB35C1D00DF4892 /* UserKey+Freddy.swift in Sources */,
 				CE2A80701EB9C014003791F2 /* PersistableUser.swift in Sources */,
 				CE2A800C1EB8582D003791F2 /* MicroBlogAccountService.swift in Sources */,
-				CE2A80331EB8D982003791F2 /* MastodonAccount+JsonMapper.swift in Sources */,
 				CE2A80821EB9D672003791F2 /* MicroBlogUserExtension.swift in Sources */,
 				CE2A800A1EB8518C003791F2 /* RestCall.swift in Sources */,
 				CE7A57441D917E1C0027BECE /* UserTimelineStatusesListControllerDataSource.swift in Sources */,
 				CE65B1E81D9F546700A38A61 /* ItemIndices.swift in Sources */,
 				CE5993101D83901B00653220 /* MediaItem.swift in Sources */,
 				CE497FB31D698B1B000F16D2 /* UsersListController.swift in Sources */,
-				CE2A80691EB9B5EB003791F2 /* PersistableCardEntity+JsonMapper.swift in Sources */,
 				CE497FA41D69625A000F16D2 /* StatusesListController.swift in Sources */,
-				CE2A803F1EB8D982003791F2 /* TwitterHashtagEntity+JsonMapper.swift in Sources */,
-				CE6FA3591EBB050D0068BE01 /* MediaUploadResponse.Video+JsonMapper.swift in Sources */,
 				CE79C83F1DA77777007C05F2 /* YYText+ALSLayouts.swift in Sources */,
 				CEBECFB71DA9EBD300350383 /* CALayerExtension.swift in Sources */,
 				CE7A57421D917BDB0027BECE /* SingleAccountStatusesListControllerDataSource.swift in Sources */,
-				CE2A80681EB9B5EB003791F2 /* MentionItem+JsonMapper.swift in Sources */,
 				CEA2E2D31D3B42180095BC57 /* AccountsManagerController.swift in Sources */,
 				CE497FBE1D6B01D1000F16D2 /* DateExtension.swift in Sources */,
 				CE65B1B41D9BA35A00A38A61 /* ActivityIndicator.swift in Sources */,
 				CE7A57401D917B580027BECE /* HomeTimelineStatusesListControllerDataSource.swift in Sources */,
-				CE2A80791EB9C0A1003791F2 /* PersistableActivity.SummaryLine+JsonMapper.swift in Sources */,
 				CE497FC81D6B2017000F16D2 /* GapCell.swift in Sources */,
-				CE2A807C1EB9C0A1003791F2 /* PersistableUser+JsonMapper.swift in Sources */,
 				CE65B1CA1D9CC11600A38A61 /* UserList.swift in Sources */,
-				CE6FA3571EBB050D0068BE01 /* MediaUploadResponse.Image+JsonMapper.swift in Sources */,
 				CED41F411D30E6B80089E0B6 /* Endpoint.swift in Sources */,
 				CE7A57491D918A5C0027BECE /* ReselectUISegmentedControl.swift in Sources */,
 				CEBECFC01DAA2BE300350383 /* TintedImageButton.swift in Sources */,
-				CE2A80301EB8D982003791F2 /* GNUSocialAttachment+JsonMapper.swift in Sources */,
 				CE6FA33F1EBAD4ED0068BE01 /* AccountDetails.swift in Sources */,
 				CE9574801D3216BC00504D52 /* ServiceConstants.swift in Sources */,
-				CE2A808A1EBA18A8003791F2 /* TwitterMentionEntity+JsonMapper.swift in Sources */,
-				CE2A80671EB9B5EB003791F2 /* MediaItem+JsonMapper.swift in Sources */,
 				CEDC3B211D7D87F80082A8BA /* SQLite+UserVersion.swift in Sources */,
 				CE65B1B61D9C20AE00A38A61 /* PullToRefreshProtocol.swift in Sources */,
 				CE95749A1D33DC7B00504D52 /* BasePreferencesController.swift in Sources */,
@@ -1628,102 +1471,75 @@
 				CE2A80881EBA17B7003791F2 /* TwitterMentionEntityExtension.swift in Sources */,
 				CE2A80721EB9C030003791F2 /* PersistableLiteUser.swift in Sources */,
 				CE4B1AA51D719E160017CB85 /* StringExtensions.swift in Sources */,
-				CE2A807B1EB9C0A1003791F2 /* PersistableLiteUser+JsonMapper.swift in Sources */,
 				CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */,
 				CEBECFC21DAA2F4500350383 /* UIViewControllerPreviewingExtension.swift in Sources */,
 				CED41F481D3147460089E0B6 /* APIEditorController.swift in Sources */,
 				CE9574871D3222F500504D52 /* TwitterOAuthPasswordAuthenticator.swift in Sources */,
-				CE2A80651EB9B5EB003791F2 /* MediaItem.VideoInfo.Variant+JsonMapper.swift in Sources */,
 				CE2A805C1EB9B411003791F2 /* MentionItem.swift in Sources */,
-				CE2A80351EB8D982003791F2 /* MicroBlogAccountService+RestImpl.swift in Sources */,
 				CEA2E2C11D379CD90095BC57 /* CoreLocationExtensions.swift in Sources */,
 				CE497FCD1D6BE643000F16D2 /* QuotedStatusView.swift in Sources */,
 				CEF2CF4A1D84F98200131EAE /* ProfileBannerContainer.swift in Sources */,
-				CE6FA35A1EBB050D0068BE01 /* MediaUploadResponse+JsonMapper.swift in Sources */,
 				CED41F341D2FF88D0089E0B6 /* SignInController.swift in Sources */,
 				CE95749C1D33DEC300504D52 /* PreferencesController.swift in Sources */,
 				CE2A7FE41EB767B0003791F2 /* Date+MicroBlog.swift in Sources */,
 				CE3E5DF61D978A6100454A61 /* NSShadowExtension.swift in Sources */,
 				CE2660191DAFD1BF007FF7CF /* StringLiteral.swift in Sources */,
 				CEDC3B281D7DAE2C0082A8BA /* RefreshTaskParam.swift in Sources */,
-				CE2A80381EB8D982003791F2 /* MicroBlogStatus.CurrentUserRetweet+JsonMapper.swift in Sources */,
 				CE5993091D82E4DE00653220 /* AccountCell.swift in Sources */,
 				CE95748B1D322CC700504D52 /* ModelConverter.swift in Sources */,
 				CEBED5FB1D4C86C700619D1C /* BackgroundOperationService.swift in Sources */,
 				CEA2E2B11D3681FD0095BC57 /* ComposeController.swift in Sources */,
 				CE2A808E1EBA3404003791F2 /* HtmlBuilder.swift in Sources */,
 				CE9574851D32221A00504D52 /* RestClient.swift in Sources */,
-				CE2A803B1EB8D982003791F2 /* MicroBlogUser+JsonMapper.swift in Sources */,
 				CE412B221DB9F38D00C52099 /* SwiftyJSONExtension.swift in Sources */,
 				CE2A80561EB9ACF3003791F2 /* MediaItemFieldConverters.swift in Sources */,
 				CED73F6E1D953C6E0066F554 /* UIBarButtonItemExtension.swift in Sources */,
 				CE2A801C1EB8D0AE003791F2 /* JsonParsableUtils.swift in Sources */,
 				CE7A57471D9185DC0027BECE /* UserFavoritesStatusesListControllerDelaSourceegate.swift in Sources */,
-				CE2A80371EB8D982003791F2 /* MicroBlogPlace+JsonMapper.swift in Sources */,
 				CEBECFB31DA8C0C200350383 /* SafariBrowserController.swift in Sources */,
 				CED41F2F1D2FF7C80089E0B6 /* HomeController.swift in Sources */,
 				CED41F431D30E6E40089E0B6 /* Authorization.swift in Sources */,
-				CE2A80441EB97E24003791F2 /* TwitterUserEntities+JsonMapper.swift in Sources */,
 				CEA2E2CD1D3A732C0095BC57 /* AccountUtils.swift in Sources */,
 				CEEF42BB1DB9D650009ECD0F /* Promise+TaskMessage.swift in Sources */,
 				CE497FBA1D6A8A65000F16D2 /* UserKey+Value.swift in Sources */,
 				CE9574B91D349C3F00504D52 /* BrowserSignInController.swift in Sources */,
 				CEA2E2BE1D3761780095BC57 /* StatusUpdate.swift in Sources */,
-				CE2A803C1EB8D982003791F2 /* TwitterBaseEntity+JsonMapper.swift in Sources */,
 				CE2A804B1EB995F1003791F2 /* UserKey+PMJackson.swift in Sources */,
 				CED41F3E1D30D30B0089E0B6 /* MicroBlogService.swift in Sources */,
-				CE6FA35E1EBB08480068BE01 /* TwitterUploadService+RestImpl.swift in Sources */,
-				CE2A802F1EB8D982003791F2 /* FanfouPhoto+JsonMapper.swift in Sources */,
-				CE2A80311EB8D982003791F2 /* GNUSocialAttention+JsonMapper.swift in Sources */,
 				CEF2CF481D840D7B00131EAE /* MediaPreviewContainer.swift in Sources */,
-				CE2A806A1EB9B5EC003791F2 /* PersistableStatus.Extras+JsonMapper.swift in Sources */,
 				CE2A80511EB9A9B7003791F2 /* MediaType+PMJackson.swift in Sources */,
 				CE2A805A1EB9B1AE003791F2 /* PersistableCardEntity.swift in Sources */,
-				CE2A806C1EB9B5EC003791F2 /* SpanItem+JsonMapper.swift in Sources */,
 				CE2A80541EB9ABB0003791F2 /* DateFieldConverters.swift in Sources */,
 				CE9574891D32232600504D52 /* OAuthService.swift in Sources */,
-				CE6FA3481EBAE6C40068BE01 /* AccountDetails.Extras+JsonMapper.swift in Sources */,
 				CE497FAC1D6988BA000F16D2 /* UserCell.swift in Sources */,
 				CE59930E1D82F17F00653220 /* FiltersTabsController.swift in Sources */,
 				CE90A55B1D7EDC9D007050E5 /* SimpleRefreshTaskParam.swift in Sources */,
 				CE2A80461EB98FD9003791F2 /* PersistableStatus.swift in Sources */,
 				CE65B1CF1D9CDFEA00A38A61 /* ActivitiesListController.swift in Sources */,
 				CE2A80861EB9F4D7003791F2 /* PersistableStatusExtension.swift in Sources */,
-				CE2A80391EB8D982003791F2 /* MicroBlogStatus.ExtendedTweet+JsonMapper.swift in Sources */,
 				CE5993161D83C95800653220 /* StatusViewerController.swift in Sources */,
 				CE2A807E1EB9C46C003791F2 /* MicroBlogStatusExtension.swift in Sources */,
 				CEDC3B321D7E5FB30082A8BA /* DatabaseConstants.swift in Sources */,
 				CE2A806E1EB9BFDC003791F2 /* PersistableActivity.swift in Sources */,
 				CE03118A1D87D946009475E8 /* MediaUploadResponse.swift in Sources */,
 				CEA2E2CF1D3A779B0095BC57 /* UIImageViewExtension.swift in Sources */,
-				CE2A80341EB8D982003791F2 /* MastodonAccountsServices+RestImpl.swift in Sources */,
-				CE2A803E1EB8D982003791F2 /* TwitterEntities+JsonMapper.swift in Sources */,
 				CEDC3B1F1D7D82370082A8BA /* CoreConstants.swift in Sources */,
-				CE6FA3441EBAE4340068BE01 /* AccountOAuthCredentials+JsonMapper.swift in Sources */,
 				CE6D6E9A1DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift in Sources */,
-				CE2A806B1EB9B5EC003791F2 /* PersistableStatus+JsonMapper.swift in Sources */,
-				CE6FA34F1EBAF9250068BE01 /* AccountBasicCredentials+JsonMapper.swift in Sources */,
 				CE6FA35C1EBB05680068BE01 /* TwitterUploadService.swift in Sources */,
 				CEA2E2A71D34C1610095BC57 /* DefaultAPISettingsController.swift in Sources */,
-				CE6FA3521EBAF9250068BE01 /* RestProtocolImpl.generated.swift in Sources */,
 				CEEF42B91DB669C2009ECD0F /* YYTextExtension.swift in Sources */,
 				CEDC3B231D7D8BE90082A8BA /* DatabaseMigration.swift in Sources */,
-				CE2A807A1EB9C0A1003791F2 /* PersistableActivity+JsonMapper.swift in Sources */,
-				CE2A80361EB8D982003791F2 /* MicroBlogGeoPoint+JsonMapper.swift in Sources */,
 				CE95747D1D3210A300504D52 /* CustomAPIConfig.swift in Sources */,
 				CE2A80111EB88B28003791F2 /* MastodonAccountsService.swift in Sources */,
 				CE9DB0491DACA34B000C150F /* Number+LocalizedString.swift in Sources */,
 				CEBECFB51DA9E18100350383 /* TimelineContentTextView.swift in Sources */,
 				CE65B1DD1D9E0D4900A38A61 /* ShortTimeView.swift in Sources */,
 				CE9574821D32186A00504D52 /* UIConstants.swift in Sources */,
-				CE2A80661EB9B5EB003791F2 /* MediaItem.VideoInfo+JsonMapper.swift in Sources */,
 				CE26603F1DB0638D007FF7CF /* SQLite+Array.swift in Sources */,
-				CE2A80781EB9C0A1003791F2 /* PersistableActivity.RelatedObject+JsonMapper.swift in Sources */,
 				CE358B711D811C84002A33B3 /* SpanItem.swift in Sources */,
 				CEB187371D980AF6004ADB3A /* LoadMoreCell.swift in Sources */,
 				CE497F991D6959B0000F16D2 /* StatusCell.swift in Sources */,
 				CE79C8411DA7ACE3007C05F2 /* UIViewExtension.swift in Sources */,
-				CE6FA3511EBAF9250068BE01 /* AccountOAuth2Credentials+JsonMapper.swift in Sources */,
 				CE497FA91D697CEA000F16D2 /* ConvertUtils.swift in Sources */,
 				CE7A573C1D910EB00027BECE /* SegmentedContainerView.swift in Sources */,
 			);

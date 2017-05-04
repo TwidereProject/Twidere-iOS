@@ -3,16 +3,16 @@
 
 import PMJackson
 
-extension MastodonAccount: JsonMappable {
+extension Place: JsonMappable {
 
 }
 
-internal class MastodonAccountJsonMapper: JsonMapper<MastodonAccount> {
+internal class PlaceJsonMapper: JsonMapper<Place> {
 
-    internal static let singleton = MastodonAccountJsonMapper()
+    internal static let singleton = PlaceJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> MastodonAccount! {
-        let instance = MastodonAccount()
+    override func parse(_ parser: PMJacksonParser) -> Place! {
+        let instance = Place()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -31,8 +31,10 @@ internal class MastodonAccountJsonMapper: JsonMapper<MastodonAccount> {
         return instance
     }
 
-    override func parseField(_ instance: MastodonAccount, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: Place, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
+        case "full_name":
+            instance.fullName = parser.getValueAsString()
         default:
             break
         }

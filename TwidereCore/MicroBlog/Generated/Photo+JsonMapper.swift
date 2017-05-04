@@ -3,16 +3,16 @@
 
 import PMJackson
 
-extension TwitterCardEntity: JsonMappable {
+extension Photo: JsonMappable {
 
 }
 
-internal class TwitterCardEntityJsonMapper: JsonMapper<TwitterCardEntity> {
+internal class PhotoJsonMapper: JsonMapper<Photo> {
 
-    internal static let singleton = TwitterCardEntityJsonMapper()
+    internal static let singleton = PhotoJsonMapper()
 
-    override func parse(_ parser: PMJacksonParser) -> TwitterCardEntity! {
-        let instance = TwitterCardEntity()
+    override func parse(_ parser: PMJacksonParser) -> Photo! {
+        let instance = Photo()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
         }
@@ -31,8 +31,16 @@ internal class TwitterCardEntityJsonMapper: JsonMapper<TwitterCardEntity> {
         return instance
     }
 
-    override func parseField(_ instance: TwitterCardEntity, _ fieldName: String, _ parser: PMJacksonParser) {
+    override func parseField(_ instance: Photo, _ fieldName: String, _ parser: PMJacksonParser) {
         switch fieldName {
+        case "url":
+            instance.url = parser.getValueAsString()
+        case "imageurl":
+            instance.imageUrl = parser.getValueAsString()
+        case "thumburl":
+            instance.thumbUrl = parser.getValueAsString()
+        case "largeurl":
+            instance.largeUrl = parser.getValueAsString()
         default:
             break
         }
