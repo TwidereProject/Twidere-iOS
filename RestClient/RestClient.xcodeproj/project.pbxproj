@@ -60,10 +60,10 @@
 		CE750B191EBB6A9C003E6249 = {
 			isa = PBXGroup;
 			children = (
-				CE750B251EBB6A9C003E6249 /* Sources */,
-				CE750B241EBB6A9C003E6249 /* Products */,
-				2D441E921B63B2E940EA7D8A /* Pods */,
 				690C036ACE3CDA3EF3A5DAB3 /* Frameworks */,
+				2D441E921B63B2E940EA7D8A /* Pods */,
+				CE750B241EBB6A9C003E6249 /* Products */,
+				CE750B251EBB6A9C003E6249 /* Sources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,13 +80,13 @@
 			children = (
 				CE750B301EBB6B0B003E6249 /* Authorization.swift */,
 				CE750B311EBB6B0B003E6249 /* Endpoint.swift */,
-				CE750B321EBB6B0B003E6249 /* RestCall.swift */,
-				CE750B331EBB6B0B003E6249 /* RestClient.swift */,
-				CE750B261EBB6A9C003E6249 /* RestClient.h */,
 				CE750B271EBB6A9C003E6249 /* Info.plist */,
+				CE750B321EBB6B0B003E6249 /* RestCall.swift */,
+				CE750B261EBB6A9C003E6249 /* RestClient.h */,
+				CE750B331EBB6B0B003E6249 /* RestClient.swift */,
 			);
 			name = Sources;
-			path = RestClient;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,7 +323,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = RestClient/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.library.RestClient;
@@ -343,7 +343,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = RestClient/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.library.RestClient;
