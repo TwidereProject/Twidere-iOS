@@ -32,8 +32,8 @@
 		CE750A951EBB600B003E6249 = {
 			isa = PBXGroup;
 			children = (
-				CE750AA11EBB600B003E6249 /* Sources */,
 				CE750AA01EBB600B003E6249 /* Products */,
+				CE750AA11EBB600B003E6249 /* Sources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -49,11 +49,11 @@
 			isa = PBXGroup;
 			children = (
 				CE750AB01EBB6026003E6249 /* Models */,
-				CE750AA21EBB600B003E6249 /* Mastodon.h */,
 				CE750AA31EBB600B003E6249 /* Info.plist */,
+				CE750AA21EBB600B003E6249 /* Mastodon.h */,
 			);
 			name = Sources;
-			path = Mastodon;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		CE750AB01EBB6026003E6249 /* Models */ = {
@@ -62,6 +62,7 @@
 				CE750AB11EBB603D003E6249 /* Account.swift */,
 			);
 			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,7 +260,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Mastodon/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.library.Mastodon;
@@ -278,7 +279,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Mastodon/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mariotaku.library.Mastodon;
