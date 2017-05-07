@@ -7,8 +7,8 @@
 //
 
 import Foundation
-
-typealias GeoLocation = (latitude: Double, longitude: Double)
+import TwidereCore
+import MicroBlog
 
 class StatusUpdate {
     var accounts: [AccountDetails]

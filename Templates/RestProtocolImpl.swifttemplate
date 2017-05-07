@@ -3,16 +3,16 @@
 import PromiseKit
 import RestClient
 
-<%= "\(type.accessLevel) " %>class <%= type.name %>RestImpl: <%= type.name %>, RestAPIProtocol {
+<%= type.accessLevel %> class <%= type.name %>RestImpl: <%= type.name %>, RestAPIProtocol {
 
     let client: RestClient
 
-    required init(client: RestClient) {
+    required <%= type.accessLevel %> init(client: RestClient) {
         self.client = client
     }
 <%_ for method in type.allMethods { -%>
 
-    func <%= method.name %> -> <%= method.returnTypeName %> {
+    <%= type.accessLevel %> func <%= method.name %> -> <%= method.returnTypeName %> {
         <%_ var returnTypeString = "\(method.returnTypeName)"
             if (!returnTypeString.hasPrefix("Promise<") || !returnTypeString.hasSuffix(">")) {
                 fatalError("invalid return type in \(type.name).\(method.name), must be a Promise object")

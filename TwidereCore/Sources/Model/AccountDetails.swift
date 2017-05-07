@@ -11,19 +11,19 @@ import PMJSON
 
 public class AccountDetails {
     
-    var key: UserKey!
+    public var key: UserKey!
     
-    var type: AccountType = .twitter
+    public var type: AccountType = .twitter
     
-    var credentialsType: CredentialsType = .oauth
+    public var credentialsType: CredentialsType = .oauth
     
-    var user: PersistableUser!
+    public var user: PersistableUser!
     
-    var color: Int = 0
+    public var color: Int = 0
     
-    var position: Int = 0
+    public var position: Int = 0
     
-    var activated: Bool = false
+    public var activated: Bool = false
     
     var _credentialsJson: String!
     var _credentials: Credentials!
@@ -31,23 +31,29 @@ public class AccountDetails {
     var _extrasJson: String!
     var _extras: Extras!
     
-    var credentials: Credentials! {
-        if (_credentials != nil) {
+    public var credentials: Credentials! {
+        get {
+            if (_credentials != nil) {
+                return _credentials
+            }
+            guard let json = _credentialsJson else {
+                return nil
+            }
+            switch (credentialsType) {
+            case .oauth, .xauth:
+                _credentials = OAuthCredentialsJsonMapper.singleton.parse(json: json)
+            case .oauth2:
+                _credentials = OAuth2CredentialsJsonMapper.singleton.parse(json: json)
+            case .basic:
+                _credentials = BasicCredentialsJsonMapper.singleton.parse(json: json)
+            case .empty:
+                _credentials = EmptyCredentialsJsonMapper.singleton.parse(json: json)
+            }
             return _credentials
         }
-        guard let json = _credentialsJson else {
-            return nil
+        set {
+            _credentials = newValue
         }
-        var options = JSONParserOptions()
-        options.streaming = true
-        let parser = JsonParser(JSON.parser(for: json.data(using: .utf8)!, options: options))
-        switch (credentialsType) {
-        case .oauth:
-            _credentials = OAuthCredentialsJsonMapper.singleton.parse(parser)
-        default:
-            break
-        }
-        return _credentials
     }
     
     
@@ -62,9 +68,9 @@ public class AccountDetails {
     //sourcery: jsonParse
     public class Credentials {
         //sourcery: jsonField=api_url_format
-        var api_url_format: String!
+        public var api_url_format: String!
         //sourcery: jsonField=no_version_suffix
-        var no_version_suffix: Bool = false
+        public var no_version_suffix: Bool = false
         
         required public init() {
             

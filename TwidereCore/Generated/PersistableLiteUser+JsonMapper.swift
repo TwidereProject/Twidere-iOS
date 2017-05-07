@@ -7,11 +7,11 @@ extension PersistableLiteUser: JsonMappable {
 
 }
 
-internal class PersistableLiteUserJsonMapper: JsonMapper<PersistableLiteUser> {
+public class PersistableLiteUserJsonMapper: JsonMapper<PersistableLiteUser> {
 
-    internal static let singleton = PersistableLiteUserJsonMapper()
+    public static let singleton = PersistableLiteUserJsonMapper()
 
-    override internal func parse(_ parser: JsonParser) -> PersistableLiteUser! {
+    override public func parse(_ parser: JsonParser) -> PersistableLiteUser! {
         let instance = PersistableLiteUser()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class PersistableLiteUserJsonMapper: JsonMapper<PersistableLiteUser> {
         return instance
     }
 
-    override internal func parseField(_ instance: PersistableLiteUser, _ fieldName: String, _ parser: JsonParser) {
+    override public func parseField(_ instance: PersistableLiteUser, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         default:
             break

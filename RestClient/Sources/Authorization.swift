@@ -20,6 +20,10 @@ public class EmptyAuthorization: Authorization {
     
     public let hasAuthorization: Bool = false
     
+    public init() {
+        
+    }
+    
     public func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String?]?, forms: [String : Any]?, encoding: URLEncoding) -> String! {
         return nil
     }
@@ -33,7 +37,7 @@ public class BasicAuthorization: Authorization {
     let username: String
     let password: String
     
-    init(username: String, password: String) {
+    public init(username: String, password: String) {
         self.username = username
         self.password = password
     }
@@ -65,7 +69,7 @@ public class OAuthAuthorization: Authorization {
     let consumerSecret: String
     let oauthToken: OAuthToken?
     
-    init(_ consumerKey: String, _ consumerSecret: String, oauthToken: OAuthToken? = nil) {
+    public init(_ consumerKey: String, _ consumerSecret: String, oauthToken: OAuthToken? = nil) {
         self.consumerKey = consumerKey
         self.consumerSecret = consumerSecret
         self.oauthToken = oauthToken
@@ -173,13 +177,13 @@ public class OAuthAuthorization: Authorization {
 
 public class OAuth2Authorization: Authorization {
     
-    var accessToken: String
-    
-    init(accessToken: String) {
-        self.accessToken = accessToken
-    }
+    public var accessToken: String
     
     public let hasAuthorization: Bool = true
+    
+    public init(accessToken: String) {
+        self.accessToken = accessToken
+    }
     
     public func getHeader(_ method: String, endpoint: Endpoint, path: String, queries: [String : String?]?, forms: [String : Any]?, encoding: URLEncoding) -> String! {
         return "Baerer \(accessToken)"

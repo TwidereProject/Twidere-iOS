@@ -3,26 +3,26 @@
 public class MediaItem {
     
     // sourcery:jsonField=url
-    var url: String!
+    public var url: String!
     // sourcery:jsonField=media_url
-    var mediaUrl: String?
+    public var mediaUrl: String?
     // sourcery:jsonField=preview_url
-    var previewUrl: String? = nil
+    public var previewUrl: String? = nil
     // sourcery:jsonField=type
     // sourcery:jsonFieldConverter=MediaItemTypeFieldConverter
-    var type: MediaType = .unknown
+    public var type: MediaType = .unknown
     // sourcery:jsonField=width
-    var width: Int = 0
+    public var width: Int = 0
     // sourcery:jsonField=height
-    var height: Int = 0
+    public var height: Int = 0
     // sourcery:jsonField=video_info
-    var videoInfo: VideoInfo? = nil
+    public var videoInfo: VideoInfo? = nil
     // sourcery:jsonField=page_url
-    var pageUrl: String? = nil
+    public var pageUrl: String? = nil
     // sourcery:jsonField=open_browser
-    var openBrowser: Bool = false
+    public var openBrowser: Bool = false
     // sourcery:jsonField=alt_text
-    var altText: String? = nil
+    public var altText: String? = nil
     
     required public init() {
         
@@ -69,8 +69,8 @@ public class MediaItem {
     public class VideoInfo {
         
         // Fields
-        var variants: [Variant]!
-        var duration: Int64 = -1
+        public var variants: [Variant]!
+        public var duration: Int64 = -1
         
         required public init() {
             
@@ -80,9 +80,9 @@ public class MediaItem {
         public class Variant {
             
             // Fields
-            var url: String!
-            var contentType: String? = nil
-            var bitrate: Int64 = -1
+            public var url: String!
+            public var contentType: String? = nil
+            public var bitrate: Int64 = -1
             
             required public init() {
                 

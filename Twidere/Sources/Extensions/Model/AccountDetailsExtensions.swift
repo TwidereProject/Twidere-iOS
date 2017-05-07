@@ -8,6 +8,8 @@
 
 import Foundation
 import DeviceKit
+import TwidereCore
+import RestClient
 
 extension AccountDetails {
     
@@ -29,7 +31,7 @@ extension AccountDetails.Credentials {
         let versionSuffix = noVersionSuffix ? nil : endpointConfig.versionSuffix
         
         let endpointUrl = Endpoint.getApiUrl(apiUrlFormat, domain: domain, appendPath: versionSuffix)
-        if let oauth = self as? AccountOAuthCredentials {
+        if let oauth = self as? OAuthCredentials {
             let signEndpointUrl: String
             if (oauth.same_oauth_signing_url) {
                 signEndpointUrl = endpointUrl
@@ -43,14 +45,14 @@ extension AccountDetails.Credentials {
     
     func getAuthorization() -> Authorization! {
         switch self {
-        case let typed as AccountOAuthCredentials:
+        case let typed as OAuthCredentials:
             let token = OAuthToken(typed.access_token, typed.access_token_secret)
             return OAuthAuthorization(typed.consumer_key, typed.consumer_secret, oauthToken: token)
-        case let typed as AccountBasicCredentials:
+        case let typed as BasicCredentials:
             return BasicAuthorization(username: typed.username, password: typed.password)
-        case let typed as AccountOAuth2Credentials:
+        case let typed as OAuth2Credentials:
             return OAuth2Authorization(accessToken: typed.access_token)
-        case is AccountEmptyCredentials:
+        case is EmptyCredentials:
             return EmptyAuthorization()
         default:
             return nil

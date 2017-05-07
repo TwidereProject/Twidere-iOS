@@ -8,6 +8,7 @@
 
 import ALSLayouts
 import YYText
+import TwidereCore
 
 class ActivityTitleSummaryCell: ALSTableViewCell {
 
@@ -42,17 +43,17 @@ class ActivityTitleSummaryCell: ALSTableViewCell {
     }
 
     func display() {
-        let (title, summary) = activity.getTitleSummary()
+        let (title, summary) = (activity.action, activity.summary_line?.description)
         titleView.text = title
         summaryView.text = summary
         summaryView.layoutParams.hidden = summary?.isEmpty ?? true
-        timeView.time = activity.createdAt
+        timeView.time = Date(timeIntervalSince1970: TimeInterval(activity.timestamp / 1000))
         
         let profileImageViews = profileImagesContainer.subviews
         for profileImageIdx in 0..<profileImageViews.count {
             let view = profileImageViews[profileImageIdx] as! UIImageView
             if (profileImageIdx < activity.sources.count) {
-                view.displayImage(activity.sources[profileImageIdx].profileImageUrl(forSize: .reasonablySmall))
+                view.displayImage(activity.sources[profileImageIdx].getProfileImageUrl(forSize: .reasonablySmall))
             } else {
                 view.displayImage(nil)
             }

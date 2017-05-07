@@ -104,20 +104,20 @@ class StatusCell: ALSTableViewCell, StatusCellProtocol {
         guard let status = self.status else {
             return
         }
-        nameView.attributedText = StatusCell.createNameText(nameView.font.pointSize, name: status.userName, screenName: status.userScreenName, separator: " ")
+        nameView.attributedText = StatusCell.createNameText(nameView.font.pointSize, name: status.user_name!, screenName: status.user_screen_name!, separator: " ")
         
         if (displayOption.linkHighlight) {
-            textView.attributedText = StatusCell.createStatusText(status.textDisplay, metadata: status.metadata, displayRange: status.metadata?.displayRange, font: textView.font, displayOption: self.displayOption)
+            textView.attributedText = StatusCell.createStatusText(status.text_unescaped!, spans: status.spans, displayRange: status.extras?.display_text_range, font: textView.font, displayOption: self.displayOption)
         } else {
-            textView.text = status.textDisplay
+            textView.text = status.text_unescaped
         }
         
-        if (status.retweetId != nil) {
-            statusTypeLabelView.text = "Retweeted by \((status.retweetedByUserName ?? "User"))"
+        if (status.retweet_id != nil) {
+            statusTypeLabelView.text = "Retweeted by \(status.retweeted_by_user_name ?? "User")"
             
             statusTypeLabelView.layoutParams.hidden = false
-        } else if let inReplyTo = status.metadata?.inReplyTo {
-            statusTypeLabelView.text = "In reply to \((inReplyTo.userName ?? inReplyTo.userScreenName))"
+        } else if let inReplyTo = status.in_reply_to_user_key {
+            statusTypeLabelView.text = "In reply to \(status.in_reply_to_name ?? status.in_reply_to_screen_name ?? "User")"
             
             statusTypeLabelView.layoutParams.hidden = false
         } else {
@@ -128,48 +128,48 @@ class StatusCell: ALSTableViewCell, StatusCellProtocol {
         
         mediaPreview.displayMedia(status.metadata?.media)
         
-        if (status.quotedId != nil) {
-            quotedNameView.attributedText = StatusCell.createNameText(quotedNameView.font.pointSize, name: status.quotedUserName!, screenName: status.quotedUserScreenName!, separator: " ")
+        if (status.quoted_id != nil) {
+            quotedNameView.attributedText = StatusCell.createNameText(quotedNameView.font.pointSize, name: status.quoted_user_name!, screenName: status.quoted_user_screen_name!, separator: " ")
             if (displayOption.linkHighlight) {
-                quotedTextView.attributedText = StatusCell.createStatusText(status.quotedTextDisplay!, metadata: status.quotedMetadata, displayRange: status.quotedMetadata?.displayRange, font: textView.font, displayOption: self.displayOption)
+                quotedTextView.attributedText = StatusCell.createStatusText(status.quoted_text_unescaped!, spans: status.quoted_spans, displayRange: status.extras?.quoted_display_text_range, font: textView.font, displayOption: self.displayOption)
             } else {
-                quotedTextView.text = status.quotedTextDisplay
+                quotedTextView.text = status.quoted_text_unescaped
             }
             quotedMediaPreview.displayMedia(status.quotedMetadata?.media)
             quotedView.layoutParams.hidden = false
         } else {
             quotedView.layoutParams.hidden = true
         }
-        profileImageView.displayImage(getProfileImageUrlForSize(status.userProfileImage, size: .reasonablySmall))
-        if (status.retweetCreatedAt != nil) {
-            timeView.time = status.retweetCreatedAt
+        profileImageView.displayImage(getProfileImageUrlForSize(status.user_profile_image_url!, size: .reasonablySmall))
+        if (status.is_retweet) {
+            timeView.time = Date(timeIntervalSince1970: TimeInterval(status.retweet_timestamp * 1000))
         } else {
-            timeView.time = status.createdAt
+            timeView.time = Date(timeIntervalSince1970: TimeInterval(status.timestamp * 1000))
         }
         
-        if let replyCount = status.metadata?.replyCount, replyCount > 0 {
-            replyButton.setTitle(" \(replyCount.shortLocalizedString)", for: .normal)
+        if status.reply_count > 0 {
+            replyButton.setTitle(" \(status.reply_count.shortLocalizedString)", for: .normal)
         } else {
             replyButton.setTitle(nil, for: .normal)
         }
         
-        if let retweetCount = status.metadata?.retweetCount, retweetCount > 0 {
-            retwetButton.setTitle(" \(retweetCount.shortLocalizedString)", for: .normal)
+        if status.retweet_count > 0 {
+            retwetButton.setTitle(" \(status.retweet_count.shortLocalizedString)", for: .normal)
         } else {
             retwetButton.setTitle(nil, for: .normal)
         }
-        if (status.isMyRetweet) {
+        if (status.my_retweet_id != nil) {
             retwetButton.imageView?.tintColor = materialLightGreen
         } else {
             retwetButton.imageView?.tintColor = nil
         }
         
-        if let favoriteCount = status.metadata?.favoriteCount, favoriteCount > 0 {
-            favoriteButton.setTitle(" \(favoriteCount.shortLocalizedString)", for: .normal)
+        if status.favorite_count > 0 {
+            favoriteButton.setTitle(" \(status.favorite_count.shortLocalizedString)", for: .normal)
         } else {
             favoriteButton.setTitle(nil, for: .normal)
         }
-        if (status.metadata?.isFavorite ?? false) {
+        if (status.is_favorite) {
             favoriteButton.imageView?.tintColor = materialAmber
         } else {
             favoriteButton.imageView?.tintColor = nil
@@ -241,7 +241,7 @@ class StatusCell: ALSTableViewCell, StatusCellProtocol {
                 guard let span = highlight.userInfo?[highlightUserInfoKey] as? SpanItem else {
                     break
                 }
-                guard let (vc, present) = span.createViewController(accountKey: status.accountKey) else {
+                guard let (vc, present) = span.createViewController(accountKey: status.account_key) else {
                     break
                 }
                 return (vc, tv.convert(highlightRect, to: self), present)
@@ -251,7 +251,7 @@ class StatusCell: ALSTableViewCell, StatusCellProtocol {
                 vc.displayStatus(status.quotedStatus!, reload: true)
                 return (vc, v.convert(v.bounds, to: self), false)
             case self.mediaPreview:
-                if let item = status.metadata?.media?.first {
+                if let item = status?.media?.first {
                     let vc = SafariBrowserController(url: URL(string: item.mediaUrl!)!)
                     return (vc, v.convert(v.bounds, to: self), true)
                 }
@@ -277,14 +277,12 @@ class StatusCell: ALSTableViewCell, StatusCellProtocol {
         return nameString
     }
     
-    static func createStatusText(_ text: String, metadata: Status.Metadata?, displayRange: [Int]?, font: UIFont, displayOption: DisplayOption) -> NSAttributedString {
+    static func createStatusText(_ text: String, spans: [SpanItem]?, displayRange: [Int]?, font: UIFont, displayOption: DisplayOption) -> NSAttributedString {
         let attributed = NSMutableAttributedString(string: text)
 
         attributed.yy_font = font
         
-        metadata?.links?.applyToAttributedText(attributed, linkColor: displayOption.linkColor)
-        metadata?.mentions?.applyToAttributedText(attributed, linkColor: displayOption.linkColor)
-        metadata?.hashtags?.applyToAttributedText(attributed, linkColor: displayOption.linkColor)
+        spans?.applyToAttributedText(attributed, linkColor: displayOption.linkColor)
         if let range = displayRange {
             let len = range[1]
             if (len <= attributed.length) {
@@ -313,9 +311,9 @@ class StatusCell: ALSTableViewCell, StatusCellProtocol {
 }
 
 protocol StatusCellDelegate {
-    func profileImageTapped(for cell: StatusCellProtocol, status: Status)
-    func mediaPreviewTapped(for cell: StatusCellProtocol, status: Status)
-    func quotedViewTapped(for cell: StatusCellProtocol, status: Status)
-    func spanItemTapped(for cell: StatusCellProtocol, status: Status, span: SpanItem)
-    func actionSelected(for cell: StatusCellProtocol, status: Status, action: StatusCell.StatusAction)
+    func profileImageTapped(for cell: StatusCellProtocol, status: PersistableStatus)
+    func mediaPreviewTapped(for cell: StatusCellProtocol, status: PersistableStatus)
+    func quotedViewTapped(for cell: StatusCellProtocol, status: PersistableStatus)
+    func spanItemTapped(for cell: StatusCellProtocol, status: PersistableStatus, span: SpanItem)
+    func actionSelected(for cell: StatusCellProtocol, status: PersistableStatus, action: StatusCell.StatusAction)
 }

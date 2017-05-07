@@ -9,10 +9,10 @@
 import Foundation
 
 // sourcery: jsonParse
-class PersistableCardEntity {
-    var name: String!
+public class PersistableCardEntity {
+    public var name: String!
     
-    required init() {
+    required public init() {
         
     }
 }

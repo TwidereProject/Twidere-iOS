@@ -4,15 +4,15 @@
 import PromiseKit
 import RestClient
 
-internal class TwitterUploadAPIRestImpl: TwitterUploadAPI, RestAPIProtocol {
+public class TwitterUploadAPIRestImpl: TwitterUploadAPI, RestAPIProtocol {
 
     let client: RestClient
 
-    required init(client: RestClient) {
+    required public init(client: RestClient) {
         self.client = client
     }
 
-    func initUploadMedia(mediaType: String, totalBytes: Int, additionalOwners: [String]?) -> Promise<MediaUploadResponse> {
+    public func initUploadMedia(mediaType: String, totalBytes: Int, additionalOwners: [String]?) -> Promise<MediaUploadResponse> {
         let call = RestCall<MediaUploadResponse>()
         call.method = .post
         call.path = "/media/upload.json"
@@ -25,7 +25,7 @@ internal class TwitterUploadAPIRestImpl: TwitterUploadAPI, RestAPIProtocol {
         return client.toPromise(call)
     }
 
-    func appendUploadMedia(id: String, segmentIndex: Int, media: Data) -> Promise<Int> {
+    public func appendUploadMedia(id: String, segmentIndex: Int, media: Data) -> Promise<Int> {
         let call = RestCall<Int>()
         call.method = .post
         call.path = "/media/upload.json"
@@ -39,7 +39,7 @@ internal class TwitterUploadAPIRestImpl: TwitterUploadAPI, RestAPIProtocol {
         return client.toPromise(call)
     }
 
-    func finalizeUploadMedia(id: String) -> Promise<MediaUploadResponse> {
+    public func finalizeUploadMedia(id: String) -> Promise<MediaUploadResponse> {
         let call = RestCall<MediaUploadResponse>()
         call.method = .post
         call.path = "/media/upload.json"
@@ -51,7 +51,7 @@ internal class TwitterUploadAPIRestImpl: TwitterUploadAPI, RestAPIProtocol {
         return client.toPromise(call)
     }
 
-    func getUploadMediaStatus(id: String) -> Promise<MediaUploadResponse> {
+    public func getUploadMediaStatus(id: String) -> Promise<MediaUploadResponse> {
         let call = RestCall<MediaUploadResponse>()
         call.method = .post
         call.path = "/media/upload.json"

@@ -7,11 +7,11 @@ extension PersistableActivity.SummaryLine: JsonMappable {
 
 }
 
-internal class PersistableActivitySummaryLineJsonMapper: JsonMapper<PersistableActivity.SummaryLine> {
+public class PersistableActivitySummaryLineJsonMapper: JsonMapper<PersistableActivity.SummaryLine> {
 
-    internal static let singleton = PersistableActivitySummaryLineJsonMapper()
+    public static let singleton = PersistableActivitySummaryLineJsonMapper()
 
-    override internal func parse(_ parser: JsonParser) -> PersistableActivity.SummaryLine! {
+    override public func parse(_ parser: JsonParser) -> PersistableActivity.SummaryLine! {
         let instance = PersistableActivity.SummaryLine()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,8 +31,16 @@ internal class PersistableActivitySummaryLineJsonMapper: JsonMapper<PersistableA
         return instance
     }
 
-    override internal func parseField(_ instance: PersistableActivity.SummaryLine, _ fieldName: String, _ parser: JsonParser) {
+    override public func parseField(_ instance: PersistableActivity.SummaryLine, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
+        case "key":
+            instance.key = UserKeyFieldConverter.parse(parser)
+        case "name":
+            instance.name = parser.getValueAsString()
+        case "screen_name":
+            instance.screen_name = parser.getValueAsString()
+        case "content":
+            instance.content = parser.getValueAsString()
         default:
             break
         }

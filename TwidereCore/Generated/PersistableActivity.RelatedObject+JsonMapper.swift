@@ -7,11 +7,11 @@ extension PersistableActivity.RelatedObject: JsonMappable {
 
 }
 
-internal class PersistableActivityRelatedObjectJsonMapper: JsonMapper<PersistableActivity.RelatedObject> {
+public class PersistableActivityRelatedObjectJsonMapper: JsonMapper<PersistableActivity.RelatedObject> {
 
-    internal static let singleton = PersistableActivityRelatedObjectJsonMapper()
+    public static let singleton = PersistableActivityRelatedObjectJsonMapper()
 
-    override internal func parse(_ parser: JsonParser) -> PersistableActivity.RelatedObject! {
+    override public func parse(_ parser: JsonParser) -> PersistableActivity.RelatedObject! {
         let instance = PersistableActivity.RelatedObject()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class PersistableActivityRelatedObjectJsonMapper: JsonMapper<Persistabl
         return instance
     }
 
-    override internal func parseField(_ instance: PersistableActivity.RelatedObject, _ fieldName: String, _ parser: JsonParser) {
+    override public func parseField(_ instance: PersistableActivity.RelatedObject, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         default:
             break

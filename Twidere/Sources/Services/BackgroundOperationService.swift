@@ -10,6 +10,8 @@ import Foundation
 import PromiseKit
 import UIKit
 import JDStatusBarNotification
+import TwidereCore
+import MicroBlog
 
 class BackgroundOperationService {
     
@@ -95,7 +97,7 @@ class BackgroundOperationService {
             }
         }
         
-        func uploadMediaChucked(_ upload: MicroBlogService, body: Data, contentType: String, ownerIds: [String]) -> Promise<MediaUploadResponse> {
+        func uploadMediaChucked(_ upload: TwitterUploadAPI, body: Data, contentType: String, ownerIds: [String]) -> Promise<MediaUploadResponse> {
             let length = body.count
             return upload.initUploadMedia(contentType, totalBytes: length, additionalOwners: ownerIds)
                 .then { (response) -> Promise<MediaUploadResponse> in

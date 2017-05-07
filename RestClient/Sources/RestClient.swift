@@ -17,7 +17,7 @@ public class RestClient {
     let auth: Authorization?
     let userAgent: String?
     
-    init(endpoint: Endpoint, auth: Authorization? = nil, userAgent: String? = nil) {
+    public init(endpoint: Endpoint, auth: Authorization? = nil, userAgent: String? = nil) {
         self.endpoint = endpoint
         self.auth = auth
         self.userAgent = userAgent

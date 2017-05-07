@@ -50,6 +50,8 @@
 		CE750C051EBB8951003E6249 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750C041EBB8951003E6249 /* StringExtensions.swift */; };
 		CE750C081EBB89AC003E6249 /* CardEntityExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750C061EBB89AC003E6249 /* CardEntityExtension.swift */; };
 		CE750C091EBB89AC003E6249 /* UserMentionEntityExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750C071EBB89AC003E6249 /* UserMentionEntityExtension.swift */; };
+		CEA2D6E01EBC1E20002E5762 /* JsonMapperExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D6DF1EBC1E20002E5762 /* JsonMapperExtension.swift */; };
+		CEA2D6E21EBC747D002E5762 /* PersistableUser.Extras+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D6E11EBC747D002E5762 /* PersistableUser.Extras+JsonMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +120,8 @@
 		CE750C041EBB8951003E6249 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		CE750C061EBB89AC003E6249 /* CardEntityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardEntityExtension.swift; sourceTree = "<group>"; };
 		CE750C071EBB89AC003E6249 /* UserMentionEntityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMentionEntityExtension.swift; sourceTree = "<group>"; };
+		CEA2D6DF1EBC1E20002E5762 /* JsonMapperExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonMapperExtension.swift; sourceTree = "<group>"; };
+		CEA2D6E11EBC747D002E5762 /* PersistableUser.Extras+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableUser.Extras+JsonMapper.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +192,7 @@
 		CE750A441EBB4144003E6249 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				CEA2D6E11EBC747D002E5762 /* PersistableUser.Extras+JsonMapper.swift */,
 				CE750BDA1EBB840F003E6249 /* AccountDetails.Credentials+JsonMapper.swift */,
 				CE750BDB1EBB840F003E6249 /* AccountDetails.Extras+JsonMapper.swift */,
 				CE750BFA1EBB85DA003E6249 /* BasicCredentials+JsonMapper.swift */,
@@ -253,6 +258,7 @@
 				CE750BCA1EBB8175003E6249 /* DateExtensions.swift */,
 				CE750C021EBB8709003E6249 /* SimpleTypesFieldConverters.swift */,
 				CE750C041EBB8951003E6249 /* StringExtensions.swift */,
+				CEA2D6DF1EBC1E20002E5762 /* JsonMapperExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -447,6 +453,7 @@
 				CE750BEF1EBB840F003E6249 /* PersistableActivity.RelatedObject+JsonMapper.swift in Sources */,
 				CE750C091EBB89AC003E6249 /* UserMentionEntityExtension.swift in Sources */,
 				CE750C081EBB89AC003E6249 /* CardEntityExtension.swift in Sources */,
+				CEA2D6E01EBC1E20002E5762 /* JsonMapperExtension.swift in Sources */,
 				CE750BF91EBB854F003E6249 /* AccountCredentials.swift in Sources */,
 				CE750BC21EBB7EB0003E6249 /* AccountDetails.swift in Sources */,
 				CE750C051EBB8951003E6249 /* StringExtensions.swift in Sources */,
@@ -457,6 +464,7 @@
 				CE750BD41EBB82B9003E6249 /* MediaItem.swift in Sources */,
 				CE750BED1EBB840F003E6249 /* MediaItem+JsonMapper.swift in Sources */,
 				CE750BEA1EBB840F003E6249 /* AccountDetails.Extras+JsonMapper.swift in Sources */,
+				CEA2D6E21EBC747D002E5762 /* PersistableUser.Extras+JsonMapper.swift in Sources */,
 				CE750BB01EBB7E39003E6249 /* StatusExtension.swift in Sources */,
 				CE750BC81EBB80F4003E6249 /* HtmlBuilder.swift in Sources */,
 				CE750BEB1EBB840F003E6249 /* MediaItem.VideoInfo.Variant+JsonMapper.swift in Sources */,

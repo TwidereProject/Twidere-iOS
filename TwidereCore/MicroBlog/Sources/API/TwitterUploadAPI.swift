@@ -9,7 +9,7 @@
 import PromiseKit
 
 // sourcery: restProtocol
-protocol TwitterUploadAPI {
+public protocol TwitterUploadAPI {
     
     // sourcery: restMethod=POST
     // sourcery: restPath=/media/upload.json

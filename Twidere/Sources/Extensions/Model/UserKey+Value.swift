@@ -8,17 +8,18 @@
 
 import Foundation
 import SQLite
+import TwidereCore
 
 extension UserKey: Value {
-    static var declaredDatatype: String {
+    public static var declaredDatatype: String {
         return String.declaredDatatype
     }
     
-    static func fromDatatypeValue(_ datatypeValue: String) -> UserKey {
+    public static func fromDatatypeValue(_ datatypeValue: String) -> UserKey {
         return UserKey(stringLiteral: datatypeValue)
     }
     
-    var datatypeValue: String {
+    public var datatypeValue: String {
         return self.string
     }
 }

@@ -7,11 +7,11 @@ extension PersistableStatus.Extras: JsonMappable {
 
 }
 
-internal class PersistableStatusExtrasJsonMapper: JsonMapper<PersistableStatus.Extras> {
+public class PersistableStatusExtrasJsonMapper: JsonMapper<PersistableStatus.Extras> {
 
-    internal static let singleton = PersistableStatusExtrasJsonMapper()
+    public static let singleton = PersistableStatusExtrasJsonMapper()
 
-    override internal func parse(_ parser: JsonParser) -> PersistableStatus.Extras! {
+    override public func parse(_ parser: JsonParser) -> PersistableStatus.Extras! {
         let instance = PersistableStatus.Extras()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class PersistableStatusExtrasJsonMapper: JsonMapper<PersistableStatus.E
         return instance
     }
 
-    override internal func parseField(_ instance: PersistableStatus.Extras, _ fieldName: String, _ parser: JsonParser) {
+    override public func parseField(_ instance: PersistableStatus.Extras, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         case "external_url":
             instance.external_url = parser.getValueAsString()

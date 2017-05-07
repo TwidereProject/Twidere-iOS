@@ -8,11 +8,11 @@ internal class AccountsAPIRestImpl: AccountsAPI, RestAPIProtocol {
 
     let client: RestClient
 
-    required init(client: RestClient) {
+    required internal init(client: RestClient) {
         self.client = client
     }
 
-    func getAccount(id: String) -> Promise<Account> {
+    internal func getAccount(id: String) -> Promise<Account> {
         let call = RestCall<Account>()
         call.method = .get
         call.path = "/v1/accounts/\(id)"

@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import TwidereCore
 
 protocol RefreshTaskParam {
     
-    var accounts: [Account] { get }
+    var accounts: [AccountDetails] { get }
     
     var maxIds: [String?]? { get }
     

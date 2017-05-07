@@ -4,15 +4,15 @@
 import PromiseKit
 import RestClient
 
-internal class OAuthAPIRestImpl: OAuthAPI, RestAPIProtocol {
+public class OAuthAPIRestImpl: OAuthAPI, RestAPIProtocol {
 
     let client: RestClient
 
-    required init(client: RestClient) {
+    required public init(client: RestClient) {
         self.client = client
     }
 
-    func getRequestToken(_ oauthCallback: String) -> Promise<OAuthToken> {
+    public func getRequestToken(_ oauthCallback: String) -> Promise<OAuthToken> {
         let call = RestCall<OAuthToken>()
         call.method = .post
         call.path = "/oauth/request_token"
@@ -23,7 +23,7 @@ internal class OAuthAPIRestImpl: OAuthAPI, RestAPIProtocol {
         return client.toPromise(call)
     }
 
-    func getAccessToken(username: String, password: String) -> Promise<OAuthToken> {
+    public func getAccessToken(username: String, password: String) -> Promise<OAuthToken> {
         let call = RestCall<OAuthToken>()
         call.method = .post
         call.path = "/oauth/access_token"
@@ -36,7 +36,7 @@ internal class OAuthAPIRestImpl: OAuthAPI, RestAPIProtocol {
         return client.toPromise(call)
     }
 
-    func getAccessToken(_ verifier: String?) -> Promise<OAuthToken> {
+    public func getAccessToken(_ verifier: String?) -> Promise<OAuthToken> {
         let call = RestCall<OAuthToken>()
         call.method = .post
         call.path = "/oauth/access_token"

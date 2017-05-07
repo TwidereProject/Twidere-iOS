@@ -50,7 +50,7 @@ public extension RestClient {
                             case let d as Data:
                                 multipart.append(d, withName: k, mimeType: "application/octet-stream")
                             default:
-                                multipart.append("\(v)".data(using: String.Encoding.utf8)!, withName: k)
+                                multipart.append(String(describing: v).data(using: String.Encoding.utf8)!, withName: k)
                             }
                         }
                 }, to: url, method: call.method, headers: finalHeaders,

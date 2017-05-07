@@ -22,22 +22,22 @@ class UserCell: UITableViewCell {
     }
     
     func displayUser(_ user: PersistableUser) {
-        let name = user["name"].stringValue
-        let screenName = user["screen_name"].stringValue
+        let name = user.name!
+        let screenName = user.screen_name!
         let nameString = NSMutableAttributedString()
         nameString.append(NSAttributedString(string: name, attributes: [
             NSFontAttributeName: UIFont.boldSystemFont(ofSize: nameView.font.pointSize)
             ]))
         nameString.append(NSAttributedString(string: "\n"))
-        nameString.append(NSAttributedString(string: "@" + screenName, attributes: [
+        nameString.append(NSAttributedString(string: "@\(screenName)", attributes: [
             NSFontAttributeName: UIFont.systemFont(ofSize: nameView.font.pointSize * 0.9)
             ]))
         nameView.attributedText = nameString
-        let profileImageUrl = user["profile_image_url_https"].string ?? user["profile_image_url"].stringValue
+        let profileImageUrl = user.getProfileImageUrl(forSize: .reasonablySmall)
         
-        descriptionView.text = user["description"].string
+        descriptionView.text = user.description_unescaped
         
-        profileImageView.displayImage(getProfileImageUrlForSize(profileImageUrl, size: .reasonablySmall))
+        profileImageView.displayImage(profileImageUrl)
     }
     
 }

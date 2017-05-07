@@ -11,6 +11,8 @@ import SwiftyUserDefaults
 import CoreData
 import PromiseKit
 import ALSLayouts
+import RestClient
+import TwidereCore
 
 class SignInController: UIViewController {
     
@@ -307,7 +309,7 @@ class SignInController: UIViewController {
 
 
 class SignInResult {
-    var user: User
+    var user: PersistableUser
     var accessToken: OAuthToken? = nil
     var username: String? = nil
     var password: String? = nil

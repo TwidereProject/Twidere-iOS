@@ -8,11 +8,11 @@ internal class AccountAPIRestImpl: AccountAPI, RestAPIProtocol {
 
     let client: RestClient
 
-    required init(client: RestClient) {
+    required internal init(client: RestClient) {
         self.client = client
     }
 
-    func verifyCredentials() -> Promise<User> {
+    internal func verifyCredentials() -> Promise<User> {
         let call = RestCall<User>()
         call.method = .get
         call.path = "/account/verify_credentials.json"

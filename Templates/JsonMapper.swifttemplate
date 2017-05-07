@@ -40,11 +40,11 @@ extension <%= type.name %>: JsonMappable {
 
 <%_ } -%>
 <%_ let mapperName = "\(type.name)JsonMapper".replacingOccurrences(of: ".", with: "") -%>
-<%= "\(type.accessLevel) " %>class <%= mapperName %>: JsonMapper<<%= type.name %>> {
+<%= type.accessLevel %> class <%= mapperName %>: JsonMapper<<%= type.name %>> {
 
-    <%= "\(type.accessLevel) " %>static let singleton = <%= mapperName %>()
+    <%= type.accessLevel %> static let singleton = <%= mapperName %>()
 
-    override <%= "\(type.accessLevel) " %>func parse(_ parser: JsonParser) -> <%= type.name %>! {
+    override <%= type.accessLevel %> func parse(_ parser: JsonParser) -> <%= type.name %>! {
         let instance = <%= type.name %>()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
