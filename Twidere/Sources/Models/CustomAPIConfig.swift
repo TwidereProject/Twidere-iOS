@@ -8,13 +8,14 @@
 
 import Foundation
 import SwiftyUserDefaults
+import TwidereCore
 
 class CustomAPIConfig {
     
     static let apiVersion = "1.1"
     
     var apiUrlFormat: String = defaultApiUrlFormat
-    var authType: Account.AuthType = defaultAuthType
+    var authType: AccountDetails.CredentialsType = defaultAuthType
     var sameOAuthSigningUrl: Bool = true
     var noVersionSuffix: Bool = false
     var consumerKey: String? = defaultTwitterConsumerKey

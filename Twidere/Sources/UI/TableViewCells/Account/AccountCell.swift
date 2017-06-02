@@ -8,6 +8,7 @@
 
 import ALSLayouts
 import UIKit
+import TwidereCore
 
 class AccountCell: UITableViewCell {
     
@@ -19,7 +20,7 @@ class AccountCell: UITableViewCell {
         profileImageView.makeCircular()
     }
     
-    func display(_ account: Account) {
+    func display(_ account: AccountDetails) {
         self.nameView.text = account.user.name
         self.screenNameView.text = account.user.screenName
         self.profileImageView.displayImage(account.user.profileImageUrlForSize(.reasonablySmall))

@@ -7,10 +7,10 @@
 //
 
 import Foundation
-
+import TwidereCore
 
 let defaultApiUrlFormat = "https://[DOMAIN.]twitter.com/"
-let defaultAuthType: Account.AuthType = .oauth
+let defaultAuthType: AccountDetails.CredentialsType = .oauth
 let defaultTwitterConsumerKey = "DNvvSlrMIIyvxjmY37NBwA"
 let defaultTwitterConsumerSecret = "UXZHBtDpWOEKYOE67KjpkeIcw93uvaz5KE4cwULVrsk"
 

@@ -10,10 +10,11 @@ import UIKit
 import PromiseKit
 import UITableView_FDTemplateLayoutCell
 import YYText
+import TwidereCore
 
 class StatusesListController: UITableViewController, StatusCellDelegate, PullToRefreshProtocol, UIViewControllerPreviewingDelegate {
     
-    var statuses: [Status]? = nil {
+    var statuses: [PersistableStatus]? = nil {
         didSet {
             self.rebuildItemCounts()
             self.tableView?.reloadData()
@@ -109,7 +110,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         switch itemCounts.getItemCountIndex(position: indexPath.item) {
         case 0:
             let status = statuses![(indexPath as NSIndexPath).item]
-            if (statuses!.endIndex != indexPath.item && status.isGap) {
+            if (statuses!.endIndex != indexPath.item && status.is_gap) {
                 return tableView.dequeueReusableCell(withIdentifier: "Gap", for: indexPath)
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Status", for: indexPath) as! StatusCell
@@ -155,7 +156,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         switch itemCounts.getItemCountIndex(position: indexPath.item) {
         case 0:
             let status = statuses![(indexPath as NSIndexPath).item]
-            if (statuses!.endIndex != indexPath.item && status.isGap) {
+            if (statuses!.endIndex != indexPath.item && status.is_gap) {
                 return super.tableView(tableView, heightForRowAt: indexPath)
             } else {
                 return tableView.fd_heightForCell(withIdentifier: "Status", cacheBy: indexPath) { cell in
@@ -175,7 +176,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         switch itemCounts.getItemCountIndex(position: indexPath.item) {
         case 0:
             let status = statuses![(indexPath as NSIndexPath).item]
-            if (status.isGap) {
+            if (status.is_gap) {
                 let accounts = dataSource.getAccounts()
                 if let account = accounts.filter({$0.key == status.accountKey}).first {
                     let opts = LoadOptions()
@@ -273,14 +274,14 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         loadStatuses(opts)
     }
     
-    func profileImageTapped(for cell: StatusCellProtocol, status: Status) {
+    func profileImageTapped(for cell: StatusCellProtocol, status: PersistableStatus) {
         let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "UserProfile") as! UserProfileController
         vc.displayUser(user: status.user, reload: true)
         self.show(vc, sender: self)
     }
     
-    func spanItemTapped(for cell: StatusCellProtocol, status: Status, span: SpanItem) {
+    func spanItemTapped(for cell: StatusCellProtocol, status: PersistableStatus, span: SpanItem) {
         guard let (vc, present) = span.createViewController(accountKey: status.accountKey) else {
             return
         }
@@ -291,19 +292,19 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         }
     }
     
-    func quotedViewTapped(for cell: StatusCellProtocol, status: Status) {
+    func quotedViewTapped(for cell: StatusCellProtocol, status: PersistableStatus) {
         let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
         vc.displayStatus(status.quotedStatus!, reload: true)
         self.show(vc, sender: self)
     }
     
-    func mediaPreviewTapped(for cell: StatusCellProtocol, status: Status) {
+    func mediaPreviewTapped(for cell: StatusCellProtocol, status: PersistableStatus) {
         let vc = SafariBrowserController(url: URL(string: status.metadata!.media.first!.mediaUrl!)!)
         self.present(vc, animated: true, completion: nil)
     }
     
-    func actionSelected(for cell: StatusCellProtocol, status: Status, action: StatusCell.StatusAction) {
+    func actionSelected(for cell: StatusCellProtocol, status: PersistableStatus, action: StatusCell.StatusAction) {
         switch action {
         case .reply:
             replyStatus(status: status)
@@ -318,7 +319,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         }
     }
     
-    func shareStatus(status: Status) {
+    func shareStatus(status: PersistableStatus) {
         guard let url = URL(string: status.statusUrl) else {
             return
         }
@@ -330,7 +331,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         navigationController?.present(avc, animated: true, completion: nil)
     }
     
-    func replyStatus(status: Status) {
+    func replyStatus(status: PersistableStatus) {
         guard let nvc = self.navigationController else {
             return
         }
@@ -338,21 +339,21 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         cvc.show(parent: nvc.parent ?? nvc)
     }
     
-    func showRetweetActions(status: Status) {
+    func showRetweetActions(status: PersistableStatus) {
         let ac = UIAlertController(title: "Retweet", message: nil, preferredStyle: .actionSheet)
         let servicePromise = DispatchQueue.global().promise { () -> MicroBlogService in
-            let account = getAccount(forKey: status.accountKey)!
+            let account = getAccount(forKey: status.account_key)!
             return account.newMicroBlogService()
         }
         if (status.metadata?.myRetweetId != nil) {
             ac.addAction(UIAlertAction(title: "Cencel retweet", style: .destructive) { _ in
-                servicePromise.then { microBlog -> Promise<Status> in
+                servicePromise.then { microBlog -> Promise<PersistableStatus> in
                     return microBlog.unretweetStatus(id: status.id)
                 }.showStatusBarNotificationAfterTask(success: "Retweet cancelled", failure: "Unable to cancel retweet")
             })
         } else if (!(status.metadata?.isUserProtected ?? false)) {
             ac.addAction(UIAlertAction(title: "Retweet", style: .default) { _ in
-                servicePromise.then { microBlog -> Promise<Status> in
+                servicePromise.then { microBlog -> Promise<PersistableStatus> in
                     return microBlog.retweetStatus(id: status.id)
                 }.showStatusBarNotificationAfterTask(success: "Retweeted", failure: "Unable to retweet")
             })
@@ -372,35 +373,36 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
         present(ac, animated: true, completion: nil)
     }
     
-    func toggleFavoriteStatus(status: Status) {
-        guard let accountKey = status.accountKey, let isFavorite = status.metadata?.isFavorite else {
+    func toggleFavoriteStatus(status: PersistableStatus) {
+        guard let accountKey = status.account_key else {
             return
         }
+        let isFavorite = status.is_favorite
         let servicePromise = DispatchQueue.global().promise { () -> MicroBlogService in
             let account = getAccount(forKey: accountKey)!
             return account.newMicroBlogService()
         }
         if (isFavorite) {
-            servicePromise.then { microBlog -> Promise<Status> in
+            servicePromise.then { microBlog -> Promise<PersistableStatus> in
                 return microBlog.destroyFavorite(id: status.id)
             }.showStatusBarNotificationAfterTask(success: "Tweet unfavorited", failure: "Unable to unfavorite tweet")
         } else {
-            servicePromise.then { microBlog -> Promise<Status> in
+            servicePromise.then { microBlog -> Promise<PersistableStatus> in
                 return microBlog.createFavorite(id: status.id)
             }.showStatusBarNotificationAfterTask(success: "Tweet favorited", failure: "Unable to favorite tweet")
         }
     }
     
-    func confirmAndDestroyStatus(status: Status) {
+    func confirmAndDestroyStatus(status: PersistableStatus) {
         
     }
     
-    func openStatusMenu(status: Status) {
+    func openStatusMenu(status: PersistableStatus) {
         let ac = UIAlertController(title: "Tweet", message: nil, preferredStyle: .actionSheet)
         ac.addAction(UIAlertAction(title: "Share", style: .default) { _ in
             self.shareStatus(status: status)
         })
-        if (status.accountKey == status.userKey) {
+        if (status.account_key == status.user_key) {
             ac.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in
                 self.confirmAndDestroyStatus(status: status)
             })
@@ -444,10 +446,10 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
     }
     
     class RefreshFromStartParam: RefreshTaskParam {
-        var accounts: [Account]
+        var accounts: [AccountDetails]
         var delegate: StatusesListControllerDataSource
         
-        init(accounts: [Account], _ delegate: StatusesListControllerDataSource) {
+        init(accounts: [AccountDetails], _ delegate: StatusesListControllerDataSource) {
             self.accounts = accounts
             self.delegate = delegate
         }
@@ -466,15 +468,15 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
 
 protocol StatusesListControllerDataSource {
     
-    var statuses: [Status]? { get set }
+    var statuses: [PersistableStatus]? { get set }
     
-    func getAccounts() -> [Account]
+    func getAccounts() -> [AccountDetails]
     
-    func loadStatuses(_ opts: StatusesListController.LoadOptions) -> Promise<[Status]>
+    func loadStatuses(_ opts: StatusesListController.LoadOptions) -> Promise<[PersistableStatus]>
     
-    func getNewestStatusIds(_ accounts: [Account]) -> [String?]?
+    func getNewestStatusIds(_ accounts: [AccountDetails]) -> [String?]?
     
-    func getNewestStatusSortIds(_ accounts: [Account]) -> [Int64]?
+    func getNewestStatusSortIds(_ accounts: [AccountDetails]) -> [Int64]?
  
 }
 

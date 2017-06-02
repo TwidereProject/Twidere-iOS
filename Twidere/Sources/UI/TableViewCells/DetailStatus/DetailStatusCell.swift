@@ -11,6 +11,7 @@ import YYText
 import DateTools
 import ALSLayouts
 import Kanna
+import TwidereCore
 
 class DetailStatusCell: ALSTableViewCell, StatusCellProtocol {
 
@@ -27,7 +28,7 @@ class DetailStatusCell: ALSTableViewCell, StatusCellProtocol {
 
     var displayOption: StatusCell.DisplayOption!
     var delegate: DetailStatusCellDelegate!
-    var status: Status!
+    var status: PersistableStatus!
 
     override func awakeFromNib() {
         textView.numberOfLines = 0
@@ -60,7 +61,7 @@ class DetailStatusCell: ALSTableViewCell, StatusCellProtocol {
         self.separatorInset = UIEdgeInsets.zero
     }
 
-    func display(_ status: Status) {
+    func display(_ status: PersistableStatus) {
         self.status = status
         let nameFontSize: CGFloat = displayOption.fontSize * 1.05
         let textFont: UIFont = UIFont.systemFont(ofSize: displayOption.fontSize * 1.2)

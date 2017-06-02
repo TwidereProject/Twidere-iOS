@@ -6,10 +6,10 @@
 //  Copyright © 2016年 Mariotaku Dev. All rights reserved.
 //
 
-import Foundation
+import TwidereCore
 
 class SimpleRefreshTaskParam: RefreshTaskParam {
-    var accounts: [Account]
+    var accounts: [AccountDetails]
     
     var maxIds: [String?]? = nil
     
@@ -21,7 +21,7 @@ class SimpleRefreshTaskParam: RefreshTaskParam {
     
     var isLoadingMore: Bool = false
     
-    init(accounts: [Account]) {
+    init(accounts: [AccountDetails]) {
         self.accounts = accounts
     }
 }

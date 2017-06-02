@@ -15,6 +15,7 @@ import PromiseKit
 import SQLite
 import SwiftHEXColors
 import DateTools
+import TwidereCore
 
 typealias UserInfo = (accountKey: UserKey, userKey: UserKey?, screenName: String?)
 
@@ -42,7 +43,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
     fileprivate var profileImageHeight: CGFloat = CGFloat.nan
     fileprivate var cellDisplayOption: StatusCell.DisplayOption! = StatusCell.DisplayOption()
     
-    private var user: User!
+    private var user: PeristableUser!
     private var userInfo: UserInfo!
     private var reloadNeeded: Bool = false
     
@@ -157,7 +158,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
         return super.bottomLayoutGuide
     }
     
-    func displayUser(user: User, reload: Bool = false) {
+    func displayUser(user: PeristableUser, reload: Bool = false) {
         self.user = user
         self.userInfo = (user.accountKey, user.key, user.screenName)
         if (self.isViewLoaded) {
@@ -211,9 +212,9 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
             return
         }
         self.reloadNeeded = false
-        _ = DispatchQueue.global().promise { () -> Account in
+        _ = DispatchQueue.global().promise { () -> AccountDetails in
             return getAccount(forKey: userInfo.accountKey)!
-            }.then { account -> Promise<User> in
+            }.then { account -> Promise<PersistableUser> in
                 let api = account.newMicroBlogService()
                 if let key = userInfo.userKey {
                     return api.showUser(id: key.id)
@@ -532,7 +533,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
                 _ = ac.addActionWithTitle(title: "Cancel", style: .cancel)
                 _ = ac.addActionWithTitle(title: "Unblock", style: .default)
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                promise(ac).then(on: DispatchQueue.global()) { action -> Promise<User> in
+                promise(ac).then(on: DispatchQueue.global()) { action -> Promise<PersistableUser> in
                     guard let microBlog = getAccount(forKey: user.accountKey)?.newMicroBlogService() else {
                         return Promise(error: MicroBlogError.argumentError(message: "No account found"))
                     }
@@ -548,7 +549,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
                 _ = ac.addActionWithTitle(title: "Cancel", style: .cancel)
                 _ = ac.addActionWithTitle(title: "Unfollow", style: .destructive)
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                promise(ac).then(on: DispatchQueue.global()) { action -> Promise<User> in
+                promise(ac).then(on: DispatchQueue.global()) { action -> Promise<PersistableUser> in
                     guard let microBlog = getAccount(forKey: user.accountKey)?.newMicroBlogService() else {
                         return Promise(error: MicroBlogError.argumentError(message: "No account found"))
                     }
@@ -560,7 +561,7 @@ class UserProfileController: UIViewController, UINavigationBarDelegate, Segmente
                 }.showStatusBarNotificationAfterTask(success: "Unfollowed \(user.name)", failure: "Unable to unfollow \(user.name)")
             } else {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                DispatchQueue.global().promise { action -> Promise<User> in
+                DispatchQueue.global().promise { action -> Promise<PersistableUser> in
                     guard let microBlog = getAccount(forKey: user.accountKey)?.newMicroBlogService() else {
                         return Promise(error: MicroBlogError.argumentError(message: "No account found"))
                     }

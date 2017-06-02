@@ -8,19 +8,20 @@
 
 import Foundation
 import PromiseKit
+import TwidereCore
 
 class UserTimelineStatusesListControllerDataSource: SingleAccountStatusesListControllerDataSource {
     
     var userKey: UserKey?
     var screenName: String?
     
-    init(account: Account, userKey: UserKey?, screenName: String?) {
+    init(account: AccountDetails, userKey: UserKey?, screenName: String?) {
         self.userKey = userKey
         self.screenName = screenName
         super.init(account: account)
     }
     
-    override func getStatusesRequest(microBlog: MicroBlogService, paging: Paging) -> Promise<[Status]> {
+    override func getStatusesRequest(microBlog: MicroBlogService, paging: Paging) -> Promise<[PeristableStatus]> {
         if let userKey = self.userKey {
             return microBlog.getUserTimeline(id: userKey.id, paging: paging)
         } else if let screenName = self.screenName {

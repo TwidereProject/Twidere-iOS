@@ -33,6 +33,18 @@ public class PersistableLiteUserJsonMapper: JsonMapper<PersistableLiteUser> {
 
     override public func parseField(_ instance: PersistableLiteUser, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
+        case "account_key":
+            instance.account_key = UserKeyFieldConverter.parse(parser)
+        case "key":
+            instance.key = UserKeyFieldConverter.parse(parser)
+        case "name":
+            instance.name = parser.getValueAsString()
+        case "screen_name":
+            instance.screen_name = parser.getValueAsString()
+        case "profile_image_url":
+            instance.profile_image_url = parser.getValueAsString()
+        case "is_following":
+            instance.is_following = parser.getValueAsBool()
         default:
             break
         }

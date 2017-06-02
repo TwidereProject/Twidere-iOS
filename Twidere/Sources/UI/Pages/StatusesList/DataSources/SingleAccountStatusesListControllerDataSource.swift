@@ -8,21 +8,22 @@
 
 import Foundation
 import PromiseKit
+import TwidereCore
 
 class SingleAccountStatusesListControllerDataSource: StatusesListControllerDataSource {
     
-    var account: Account
-    var statuses: [Status]? = nil
+    var account: AccountDetails
+    var statuses: [PersistableStatus]? = nil
     
-    init(account: Account) {
+    init(account: AccountDetails) {
         self.account = account
     }
     
-    final func getAccounts() -> [Account] {
+    final func getAccounts() -> [AccountDetails] {
         return [account]
     }
     
-    final func loadStatuses(_ opts: StatusesListController.LoadOptions) -> Promise<[Status]> {
+    final func loadStatuses(_ opts: StatusesListController.LoadOptions) -> Promise<[PersistableStatus]> {
         let microBlog = self.account.newMicroBlogService("api")
         let paging = Paging()
         let loadingMore = opts.params?.isLoadingMore ?? false
@@ -34,7 +35,7 @@ class SingleAccountStatusesListControllerDataSource: StatusesListControllerDataS
             paging.sinceId = sinceId
         }
         
-        return self.getStatusesRequest(microBlog: microBlog, paging: paging).then(on: DispatchQueue.global()) { fetched -> [Status] in
+        return self.getStatusesRequest(microBlog: microBlog, paging: paging).then(on: DispatchQueue.global()) { fetched -> [PersistableStatus] in
             var rowsDeleted: Int = 0
             
             let noItemsBefore = self.statuses?.isEmpty ?? true
@@ -55,11 +56,11 @@ class SingleAccountStatusesListControllerDataSource: StatusesListControllerDataS
         }
     }
     
-    final func getNewestStatusIds(_ accounts: [Account]) -> [String?]? {
+    final func getNewestStatusIds(_ accounts: [AccountDetails]) -> [String?]? {
         return [self.statuses?.min(by: >)?.id]
     }
     
-    final func getNewestStatusSortIds(_ accounts: [Account]) -> [Int64]? {
+    final func getNewestStatusSortIds(_ accounts: [AccountDetails]) -> [Int64]? {
         return [self.statuses?.min(by: >)?.sortId ?? -1]
     }
     

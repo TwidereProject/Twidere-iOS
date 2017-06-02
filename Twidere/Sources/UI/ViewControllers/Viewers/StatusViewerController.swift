@@ -9,6 +9,7 @@
 import UIKit
 import UITableView_FDTemplateLayoutCell
 import PromiseKit
+import TwidereCore
 
 typealias StatusInfo = (accountKey: UserKey, id: String)
 typealias StatusPreviewCallback = (_ status: PersistableStatus, _ action: StatusViewerController.PreviewAction) -> Void
@@ -161,7 +162,7 @@ class StatusViewerController: UITableViewController, DetailStatusCellDelegate {
             return
         }
         self.reloadNeeded = false
-        _ = DispatchQueue.global().promise { () -> Account in
+        _ = DispatchQueue.global().promise { () -> AccountDetails in
             return getAccount(forKey: statusInfo.accountKey)!
         }.then { account -> Promise<PersistableStatus> in
             let api = account.newMicroBlogService()
@@ -221,9 +222,10 @@ class StatusViewerController: UITableViewController, DetailStatusCellDelegate {
     }
     
     func toggleFavoriteStatus(status: PersistableStatus) {
-        guard let accountKey = status.account_key, let isFavorite = status.is_favorite else {
+        guard let accountKey = status.account_key else {
             return
         }
+        let isFavorite = status.is_favorite
         let servicePromise = DispatchQueue.global().promise { () -> MicroBlogService in
             let account = getAccount(forKey: accountKey)!
             return account.newMicroBlogService()

@@ -10,7 +10,7 @@ import MicroBlog
 
 //@CursorObject(valuesCreator = true, tableInfo = true)
 // sourcery:jsonParse
-public class PersistableStatus {
+public class PersistableStatus: Comparable {
     //@CursorField(value = Statuses._ID, excludeWrite = true, type = TwidereDataStore.TYPE_PRIMARY_KEY)
     public var _id: Int64 = 0
     
@@ -364,4 +364,15 @@ public class PersistableStatus {
         return result
     }
     
+}
+
+public func <(left: PersistableStatus, right: PersistableStatus) -> Bool {
+    if (left.timestamp != right.timestamp) {
+        return left.timestamp < right.timestamp
+    }
+    return left.sort_id < right.sort_id
+}
+
+public func ==(left: PersistableStatus, right: PersistableStatus) -> Bool {
+    return left.id == right.id && left.account_key == right.account_key
 }
