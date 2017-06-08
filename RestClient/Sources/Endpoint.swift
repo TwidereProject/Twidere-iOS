@@ -8,12 +8,12 @@
 
 public class Endpoint {
     
-    typealias FixUrl = ((String) -> String)
+    public typealias FixUrl = ((String) -> String)
     
     public let base: String
     let fixUrl: FixUrl?
     
-    init(base: String, fixUrl: FixUrl? = nil) {
+    public init(base: String, fixUrl: FixUrl? = nil) {
         self.base = base
         self.fixUrl = fixUrl
     }
@@ -59,12 +59,12 @@ public class OAuthEndpoint: Endpoint {
     
     public let signingBase: String
     
-    override init(base: String, fixUrl: FixUrl? = nil) {
+    public override init(base: String, fixUrl: FixUrl? = nil) {
         self.signingBase = base
         super.init(base: base, fixUrl: fixUrl)
     }
     
-    init(base: String, signingBase: String, fixUrl: FixUrl? = nil) {
+    public init(base: String, signingBase: String, fixUrl: FixUrl? = nil) {
         self.signingBase = signingBase
         super.init(base: base, fixUrl: fixUrl)
     }
@@ -77,13 +77,4 @@ public class OAuthEndpoint: Endpoint {
         }
         return url
     }
-}
-
-
-public struct EndpointConfig {
-    public var domain: String?
-    public var versionSuffix: String?
-    
-    public static let twitter = EndpointConfig(domain: "api", versionSuffix: "1.1")
-    public static let mastodon = EndpointConfig(domain: nil, versionSuffix: nil)
 }

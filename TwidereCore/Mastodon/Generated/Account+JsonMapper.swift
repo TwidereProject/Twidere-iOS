@@ -1,4 +1,4 @@
-// Generated using Sourcery 0.6.0 — https://github.com/krzysztofzablocki/Sourcery
+// Generated using Sourcery 0.6.1 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
 
 import PMJackson
@@ -7,11 +7,11 @@ extension Account: JsonMappable {
 
 }
 
-internal class AccountJsonMapper: JsonMapper<Account> {
+public class AccountJsonMapper: JsonMapper<Account> {
 
-    internal static let singleton = AccountJsonMapper()
+    public static let singleton = AccountJsonMapper()
 
-    override internal func parse(_ parser: JsonParser) -> Account! {
+    override public func parse(_ parser: JsonParser) -> Account! {
         let instance = Account()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class AccountJsonMapper: JsonMapper<Account> {
         return instance
     }
 
-    override internal func parseField(_ instance: Account, _ fieldName: String, _ parser: JsonParser) {
+    override public func parseField(_ instance: Account, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         default:
             break

@@ -9,7 +9,7 @@ target 'Twidere' do
     pod 'LayoutKit'
     pod 'Sourcery', '~> 0.6'
     pod 'PMJSON', '~> 2.0.2'
-    pod 'PMJackson', '~> 1.1.2'
+    pod 'PMJackson', '~> 1.1.4'
     pod 'SQLite.swift', '~> 0.11.0'
     pod 'CryptoSwift', '~> 0.6.0'
     pod 'Alamofire', '~> 4.0'
@@ -48,7 +48,7 @@ target 'TwidereCore' do
     project 'TwidereCore/TwidereCore'
     
     pod 'Alamofire', '~> 4.0'
-    pod 'PMJackson', '~> 1.1.2'
+    pod 'PMJackson', '~> 1.1.4'
     pod 'PromiseKit', '~> 4.0.0'
     pod 'Kanna', '~> 2.0'
 end
@@ -58,7 +58,7 @@ target 'MicroBlog' do
     project 'TwidereCore/MicroBlog/MicroBlog'
     
     pod 'Alamofire', '~> 4.0'
-    pod 'PMJackson', '~> 1.1.2'
+    pod 'PMJackson', '~> 1.1.4'
     pod 'PromiseKit', '~> 4.0.0'
 end
 
@@ -67,7 +67,7 @@ target 'Mastodon' do
     project 'TwidereCore/Mastodon/Mastodon'
     
     pod 'Alamofire', '~> 4.0'
-    pod 'PMJackson', '~> 1.1.2'
+    pod 'PMJackson', '~> 1.1.4'
     pod 'PromiseKit', '~> 4.0.0'
 end
 
@@ -79,6 +79,16 @@ target 'RestClient' do
     pod 'PromiseKit/Alamofire', '~> 4.0'
     pod 'PromiseKit', '~> 4.0.0'
     pod 'CryptoSwift', '~> 0.6.0'
+end
+
+target 'RestCommons' do
+    workspace 'Twidere'
+    project 'RestCommons/RestCommons'
+    
+    pod 'Alamofire', '~> 4.0'
+    pod 'PromiseKit/Alamofire', '~> 4.0'
+    pod 'PromiseKit', '~> 4.0.0'
+    pod 'PMJackson', '~> 1.1.4'
 end
 
 target 'TwidereTests' do

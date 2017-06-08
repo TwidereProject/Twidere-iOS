@@ -1,8 +1,9 @@
-// Generated using Sourcery 0.6.0 — https://github.com/krzysztofzablocki/Sourcery
+// Generated using Sourcery 0.6.1 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
 
 import PromiseKit
 import RestClient
+import RestCommons
 
 public class TwitterUploadAPIRestImpl: TwitterUploadAPI, RestAPIProtocol {
 
@@ -31,7 +32,7 @@ public class TwitterUploadAPIRestImpl: TwitterUploadAPI, RestAPIProtocol {
         call.path = "/media/upload.json"
         call.params = [
             "media": media,
-            "additional_owners": id,
+            "media_id": id,
             "command": "APPEND",
             "segment_index": segmentIndex,
         ]
@@ -45,7 +46,7 @@ public class TwitterUploadAPIRestImpl: TwitterUploadAPI, RestAPIProtocol {
         call.path = "/media/upload.json"
         call.params = [
             "command": "FINALIZE",
-            "media": id,
+            "media_id": id,
         ]
         call.serializer = MediaUploadResponseJsonMapper.singleton.responseSerializer
         return client.toPromise(call)
@@ -57,7 +58,7 @@ public class TwitterUploadAPIRestImpl: TwitterUploadAPI, RestAPIProtocol {
         call.path = "/media/upload.json"
         call.params = [
             "command": "STATUS",
-            "media": id,
+            "media_id": id,
         ]
         call.serializer = MediaUploadResponseJsonMapper.singleton.responseSerializer
         return client.toPromise(call)

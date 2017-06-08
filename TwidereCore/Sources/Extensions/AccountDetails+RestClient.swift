@@ -7,24 +7,26 @@
 //
 
 import Foundation
-import DeviceKit
-import TwidereCore
 import RestClient
 
-extension AccountDetails {
+public extension AccountDetails {
+    
+    public func getService<T: RestAPIProtocol>(endpointConfig: EndpointConfig, type: T.Type) -> T {
+        return credentials.getService(accountType: self.type, endpointConfig: endpointConfig, type: type)
+    }
     
 }
 
 
-extension AccountDetails.Credentials {
+public extension AccountDetails.Credentials {
     
-    func createService<T: RestAPIProtocol>(accountType: AccountDetails.AccountType!, endpointConfig: EndpointConfig, type: T.Type) -> T {
+    public func getService<T: RestAPIProtocol>(accountType: AccountDetails.AccountType!, endpointConfig: EndpointConfig, type: T.Type) -> T {
         let endpoint = getEndpoint(endpointConfig: endpointConfig)
         let auth = getAuthorization()
-        return endpoint.createService(auth: auth, accountType: accountType, type: type)
+        return endpoint.getService(auth: auth, accountType: accountType, type: type)
     }
     
-    func getEndpoint(endpointConfig: EndpointConfig) -> Endpoint {
+    public func getEndpoint(endpointConfig: EndpointConfig) -> Endpoint {
         let apiUrlFormat = api_url_format ?? defaultApiUrlFormat
         let noVersionSuffix = self.no_version_suffix
         let domain = endpointConfig.domain
@@ -43,7 +45,7 @@ extension AccountDetails.Credentials {
         return Endpoint(base: endpointUrl)
     }
     
-    func getAuthorization() -> Authorization! {
+    public func getAuthorization() -> Authorization! {
         switch self {
         case let typed as OAuthCredentials:
             let token = OAuthToken(typed.access_token, typed.access_token_secret)
@@ -62,7 +64,7 @@ extension AccountDetails.Credentials {
 
 extension Endpoint {
     
-    func createService<T: RestAPIProtocol>(auth: Authorization!, accountType: AccountDetails.AccountType!, type: T.Type) -> T {
+    public func getService<T: RestAPIProtocol>(auth: Authorization!, accountType: AccountDetails.AccountType!, type: T.Type) -> T {
         let client = RestClient(endpoint: self, auth: auth)
         return type.init(client: client)
     }
@@ -93,3 +95,14 @@ extension Endpoint {
         return format
     }
 }
+
+
+public struct EndpointConfig {
+    public var domain: String?
+    public var versionSuffix: String?
+    
+    public static let twitter = EndpointConfig(domain: "api", versionSuffix: "1.1")
+    public static let fanfou = EndpointConfig(domain: nil, versionSuffix: nil)
+    public static let mastodon = EndpointConfig(domain: nil, versionSuffix: nil)
+}
+

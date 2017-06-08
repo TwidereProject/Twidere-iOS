@@ -2,6 +2,9 @@
 // sourcery:file:<%= type.name %>+RestImpl.swift
 import PromiseKit
 import RestClient
+<%_ (type.annotations["extraImports"] as? String)?.components(separatedBy: "|").forEach { v in -%>
+import <%= v %>
+<%_ } -%>
 
 <%= type.accessLevel %> class <%= type.name %>RestImpl: <%= type.name %>, RestAPIProtocol {
 

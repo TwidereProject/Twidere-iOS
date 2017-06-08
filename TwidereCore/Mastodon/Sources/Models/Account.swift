@@ -9,8 +9,9 @@
 import Foundation
 
 // sourcery: jsonParse
-class Account {
-    required init() {
+public class Account {
+    
+    required public init() {
         
     }
 }

@@ -54,7 +54,6 @@
 		CE65B1DD1D9E0D4900A38A61 /* ShortTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1DC1D9E0D4900A38A61 /* ShortTimeView.swift */; };
 		CE65B1E61D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1E51D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift */; };
 		CE65B1E81D9F546700A38A61 /* ItemIndices.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1E71D9F546700A38A61 /* ItemIndices.swift */; };
-		CE6C6C341DB35C1D00DF4892 /* AccountDetailsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6C301DB35C1D00DF4892 /* AccountDetailsExtensions.swift */; };
 		CE6D6E9A1DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D6E991DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift */; };
 		CE750A471EBB4CC9003E6249 /* TwidereCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750A461EBB4CC9003E6249 /* TwidereCore.framework */; };
 		CE79C83D1DA62E56007C05F2 /* SpanItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */; };
@@ -196,7 +195,6 @@
 		CE65B1DC1D9E0D4900A38A61 /* ShortTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortTimeView.swift; sourceTree = "<group>"; };
 		CE65B1E51D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionsActivitiesListControllerDataSource.swift; sourceTree = "<group>"; };
 		CE65B1E71D9F546700A38A61 /* ItemIndices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemIndices.swift; sourceTree = "<group>"; };
-		CE6C6C301DB35C1D00DF4892 /* AccountDetailsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailsExtensions.swift; sourceTree = "<group>"; };
 		CE6D6E991DBCDEAB0060E4C6 /* HideNavigationBarProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNavigationBarProtocol.swift; sourceTree = "<group>"; };
 		CE750A461EBB4CC9003E6249 /* TwidereCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwidereCore.framework; path = "../../../../../Users/mariotaku/Library/Developer/Xcode/DerivedData/Twidere-dhschizzfhkqdkgwpcupdypbyxay/Build/Products/Debug-iphoneos/TwidereCore.framework"; sourceTree = "<group>"; };
 		CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanItemExtension.swift; sourceTree = "<group>"; };
@@ -387,7 +385,6 @@
 		CE29039C1D4CEF0B0056D0E2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CE6C6C301DB35C1D00DF4892 /* AccountDetailsExtensions.swift */,
 				CE2A7FE31EB767B0003791F2 /* Date+MicroBlog.swift */,
 				CE79C83C1DA62E56007C05F2 /* SpanItemExtension.swift */,
 				CE497FB91D6A8A65000F16D2 /* UserKey+Value.swift */,
@@ -1312,7 +1309,6 @@
 				CE65B1B61D9C20AE00A38A61 /* PullToRefreshProtocol.swift in Sources */,
 				CE95749A1D33DC7B00504D52 /* BasePreferencesController.swift in Sources */,
 				CE65B1E61D9EACB600A38A61 /* InteractionsActivitiesListControllerDataSource.swift in Sources */,
-				CE6C6C341DB35C1D00DF4892 /* AccountDetailsExtensions.swift in Sources */,
 				CE4B1AA51D719E160017CB85 /* StringExtensions.swift in Sources */,
 				CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */,
 				CEBECFC21DAA2F4500350383 /* UIViewControllerPreviewingExtension.swift in Sources */,

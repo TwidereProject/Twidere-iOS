@@ -9,11 +9,11 @@
 import PromiseKit
 
 // sourcery: restProtocol
-protocol AccountsAPI {
+public protocol AccountsAPI {
     
     // sourcery: restMethod=GET
     // sourcery: restPath=/v1/accounts/\(id)
-    // sourcery: restSerializer=MastodonAccountJsonMapper.singleton.responseSerializer
+    // sourcery: restSerializer=AccountJsonMapper.singleton.responseSerializer
     func getAccount(id: String) -> Promise<Account>
     
 }

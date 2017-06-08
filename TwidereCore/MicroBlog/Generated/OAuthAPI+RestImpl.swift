@@ -1,4 +1,4 @@
-// Generated using Sourcery 0.6.0 — https://github.com/krzysztofzablocki/Sourcery
+// Generated using Sourcery 0.6.1 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
 
 import PromiseKit
@@ -41,7 +41,7 @@ public class OAuthAPIRestImpl: OAuthAPI, RestAPIProtocol {
         call.method = .post
         call.path = "/oauth/access_token"
         call.params = [
-            "x_auth_password": verifier,
+            "oauth_verifier": verifier,
         ]
         call.serializer = OAuthTokenResponseSerializer
         return client.toPromise(call)

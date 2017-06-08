@@ -1,22 +1,22 @@
-// Generated using Sourcery 0.6.0 — https://github.com/krzysztofzablocki/Sourcery
+// Generated using Sourcery 0.6.1 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
 
 import PromiseKit
 import RestClient
 
-internal class AccountsAPIRestImpl: AccountsAPI, RestAPIProtocol {
+public class AccountsAPIRestImpl: AccountsAPI, RestAPIProtocol {
 
     let client: RestClient
 
-    required internal init(client: RestClient) {
+    required public init(client: RestClient) {
         self.client = client
     }
 
-    internal func getAccount(id: String) -> Promise<Account> {
+    public func getAccount(id: String) -> Promise<Account> {
         let call = RestCall<Account>()
         call.method = .get
         call.path = "/v1/accounts/\(id)"
-        call.serializer = MastodonAccountJsonMapper.singleton.responseSerializer
+        call.serializer = AccountJsonMapper.singleton.responseSerializer
         return client.toPromise(call)
     }
 

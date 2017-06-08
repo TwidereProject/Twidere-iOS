@@ -55,6 +55,9 @@
 		CE750BA51EBB7A24003E6249 /* TwitterUploadAPI+RestImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B9D1EBB7A24003E6249 /* TwitterUploadAPI+RestImpl.swift */; };
 		CE750BA71EBB7A63003E6249 /* ResponseSerializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BA61EBB7A63003E6249 /* ResponseSerializers.swift */; };
 		CE750BA91EBB7B9B003E6249 /* MicroBlogError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BA81EBB7B9B003E6249 /* MicroBlogError.swift */; };
+		CEBBC83E1EE6B68500043809 /* FavoritesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBBC83D1EE6B68500043809 /* FavoritesAPI.swift */; };
+		CEBBC8401EE6B7BA00043809 /* FavoritesAPI+RestImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBBC83F1EE6B7BA00043809 /* FavoritesAPI+RestImpl.swift */; };
+		CEBBC8611EE7E4AF00043809 /* ResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBBC8601EE7E4AF00043809 /* ResponseCode.swift */; };
 		CF0608C71A3775EACAA2B31B /* Pods_MicroBlog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BCFC58BA5A4BB7DDCCD14A /* Pods_MicroBlog.framework */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +115,9 @@
 		CE750B9D1EBB7A24003E6249 /* TwitterUploadAPI+RestImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterUploadAPI+RestImpl.swift"; sourceTree = "<group>"; };
 		CE750BA61EBB7A63003E6249 /* ResponseSerializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseSerializers.swift; sourceTree = "<group>"; };
 		CE750BA81EBB7B9B003E6249 /* MicroBlogError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogError.swift; sourceTree = "<group>"; };
+		CEBBC83D1EE6B68500043809 /* FavoritesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesAPI.swift; sourceTree = "<group>"; };
+		CEBBC83F1EE6B7BA00043809 /* FavoritesAPI+RestImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FavoritesAPI+RestImpl.swift"; sourceTree = "<group>"; };
+		CEBBC8601EE7E4AF00043809 /* ResponseCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseCode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +195,7 @@
 				CE750A761EBB4E9A003E6249 /* Place.swift */,
 				CE750A641EBB4D50003E6249 /* Status.swift */,
 				CE750A651EBB4D50003E6249 /* User.swift */,
+				CEBBC8601EE7E4AF00043809 /* ResponseCode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -236,6 +243,7 @@
 		CE750ABB1EBB636C003E6249 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				CEBBC83F1EE6B7BA00043809 /* FavoritesAPI+RestImpl.swift */,
 				CE750B961EBB7A24003E6249 /* AccountAPI+RestImpl.swift */,
 				CE750AE91EBB68C7003E6249 /* Attachment+JsonMapper.swift */,
 				CE750AEA1EBB68C7003E6249 /* Attention+JsonMapper.swift */,
@@ -278,6 +286,7 @@
 				CE750B8F1EBB77F2003E6249 /* AccountAPI.swift */,
 				CE750B891EBB7769003E6249 /* OAuthAPI.swift */,
 				CE750B8D1EBB77CA003E6249 /* TwitterUploadAPI.swift */,
+				CEBBC83D1EE6B68500043809 /* FavoritesAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -416,7 +425,9 @@
 				CE750A7A1EBB5C56003E6249 /* CardEntity.swift in Sources */,
 				CE750A741EBB4DCD003E6249 /* UserEntities.swift in Sources */,
 				CE750B0E1EBB68C7003E6249 /* UserMentionEntity+JsonMapper.swift in Sources */,
+				CEBBC83E1EE6B68500043809 /* FavoritesAPI.swift in Sources */,
 				CE750BA11EBB7A24003E6249 /* MediaUploadResponse.Video+JsonMapper.swift in Sources */,
+				CEBBC8611EE7E4AF00043809 /* ResponseCode.swift in Sources */,
 				CE750BA31EBB7A24003E6249 /* OAuthAPI+RestImpl.swift in Sources */,
 				CE750A721EBB4DCD003E6249 /* UserMentionEntity.swift in Sources */,
 				CE750B051EBB68C7003E6249 /* Place+JsonMapper.swift in Sources */,
@@ -426,6 +437,7 @@
 				CE750B0B1EBB68C7003E6249 /* UrlEntity+JsonMapper.swift in Sources */,
 				CE750A661EBB4D50003E6249 /* Status.swift in Sources */,
 				CE750A771EBB4E9A003E6249 /* GeoPoint.swift in Sources */,
+				CEBBC8401EE6B7BA00043809 /* FavoritesAPI+RestImpl.swift in Sources */,
 				CE750B091EBB68C7003E6249 /* Status+JsonMapper.swift in Sources */,
 				CE750B011EBB68C7003E6249 /* HashtagEntity+JsonMapper.swift in Sources */,
 				CE750B0D1EBB68C7003E6249 /* UserEntities+JsonMapper.swift in Sources */,

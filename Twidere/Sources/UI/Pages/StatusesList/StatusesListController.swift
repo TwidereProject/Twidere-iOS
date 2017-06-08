@@ -11,6 +11,7 @@ import PromiseKit
 import UITableView_FDTemplateLayoutCell
 import YYText
 import TwidereCore
+import MicroBlog
 
 class StatusesListController: UITableViewController, StatusCellDelegate, PullToRefreshProtocol, UIViewControllerPreviewingDelegate {
     
@@ -378,7 +379,7 @@ class StatusesListController: UITableViewController, StatusCellDelegate, PullToR
             return
         }
         let isFavorite = status.is_favorite
-        let servicePromise = DispatchQueue.global().promise { () -> MicroBlogService in
+        let servicePromise = DispatchQueue.global().promise { () -> FavoritesAPI in
             let account = getAccount(forKey: accountKey)!
             return account.newMicroBlogService()
         }

@@ -66,21 +66,21 @@ class DetailStatusCell: ALSTableViewCell, StatusCellProtocol {
         let nameFontSize: CGFloat = displayOption.fontSize * 1.05
         let textFont: UIFont = UIFont.systemFont(ofSize: displayOption.fontSize * 1.2)
         let timeSourceFont: UIFont = UIFont.systemFont(ofSize: displayOption.fontSize * 0.9)
-        userNameView.attributedText = StatusCell.createNameText(nameFontSize, name: status.userName, screenName: status.userScreenName, separator: " ")
+        userNameView.attributedText = StatusCell.createNameText(nameFontSize, name: status.user_name, screenName: status.userScreenName, separator: " ")
         timeSourceView.attributedText = createTimeSourceText(createdAt: status.createdAt, source: status.source, font: timeSourceFont)
         userProfileImageView.displayImage(status.userProfileImageForSize(.reasonablySmall))
 
         textView.attributedText = StatusCell.createStatusText(status.textDisplay, metadata: status.metadata, displayRange: status.metadata?.displayRange, font: textFont, displayOption: self.displayOption)
-        mediaPreview.displayMedia(status.metadata?.media)
+        mediaPreview.displayMedia(status.media)
         
         if (status.quotedId != nil) {
             quotedNameView.attributedText = StatusCell.createNameText(nameFontSize, name: status.quotedUserName!, screenName: status.quotedUserScreenName!, separator: " ")
             if (displayOption.linkHighlight) {
                 quotedTextView.attributedText = StatusCell.createStatusText(status.quotedTextDisplay!, metadata: status.quotedMetadata, displayRange: status.quotedMetadata?.displayRange, font: textFont, displayOption: self.displayOption)
             } else {
-                quotedTextView.text = status.quotedTextDisplay
+                quotedTextView.text = status.quoted_text_unescaped
             }
-            quotedMediaPreview.displayMedia(status.quotedMetadata?.media)
+            quotedMediaPreview.displayMedia(status.quoted_media)
             quotedView.layoutParams.hidden = false
         } else {
             quotedView.layoutParams.hidden = true

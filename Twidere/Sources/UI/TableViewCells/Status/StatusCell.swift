@@ -126,7 +126,7 @@ class StatusCell: ALSTableViewCell, StatusCellProtocol {
             statusTypeLabelView.layoutParams.hidden = true
         }
         
-        mediaPreview.displayMedia(status.metadata?.media)
+        mediaPreview.displayMedia(status.media)
         
         if (status.quoted_id != nil) {
             quotedNameView.attributedText = StatusCell.createNameText(quotedNameView.font.pointSize, name: status.quoted_user_name!, screenName: status.quoted_user_screen_name!, separator: " ")
@@ -135,7 +135,7 @@ class StatusCell: ALSTableViewCell, StatusCellProtocol {
             } else {
                 quotedTextView.text = status.quoted_text_unescaped
             }
-            quotedMediaPreview.displayMedia(status.quotedMetadata?.media)
+            quotedMediaPreview.displayMedia(status.quoted_media)
             quotedView.layoutParams.hidden = false
         } else {
             quotedView.layoutParams.hidden = true
@@ -248,7 +248,7 @@ class StatusCell: ALSTableViewCell, StatusCellProtocol {
             case self.quotedView:
                 let storyboard = UIStoryboard(name: "Viewers", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "StatusDetails") as! StatusViewerController
-                vc.displayStatus(status.quotedStatus!, reload: true)
+                vc.displayStatus(status.quoted!, reload: true)
                 return (vc, v.convert(v.bounds, to: self), false)
             case self.mediaPreview:
                 if let item = status?.media?.first {
