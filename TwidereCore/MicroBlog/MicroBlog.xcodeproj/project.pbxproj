@@ -40,7 +40,6 @@
 		CE750B0C1EBB68C7003E6249 /* User+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AF91EBB68C7003E6249 /* User+JsonMapper.swift */; };
 		CE750B0D1EBB68C7003E6249 /* UserEntities+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AFA1EBB68C7003E6249 /* UserEntities+JsonMapper.swift */; };
 		CE750B0E1EBB68C7003E6249 /* UserMentionEntity+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AFB1EBB68C7003E6249 /* UserMentionEntity+JsonMapper.swift */; };
-		CE750B181EBB69F0003E6249 /* DateFieldConverters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B171EBB69F0003E6249 /* DateFieldConverters.swift */; };
 		CE750B431EBB6DD6003E6249 /* RestClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750B421EBB6DD6003E6249 /* RestClient.framework */; };
 		CE750B8A1EBB7769003E6249 /* OAuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B891EBB7769003E6249 /* OAuthAPI.swift */; };
 		CE750B8E1EBB77CA003E6249 /* TwitterUploadAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750B8D1EBB77CA003E6249 /* TwitterUploadAPI.swift */; };
@@ -100,7 +99,6 @@
 		CE750AF91EBB68C7003E6249 /* User+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE750AFA1EBB68C7003E6249 /* UserEntities+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserEntities+JsonMapper.swift"; sourceTree = "<group>"; };
 		CE750AFB1EBB68C7003E6249 /* UserMentionEntity+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserMentionEntity+JsonMapper.swift"; sourceTree = "<group>"; };
-		CE750B171EBB69F0003E6249 /* DateFieldConverters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFieldConverters.swift; sourceTree = "<group>"; };
 		CE750B421EBB6DD6003E6249 /* RestClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestClient.framework; path = "../../../../../../Users/mariotaku/Library/Developer/Xcode/DerivedData/Twidere-dhschizzfhkqdkgwpcupdypbyxay/Build/Products/Debug-iphoneos/RestClient.framework"; sourceTree = "<group>"; };
 		CE750B891EBB7769003E6249 /* OAuthAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthAPI.swift; sourceTree = "<group>"; };
 		CE750B8D1EBB77CA003E6249 /* TwitterUploadAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUploadAPI.swift; sourceTree = "<group>"; };
@@ -274,7 +272,6 @@
 		CE750B161EBB69C1003E6249 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				CE750B171EBB69F0003E6249 /* DateFieldConverters.swift */,
 				CE750BA61EBB7A63003E6249 /* ResponseSerializers.swift */,
 			);
 			path = Utils;
@@ -452,7 +449,6 @@
 				CE750A781EBB4E9A003E6249 /* Place.swift in Sources */,
 				CE750A671EBB4D50003E6249 /* User.swift in Sources */,
 				CE750B921EBB78E2003E6249 /* MediaUploadResponse.swift in Sources */,
-				CE750B181EBB69F0003E6249 /* DateFieldConverters.swift in Sources */,
 				CE750B001EBB68C7003E6249 /* GeoPoint+JsonMapper.swift in Sources */,
 				CE750B041EBB68C7003E6249 /* Photo+JsonMapper.swift in Sources */,
 			);

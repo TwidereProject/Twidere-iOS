@@ -1,4 +1,5 @@
 // sourcery: jsonParse
+// sourcery: extraImports=RestCommons
 public class User {
     
     // BEGIN Basic information
@@ -13,7 +14,7 @@ public class User {
     public var uniqueId: String? = nil
     
     // sourcery: jsonField=created_at
-    // sourcery: jsonFieldConverter=TwitterDateFieldConverter
+    // sourcery: jsonFieldConverter=JavaScriptDateFieldConverter
     public var createdAt: Date!
     
     // sourcery: jsonField=name

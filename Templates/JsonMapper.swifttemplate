@@ -32,6 +32,9 @@ func qualifiedTypeName(_ type: Type!, _ typeName: TypeName) -> String {
 <%_ for type in types.all where type.annotations["jsonParse"] != nil { _%>
 // sourcery:file:<%= type.name %>+JsonMapper.swift
 import PMJackson
+<%_ (type.annotations["extraImports"] as? String)?.components(separatedBy: "|").forEach { v in -%>
+import <%= v %>
+<%_ } -%>
 
 <%_ if (type.supertype?.annotations["jsonParse"] == nil) { -%>
 extension <%= type.name %>: JsonMappable {

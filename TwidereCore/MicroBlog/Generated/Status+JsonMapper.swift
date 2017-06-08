@@ -2,6 +2,7 @@
 // DO NOT EDIT
 
 import PMJackson
+import RestCommons
 
 extension Status: JsonMappable {
 
@@ -34,7 +35,7 @@ public class StatusJsonMapper: JsonMapper<Status> {
     override public func parseField(_ instance: Status, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         case "created_at":
-            instance.createdAt = TwitterDateFieldConverter.parse(parser)
+            instance.createdAt = JavaScriptDateFieldConverter.parse(parser)
         case "id":
             instance.id = parser.getValueAsString()
         case "rawid":

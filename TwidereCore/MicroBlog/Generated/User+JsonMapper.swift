@@ -2,6 +2,7 @@
 // DO NOT EDIT
 
 import PMJackson
+import RestCommons
 
 extension User: JsonMappable {
 
@@ -38,7 +39,7 @@ public class UserJsonMapper: JsonMapper<User> {
         case "unique_id":
             instance.uniqueId = parser.getValueAsString()
         case "created_at":
-            instance.createdAt = TwitterDateFieldConverter.parse(parser)
+            instance.createdAt = JavaScriptDateFieldConverter.parse(parser)
         case "name":
             instance.name = parser.getValueAsString()
         case "screen_name":
