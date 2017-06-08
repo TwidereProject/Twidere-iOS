@@ -15,6 +15,7 @@
 		C57AEEFCD05A3AADAAD79D4C /* ErrorResponse+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AE9245C0B27BD86F396BB /* ErrorResponse+JsonMapper.swift */; };
 		C57AEF0EC7F2D9AF93746EB5 /* Application+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AE7659EF31388093F2069 /* Application+JsonMapper.swift */; };
 		C57AEF590C14CB4EF1FDA958 /* Mention+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AE533503ED4E2CEF4300D /* Mention+JsonMapper.swift */; };
+		CE1C4B841EE9A44D00E0ACB6 /* RestCommons.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1C4B831EE9A44D00E0ACB6 /* RestCommons.framework */; };
 		CE750AA41EBB600B003E6249 /* Mastodon.h in Headers */ = {isa = PBXBuildFile; fileRef = CE750AA21EBB600B003E6249 /* Mastodon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE750AB21EBB603D003E6249 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AB11EBB603D003E6249 /* Account.swift */; };
 		CE750AB81EBB6363003E6249 /* Account+JsonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750AB51EBB6363003E6249 /* Account+JsonMapper.swift */; };
@@ -51,6 +52,7 @@
 		C57AE7659EF31388093F2069 /* Application+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Application+JsonMapper.swift"; sourceTree = "<group>"; };
 		C57AE9245C0B27BD86F396BB /* ErrorResponse+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ErrorResponse+JsonMapper.swift"; sourceTree = "<group>"; };
 		C57AEB33566A8024E5813835 /* RegisteredApplication+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RegisteredApplication+JsonMapper.swift"; sourceTree = "<group>"; };
+		CE1C4B831EE9A44D00E0ACB6 /* RestCommons.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestCommons.framework; path = "../../RestCommons/build/Debug-iphoneos/RestCommons.framework"; sourceTree = "<group>"; };
 		CE750A9F1EBB600B003E6249 /* Mastodon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mastodon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE750AA21EBB600B003E6249 /* Mastodon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mastodon.h; sourceTree = "<group>"; };
 		CE750AA31EBB600B003E6249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1C4B841EE9A44D00E0ACB6 /* RestCommons.framework in Frameworks */,
 				CE750B411EBB6DD0003E6249 /* RestClient.framework in Frameworks */,
 				A26DB373F054D412C90DD980 /* Pods_Mastodon.framework in Frameworks */,
 			);
@@ -96,6 +99,7 @@
 		7B4356E588A60AFB15F7AA44 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE1C4B831EE9A44D00E0ACB6 /* RestCommons.framework */,
 				CE750B401EBB6DD0003E6249 /* RestClient.framework */,
 				7E13A13EE711B32D3F4A6CBC /* Pods_Mastodon.framework */,
 			);
@@ -124,11 +128,11 @@
 		CE750AA11EBB600B003E6249 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				CEBBC8911EE906D800043809 /* ResponseSerializers.swift */,
 				CE750B931EBB793B003E6249 /* API */,
 				CE750AB01EBB6026003E6249 /* Models */,
 				CE750AA31EBB600B003E6249 /* Info.plist */,
 				CE750AA21EBB600B003E6249 /* Mastodon.h */,
+				CEBBC8911EE906D800043809 /* ResponseSerializers.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -137,18 +141,18 @@
 			isa = PBXGroup;
 			children = (
 				CE750AB11EBB603D003E6249 /* Account.swift */,
-				CEBBC8581EE7E3FF00043809 /* Status.swift */,
-				CEBBC85A1EE7E40A00043809 /* Card.swift */,
-				CEBBC85C1EE7E43C00043809 /* StatusUpdate.swift */,
-				CEBBC85E1EE7E44B00043809 /* Context.swift */,
-				CEBBC8621EE7E52900043809 /* LinkHeaderList.swift */,
 				CEBBC8931EE90B7700043809 /* Application.swift */,
 				CEBBC8951EE90B8700043809 /* Attachment.swift */,
+				CEBBC85A1EE7E40A00043809 /* Card.swift */,
+				CEBBC85E1EE7E44B00043809 /* Context.swift */,
 				CEBBC8971EE90BA800043809 /* ErrorResponse.swift */,
 				CEBBC8991EE90BB900043809 /* Instance.swift */,
+				CEBBC8621EE7E52900043809 /* LinkHeaderList.swift */,
 				CEBBC89B1EE90BE900043809 /* Mention.swift */,
 				CEBBC89D1EE90BF800043809 /* Notification.swift */,
 				CEBBC89F1EE90DC800043809 /* RegisteredApplication.swift */,
+				CEBBC8581EE7E3FF00043809 /* Status.swift */,
+				CEBBC85C1EE7E43C00043809 /* StatusUpdate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -156,19 +160,19 @@
 		CE750AB41EBB6363003E6249 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				CEBBC8701EE8F8CD00043809 /* StatusesResources+RestImpl.swift */,
-				CEBBC8681EE8F82800043809 /* AccountsAPI+RestImpl.swift */,
-				CEBBC8691EE8F82800043809 /* Card+JsonMapper.swift */,
-				CEBBC86A1EE8F82800043809 /* Context+JsonMapper.swift */,
-				CEBBC86B1EE8F82800043809 /* Status+JsonMapper.swift */,
 				CE750AB51EBB6363003E6249 /* Account+JsonMapper.swift */,
+				CEBBC8681EE8F82800043809 /* AccountsAPI+RestImpl.swift */,
 				C57AE7659EF31388093F2069 /* Application+JsonMapper.swift */,
 				C57AE683044062F283C4DBF3 /* Attachment+JsonMapper.swift */,
+				CEBBC8691EE8F82800043809 /* Card+JsonMapper.swift */,
+				CEBBC86A1EE8F82800043809 /* Context+JsonMapper.swift */,
 				C57AE9245C0B27BD86F396BB /* ErrorResponse+JsonMapper.swift */,
 				C57AE2BD4262D1FF30C216F6 /* Instance+JsonMapper.swift */,
 				C57AE533503ED4E2CEF4300D /* Mention+JsonMapper.swift */,
 				C57AE2AD442DAA4D5A6D1F6C /* Notification+JsonMapper.swift */,
 				C57AEB33566A8024E5813835 /* RegisteredApplication+JsonMapper.swift */,
+				CEBBC86B1EE8F82800043809 /* Status+JsonMapper.swift */,
+				CEBBC8701EE8F8CD00043809 /* StatusesResources+RestImpl.swift */,
 			);
 			path = Generated;
 			sourceTree = "<group>";

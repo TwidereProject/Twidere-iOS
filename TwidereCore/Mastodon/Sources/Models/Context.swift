@@ -9,10 +9,10 @@
 import Foundation
 
 // sourcery: jsonParse
-class Context {
+public class Context {
     
-    var ancestors: [Status]!
-    var descendants: [Status]!
+    public var ancestors: [Status]!
+    public var descendants: [Status]!
     
     required public init() {
         

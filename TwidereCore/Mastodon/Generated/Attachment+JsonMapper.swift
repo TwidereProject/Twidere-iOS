@@ -33,6 +33,18 @@ public class AttachmentJsonMapper: JsonMapper<Attachment> {
 
     override public func parseField(_ instance: Attachment, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
+        case "id":
+            instance.id = parser.getValueAsString()
+        case "type":
+            instance.type = parser.getValueAsString()
+        case "url":
+            instance.url = parser.getValueAsString()
+        case "remote_url":
+            instance.remoteUrl = parser.getValueAsString()
+        case "preview_url":
+            instance.previewUrl = parser.getValueAsString()
+        case "text_url":
+            instance.textUrl = parser.getValueAsString()
         default:
             break
         }

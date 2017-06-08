@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE1C4B821EE9A44500E0ACB6 /* RestCommons.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1C4B811EE9A44500E0ACB6 /* RestCommons.framework */; };
 		CE750A571EBB4D08003E6249 /* MicroBlog.h in Headers */ = {isa = PBXBuildFile; fileRef = CE750A551EBB4D08003E6249 /* MicroBlog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE750A661EBB4D50003E6249 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A641EBB4D50003E6249 /* Status.swift */; };
 		CE750A671EBB4D50003E6249 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750A651EBB4D50003E6249 /* User.swift */; };
@@ -64,6 +65,7 @@
 		15BCFC58BA5A4BB7DDCCD14A /* Pods_MicroBlog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MicroBlog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		314DDF9E1B754ADD05809137 /* Pods-MicroBlog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MicroBlog.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-MicroBlog/Pods-MicroBlog.debug.xcconfig"; sourceTree = "<group>"; };
 		416A6D611084B9041BE95122 /* Pods-MicroBlog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MicroBlog.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-MicroBlog/Pods-MicroBlog.release.xcconfig"; sourceTree = "<group>"; };
+		CE1C4B811EE9A44500E0ACB6 /* RestCommons.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestCommons.framework; path = "../../RestCommons/build/Debug-iphoneos/RestCommons.framework"; sourceTree = "<group>"; };
 		CE750A521EBB4D08003E6249 /* MicroBlog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MicroBlog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE750A551EBB4D08003E6249 /* MicroBlog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MicroBlog.h; sourceTree = "<group>"; };
 		CE750A561EBB4D08003E6249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1C4B821EE9A44500E0ACB6 /* RestCommons.framework in Frameworks */,
 				CE750B431EBB6DD6003E6249 /* RestClient.framework in Frameworks */,
 				CF0608C71A3775EACAA2B31B /* Pods_MicroBlog.framework in Frameworks */,
 			);
@@ -134,6 +137,7 @@
 		3D1EEC3E4D316C1114D2C76B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE1C4B811EE9A44500E0ACB6 /* RestCommons.framework */,
 				CE750B421EBB6DD6003E6249 /* RestClient.framework */,
 				15BCFC58BA5A4BB7DDCCD14A /* Pods_MicroBlog.framework */,
 			);
@@ -191,9 +195,9 @@
 				CE750A891EBB5CF6003E6249 /* GeoLocation.swift */,
 				CE750A751EBB4E9A003E6249 /* GeoPoint.swift */,
 				CE750A761EBB4E9A003E6249 /* Place.swift */,
+				CEBBC8601EE7E4AF00043809 /* ResponseCode.swift */,
 				CE750A641EBB4D50003E6249 /* Status.swift */,
 				CE750A651EBB4D50003E6249 /* User.swift */,
-				CEBBC8601EE7E4AF00043809 /* ResponseCode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -241,12 +245,12 @@
 		CE750ABB1EBB636C003E6249 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				CEBBC83F1EE6B7BA00043809 /* FavoritesAPI+RestImpl.swift */,
 				CE750B961EBB7A24003E6249 /* AccountAPI+RestImpl.swift */,
 				CE750AE91EBB68C7003E6249 /* Attachment+JsonMapper.swift */,
 				CE750AEA1EBB68C7003E6249 /* Attention+JsonMapper.swift */,
 				CE750AEB1EBB68C7003E6249 /* CardEntity+JsonMapper.swift */,
 				CE750AEC1EBB68C7003E6249 /* Entities+JsonMapper.swift */,
+				CEBBC83F1EE6B7BA00043809 /* FavoritesAPI+RestImpl.swift */,
 				CE750AED1EBB68C7003E6249 /* GeoPoint+JsonMapper.swift */,
 				CE750AEE1EBB68C7003E6249 /* HashtagEntity+JsonMapper.swift */,
 				CE750AF01EBB68C7003E6249 /* MediaEntity+JsonMapper.swift */,
@@ -281,9 +285,9 @@
 			isa = PBXGroup;
 			children = (
 				CE750B8F1EBB77F2003E6249 /* AccountAPI.swift */,
+				CEBBC83D1EE6B68500043809 /* FavoritesAPI.swift */,
 				CE750B891EBB7769003E6249 /* OAuthAPI.swift */,
 				CE750B8D1EBB77CA003E6249 /* TwitterUploadAPI.swift */,
-				CEBBC83D1EE6B68500043809 /* FavoritesAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";

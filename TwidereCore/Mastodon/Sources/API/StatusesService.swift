@@ -9,7 +9,7 @@
 import PromiseKit
 
 // sourcery: restProtocol
-protocol StatusesResources {
+public protocol StatusesResources {
     // sourcery: restMethod=GET
     // sourcery: restPath=/v1/statuses/\(id)
     // sourcery: restSerializer=StatusJsonMapper.singleton.responseSerializer

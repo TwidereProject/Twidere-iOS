@@ -149,7 +149,7 @@ public class PersistableStatus: Comparable {
     
     // sourcery: jsonField=text_plain
     //@CursorField(Statuses.TEXT_PLAIN)
-    public var text_plain: String? = nil
+    public var text_plain: String!
     
     // sourcery: jsonField=lang
     //@CursorField(Statuses.LANG)
@@ -157,23 +157,23 @@ public class PersistableStatus: Comparable {
     
     // sourcery: jsonField=user_name
     //@CursorField(Statuses.USER_NAME)
-    public var user_name: String? = nil
+    public var user_name: String!
     
     // sourcery: jsonField=user_screen_name
     //@CursorField(Statuses.USER_SCREEN_NAME)
-    public var user_screen_name: String? = nil
+    public var user_screen_name: String!
     
     // sourcery: jsonField=in_reply_to_name
     //@CursorField(Statuses.IN_REPLY_TO_USER_NAME)
-    public var in_reply_to_name: String? = nil
+    public var in_reply_to_name: String!
     
     // sourcery: jsonField=in_reply_to_screen_name
     //@CursorField(Statuses.IN_REPLY_TO_USER_SCREEN_NAME)
-    public var in_reply_to_screen_name: String? = nil
+    public var in_reply_to_screen_name: String!
     
     // sourcery: jsonField=source
     //@CursorField(Statuses.SOURCE)
-    public var source: String? = nil
+    public var source: String!
     
     // sourcery: jsonField=user_profile_image_url
     //@CursorField(Statuses.USER_PROFILE_IMAGE)

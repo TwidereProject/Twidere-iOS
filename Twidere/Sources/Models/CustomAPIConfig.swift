@@ -9,18 +9,19 @@
 import Foundation
 import SwiftyUserDefaults
 import TwidereCore
+import RestClient
 
 class CustomAPIConfig {
-    
+
     static let apiVersion = "1.1"
-    
+
     var apiUrlFormat: String = defaultApiUrlFormat
     var authType: AccountDetails.CredentialsType = defaultAuthType
     var sameOAuthSigningUrl: Bool = true
     var noVersionSuffix: Bool = false
     var consumerKey: String? = defaultTwitterConsumerKey
     var consumerSecret: String? = defaultTwitterConsumerSecret
-    
+
     var valid: Bool {
         get {
             // Must have a valid API URL format
@@ -28,18 +29,18 @@ class CustomAPIConfig {
                 return false
             }
             switch authType {
-            case .oauth, .xAuth:
+            case .oauth, .xauth:
                 return !(consumerKey?.isEmpty ?? true) && !(consumerSecret?.isEmpty ?? true)
             default:
                 return true
             }
         }
     }
-    
+
     func createEndpoint(_ domain: String?) -> Endpoint {
         return createEndpoint(domain, noVersionSuffix: noVersionSuffix)
     }
-    
+
     func createEndpoint(_ domain: String?, noVersionSuffix: Bool, fixUrl: ((String) -> String)? = nil) -> Endpoint {
         let base: String
         if (noVersionSuffix) {
@@ -48,7 +49,7 @@ class CustomAPIConfig {
             base = Endpoint.construct(getApiBaseUrl(apiUrlFormat, domain: domain), path: "/1.1/")
         }
         switch authType {
-        case .oauth, .xAuth:
+        case .oauth, .xauth:
             let signingBase: String
             if (sameOAuthSigningUrl) {
                 signingBase = base
@@ -62,12 +63,12 @@ class CustomAPIConfig {
             return Endpoint(base: base, fixUrl: fixUrl)
         }
     }
-    
+
     func getApiUrl(_ format: String, domain: String?, appendPath: String?) -> String {
         let urlBase = getApiBaseUrl(format, domain: domain)
         return Endpoint.construct(urlBase, path: appendPath ?? "")
     }
-    
+
     func getApiBaseUrl(_ format: String, domain: String?) -> String {
         let regex = try! NSRegularExpression(pattern: "\\[(\\.?)DOMAIN(\\.?)\\]", options: .caseInsensitive)
         if (regex.firstMatch(in: format, range: NSRange(0..<format.utf16.count)) == nil) {
@@ -84,12 +85,12 @@ class CustomAPIConfig {
             return regex.stringByReplacingMatches(in: format, options: [], range: NSRange(0..<format.utf16.count), withTemplate: "")
         }
     }
-    
+
     func substituteLegacyApiBaseUrl(_ format: String, domain: String?) -> String {
         return format
     }
-    
-    func loadDefaults()  {
+
+    func loadDefaults() {
         apiUrlFormat = Defaults[.apiUrlFormat] ?? defaultApiUrlFormat
         authType = Defaults[.authType] ?? .oauth
         sameOAuthSigningUrl = Defaults[.sameOAuthSigningUrl] ?? true

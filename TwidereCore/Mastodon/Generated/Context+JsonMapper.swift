@@ -7,11 +7,11 @@ extension Context: JsonMappable {
 
 }
 
-internal class ContextJsonMapper: JsonMapper<Context> {
+public class ContextJsonMapper: JsonMapper<Context> {
 
-    internal static let singleton = ContextJsonMapper()
+    public static let singleton = ContextJsonMapper()
 
-    override internal func parse(_ parser: JsonParser) -> Context! {
+    override public func parse(_ parser: JsonParser) -> Context! {
         let instance = Context()
         if (parser.currentEvent == nil) {
             parser.nextEvent()
@@ -31,7 +31,7 @@ internal class ContextJsonMapper: JsonMapper<Context> {
         return instance
     }
 
-    override internal func parseField(_ instance: Context, _ fieldName: String, _ parser: JsonParser) {
+    override public func parseField(_ instance: Context, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
         default:
             break

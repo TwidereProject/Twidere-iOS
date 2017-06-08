@@ -10,5 +10,9 @@ import Foundation
 
 // sourcery: jsonParse
 public class RegisteredApplication {
-    
+
+    required public init() {
+
+    }
+
 }

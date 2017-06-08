@@ -8,30 +8,31 @@
 
 import Foundation
 import RestClient
+import RestCommons
 
 public extension AccountDetails {
-    
-    public func getService<T: RestAPIProtocol>(endpointConfig: EndpointConfig, type: T.Type) -> T {
+
+    public func getService<T:RestAPIProtocol>(endpointConfig: EndpointConfig, type: T.Type) -> T {
         return credentials.getService(accountType: self.type, endpointConfig: endpointConfig, type: type)
     }
-    
+
 }
 
 
 public extension AccountDetails.Credentials {
-    
-    public func getService<T: RestAPIProtocol>(accountType: AccountDetails.AccountType!, endpointConfig: EndpointConfig, type: T.Type) -> T {
+
+    public func getService<T:RestAPIProtocol>(accountType: AccountDetails.AccountType!, endpointConfig: EndpointConfig, type: T.Type) -> T {
         let endpoint = getEndpoint(endpointConfig: endpointConfig)
         let auth = getAuthorization()
-        return endpoint.getService(auth: auth, accountType: accountType, type: type)
+        return endpoint.getService(auth: auth, type: type)
     }
-    
+
     public func getEndpoint(endpointConfig: EndpointConfig) -> Endpoint {
         let apiUrlFormat = api_url_format ?? defaultApiUrlFormat
         let noVersionSuffix = self.no_version_suffix
         let domain = endpointConfig.domain
         let versionSuffix = noVersionSuffix ? nil : endpointConfig.versionSuffix
-        
+
         let endpointUrl = Endpoint.getApiUrl(apiUrlFormat, domain: domain, appendPath: versionSuffix)
         if let oauth = self as? OAuthCredentials {
             let signEndpointUrl: String
@@ -44,7 +45,7 @@ public extension AccountDetails.Credentials {
         }
         return Endpoint(base: endpointUrl)
     }
-    
+
     public func getAuthorization() -> Authorization! {
         switch self {
         case let typed as OAuthCredentials:
@@ -63,17 +64,12 @@ public extension AccountDetails.Credentials {
 }
 
 extension Endpoint {
-    
-    public func getService<T: RestAPIProtocol>(auth: Authorization!, accountType: AccountDetails.AccountType!, type: T.Type) -> T {
-        let client = RestClient(endpoint: self, auth: auth)
-        return type.init(client: client)
-    }
-    
+
     static func getApiUrl(_ format: String, domain: String?, appendPath: String?) -> String {
         let urlBase = getApiBaseUrl(format, domain: domain)
         return Endpoint.construct(urlBase, path: appendPath ?? "")
     }
-    
+
     static func getApiBaseUrl(_ format: String, domain: String?) -> String {
         let regex = try! NSRegularExpression(pattern: "\\[(\\.?)DOMAIN(\\.?)\\]", options: .caseInsensitive)
         if (regex.firstMatch(in: format, range: NSRange(0..<format.utf16.count)) == nil) {
@@ -90,7 +86,7 @@ extension Endpoint {
             return regex.stringByReplacingMatches(in: format, options: [], range: NSRange(0..<format.utf16.count), withTemplate: "")
         }
     }
-    
+
     static func substituteLegacyApiBaseUrl(_ format: String, domain: String?) -> String {
         return format
     }
@@ -100,7 +96,7 @@ extension Endpoint {
 public struct EndpointConfig {
     public var domain: String?
     public var versionSuffix: String?
-    
+
     public static let twitter = EndpointConfig(domain: "api", versionSuffix: "1.1")
     public static let fanfou = EndpointConfig(domain: nil, versionSuffix: nil)
     public static let mastodon = EndpointConfig(domain: nil, versionSuffix: nil)

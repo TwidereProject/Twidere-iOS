@@ -36,7 +36,7 @@ func getProfileBannerUrlForSize(_ url: String, size: Int) -> String {
 
 func getBestBannerType(_ width: Int) -> String {
     switch width {
-    case  0...320:
+    case 0...320:
         return "mobile"
     case 321...520:
         return "web"
@@ -55,9 +55,6 @@ func parseTwitterDate(_ str: String) -> Date! {
     return twitterDateFormatter.date(from: str)
 }
 
-func getTwitterEntityId(_ json: JSON) -> String {
-    return json["id_str"].string ?? json["id"].stringValue
-}
 
 enum ProfileImageSize {
     case bigger, normal, mini, reasonablySmall, original

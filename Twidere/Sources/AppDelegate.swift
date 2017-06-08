@@ -14,9 +14,10 @@ import Fabric
 import Crashlytics
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDelegate {
     
     var window: UIWindow?
+    var testNavigationController : UINavigationController?
     
     static var performingScroll: Bool = false
     
@@ -29,21 +30,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let db = try! Connection(dbPath.path)
         
         let oldVersion = db.userVersion
-        if (oldVersion == 0) {
-            let migration = DatabaseMigration()
-            try! migration.create(db)
-            db.userVersion = databaseVersion
-        } else if (databaseVersion > oldVersion) {
-            let migration = DatabaseMigration()
-            try! migration.upgrade(db, oldVersion: oldVersion, newVersion: databaseVersion)
-            db.userVersion = databaseVersion
-        }
+//        if (oldVersion == 0) {
+//            let migration = DatabaseMigration()
+//            try! migration.create(db)
+//            db.userVersion = databaseVersion
+//        } else if (databaseVersion > oldVersion) {
+//            let migration = DatabaseMigration()
+//            try! migration.upgrade(db, oldVersion: oldVersion, newVersion: databaseVersion)
+//            db.userVersion = databaseVersion
+//        }
         return db
     }
-    
-    lazy var backgroundOperationService: BackgroundOperationService = {
-       return BackgroundOperationService()
-    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -51,9 +48,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let keyboardManager = IQKeyboardManager.sharedManager()
         keyboardManager.enable = true
-        keyboardManager.disabledToolbarClasses.append(ComposeController.self)
+//        keyboardManager.disabledToolbarClasses.append(ComposeController.self)
         
-        self.window?.tintColor = materialLightGreen
+        
+        let testViewController: UIViewController = UIViewController()
+        self.testNavigationController = UINavigationController()
+        if let testNavigationController = self.testNavigationController{
+            testNavigationController.delegate = self
+            testNavigationController.setNavigationBarHidden(true, animated: false)
+            testNavigationController.pushViewController(testViewController, animated: false)
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            if let window = self.window {
+                window.rootViewController = testNavigationController
+                window.makeKeyAndVisible()
+                window.tintColor = materialLightGreen
+            }
+            
+        }
+        
         return true
     }
 
@@ -66,22 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         let db = sqliteDatabase
-        for account in try! allAccounts() {
-            func clearByItemLimit(_ accountKey: UserKey, limit: Int, table: Table) -> Delete {
-                let accountWhere = Status.RowIndices.accountKey == accountKey
-                let minId = table.select(Status.RowIndices.positionKey).filter(accountWhere).order(Status.RowIndices.positionKey.desc).limit(1, offset: limit)
-                
-                
-                return table.filter(Status.RowIndices.positionKey < Expression<Int64?>(literal: "(\(minId.asSQL()))") && accountWhere).delete()
-            }
-            
-            let accountKey = account.key
-            
-            try! db.transaction {
-                _ = try db.run(clearByItemLimit(accountKey, limit: 30, table: homeStatusesTable))
-            }
-        }
-        
+
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {

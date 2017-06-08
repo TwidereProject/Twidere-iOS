@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		5EE236E547ACBEFE194924B3 /* Pods_TwidereCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF9C6A51C84A59CCC84A725 /* Pods_TwidereCore.framework */; };
+		C57AE1610701D8BF9F6AF042 /* MastodonStatusExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AEC40084802BDA2BFB869 /* MastodonStatusExtension.swift */; };
+		CE1C4B7D1EE9A43100E0ACB6 /* Mastodon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750B141EBB692A003E6249 /* Mastodon.framework */; };
+		CE1C4B801EE9A43A00E0ACB6 /* RestCommons.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1C4B7F1EE9A43A00E0ACB6 /* RestCommons.framework */; };
 		CE750A3D1EBB3F3C003E6249 /* TwidereCore.h in Headers */ = {isa = PBXBuildFile; fileRef = CE750A3B1EBB3F3C003E6249 /* TwidereCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE750A631EBB4D28003E6249 /* MicroBlog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750A621EBB4D09003E6249 /* MicroBlog.framework */; };
 		CE750B3F1EBB6DC8003E6249 /* RestClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750B3E1EBB6DC8003E6249 /* RestClient.framework */; };
-		CE750BB01EBB7E39003E6249 /* StatusExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BAE1EBB7E39003E6249 /* StatusExtension.swift */; };
+		CE750BB01EBB7E39003E6249 /* MicroBlogStatusExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BAE1EBB7E39003E6249 /* MicroBlogStatusExtension.swift */; };
 		CE750BB11EBB7E39003E6249 /* UserExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BAF1EBB7E39003E6249 /* UserExtension.swift */; };
 		CE750BB91EBB7E6A003E6249 /* PersistableActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BB41EBB7E6A003E6249 /* PersistableActivity.swift */; };
 		CE750BBA1EBB7E6A003E6249 /* PersistableCardEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE750BB51EBB7E6A003E6249 /* PersistableCardEntity.swift */; };
@@ -83,13 +86,15 @@
 		2281E0BF2DC0671EB8B723C7 /* Pods-TwidereCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereCore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TwidereCore/Pods-TwidereCore.debug.xcconfig"; sourceTree = "<group>"; };
 		5BF9C6A51C84A59CCC84A725 /* Pods_TwidereCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwidereCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B05C38CF48F42A8EF30FF3DE /* Pods-TwidereCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereCore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TwidereCore/Pods-TwidereCore.release.xcconfig"; sourceTree = "<group>"; };
+		C57AEC40084802BDA2BFB869 /* MastodonStatusExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonStatusExtension.swift; sourceTree = "<group>"; };
+		CE1C4B7F1EE9A43A00E0ACB6 /* RestCommons.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestCommons.framework; path = "../RestCommons/build/Debug-iphoneos/RestCommons.framework"; sourceTree = "<group>"; };
 		CE750A381EBB3F3C003E6249 /* TwidereCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TwidereCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE750A3B1EBB3F3C003E6249 /* TwidereCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwidereCore.h; sourceTree = "<group>"; };
 		CE750A3C1EBB3F3C003E6249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE750A5D1EBB4D08003E6249 /* MicroBlog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MicroBlog.xcodeproj; path = MicroBlog/MicroBlog.xcodeproj; sourceTree = "<group>"; };
 		CE750AAA1EBB600B003E6249 /* Mastodon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Mastodon.xcodeproj; path = Mastodon/Mastodon.xcodeproj; sourceTree = "<group>"; };
 		CE750B3E1EBB6DC8003E6249 /* RestClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestClient.framework; path = "../../../../../Users/mariotaku/Library/Developer/Xcode/DerivedData/Twidere-dhschizzfhkqdkgwpcupdypbyxay/Build/Products/Debug-iphoneos/RestClient.framework"; sourceTree = "<group>"; };
-		CE750BAE1EBB7E39003E6249 /* StatusExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusExtension.swift; sourceTree = "<group>"; };
+		CE750BAE1EBB7E39003E6249 /* MicroBlogStatusExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroBlogStatusExtension.swift; sourceTree = "<group>"; };
 		CE750BAF1EBB7E39003E6249 /* UserExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserExtension.swift; sourceTree = "<group>"; };
 		CE750BB41EBB7E6A003E6249 /* PersistableActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableActivity.swift; sourceTree = "<group>"; };
 		CE750BB51EBB7E6A003E6249 /* PersistableCardEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableCardEntity.swift; sourceTree = "<group>"; };
@@ -130,13 +135,13 @@
 		CE750C071EBB89AC003E6249 /* UserMentionEntityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMentionEntityExtension.swift; sourceTree = "<group>"; };
 		CEA2D6DF1EBC1E20002E5762 /* JsonMapperExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonMapperExtension.swift; sourceTree = "<group>"; };
 		CEA2D6E11EBC747D002E5762 /* PersistableUser.Extras+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableUser.Extras+JsonMapper.swift"; sourceTree = "<group>"; };
-		CEBBC8441EE6BCAA00043809 /* AbstractTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractTask.swift; path = AbstractTask.swift; sourceTree = "<group>"; };
-		CEBBC8461EE7B19800043809 /* AbsAccountRequestTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbsAccountRequestTask.swift; path = AbsAccountRequestTask.swift; sourceTree = "<group>"; };
+		CEBBC8441EE6BCAA00043809 /* AbstractTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractTask.swift; sourceTree = "<group>"; };
+		CEBBC8461EE7B19800043809 /* AbsAccountRequestTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbsAccountRequestTask.swift; sourceTree = "<group>"; };
 		CEBBC8481EE7D5E000043809 /* Draft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Draft.swift; sourceTree = "<group>"; };
 		CEBBC84A1EE7D70700043809 /* AccountDetailsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailsExtension.swift; sourceTree = "<group>"; };
 		CEBBC84C1EE7D99500043809 /* TwidereError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwidereError.swift; sourceTree = "<group>"; };
 		CEBBC84F1EE7DAE700043809 /* CreateFavoriteTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateFavoriteTask.swift; sourceTree = "<group>"; };
-		CEBBC8511EE7DBEE00043809 /* AccountDetails+RestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AccountDetails+RestClient.swift"; path = "AccountDetails+RestClient.swift"; sourceTree = "<group>"; };
+		CEBBC8511EE7DBEE00043809 /* AccountDetails+RestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountDetails+RestClient.swift"; sourceTree = "<group>"; };
 		CEBBC8531EE7DC9200043809 /* ServiceConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,6 +150,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1C4B801EE9A43A00E0ACB6 /* RestCommons.framework in Frameworks */,
+				CE1C4B7D1EE9A43100E0ACB6 /* Mastodon.framework in Frameworks */,
 				CE750B3F1EBB6DC8003E6249 /* RestClient.framework in Frameworks */,
 				CE750A631EBB4D28003E6249 /* MicroBlog.framework in Frameworks */,
 				5EE236E547ACBEFE194924B3 /* Pods_TwidereCore.framework in Frameworks */,
@@ -163,9 +170,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C57AEC617FDC58B4269EB52D /* Mastodon */ = {
+			isa = PBXGroup;
+			children = (
+				C57AEC40084802BDA2BFB869 /* MastodonStatusExtension.swift */,
+			);
+			path = Mastodon;
+			sourceTree = "<group>";
+		};
 		C6DB3F6BC1AF1F22B4CCB1CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE1C4B7F1EE9A43A00E0ACB6 /* RestCommons.framework */,
 				CE750B3E1EBB6DC8003E6249 /* RestClient.framework */,
 				5BF9C6A51C84A59CCC84A725 /* Pods_TwidereCore.framework */,
 			);
@@ -279,6 +295,7 @@
 				CEA2D6DF1EBC1E20002E5762 /* JsonMapperExtension.swift */,
 				CE750C021EBB8709003E6249 /* SimpleTypesFieldConverters.swift */,
 				CE750C041EBB8951003E6249 /* StringExtensions.swift */,
+				C57AEC617FDC58B4269EB52D /* Mastodon */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -287,7 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				CE750C061EBB89AC003E6249 /* CardEntityExtension.swift */,
-				CE750BAE1EBB7E39003E6249 /* StatusExtension.swift */,
+				CE750BAE1EBB7E39003E6249 /* MicroBlogStatusExtension.swift */,
 				CE750BAF1EBB7E39003E6249 /* UserExtension.swift */,
 				CE750C071EBB89AC003E6249 /* UserMentionEntityExtension.swift */,
 			);
@@ -319,7 +336,6 @@
 				CEBBC8461EE7B19800043809 /* AbsAccountRequestTask.swift */,
 				CEBBC8441EE6BCAA00043809 /* AbstractTask.swift */,
 			);
-			name = Tasks;
 			path = Tasks;
 			sourceTree = "<group>";
 		};
@@ -328,7 +344,6 @@
 			children = (
 				CEBBC84F1EE7DAE700043809 /* CreateFavoriteTask.swift */,
 			);
-			name = Implementations;
 			path = Implementations;
 			sourceTree = "<group>";
 		};
@@ -337,7 +352,6 @@
 			children = (
 				CEBBC8531EE7DC9200043809 /* ServiceConstants.swift */,
 			);
-			name = Constants;
 			path = Constants;
 			sourceTree = "<group>";
 		};
@@ -521,7 +535,7 @@
 				CE750BEA1EBB840F003E6249 /* AccountDetails.Extras+JsonMapper.swift in Sources */,
 				CEBBC8501EE7DAE700043809 /* CreateFavoriteTask.swift in Sources */,
 				CEA2D6E21EBC747D002E5762 /* PersistableUser.Extras+JsonMapper.swift in Sources */,
-				CE750BB01EBB7E39003E6249 /* StatusExtension.swift in Sources */,
+				CE750BB01EBB7E39003E6249 /* MicroBlogStatusExtension.swift in Sources */,
 				CE750BC81EBB80F4003E6249 /* HtmlBuilder.swift in Sources */,
 				CE750BEB1EBB840F003E6249 /* MediaItem.VideoInfo.Variant+JsonMapper.swift in Sources */,
 				CE750BF71EBB840F003E6249 /* SpanItem+JsonMapper.swift in Sources */,
@@ -533,6 +547,7 @@
 				CE750BF11EBB840F003E6249 /* PersistableActivity+JsonMapper.swift in Sources */,
 				CE750BB91EBB7E6A003E6249 /* PersistableActivity.swift in Sources */,
 				CE750BBA1EBB7E6A003E6249 /* PersistableCardEntity.swift in Sources */,
+				C57AE1610701D8BF9F6AF042 /* MastodonStatusExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

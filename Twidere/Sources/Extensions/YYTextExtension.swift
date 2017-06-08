@@ -7,6 +7,7 @@
 //
 
 import YYText
+import TwidereCore
 
 extension NSMutableAttributedString {
     

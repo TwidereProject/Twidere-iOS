@@ -33,6 +33,10 @@ public class ApplicationJsonMapper: JsonMapper<Application> {
 
     override public func parseField(_ instance: Application, _ fieldName: String, _ parser: JsonParser) {
         switch fieldName {
+        case "name":
+            instance.name = parser.getValueAsString()
+        case "website":
+            instance.website = parser.getValueAsString()
         default:
             break
         }

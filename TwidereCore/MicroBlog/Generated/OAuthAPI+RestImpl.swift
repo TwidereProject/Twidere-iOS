@@ -23,7 +23,7 @@ public class OAuthAPIRestImpl: OAuthAPI, RestAPIProtocol {
         return client.toPromise(call)
     }
 
-    public func getAccessToken(username: String, password: String) -> Promise<OAuthToken> {
+    public func getAccessToken(_ username: String, _ password: String) -> Promise<OAuthToken> {
         let call = RestCall<OAuthToken>()
         call.method = .post
         call.path = "/oauth/access_token"

@@ -10,7 +10,13 @@ import Foundation
 
 // sourcery: jsonParse
 public class Application {
-    
+
+    // sourcery:jsonField=name
+    var name: String!
+
+    // sourcery:jsonField=website
+    var website: String!
+
     required public init() {
         
     }

@@ -21,7 +21,7 @@ public protocol OAuthAPI {
     // sourcery: restPath=/oauth/access_token
     // sourcery: restSerializer=OAuthTokenResponseSerializer
     // sourcery: restParams=x_auth_mode%3Dclient_auth
-    func getAccessToken(/* sourcery: param=x_auth_username */username: String, /* sourcery: param=x_auth_password */password: String) -> Promise<OAuthToken>
+    func getAccessToken(/* sourcery: param=x_auth_username */_ username: String, /* sourcery: param=x_auth_password */_ password: String) -> Promise<OAuthToken>
     
     
     // sourcery: restMethod=POST

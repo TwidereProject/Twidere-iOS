@@ -4,15 +4,15 @@
 import PromiseKit
 import RestClient
 
-internal class StatusesResourcesRestImpl: StatusesResources, RestAPIProtocol {
+public class StatusesResourcesRestImpl: StatusesResources, RestAPIProtocol {
 
     let client: RestClient
 
-    required internal init(client: RestClient) {
+    required public init(client: RestClient) {
         self.client = client
     }
 
-    internal func fetchStatus(id: String) -> Promise<Status> {
+    public func fetchStatus(id: String) -> Promise<Status> {
         let call = RestCall<Status>()
         call.method = .get
         call.path = "/v1/statuses/\(id)"
@@ -23,7 +23,7 @@ internal class StatusesResourcesRestImpl: StatusesResources, RestAPIProtocol {
         return client.toPromise(call)
     }
 
-    internal func getStatusContext(id: String) -> Promise<Context> {
+    public func getStatusContext(id: String) -> Promise<Context> {
         let call = RestCall<Context>()
         call.method = .get
         call.path = "/v1/statuses/\(id)/context"
@@ -34,7 +34,7 @@ internal class StatusesResourcesRestImpl: StatusesResources, RestAPIProtocol {
         return client.toPromise(call)
     }
 
-    internal func getStatusCard(id: String) -> Promise<Card> {
+    public func getStatusCard(id: String) -> Promise<Card> {
         let call = RestCall<Card>()
         call.method = .get
         call.path = "/v1/statuses/\(id)/card"
@@ -45,7 +45,7 @@ internal class StatusesResourcesRestImpl: StatusesResources, RestAPIProtocol {
         return client.toPromise(call)
     }
 
-    internal func getStatusRebloggedBy(id: String) -> Promise<LinkHeaderList<Account>> {
+    public func getStatusRebloggedBy(id: String) -> Promise<LinkHeaderList<Account>> {
         let call = RestCall<LinkHeaderList<Account>>()
         call.method = .get
         call.path = "/v1/statuses/\(id)/reblogged_by"
@@ -56,7 +56,7 @@ internal class StatusesResourcesRestImpl: StatusesResources, RestAPIProtocol {
         return client.toPromise(call)
     }
 
-    internal func getStatusFavouritedBy(id: String) -> Promise<LinkHeaderList<Account>> {
+    public func getStatusFavouritedBy(id: String) -> Promise<LinkHeaderList<Account>> {
         let call = RestCall<LinkHeaderList<Account>>()
         call.method = .get
         call.path = "/v1/statuses/\(id)/favourited_by"
@@ -67,7 +67,7 @@ internal class StatusesResourcesRestImpl: StatusesResources, RestAPIProtocol {
         return client.toPromise(call)
     }
 
-    internal func postStatus(update: StatusUpdate) -> Promise<Status> {
+    public func postStatus(update: StatusUpdate) -> Promise<Status> {
         let call = RestCall<Status>()
         call.method = .post
         call.path = "/v1/statuses"
@@ -78,7 +78,7 @@ internal class StatusesResourcesRestImpl: StatusesResources, RestAPIProtocol {
         return client.toPromise(call)
     }
 
-    internal func deleteStatus(id: String) -> Promise<Int> {
+    public func deleteStatus(id: String) -> Promise<Int> {
         let call = RestCall<Int>()
         call.method = .delete
         call.path = "/v1/statuses/\(id)"
@@ -89,7 +89,7 @@ internal class StatusesResourcesRestImpl: StatusesResources, RestAPIProtocol {
         return client.toPromise(call)
     }
 
-    internal func reblogStatus(id: String) -> Promise<Status> {
+    public func reblogStatus(id: String) -> Promise<Status> {
         let call = RestCall<Status>()
         call.method = .post
         call.path = "/v1/statuses/\(id)/reblog"
@@ -100,7 +100,7 @@ internal class StatusesResourcesRestImpl: StatusesResources, RestAPIProtocol {
         return client.toPromise(call)
     }
 
-    internal func unreblogStatus(id: String) -> Promise<Status> {
+    public func unreblogStatus(id: String) -> Promise<Status> {
         let call = RestCall<Status>()
         call.method = .post
         call.path = "/v1/statuses/\(id)/unreblog"
@@ -111,7 +111,7 @@ internal class StatusesResourcesRestImpl: StatusesResources, RestAPIProtocol {
         return client.toPromise(call)
     }
 
-    internal func favouriteStatus(id: String) -> Promise<Status> {
+    public func favouriteStatus(id: String) -> Promise<Status> {
         let call = RestCall<Status>()
         call.method = .post
         call.path = "/v1/statuses/\(id)/favourite"
@@ -122,7 +122,7 @@ internal class StatusesResourcesRestImpl: StatusesResources, RestAPIProtocol {
         return client.toPromise(call)
     }
 
-    internal func unfavouriteStatus(id: String) -> Promise<Status> {
+    public func unfavouriteStatus(id: String) -> Promise<Status> {
         let call = RestCall<Status>()
         call.method = .post
         call.path = "/v1/statuses/\(id)/unfavourite"

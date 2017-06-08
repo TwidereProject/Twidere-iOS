@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6995D0AC08D027C557C1C8CE /* Pods_RestCommons.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2808A074D7BB544F1A554126 /* Pods_RestCommons.framework */; };
 		C57AE6B259ECCBEE1B75AB20 /* DateFieldConverters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AE1FDDE8971009ACCC292 /* DateFieldConverters.swift */; };
+		C57AEA7DF5142B5EFEE529E8 /* RestClientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AE99B3A3BAB1F963DC6AE /* RestClientExtension.swift */; };
+		CE1C4B861EE9A45900E0ACB6 /* RestClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1C4B851EE9A45900E0ACB6 /* RestClient.framework */; };
 		CEBBC8831EE8FC9F00043809 /* RestCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = CEBBC8811EE8FC9F00043809 /* RestCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CEBBC88C1EE8FD0B00043809 /* ResponseSerializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBBC88B1EE8FD0B00043809 /* ResponseSerializers.swift */; };
 		CEBBC88E1EE8FD9F00043809 /* RestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBBC88D1EE8FD9F00043809 /* RestError.swift */; };
@@ -18,7 +20,9 @@
 		2808A074D7BB544F1A554126 /* Pods_RestCommons.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RestCommons.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B811692D546E198E2121348 /* Pods-RestCommons.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestCommons.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-RestCommons/Pods-RestCommons.debug.xcconfig"; sourceTree = "<group>"; };
 		C57AE1FDDE8971009ACCC292 /* DateFieldConverters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFieldConverters.swift; sourceTree = "<group>"; };
+		C57AE99B3A3BAB1F963DC6AE /* RestClientExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestClientExtension.swift; sourceTree = "<group>"; };
 		C887077DE80D96670FF1B4F3 /* Pods-RestCommons.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestCommons.release.xcconfig"; path = "../Pods/Target Support Files/Pods-RestCommons/Pods-RestCommons.release.xcconfig"; sourceTree = "<group>"; };
+		CE1C4B851EE9A45900E0ACB6 /* RestClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestClient.framework; path = "../../../../../Users/mariotaku/Library/Developer/Xcode/DerivedData/Twidere-dhschizzfhkqdkgwpcupdypbyxay/Build/Products/Debug-iphonesimulator/RestClient.framework"; sourceTree = "<group>"; };
 		CEBBC87E1EE8FC9F00043809 /* RestCommons.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RestCommons.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEBBC8811EE8FC9F00043809 /* RestCommons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestCommons.h; sourceTree = "<group>"; };
 		CEBBC8821EE8FC9F00043809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1C4B861EE9A45900E0ACB6 /* RestClient.framework in Frameworks */,
 				6995D0AC08D027C557C1C8CE /* Pods_RestCommons.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,6 +55,7 @@
 		7943DB79CCE0AC296BECF320 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE1C4B851EE9A45900E0ACB6 /* RestClient.framework */,
 				2808A074D7BB544F1A554126 /* Pods_RestCommons.framework */,
 			);
 			name = Frameworks;
@@ -81,8 +87,8 @@
 				CEBBC88B1EE8FD0B00043809 /* ResponseSerializers.swift */,
 				CEBBC8811EE8FC9F00043809 /* RestCommons.h */,
 				CEBBC88D1EE8FD9F00043809 /* RestError.swift */,
+				C57AE99B3A3BAB1F963DC6AE /* RestClientExtension.swift */,
 			);
-			name = Sources;
 			path = Sources;
 			sourceTree = "<group>";
 		};
@@ -204,6 +210,7 @@
 				CEBBC88C1EE8FD0B00043809 /* ResponseSerializers.swift in Sources */,
 				CEBBC88E1EE8FD9F00043809 /* RestError.swift in Sources */,
 				C57AE6B259ECCBEE1B75AB20 /* DateFieldConverters.swift in Sources */,
+				C57AEA7DF5142B5EFEE529E8 /* RestClientExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
