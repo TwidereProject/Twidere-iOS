@@ -130,13 +130,13 @@
 		CE750C071EBB89AC003E6249 /* UserMentionEntityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMentionEntityExtension.swift; sourceTree = "<group>"; };
 		CEA2D6DF1EBC1E20002E5762 /* JsonMapperExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonMapperExtension.swift; sourceTree = "<group>"; };
 		CEA2D6E11EBC747D002E5762 /* PersistableUser.Extras+JsonMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistableUser.Extras+JsonMapper.swift"; sourceTree = "<group>"; };
-		CEBBC8441EE6BCAA00043809 /* AbstractTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractTask.swift; path = Utils/AbstractTask.swift; sourceTree = "<group>"; };
-		CEBBC8461EE7B19800043809 /* AbsAccountRequestTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbsAccountRequestTask.swift; path = Utils/AbsAccountRequestTask.swift; sourceTree = "<group>"; };
+		CEBBC8441EE6BCAA00043809 /* AbstractTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractTask.swift; path = AbstractTask.swift; sourceTree = "<group>"; };
+		CEBBC8461EE7B19800043809 /* AbsAccountRequestTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbsAccountRequestTask.swift; path = AbsAccountRequestTask.swift; sourceTree = "<group>"; };
 		CEBBC8481EE7D5E000043809 /* Draft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Draft.swift; sourceTree = "<group>"; };
 		CEBBC84A1EE7D70700043809 /* AccountDetailsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailsExtension.swift; sourceTree = "<group>"; };
 		CEBBC84C1EE7D99500043809 /* TwidereError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwidereError.swift; sourceTree = "<group>"; };
 		CEBBC84F1EE7DAE700043809 /* CreateFavoriteTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateFavoriteTask.swift; sourceTree = "<group>"; };
-		CEBBC8511EE7DBEE00043809 /* AccountDetails+RestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AccountDetails+RestClient.swift"; path = "../AccountDetails+RestClient.swift"; sourceTree = "<group>"; };
+		CEBBC8511EE7DBEE00043809 /* AccountDetails+RestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AccountDetails+RestClient.swift"; path = "AccountDetails+RestClient.swift"; sourceTree = "<group>"; };
 		CEBBC8531EE7DC9200043809 /* ServiceConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -197,9 +197,9 @@
 			isa = PBXGroup;
 			children = (
 				CEBBC8551EE7DC9500043809 /* Constants */,
-				CEBBC8411EE6BC8E00043809 /* Tasks */,
 				CE750BBF1EBB7E7C003E6249 /* Extensions */,
 				CE750BBE1EBB7E6E003E6249 /* Model */,
+				CEBBC8411EE6BC8E00043809 /* Tasks */,
 				CE750BC91EBB80FB003E6249 /* Utils */,
 				CE750A3C1EBB3F3C003E6249 /* Info.plist */,
 				CE750A3B1EBB3F3C003E6249 /* TwidereCore.h */,
@@ -210,7 +210,6 @@
 		CE750A441EBB4144003E6249 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				CEA2D6E11EBC747D002E5762 /* PersistableUser.Extras+JsonMapper.swift */,
 				CE750BDA1EBB840F003E6249 /* AccountDetails.Credentials+JsonMapper.swift */,
 				CE750BDB1EBB840F003E6249 /* AccountDetails.Extras+JsonMapper.swift */,
 				CE750BFA1EBB85DA003E6249 /* BasicCredentials+JsonMapper.swift */,
@@ -229,6 +228,7 @@
 				CE750BE61EBB840F003E6249 /* PersistableStatus+JsonMapper.swift */,
 				CE750BE51EBB840F003E6249 /* PersistableStatus.Extras+JsonMapper.swift */,
 				CE750BE71EBB840F003E6249 /* PersistableUser+JsonMapper.swift */,
+				CEA2D6E11EBC747D002E5762 /* PersistableUser.Extras+JsonMapper.swift */,
 				CE750BE81EBB840F003E6249 /* SpanItem+JsonMapper.swift */,
 			);
 			path = Generated;
@@ -255,6 +255,7 @@
 			children = (
 				CE750BF81EBB854F003E6249 /* AccountCredentials.swift */,
 				CE750BC11EBB7EB0003E6249 /* AccountDetails.swift */,
+				CEBBC8481EE7D5E000043809 /* Draft.swift */,
 				CE750BD31EBB82B9003E6249 /* MediaItem.swift */,
 				CE750BD51EBB82D5003E6249 /* MentionItem.swift */,
 				CE750BB41EBB7E6A003E6249 /* PersistableActivity.swift */,
@@ -264,7 +265,6 @@
 				CE750BB81EBB7E6A003E6249 /* PersistableUser.swift */,
 				CE750BC51EBB80C6003E6249 /* SpanItem.swift */,
 				CE750BC31EBB7EC2003E6249 /* UserKey.swift */,
-				CEBBC8481EE7D5E000043809 /* Draft.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -274,11 +274,11 @@
 			children = (
 				CE750BC01EBB7E8E003E6249 /* MicroBlog */,
 				CE750BD21EBB8238003E6249 /* Model */,
+				CEBBC84A1EE7D70700043809 /* AccountDetailsExtension.swift */,
 				CE750BCA1EBB8175003E6249 /* DateExtensions.swift */,
+				CEA2D6DF1EBC1E20002E5762 /* JsonMapperExtension.swift */,
 				CE750C021EBB8709003E6249 /* SimpleTypesFieldConverters.swift */,
 				CE750C041EBB8951003E6249 /* StringExtensions.swift */,
-				CEA2D6DF1EBC1E20002E5762 /* JsonMapperExtension.swift */,
-				CEBBC84A1EE7D70700043809 /* AccountDetailsExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -316,10 +316,11 @@
 			isa = PBXGroup;
 			children = (
 				CEBBC84E1EE7DAD000043809 /* Implementations */,
-				CEBBC8441EE6BCAA00043809 /* AbstractTask.swift */,
 				CEBBC8461EE7B19800043809 /* AbsAccountRequestTask.swift */,
+				CEBBC8441EE6BCAA00043809 /* AbstractTask.swift */,
 			);
 			name = Tasks;
+			path = Tasks;
 			sourceTree = "<group>";
 		};
 		CEBBC84E1EE7DAD000043809 /* Implementations */ = {
@@ -328,6 +329,7 @@
 				CEBBC84F1EE7DAE700043809 /* CreateFavoriteTask.swift */,
 			);
 			name = Implementations;
+			path = Implementations;
 			sourceTree = "<group>";
 		};
 		CEBBC8551EE7DC9500043809 /* Constants */ = {
@@ -336,6 +338,7 @@
 				CEBBC8531EE7DC9200043809 /* ServiceConstants.swift */,
 			);
 			name = Constants;
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

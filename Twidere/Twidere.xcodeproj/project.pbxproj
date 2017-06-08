@@ -322,12 +322,12 @@
 			children = (
 				0F80558F5C8F18CCEBAD61DC /* Frameworks */,
 				CE2660201DAFDD79007FF7CF /* Generated */,
+				52ED18EAF96AA311DD1E3B7D /* Pods */,
 				CE0529E41CF7F35300E06364 /* Products */,
 				CEA2E2B71D368BCF0095BC57 /* Resources */,
 				CE0529E51CF7F35300E06364 /* Sources */,
 				CE0529FD1CF7F35300E06364 /* Tests */,
 				CE052A081CF7F35300E06364 /* UITests */,
-				52ED18EAF96AA311DD1E3B7D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -344,7 +344,6 @@
 		CE0529E51CF7F35300E06364 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				CEA2D6DC1EBBA250002E5762 /* Twidere-Bridging-Header.h */,
 				CE95747E1D32169D00504D52 /* Constants */,
 				CEA2E2BF1D379CB10095BC57 /* Extensions */,
 				CE95747B1D32107800504D52 /* Models */,
@@ -353,6 +352,7 @@
 				CE9574941D33B6EA00504D52 /* Utils */,
 				CE0529E61CF7F35300E06364 /* AppDelegate.swift */,
 				CE0529F51CF7F35300E06364 /* Info.plist */,
+				CEA2D6DC1EBBA250002E5762 /* Twidere-Bridging-Header.h */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -692,6 +692,7 @@
 				CE497FBD1D6B01D1000F16D2 /* DateExtension.swift */,
 				CE3E5DF51D978A6100454A61 /* NSShadowExtension.swift */,
 				CE9DB0481DACA34B000C150F /* Number+LocalizedString.swift */,
+				CEA2D6E31EBC8D09002E5762 /* PersistableUserExtension.swift */,
 				CEEF42BA1DB9D650009ECD0F /* Promise+TaskMessage.swift */,
 				CE4B1AA41D719E160017CB85 /* StringExtensions.swift */,
 				CE2660181DAFD1BF007FF7CF /* StringLiteral.swift */,
@@ -703,7 +704,6 @@
 				CE79C8401DA7ACE3007C05F2 /* UIViewExtension.swift */,
 				CE79C83E1DA77777007C05F2 /* YYText+ALSLayouts.swift */,
 				CEEF42B81DB669C2009ECD0F /* YYTextExtension.swift */,
-				CEA2D6E31EBC8D09002E5762 /* PersistableUserExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
