@@ -5,7 +5,7 @@ PODS:
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - CryptoSwift (0.6.9)
-  - DateTools (1.7.0)
+  - DateTools (2.0.0)
   - DeviceKit (1.0.1)
   - Fabric (1.6.11)
   - FXBlurView (1.6.4)
@@ -20,23 +20,24 @@ PODS:
   - PMJackson (1.1.4):
     - PMJSON (~> 2.0)
   - PMJSON (2.0.2)
-  - PromiseKit (4.0.5):
-    - PromiseKit/Foundation (= 4.0.5)
-    - PromiseKit/QuartzCore (= 4.0.5)
-    - PromiseKit/UIKit (= 4.0.5)
-  - PromiseKit/Alamofire (4.0.5):
+  - PromiseKit (4.2.2):
+    - PromiseKit/Foundation (= 4.2.2)
+    - PromiseKit/QuartzCore (= 4.2.2)
+    - PromiseKit/UIKit (= 4.2.2)
+  - PromiseKit/Alamofire (4.2.2):
     - Alamofire (~> 4.0)
     - PromiseKit/CorePromise
-  - PromiseKit/CorePromise (4.0.5)
-  - PromiseKit/Foundation (4.0.5):
+  - PromiseKit/CorePromise (4.2.2)
+  - PromiseKit/Foundation (4.2.2):
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (4.0.5):
+  - PromiseKit/QuartzCore (4.2.2):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (4.0.5):
+  - PromiseKit/UIKit (4.2.2):
     - PromiseKit/CorePromise
-  - SDWebImage (3.8.2):
-    - SDWebImage/Core (= 3.8.2)
-  - SDWebImage/Core (3.8.2)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
+  - SnapKit (3.2.0)
   - Sourcery (0.6.1)
   - SQLite.swift (0.11.3):
     - SQLite.swift/standard (= 0.11.3)
@@ -54,11 +55,11 @@ PODS:
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.0)
-  - Alamofire (~> 4.0)
+  - Alamofire (~> 4.4.0)
   - ALSLayouts (~> 2.0)
   - Crashlytics
   - CryptoSwift (~> 0.6.0)
-  - DateTools (~> 1.7)
+  - DateTools (~> 2.0)
   - DeviceKit (~> 1.0)
   - Fabric
   - FXBlurView (~> 1.6)
@@ -72,9 +73,10 @@ DEPENDENCIES:
   - MXParallaxHeader (~> 0.6.0)
   - PMJackson (~> 1.1.4)
   - PMJSON (~> 2.0.2)
-  - PromiseKit (~> 4.0.0)
-  - PromiseKit/Alamofire (~> 4.0)
-  - SDWebImage (~> 3.8.2)
+  - PromiseKit (~> 4.2.2)
+  - PromiseKit/Alamofire (~> 4.2.2)
+  - SDWebImage (~> 4.0.0)
+  - SnapKit (~> 3.2.0)
   - Sourcery (~> 0.6)
   - SQLite.swift (~> 0.11.0)
   - StaticDataTableViewController (~> 2.0.5)
@@ -94,7 +96,7 @@ SPEC CHECKSUMS:
   ALSLayouts: 73bf82f8475a0533c4513570ba13e442d1d1cd5a
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   CryptoSwift: a22f6ba238e9ce4d26ee7bf45b9ed82e7122d4a0
-  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
   DeviceKit: 461e525867e48e725f41699c1cab3100df1258ff
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
@@ -108,8 +110,9 @@ SPEC CHECKSUMS:
   MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
   PMJackson: 9ef221d3411c4d1be627677c1987ac3dd08850c7
   PMJSON: 1887d12b6a85b3c9f9d1a7e4b32860d4901d9505
-  PromiseKit: 593b5e24ded6cbb1ebc708bc2c3428a8a5632d91
-  SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
+  PromiseKit: 00e8886881f151c7e573d06b437915b0bb2970ec
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   Sourcery: 1426fbb5fe2d53f1e03845e989a89b6b67ce4e33
   SQLite.swift: 99b36c22084427f0abbeb957556ce1528cf10bb3
   StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a
@@ -123,6 +126,6 @@ SPEC CHECKSUMS:
   UIView+TouchHighlighting: e05a338801522cbdc4a1e236bd189f2a928a781f
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: e1a0fb27d45119e2db55c68f92f34cb2e3b40919
+PODFILE CHECKSUM: 0f83fdc8a180a575f1c86efc7802f4b396c5fe98
 
 COCOAPODS: 1.2.1

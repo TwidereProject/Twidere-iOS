@@ -15,20 +15,19 @@ import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDelegate {
-    
-    var window: UIWindow?
-    var testNavigationController : UINavigationController?
-    
+
+    var window: UIWindow!
+
     static var performingScroll: Bool = false
-    
+
     fileprivate(set) lazy var sqliteDatabase: Connection = self.openSQLiteDatabase()
-    
+
     fileprivate func openSQLiteDatabase() -> Connection {
         let docsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         let dbPath = URL(fileURLWithPath: docsPath).appendingPathComponent("twidere.sqlite3")
-        
+
         let db = try! Connection(dbPath.path)
-        
+
         let oldVersion = db.userVersion
 //        if (oldVersion == 0) {
 //            let migration = DatabaseMigration()
@@ -45,27 +44,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         Fabric.with([Crashlytics.self])
-        
+
         let keyboardManager = IQKeyboardManager.sharedManager()
         keyboardManager.enable = true
 //        keyboardManager.disabledToolbarClasses.append(ComposeController.self)
-        
-        
-        let testViewController: UIViewController = UIViewController()
-        self.testNavigationController = UINavigationController()
-        if let testNavigationController = self.testNavigationController{
-            testNavigationController.delegate = self
-            testNavigationController.setNavigationBarHidden(true, animated: false)
-            testNavigationController.pushViewController(testViewController, animated: false)
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            if let window = self.window {
-                window.rootViewController = testNavigationController
-                window.makeKeyAndVisible()
-                window.tintColor = materialLightGreen
-            }
-            
-        }
-        
+
+
+        window = UIWindow(frame: UIScreen.main.bounds)
+
+        let vc = MainViewController()
+
+        window.backgroundColor = UIColor.white
+        window.rootViewController = vc
+        window.makeKeyAndVisible()
         return true
     }
 
