@@ -1,12 +1,13 @@
 PODS:
   - ActionSheetPicker-3.0 (2.2.0)
   - Alamofire (4.4.0)
-  - ALSLayouts (2.0.4)
+  - ALSLayouts (3.0.2)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - CryptoSwift (0.6.9)
   - DateTools (2.0.0)
-  - DeviceKit (1.0.1)
+  - DeviceKit (1.2.3)
+  - Eureka (3.0.0)
   - Fabric (1.6.11)
   - FXBlurView (1.6.4)
   - FXImageView (1.3.6)
@@ -14,7 +15,6 @@ PODS:
   - JDStatusBarNotification (1.5.5)
   - JVFloatLabeledTextField (1.1.1)
   - Kanna (2.2.1)
-  - LayoutKit (4.0.2)
   - MXPagerView (0.2.1)
   - MXParallaxHeader (0.6.1)
   - PMJackson (1.1.4):
@@ -38,7 +38,7 @@ PODS:
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
   - SnapKit (3.2.0)
-  - Sourcery (0.6.1)
+  - Sourcery (0.7.0)
   - SQLite.swift (0.11.3):
     - SQLite.swift/standard (= 0.11.3)
   - SQLite.swift/standard (0.11.3)
@@ -56,11 +56,12 @@ PODS:
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.0)
   - Alamofire (~> 4.4.0)
-  - ALSLayouts (~> 2.0)
+  - ALSLayouts (~> 3.0.2)
   - Crashlytics
   - CryptoSwift (~> 0.6.0)
   - DateTools (~> 2.0)
-  - DeviceKit (~> 1.0)
+  - DeviceKit (~> 1.2)
+  - Eureka (~> 3.0)
   - Fabric
   - FXBlurView (~> 1.6)
   - FXImageView (~> 1.3)
@@ -68,7 +69,6 @@ DEPENDENCIES:
   - JDStatusBarNotification (~> 1.5.5)
   - JVFloatLabeledTextField (~> 1.1)
   - Kanna (~> 2.0)
-  - LayoutKit
   - MXPagerView (~> 0.1)
   - MXParallaxHeader (~> 0.6.0)
   - PMJackson (~> 1.1.4)
@@ -77,7 +77,7 @@ DEPENDENCIES:
   - PromiseKit/Alamofire (~> 4.2.2)
   - SDWebImage (~> 4.0.0)
   - SnapKit (~> 3.2.0)
-  - Sourcery (~> 0.6)
+  - Sourcery (~> 0.7)
   - SQLite.swift (~> 0.11.0)
   - StaticDataTableViewController (~> 2.0.5)
   - STPopup (~> 1.8.0)
@@ -93,11 +93,12 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
-  ALSLayouts: 73bf82f8475a0533c4513570ba13e442d1d1cd5a
+  ALSLayouts: 783215902e066ba5c1d3c77c5fe12cb304b71de6
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   CryptoSwift: a22f6ba238e9ce4d26ee7bf45b9ed82e7122d4a0
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
-  DeviceKit: 461e525867e48e725f41699c1cab3100df1258ff
+  DeviceKit: f33cbc6e67d9bb416e42dedc647557c7c2f6d3d7
+  Eureka: f36fd440c3ebb7bfea0a4fbe6f16a05f1cb35906
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   FXImageView: 34792b9c9bbdbfed70ff33cb015cc4d333daac34
@@ -105,7 +106,6 @@ SPEC CHECKSUMS:
   JDStatusBarNotification: 2b4f29bd68a60d7aa2f190b5265f1ce59c18aaf8
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   Kanna: 182789ab065e8f9a6ccc2a74ce6283d3401c0c4a
-  LayoutKit: 7a7b20acc03d815ff444d44cf4d982aed6839688
   MXPagerView: ede184b5191b2ed689ccf05a750a9978cce42414
   MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
   PMJackson: 9ef221d3411c4d1be627677c1987ac3dd08850c7
@@ -113,7 +113,7 @@ SPEC CHECKSUMS:
   PromiseKit: 00e8886881f151c7e573d06b437915b0bb2970ec
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
-  Sourcery: 1426fbb5fe2d53f1e03845e989a89b6b67ce4e33
+  Sourcery: 9236327fd0ae9b1cdf9a78e63452cfda021fc0e6
   SQLite.swift: 99b36c22084427f0abbeb957556ce1528cf10bb3
   StaticDataTableViewController: 7ea8d7bc8c7f0a4e9255a320224462c7346c1d4a
   STPopup: b69b3e7484ef7d2baec5f9ab2939f8a7bcdfe218
@@ -126,6 +126,6 @@ SPEC CHECKSUMS:
   UIView+TouchHighlighting: e05a338801522cbdc4a1e236bd189f2a928a781f
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 0f83fdc8a180a575f1c86efc7802f4b396c5fe98
+PODFILE CHECKSUM: ee82272480545c9807e31400fadadc3476225ebb
 
 COCOAPODS: 1.2.1

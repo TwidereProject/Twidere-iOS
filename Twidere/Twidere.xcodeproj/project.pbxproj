@@ -10,9 +10,11 @@
 		0FA31879CDAA65A3DCCCBB21 /* Pods_TwidereUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B80AF2808B1E6DAC3C1586 /* Pods_TwidereUITests.framework */; };
 		81A3C3B69C528DE82A413A24 /* Pods_Twidere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B92684093EC59E031643BAD /* Pods_Twidere.framework */; };
 		93E97A3FFD734845704AF5A8 /* Pods_TwidereTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B4E8E9FB29E0AC621059C18 /* Pods_TwidereTests.framework */; };
+		C57AE02C60DD869308BC46A2 /* APIEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AE9F82D9ADF48C0A797E1 /* APIEditorViewController.swift */; };
 		C57AE1A31B6DF18B3E70D32D /* KotlinLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AEB3535693D8CE56A2757 /* KotlinLike.swift */; };
-		C57AEB8391976C4FCF227AAA /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AE871721FA2DEB10FEB94 /* SignInViewController.swift */; };
+		C57AE697654117B8C3334C5F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AEEC64C3384DE54C892CF /* SignInViewController.swift */; };
 		C57AEC11BFB85E10DFE1F32F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AE82AEE2AE1849333E3D7 /* MainViewController.swift */; };
+		C57AED9EEAEFD6F2EE84F9E2 /* SignInTypeChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57AE426C5E708AEEDE746E0 /* SignInTypeChooserViewController.swift */; };
 		CE0529E71CF7F35300E06364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529E61CF7F35300E06364 /* AppDelegate.swift */; };
 		CE0529F11CF7F35300E06364 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0529F01CF7F35300E06364 /* Assets.xcassets */; };
 		CE0529FF1CF7F35300E06364 /* TwidereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0529FE1CF7F35300E06364 /* TwidereTests.swift */; };
@@ -111,9 +113,11 @@
 		31A137A958AD98070F9D8AC5 /* Pods-TwidereUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TwidereUITests/Pods-TwidereUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8B92684093EC59E031643BAD /* Pods_Twidere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twidere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1B80AF2808B1E6DAC3C1586 /* Pods_TwidereUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwidereUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C57AE426C5E708AEEDE746E0 /* SignInTypeChooserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInTypeChooserViewController.swift; sourceTree = "<group>"; };
 		C57AE82AEE2AE1849333E3D7 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		C57AE871721FA2DEB10FEB94 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		C57AE9F82D9ADF48C0A797E1 /* APIEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEditorViewController.swift; sourceTree = "<group>"; };
 		C57AEB3535693D8CE56A2757 /* KotlinLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KotlinLike.swift; sourceTree = "<group>"; };
+		C57AEEC64C3384DE54C892CF /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		CE0529E31CF7F35300E06364 /* Twidere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twidere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0529E61CF7F35300E06364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE0529F01CF7F35300E06364 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -236,9 +240,19 @@
 			isa = PBXGroup;
 			children = (
 				C57AE82AEE2AE1849333E3D7 /* MainViewController.swift */,
-				C57AE871721FA2DEB10FEB94 /* SignInViewController.swift */,
+				C57AEF64FC5313A7F860CE41 /* SignIn */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C57AEF64FC5313A7F860CE41 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				C57AEEC64C3384DE54C892CF /* SignInViewController.swift */,
+				C57AE426C5E708AEEDE746E0 /* SignInTypeChooserViewController.swift */,
+				C57AE9F82D9ADF48C0A797E1 /* APIEditorViewController.swift */,
+			);
+			path = SignIn;
 			sourceTree = "<group>";
 		};
 		CE0529DA1CF7F35300E06364 = {
@@ -774,8 +788,10 @@
 				CE79C8411DA7ACE3007C05F2 /* UIViewExtension.swift in Sources */,
 				CE497FA91D697CEA000F16D2 /* ConvertUtils.swift in Sources */,
 				C57AEC11BFB85E10DFE1F32F /* MainViewController.swift in Sources */,
-				C57AEB8391976C4FCF227AAA /* SignInViewController.swift in Sources */,
 				C57AE1A31B6DF18B3E70D32D /* KotlinLike.swift in Sources */,
+				C57AE697654117B8C3334C5F /* SignInViewController.swift in Sources */,
+				C57AED9EEAEFD6F2EE84F9E2 /* SignInTypeChooserViewController.swift in Sources */,
+				C57AE02C60DD869308BC46A2 /* APIEditorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

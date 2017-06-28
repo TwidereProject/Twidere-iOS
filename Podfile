@@ -9,8 +9,7 @@ $PromiseKitVersion = '~> 4.2.2'
 target 'Twidere' do
   workspace 'Twidere'
   project 'Twidere/Twidere'
-  pod 'LayoutKit'
-  pod 'Sourcery', '~> 0.6'
+  pod 'Sourcery', '~> 0.7'
   pod 'PMJSON', '~> 2.0.2'
   pod 'PMJackson', '~> 1.1.4'
   pod 'SQLite.swift', '~> 0.11.0'
@@ -32,16 +31,17 @@ target 'Twidere' do
   pod 'JDStatusBarNotification', '~> 1.5.5' # Obj-C
   pod 'UITableView+FDTemplateLayoutCell', '~> 1.5.beta' # Obj-C
   pod 'DateTools', '~> 2.0' # Obj-C
-  pod 'ALSLayouts', '~> 2.0' # Swift 3
+  pod 'ALSLayouts', '~> 3.0.2' # Swift 3
   pod 'ThumborURL', '~> 0.0' # Obj-C
   pod 'MXPagerView', '~> 0.1'
   pod 'MXParallaxHeader', '~> 0.6.0'
   pod 'FXBlurView', '~> 1.6'
   pod 'FXImageView', '~> 1.3'
   pod 'YYText', '~> 1.0'
-  pod 'DeviceKit', '~> 1.0'
+  pod 'DeviceKit', '~> 1.2'
   pod 'SwiftHEXColors', '~> 1.1.0'
   pod 'SnapKit', '~> 3.2.0'
+  pod 'Eureka', '~> 3.0'
 
   pod 'Fabric'
   pod 'Crashlytics'

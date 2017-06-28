@@ -16,8 +16,12 @@ class MainViewController: UIViewController {
         super.viewDidAppear(animated)
 
         let navController = UINavigationController()
-        navController.viewControllers = [SignInViewController(nibName: nil, bundle: nil)]
-        show(navController, sender: self)
+        navController.viewControllers = [
+                SignInViewController(nibName: nil, bundle: nil).also { it in
+                    it.cancellable = false
+                }
+        ]
+        present(navController, animated: false)
     }
 
 
