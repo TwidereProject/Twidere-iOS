@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0CE99BEB1F0E780F00279968 /* TwidereCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE99BEA1F0E780F00279968 /* TwidereCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0FA31879CDAA65A3DCCCBB21 /* Pods_TwidereUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B80AF2808B1E6DAC3C1586 /* Pods_TwidereUITests.framework */; };
 		81A3C3B69C528DE82A413A24 /* Pods_Twidere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B92684093EC59E031643BAD /* Pods_Twidere.framework */; };
 		93E97A3FFD734845704AF5A8 /* Pods_TwidereTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B4E8E9FB29E0AC621059C18 /* Pods_TwidereTests.framework */; };
@@ -28,7 +29,6 @@
 		CE1C4B961EE9A85F00E0ACB6 /* MicroBlog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1C4B951EE9A85F00E0ACB6 /* MicroBlog.framework */; };
 		CE1C4B971EE9A85F00E0ACB6 /* MicroBlog.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE1C4B951EE9A85F00E0ACB6 /* MicroBlog.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE1C4B9A1EE9A88100E0ACB6 /* TwidereCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE750A461EBB4CC9003E6249 /* TwidereCore.framework */; };
-		CE1C4B9B1EE9A88100E0ACB6 /* TwidereCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE750A461EBB4CC9003E6249 /* TwidereCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE2660191DAFD1BF007FF7CF /* StringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2660181DAFD1BF007FF7CF /* StringLiteral.swift */; };
 		CE26603F1DB0638D007FF7CF /* SQLite+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26603E1DB0638D007FF7CF /* SQLite+Array.swift */; };
 		CE2A7FE41EB767B0003791F2 /* Date+MicroBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A7FE31EB767B0003791F2 /* Date+MicroBlog.swift */; };
@@ -98,7 +98,7 @@
 				CE1C4B971EE9A85F00E0ACB6 /* MicroBlog.framework in Embed Frameworks */,
 				CE1C4B8E1EE9A85F00E0ACB6 /* RestCommons.framework in Embed Frameworks */,
 				CE1C4B911EE9A85F00E0ACB6 /* RestClient.framework in Embed Frameworks */,
-				CE1C4B9B1EE9A88100E0ACB6 /* TwidereCore.framework in Embed Frameworks */,
+				0CE99BEB1F0E780F00279968 /* TwidereCore.framework in Embed Frameworks */,
 				CE1C4B941EE9A85F00E0ACB6 /* Mastodon.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -108,6 +108,7 @@
 
 /* Begin PBXFileReference section */
 		046CC3C499EB77C6A40118F8 /* Pods-Twidere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Twidere/Pods-Twidere.debug.xcconfig"; sourceTree = "<group>"; };
+		0CE99BEA1F0E780F00279968 /* TwidereCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TwidereCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B4E8E9FB29E0AC621059C18 /* Pods_TwidereTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwidereTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		202F33C6047810AE3F0CF489 /* Pods-Twidere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twidere.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Twidere/Pods-Twidere.release.xcconfig"; sourceTree = "<group>"; };
 		31A137A958AD98070F9D8AC5 /* Pods-TwidereUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwidereUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TwidereUITests/Pods-TwidereUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -258,6 +259,7 @@
 		CE0529DA1CF7F35300E06364 = {
 			isa = PBXGroup;
 			children = (
+				0CE99BEA1F0E780F00279968 /* TwidereCore.framework */,
 				CE1C4B951EE9A85F00E0ACB6 /* MicroBlog.framework */,
 				CE1C4B921EE9A85F00E0ACB6 /* Mastodon.framework */,
 				CE1C4B8F1EE9A85F00E0ACB6 /* RestClient.framework */,
